@@ -1,0 +1,39 @@
+@media screen and (max-width: 767px) {
+.revlikespan3, .revlikespan2, .revlikespan{
+	    padding-right: 25px;
+    float: right;
+}
+.latestsongssec .list_item .list_bottom .revleftc{
+    width: 45px !important;
+}
+
+
+}
+
+
+@media screen and (max-width: 996px) and (min-width: 768px){
+.latestsongssec .list_item .list_bottom .reviewscite{
+    width: 45px !important;
+}
+
+.latestsongssec .list_item .list_bottom .revleftc{
+    width: 70px !important;
+}
+
+}
+
+
+@media screen and (min-width: 997px){
+.latestsongssec .list_item .list_bottom .revleftc{
+    width: 85px !important;
+}
+
+}
+
+
+
+@media screen and (max-width: 767px) and (min-width: 500px){
+.latestsongssec .list_item .list_bottom .revleftc{
+        width: 100px !important;
+}
+}

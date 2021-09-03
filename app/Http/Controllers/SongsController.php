@@ -1,0 +1,45 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB; 
+use App\Models\Songs;
+
+class SongsController extends Controller
+{
+    ///construct
+    // function __construct()
+    // {
+       
+    // }
+
+    ///GetTopSongs
+    public function GetTopSongs()
+    { 
+        if(isset($_GET['page']))
+        {
+            $page = $_GET['page']; 
+        }else
+        {
+            $page = 1;
+        }
+
+        //page View
+        return view('top_songs', compact('page'));
+    }
+    ///GetTopAlbums
+    public function GetTopAlbums()
+    { 
+        if(isset($_GET['page']))
+        {
+            $page = $_GET['page']; 
+        }else
+        {
+            $page = 1;
+        }
+
+        //page View
+        return view('album', compact('page'));
+    }
+}

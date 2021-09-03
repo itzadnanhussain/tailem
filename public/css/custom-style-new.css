@@ -1,0 +1,22 @@
+.img-responsive{max-width:700px;margin:0 auto 20px}.mobile_display{padding:0}.topsonglistsec .songlistings .album_details .reviews{margin-top:4px}.topsonglistsec .songlistings .album_details .title{margin-bottom:10px}.topsonglistsec .songlistings button{bottom:-14px}.recentreviewsec .review_item .album_detail label a{color:#000!important}.modal-dialog{margin-left:auto;margin-right:auto}.recentreviewsec .review_item .album_cover cite{right:15px;left:auto}.popularreviews .album_details .usrname a{color:#333;display:inline-block;max-width:85px;overflow:hidden;text-overflow:ellipsis;vertical-align:middle;white-space:nowrap}.album_details .review_title,.title .rec_review_title{color:#000!important}.latestsongssec #owl-carousel1 .owl-dot>span{background:#d6d6d6;border-radius:50%;display:inline-block;height:12px;margin:0 5px;width:12px;transition:all ease-in .3s;-webkit-transition:all ease-in .3s}.latestsongssec #owl-carousel1 .owl-dot.active>span,.latestsongssec #owl-carousel1 .owl-dot>span:hover{background:#869791}.latestsongssec #owl-carousel1 .owl-dot{display:inline-block}.latestsongssec #owl-carousel1 .owl-dots{text-align:center}.latestsongssec #owl-carousel1 .owl-nav{display:none}.latestsongssec #owl-carousel1 .owl-controls{bottom:-34px;left:0;position:absolute;width:100%}.account_nav li a.logout,.account_nav li a.my-account{padding-left:25px!important}#owl-carousel1 .img-responsive{margin-bottom:0}@media (min-width:768px) and (max-width:1024px){.topsonglistsec{padding-left:10px;padding-right:10px}.img-responsive{display:block;max-width:700px;height:auto;margin:0 auto 20px}.recentreviewsec{padding:0}.topsonglistsec .songlistings .album_details{width:calc(100% - 115px);-webkit-width:calc(100% - 115px)}.topsonglistsec .songlistings .album_details .likes{margin-left:0}.review_rev_sng{height:auto!important}}@media (min-width:700px) and (max-width:1000px){.tablet-view .rev_right_position{padding-right:10px!important}}@media (max-width:767px){.author a,.title a,label.author,label.title{overflow:hidden;text-overflow:ellipsis;width:100%}.recentreviewsec .review_item .album_cover{max-height:300px}.recentreviewsec{padding:10px}.img-responsive{max-width:100%;padding:0 15px}.modal-dialog{margin-right:auto!important}.modal-body label.title{width:inherit}.album_cover .img-responsive{padding:0}#featured-songs .album_cover img{min-height:300px}#featured-songs{margin-top:0!important;margin-bottom:22px}#featured-songs .next,#featured-songs .prev{margin-top:-29px}.recentreviewsec.rev_position .review_item img{max-height:268px!important}.review_rev_sng{height:auto!important}.pad_zero.small-mobile{padding:0 5px!important}.small-mobile .album_cover a{display:block;width:100%}.small-mobile .album_cover a img{width:100%!important}.rew_list-panel .title>a,.small-mobile .author,.small-mobile .author a{display:inline-block;width:auto}.small-mobile .author{margin:0;vertical-align:bottom}.small-mobile .author .heart_color{display:inline-block;width:auto;vertical-align:bottom;margin-bottom:5px}.img-responsive.artist-img{padding:0}.rew_list-panel .title>span{float:right}.rew_list-panel .title>a{vertical-align:bottom;padding-top:5px}.latestsongssec a cite{color:#000!important}}@media (max-width:550px){.mobile_display{padding:0 20px!important}.recentreviewsec.rev_position .review_item img{max-height:216px!important}.small-mobile .album_cover a img{width:auto!important}.mobile-responsive .author,.mobile-responsive .author a{display:inline-block;width:auto}.mobile-responsive .author{margin:0;vertical-align:bottom}.mobile-responsive .author .heart_color{display:inline-block;width:auto;vertical-align:bottom;margin-bottom:5px}}
+
+
+/*my review page css */
+/*2019v1*/
+/*.myreviews .topRwHead-panel .col-sm-9 , .myreviews .topRwHead-panel .col-sm-9 .col-lg-4 , .myreviews .topRwHead-panel .show_review .col-lg-4{
+	padding-left: 0;
+}*/
+
+/*.myreviews .topsonglistsec .songlistings .row .album_cover{
+width: 100%;
+
+float: left;
+
+padding-right: 2%;
+}
+
+.myreviews .topsonglistsec .songlistings .row .album_details{
+width: 70%;
+
+display: inline-block;
+}*/
