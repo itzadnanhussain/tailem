@@ -11,7 +11,7 @@ $mobile_view = 0;
 <section class="middle_sec">
     <div class="banner topsongbanner">
         <div class="banner_body">
-            <h1 class="bnr_heading">Top <span>50</span> Songs</h1>
+            <h1 class="bnr_heading">Late<span>st</span> Songs</h1>
         </div>
     </div>
     <div class="topsonglistsec" style="padding-top:0;">
@@ -34,9 +34,9 @@ $mobile_view = 0;
                         //============================================================
                         //PAGGING CODE STARTS HERE
 
-
                         $artist_list_arr = array();
-                        // $key = md5("artist_list_arr_top_songs_list");  
+
+                        $key = md5("artist_list_arr_top_songs_list"); // Unique Words
                         if (empty($artist_list_arr)) {
                             $artist_list = "SELECT  saa.artist_id,s.id, 
 									s.song_title, 
@@ -46,20 +46,20 @@ $mobile_view = 0;
 									b.album_title, 
 									b.album_picture,a.artist_seo, 
       								a.artist_name 
-								FROM tbl_songs s 
+								FROM tbl_latest_songs s 
 									   INNER JOIN tbl_songs_artist_album saa
 											   ON saa.song_id = s.id 
 									   INNER JOIN tbl_artist_album b 
 											   ON saa.album_id = b.id 
                                                 INNER JOIN tbl_artists a 
 											   ON saa.artist_id = a.id 
-								WHERE  (saa.display_status = 1 AND s.song_status=1) and s.ranking_order>0 
+								WHERE  (saa.display_status = 1 AND s.song_status=1 AND s.latest = 1) 
 								group by s.id order by
-							    s.ranking_order asc                                
+								 s.timeupdated DESC                                
 								LIMIT  50";
 
-                            // $artist_list_arr    =    $db->get_results($artist_list, ARRAY_A);
                             $artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
+
 
                             if ($artist_list_arr) {
                                 $total_pages = count($artist_list_arr);
@@ -67,16 +67,11 @@ $mobile_view = 0;
                                 $total_pages =  0;
                             }
                         }
-
-
-
-                        $limit = 10;
+                        $limit = 10;  
                         if ($page)
                             $start = ($page - 1) * $limit; //first item to display on this page
-                        else {
+                        else
                             $start = 0;                    //if no page var is given, set start to 0
-
-                        }
                         //PAGGING CODE ENDS HERE	
                         //============================================================
 
@@ -92,8 +87,7 @@ $mobile_view = 0;
                         if (isset($artist_list_arr)) {
                             $k = 1;
                             foreach ($artist_list_arr as $val) {
-                                $val = (array)$val;
-
+                                $val = (array) $val;
                                 $id      = $val['id'];
 
                                 $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.song_id = '" . $id . "' order by r.review_id desc limit 1";
@@ -101,32 +95,32 @@ $mobile_view = 0;
                                 // $review_list_arr_top    =    $db->get_row($review_list_qry, ARRAY_A);
                                 $review_list_arr_top = array();
                                 $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
-
-
                                 if ($review_list_arr_top) {
                                     $review_list_arr_top['count_reviews'] = count($review_list_arr_top);
                                 } else {
                                     $review_list_arr_top['count_reviews'] = 0;
                                 }
 
-                                $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_review_id = '" . $id . "' order by comment_id desc limit 1";
 
 
-                                //                                $comment_list_qry = "select u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $id order by comment_id desc";
+
+                                /* $comment_list_qry ="select count(*) as count_discussion from tbl_comments where comment_review_id = '".$id."' order by comment_id desc limit 1";	
+																				
+											$comment_list_arr	=	$db->get_row($comment_list_qry,ARRAY_A);*/
 
 
+                                $comment_list_qry = "select u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $id order by comment_id desc";
+
+
+                                //$comment_list_arr	=	$db->get_row($comment_list_qry,ARRAY_A);
                                 // $discussion_list_arr    =    $db->get_results($comment_list_qry, ARRAY_A);
-                                $discussion_list_arr = array();
-
-                                //                                $discussion_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
-                                //                               
-                                if (isset($discussion_list_arr) && !empty($discussion_list_arr)) {
-
+                                $discussion_list_arr = array(); 
+                                $discussion_list_arr = \App\Models\Songs::GetRawData($comment_list_qry); 
+                                if (isset($discussion_list_arr) && !empty($discussion_list_arr)) { 
                                     $comment_list_arr['count_discussion'] = count($discussion_list_arr);
                                 } else {
                                     $comment_list_arr['count_discussion'] =  0;
-                                }
-
+                                } 
 
 
                                 $album_title = stripslashes(html_entity_decode($val['album_title']));
@@ -156,21 +150,27 @@ $mobile_view = 0;
                                     $counter_main = 0;
                                 }
 
+
+
+
+
+
                                 $qry_top_feature_artist = "Select a.artist_seo as f_artist_seo,a.artist_name as feature_artist, a.id as feature_artist_id from tbl_featured_artist_assocs f, tbl_artists a where a.id = f.featured_artist AND f.song_id = '" . $id . "'";
-                                // $qry_feature_arr = $db->get_results($qry_top_feature_artist, ARRAY_A);
                                 $qry_feature_arr = array();
                                 $qry_feature_arr = \App\Models\Songs::GetRawData($qry_top_feature_artist);
                                 if ($qry_feature_arr) {
                                     $count  = count($qry_feature_arr);
                                 } else {
                                     $count = 0;
-                                }
+                                } 
+                                
                                 $num = 1;
                                 $feature_artists = "";
 
                                 if ($qry_feature_arr) {
                                     foreach ($qry_feature_arr as $val_feature) {
                                         $val_feature = (array)$val_feature;
+
 
                                         $val_feature['f_artist_seo'] = strtolower($val_feature['f_artist_seo']);
                                         if ($num == $count) {
@@ -217,6 +217,8 @@ $mobile_view = 0;
 
                                     $all_avg  =  $sum_rate / $counter;
                                 }
+
+                               
 
 
 
@@ -315,6 +317,7 @@ $mobile_view = 0;
                                                             } else {
                                                                 $counter = 0;
                                                             }
+                                                            
                                                             if ($counter == 0) {
                                                         ?>
                                                                 <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $album_artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
@@ -367,7 +370,7 @@ $mobile_view = 0;
                                                     <div style="clear:both;"></div>
                                                     <p>
                                                         <label class="reviews">
-                                                            <img src="<?php echo COOKIE_FREE_ROOTPATH; ?>images/review-book.png"><a style="opacity:1;">Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a>
+                                                            <!--<img src="images/icon_review.png">--> <img src="<?php echo COOKIE_FREE_ROOTPATH; ?>images/review-book.png"><a style="opacity:1;">Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a>
                                                         </label>
                                                         <label class="reviews"><img src="<?php echo COOKIE_FREE_ROOTPATH; ?>images/icon_post.png"><a style="opacity:1;"><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                                                                                                                                             echo "Posts ";
@@ -391,7 +394,7 @@ $mobile_view = 0;
 
 
 
-                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . '-write-a-review-' . $artist_seo; ?>'">Write a review</button>
+                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>'">Write a review</button>
                                             </div>
                                         </div>
                                     <?php } elseif ($mobile_view == 1) { ?>
@@ -454,15 +457,7 @@ $mobile_view = 0;
                                                         <label class="likes" style="height:26px; margin-left:0px; padding-left:0px; vertical-align: middle;">
                                                             <?php
                                                             if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                                                // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'"));
-                                                                $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'");
-                                                                if ($counter) {
-                                                                    $counter = count($counter);
-                                                                } else {
-                                                                    $counter = 0;
-                                                                }
-
-                                                                
+                                                                $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'"));
                                                                 if ($counter == 0) {
                                                             ?>
                                                                     <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $album_artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
@@ -549,19 +544,18 @@ $mobile_view = 0;
                             }
                         }
                         $kval = $k;
-
                         ?>
-
                     </ul>
                     <?php if ($total_pages > $limit) { ?>
                         <div class="page-navigation">
-                            <ul>
+                            <ul> 
                                 @include("common.paging-playlist")
+                                 
                             </ul>
                         </div>
                     <?php } ?>
                 </div>
-
+                  
                 @include("include.song_reviews_sidebar")
                 <!-- Advertisement Banner Start-->
 
@@ -581,6 +575,7 @@ $mobile_view = 0;
         </div>
     </div>
 </section>
+
 
 
 <style>
@@ -625,6 +620,8 @@ $mobile_view = 0;
 // include("common/signin_modal.php");
 // include_once("common/popular_review.php"); 
 ?>
+
+
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="show_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="create_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>

@@ -84,11 +84,13 @@ $mobile_rev    = 15;
                 }
 
                 $review_title  = stripslashes(html_entity_decode($val['review_title']));
-                $review_rating = $val['review_rating'];
+                $review_title = StringReplace($review_title);
+                $review_rating = $val['review_rating']; 
+                
                 $review_detail = stripslashes(html_entity_decode($val['review_detail']));
+                $review_detail = StringReplace($review_detail);
                 $review_user_id = $val['review_user_id'];
-                $status         = $val['status'];
-
+                $status         = $val['status']; 
                 $is_popular     = $val['is_popular'];
                 $album_id     = $val['album_id'];
                 $db_song_id    = $val['song_id'];
@@ -99,6 +101,7 @@ $mobile_rev    = 15;
 
                 $artist_name = stripslashes($val['artist_name']);
                 $song_title    =    stripslashes($val['song_title']);
+                $song_title = StringReplace($song_title);
 
                 $select_qry = "select user_name from tbl_users where user_id='" . $review_user_id . "' ";
                 // $select_ar  = $db->get_row($select_qry, ARRAY_A);

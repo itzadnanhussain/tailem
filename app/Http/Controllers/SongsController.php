@@ -28,6 +28,8 @@ class SongsController extends Controller
         //page View
         return view('top_songs', compact('page'));
     }
+
+
     ///GetTopAlbums
     public function GetTopAlbums()
     { 
@@ -41,5 +43,21 @@ class SongsController extends Controller
 
         //page View
         return view('album', compact('page'));
+    }
+
+
+    ///GetLatestSongs
+    public function GetLatestSongs()
+    { 
+        if(isset($_GET['page']))
+        {
+            $page = $_GET['page']; 
+        }else
+        {
+            $page = 1;
+        }
+
+        //page View
+        return view('latest_songs', compact('page'));
     }
 }

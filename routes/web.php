@@ -37,10 +37,7 @@ Route::get('/home',[DashboardController::class,'index'])
 |
 */
 
-Route::get('/test',function(){
-    echo 'test';
-    die;
-});
+ 
 
 ///top-songs
 Route::get('/top-songs',[SongsController::class, 'GetTopSongs']) 
@@ -49,6 +46,11 @@ Route::get('/top-songs',[SongsController::class, 'GetTopSongs'])
 ///top-albums
 Route::get('/top-albums',[SongsController::class, 'GetTopAlbums']) 
 ->name('top-albums.GetTopAlbums');
+ 
+
+///latest-songs
+Route::get('/latest-songs',[SongsController::class, 'GetLatestSongs']) 
+->name('latest-songs.GetLatestSongs');
  
  
 

@@ -1,0 +1,278 @@
+RewriteEngine On
+ErrorDocument 404 /
+RewriteCond %{SERVER_PORT} 80 
+
+
+RewriteCond %{REQUEST_FILENAME} !-f 
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteRule ^(.*)$ https://www.tailem.com/$1 [R,L]
+
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^www\.tailem\.com [NC]
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+
+
+RewriteRule ^usage$ usage.php [PT]
+
+
+
+RewriteRule ^(.*)-reviews-(.*)-sort-(.*)-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&sort=$3&page=$4 [PT]
+RewriteRule ^(.*)-reviews-(.*)-sort-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&sort=$3 [PT]
+
+
+RewriteRule ^(.*)-reviews-(.*)-rating-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&rate=$3 [PT]
+
+RewriteRule ^(.*)-reviews-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2 [PT]
+
+RewriteRule ^playlists-(.*)_(.*)$ my_playlist.php?seo_playlist=$1&page=$2 [PT]
+RewriteRule ^playlists-(.*)$ my_playlist.php?seo_playlist=$1 [PT] 
+RewriteRule ^playlists$ my_playlist.php [PT]
+
+RewriteRule ^(.*)-profile-playlists-(.*)_(.*)$ my_playlist.php?user_seo=$1&seo_playlist=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-playlists-(.*)$ my_playlist.php?user_seo=$1&seo_playlist=$2 [PT]
+RewriteRule ^(.*)-profile-playlists$ my_playlist.php?user_seo=$1 [PT]
+
+RewriteRule ^searcher-albumlist-(.*)$ search_albumlist.php?page=$1 [PT]
+RewriteRule ^searcher-results-album$ search_albumlist.php [PT]
+RewriteRule ^searcher-artistlist-(.*)$ search_artist.php?page=$1 [PT]
+RewriteRule ^searcher-results-artist$ search_artist.php [PT]
+RewriteRule ^searcher-song-(.*)$ search_song.php?page=$1 [PT]
+RewriteRule ^searcher-results-song$ search_song.php [PT]
+RewriteRule ^searcher$ search.php [PT]
+
+RewriteRule ^welcome-(.*)$ welcome.php?username=$1 [PT]
+RewriteRule ^(.*)-artist-albums-(.*)$ albums_page.php?artist_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-artist-albums$ albums_page.php?artist_seo=$1 [PT]
+
+
+RewriteRule ^(.*)-artist-featured-(.*)$ featured_page.php?artist_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-artist-featured$ featured_page.php?artist_seo=$1 [PT]
+
+
+
+RewriteRule ^logout$ logout.php [PT]
+RewriteRule ^sign-up$ sign_up.php [PT]
+RewriteRule ^cms/(.*)$ CMS.php?seo_url=$1 [PT]
+RewriteRule ^cms.php/(.*)$ cms.php?seo_url=$1 [PT]
+RewriteRule ^signup_popup/(.*)$ signup_popup.php?seo_url=$1 [PT]
+RewriteRule ^signup_popup.php/(.*)$ signup_popup.php?seo_url=$1 [PT]
+RewriteRule ^change-password$ change_password.php [PT]
+RewriteRule ^change-username$ edit_username.php [PT]
+RewriteRule ^change-picture$ change_picture.php [PT]
+RewriteRule ^forgot-password$ forgot_password.php [PT]
+RewriteRule ^maintance$ maintance.php [PT]
+RewriteRule ^reset-password-(.*)$ reset_password.php?code=$1 [PT]
+RewriteRule ^new-password-(.*)$ new_password.php?code=$1 [PT]
+
+RewriteRule ^(.*)-profile-review-artists-(.*)-genre-(.*)-(.*)$ review_artist.php?user_seo=$1&genere_seo=$2&alpha=$3&page=$4 [PT]
+RewriteRule ^(.*)-profile-review-artists-(.*)-genre-(.*)$ review_artist.php?user_seo=$1&genere_seo=$2&alpha=$3 [PT]
+RewriteRule ^(.*)-profile-review-artists-(.*)-(.*)$ review_artist.php?user_seo=$1&alpha=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-review-artists-(.*)$ review_artist.php?user_seo=$1&alpha=$2 [PT]
+RewriteRule ^(.*)-profile-review-artist-genres-(.*)-(.*)$ review_artist.php?user_seo=$1&genere_seo=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-review-artist-genre-(.*)-(.*)$ review_artist.php?user_seo=$1&genere_seo=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-review-artist-genre-(.*)$ review_artist.php?user_seo=$1&genere_seo=$2 [PT]
+
+RewriteRule ^(.*)-review-artist-genres-(.*)-(.*)$ review_artist.php?user_seo=$1&genere_seo=$2&page=$3 [PT]
+RewriteRule ^(.*)-review-artist-genre-(.*)$ review_artist.php?user_seo=$1&genere_seo=$2 [PT]
+
+RewriteRule ^review-artists-(.*)-genre-(.*)$ review_artist.php?genere_seo=$1&alpha=$2 [PT]
+RewriteRule ^review-artists-(.*)-(.*)$ review_artist.php?alpha=$1&page=$2 [PT]
+RewriteRule ^review-artists-(.*)$ review_artist.php?alpha=$1 [PT]
+RewriteRule ^review-artist-genre-(.*)-(.*)$ review_artist.php?genere_seo=$1&page=$2 [PT]
+RewriteRule ^review-artist-genre-(.*)$ review_artist.php?genere_seo=$1 [PT]
+RewriteRule ^(.*)-profile-review-artist-(.*)$ review_artist.php?user_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-profile-review-artist$ review_artist.php?user_seo=$1 [PT]
+RewriteRule ^review-artist-(.*)$ review_artist.php?page=$1 [PT]
+RewriteRule ^review-artist$ review_artist.php [PT]
+
+RewriteRule ^sign-in$ sign_in.php [PT]
+RewriteRule ^(.*)-artist-sort-(.*)-(.*)$ artist_page.php?artist_seo=$1&sort=$2&page=$3 [PT]
+RewriteRule ^(.*)-artist-sort-(.*)$ artist_page.php?artist_seo=$1&sort=$2 [PT]
+
+RewriteRule ^(.*)-profile-(.*)-review-albums-(.*)$ review_album.php?user_seo=$1&artist_seo=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-(.*)-review-albums$ review_album.php?user_seo=$1&artist_seo=$2 [PT]
+RewriteRule ^(.*)-review-albums-(.*)$ review_album.php?artist_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-review-albums$ review_album.php?artist_seo=$1 [PT]
+RewriteRule ^(.*)-(.*)-review-albums$ review_album.php?user_seo=$1&artist_seo=$2 [PT]
+
+
+RewriteRule ^(.*)-profile-like-artists-(.*)-genre-(.*)$ like_artist.php?user_seo=$1&genere_seo=$2&alpha=$3 [PT]
+RewriteRule ^(.*)-profile-like-artists-(.*)-(.*)$ like_artist.php?user_seo=$1&alpha=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-like-artists-(.*)$ like_artist.php?user_seo=$1&alpha=$2 [PT]
+RewriteRule ^(.*)-profile-like-artists-(.*)-genre-(.*)$ like_artist.php?user_seo=$1&genere_seo=$2&alpha=$3 [PT]
+RewriteRule ^(.*)-profile-like-artists-(.*)-(.*)$ like_artist.php?user_seo=$1&alpha=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-like-artists-(.*)$ like_artist.php?user_seo=$1&alpha=$2 [PT]
+
+RewriteRule ^(.*)-profile-like-artist-genres-(.*)-(.*)$ like_artist.php?user_seo=$1&genere_seo=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-like-artist-genre-(.*)$ like_artist.php?user_seo=$1&genere_seo=$2 [PT]
+
+
+RewriteRule ^like-artists-(.*)-genre-(.*)$ like_artist.php?genere_seo=$1&alpha=$2 [PT]
+RewriteRule ^like-artists-(.*)-(.*)$ like_artist.php?alpha=$1&page=$2 [PT]
+RewriteRule ^like-artists-(.*)$ like_artist.php?alpha=$1 [PT]
+RewriteRule ^like-artist-genre-(.*)-(.*)$ like_artist.php?genere_seo=$1&page=$2 [PT]
+RewriteRule ^like-artist-genre-(.*)$ like_artist.php?genere_seo=$1 [PT]
+RewriteRule ^(.*)-profile-like-artist-(.*)$ like_artist.php?user_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-profile-like-artist$ like_artist.php?user_seo=$1 [PT]
+RewriteRule ^like-artist-(.*)$ like_artist.php?page=$1 [PT]
+RewriteRule ^like-artist$ like_artist.php [PT]
+
+RewriteRule ^(.*)-profile-like-profile-(.*)$ likes_profile.php?user_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-profile-like-profile$ likes_profile.php?user_seo=$1 [PT]
+RewriteRule ^like-profile-(.*)$ likes_profile.php?page=$1 [PT]
+RewriteRule ^like-profile$ likes_profile.php [PT]
+
+
+RewriteRule ^(.*)-profile-like-playlist-(.*)$ likes_playlist.php?user_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-profile-like-playlist$ likes_playlist.php?user_seo=$1 [PT]
+RewriteRule ^like-playlist-(.*)$ likes_playlist.php?page=$1 [PT]
+RewriteRule ^like-playlist$ likes_playlist.php [PT]
+
+RewriteRule ^top_songs$ top_songs.php [PT]
+RewriteRule ^top-albums-(.*)$ album.php?page=$1 [PT]
+RewriteRule ^top-albums$ album.php [PT]
+
+RewriteRule ^(.*)-profile-review-album-(.*)$ review_album.php?user_seo=$1&page=$2 [PT]
+RewriteRule ^review-album-(.*)$ review_album.php?page=$1 [PT]
+RewriteRule ^(.*)-album-(.*)$ albums_page.php?artist_seo=$1&album_seo=$2 [PT]
+RewriteRule ^(.*)-albums-(.*)$ albums_page.php?artist_seo=$1&page=$2 [PT]
+
+
+RewriteRule ^(.*)-write-a-review-(.*)-sort-(.*)$ song_local_detail.php?song_seo=$1&artist_seo=$2&sort=$3 [PT]
+RewriteRule ^(.*)-write-a-review-(.*)$ song_local_detail.php?song_seo=$1&artist_seo=$2 [PT]
+
+
+
+
+RewriteRule ^(.*)-reviewslist-(.*)-rating-(.*)-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&rate=$3&page=$4 [PT]
+
+RewriteRule ^(.*)-reviewslist-(.*)-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&page=$3 [PT]
+RewriteRule ^(.*)-reviewslist-(.*)-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&page=$3 [PT]
+
+
+RewriteRule ^(.*)-featured-(.*)$ featured_page.php?artist_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-featured$ featured_page.php?artist_seo=$1 [PT]
+
+RewriteRule ^contact-us$ contact_us.php [PT]
+
+RewriteRule ^top-songs-(.*)$ songs.php?page=$1 [PT]
+RewriteRule ^top-songs$ songs.php [PT]
+
+RewriteRule ^latest-songs-(.*)$ latest_songs.php?page=$1 [PT]
+RewriteRule ^latest-songs$ latest_songs.php [PT]
+
+
+
+
+RewriteRule ^(.*)-profile-review-album$ review_album.php?user_seo=$1
+RewriteRule ^review-album-(.*)$ review_album.php?page=$1 [PT]
+RewriteRule ^review-album$ review_album.php [PT]
+
+
+RewriteRule ^(.*)-profile-review-song-rating-(.*)-sort-(.*)-(.*)$ my_reviews.php?user_seo=$1&rate=$2&sort=$3&page=$4 [PT]
+RewriteRule ^(.*)-profile-review-song-rating-(.*)-sort-(.*)$ my_reviews.php?user_seo=$1&rate=$2&sort=$3 [PT]
+RewriteRule ^(.*)-profile-review-song-ratings-(.*)-(.*)$ my_reviews.php?user_seo=$1&rate=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-review-song-rating-(.*)$ my_reviews.php?user_seo=$1&rate=$2 [PT]
+
+
+RewriteRule ^(.*)-profile-review-song-sort-(.*)-(.*)$ my_reviews.php?user_seo=$1&sort=$2&page=$3 [PT]
+RewriteRule ^(.*)-profile-review-song-sort-(.*)$ my_reviews.php?user_seo=$1&sort=$2 [PT]
+RewriteRule ^(.*)-profile-review-song-sort-(.*)-(.*)$ my_reviews.php?user_seo=$1&album_seo=$2&artseo=$3 [PT]
+RewriteRule ^(.*)-profile-review-song-(.*)_(.*)-sort-(.*)-(.*)$ my_reviews.php?user_seo=$1&album_seo=$2&artseo=$3&sort=$4&page=$5 [PT]
+RewriteRule ^(.*)-profile-review-song-(.*)_(.*)-sort-(.*)$ my_reviews.php?user_seo=$1&album_seo=$2&artseo=$3&sort=$4 [PT]
+RewriteRule ^(.*)-profile-review-song-(.*)_(.*)_(.*)$ my_reviews.php?user_seo=$1&album_seo=$2&artseo=$3&page=$4 [PT]
+RewriteRule ^(.*)-profile-review-song-(.*)_(.*)$ my_reviews.php?user_seo=$1&album_seo=$2&artseo=$3 [PT]
+RewriteRule ^(.*)-profile-review-song-(.*)-(.*)$ my_reviews.php?user_seo=$1&album_seo=$2&artseo=$3 [PT]
+
+RewriteRule ^(.*)-profile-review-song-(.*)$ my_reviews.php?user_seo=$1&album_seo=$2 [PT]
+
+RewriteRule ^(.*)-profile-review-songs-(.*)$ my_reviews.php?user_seo=$1&page=$2 [PT]
+
+ 
+
+RewriteRule ^(.*)-review-songslist-(.*)-sort-(.*)-(.*)$ my_reviews.php?artseo=$1&album_seo=$2&sort=$3&page=$4 [PT]
+RewriteRule ^(.*)-review-songs-(.*)-sort-(.*)$ my_reviews.php?artseo=$1&album_seo=$2&sort=$3 [PT]
+RewriteRule ^(.*)-review-songslist-(.*)-(.*)$ my_reviews.php?artseo=$1&album_seo=$2&page=$3 [PT]
+RewriteRule ^(.*)-review-songs-(.*)$ my_reviews.php?artseo=$1&album_seo=$2 [PT]
+RewriteRule ^review-songs-(.*)$ my_reviews.php?album_seo=$1 [PT]
+
+
+RewriteRule ^(.*)-profile-review-song$ my_reviews.php?user_seo=$1 [PT]
+RewriteRule ^review-song-rating-(.*)-sort-(.*)-(.*)$ my_reviews.php?rate=$1&sort=$2&page=$3 [PT]
+RewriteRule ^review-song-rating-(.*)-sort-(.*)$ my_reviews.php?rate=$1&sort=$2 [PT]
+RewriteRule ^review-song-ratings-(.*)-(.*)$ my_reviews.php?rate=$1&page=$2 [PT]
+RewriteRule ^review-song-rating-(.*)$ my_reviews.php?rate=$1 [PT]
+
+RewriteRule ^review-song-sort-(.*)-(.*)$ my_reviews.php?sort=$1&page=$2 [PT]
+RewriteRule ^review-song-sort-(.*)$ my_reviews.php?sort=$1 [PT]
+RewriteRule ^review-song-(.*)$ my_reviews.php?page=$1 [PT] [PT]
+RewriteRule ^review-song$ my_reviews.php [PT]
+
+
+RewriteRule ^like-review-(.*)$ my_account.php?page=$1 [PT]
+RewriteRule ^like-review$ my_account.php [PT]
+
+
+RewriteRule ^(.*)-profile-like-review$ my_account_profile.php?user_seo=$1 [PT]
+RewriteRule ^(.*)-profile-like-review-(.*)$ my_account_profile.php?user_seo=$1&page=$2 [PT]
+
+RewriteRule ^(.*)-profile-discussions-(.*)$ my_discussion.php?user_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-profile-discussions$ my_discussion.php?user_seo=$1 [PT]
+
+RewriteRule ^profile-discussions-(.*)$ my_discussion.php?page=$1 [PT]
+RewriteRule ^discussions-(.*)$ my_discussion.php?page=$1 [PT]
+RewriteRule ^discussions$ my_discussion.php [PT]
+
+
+RewriteRule ^artist-(.*)-genre-(.*)$ artists.php?genere_seo=$1&alpha=$2 [PT]
+RewriteRule ^artist-(.*)-(.*)$ artists.php?alpha=$1&page=$2 [PT]
+RewriteRule ^artist-(.*)$ artists.php?alpha=$1 [PT]
+
+
+RewriteRule ^artists-(.*)-genre-(.*)-(.*)$ artists.php?genere_seo=$1&alpha=$2&page=$3 [PT]
+RewriteRule ^artists-genres-(.*)-(.*)$ artists.php?genere_seo=$1&page=$2 [PT]
+RewriteRule ^artists-genre-(.*)$ artists.php?genere_seo=$1 [PT]
+RewriteRule ^artists-(.*)$ artists.php?page=$1 [PT]
+RewriteRule ^top-artists$ artists.php [PT]
+
+
+
+RewriteRule ^(.*)-artist-songs-(.*)$ artist_page.php?artist_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-artist-songs$ artist_page.php?artist_seo=$1 [PT]
+RewriteRule ^(.*)-artist.html$ artist_page.php?artist_seo=$1 [PT]
+
+RewriteRule ^(.*)-preview-artist-(.*)$ preview_artist.php?artist_seo=$1&page=$2 [PT]
+RewriteRule ^(.*)-preview-artist$ preview_artist.php?artist_seo=$1 [PT]
+
+
+
+ 
+
+
+
+RewriteRule ^contact-us$ contact_us.php [PT]
+
+<IfModule mod_expires.c>
+	ExpiresActive On
+	ExpiresByType image/jpg "access 1 year"
+	ExpiresByType image/jpeg "access 1 year"
+	ExpiresByType image/gif "access 1 year"
+	ExpiresByType image/png "access 1 year"
+	ExpiresByType text/css "access 1 month"
+	ExpiresByType application/x-font-woff "access 1 month"
+	ExpiresByType application/pdf "access 1 month"
+	ExpiresByType application/javascript "access 1 month"
+	ExpiresByType application/x-javascript "access 1 month"
+	ExpiresByType application/x-shockwave-flash "access 1 month"
+	ExpiresByType image/x-icon "access 1 year"
+	ExpiresDefault "access 2 days"
+	
+<FilesMatch "\.(jpg|jpeg|png|gif|css|js|swf|woff?v=4.2.0|woff)$">
+ 	ExpiresActive on
+   ExpiresDefault "access plus 2 days"
+	
+	
+</FilesMatch>
+
+</IfModule>
