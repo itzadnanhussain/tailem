@@ -294,8 +294,13 @@ $mobile_rev    = 15;
                                         <?php
                                         if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
 
-                                            $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$artist_id'"));
-
+                                            // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$artist_id'"));
+                                            $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$artist_id'");
+                                            if ($counter) {
+                                                $counter = count($counter);
+                                            } else {
+                                                $counter = 0;
+                                            }
                                             if ($counter == 0) {
                                         ?>
                                                 <span id="other_dis_sub_popular_<?php echo $artist_id; ?>_<?php echo $p_fav; ?>"><a href="javascript:;" onClick="like_artist_recent_reviews('<?php echo $artist_id; ?>','<?php echo $p_fav; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#c63937;"></i> </a><?php echo $counter_main; ?>

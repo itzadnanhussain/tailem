@@ -43,6 +43,10 @@ $mobile_view = 0;
                             $artist_list = "select b.album_seo, b.album_artist_id,b.updated_by_itunes, a.artist_seo,a.artist_name,b.album_title, b.album_picture, b.id, a.artist_seo from tbl_artist_album b, tbl_artists a where 1=1 AND b.album_status = 1  AND a.id = b.album_artist_id AND b.ranking_order!=0 order by b.ranking_order asc limit 50";
                             // $artist_list_arr	=	$db->get_results($artist_list, ARRAY_A);
                             $artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
+                            // echo '<pre>';
+                            // print_r($artist_list_arr);
+                            // echo '</pre>';
+                            // die;
                             
                             if ($artist_list_arr) {
                                 $total_pages = count($artist_list_arr);
@@ -113,8 +117,8 @@ $mobile_view = 0;
                                 //$all_avg  =  $sum_rate / $counter;
                                
                                 $rating_avg = calculate_rating_main($id, $album_artist_id, $album_seo);
-                                echo 'wait';
-                                die;
+                                // echo $rating_avg;
+                                // die;
                                 $all_avg  =  $rating_avg;
 
                                 if ($all_avg == "") {
@@ -389,8 +393,8 @@ $mobile_view = 0;
                         </div>
                     <?php } ?>
                 </div>
-                <?php 
-                //include("include/album_reviews_sidebar.php"); ?>
+                
+                @include("include.album_reviews_sidebar")
                 <!-- Advertisement Banner Start-->
                 <div class="clear"></div>
                 <div class="container" style="padding-top:10px;">

@@ -50,15 +50,13 @@ if (!function_exists('ads_info')) {
 ///CheckNumberFormate
 if (!function_exists('CheckNumberFormate')) {
     function CheckNumberFormate($number)
-    { 
+    {
         if ((int) $number == $number) {
-            
+
             $number = $number . '.0';
-        }
-        else
-        {
+        } else {
             $number = $number;
-        } 
+        }
         return $number;
     }
 }
@@ -66,12 +64,13 @@ if (!function_exists('CheckNumberFormate')) {
 
 ///StringReplace
 if (!function_exists('StringReplace')) {
-    function StringReplace($string) {
-        $string = str_replace(' ', '-', $string);  
+    function StringReplace($string)
+    {
+        $string = str_replace(' ', '-', $string);
         $string =  preg_replace('/[^A-Za-z0-9\-]/', '', $string);
         $string =  str_replace('-', ' ', $string);
         return $string;
-     }
+    }
 }
 
 
@@ -662,15 +661,19 @@ if (!function_exists('calculate_rating_main')) {
 
 
         $listof_ids  =    get_listof_songs_ids_main($album_id, $artist_id);
-        
-        
-        if ($listof_ids == '') {
-            $pass_where = '';
-        } else {
-            $pass_where = " OR (rev.song_id IN ($listof_ids))";
-        }
+        // echo '<pre>';
+        // print_r($listof_ids);
+        // echo '</pre>';
+        // die;
 
-        $where_condition = " AND (rev.album_id = '$album_id' $pass_where)"; 
+
+        // if ($listof_ids == '') {
+        //     $pass_where = '';
+        // } else {
+        //     $pass_where = " OR (rev.song_id IN ($listof_ids))";
+        // }
+
+        // $where_condition = " AND (rev.album_id = '$album_id' $pass_where)";
 
         $sum_rating_query    = "select avg(rev.review_rating) as total_sum, Count(*) as number_count
 							from tbl_artist_album b, tbl_artists a, tbl_songs s, tbl_reviews rev, tbl_users u 
@@ -679,19 +682,17 @@ if (!function_exists('calculate_rating_main')) {
 							AND a.id = rev.artist_id 
 							AND b.id = rev.album_id 
 							AND u.user_id = rev.review_user_id 
-                            AND (rev.album_id = '932694528' OR (rev.song_id IN (12345))) 
+                            AND (rev.album_id = '$album_id' OR (rev.song_id IN ('$listof_ids'))) 
  							group by song_id
 							  LIMIT 50";
 
 
         // $rate_list_arr    =    $db->get_results($sum_rating_query, ARRAY_A);
+
         $rate_list_arr = \App\Models\Songs::GetRawData($sum_rating_query);
-        echo '<pre>';
-        print_r($rate_list_arr);
-        echo '</pre>';
-        die;
+
         $sum = 0;
-        
+
         if ($rate_list_arr) {
             $total_count    =    count($rate_list_arr);
             foreach ($rate_list_arr as $get_avg) {
@@ -699,9 +700,7 @@ if (!function_exists('calculate_rating_main')) {
                 $sum_rates  = $get_avg['total_sum'];
                 $sum    =    $sum + $sum_rates;
             }
-        }
-        else
-        {
+        } else {
             $total_count = 0;
         }
 
@@ -736,7 +735,7 @@ if (!function_exists('get_listof_songs_ids_main')) {
         }
         $u = 1;
         $list  = '';
-        if ($artist_list_arr) {  
+        if ($artist_list_arr) {
             foreach ($artist_list_arr as $arr) {
                 $arr = (array)$arr;
                 if ($u == $total_result) {
@@ -750,5 +749,31 @@ if (!function_exists('get_listof_songs_ids_main')) {
 
 
         return $list;
+    }
+}
+
+
+///popular_album 
+if (!function_exists('popular_album')) {
+    function popular_album()
+    {
+        $reviews_list_arr = array(); 
+        $reviews_list = "select b.album_seo,s.picture, b.album_picture,a.artist_seo,a.artist_seo, a.artist_name,s.song_seo, s.song_title, s.updated_by_itunes,r.* 
+					 from tbl_reviews r,tbl_artists a,tbl_songs s,  tbl_artist_album b , tbl_songs_artist_album saa  
+					 where 1=1 
+					 AND r.song_id = s.id
+					 AND r.artist_id = a.id
+					 AND r.album_id = b.id
+					 AND b.ranking_order != 0
+					 AND b.id = saa.album_id
+					 AND saa.display_status = 1 
+					 AND s.song_status = 1
+					 group by r.review_id
+					 order by r.review_id desc
+					  limit 3
+					 ";
+        // $reviews_list_arr    =    $db->get_results($reviews_list, ARRAY_A);
+        $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list); 
+        return  $reviews_list_arr;
     }
 }
