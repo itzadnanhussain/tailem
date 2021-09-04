@@ -1,3 +1,8 @@
+<style>
+    .cite-margin-top {
+        margin-top: -5px;
+    }
+</style>
 <div class="latestsongssec">
     <div class="container topsongssecs">
         <h2 class="sec_heading" style="margin-top: 35px;">
@@ -14,18 +19,22 @@
                 // print_r($latest_song_arr);
                 // echo '</pre>';
                 // die;
-                
+
 
                 if (isset($latest_song_arr) && !empty($latest_song_arr)) {
                     $c = 0;
                     $sno_val = 0;
                     foreach ($latest_song_arr as $val) {
+
                         $sno_val++;
                         $song_id        = $val->songid;
+                        // if($song_id == 455052072) {
+
                         $rate_arr = array();
-                        $rate_arr = App\Models\Songs:: GetRawQuery('reviews', 'sum(review_rating) as sum_rate, count(*) as counter, sum(review_rating>=8) as excellent, sum(review_rating>=7 && review_rating<8) as verygood, sum(review_rating>=4 && review_rating<7) as good,sum(review_rating>=2 && review_rating<4) as poor,sum(review_rating>0 && review_rating<2) as terrible', array('song_id' => $song_id, 'status' => 1));
-                         
+                        $rate_arr = App\Models\Songs::GetRawQuery('reviews', 'sum(review_rating) as sum_rate, count(*) as counter, sum(review_rating>=8) as excellent, sum(review_rating>=7 && review_rating<8) as verygood, sum(review_rating>=4 && review_rating<7) as good,sum(review_rating>=2 && review_rating<4) as poor,sum(review_rating>0 && review_rating<2) as terrible', array('song_id' => $song_id, 'status' => 1));
+
                         $rate_arr = (array)$rate_arr[0];
+
 
                         $sum_rate = $rate_arr['sum_rate'];
                         $counter = $rate_arr['counter'];
@@ -84,6 +93,10 @@
 
                         ///code one comment
                         $other_details    = App\Models\Songs::GetOtherDetails($song_id);
+                        // echo '<pre>';
+                        // print_r($other_details);
+                        // echo '</pre>';
+                        // die;
                         if (isset($other_details) && !empty($other_details)) {
 
 
@@ -101,14 +114,14 @@
 
 
                             //code two comment
-                            $latest_song_likes_info =App\Models\Songs:: GetRawQuery('likes', 'count(id) as a_likes_count', array('like_id' => $artist_id, 'like_type' => 'artist'));
+                            $latest_song_likes_info = App\Models\Songs::GetRawQuery('likes', 'count(id) as a_likes_count', array('like_id' => $artist_id, 'like_type' => 'artist'));
                             $latest_song_likes_info = (array)$latest_song_likes_info[0];
                             $ar_likes                 = $latest_song_likes_info['a_likes_count'];
 
 
                             //code 3 comment
                             // $db_song_id = 3;
-                            $qry_feature_arr = App\Models\Songs:: GetFeatureArr($db_song_id);
+                            $qry_feature_arr = App\Models\Songs::GetFeatureArr($db_song_id);
 
 
                             $count  = count($qry_feature_arr);
@@ -169,11 +182,11 @@
                                         ?>
 
 
-                                        <cite style="background-color:<?php echo $color_pick ?>"><?php if ($all_avg == 10) {
-                                                                                                        echo number_format($all_avg, 0);
-                                                                                                    } else {
-                                                                                                        echo $all_avg;
-                                                                                                    } ?></cite>
+                                        <cite class="cite-margin-top" style="background-color:<?php echo $color_pick ?>"><?php if ($all_avg == 10) {
+                                                                                                                                echo number_format($all_avg, 0);
+                                                                                                                            } else {
+                                                                                                                                echo $all_avg;
+                                                                                                                            } ?></cite>
                                         <a style="color:#000;font-weight:400;background:0 0;color:#fff;font-size:12px;padding:12px 5px;position:absolute;right:5px;top:50px"><span class="red-text"><i><?php echo $counter; ?></i></span> Reviews</a>
                                     </div>
                                     <div class="list_bottom">
@@ -189,12 +202,19 @@
                                                                                             }
                                                                                             ?></p>
                                                 </a>
-                                                <cite><a style="color:#08aa90" href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a> <?php echo $feature_artists; ?> </cite>
+                                                <cite class="cite-margin-top"><a style="color:#08aa90" href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a> <?php echo $feature_artists; ?> </cite>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
                                                 <?php
                                                 if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                                    $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  like_type = 'artist' AND like_id = '$artist_id'"));
+                                                    // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  like_type = 'artist' AND like_id = '$artist_id'"));
+                                                    $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  like_type = 'artist' AND like_id = '$artist_id'");
+                                                    if ($counter) {
+                                                        $counter = count($counter);
+                                                    } else {
+                                                        $counter = 0;
+                                                    }
+
                                                     if ($counter > 0) {
                                                         $class = "like-group liked";
                                                     } else {
@@ -254,6 +274,7 @@
                             </div>
                 <?php }
                     }
+                    // } 
                 } ?>
 
             </div>

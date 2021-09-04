@@ -47,6 +47,34 @@ if (!function_exists('ads_info')) {
 }
 
 
+///CheckNumberFormate
+if (!function_exists('CheckNumberFormate')) {
+    function CheckNumberFormate($number)
+    { 
+        if ((int) $number == $number) {
+            
+            $number = $number . '.0';
+        }
+        else
+        {
+            $number = $number;
+        } 
+        return $number;
+    }
+}
+
+
+///StringReplace
+if (!function_exists('StringReplace')) {
+    function StringReplace($string) {
+        $string = str_replace(' ', '-', $string);  
+        $string =  preg_replace('/[^A-Za-z0-9\-]/', '', $string);
+        $string =  str_replace('-', ' ', $string);
+        return $string;
+     }
+}
+
+
 ///artist_album_song_func
 if (!function_exists('artist_album_song_func')) {
     function artist_album_song_func($artistname, $song_title)

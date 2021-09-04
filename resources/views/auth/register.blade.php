@@ -21,7 +21,7 @@
 						<input type="text" class="form-control" name="email" id="user_email" placeholder="Email" required>
 
 						<input type="password" class="form-control" placeholder="Password" name="password" id="simple_password" required>
-						<input type="password" class="form-control" placeholder="Password" name="password_confirmation" id="simple_password" required>
+						<!-- <input type="password" class="form-control" placeholder="Password" name="password_confirmation" id="simple_password" required> -->
 						<!-- <input type="file" class="form-control" placeholder="Profile Picture" required>-->
 						<!-- <input style="margin-top:10px;" class="btn btn-lg btn-primary btn-block" type="submit" name="submit_btn" id="submit_btn" onClick="return register_validation6();" value="Sign Up"> -->
 						<input style="margin-top:10px;" class="btn btn-lg btn-primary btn-block" type="submit" name="submit_btn"  value="Sign Up">

@@ -4,6 +4,10 @@
     <?php
     $artist_list_arr = array();
     $artist_list_arr    =   App\Models\Songs::GetArtistListArray();
+    // echo '<pre>';
+    // print_r($artist_list_arr);
+    // echo '</pre>';
+    // die;
 
 
     if (isset($artist_list_arr) && !empty($artist_list_arr)) {
@@ -146,6 +150,9 @@
                     }
                     if ($counter > 0) {
                         $all_avg  =  $sum_rate / $counter;
+                        // $all_avg = 9.5;
+                        // echo $all_avg;
+                        // die;
                     } else {
                         $all_avg = 0;
                     }
@@ -155,7 +162,11 @@
                     } elseif ($all_avg == "10") {
                         $all_avg = 10;
                     } else {
-                        $all_avg = $all_avg . '.0';
+                        
+                        $all_avg = CheckNumberFormate($all_avg);
+                        // echo $all_avg;
+                        // die;
+                        // $all_avg = $all_avg . '.0';
                     }
                     if ($all_avg >= 7) {
                         $color_pick = "#5ebd5e";
@@ -191,10 +202,12 @@
                                 ?>
 
                                 <cite style="left:10px !important; background:none !important; text-transform: capitalize !important;">Featured Song</cite>
-                                <?php 
+                                <?php
                                 $all_avg = $all_avg;
-                                
+                                //         echo $all_avg;
+                                // die;
                                 ?>
+
                                 <cite style="background-color:<?php echo $color_pick; ?>"><?php echo ($all_avg < 10) ? $all_avg : $all_avg ?></cite>
                                 <div class="list_bottom">
                                     <div class="row">
@@ -205,7 +218,13 @@
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                             <?php
                                             if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                                $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND like_type = 'artist' AND like_id = '$album_artist_id'"));
+                                                // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND like_type = 'artist' AND like_id = '$album_artist_id'"));
+                                                $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND like_type = 'artist' AND like_id = '$album_artist_id'");
+                                                if ($counter) {
+                                                    $counter = count($counter);
+                                                } else {
+                                                    $counter = 0;
+                                                }
                                                 if ($counter > 0) {
                                                     $class = "like-group liked";
                                                 } else {

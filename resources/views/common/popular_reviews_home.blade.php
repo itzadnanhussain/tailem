@@ -27,6 +27,7 @@
 			if (empty($reviews_list_arr)) {
 				$reviews_list = "select b.album_seo,b.album_picture,a.artist_seo,a.artist_seo,a.artist_name,s.song_seo,s.picture,s.updated_by_itunes, s.song_title,r.* from tbl_reviews r,tbl_artists a,tbl_songs s,  tbl_artist_album b where r.song_id = s.id AND r.artist_id = a.id AND r.album_id = b.id AND r.is_popular = 1 AND s.song_status = 1 order by r.review_id limit 6";
 				$reviews_list_arr	=	App\Models\Songs::GetRawData($reviews_list, array());
+				 
 			}
 
 
@@ -54,8 +55,14 @@
 					}
 					$album_picture   = stripslashes(html_entity_decode($val['album_picture']));
 					$review_title  = stripslashes(html_entity_decode($val['review_title']));
+					$review_title = StringReplace($review_title);
 					$review_rating = $val['review_rating'];
 					$review_detail = stripslashes(html_entity_decode($val['review_detail']));
+					$review_detail = StringReplace($review_detail);
+					// echo '<pre>';
+					// print_r($review_detail);
+					// echo '</pre>';
+					// die;
 					$review_user_id = $val['review_user_id'];
 					$status     	= $val['status'];
 					$is_popular     = $val['is_popular'];
