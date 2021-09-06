@@ -36,6 +36,7 @@
 	} else {
 		//session set temporary
 		$_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
+		
 		$_SESSION[USER_SESSION_ARRAY]['USER_NAME'] = session()->get('user_name');
 
 		$main_link = '';

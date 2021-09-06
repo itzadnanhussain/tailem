@@ -39,9 +39,16 @@ Route::get('/home',[DashboardController::class,'index'])
 
  
 
-///top-songs
+///top-songs-page routes
 Route::get('/top-songs',[SongsController::class, 'GetTopSongs']) 
 ->name('top-songs.GetTopSongs');
+
+Route::get('/add-playlist',[SongsController::class, 'GetAddPlayList']) 
+->name('add-playlist.GetAddPlayList');
+
+Route::get('/insert-playlist',[SongsController::class, 'InsertPlayList']) 
+->name('insert-playlist.InsertPlayList');
+
 
 ///top-albums
 Route::get('/top-albums',[SongsController::class, 'GetTopAlbums']) 
@@ -62,6 +69,7 @@ Route::get('/top-artists',[SongsController::class, 'GetTopArtist'])
 
 require __DIR__.'/auth.php';
 require __DIR__.'/facebook.php';
+require __DIR__.'/process.php';
 
 /*
 |--------------------------------------------------------------------------

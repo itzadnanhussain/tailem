@@ -20,10 +20,7 @@
                         <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
 
                         <button style="margin-top:10px;" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                        <!-- <label class="pull-center need-help" class="checkbox pull-left">
-                     <input type="checkbox" value="remember-me">
-                     Remember me
-                 </label>-->
+                        
                         <a href="<?php echo SERVER_ROOTPATH; ?>forgot-password" style="text-align:center; color:#3276B1; display:block; margin-left:auto; margin-right:auto; margin-top:10px; vertical-align:middle;">Forgot Password? </a><span class="clearfix"></span>
                     </form>
                 </div>

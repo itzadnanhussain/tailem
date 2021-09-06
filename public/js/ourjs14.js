@@ -660,7 +660,7 @@ function add_playlist_validations_new()
 	var options={target:'',
 	beforeSubmit:validate_playlist_new_Request,
 	success:validate_playlist_new_Response,
-	url:JS_SERVER_PATHROOT+'process/add_playlist_process.php'};
+	url:JS_SERVER_PATHROOT+'process/add_playlist_process'};
 	$('#add_playlist').submit(function(){
 			  $(this).ajaxSubmit(options);return false;});
 }
@@ -707,7 +707,7 @@ function add_songto_playlist_validations_new()
 	var options={target:'',
 	beforeSubmit:validate_songto_playlist_new_Request,
 	success:validate_songto_playlist_new_Response,
-	url:JS_SERVER_PATHROOT+'process/add_songto_playlist_process.php'};
+	url:JS_SERVER_PATHROOT+'process/add_songto_playlist_process'};
 	$('#add_to_playlist').submit(function(){
 			  $(this).ajaxSubmit(options);return false;});
 }

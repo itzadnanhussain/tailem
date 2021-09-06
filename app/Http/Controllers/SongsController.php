@@ -84,4 +84,22 @@ class SongsController extends Controller
         //page View
         return view('artists' , compact('alpha','page'));
     }
+
+
+    ///GetAddPlayList
+    public function GetAddPlayList()
+    {
+        $song_id = $_GET['song_id'];
+        $art_id = $_GET['art_id'];
+        return view('add_playlist',compact('song_id','art_id'));
+    }
+
+
+    ///InsertPlayList
+    public function InsertPlayList()
+    {
+        $song_id = $_GET['song_id'];
+        $art_id = $_GET['art_id'];
+        return view('insert_playlist',compact('song_id','art_id'));
+    }
 }

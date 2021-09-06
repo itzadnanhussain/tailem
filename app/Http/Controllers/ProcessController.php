@@ -1,0 +1,239 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class ProcessController extends Controller
+{
+    //AddPlaylistProcess
+    public function AddPlaylistProcess()
+    {
+        if (isset($_POST)) {
+            extract($_POST);
+            // echo '<pre>';
+            // print_r($_POST);
+            // echo '</pre>';
+            // die;
+            $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
+            function SEO($input)
+            {
+                $input = str_replace("&nbsp;", " ", $input);
+                $input = str_replace(array("'", "-"), "", $input); //remove single quote and dash
+                $input = mb_convert_case($input, MB_CASE_LOWER, "UTF-8"); //convert to lowercase
+                $input = preg_replace("#[^a-zA-Z0-9]+#", "-", $input); //replace everything non an with dashes
+                $input = preg_replace("#(-){}#", "$1", $input); //replace multiple dashes with one
+                $input = trim($input, "-"); //trim dashes from beginning and end of string if any
+                return $input;
+            }
+            $errorstr = "";
+            $case = 1;
+
+
+            // $playlist_title   =     mysqli_escape_string($db->dbh, stripslashes(trim($_REQUEST['playlist_title'])));
+            // $playlist_title   =     mysqli_escape_string($db->dbh, stripslashes(trim($_REQUEST['playlist_title'])));
+            // $song_id          =     mysqli_escape_string($db->dbh, stripslashes(trim($_REQUEST['song_id'])));
+            $artist_id          =    $art_id;
+
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+
+                echo $errorstr .= "Please sign in first.";
+                $case = 0;
+                exit;
+            }
+
+            if ($playlist_title == '') {
+                echo $errorstr = "Please enter a name for your playlist..";
+                $case = 0;
+                exit;
+            } else {
+                $query_check  = "select id from tbl_user_playlist where title_playlist  = '" . $playlist_title . "' AND user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'";
+                // $artist_list_arr    =    $db->get_results($query_check, ARRAY_A);
+                $artist_list_arr = \App\Models\Songs::GetRawData($query_check);
+                if (isset($artist_list_arr) && !empty($artist_list_arr)) {
+                    echo $errorstr = "Sorry, this playlist name has already been used, please try again.";
+                    $case = 0;
+                    exit;
+                }
+            }
+
+            $artist_list = "SELECT  saa.artist_id,s.id, 
+					s.song_title, 
+					s.song_seo, 
+					s.updated_by_itunes,
+					s.picture, 
+					b.album_title, 
+					b.album_picture,a.artist_seo, 
+					a.artist_name 
+				FROM tbl_songs s 
+					   INNER JOIN tbl_songs_artist_album saa
+							   ON saa.song_id = s.id 
+					   INNER JOIN tbl_artist_album b 
+							   ON saa.album_id = b.id 
+								INNER JOIN tbl_artists a 
+							   ON saa.artist_id = a.id 
+				WHERE  (saa.display_status = 1 AND s.song_status=1) and s.id = '$song_id' and a.id = '$artist_id' 
+				group by s.id order by
+				s.ranking_order asc                                
+				LIMIT  50";
+
+            // $artist_list_arr    =    $db->get_results($artist_list, ARRAY_A);
+            $artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
+
+            if (!isset($artist_list_arr)) {
+                $errorstr = "Invalid Song.";
+                $case = 0;
+            }
+
+
+
+            if ($case == 1) {
+
+                $update_qry = "insert into tbl_user_playlist set title_playlist  = '" . $playlist_title . "', title_playlist_seo  = '" . SEO($playlist_title) . "', song_id  = '" . $song_id . "', 	user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "', artist_id = '" . $artist_id . "', posted_date  = '" . date("Y-m-d H:i:s") . "'";
+                // $db->query($update_qry);
+                \App\Models\Songs::GetRawData($update_qry);
+
+                echo 'done';
+                exit;
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+
+
+    //AddSongToPlayList
+    public function AddSongToPlayList()
+    {
+        if (isset($_POST)) {
+            extract($_POST);
+
+
+            $errorstr = "";
+            $case = 1;
+            $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
+            $result_match = array();
+
+            $playlist_title   =     '';
+            $artist_id          =    $art_id;
+            if (isset($playlist_arr)) {
+                $size_ofplaylist_arr = sizeof($playlist_arr);
+            } else {
+                $size_ofplaylist_arr = 0;
+            }
+
+
+
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+
+                echo $errorstr .= "Please sign in first.";
+                $case = 0;
+                exit;
+            }
+
+            $query_check  = "select playlist_id from tbl_user_playlist_songs where  user_id  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND song_id  = '" . $song_id . "'";
+            $artist_list_arr = \App\Models\Songs::GetRawData($query_check);
+
+
+
+            if ($artist_list_arr) {
+                $p = 0;
+                foreach ($artist_list_arr as $pickids) {
+                    $pickids = (array)$pickids;
+                    $arr_ids[$p]  = $pickids['playlist_id'];
+                    $p++;
+                }
+
+                $db_count_playlist  =  count($artist_list_arr);
+            } else {
+                $db_count_playlist  =  0;
+            }
+
+
+            if ($size_ofplaylist_arr == 0 && $db_count_playlist == 0) {
+                $errorstr .= "Please select at least one playlist.";
+                $case = 0;
+            } else {
+
+                $query_check  = "select id from tbl_user_playlist where title_playlist  = '" . $playlist_title . "' AND user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'";
+
+                $artist_list_arr = \App\Models\Songs::GetRawData($query_check);
+                if (isset($artist_list_arr) && !empty($artist_list_arr)) {
+                    echo $errorstr = "Sorry, this playlist name has already been used, please try again.";
+                    $case = 0;
+                    exit;
+                }
+            }
+
+            $artist_list = "SELECT  saa.artist_id,s.id, 
+                            s.song_title, 
+                            s.song_seo, 
+                            s.updated_by_itunes,
+                            s.picture, 
+                            b.album_title, 
+                            b.album_picture,a.artist_seo, 
+                            a.artist_name 
+                        FROM tbl_songs s 
+                               INNER JOIN tbl_songs_artist_album saa
+                                       ON saa.song_id = s.id 
+                               INNER JOIN tbl_artist_album b 
+                                       ON saa.album_id = b.id 
+                                        INNER JOIN tbl_artists a 
+                                       ON saa.artist_id = a.id 
+                        WHERE  (saa.display_status = 1 AND s.song_status=1) and s.id = '$song_id' and a.id = '$artist_id' 
+                        group by s.id order by
+                        s.ranking_order asc                                
+                        LIMIT  50";
+
+            // $artist_list_arr    =    $db->get_results($artist_list, ARRAY_A);
+            $artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
+            if (isset($artist_list_arr) && empty($artist_list_arr)) {
+                $errorstr = "Invalid Song.";
+                $case = 0;
+            }
+
+
+            if ($case == 1) {
+
+                if ($db_count_playlist != 0 && $size_ofplaylist_arr == 0) {
+                    $show_message  = "Song has been successfully removed from playlist.";
+                } else {
+                    $show_message  = "Song successfully updated to playlist.";
+                }
+
+
+                if (isset($arr_ids) && isset($playlist_arr)) { 
+                    $result_match = array_intersect($arr_ids, $playlist_arr);
+                } 
+
+                if (isset($result_match) && !empty($result_match)) {
+                    
+                    $wher_new = " playlist_id NOT IN ( '" . implode("','",$result_match) . "' ) AND ";
+                    $delete_qry = "Delete from tbl_user_playlist_songs where   $wher_new song_id  = '" . $song_id . "' AND 	user_id   = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND artist_id = '" . $artist_id . "'";
+                    \App\Models\Songs::GetRawData($delete_qry);
+                } else {
+                    $wher_new = '';
+                }
+
+
+                for ($t = 0; $t < $size_ofplaylist_arr; $t++) {
+                    if (!in_array($playlist_arr[$t], $result_match)) {
+                        $update_qry = "insert into tbl_user_playlist_songs set playlist_id   = '" . $playlist_arr[$t] . "', song_id  = '" . $song_id . "', 	user_id   = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "', artist_id = '" . $artist_id . "', p_date = '" . date("Y-m-d H:i:s") . "'";
+                        \App\Models\Songs::GetRawData($update_qry);
+                    }
+                }
+
+                if ($size_ofplaylist_arr == 0) {
+                    $delete_qry = "Delete from tbl_user_playlist_songs where   song_id  = '" . $song_id . "' AND 	user_id   = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND artist_id = '" . $artist_id . "'";
+                    \App\Models\Songs::GetRawData($delete_qry);
+                }
+
+
+                echo 'done-SEPARATOR-' . $show_message;
+                exit;
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+}

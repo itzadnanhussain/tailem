@@ -47,6 +47,19 @@ if (!function_exists('ads_info')) {
 }
 
 
+///playlist_for_user
+if (!function_exists('playlist_for_user')) {
+    function playlist_for_user($user_id)
+    {
+
+        $main_play_list = "select * from tbl_user_playlist where user_id_playlist = '" . $user_id . "' order by id asc";
+        // $playlist_arr	=	$db->get_results($main_play_list,ARRAY_A);
+        $playlist_arr = \App\Models\Songs::GetRawData($main_play_list);
+        return $playlist_arr;
+    }
+}
+
+
 ///CheckNumberFormate
 if (!function_exists('CheckNumberFormate')) {
     function CheckNumberFormate($number)
@@ -757,7 +770,7 @@ if (!function_exists('get_listof_songs_ids_main')) {
 if (!function_exists('popular_album')) {
     function popular_album()
     {
-        $reviews_list_arr = array(); 
+        $reviews_list_arr = array();
         $reviews_list = "select b.album_seo,s.picture, b.album_picture,a.artist_seo,a.artist_seo, a.artist_name,s.song_seo, s.song_title, s.updated_by_itunes,r.* 
 					 from tbl_reviews r,tbl_artists a,tbl_songs s,  tbl_artist_album b , tbl_songs_artist_album saa  
 					 where 1=1 
@@ -773,7 +786,7 @@ if (!function_exists('popular_album')) {
 					  limit 3
 					 ";
         // $reviews_list_arr    =    $db->get_results($reviews_list, ARRAY_A);
-        $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list); 
+        $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list);
         return  $reviews_list_arr;
     }
 }
