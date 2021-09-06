@@ -60,4 +60,28 @@ class SongsController extends Controller
         //page View
         return view('latest_songs', compact('page'));
     }
+
+
+    ///GetTopArtist
+    public function GetTopArtist()
+    {
+        if(isset($_GET['alpha']))
+        {
+            $alpha = $_GET['alpha']; 
+        }else
+        {
+            $alpha = 'unset';
+        }
+
+        if(isset($_GET['page']))
+        {
+            $page = $_GET['page']; 
+        }else
+        {
+            $page = 1;
+        }
+        
+        //page View
+        return view('artists' , compact('alpha','page'));
+    }
 }

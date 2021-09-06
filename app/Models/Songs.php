@@ -14,7 +14,7 @@ class Songs extends Model
     public static function GetArtistListArray()
     {
         // $joins = array("one" => "'songs_artist_album', 'songs_artist_album.song_id', '=', 'songs.id'");
-        $result = DB::table('songs') 
+        $result = DB::table('songs')
             ->join('songs_artist_album', 'songs_artist_album.song_id', '=', 'songs.id')
             ->join('artist_album', 'artist_album.id', '=', 'songs_artist_album.album_id')
             ->select(
@@ -44,12 +44,12 @@ class Songs extends Model
 
 
         return $result;
-    } 
+    }
 
     ///GetArtistListArray
     public static function GetArtistListArray_2()
     {
-         $result = DB::table('songs as s') 
+        $result = DB::table('songs as s')
             ->join('songs_artist_album as saa', 'saa.song_id', '=', 's.id')
             ->join('artist_album as b', 'b.id', '=', 'saa.album_id')
             ->join('artists as a', 'saa.artist_id', '=', 'a.id')
@@ -63,7 +63,7 @@ class Songs extends Model
                 'b.album_title',
                 'b.album_picture',
                 'a.artist_seo',
-                'a.artist_name', 
+                'a.artist_name',
             )
             ->where([
                 ['saa.display_status', '=', 1],
@@ -73,7 +73,7 @@ class Songs extends Model
             ->groupBy('s.id')
             ->orderBy('s.ranking_order', 'asc')
             ->limit(7)
-            ->get()->toArray(); 
+            ->get()->toArray();
         return $result;
     }
 
@@ -93,7 +93,7 @@ class Songs extends Model
     ///GetRawData
     public static function GetRawData($expression, $where = array())
     {
-        $results = DB::select( DB::raw($expression), $where); 
+        $results = DB::select(DB::raw($expression), $where);
 
         return $results;
     }
@@ -243,7 +243,7 @@ class Songs extends Model
             ->sum('review_rating');
         return $result;
     }
-     
+
 
     ///count_rate
     public function count_rate($id)

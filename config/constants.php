@@ -12,6 +12,7 @@ ini_set('display_errors', 1);*/
 //================================================================
  	//	set site server path
 define('SERVER_ROOTPATH', 'http://127.0.0.1:8000/');							   //	save path in constant value
+define('search', 'search');							   //	save path in constant value
 //================================================================
 
 //================================================================

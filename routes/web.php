@@ -52,6 +52,12 @@ Route::get('/top-albums',[SongsController::class, 'GetTopAlbums'])
 Route::get('/latest-songs',[SongsController::class, 'GetLatestSongs']) 
 ->name('latest-songs.GetLatestSongs');
  
+
+
+///top-artists
+Route::get('/top-artists',[SongsController::class, 'GetTopArtist']) 
+->name('top-artists.GetTopArtist');
+ 
  
 
 require __DIR__.'/auth.php';
@@ -77,26 +83,17 @@ Route::get('/privacy-policy',[InfoController::class,'LoadCMS']);
 Route::get('/about-us',[InfoController::class,'LoadCMS']);
 
 
-Route::get('/process', [TestController::class, 'process']);
+Route::get('/process', [TestController::class, 'process']); 
+
+
+
+
+
+
+
+
+
+
+
 
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Route::post('/test', function(){
-    echo 'test';
-    die;
-});

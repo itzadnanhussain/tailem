@@ -43,6 +43,19 @@ if (!function_exists('GetLastQuery')) {
     }
 }
 
+if (!function_exists('addNew')) {
+    function addNew($table, $data)
+    {
+
+        $id = DB::table($table)->insertGetId(
+            $data
+        );
+
+        return $id;  
+       
+    }
+}
+
 
 ///TestJoins
 if (!function_exists('TestJoins')) {

@@ -39,7 +39,7 @@ class AuthenticatedSessionController extends Controller
         // Via the global "session" helper... 
         session(['user_id' => $user[0]->user_id]);
         session(['user_name' => $user[0]->user_name]);
-        session(['user_profile' => 'test']); 
+        session(['user_profile' => 'test']);  
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

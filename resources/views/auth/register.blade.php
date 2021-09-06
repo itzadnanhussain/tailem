@@ -8,7 +8,7 @@
 				<div class="account-wall">
 					<h4 class="account_hd"> Sign up with Tailem.com </h4>
 
-					<form   method="POST" action="{{ route('register') }}" class="form-signin">
+					<form id="register-form"  method="POST" action="{{ route('register') }}" class="form-signin">
 						<span><a onClick="custFBLog();" href="javascript:;"><img src="images/fb8signup.png" style="width:100%;" /></a></span>
 						<a href="#"><img src="images/g8_signup.png" alt="" style="margin-top:5px; max-width:100%;"/></a>
 						<span><img src="images/line.png" /> </span>
@@ -41,41 +41,55 @@
 
 <div class="modal fade" id="missing_store_detail_Modal2_5000" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 @include('common.footer');  
-<script type="text/javascript">
-	function register_validation6() {
-		$('#user_signup').unbind('submit');
-		var options = {
-			target: '',
-			beforeSubmit: register_validationRequestb,
-			success: register_validationResponsea,
-			url: JS_SERVER_PATHROOT + 'process/UserRegister.php'
-		};
-		$('#user_signup').submit(function() {
-			$(this).ajaxSubmit(options);
-			return false;
-		});
+ 
 
-	}
+<script>
+        $('#register-form').submit(function(e) { 
+            e.preventDefault();
+            e.stopPropagation();
+            let form = $(this).serialize();
+            let url = $(this).attr('action');
+
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: form,
+                dataType: 'html',
+                success: function(data) {
+                    let res = JSON.parse(data);
+                    switch (res.code) {
+                        case 'success':
+                            // $('.alert').addClass('alert-fill-success');
+                            // $('#alert-text').append(res.message);
+                            // $('.alert').show();
+                            
+                             ///redirect to dashboard
+                             setTimeout(function() {
+                                window.location.href = "{{ url('/home')}}";
+                            }, 500)
+
+                            break;
+                        case 'warning':
+                            // $('.alert').addClass('alert-fill-warning');
+                            $('.error').append(res.message);
+                            // $('.alert').show();
+
+                           
 
 
-	function register_validationRequestb(formData, jqForm, options) {
-		var queryString = $.param(formData);
-		return true;
-	}
+                        case 'error':
+                            // $('.alert').addClass('alert-fill-danger');
+                            $('.error').append(res.message);
+                            // $('.alert').show();
+                            // res.message.forEach(function(error) {
+                            //     $('[name=' + error[0] + ']').parent().append('<span>' + error[1] + '</span>');
+                            // })
+                            break;
+                    }
+                }
+            });
 
-	function register_validationResponsea(responseText, statusText) {
+        })
 
-		var myarray = new Array();
-		myarray = responseText.split("-SEPARATOR-");
-
-		if (myarray[0] == 'done') {
-			window.location.href = JS_SERVER_PATHROOT + "welcome-" + myarray[2];
-		} else {
-			$('.error').html(responseText);
-			$('.error').show();
-			var x = $(".error").position();
-			window.scrollTo(x.left, x.top);
-		}
-
-	}
-</script>
+       
+    </script>
