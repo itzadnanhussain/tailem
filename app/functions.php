@@ -790,3 +790,32 @@ if (!function_exists('popular_album')) {
         return  $reviews_list_arr;
     }
 }
+///artist_func 
+if (!function_exists('artist_func')) {
+    function artist_func($artistname)
+    {
+        ini_set('allow_url_fopen ', 'ON');
+        $temp = file_get_contents("http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" . trim($artistname) . "&api_key=979650ff4905a23bb01e312145761ebb");
+        $XmlObj = simplexml_load_string($temp);
+        $info = $XmlObj->artist->bio->summary;
+        $image4 = $XmlObj->artist->image[3];
+        $name = $XmlObj->artist->name;
+        $url = $XmlObj->artist->url;
+
+
+        $val = '<a href="http://www.last.fm/music/Justin+Bieber">Read more about Justin Bieber on Last.fm</a>';
+        $val = $info;
+        $val =  str_replace($url, "#", $val);
+        $val =  str_replace("Read more about " . $name . " on Last.fm", "", $val);
+        $val1 = '<a href="#"></a>.';
+        $info1 =  str_replace($val1, "", $val);
+        $val2 = '<a href="#"></a>';
+        $info =   strip_tags(str_replace($val2, "", $info1));
+
+        $artist_array['artist_array']['name'] = $name;
+        $artist_array['artist_array']['image4'] = $image4;
+        $artist_array['artist_array']['url'] = $url;
+        $artist_array['artist_array']['info'] = $info;
+        return $artist_array;
+    }
+}

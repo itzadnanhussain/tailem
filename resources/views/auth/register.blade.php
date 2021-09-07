@@ -8,7 +8,7 @@
                 <div class="account-wall">
                     <h4 class="account_hd"> Sign up with Tailem.com </h4>
 
-                    <form id="register-form" method="POST" action="{{ route('register') }}" class="form-signin">
+                    <form id="register-form" method="POST" action="{{ url('sign-up') }}" class="form-signin">
                         <span><a onClick="custFBLog();" href="javascript:;"><img src="images/fb8signup.png" style="width:100%;" /></a></span>
                         <a href="#"><img src="images/g8_signup.png" alt="" style="margin-top:5px; max-width:100%;" /></a>
                         <span><img src="images/line.png" /> </span>
@@ -65,7 +65,8 @@
 
                         ///redirect to dashboard
                         setTimeout(function() {
-                            window.location.href = "{{ url('/home')}}";
+                            // window.location.href = "{{ url('/welcome')}}";
+                            window.location.replace(res.url);
                         }, 500)
 
                         break;

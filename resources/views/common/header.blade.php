@@ -1,4 +1,4 @@
- <?php
+ <?php 
 
 
 	////define device 
@@ -172,7 +172,7 @@
  						<li><a href="<?php echo SERVER_ROOTPATH; ?>review-artist" class="my-account">MY ACCOUNT</a></li>
 
  						<li>
- 							<form method="POST" action="http://127.0.0.1:8000/logout">
+ 							<form method="POST" action="<?php echo SERVER_ROOTPATH ?>logout">
  								@csrf
  								<a class="logout" href="<?php echo SERVER_ROOTPATH ?>logout" onclick="event.preventDefault();
                                         this.closest('form').submit();" sl-processed="1">
@@ -260,15 +260,19 @@
 		// latest comment date
 		// if ($user_profile != "") {
 		// 	$comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
-		// 	$comment_list_arr	=	$db->get_row($comment_list_qry, ARRAY_A);
+		// 	// $comment_list_arr	=	$db->get_row($comment_list_qry, ARRAY_A);
+		// 	$comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
 
 		// 	// recent like pick query
 		// 	$like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
-		// 	$like_list_arr	=	$db->get_row($like_list_qry, ARRAY_A);
+		// 	// $like_list_arr	=	$db->get_row($like_list_qry, ARRAY_A);
+		// 	$like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
 
 		// 	// recent review pick query
 		// 	$review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
-		// 	$review_list_arr_top	=	$db->get_row($review_list_qry, ARRAY_A);
+		// 	// $review_list_arr_top	=	$db->get_row($review_list_qry, ARRAY_A);
+		// 	$review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+
 		// }
 		?>
  	<script>

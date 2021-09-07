@@ -8,7 +8,7 @@
             <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
                 <div class="account-wall">
                     <h4 class="account_hd"> Sign in to Tailem.com </h4>
-                    <form class="form-signin" method="post" action="sign-in">
+                    <form class="form-signin" id="login-form" method="post" action="sign-in">
                         <a href="#"><span><img src="images/fb10.png" style="border-radius:5px" /></span></a>
                         <a href="#"><img src="images/g9.png" style="margin-top:5px; border-radius:5px;" alt="" /></a>
                         <span><img src="images/line.png" /> </span>
@@ -34,41 +34,36 @@
 
 <div class="modal fade" id="missing_store_detail_Modal2_5000" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 @include('common.footer');
-<script type="text/javascript">
-    function register_validation6() {
-        $('#user_signup').unbind('submit');
-        var options = {
-            target: '',
-            beforeSubmit: register_validationRequestb,
-            success: register_validationResponsea,
-            url: JS_SERVER_PATHROOT + 'process/UserRegister.php'
-        };
-        $('#user_signup').submit(function() {
-            $(this).ajaxSubmit(options);
-            return false;
+ 
+
+<script>
+    $('#login-form').submit(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let form = $(this).serialize();
+        let url = $(this).attr('action');
+        $('.error').html('');
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: form,
+            dataType: 'html',
+            success: function(data) {
+                let res = JSON.parse(data);
+                switch (res.code) {
+                    case 'success': 
+                        ///redirect to dashboard
+                        setTimeout(function() { 
+                            window.location.replace(res.url);
+                        }, 500) 
+                        break;
+                    case 'warning': 
+                        $('.error').append(res.message); 
+                    
+                }
+            }
         });
 
-    }
-
-
-    function register_validationRequestb(formData, jqForm, options) {
-        var queryString = $.param(formData);
-        return true;
-    }
-
-    function register_validationResponsea(responseText, statusText) {
-
-        var myarray = new Array();
-        myarray = responseText.split("-SEPARATOR-");
-
-        if (myarray[0] == 'done') {
-            window.location.href = JS_SERVER_PATHROOT + "welcome-" + myarray[2];
-        } else {
-            $('.error').html(responseText);
-            $('.error').show();
-            var x = $(".error").position();
-            window.scrollTo(x.left, x.top);
-        }
-
-    }
+    })
 </script>

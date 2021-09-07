@@ -1,42 +1,23 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\InfoController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\SongsController;
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route; 
  
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
+//index
+Route::get('/',function(){
+    return view('index');
+});
 
+//welcome
+Route::get('/welcome-{user_name}',[UserController::class, 'UserWelcome'])->middleware('guest');
 
- 
-/*
-|--------------------------------------------------------------------------
-| Dashboard
-|--------------------------------------------------------------------------
-|
-*/
-
-//before login
-Route::get('/',[DashboardController::class,'index'])
-->name('home.index');
-
-///after login
-Route::get('/home',[DashboardController::class,'index'])
-->middleware(['auth'])
-->name('home.index');
-
-/*
-|--------------------------------------------------------------------------
-| Songs
-|--------------------------------------------------------------------------
-|
-*/
-
+//review-artist
+Route::get('/review-artist',[UserController::class, 'ReviewArtist'])->middleware('guest');
  
 
 ///top-songs-page routes

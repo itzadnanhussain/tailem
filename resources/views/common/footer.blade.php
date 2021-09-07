@@ -110,7 +110,7 @@ if ($currentFile == 'artists' || $currentFile == 'search' || $currentFile == 'se
 if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $currentFile == 'artists') {
 ?>
 	<link rel="stylesheet" href="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-ui.css">
-	<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-1.10.2.js"></script>
+ 	<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-1.10.2.js"></script>
 	<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-ui.js"></script>
 	<script>
 		var jq = jQuery.noConflict();

@@ -1,0 +1,90 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Str;
+
+class LoginController extends Controller
+{
+    //RegisterUser
+    public function RegisterUser(Request $request)
+    {
+
+
+        $validation = Validator::make($request->all(), [
+            'user_name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            // 'password_confirmation' => 'required',
+            'password' => ['required', Rules\Password::defaults()]
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json(['code' => "error", 'message' => $validation->errors()->first()]);
+        } else {
+            ///post data to database
+            $post = array();
+            $post['user_name'] = $request->user_name;
+            $post['email'] = $request->email;
+            $post['password'] = $request->password;
+            $insert_id = addNew('users', $post);
+            if ($insert_id) {
+                ///set session
+                $request->session()->put('user_id', $insert_id);
+                $string_url = 'welcome-' . $post['user_name'];
+                $response = array("code" => 'success', 'url' => $string_url);
+                return response()->json($response);
+            }
+        }
+    }
+
+
+    //login_user
+    public function LoginUser(Request $request)
+    {
+        $validation = Validator::make($request->all(), [
+
+            'email' => 'required|string|email|max:255',
+            'password' => 'required',
+
+        ]);
+
+        if ($validation->fails()) {
+            return response()->json(['code' => "warning", 'message' => $validation->errors()->first()]);
+        } else {
+
+            ///check user
+            $check_user = getByWhere('users', null, array('email' => $request->email));
+
+            if ($check_user) {
+                if (Hash::check($request->password, $check_user[0]->password)) {
+                    ///set session
+                    $request->session()->put('user_id', $check_user[0]->user_id);
+                    // Via the global "session" helper...
+                    session(['user' => 'test']);
+                    $string_url = '/';
+                    $response = array("code" => 'success', 'url' => $string_url);
+                    return response()->json($response);
+                }
+
+                return response()->json(['code' => 'warning', 'message' => 'Password Not Match']);
+            }
+
+            return response()->json(['code' => "warning", 'message' => 'user not available']);
+        }
+    }
+ 
+
+
+    ///logout_user
+    public function destroy(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
+    }
+}

@@ -1,0 +1,423 @@
+/*=============================================================================.
+Common properties
+=============================================================================*/
+header{
+    border-bottom:solid 1px #d2d2d2;
+
+}
+.red-text{
+    color: #c63434;
+}
+
+.heart_size_sm {
+    font-size:14px;
+}
+
+
+.heart_gray {
+    color: #696969;
+}
+
+.heading{
+    font-size: 22px !important;
+    margin: 10px 0;
+}
+
+/*=============================================================================.
+other  properties
+=============================================================================*/
+.topsonglistsec .songlistings .album_details .likes {
+    font-weight: 400;
+    margin-left: 0;
+}
+
+.topsonglistsec .songlistings .album_details{
+    margin-top: 10px;
+}
+
+.topsonglistsec .songlistings .artist_type{
+    margin-top:40px ;
+    text-align: center;
+}
+
+.recentreviewsec .review_item .album_detail{
+   /* background-color: #f5f5f5;*/
+}
+
+.latestsongssec{
+    background: none;
+    padding: 0;
+    padding-bottom: 10px;
+}
+
+.latestsongssec .listslider{
+    margin-top: 0;
+
+}
+
+.latestsongssec .list_bottom,
+.recentreviewsec .review_item .album_cover .bottom_sec{
+   /* background-color: transparent !important;
+    background: url("../images/gradi.png") repeat-x !important;*/
+}
+
+.latestsongssec .list_item  .list_bottom cite{
+    margin-top: 20px;
+	width:61px !important;
+}
+
+
+
+.alpha-panel,
+.alpha-panel li a{
+    color: #ffffff !important;
+}
+
+.alpha-panel .list-inline>li{
+    padding: 2px;
+}
+
+.alpha-panel li a:hover,
+.alpha-panel li .active{
+    color: #c63434;
+
+}
+
+
+.brows-label-penel{
+    padding: 20px 5px; /*padding: 20px 0px;*/
+	border:solid 1px #cdcdcd;
+   /* border-top:solid 1px #cdcdcd;*/
+    border-bottom:solid 1px #cdcdcd;
+    margin: 10px 0 30px 0;
+    color: #6e6e6e; 
+}
+
+
+
+.brows-label-penel ul li a{
+    padding: 0 5px;
+}
+
+.brows-label-penel ul li a:hover,
+.brows-label-penel ul li .active{
+    color: #c63434;
+}
+
+
+/*===================================================================
+    Review-Topic-Page2.0.html
+====================================================================*/
+
+.topRwHead-bodyPan{
+    background: #f6f6f6 none repeat scroll 0 0;
+}
+
+.topRwContent-panel{
+    margin-bottom: 30px;
+
+}
+
+
+.topRwContent-panel,
+.topRwHead-panel{
+    background-color: #ffffff;
+    border:solid 1px #d2d2d2;
+    padding: 15px 0;
+
+}
+
+.topRwHead-panel{
+    margin: 30px 0;
+}
+
+
+.topRwHead-panel .artist-img-panel{
+    position: relative;
+}
+
+.topRwHead-panel .artist-img-panel p{
+    position: absolute;
+    padding: 10px 20px;
+    color: #ffffff;
+    left: 10px;
+    top: 10px;
+    background-color: #08aa90;
+
+}
+
+.topRwHead-panel .desc-panel .sub-title{
+    color: #c63434;
+    font-size: 16px;
+}
+
+.topRwHead-panel .desc-panel .title{
+    font-size: 22px !important;
+    margin: 10px 0;
+}
+
+
+
+
+.desc-panel .activity-panel{
+    margin: 5px 0;
+}
+.desc-panel .activity-panel .likes{
+    margin-right: 20px;
+}
+
+.desc-panel p{
+    font-size: 13px;
+}
+
+.desc-panel .buyFromPan{
+    font-size: 16px;
+    padding-top: 10px;
+}
+.desc-panel .buyFromPan img{
+    margin-top: -5px;
+}
+
+.rating-panel{
+    color: #08aa90;
+}
+
+.progress-panel{
+    padding-top: 7px;
+}
+
+.progressVal{
+    color: #5e5e5e;
+    padding: 0;
+    padding-top: 3px;
+    text-align: left;
+}
+
+.progressLabel{
+    text-align: right;
+    font-weight: bold;
+}
+
+.progress{
+   height: 10px;
+    border-radius: 0;
+    margin-bottom: 0;
+
+}
+.progress-bar{
+    background-color: #08aa90;
+}
+
+
+.rew_list-panel{
+    margin-top: 40px;
+    color: #8f8f8f;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.rew_list-panel .rew_item{
+    border-bottom: solid 1px #e5e5e5;
+    padding: 20px 0;
+}
+
+.rew_list-panel .rew_item:first-child{
+    border-top: solid 1px #e5e5e5;
+
+
+}
+
+.rew_item .icon-panel{
+    margin-top: 10px;
+
+}
+
+.rew_item .desc_pan{
+    padding: 30px 5px;
+    font-size: 12px;
+}
+
+.rew_item .desc_pan .title{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #000000;
+    line-height: 25px;
+}
+
+.rew_item .desc_pan .title span{
+    background-color: #08aa90;
+    color: #ffffff;
+    padding: 5px;
+}
+
+.rew_item .desc_pan ul{
+    margin-top: 10px;
+}
+
+.dateVale{
+    font-size: 14px;
+
+}
+
+
+.linkTag{
+    color: #c63434;
+    text-decoration: underline;
+    font-size: 14px;
+}
+
+
+
+
+.starLabel,
+.star-panel{
+    margin-right: 10px;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.rating-bar-panel{
+    padding: 30px 15px 10px 15px;
+
+}
+
+.write-rew-pan{
+    border-bottom: solid 1px #e5e5e5;
+    padding: 0 15px 20px 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+
+}
+
+
+.write-rew-pan .form-control-static{
+    font-size: 12px;
+}
+
+.write-rew-pan .form-control-static a{
+    color: #c63434;
+}
+
+.write-rew-pan .btn-red{
+    background-color: #c63434;
+    color: #ffffff;
+    border-radius: 0;
+    border: 0;
+    padding: 10px 30px;
+    margin-top: 10px;
+}
+
+.write-rew-pan .form-control {
+    border-radius: 3px;
+    background-color: #fbfbfb;
+    padding: 20px;
+}
+
+.heading{
+  margin-left: 0;
+    border-left:5px solid #000000 ;
+    padding: 10px 20px;
+}
+
+.topRwHead-panel .btn-red{
+    background-color: #c63434;
+    color: #ffffff;
+    border: 0;
+    margin-top: 10px;
+}
+
+
+.related-song-pan{
+    font-size: 12px;
+    color: #8f8f8f;
+
+}
+
+.song-img-banner{
+    position: relative;
+}
+.song-img-banner p{
+    position: absolute;
+    padding: 5px;
+    color: #ffffff;
+    right: 10px;
+    top: 10px;
+    background-color: #c63434;
+
+}
+
+.song-img-banner .song-img {
+    width: 100%;
+}
+
+.related-song-pan .song-itembox{
+    float: left;
+    margin: 10px 2px;
+}
+
+.related-song-pan .like-pan{
+   float: right;
+    margin: 10px 0;
+}
+
+
+
+.rightRwContPan{
+    border-left: solid 1px #d2d2d2;
+    margin-top: -15px;
+    padding-left: 0;
+}
+
+.DescPan,
+.disc_listPan{
+    padding-left: 25px;
+    padding-right: 10px;
+}
+
+
+.btn-green{
+    background-color: #08aa90;
+    color: #ffffff;
+    border: 0;
+    padding: 10px;
+}
+
+
+.disc_listPan .disc_list{
+    margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: solid 1px #eeeeee;
+    color: #8f8f8f;
+    font-size: 13px;
+}
+
+.disc_listPan .disc_list:last-child{
+    border-bottom: 0;
+
+}
+
+.disc_listPan .disc_list .img-div{
+    padding-left:0 ;
+}
+
+.disc_listPan .disc_list .img-div .thm-img {
+    margin-bottom: 10px;
+}
+
+.disc_listPan .disc_list .text-panel{
+    margin-top: 20px;
+}
+.disc_listPan .disc_list .text-panel a {
+    color: #c63434;
+    margin-left: 10px;
+}
+/******************search result page**************/
+.search_bread_crumb{border:0; margin-top:0; padding:0;}
+.search_bread_crumb_bottom{border:0; margin:0px;}
+.search_see_all{text-align:right;}
+
+.top_heart_margin
+{
+	float:right; line-height:20px !important; margin-top:4px;
+}
