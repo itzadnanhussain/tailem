@@ -202,13 +202,13 @@ class ProcessController extends Controller
                 }
 
 
-                if (isset($arr_ids) && isset($playlist_arr)) { 
+                if (isset($arr_ids) && isset($playlist_arr)) {
                     $result_match = array_intersect($arr_ids, $playlist_arr);
-                } 
+                }
 
                 if (isset($result_match) && !empty($result_match)) {
-                    
-                    $wher_new = " playlist_id NOT IN ( '" . implode("','",$result_match) . "' ) AND ";
+
+                    $wher_new = " playlist_id NOT IN ( '" . implode("','", $result_match) . "' ) AND ";
                     $delete_qry = "Delete from tbl_user_playlist_songs where   $wher_new song_id  = '" . $song_id . "' AND 	user_id   = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND artist_id = '" . $artist_id . "'";
                     \App\Models\Songs::GetRawData($delete_qry);
                 } else {
@@ -233,6 +233,185 @@ class ProcessController extends Controller
                 exit;
             } else {
                 echo $errorstr;
+            }
+        }
+    }
+
+
+    ///WriteReview
+    public function WriteReview(Request $request)
+    {
+        if (isset($_POST)) {
+            extract($_POST);
+            $user_id = session()->get('user_id');
+
+            $rating            =   trim($_REQUEST['api-readonly-test']);
+            $review_title   =     trim($_REQUEST['review_title']);
+            $review_detail  =     trim($_REQUEST['review_detail']);
+            $song_id        =     trim($_REQUEST['song_id']);
+            $artist_id        =    trim($_REQUEST['artist_id']);
+            $album_id        =     trim($_REQUEST['album_id']);
+            $song_seo_name  =     trim($_REQUEST['song_seo_name']);
+            $artist_seo_name  =     trim($_REQUEST['artist_seo_name']);
+
+            if (isset($edit_id)) {
+                $edit_id = $edit_id;
+            } else {
+
+                $edit_id = '';
+            }
+
+            if ($user_id == "") {
+                $_SESSION['store']['rating'] = $rating;
+                $_SESSION['store']['review_title'] = $review_title;
+                $_SESSION['store']['review_detail'] = $review_detail;
+
+                $response = array("code" => 'warning', 'message' => 'Please sign in first.');
+                return response()->json($response);
+            }
+
+
+
+            if ($edit_id == "") {
+                if ($song_id != "") {
+                    $count = \App\Models\Songs::GetRawData("select review_id from tbl_reviews where song_id = $song_id AND review_user_id = '" . $user_id . "'");
+                    if ($count) {
+                        $count = 1;
+                    } else {
+                        $count = 0;
+                    }
+                }
+            }
+
+            if ($edit_id == "") {
+                if ($song_id == "" || $album_id == "" || $artist_id == "") {
+                    $response = array("code" => 'warning', 'message' => 'This is a invalid song');
+                    return response()->json($response);
+                }
+            }
+
+
+            if ($count != 0) {
+                $response = array("code" => 'warning', 'message' => 'You have already posted a review on this song. Please use the EDIT function to revise your review.');
+                return response()->json($response);
+            }
+
+            if ($rating == "" || $rating == 0) {
+                $response = array("code" => 'warning', 'message' => 'Unfortunately, you have not selected a star rating.');
+                return response()->json($response);
+            }
+
+            if ($review_title == "") {
+                $response = array("code" => 'warning', 'message' => 'Unfortunately, you have not entered a review title.');
+                return response()->json($response);
+            }
+
+            if ($review_detail == "") {
+                $response = array("code" => 'warning', 'message' => 'Unfortunately, you have not entered a review.');
+                return response()->json($response);
+            }
+
+            if ($edit_id != "") {
+                $song_query = "select song_id from tbl_reviews where review_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND review_id = '$edit_id'";
+                $song_arr = \App\Models\Songs::GetRawData($song_query);
+                $song_arr = (array)$song_arr[0];
+                $song_id    = $song_arr['song_id'];
+
+                $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where song_id = $song_id";
+                $rate_arr = \App\Models\Songs::GetRawData($sum_rating);
+                if ($rate_arr) {
+                    $rate_arr = (array)$rate_arr[0];
+                    $sum_rate = $rate_arr['sum_rate'];
+                    $counter = $rate_arr['counter'];
+                } else {
+                    $sum_rate = 0;
+                    $counter = 0;
+                    $all_avg = 0;
+                }
+
+                if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
+                    $sum_rate = 0;
+                    $counter = 0;
+                    $all_avg = 0;
+                } else {
+                    $all_avg  =  $sum_rate / $counter;
+                }
+
+                if ($counter == 0) {
+                    $counter = 1;
+                    $rev_counter  =  $counter;
+                } else {
+                    $rev_counter  =  $counter;
+                }
+
+                if ($all_avg == 0) {
+                    $all_avg  =  $rating + $all_avg;
+                }
+
+
+                $update_qry = "update tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "' where  	review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
+                \App\Models\Songs::GetRawData($update_qry);
+                \App\Models\Songs::GetRawData("update tbl_songs set rate_song = '$all_avg',review_count = $rev_counter where id = '$song_id'");
+                $slug = SERVER_ROOTPATH . $song_seo_name . "-reviews-" . $artist_seo_name . ".html-SEPARATOR-" . $_REQUEST['num'];
+                $response = array("code" => 'success', 'url' => $slug);
+                return response()->json($response);
+
+                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $song_seo_name . "-reviews-" . $artist_seo_name . ".html-SEPARATOR-" . $_REQUEST['num'];
+                // exit;
+            } else {
+
+                $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where song_id = $song_id";
+
+                $rate_arr = \App\Models\Songs::GetRawData($sum_rating);
+                if ($rate_arr) {
+                    $rate_arr = (array)$rate_arr[0];
+                    $sum_rate = $rate_arr['sum_rate'];
+                    $counter = $rate_arr['counter'];
+                } else {
+                    $sum_rate = 0;
+                    $counter = 0;
+                    $all_avg = 0;
+                }
+
+
+
+                if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
+                    $sum_rate = 0;
+                    $counter = 0;
+                    $all_avg = 0;
+                } else {
+                    $all_avg  =  $sum_rate / $counter;
+                }
+
+                if ($counter == 0) {
+                    $counter = 1;
+                    $rev_counter  =  $counter + 1;
+                } else {
+                    $rev_counter  =  $counter + 1;
+                }
+
+
+
+                if ($all_avg == 0) {
+                    $all_avg  =  $rating + $all_avg;
+                } else {
+                    $all_avg  =  ($rating + $all_avg) / 2;
+                }
+
+
+
+                $update_qry = "insert into tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', 	review_user_id = '" . $user_id . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "', review_post_date = '" . time() . "', song_id = '" . $song_id . "', album_id = '" . $album_id . "',  	artist_id = '" . $artist_id . "'";
+                \App\Models\Songs::GetRawData($update_qry);
+                $rev_counter  =  $counter + 1;
+                \App\Models\Songs::GetRawData("update tbl_songs set rate_song = '$all_avg', review_count = review_count + 1 where id = '$song_id'");
+
+                // unset($_SESSION['store']);
+                $slug = SERVER_ROOTPATH . $song_seo_name . "-reviews-" . $artist_seo_name;
+                $response = array("code" => 'success', 'url' => $slug);
+                return response()->json($response);
+
+                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $song_seo_name . "-reviews-" . $artist_seo_name;
+                // exit;
             }
         }
     }

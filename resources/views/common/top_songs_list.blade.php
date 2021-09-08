@@ -22,8 +22,7 @@ if (isset($top_songs_arr)) {
         $rate_arr = App\Models\Songs::GetRawQuery('reviews', 'sum(review_rating) as sum_rate, count(*) as counter', array('song_id' => $id, 'status' => 1));
        
         if ($rate_arr) {
-            $rate_arr = (array)$rate_arr[0];
-
+            $rate_arr = (array)$rate_arr[0]; 
             $sum_rate = $rate_arr['sum_rate'];
             $counter = $rate_arr['counter'];
             if ($sum_rate == "" || $sum_rate == 0 || $counter == "" || $counter == 0) {

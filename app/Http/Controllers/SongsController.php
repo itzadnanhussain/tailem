@@ -102,6 +102,9 @@ class SongsController extends Controller
         $data['artist_seo'] = Str::of($slug)->after('write-a-review-');
         $data['user_id'] = session()->get('user_id');
         $data['user_name'] = session()->get('user_name');
+        $data['mobile_view'] = 0;
+        $data['sort'] = '';
+        $data['rate'] = '';
         return view('song_local_detail', $data);
     }
 }

@@ -6,16 +6,16 @@
                 </h4>
             </div>
             <div class="modal-body" style="overflow-y:auto; min-height:250px;">
-                <?php $currentFile = get_page_name(); ?>
+                <?php $currentFile = url()->current(); ?>
                 <div class="row mobile_display">
 
                     <div class="col-lg-12">
                         <div class="account-wall">
                             <form class="form-signin" name="user_signin" id="login-form" method="post" action="{{url('sign-in')}}">
 
-                                <a href="#"><span><img src="images/fb10.png" style="border-radius:5px" /></span></a>
-                                <a href="#"><img src="images/g9.png" style="margin-top:5px; border-radius:5px;" alt="" /></a>
-                                <span><img src="images/line.png" /> </span>
+                                <a href="#"><span><img src="<?php echo SERVER_ROOTPATH ?>images/fb10.png" style="border-radius:5px" /></span></a>
+                                <a href="#"><img src="<?php echo SERVER_ROOTPATH ?>images/g9.png" style="margin-top:5px; border-radius:5px;" alt="" /></a>
+                                <span><img src="<?php echo SERVER_ROOTPATH ?>images/line.png" /> </span>
                                 <div class="error"></div> 
                                 <input type="hidden" name="redirect_url" value="<?php echo url()->current(); ?>">
                                 @csrf 

@@ -668,26 +668,9 @@ if (!function_exists('artist_album_func')) {
 if (!function_exists('calculate_rating_main')) {
 
     function calculate_rating_main($album_id, $artist_id, $albseo)
-    {
+    { 
 
-
-
-
-        $listof_ids  =    get_listof_songs_ids_main($album_id, $artist_id);
-        // echo '<pre>';
-        // print_r($listof_ids);
-        // echo '</pre>';
-        // die;
-
-
-        // if ($listof_ids == '') {
-        //     $pass_where = '';
-        // } else {
-        //     $pass_where = " OR (rev.song_id IN ($listof_ids))";
-        // }
-
-        // $where_condition = " AND (rev.album_id = '$album_id' $pass_where)";
-
+        $listof_ids  =    get_listof_songs_ids_main($album_id, $artist_id);  
         $sum_rating_query    = "select avg(rev.review_rating) as total_sum, Count(*) as number_count
 							from tbl_artist_album b, tbl_artists a, tbl_songs s, tbl_reviews rev, tbl_users u 
 							where 1=1 
@@ -697,15 +680,10 @@ if (!function_exists('calculate_rating_main')) {
 							AND u.user_id = rev.review_user_id 
                             AND (rev.album_id = '$album_id' OR (rev.song_id IN ('$listof_ids'))) 
  							group by song_id
-							  LIMIT 50";
-
-
-        // $rate_list_arr    =    $db->get_results($sum_rating_query, ARRAY_A);
-
-        $rate_list_arr = \App\Models\Songs::GetRawData($sum_rating_query);
-
-        $sum = 0;
-
+							  LIMIT 50"; 
+ 
+        $rate_list_arr = \App\Models\Songs::GetRawData($sum_rating_query); 
+        $sum = 0; 
         if ($rate_list_arr) {
             $total_count    =    count($rate_list_arr);
             foreach ($rate_list_arr as $get_avg) {
@@ -713,16 +691,11 @@ if (!function_exists('calculate_rating_main')) {
                 $sum_rates  = $get_avg['total_sum'];
                 $sum    =    $sum + $sum_rates;
             }
+            $total_Rating    =    $sum / $total_count;
         } else {
             $total_count = 0;
-        }
-
-        /*
-	 $total_sum_rating	=	 $rate_list_arr['total_sum'];
-		 
-		 $number_count		=	$rate_list_arr['number_count'];			
-		 */
-        $total_Rating    =    $sum / $total_count;
+            $total_Rating    =   0;
+        } 
 
         return $total_Rating;
     }
@@ -832,5 +805,40 @@ if (!function_exists('SEO')) {
         $input = preg_replace("#(-){2,}#", "$1", $input); //replace multiple dashes with one
         $input = trim($input, ""); //trim dashes from beginning and end of string if any
         return $input;
+    }
+}
+///song_adds 
+if (!function_exists('song_adds')) {
+    function song_adds($id, $type)
+    {
+        if ($id != "") { 
+            $ads_list_arr = array(); 
+            if (!empty($ads_list_arr)) {
+                return $ads_list_arr;
+            } else {
+                $ads_list = "SELECT ad_code, video_code FROM tbl_songs where id = $id AND song_status = 1";
+                $ads_list_arr = \App\Models\Songs::GetRawData($ads_list);
+                if($ads_list_arr)
+                {
+                    $ads_list_arr = (array)$ads_list_arr[0];
+                    $ad_code   =   stripslashes($ads_list_arr['ad_code']); 
+                    $video_code   =   stripslashes($ads_list_arr['video_code']);
+        
+
+                }else
+                {
+                    $ad_code   =   ''; 
+                    $video_code   = ''; 
+                }
+            }
+           
+            if ($type == 'video') {
+                return  $video_code;
+            }
+
+            if ($type == 'adds') {
+                return  $ad_code;
+            }
+        }
     }
 }

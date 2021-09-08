@@ -1,13 +1,28 @@
-<script type="text/javascript" src="<?php echo COOKIE_FREE_ROOTPATH; ?>js/custom.js"></script>
-<script type="text/javascript" src="<?php echo COOKIE_FREE_ROOTPATH; ?>js/merged.min.js" async></script>
+<!-- load css -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"> -->
 <link href="<?php echo SERVER_ROOTPATH; ?>css/our4.css?id=<?php echo rand(10000, 9999999); ?>" rel="stylesheet" media="all">
 <link href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/main11.css?id=<?php echo rand(10000, 9999999); ?>" rel="stylesheet" media="all">
-<script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/ourjs14.js?id=<?php echo rand(10000, 9999999); ?>"></script>
 <link href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/custom-style-new.css?id=<?php echo rand(0, 2000); ?>" rel="stylesheet" media="all">
 <link href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/style-update-new.css?id=<?php echo rand(0, 2000); ?>" rel="stylesheet" media="all">
+<link rel="stylesheet" href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/star-rating.css" media="all" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/style-update.css?id=<?php echo rand(111111, 9999999); ?>">
+
 <?php if ($currentFile == 'sign-in' || $currentFile == 'forgot_password' ||  $currentFile == 'sign-up' ||  $currentFile == 'edit_review' ||  $currentFile == 'edit_comment' ||  $currentFile == 'contact-us' ||  $currentFile == 'cms' ||  $currentFile == 'change_password'  ||  $currentFile == 'edit_username' ||  $currentFile == 'change_picture' ||  $currentFile == 'new_password') { ?>
     <link rel="stylesheet" type="text/css" href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/form.css">
+
 <?php } ?>
+
+
+
+
+<!-- load js -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src='<?php echo COOKIE_FREE_ROOTPATH; ?>js/jquery.MetaData.js' type="text/javascript" language="javascript"></script>
+<script src="<?php echo SERVER_ROOTPATH; ?>js/star-rating.js" type="text/javascript"></script>
+<script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/ourjs14.js?id=<?php echo rand(10000, 9999999); ?>"></script>
+<script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/bootstrap.min.js"></script>
+<script type="text/javascript" src="<?php echo COOKIE_FREE_ROOTPATH; ?>js/custom.js"></script>
+<script type="text/javascript" src="<?php echo COOKIE_FREE_ROOTPATH; ?>js/merged.min.js" async></script>
 
 <!-- clear   -->
 <?php if ($currentFile == 'artists') { ?>
@@ -28,11 +43,7 @@
         });
     </script>
 <?php } ?>
-<?php if ($currentFile == 'song_detail' || $currentFile == 'song_local_detail' || $currentFile == 'edit_review') { ?>
-    <script src='<?php echo COOKIE_FREE_ROOTPATH; ?>js/jquery.js' type="text/javascript"></script>
-    <script src='<?php echo COOKIE_FREE_ROOTPATH; ?>js/jquery.MetaData.js' type="text/javascript" language="javascript"></script>
-    <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css" />
-<?php } ?>
+
 
 <style>
     .bottom_nav,

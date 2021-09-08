@@ -22,7 +22,7 @@ $song_title      = $review_like_info['song_title'];
 
 <head>
     <!--<link rel="stylesheet" type="text/css" href="css/form.css">-->
-    <!-- <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css"/>-->
+    <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css"/>
     <style>
         .desktop_width {
             width: 50%;
@@ -175,7 +175,7 @@ $song_title      = $review_like_info['song_title'];
                 </div>
             </div>
             </div>
-            <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
             <script src="js/star-rating.js" type="text/javascript"></script>
             <script type="text/javascript">
                 function close_review_popup() {

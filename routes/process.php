@@ -14,6 +14,10 @@ Route::post('process/add_playlist_process',[ProcessController::class, 'AddPlayli
 Route::post('process/add_songto_playlist_process',[ProcessController::class, 'AddSongToPlayList']) 
 ->name('process/add_songto_playlist_process.AddSongToPlayList');
  
+///write a review process
+Route::post('process/write_a_review',[ProcessController::class, 'WriteReview']) 
+->name('process/write_a_review.WriteReview');
+ 
  
  
  
