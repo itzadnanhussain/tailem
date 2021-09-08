@@ -1,9 +1,8 @@
-@extends('common.header')
+@include('common.header')
 <!-- ./Header end -->
 <?php
-echo $user_profile;
-die;
-
+ 
+ 
 $mobile_view = 0;
 //include_once("common/signin_modal_header.php"); 
 $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
@@ -12,7 +11,7 @@ $user_profile = $_SESSION[USER_SESSION_ARRAY]['USER_ID'];
  
 $USER_NAME = ucfirst($_SESSION[USER_SESSION_ARRAY]['USER_NAME']); 
 $USER_NAME =  str_replace(" ", '%20', $USER_NAME);
-$main_link = '';
+ 
 
 
 // if ($alpha == "unset") {
@@ -65,6 +64,8 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
 
                     <div class="col-lg-12 col-md-12" style="margin-bottom:0; padding-right:0;">
                          @include("common.my_account_image")
+                         <?php echo 'wait'; die; ?>
+
                         
                         <div class="activity-panel">
                             @include("include.review_activities")

@@ -43,7 +43,7 @@
 		$_SESSION[main_search]['search'] = 'test';
 		$user_profile = $_SESSION[USER_SESSION_ARRAY]['USER_ID'];
 		$USER_NAME = $_SESSION[USER_SESSION_ARRAY]['USER_NAME'];
-		$main_link = "";
+		 
 	}
 
 	if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {

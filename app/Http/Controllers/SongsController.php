@@ -3,25 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB; 
+use Illuminate\Support\Facades\DB;
 use App\Models\Songs;
+use Illuminate\Support\Str;
 
 class SongsController extends Controller
 {
     ///construct
     // function __construct()
     // {
-       
+
     // }
 
     ///GetTopSongs
     public function GetTopSongs()
-    { 
-        if(isset($_GET['page']))
-        {
-            $page = $_GET['page']; 
-        }else
-        {
+    {
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
             $page = 1;
         }
 
@@ -32,12 +31,10 @@ class SongsController extends Controller
 
     ///GetTopAlbums
     public function GetTopAlbums()
-    { 
-        if(isset($_GET['page']))
-        {
-            $page = $_GET['page']; 
-        }else
-        {
+    {
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
             $page = 1;
         }
 
@@ -48,12 +45,10 @@ class SongsController extends Controller
 
     ///GetLatestSongs
     public function GetLatestSongs()
-    { 
-        if(isset($_GET['page']))
-        {
-            $page = $_GET['page']; 
-        }else
-        {
+    {
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
             $page = 1;
         }
 
@@ -65,24 +60,20 @@ class SongsController extends Controller
     ///GetTopArtist
     public function GetTopArtist()
     {
-        if(isset($_GET['alpha']))
-        {
-            $alpha = $_GET['alpha']; 
-        }else
-        {
+        if (isset($_GET['alpha'])) {
+            $alpha = $_GET['alpha'];
+        } else {
             $alpha = 'unset';
         }
 
-        if(isset($_GET['page']))
-        {
-            $page = $_GET['page']; 
-        }else
-        {
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
             $page = 1;
         }
-        
+
         //page View
-        return view('artists' , compact('alpha','page'));
+        return view('artists', compact('alpha', 'page'));
     }
 
 
@@ -91,7 +82,7 @@ class SongsController extends Controller
     {
         $song_id = $_GET['song_id'];
         $art_id = $_GET['art_id'];
-        return view('add_playlist',compact('song_id','art_id'));
+        return view('add_playlist', compact('song_id', 'art_id'));
     }
 
 
@@ -100,6 +91,17 @@ class SongsController extends Controller
     {
         $song_id = $_GET['song_id'];
         $art_id = $_GET['art_id'];
-        return view('insert_playlist',compact('song_id','art_id'));
+        return view('insert_playlist', compact('song_id', 'art_id'));
+    }
+
+    ///SongWriteReview
+    public function SongWriteReview($slug)
+    {
+        $data = array();
+        $data['song_seo'] = Str::of($slug)->before('-write-a-review');
+        $data['artist_seo'] = Str::of($slug)->after('write-a-review-');
+        $data['user_id'] = session()->get('user_id');
+        $data['user_name'] = session()->get('user_name');
+        return view('song_local_detail', $data);
     }
 }

@@ -391,7 +391,7 @@ $mobile_view = 0;
 
 
 
-                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . '-write-a-review-' . $artist_seo; ?>'">Write a review</button>
+                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH .'songs/'. $song_seo . '-write-a-review-' . $artist_seo; ?>'">Write a review</button>
                                             </div>
                                         </div>
                                     <?php } elseif ($mobile_view == 1) { ?>

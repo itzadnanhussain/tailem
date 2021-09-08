@@ -46,6 +46,7 @@ class LoginController extends Controller
     //login_user
     public function LoginUser(Request $request)
     {
+        
         $validation = Validator::make($request->all(), [
 
             'email' => 'required|string|email|max:255',
@@ -64,10 +65,18 @@ class LoginController extends Controller
                 if (Hash::check($request->password, $check_user[0]->password)) {
                     ///set session
                     $request->session()->put('user_id', $check_user[0]->user_id);
-                    // Via the global "session" helper...
-                    session(['user' => 'test']);
-                    $string_url = '/';
-                    $response = array("code" => 'success', 'url' => $string_url);
+                    $request->session()->put('user_name', $check_user[0]->user_name); 
+                    if(isset($request->redirect_url))
+                    {
+                        $string_url = $request->redirect_url; 
+                        $location = 'others';
+                    }
+                    else
+                    {
+                        $string_url = '/';
+                        $location = 'index';
+                    }
+                    $response = array("code" => 'success', 'url' => $string_url,'location'=> $location);
                     return response()->json($response);
                 }
 

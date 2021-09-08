@@ -1,6 +1,6 @@
-<?php
-
-
+<?php 
+error_reporting(0);
+$mobile_view = 0;
 $select_img = "select profile_image, user_name, fname, lname from  tbl_users where user_id='" . $user_profile . "' ";
 $result_image = \App\Models\Songs::GetRawData($select_img);
 $result_image = (array)$result_image[0];
@@ -23,7 +23,7 @@ if ($counter_main_profile_like) {
     $counter_main_profile_like = count($counter_main_profile_like);
 } else {
     $counter_main_profile_like = 0;
-}
+} 
 
 
 $counter_main_playlist_like = \App\Models\Songs::GetRawData("select id from tbl_likes where like_type = 'playlist' AND like_receive_user = '$user_profile'");

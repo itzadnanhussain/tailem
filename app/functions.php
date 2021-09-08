@@ -819,3 +819,18 @@ if (!function_exists('artist_func')) {
         return $artist_array;
     }
 }
+
+
+///SEO 
+if (!function_exists('SEO')) {
+    function SEO($input)
+    {
+        $input = str_replace("&nbsp;", "amp", $input);
+        $input = str_replace(array("'", ""), "-", $input); //remove single quote and dash
+        $input = mb_convert_case($input, MB_CASE_LOWER, "UTF-8"); //convert to lowercase
+        $input = preg_replace("#[^a-zA-Z]+#", "-", $input); //replace everything non an with dashes
+        $input = preg_replace("#(-){2,}#", "$1", $input); //replace multiple dashes with one
+        $input = trim($input, ""); //trim dashes from beginning and end of string if any
+        return $input;
+    }
+}

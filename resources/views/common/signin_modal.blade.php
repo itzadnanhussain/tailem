@@ -11,19 +11,20 @@
 
                     <div class="col-lg-12">
                         <div class="account-wall">
-                            <form class="form-signin" name="user_signin" id="user_signin" method="post" action="">
+                            <form class="form-signin" name="user_signin" id="login-form" method="post" action="{{url('sign-in')}}">
 
                                 <a href="#"><span><img src="images/fb10.png" style="border-radius:5px" /></span></a>
                                 <a href="#"><img src="images/g9.png" style="margin-top:5px; border-radius:5px;" alt="" /></a>
                                 <span><img src="images/line.png" /> </span>
                                 <div class="error"></div> 
+                                <input type="hidden" name="redirect_url" value="<?php echo url()->current(); ?>">
                                 @csrf 
                                 <input type="text" name="email" id="email" class="form-control" placeholder="Username or Email" required autofocus>
                                 <div class="mrgin_bootom">&nbsp;</div>
                                 <input id="password" name="password" type="password" class="form-control" placeholder="Password" required>
                                 <input type="hidden" name="current_page" value="<?php echo $currentFile; ?>">
 
-                                <button style="margin-top:10px;" class="btn btn-lg btn-primary btn-block" name="submit_btn" id="submit_btn" type="submit" onClick="return sign_in_validation_new();">Sign in</button>
+                                <button style="margin-top:10px;" class="btn btn-lg btn-primary btn-block" name="submit_btn" id="submit_btn" type="submit">Sign in</button>
 
                                 <a href="<?php echo SERVER_ROOTPATH; ?>forgot-password" style="text-align:center; color:#3276B1; display:block; margin-left:auto; margin-right:auto; margin-top:10px; vertical-align:middle;">Forgot Password? </a><span class="clearfix"></span>
                             </form>
@@ -36,3 +37,41 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    $('#login-form').submit(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let form = $(this).serialize();
+        let url = $(this).attr('action');
+        $('.error').html(''); 
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: form,
+            dataType: 'html',
+            success: function(data) {
+                let res = JSON.parse(data);
+                switch (res.code) {
+                    case 'success': 
+                        setTimeout(function() { 
+                            if(res.location == 'others')
+                            {
+                                location.reload(); 
+                            }else
+                            {
+                                window.location.replace(res.url);
+
+                            }
+                        }, 500) 
+                        break;
+                    case 'warning': 
+                        $('.error').append(res.message); 
+                    
+                }
+            }
+        });
+
+    })
+</script>
