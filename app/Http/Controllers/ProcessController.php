@@ -16,16 +16,6 @@ class ProcessController extends Controller
             // echo '</pre>';
             // die;
             $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
-            function SEO($input)
-            {
-                $input = str_replace("&nbsp;", " ", $input);
-                $input = str_replace(array("'", "-"), "", $input); //remove single quote and dash
-                $input = mb_convert_case($input, MB_CASE_LOWER, "UTF-8"); //convert to lowercase
-                $input = preg_replace("#[^a-zA-Z0-9]+#", "-", $input); //replace everything non an with dashes
-                $input = preg_replace("#(-){}#", "$1", $input); //replace multiple dashes with one
-                $input = trim($input, "-"); //trim dashes from beginning and end of string if any
-                return $input;
-            }
             $errorstr = "";
             $case = 1;
 
@@ -37,23 +27,22 @@ class ProcessController extends Controller
 
             if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
 
-                echo $errorstr .= "Please sign in first.";
-                $case = 0;
-                exit;
+                $errorstr = "Please sign in first.";
+                $response = array("code" => 'warning', 'message' => $errorstr);
+                return response()->json($response);
             }
 
             if ($playlist_title == '') {
-                echo $errorstr = "Please enter a name for your playlist..";
-                $case = 0;
-                exit;
+                $response = array("code" => 'warning', 'message' => 'Please enter a name for your playlist..');
+                return response()->json($response);
             } else {
                 $query_check  = "select id from tbl_user_playlist where title_playlist  = '" . $playlist_title . "' AND user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'";
                 // $artist_list_arr    =    $db->get_results($query_check, ARRAY_A);
                 $artist_list_arr = \App\Models\Songs::GetRawData($query_check);
                 if (isset($artist_list_arr) && !empty($artist_list_arr)) {
-                    echo $errorstr = "Sorry, this playlist name has already been used, please try again.";
-                    $case = 0;
-                    exit;
+                    $errorstr = "Sorry, this playlist name has already been used, please try again.";
+                    $response = array("code" => 'warning', 'message' => $errorstr);
+                    return response()->json($response);
                 }
             }
 
@@ -82,7 +71,8 @@ class ProcessController extends Controller
 
             if (!isset($artist_list_arr)) {
                 $errorstr = "Invalid Song.";
-                $case = 0;
+                $response = array("code" => 'warning', 'message' => $errorstr);
+                return response()->json($response);
             }
 
 
@@ -93,10 +83,12 @@ class ProcessController extends Controller
                 // $db->query($update_qry);
                 \App\Models\Songs::GetRawData($update_qry);
 
-                echo 'done';
-                exit;
+                $response = array("success" => 'warning', 'message' => 'done');
+                return response()->json($response);
             } else {
-                echo $errorstr;
+                $errorstr;
+                $response = array("code" => 'warning', 'message' => $errorstr);
+                return response()->json($response);
             }
         }
     }
@@ -126,9 +118,9 @@ class ProcessController extends Controller
 
             if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
 
-                echo $errorstr .= "Please sign in first.";
-                $case = 0;
-                exit;
+                $errorstr .= "Please sign in first.";
+                $response = array("code" => 'warning', 'message' => $errorstr);
+                    return response()->json($response);
             }
 
             $query_check  = "select playlist_id from tbl_user_playlist_songs where  user_id  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND song_id  = '" . $song_id . "'";
@@ -152,16 +144,17 @@ class ProcessController extends Controller
 
             if ($size_ofplaylist_arr == 0 && $db_count_playlist == 0) {
                 $errorstr .= "Please select at least one playlist.";
-                $case = 0;
+                $response = array("code" => 'warning', 'message' => $errorstr);
+                return response()->json($response);
             } else {
 
                 $query_check  = "select id from tbl_user_playlist where title_playlist  = '" . $playlist_title . "' AND user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'";
 
                 $artist_list_arr = \App\Models\Songs::GetRawData($query_check);
                 if (isset($artist_list_arr) && !empty($artist_list_arr)) {
-                    echo $errorstr = "Sorry, this playlist name has already been used, please try again.";
-                    $case = 0;
-                    exit;
+                    $errorstr = "Sorry, this playlist name has already been used, please try again.";
+                    $response = array("code" => 'warning', 'message' => $errorstr);
+                    return response()->json($response);
                 }
             }
 
@@ -189,7 +182,8 @@ class ProcessController extends Controller
             $artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
             if (isset($artist_list_arr) && empty($artist_list_arr)) {
                 $errorstr = "Invalid Song.";
-                $case = 0;
+                $response = array("code" => 'warning', 'message' => $errorstr);
+                return response()->json($response);
             }
 
 
@@ -197,8 +191,10 @@ class ProcessController extends Controller
 
                 if ($db_count_playlist != 0 && $size_ofplaylist_arr == 0) {
                     $show_message  = "Song has been successfully removed from playlist.";
+                   
                 } else {
                     $show_message  = "Song successfully updated to playlist.";
+                   
                 }
 
 
@@ -229,10 +225,12 @@ class ProcessController extends Controller
                 }
 
 
-                echo 'done-SEPARATOR-' . $show_message;
-                exit;
+                $response = array("code" => 'success', 'message' => $show_message);
+                return response()->json($response);
             } else {
-                echo $errorstr;
+                $errorstr;
+                $response = array("code" => 'warning', 'message' => $errorstr);
+                return response()->json($response);
             }
         }
     }

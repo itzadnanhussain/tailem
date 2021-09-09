@@ -105,6 +105,41 @@ class SongsController extends Controller
         $data['mobile_view'] = 0;
         $data['sort'] = '';
         $data['rate'] = '';
+        ///song list arr
+        $song_list_arr = array();
+        $song_list = "select a.id as artist_id,b.album_seo,b.album_artist_id, s.itunes_url,s.amazon_url, s.google_url, s.lastfm_url, s.song_title, s.picture, s.song_seo, a.artist_seo, a.artist_name,b.album_title, b.album_picture, s.id,s.description, b.id as album_id from tbl_artist_album b, tbl_artists a, tbl_songs_artist_album saa, tbl_songs s where 1=1 AND s.id = saa.song_id AND a.id = saa.artist_id AND b.id = saa.album_id AND s.song_seo = '$data[song_seo]' AND saa.display_status = 1 AND a.artist_seo = '$data[artist_seo]' AND s.song_status = 1";
+        $song_list_arr = \App\Models\Songs::GetRawData($song_list);
+        if (isset($song_list_arr) && !empty($song_list_arr)) {
+            $data['song_list_arr'] = $song_list_arr;
+        } else {
+            return redirect('/');
+        }
         return view('song_local_detail', $data);
+    }
+
+
+    ///GetSongDetail
+    public function GetSongDetail($slug)
+    {
+        $data = array();
+        $data['song_seo'] = Str::of($slug)->before('-reviews');
+        $data['artist_seo'] = Str::of($slug)->after('reviews-');
+        $data['user_id'] = session()->get('user_id');
+        $data['user_name'] = session()->get('user_name');
+        $data['mobile_view'] = 0;
+        $data['sort'] = '';
+        $data['rate'] = '';
+
+        ///song list arr
+        $song_list_arr = array();
+        $song_list = "select a.id as artist_id,b.album_seo,b.album_artist_id, s.itunes_url,s.amazon_url, s.google_url, s.lastfm_url, s.song_title, s.picture, s.song_seo, a.artist_seo, a.artist_name,b.album_title, b.album_picture, s.id,s.description, b.id as album_id from tbl_artist_album b, tbl_artists a, tbl_songs_artist_album saa, tbl_songs s where 1=1 AND s.id = saa.song_id AND a.id = saa.artist_id AND b.id = saa.album_id AND s.song_seo = '$data[song_seo]' AND saa.display_status = 1 AND a.artist_seo = '$data[artist_seo]' AND s.song_status = 1";
+        $song_list_arr = \App\Models\Songs::GetRawData($song_list);
+        if (isset($song_list_arr) && !empty($song_list_arr)) {
+            $data['song_list_arr'] = $song_list_arr;
+        } else {
+            return redirect('/');
+        }
+
+        return view('song_detail', $data);
     }
 }

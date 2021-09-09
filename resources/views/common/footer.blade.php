@@ -125,6 +125,7 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 //$this->_mysqli->close();
 ?>
 
+ 
 
 </body>
 

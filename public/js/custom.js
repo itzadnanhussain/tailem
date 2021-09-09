@@ -3362,7 +3362,7 @@
 
 
 
-    var servername = "http://tailem.com.au/",
+    var servername = "http://127.0.0.1:8000/",
         JS_SERVER_PATHROOT = servername,
         JS_PATH = servername + "js/",
         CSS_PATH = servername + "css/",

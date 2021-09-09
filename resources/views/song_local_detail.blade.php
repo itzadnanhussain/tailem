@@ -1,52 +1,37 @@
 @include('common.header')
 <!-- ./Header end -->
 <?php
-// include("common/topfile.php");
-// include("common/function.php");
-// include_once("common/header.php"); 
+  
 //include_once("common/signin_modal_header.php");
-error_reporting(0);
-// echo $song_seo;
-// die;
+error_reporting(0); 
+$song_list_arr = (array)$song_list_arr[0];
+$id      = $song_list_arr['id'];
+$song_id      = $song_list_arr['id'];
 
+$album_title = stripslashes(html_entity_decode($song_list_arr['album_title']));
+$album_id = stripslashes(html_entity_decode($song_list_arr['album_id']));
+$artist_name = stripslashes(html_entity_decode($song_list_arr['artist_name']));
+$album_picture   = stripslashes(html_entity_decode($song_list_arr['album_picture']));
+$song_title = stripslashes(html_entity_decode($song_list_arr['song_title']));
 
-$_SESSION['store']['rating'] = 5;
-$_SESSION['store']['review_title'] = 'test';
-$_SESSION['store']['review_detail'] = 'test detail';
+$itunes_url = stripslashes(html_entity_decode($song_list_arr['itunes_url']));
+$amazon_url = stripslashes(html_entity_decode($song_list_arr['amazon_url']));
 
+$google_url = stripslashes(html_entity_decode($song_list_arr['google_url']));
 
+$lastfm_url = stripslashes(html_entity_decode($song_list_arr['lastfm_url']));
+$artist_seo = stripslashes(html_entity_decode($song_list_arr['artist_seo']));
+$song_seo   = stripslashes(html_entity_decode($song_list_arr['song_seo']));
+$picture   = stripslashes(html_entity_decode($song_list_arr['picture']));
 
+$description   = stripslashes(html_entity_decode($song_list_arr['description']));
+$album_seo  = stripslashes(html_entity_decode($song_list_arr['album_seo']));
 
-$song_list = "select a.id as artist_id,b.album_seo,b.album_artist_id, s.itunes_url, s.amazon_url, s.google_url, s.lastfm_url, s.song_title, s.picture, s.song_seo, a.artist_seo, a.artist_name,b.album_title, b.album_picture, s.id,s.description, b.id as album_id from tbl_artist_album b, tbl_artists a, tbl_songs_artist_album saa, tbl_songs s where 1=1 AND s.id = saa.song_id AND a.id = saa.artist_id AND b.id = saa.album_id AND s.song_seo = '$song_seo' AND s.song_status = 1  AND saa.display_status = 1 AND a.artist_seo = '$artist_seo'";
-$song_list_arr = \App\Models\Songs::GetRawData($song_list);
-
-
-
-
-if ($song_list_arr) {
-    $song_list_arr = (array)$song_list_arr[0];
-    $id      = $song_list_arr['id'];
-    $song_id      = $song_list_arr['id'];
-
-    $album_title = stripslashes(html_entity_decode($song_list_arr['album_title']));
-    $album_id = stripslashes(html_entity_decode($song_list_arr['album_id']));
-    $artist_name = stripslashes(html_entity_decode($song_list_arr['artist_name']));
-    $album_picture   = stripslashes(html_entity_decode($song_list_arr['album_picture']));
-    $song_title = stripslashes(html_entity_decode($song_list_arr['song_title']));
-
-    $itunes_url = stripslashes(html_entity_decode($song_list_arr['itunes_url']));
-    $amazon_url = stripslashes(html_entity_decode($song_list_arr['amazon_url']));
-
-    $google_url = stripslashes(html_entity_decode($song_list_arr['google_url']));
-
-    $lastfm_url = stripslashes(html_entity_decode($song_list_arr['lastfm_url']));
-    $artist_seo = stripslashes(html_entity_decode($song_list_arr['artist_seo']));
-    $song_seo   = stripslashes(html_entity_decode($song_list_arr['song_seo']));
-    $picture   = stripslashes(html_entity_decode($song_list_arr['picture']));
-
-    $description   = stripslashes(html_entity_decode($song_list_arr['description']));
-    $album_seo  = stripslashes(html_entity_decode($song_list_arr['album_seo']));
-    /****************** LASTFM CALL********/
+$song_url_fm = $lastfm_url;
+$song_summary_fm = $description;
+$song_image_fm = $picture;
+/****************** LASTFM CALL********/
+if ($lastfm_url = "") {
     ini_set('allow_url_fopen ', 'ON');
 
     $artistname = urlencode($artist_name);
@@ -57,103 +42,105 @@ if ($song_list_arr) {
 
     $XmlObj = simplexml_load_string($temp);
 
-    $song_url_fm = $XmlObj->track->url;
-
-    $song_summary_fm = $XmlObj->track->wiki->summary;
-
-    $song_image_fm = $XmlObj->track->album->image[2];
-    /****************** LASTFM CALL********/
-    $artist_id    =    stripslashes(html_entity_decode($song_list_arr['artist_id']));
-
-    $album_title = wordwrap($album_title, 100, " ", true);
-    $artist_name = wordwrap($artist_name, 100, " ", true);
-
-    $album_artist_id = stripslashes(html_entity_decode($song_list_arr['album_artist_id']));
-
-
-
-    // $counter_main = mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_type = 'artist' AND like_id = '$artist_id'"));
-    $counter_main = array();
-    $counter_main = \App\Models\Songs::GetRawData("select id from tbl_likes where like_type = 'artist' AND like_id = '$artist_id'");
-    if ($counter_main) {
-        $counter_main = count($counter_main);
+    if ($XmlObj->attributes()->status == 'ok') {
+        $song_url_fm = $XmlObj->track->url;
+        $song_summary_fm = $XmlObj->track->wiki->summary;
+        $song_image_fm = $XmlObj->track->album->image[2];
     } else {
-        $counter_main = 0;
+        $song_url_fm = '';
+        $song_summary_fm = '';
+        $song_image_fm = '';
     }
+}
+/****************** LASTFM CALL********/
+$artist_id    =    stripslashes(html_entity_decode($song_list_arr['artist_id']));
+
+$album_title = wordwrap($album_title, 100, " ", true);
+$artist_name = wordwrap($artist_name, 100, " ", true);
+
+$album_artist_id = stripslashes(html_entity_decode($song_list_arr['album_artist_id']));
+
+
+
+// $counter_main = mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_type = 'artist' AND like_id = '$artist_id'"));
+$counter_main = array();
+$counter_main = \App\Models\Songs::GetRawData("select id from tbl_likes where like_type = 'artist' AND like_id = '$artist_id'");
+if ($counter_main) {
+    $counter_main = count($counter_main);
+} else {
+    $counter_main = 0;
+}
 
 
 
 
 
 
-    $discussion_list_qry = "select u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id order by comment_id desc";
+$discussion_list_qry = "select u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id order by comment_id desc";
 
-    // $discussion_list_arr    =    $db->get_results($discussion_list_qry, ARRAY_A);
-    // $discussion_list_arr = \App\Models\Songs::GetRawData($discussion_list_qry);
-    if (isset($discussion_list_arr)) {
-        $count_discussion  = count($discussion_list_arr);
+// $discussion_list_arr    =    $db->get_results($discussion_list_qry, ARRAY_A);
+$discussion_list_arr = \App\Models\Songs::GetRawData($discussion_list_qry);
+if (isset($discussion_list_arr)) {
+    $count_discussion  = count($discussion_list_arr);
+} else {
+
+    $count_discussion  = 0;
+}
+
+
+
+$sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter, sum(review_rating>=8) as excellent, sum(review_rating>=7 && review_rating<8) as verygood, sum(review_rating>=4 && review_rating<7) as good,sum(review_rating>=2 && review_rating<4) as poor,sum(review_rating>0 && review_rating<2) as terrible from tbl_reviews where song_id = $song_id AND status = 1";
+$rate_arr = array();
+$rate_arr    =    \App\Models\Songs::GetRawData($sum_rating);
+if ($rate_arr) {
+    $rate_arr = (array) $rate_arr[0];
+    $sum_rate = $rate_arr['sum_rate'];
+    $counter = $rate_arr['counter'];
+    $excellent = $rate_arr['excellent'];
+    $verygood = $rate_arr['verygood'];
+    $good = $rate_arr['good'];
+    $poor = $rate_arr['poor'];
+    $terrible = $rate_arr['terrible'];
+
+    if ($counter > 0 && $sum_rate > 0) {
+        $excellent_per = ($excellent / $counter) * 100;
+        $verygood_per  = ($verygood / $counter) * 100;
+        $good_per        = ($good / $counter) * 100;
+        $poor_per        = ($poor / $counter) * 100;
+        $terrible_per = ($terrible / $counter) * 100;
     } else {
-
-        $count_discussion  = 0;
-    }
-
-
-
-    $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter, sum(review_rating>=8) as excellent, sum(review_rating>=7 && review_rating<8) as verygood, sum(review_rating>=4 && review_rating<7) as good,sum(review_rating>=2 && review_rating<4) as poor,sum(review_rating>0 && review_rating<2) as terrible from tbl_reviews where song_id = $song_id AND status = 1";
-    $rate_arr = array();
-    $rate_arr    =    \App\Models\Songs::GetRawData($sum_rating);
-    if ($rate_arr) {
-        $rate_arr = (array) $rate_arr[0];
-        $sum_rate = $rate_arr['sum_rate'];
-        $counter = $rate_arr['counter'];
-
-
-        $excellent = $rate_arr['excellent'];
-        $verygood = $rate_arr['verygood'];
-        $good = $rate_arr['good'];
-        $poor = $rate_arr['poor'];
-        $terrible = $rate_arr['terrible'];
-
-        if ($counter > 0) {
-            $excellent_per = ($excellent / $counter) * 100;
-            $verygood_per  = ($verygood / $counter) * 100;
-            $good_per        = ($good / $counter) * 100;
-            $poor_per        = ($poor / $counter) * 100;
-            $terrible_per = ($terrible / $counter) * 100;
-        } else {
-            $excellent_per =  0;
-            $verygood_per  =  0;
-            $good_per        = 0;
-            $poor_per        = 0;
-            $terrible_per =  0;
-        }
-    } else {
-        $sum_rate = 0;
-        $counter = 0;
-        $all_avg = 0;
-
-        $excellent = 0;
-        $verygood = 0;
-        $good = 0;
-        $poor = 0;
-        $terrible = 0;
-        $excellent_per = 0;
-        $verygood_per  = 0;
+        $excellent_per =  0;
+        $verygood_per  =  0;
         $good_per        = 0;
         $poor_per        = 0;
         $terrible_per =  0;
     }
-
-
-    if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
-        $sum_rate = 0;
-        $counter = 0;
-        $all_avg = 0;
-    } else {
-
-        $all_avg  =  $sum_rate / $counter;
-    }
+} else {
+    $sum_rate = 0;
+    $counter = 0;
+    $all_avg = 0;
+    $excellent = 0;
+    $verygood = 0;
+    $good = 0;
+    $poor = 0;
+    $terrible = 0;
+    $excellent_per = 0;
+    $verygood_per  = 0;
+    $good_per        = 0;
+    $poor_per        = 0;
+    $terrible_per =  0;
 }
+
+
+if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
+    $sum_rate = 0;
+    $counter = 0;
+    $all_avg = 0;
+} else {
+
+    $all_avg  =  $sum_rate / $counter;
+}
+
 
 
 
@@ -797,14 +784,14 @@ $img_arr3 = (array)$img_arr3[0];
                     </div>
                     <div class="write-rew-pan" style="width:96%; margin-left:10px;">
                         <!-- <form name="api-readonly" id="api-readonly"  action="" class="form-horizontal"> -->
-                        <form action="{{url('process/write_a_review')}}" class="submit-form form-horizontal">
+                        <form action="{{url('process/write_a_review')}}" id="api-readonly" class="form-horizontal">
                             <div>
                                 <p class="starLabel">How would you rate?</p>
 
 
                                 <div class="star-panel">
 
-                                    <input id="input-21b" name="api-readonly-test" value="<?php echo $_SESSION['store']['rating']; ?>" type="number" class="rating" min=0 max=10 step=0.5 data-size="xs" data-stars="10">
+                                    <input id="input-21b" name="api-readonly-test" value="" type="number" class="rating" min=0 max=10 step=0.5 data-size="xs" data-stars="10">
                                     @csrf
                                     <input type="hidden" name="song_seo_name" value="<?php echo $song_seo; ?>">
                                     <input type="hidden" name="artist_seo_name" value="<?php echo $artist_seo; ?>">
@@ -815,11 +802,11 @@ $img_arr3 = (array)$img_arr3[0];
                                 <div class="form-group">
 
                                     <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Review Title">-->
-                                    <input type="text" name="review_title" id="review_title" class="form-control" placeholder="Review Title" value="<?php echo $_SESSION['store']['review_title']; ?>" autofocus>
+                                    <input type="text" name="review_title" id="review_title" class="form-control" placeholder="Review Title" value="" autofocus>
                                 </div>
                                 <div class="form-group">
 
-                                    <textarea class="form-control" rows="4" placeholder="Your Review" id="review_detail" name="review_detail"><?php echo $_SESSION['store']['review_detail']; ?></textarea>
+                                    <textarea class="form-control" rows="4" placeholder="Your Review" id="review_detail" name="review_detail"></textarea>
                                     <input type="hidden" name="song_id" value="<?php echo $song_id; ?>">
                                     <input type="hidden" name="artist_id" value="<?php echo $artist_id; ?>">
                                     <input type="hidden" name="album_id" value="<?php echo $album_id; ?>">
@@ -980,6 +967,7 @@ for ($g = 1; $g <= 20; $g++) {
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
+ 
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript">
     var jq = jQuery.noConflict();
@@ -1061,26 +1049,89 @@ for ($g = 1; $g <= 20; $g++) {
 
     song_id = <?php echo $song_id; ?>;
 </script>
-<script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>script.js"></script>
+<!-- <script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>script.js"></script> -->
 <div class="modal fade" id="show_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="create_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 
+
 <?php
-// include_once("common/footer.php"); 
-// include("include/thankyou_messages.php");
-// include("common/signin_modal.php"); 
-?>
+ // include("include/thankyou_messages.php");
+ ?>
 
 @include('common.footer')
 
+
+<!-----------Clean Code------------------>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/bootstrap.js"></script>
+
+<!-- Alread review added message-->
+<div class="modal fade" id="already_review" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for posting a review <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    It seems you have already posted a review on this song. <br />
+                    Please use the edit function to revise your review.<br /><br /><br />
+
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="error_popup" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> <span id="modal_title_error"></span> <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    <span id="modal_body_error"></span> <br /><br /><br />
+
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="show_success_message_song" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for your review <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    Your review has been posted and will appear shortly. Thank you for sharing your thoughts and we value your contributions to our site. <br /><br /><br />
+
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 <script>
-    $('.submit-form').submit(function(e) {
+    $('#api-readonly').submit(function(e) {
         e.preventDefault();
         e.stopPropagation();
         let form = $(this).serialize();
-
         let url = $(this).attr('action');
-        $('.error').html('');
 
         $.ajax({
             type: 'POST',
@@ -1091,14 +1142,25 @@ for ($g = 1; $g <= 20; $g++) {
                 let res = JSON.parse(data);
                 switch (res.code) {
                     case 'success':
-                        ///redirect to dashboard
-                        setTimeout(function() { 
-                            // window.location.replace(res.url);
-                            location.reload();
-                        }, 500) 
+                        $("#show_success_message_song").modal("show");
+                        $("#api-readonly").each(function() {
+                            this.reset();
+                        });
                         break;
                     case 'warning':
-                        $('.error').append(res.message);
+                        if (res.message == "Please sign in first.") {
+                            $("#signin_form").modal("show");
+                        } else if (
+                            res.message ==
+                            "You have already posted a review on this song. Please use the EDIT function to revise your review."
+                        ) {
+                            $("#already_review").modal("show");
+                        } else {
+                            $("#error_popup").modal("show");
+                            $("#modal_title_error").html("Thank you");
+                            responseText = res.message.replace(/\n/g, "<br />");
+                            $("#modal_body_error").html(responseText);
+                        }
 
                 }
             }

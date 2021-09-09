@@ -668,9 +668,9 @@ if (!function_exists('artist_album_func')) {
 if (!function_exists('calculate_rating_main')) {
 
     function calculate_rating_main($album_id, $artist_id, $albseo)
-    { 
+    {
 
-        $listof_ids  =    get_listof_songs_ids_main($album_id, $artist_id);  
+        $listof_ids  =    get_listof_songs_ids_main($album_id, $artist_id);
         $sum_rating_query    = "select avg(rev.review_rating) as total_sum, Count(*) as number_count
 							from tbl_artist_album b, tbl_artists a, tbl_songs s, tbl_reviews rev, tbl_users u 
 							where 1=1 
@@ -680,10 +680,10 @@ if (!function_exists('calculate_rating_main')) {
 							AND u.user_id = rev.review_user_id 
                             AND (rev.album_id = '$album_id' OR (rev.song_id IN ('$listof_ids'))) 
  							group by song_id
-							  LIMIT 50"; 
- 
-        $rate_list_arr = \App\Models\Songs::GetRawData($sum_rating_query); 
-        $sum = 0; 
+							  LIMIT 50";
+
+        $rate_list_arr = \App\Models\Songs::GetRawData($sum_rating_query);
+        $sum = 0;
         if ($rate_list_arr) {
             $total_count    =    count($rate_list_arr);
             foreach ($rate_list_arr as $get_avg) {
@@ -695,7 +695,7 @@ if (!function_exists('calculate_rating_main')) {
         } else {
             $total_count = 0;
             $total_Rating    =   0;
-        } 
+        }
 
         return $total_Rating;
     }
@@ -807,31 +807,29 @@ if (!function_exists('SEO')) {
         return $input;
     }
 }
+
+
 ///song_adds 
 if (!function_exists('song_adds')) {
     function song_adds($id, $type)
     {
-        if ($id != "") { 
-            $ads_list_arr = array(); 
+        if ($id != "") {
+            $ads_list_arr = array();
             if (!empty($ads_list_arr)) {
                 return $ads_list_arr;
             } else {
                 $ads_list = "SELECT ad_code, video_code FROM tbl_songs where id = $id AND song_status = 1";
                 $ads_list_arr = \App\Models\Songs::GetRawData($ads_list);
-                if($ads_list_arr)
-                {
+                if ($ads_list_arr) {
                     $ads_list_arr = (array)$ads_list_arr[0];
-                    $ad_code   =   stripslashes($ads_list_arr['ad_code']); 
+                    $ad_code   =   stripslashes($ads_list_arr['ad_code']);
                     $video_code   =   stripslashes($ads_list_arr['video_code']);
-        
-
-                }else
-                {
-                    $ad_code   =   ''; 
-                    $video_code   = ''; 
+                } else {
+                    $ad_code   =   '';
+                    $video_code   = '';
                 }
             }
-           
+
             if ($type == 'video') {
                 return  $video_code;
             }
@@ -840,5 +838,51 @@ if (!function_exists('song_adds')) {
                 return  $ad_code;
             }
         }
+    }
+}
+
+
+///mainartist_detail 
+if (!function_exists('mainartist_detail')) {
+    // Main Artist Information
+    function mainartist_detail($artistid)
+    {
+
+        $main_artist_list = "select id, artist_seo, artist_name from tbl_artists where id = '$artistid'";
+        // $mainartist_arr	=	$db->get_row($main_artist_list,ARRAY_A);
+        $mainartist_arr = \App\Models\Songs::GetRawData($main_artist_list);
+        if ($mainartist_arr) {
+            $mainartist_arr = (array)$mainartist_arr[0];
+        } else {
+            $mainartist_arr = array();
+        }
+        return $mainartist_arr;
+    }
+}
+
+
+///check_report_review 
+if (!function_exists('check_report_review')) {
+    function check_report_review($review_id)
+    {
+
+        $report_query = "select r_report_id  from tbl_review_report where r_report_user_id = '" . session()->get('user_id') . "' AND r_report_review_id = '$review_id'";
+        // $chk_report_arr = $db->get_row($report_query, ARRAY_A);
+        $chk_report_arr = \App\Models\Songs::GetRawData($report_query);
+        return $chk_report_arr;
+    }
+}
+///get_playlist_like_counter 
+if (!function_exists('get_playlist_like_counter')) {
+    function get_playlist_like_counter($id)
+    {
+
+        $counter_main_playlist_like = \App\Models\Songs::GetRawData("select id from tbl_likes where like_type = 'playlist' AND like_receive_user = '$id'");
+        if ($counter_main_playlist_like) {
+            $counter_main_playlist_like = count($counter_main_playlist_like);
+        } else {
+            $counter_main_playlist_like = 0;
+        }
+        return $counter_main_playlist_like;
     }
 }

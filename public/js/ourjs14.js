@@ -781,34 +781,7 @@ function replaceStr(str, find, replace) {
     return str;
 }
 
-function add_playlist_validations_new() {
-    $("#add_playlist").unbind("submit");
-    var options = {
-        target: "",
-        beforeSubmit: validate_playlist_new_Request,
-        success: validate_playlist_new_Response,
-        url: JS_SERVER_PATHROOT + "process/add_playlist_process",
-    };
-    $("#add_playlist").submit(function () {
-        $(this).ajaxSubmit(options);
-        return false;
-    });
-}
-function validate_playlist_new_Request(formData, jqForm, options) {
-    var queryString = $.param(formData);
-    return true;
-}
 
-function validate_playlist_new_Response(responseText, statusText) {
-    if (responseText.search("done") != -1) {
-        $("#create_playlist").modal("hide");
-        $("#autoclick").trigger("click");
-    } else {
-        $("#error_list").html(responseText);
-        $("#error_list").show();
-        $("#error_list").fadeOut(10000);
-    }
-}
 
 var myVar;
 

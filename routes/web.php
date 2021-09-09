@@ -31,8 +31,13 @@ Route::get('/insert-playlist',[SongsController::class, 'InsertPlayList'])
 ->name('insert-playlist.InsertPlayList');
 
 ///songs write-a-review
-Route::get('/songs/{slug}',[SongsController::class , 'SongWriteReview']);
-// Route::get('/songs/{song_seo}-write-a-review-{artist_seo}',[SongsController::class , 'SongWriteReview']);
+Route::get('/write-a-review/{slug}',[SongsController::class , 'SongWriteReview']);
+
+///songs detail
+Route::get('/song-detail/{slug}',[SongsController::class , 'GetSongDetail']);
+
+
+
 
 
 ///top-albums

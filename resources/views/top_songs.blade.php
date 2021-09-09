@@ -243,7 +243,7 @@ $mobile_view = 0;
                                             </div>
                                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
                                                                                                                                                         if ($picture != "") {
                                                                                                                                                             $img_api_linka = album_img_api($picture);
 
@@ -293,7 +293,7 @@ $mobile_view = 0;
                                                 </div>
                                                 <div class="album_details">
 
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>">
                                                             <?php echo substr($song_title, 0, 45);
                                                             if (strlen($song_title) > 45) {
                                                                 echo "...";
@@ -391,7 +391,7 @@ $mobile_view = 0;
 
 
 
-                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH .'songs/'. $song_seo . '-write-a-review-' . $artist_seo; ?>'">Write a review</button>
+                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH .'write-a-review/'. $song_seo . '-write-a-review-' . $artist_seo; ?>'">Write a review</button>
                                             </div>
                                         </div>
                                     <?php } elseif ($mobile_view == 1) { ?>
@@ -406,7 +406,7 @@ $mobile_view = 0;
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:2px !important;">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 album-outer-coontainer" style="padding:0px !important;">
                                                     <div class="album_cover">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
+                                                        <a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
                                                                                                                                                             if ($picture != "") {
                                                                                                                                                                 $img_api_linka = album_img_api($picture);
                                                                                                                                                                 if ($img_api_linka != '') {
@@ -439,7 +439,7 @@ $mobile_view = 0;
                                                 </div>
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 album-detail-container" style="padding:0px !important;">
                                                     <div class="album_details">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 50);
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 50);
                                                                                                                                                                 if (strlen($song_title) > 50) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
@@ -537,7 +537,7 @@ $mobile_view = 0;
                                                     </div>
 
                                                     <div class="col-sm-7 col-xs-7" style="padding-right:20px; float:right;">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>"><button>Write a review</button></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH .'write-a-review'. $song_seo . "-write-a-review-" . $artist_seo; ?>"><button>Write a review</button></a>
                                                     </div>
                                                 </div>
                                             </div>

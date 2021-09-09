@@ -22,7 +22,7 @@ $song_title      = $review_like_info['song_title'];
 
 <head>
     <!--<link rel="stylesheet" type="text/css" href="css/form.css">-->
-    <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css"/>
+    <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css" />
     <style>
         .desktop_width {
             width: 50%;
@@ -80,7 +80,7 @@ $song_title      = $review_like_info['song_title'];
                     <img onClick="close_review_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
 
                     <div style="margin-top:0;">
-                        <form name="add_to_playlist" id="add_to_playlist" method="post" style="padding:10px; padding-top:20px;">
+                        <form name="add_to_playlist" id="add_to_playlist" method="post" action="{{url('process/add_songto_playlist_process')}}" style="padding:10px; padding-top:20px;">
                             <input type="hidden" name="song_id" value="<?php echo $song_id; ?>">
                             <input type="hidden" name="art_id" value="<?php echo $art_id; ?>">
                             @csrf
@@ -96,8 +96,8 @@ $song_title      = $review_like_info['song_title'];
                             <a data-title="" data-target="#create_playlist" data-dismiss="modal" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>insert-playlist?song_id=<?php echo $song_id; ?>&art_id=<?php echo $art_id; ?>" class="btn btn-md  btn-block create_playlist">Create new playlist</a>
                             <div class="clear"></div>
                             <div class="row error">
-                                <div class="col-lg-12" id="error_list" style="display:none;">&nbsp;</div>
-                                <div class="col-lg-12" id="success_list" style="display:none; color:Green;">&nbsp;</div>
+                                <div class="col-lg-12 error_list"  style="display:none;">&nbsp;</div>
+                                <div class="col-lg-12 success_list" id="" style="display:none; color:Green;">&nbsp;</div>
                             </div>
                             <?php
                             $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
@@ -136,7 +136,7 @@ $song_title      = $review_like_info['song_title'];
                                             <div class="col-md-12" style="margin:5px 0 5px 0">
                                                 <input type="checkbox" name="playlist_arr[]" value="<?php echo $arr_playlist['id']; ?>" style="margin-top:-1px;" <?php if (in_array($arr_playlist['id'], $my_playlist, true)) {
                                                                                                                                                                     ?> checked<?php }
-                                                                                                                                                                                                                            ?>>
+                                                                                                                                                                                ?>>
                                                 <?php echo stripslashes($arr_playlist['title_playlist']); ?>
                                                 <!-- <input type="hidden" name="playlist_title" value="<?php echo stripslashes($arr_playlist['title_playlist']); ?>"> -->
                                             </div>
@@ -156,7 +156,8 @@ $song_title      = $review_like_info['song_title'];
                                 <?php
                                 }
                                 ?>
-                                <button id="submit_btn" name="submit" style="margin-top:15px; display:inline; width:40%;" class="btn btn-md btn-primary btn-block" type="submit" onClick="return add_songto_playlist_validations_new();">Add to Playlist</button>
+                                <!-- <button id="submit_btn" name="submit" style="margin-top:15px; display:inline; width:40%;" class="btn btn-md btn-primary btn-block" type="submit" onClick="return add_songto_playlist_validations_new();">Add to Playlist</button> -->
+                                <button style="margin-top:15px; display:inline; width:40%;" class="btn btn-md btn-primary btn-block" type="submit">Add to Playlist</button>
 
 
 
@@ -175,8 +176,8 @@ $song_title      = $review_like_info['song_title'];
                 </div>
             </div>
             </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            <script src="js/star-rating.js" type="text/javascript"></script>
+            <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+            <!-- <script src="js/star-rating.js" type="text/javascript"></script> -->
             <script type="text/javascript">
                 function close_review_popup() {
                     $(document).on('hidden.bs.modal', function(e) {
@@ -184,6 +185,40 @@ $song_title      = $review_like_info['song_title'];
 
                     });
                 }
+            </script>
+            <script>
+                $("#add_to_playlist").submit(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let form = $(this).serialize();
+                    let url = $(this).attr("action");
+                    $.ajax({
+                        type: "POST",
+                        url: url,
+                        data: form,
+                        dataType: "html",
+                        success: function(data) {
+                            let res = JSON.parse(data);
+                            switch (res.code) {
+                                case "success":
+                                    $(".error_list").hide();
+                                    $(".success_list").html(res.message);
+                                    $(".success_list").show();
+                                    myVar = setTimeout(function() {
+                                        $(".success_list").fadeOut();
+                                    }, 5000);
+                                    break;
+                                case "warning":
+                                    $(".success_list").hide();
+                                    $(".error_list").html(res.message);
+                                    $(".error_list").show(); 
+                                    myVar = setTimeout(function() {
+                                        $(".error_list").fadeOut();
+                                    }, 5000);
+                            }
+                        },
+                    });
+                });
             </script>
 </body>
 
