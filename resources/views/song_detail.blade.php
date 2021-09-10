@@ -1,17 +1,7 @@
 @include('common.header')
 <!-- ./Header end -->
-<?php
-// include("common/topfile.php");
-// include("common/function.php");
-// include_once("common/header.php");
-
-$_SESSION['store']['rating'] = 5;
-$_SESSION['store']['review_title'] = 'test';
-$_SESSION['store']['review_detail'] = 'test detail';
-error_reporting(0);
-
-
-
+<?php  
+error_reporting(0); 
 
 
 
@@ -289,9 +279,9 @@ $img_arr3 = (array)$img_arr3[0];
                 foreach ($qry_feature_arr as $val_feature) {
                     $val_feature = (array) $val_feature;
                     if ($num == $count) {
-                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' >" . $val_feature['feature_artist'] . "</a>";
+                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs' >" . $val_feature['feature_artist'] . "</a>";
                     } else {
-                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
+                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
                     }
                     $num++;
                 }
@@ -307,7 +297,7 @@ $img_arr3 = (array)$img_arr3[0];
                             <div class="latestsongssec">
                                 <div class="list_item">
                                     <div class="album_cover" style="border-radius:0px;">
-                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                        <a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
 
                                                                                                                             if ($picture != "") {
                                                                                                                                 $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
@@ -350,8 +340,8 @@ $img_arr3 = (array)$img_arr3[0];
                             </div>
                         </div>
                         <div class="col-sm-7 desc-panel">
-                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
-                            <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
+                            <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .'artist/'. $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                 <?php
                                 if ($feature_artists != "") {
                                 ?>
@@ -423,7 +413,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 <?php
                                 } else {
                                 ?>
-                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $song_id; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:right; margin-right:6px; margin-top:-10px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $song_id; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:right; margin-right:6px; margin-top:-10px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                 <?php
                                 }
                                 ?>
@@ -473,7 +463,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 echo $data;
                             } ?>
 
-                            <a style="margin-bottom:5px; margin-top:0;" href="<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png">Write a Review</a>
+                            <a style="margin-bottom:5px; margin-top:0;" href="<?php echo SERVER_ROOTPATH .'write-a-review/'. $song_seo . "-write-a-review-" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png">Write a Review</a>
                             <div class="clearfix"></div>
                             <p class="buyFromPan" style="margin-bottom: 15px; font-size:13px;">Buy from:
                                 <a target="_blank" href="<?php echo $itunes_url; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $img_arr1['store_img'] ?>"></a> |
@@ -517,7 +507,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 <div class="latestsongssec artist-img-panel">
                                     <div class="list_item">
                                         <div class="album_cover" style="border-radius:0;">
-                                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                            <a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
                                                                                                                                 if ($picture != "") {
                                                                                                                                     $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
                                                                                                                                     $img_api_link = album_img_api($picture);
@@ -556,8 +546,8 @@ $img_arr3 = (array)$img_arr3[0];
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:5px;">
-                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
-                                <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
+                                <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .'artist/'. $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                     <?php
                                     if ($feature_artists != "") {
                                     ?>
@@ -626,7 +616,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 <?php
                                 } else {
                                 ?>
-                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $song_id; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:right; margin-right:6px; margin-top:-10px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $song_id; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:right; margin-right:6px; margin-top:-10px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                 <?php
                                 }
                                 ?>
@@ -683,7 +673,7 @@ $img_arr3 = (array)$img_arr3[0];
 
                             ?>
 
-                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png" style="float:left;">Write a Review</a>
+                            <a href="<?php echo SERVER_ROOTPATH .'write-a-review/'. $song_seo . "-write-a-review-" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png" style="float:left;">Write a Review</a>
                             <div class="clearfix"></div>
                             <p class="buyFromPan" style="font-size:12px;">Buy from:
                                 <a target="_blank" href="<?php echo $itunes_url; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $img_arr1['store_img'] ?>"></a> |
@@ -1640,29 +1630,28 @@ $img_arr3 = (array)$img_arr3[0];
                         Write a Review
                     </div>
                     <div class="write-rew-pan" style="width:96%; margin-left:10px;">
-                        <form name="api-readonly" id="api-readonly" method="post" action="" class="form-horizontal">
+                    <form action="{{url('process/write_a_review')}}" id="api-readonly" class="form-horizontal">
                             <div>
                                 <p class="starLabel">How would you rate?</p>
 
-                                <div class="star-panel">
-                                    <input id="input-21b" name="api-readonly-test" value="<?php echo $_SESSION['store']['rating']; ?>" type="number" class="rating" min=0 max=10 step=0.5 data-size="xs" data-stars="10">
 
+                                <div class="star-panel"> 
+                                    <input id="input-21b" name="api-readonly-test" value="" type="number" class="rating" min=0 max=10 step=0.5 data-size="xs" data-stars="10">
+                                    @csrf
                                     <input type="hidden" name="song_seo_name" value="<?php echo $song_seo; ?>">
                                     <input type="hidden" name="artist_seo_name" value="<?php echo $artist_seo; ?>">
 
                                 </div>
-                                <!--<form>-->
+
 
                                 <div class="form-group">
 
                                     <!--<input type="text" class="form-control" id="exampleInputEmail1" placeholder="Review Title">-->
-                                    <input type="text" name="review_title" id="review_title" class="form-control" placeholder="Review Title" value="<?php echo $_SESSION['store']['review_title']; ?>">
+                                    <input type="text" name="review_title" id="review_title" class="form-control" placeholder="Review Title" value="" autofocus>
                                 </div>
                                 <div class="form-group">
 
-                                    <textarea class="form-control" rows="4" placeholder="Your Review" id="review_detail" name="review_detail"><?php echo $_SESSION['store']['review_detail']; ?></textarea>
-
-
+                                    <textarea class="form-control" rows="4" placeholder="Your Review" id="review_detail" name="review_detail"></textarea>
                                     <input type="hidden" name="song_id" value="<?php echo $song_id; ?>">
                                     <input type="hidden" name="artist_id" value="<?php echo $artist_id; ?>">
                                     <input type="hidden" name="album_id" value="<?php echo $album_id; ?>">
@@ -1670,21 +1659,15 @@ $img_arr3 = (array)$img_arr3[0];
                                 <p class="form-control-static">By posting a review, I accept Tailem.com's
                                     <!--<a href="#"> Posting Guidelines</a> and <a href="#"> Privacy Policy</a>-->
                                     <?php
-                                    $get_all_pages  = array(); 
-                                    
-                                        $get_all_pages_qry = "SELECT page_seo_name,page_name  FROM tbl_pages where page_id = 8 OR page_id = 2 ORDER BY page_id desc";
-                                         $get_all_pages = \App\Models\Songs::GetRawData($get_all_pages_qry);
-                                         if($get_all_pages)
-                                         {
-                                             $count_pages = count($get_all_pages);
+                                    $get_all_pages_qry = "SELECT page_seo_name,page_name  FROM tbl_pages where page_id = 8 OR page_id = 2 ORDER BY page_id desc";
+                                    // $get_all_pages     = $db->get_results($get_all_pages_qry, ARRAY_A);
+                                    $get_all_pages = \App\Models\Songs::GetRawData($get_all_pages_qry);
+                                    if ($get_all_pages) {
 
-                                         }
-                                         else 
-                                         {
-                                            $count_pages = 0;
-                                         }
-                                        
-                                    
+                                        $count_pages = count($get_all_pages);
+                                    } else {
+                                        $count_pages = 0;
+                                    }
 
                                     if ($get_all_pages) {
                                         $kk = 1;
@@ -1706,11 +1689,13 @@ $img_arr3 = (array)$img_arr3[0];
                                     }
                                     ?>
                                 </p>
-                                <!--<button type="submit" class="btn btn-default btn-red">Post Review</button>
-                                --><input type="submit" name="submit_btn" id="submit_btn" value="Post Review" onClick="return write_a_review_validation_new();" class="btn btn-default btn-red" />
+                               
+                                <button type="submit" class="btn btn-default btn-red">Post Review</button>
+                                <!-- <input type="submit" value="Post Review" onClick="return write_a_review_validation_new();" class="btn btn-default btn-red" /> -->
+
 
                         </form>
-                        </form>
+                         
                     </div>
                 </div>
                 <div style="clear: both"></div>
@@ -1833,8 +1818,8 @@ for ($u = 1; $u <= 20; $u++) {
 
 <?php
 //include("include/thankyou_messages.php");
-//include("common/signin_modal.php"); 
 ?>
+@include("common.signin_modal") 
 
 <div class="modal fade" id="profile_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
@@ -1937,7 +1922,117 @@ for ($u = 1; $u <= 20; $u++) {
 //include_once("common/popular_review.php");
 
 ?>
-<script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>script.js"></script>
+<!-- <script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>script.js"></script> -->
 <div class="modal fade" id="show_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="create_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 @include("common.footer")
+
+
+<!-----------My Code------------------>
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/bootstrap.js"></script>
+<script src="<?php echo SERVER_ROOTPATH; ?>js/star-rating.js" type="text/javascript"></script>
+
+ 
+<div class="modal fade" id="already_review" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for posting a review <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    It seems you have already posted a review on this song. <br />
+                    Please use the edit function to revise your review.<br /><br /><br />
+
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="error_popup" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> <span id="modal_title_error"></span> <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    <span id="modal_body_error"></span> <br /><br /><br />
+
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="show_success_message_song" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for your review <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    Your review has been posted and will appear shortly. Thank you for sharing your thoughts and we value your contributions to our site. <br /><br /><br />
+
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $('#api-readonly').submit(function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        let form = $(this).serialize();
+        let url = $(this).attr('action');
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: form,
+            dataType: 'html',
+            success: function(data) {
+                let res = JSON.parse(data);
+                switch (res.code) {
+                    case 'success':
+                        $("#show_success_message_song").modal("show");
+                        $("#api-readonly").each(function() {
+                            this.reset();
+                        });
+                        break;
+                    case 'warning':
+                        if (res.message == "Please sign in first.") {
+                            $("#signin_form").modal("show");
+                        } else if (
+                            res.message ==
+                            "You have already posted a review on this song. Please use the EDIT function to revise your review."
+                        ) {
+                            $("#already_review").modal("show");
+                        } else {
+                            $("#error_popup").modal("show");
+                            $("#modal_title_error").html("Thank you");
+                            responseText = res.message.replace(/\n/g, "<br />");
+                            $("#modal_body_error").html(responseText);
+                        }
+
+                }
+            }
+        });
+
+    })
+</script>

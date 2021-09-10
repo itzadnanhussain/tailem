@@ -17,6 +17,11 @@ Route::post('process/add_songto_playlist_process',[ProcessController::class, 'Ad
 ///write a review process
 Route::post('process/write_a_review',[ProcessController::class, 'WriteReview']) 
 ->name('process/write_a_review.WriteReview');
+
+
+///like detail
+Route::get('like/detail',[ProcessController::class, 'GetLikeDetail']) 
+->name('like/detail.GetLikeDetail');
  
  
  

@@ -224,7 +224,7 @@
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
 						<div class="pop_sec">
 							<div class="sec_cover topsongssecs">
-								<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo $image_get; ?>"></a>
+								<a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo $image_get; ?>"></a>
 								<div class="bottom_sec" style="bottom:150px !important; background:none !important; padding:0 10px !important;">
 									<div class="row">
 										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
@@ -243,37 +243,37 @@
 									<div class="row">
 										<div class="col-lg-8 col-md-7 col-sm-7 col-xs-7 pad_right">
 											<!--Desktop-->
-											<label class="review_screen_txt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
+											<label class="review_screen_txt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
 																																						if (strlen($song_title) > 25) {
 																																							echo "..";
 																																						} ?></a></label>
 											<!--Tablet-->
-											<label class="review_tablet_txt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
+											<label class="review_tablet_txt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
 																																						if (strlen($song_title) > 25) {
 																																							echo "..";
 																																						} ?></a></label>
 											<!--Ipad-->
-											<label class="review_ipad_txt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 22);
+											<label class="review_ipad_txt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 22);
 																																						if (strlen($song_title) > 22) {
 																																							echo "..";
 																																						} ?></a></label>
 											<!--Mobile-->
-											<label class="review_mobile_txt" style="white-space:nowrap;"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 18);
+											<label class="review_mobile_txt" style="white-space:nowrap;"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 18);
 																																													if (strlen($song_title) > 18) {
 																																														echo "..";
 																																													} ?></a></label>
 
 
-											<cite style="white-space:nowrap"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 16);
+											<cite style="white-space:nowrap"><a href="<?php echo SERVER_ROOTPATH . "artist/" . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 16);
 																																					if (strlen($artist_name) > 16) {
 																																						echo "..";
 																																					} ?></a><?php echo $feature_artists;
 											$sum_len = 0; ?></cite>
 										</div>
 										<div class="col-lg-4 col-md-5 col-sm-5 col-xs-5 pad_left">
-											<?php if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-												// $like_counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  like_type = 'artist' AND like_id = '$artist_id'"));
-												$like_counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  like_type = 'artist' AND like_id = '$artist_id'");
+											<?php if ($user_id != "") {
+												// $like_counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  like_type = 'artist' AND like_id = '$artist_id'"));
+												$like_counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  like_type = 'artist' AND like_id = '$artist_id'");
 												if ($like_counter > 0) {
 													$class = "like-group liked";
 												} else {
@@ -282,7 +282,7 @@
 												if ($like_counter == 0) {
 											?>
 													<span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="reviews_artist_popular_likes('<?php echo $artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
-														<a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+														<a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
 																																																																								echo " Like";
 																																																																							} else {
 																																																																								echo " Likes";
@@ -293,7 +293,7 @@
 												?>
 													<span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>">
 														<a href="javascript:;" onClick="reviews_artist_popular_likes('<?php echo $artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a>
-														<a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+														<a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
 																																																																								echo " Like";
 																																																																							} else {
 																																																																								echo " Likes";
@@ -305,7 +305,7 @@
 												?>
 												<span style="float:right;" class="like-group">
 													<?php
-													if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+													if ($user_id == "") {
 													?>
 														<a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
 
@@ -317,7 +317,7 @@
 													}
 													?>
 
-													<a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+													<a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
 																																																																												echo " Like";
 																																																																											} else {
 																																																																												echo " Likes";
@@ -406,16 +406,16 @@
 											$counter_main = 0;
 										}
 										// $counter_main =  5;
-										if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-											// $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'"));
-											$counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'");
+										if ($user_id != "") {
+											// $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'"));
+											$counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'");
 											if ($counter > 0) {
 												$class = "like-group liked";
 											} else {
 												$class = "like-group";
 											}
 											if ($counter == 0) {
-												if ($review_user_id == $_SESSION[USER_SESSION_ARRAY]['USER_ID']) {
+												if ($review_user_id == $user_id) {
 										?>
 													<span class="<?php echo $class; ?>" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" title="your own review" onClick="alert('You cannot like your own review.')"><i class="fa fa-heart-o" style="font-size:24px;color:#c63937;"></i> </a>
 													<?php
@@ -447,7 +447,7 @@
 													?>
 													<span class="like-group" id="other_dis_sub_<?php echo $review_user_id; ?>">
 														<?php
-														if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+														if ($user_id == "") {
 														?>
 															<a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
 

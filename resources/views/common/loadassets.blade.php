@@ -25,7 +25,6 @@
 <script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/ourjs14.js?id=<?php echo rand(10000, 9999999); ?>"></script>
 
 <script src='<?php echo COOKIE_FREE_ROOTPATH; ?>js/jquery.MetaData.js' type="text/javascript" language="javascript"></script>
-<script src="<?php echo SERVER_ROOTPATH; ?>js/star-rating.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo COOKIE_FREE_ROOTPATH; ?>js/custom.js"></script>
 
 <!-- clear   -->

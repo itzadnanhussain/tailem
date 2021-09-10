@@ -9,23 +9,60 @@ use Illuminate\Support\Str;
 
 class SongsController extends Controller
 {
-    ///construct
-    // function __construct()
-    // {
-
-    // }
+     ///GetLoadHomePage
+     public function GetLoadHomePage()
+     {
+         if (isset($_GET['page'])) {
+             $page = $_GET['page'];
+         } else {
+             $page = 1;
+         }
+ 
+         $data['user_id'] = session()->get('user_id');
+         $data['user_name'] = session()->get('user_name');
+         $data['mobile_view'] = 0; 
+         $data['page'] = $page;
+ 
+         ///screen char
+         $data['screen_chr'] = 15;
+         $data['ipad_chr'] = 15;
+         $data['mobile_chr'] = 15;
+         $data['screen_rev'] = 15;
+         $data['ipad_rev'] = 15;
+         $data['mobile_rev'] = 15;
+ 
+ 
+         //page View
+         return view('index', $data);
+     }
+ 
 
     ///GetTopSongs
     public function GetTopSongs()
     {
+        $data = array();
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
         } else {
             $page = 1;
         }
 
+        $data['user_id'] = session()->get('user_id');
+        $data['user_name'] = session()->get('user_name');
+        $data['mobile_view'] = 0; 
+        $data['page'] = $page;
+
+        ///screen char
+        $data['screen_chr'] = 15;
+        $data['ipad_chr'] = 15;
+        $data['mobile_chr'] = 15;
+        $data['screen_rev'] = 15;
+        $data['ipad_rev'] = 15;
+        $data['mobile_rev'] = 15;
+
+
         //page View
-        return view('top_songs', compact('page'));
+        return view('top_songs', $data);
     }
 
 
@@ -52,8 +89,22 @@ class SongsController extends Controller
             $page = 1;
         }
 
+        $data['user_id'] = session()->get('user_id');
+        $data['user_name'] = session()->get('user_name');
+        $data['mobile_view'] = 0; 
+        $data['page'] = $page;
+
+        ///screen char
+        $data['screen_chr'] = 15;
+        $data['ipad_chr'] = 15;
+        $data['mobile_chr'] = 15;
+        $data['screen_rev'] = 15;
+        $data['ipad_rev'] = 15;
+        $data['mobile_rev'] = 15;
+
+
         //page View
-        return view('latest_songs', compact('page'));
+        return view('latest_songs', $data);
     }
 
 
@@ -141,5 +192,42 @@ class SongsController extends Controller
         }
 
         return view('song_detail', $data);
+    }
+
+
+    ///GetArtistSongs
+    public function GetArtistSongs($slug, $sort = null)
+    {
+
+        $data = array();
+        $slug = strtolower($slug);
+        $data['artist_seo'] = Str::of($slug)->before('-artist-songs');
+        $data['user_id'] = session()->get('user_id');
+        $data['user_name'] = session()->get('user_name');
+        $data['mobile_view'] = 0;
+        $data['sort'] = $sort;
+        $data['rate'] = '';
+        $data['page'] = 0;
+
+        ///screen char
+        $data['screen_chr'] = 15;
+        $data['ipad_chr'] = 15;
+        $data['mobile_chr'] = 15;
+        $data['screen_rev'] = 15;
+        $data['ipad_rev'] = 15;
+        $data['mobile_rev'] = 15;
+
+        ///row_artist
+        $row_artist = array();
+        $qry = "select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_seo='" . $data['artist_seo'] . "' and artist_description!=''";
+
+        $row_artist = \App\Models\Songs::GetRawData($qry);
+        if (isset($row_artist) && !empty($row_artist)) {
+            $data['row_artist'] = (array)$row_artist[0];
+        } else {
+            return redirect('/');
+        }
+
+        return view('artist_page', $data);
     }
 }

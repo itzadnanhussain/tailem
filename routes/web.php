@@ -9,9 +9,7 @@ use Illuminate\Support\Facades\Route;
  
 
 //index
-Route::get('/',function(){
-    return view('index');
-});
+Route::get('/', [SongsController::class , 'GetLoadHomePage']);
 
 //welcome
 Route::get('/welcome-{user_name}',[UserController::class, 'UserWelcome'])->middleware('guest');
@@ -35,6 +33,10 @@ Route::get('/write-a-review/{slug}',[SongsController::class , 'SongWriteReview']
 
 ///songs detail
 Route::get('/song-detail/{slug}',[SongsController::class , 'GetSongDetail']);
+
+///artist_page
+Route::get('/artist/{slug}/{sort?}',[SongsController::class , 'GetArtistSongs']);
+
 
 
 

@@ -73,22 +73,22 @@
                                 $sum_len = $sum_len + $str_length;
                                 if ($sum_len > 25) {
                                     $feature_art  = substr($val_feature['feature_artist'], 0, 1) . "...";
-                                    $feature_artists .= " <a style='display: inline;' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+                                    $feature_artists .= " <a style='display: inline;' href='" . SERVER_ROOTPATH . "artist/" . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
                                     break;
                                 } else {
                                     $feature_art  = $val_feature['feature_artist'];
-                                    $feature_artists .= "<a style='display: inline;' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+                                    $feature_artists .= "<a style='display: inline;' href='" . SERVER_ROOTPATH . "artist/" . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
                                 }
                             } else {
                                 $str_length = strlen($val_feature['feature_artist']);
                                 $sum_len = $sum_len + $str_length;
                                 if ($sum_len > 25) {
                                     $feature_art  = substr($val_feature['feature_artist'], 0, 1) . "...";
-                                    $feature_artists .= " <a style='display: inline;' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+                                    $feature_artists .= " <a style='display: inline;' href='" . SERVER_ROOTPATH . "artist/" . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
                                     break;
                                 } else {
                                     $feature_art  = $val_feature['feature_artist'];
-                                    $feature_artists .= " <a style='display: inline;' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>,";
+                                    $feature_artists .= " <a style='display: inline;' href='" . SERVER_ROOTPATH . "artist/" . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>,";
                                 }
                             }
                             $num++;
@@ -162,7 +162,7 @@
                     } elseif ($all_avg == "10") {
                         $all_avg = 10;
                     } else {
-                        
+
                         $all_avg = CheckNumberFormate($all_avg);
                         // echo $all_avg;
                         // die;
@@ -192,11 +192,11 @@
                                 <?php
                                 if (isset($mobile_view) && ($mobile_view == 1)) {
                                 ?>
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <img src="<?php echo $image_get; ?>" style="height:300px;"></a>
+                                    <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"> <img src="<?php echo $image_get; ?>" style="height:300px;"></a>
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <img src="<?php echo $image_get; ?>"></a>
+                                    <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"> <img src="<?php echo $image_get; ?>"></a>
                                 <?php
                                 }
                                 ?>
@@ -212,14 +212,14 @@
                                 <div class="list_bottom">
                                     <div class="row">
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <p><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a><a class="artist-name" href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a><span><?php echo $feature_artists;
-                                                                                                                                                                                                                                                                                                $sum_len  = 0; ?></span></p>
+                                            <p><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a><a class="artist-name" href="<?php echo SERVER_ROOTPATH . 'artist/' . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a><span><?php echo $feature_artists;
+                                                                                                                                                                                                                                                                                                                            $sum_len  = 0; ?></span></p>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                                             <?php
-                                            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                                // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND like_type = 'artist' AND like_id = '$album_artist_id'"));
-                                                $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND like_type = 'artist' AND like_id = '$album_artist_id'");
+                                            if ($user_id != "") {
+                                                // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND like_type = 'artist' AND like_id = '$album_artist_id'"));
+                                                $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND like_type = 'artist' AND like_id = '$album_artist_id'");
                                                 if ($counter) {
                                                     $counter = count($counter);
                                                 } else {
@@ -233,7 +233,7 @@
                                                 if ($counter == 0) {
                                             ?>
                                                     <span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular('<?php echo $album_artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a>
-                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -243,7 +243,7 @@
                                                 <?php } else { ?>
                                                     <span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $album_artist_id; ?>">
                                                         <a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular('<?php echo $album_artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart" style="font-size:24px;"></i></a>
-                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -255,7 +255,7 @@
                                                 ?>
                                                 <span class="like-group" style="float:right;">
                                                     <?php
-                                                    if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                    if ($user_id == "") {
                                                     ?>
                                                         <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
 
@@ -268,7 +268,7 @@
                                                     ?>
 
 
-                                                    <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $counter_main; ?><?php echo ($counter_main < 2) ? " Like" : " Likes" ?></a></span>
+                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $counter_main; ?><?php echo ($counter_main < 2) ? " Like" : " Likes" ?></a></span>
                                             <?php
                                             }
                                             ?>

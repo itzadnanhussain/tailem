@@ -1,12 +1,6 @@
 @include('common.header')
 <!-- ./Header end -->
-
-<?php
-ini_set('max_execution_time', '300');
-$mobile_view = 0;
-
-?>
-
+ 
 <!-- Middle Section -->
 <section class="middle_sec">
     <div class="banner topsongbanner">
@@ -245,7 +239,7 @@ $mobile_view = 0;
                                             </div>
                                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
                                                                                                                                                         if ($picture != "") {
                                                                                                                                                             $img_api_linka = album_img_api($picture);
 
@@ -295,23 +289,23 @@ $mobile_view = 0;
                                                 </div>
                                                 <div class="album_details">
 
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>">
                                                             <?php echo substr($song_title, 0, 45);
                                                             if (strlen($song_title) > 45) {
                                                                 echo "...";
                                                             } ?>
 
                                                         </a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . "artist/" . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                     if (strlen($artist_name) > 30) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a></label>
                                                     <label class="likes" style="height:26px; margin-top:-9px; vertical-align: middle;">
                                                         <!--<img src="images/icon_heart.png"><a href="#"><span>0</span> Likes</a>-->
                                                         <?php
-                                                        if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                                            // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'"));
-                                                            $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'");
+                                                        if ($user_id != "") {
+                                                            // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'"));
+                                                            $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'");
                                                             if ($counter) {
                                                                 $counter = count($counter);
                                                             } else {
@@ -341,7 +335,7 @@ $mobile_view = 0;
                                                             ?>
                                                             <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>">
                                                                 <?php
-                                                                if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                if ($user_id == "") {
                                                                 ?>
                                                                     <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o text_grey" style="font-size:24px; color:#D73B3B;"></i></a>
 
@@ -381,20 +375,20 @@ $mobile_view = 0;
                                                 </div>
 
                                                 <?php
-                                                if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                if ($user_id == "") {
                                                 ?>
                                                     <a href="#" data-toggle="modal" data-target="#signin_form" class="playlist_icon"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $album_artist_id; ?>"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                    <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $album_artist_id; ?>"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                 <?php
                                                 }
                                                 ?>
 
 
 
-                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>'">Write a review</button>
+                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . "write-a-review/" . $song_seo . "-write-a-review-" . $artist_seo; ?>'">Write a review</button>
                                             </div>
                                         </div>
                                     <?php } elseif ($mobile_view == 1) { ?>
@@ -409,7 +403,7 @@ $mobile_view = 0;
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:2px !important;">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 album-outer-coontainer" style="padding:0px !important;">
                                                     <div class="album_cover">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
+                                                        <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
                                                                                                                                                             if ($picture != "") {
                                                                                                                                                                 $img_api_linka = album_img_api($picture);
                                                                                                                                                                 if ($img_api_linka != '') {
@@ -442,11 +436,11 @@ $mobile_view = 0;
                                                 </div>
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 album-detail-container" style="padding:0px !important;">
                                                     <div class="album_details">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 50);
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 50);
                                                                                                                                                                 if (strlen($song_title) > 50) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . "artist/" . "artist/" . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                         if (strlen($artist_name) > 30) {
                                                                                                                                                             echo "...";
                                                                                                                                                         } ?></a></label>
@@ -456,8 +450,8 @@ $mobile_view = 0;
                                                         <div style="clear:both;"></div>
                                                         <label class="likes" style="height:26px; margin-left:0px; padding-left:0px; vertical-align: middle;">
                                                             <?php
-                                                            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                                                $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'"));
+                                                            if ($user_id != "") {
+                                                                $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'"));
                                                                 if ($counter == 0) {
                                                             ?>
                                                                     <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $album_artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
@@ -481,7 +475,7 @@ $mobile_view = 0;
                                                                 ?>
                                                                 <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>">
                                                                     <?php
-                                                                    if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                    if ($user_id == "") {
                                                                     ?>
                                                                         <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o text_grey" style="font-size:24px; color:#D73B3B;"></i></a>
                                                                     <?php
@@ -519,20 +513,20 @@ $mobile_view = 0;
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:0">
                                                     <div class="col-sm-5 col-xs-5">
                                                         <?php
-                                                        if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                        if ($user_id == "") {
                                                         ?>
                                                             <a href="#" data-toggle="modal" data-target="#signin_form" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                            <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                         <?php
                                                         }
                                                         ?>
                                                     </div>
 
                                                     <div class="col-sm-7 col-xs-7" style="padding-right:20px; float:right;">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>"><button>Write a review</button></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH . "write-a-review/" . $song_seo . "-write-a-review-" . $artist_seo; ?>"><button>Write a review</button></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -615,9 +609,9 @@ $mobile_view = 0;
 <!-- ./Middle Section -->
 
 
+@include("common.signin_modal")
 <?php
 // include("include/thankyou_messages.php");   
-// include("common/signin_modal.php");
 // include_once("common/popular_review.php"); 
 ?>
 

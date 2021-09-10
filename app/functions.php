@@ -296,7 +296,7 @@ if (!function_exists('featured_screen')) {
 
         $num = 1;
 
-        $featured_screen = "<a class='featured_art' href='" . SERVER_ROOTPATH . $artist_seo . "-artist-songs'>" . $artist_name . "</a>";
+        $featured_screen = "<a class='featured_art' href='" . SERVER_ROOTPATH . "artist/" . $artist_seo . "-artist-songs'>" . $artist_name . "</a>";
 
         if ($qry_feature_arr) {
             $sum_len = 0;
@@ -399,7 +399,7 @@ if (!function_exists('featured_ipad')) {
 
 
         $num = 1;
-        $featured_ipad = "<a class='featured_art' href='" . SERVER_ROOTPATH . $artist_seo . "-artist-songs'>" . $artist_name . "</a>";
+        $featured_ipad = "<a class='featured_art' href='" . SERVER_ROOTPATH . "artist/" . $artist_seo . "-artist-songs'>" . $artist_name . "</a>";
         if ($qry_feature_arr) {
             $sum_len = 0;
 
@@ -491,7 +491,7 @@ if (!function_exists('featured_mobile')) {
 
 
         $num = 1;
-        $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $artist_seo . "-artist-songs'>" . $artist_name . "</a>";
+        $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . "artist/" . $artist_seo . "-artist-songs'>" . $artist_name . "</a>";
         if ($qry_feature_arr) {
             $sum_len = 0;
 
@@ -872,6 +872,8 @@ if (!function_exists('check_report_review')) {
         return $chk_report_arr;
     }
 }
+
+
 ///get_playlist_like_counter 
 if (!function_exists('get_playlist_like_counter')) {
     function get_playlist_like_counter($id)
@@ -884,5 +886,176 @@ if (!function_exists('get_playlist_like_counter')) {
             $counter_main_playlist_like = 0;
         }
         return $counter_main_playlist_like;
+    }
+}
+
+
+///remove_spl_char 
+if (!function_exists('remove_spl_char')) {
+    function remove_spl_char($string)
+    {
+
+        $string = str_replace("'", '&#39;', $string); // Replaces all spaces with hyphens.
+        $string = str_replace('"', '&#34;', $string);
+        return utf8_encode($string);
+    }
+}
+
+///sum_of_artist_rating 
+if (!function_exists('sum_of_artist_rating')) {
+    function sum_of_artist_rating($artistid)
+    {
+
+        $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where artist_id = $artistid AND status = 1";
+
+        $rate_arr = array();
+        $rate_arr    =    \App\Models\Songs::GetRawData($sum_rating);
+        if ($rate_arr) {
+            $rate_arr = (array) $rate_arr[0];
+            $sum_rate = $rate_arr['sum_rate'];
+            $counter = $rate_arr['counter'];
+        } else {
+            $sum_rate = 0;
+            $counter = 0;
+            $all_avg = 0;
+        }
+
+
+        if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
+            $sum_rate = 0;
+            $counter = 0;
+            $all_avg = 0;
+        } else {
+
+            $all_avg  =  $sum_rate / $counter;
+        }
+
+
+
+
+        if ($all_avg == "") {
+            $all_avg = 0;
+        }
+
+        if ($all_avg >= 8) {
+            $color_pick = "#5cb85c";
+        }
+
+        if ($all_avg >= 6 && $all_avg < 8) {
+            $color_pick = "#5cb85c";
+        }
+
+        if ($all_avg >= 4 && $all_avg < 6) {
+            $color_pick = "#e06d21";
+        }
+
+        if ($all_avg >= 2 && $all_avg < 4) {
+            $color_pick = "#d9534f";
+        }
+
+        if ($all_avg > 0 && $all_avg < 2) {
+            $color_pick = "#d9534f";
+        }
+
+        $array_rating = array();
+        $array_rating['rating_avg']    =    numberformat($all_avg);
+        $array_rating['color_pick']    =    $color_pick;
+        return $array_rating;
+    }
+}
+
+///numberformat
+if (!function_exists('numberformat')) {
+    function numberformat($number)
+    {
+        $number_val =  number_format($number, 1);
+        return $number_val;
+    }
+}
+
+
+///get_small_thumb
+if (!function_exists('get_small_thumb')) {
+    function get_small_thumb($img)
+    {
+
+        $output = str_replace('300x300', '174s', $img);
+        if ($output != "") {
+
+            return $output;
+        }
+        return $img;
+    }
+}
+
+
+///limit_text
+if (!function_exists('limit_text')) {
+    function limit_text($text, $limit)
+    {
+        $total_words  = str_word_count($text);
+        if (str_word_count($text, 0) > $limit) {
+            $words = str_word_count($text, 2);
+            $pos = array_keys($words);
+            $text = substr($text, 0, $pos[$limit]);
+            if ($total_words > $limit) {
+                $text .= '...';
+            }
+        }
+        return $text;
+    }
+}
+
+
+///artist_popular_review_data
+if (!function_exists('artist_popular_review_data')) {
+    function artist_popular_review_data($artist_id_db)
+    {
+
+        $reviews_list_arr = array();
+        if (empty($reviews_list_arr)) {
+            $reviews_list = "select b.album_seo, b.album_picture,a.artist_seo,a.artist_seo, a.artist_name,s.song_seo,s.picture,s.updated_by_itunes, s.song_title,r.* 
+					 from tbl_reviews r,tbl_artists a,tbl_songs s,  tbl_artist_album b , tbl_songs_artist_album saa  
+					 where 1=1 
+					 AND r.song_id = s.id
+					 AND r.artist_id = a.id
+					 AND r.album_id = b.id
+				     AND r.artist_id = '$artist_id_db'
+					 AND s.id = saa.song_id 
+					 AND s.song_status = 1
+					 group by saa.song_id
+					 order by  r.review_id desc
+					 limit 3
+					 ";
+            $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list);
+        }
+        return  $reviews_list_arr;
+    }
+}
+
+
+///count_likes
+if (!function_exists('count_likes')) {
+    function count_likes($user_id)
+    {
+
+        $query = "select count(*) as count_total from tbl_likes where like_type = 'profile' AND like_id = '$user_id'";
+        $like_list_arr2 = \App\Models\Songs::GetRawData($query);
+        if ($like_list_arr2) {
+            $counter_main_profile_like = $like_list_arr2[0]->count_total;
+        } else {
+            $counter_main_profile_like    =   0;
+        }
+
+
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_id . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $sum_likes = $like_list_arr[0]->count_likes + $counter_main_profile_like;
+        } else {
+            $sum_likes    =   0;
+        }
+
+        return $sum_likes;
     }
 }
