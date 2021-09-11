@@ -1,14 +1,12 @@
 <!-- <h2 class="mt-0 pull-left display_dekstop">  
-    <?php
-    error_reporting(0);
-    ?>
+     
 <?php if ($main_link != "") {
 } else {
     echo "Welcome";
 } ?>
- <?php echo $USER_NAME; ?></h2>  -->
+ <?php echo $user_name; ?></h2>  -->
 <?php
-$mobile_view = 0;
+ 
 if ($main_link == "") {
     if ($mobile_view == 0) {
 ?>

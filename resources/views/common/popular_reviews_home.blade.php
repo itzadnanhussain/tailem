@@ -40,6 +40,7 @@
 
 				foreach ($reviews_list_arr as $val) {
 					$val = (array) $val;
+					 
 					$sr_no++;
 					$g++;
 					$r_fav++;
@@ -78,6 +79,7 @@
 					$select_qry = "select user_name from tbl_users where user_id='" . $review_user_id . "' ";
 					//$select_ar  = $db->get_row($select_qry,ARRAY_A);
 					$select_ar  = App\Models\Songs::GetRawData($select_qry, array());
+					 
 					$select_ar  = (array) $select_ar[0];
 
 					$user_name = stripslashes(html_entity_decode($select_ar['user_name']));

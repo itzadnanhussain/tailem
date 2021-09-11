@@ -1,42 +1,4 @@
-<?php
-
-///
-if (isset($user_seo) && ($user_seo != "")) {
-    $select_img = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
-    $result_image = $db->get_row($select_img, ARRAY_A);
-    $user_name = $result_image['user_name'];
-    $user_profile = $result_image['user_id'];
-    $date_added_db = $result_image['date_added'];
-    $USER_NAME = $user_name;
-    $main_link = get_user_detail($USER_NAME) . "-profile-";
-} else {
-    //session set temporary
-    $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
-
-    $_SESSION[USER_SESSION_ARRAY]['USER_NAME'] = session()->get('user_name');
-
-    $main_link = '';
-    $_SESSION[main_search]['search'] = 'test';
-    $user_profile = $_SESSION[USER_SESSION_ARRAY]['USER_ID'];
-    $USER_NAME = $_SESSION[USER_SESSION_ARRAY]['USER_NAME'];
-}
-
-
-///
-$like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
-$like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
-$like_list_arr = (array)$like_list_arr[0];
-
-
-///
-$review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
-$review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
-$review_list_arr_top = (array)$review_list_arr_top[0];
-
-///
-$comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
-$comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
-$comment_list_arr = (array)$comment_list_arr[0];
+<?php 
 
 
 ///

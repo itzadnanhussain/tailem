@@ -225,10 +225,67 @@ if (!function_exists('get_user_detail')) {
         if ($arr) {
             $arr = (array)$arr[0];
             $user_seo         = stripslashes($arr['user_seo']);
+            if (empty($user_seo)) {
+                $user_seo = Slug($arr['user_name']);
+            }
         } else {
             $user_seo = '';
         }
         return $user_seo;
+    }
+}
+
+
+///Slug 
+if (!function_exists('Slug')) {
+    function Slug($string)
+    {
+        return strtolower(trim(preg_replace('~[^0-9a-z]+~i', '-', html_entity_decode(preg_replace('~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', htmlentities($string, ENT_QUOTES, 'UTF-8')), ENT_QUOTES, 'UTF-8')), '-'));
+    }
+}
+
+
+///song_info 
+if (!function_exists('song_info')) {
+    function song_info($songid)
+    {
+
+        $query_list        =    "select  song_title, song_seo from tbl_songs where id = '$songid'";
+        $artist_list_arr = \App\Models\Songs::GetRawData($query_list);
+        $artist_list_arr = (array)$artist_list_arr[0];
+
+        return $artist_list_arr;
+    }
+}
+
+
+///artist_info 
+if (!function_exists('artist_info')) {
+    function artist_info($artistid)
+    {
+        global $db;
+        $query_list        =    "select  artist_seo from tbl_artists where id = '$artistid'";
+        $artist_list_arr = \App\Models\Songs::GetRawData($query_list);
+        $artist_list_arr = (array)$artist_list_arr[0];
+        return $artist_list_arr;
+    }
+}
+
+
+///sortArray 
+if (!function_exists('sortArray')) {
+    function sortArray($data, $field)
+    {
+        $field = (array) $field;
+        uasort($data, function ($a, $b) use ($field) {
+            $retval = 0;
+            foreach ($field as $fieldname) {
+                if ($retval == 0) $retval = strnatcmp($a[$fieldname], $b[$fieldname]);
+            }
+            return $retval;
+        });
+
+        return $data;
     }
 }
 
@@ -239,6 +296,18 @@ if (!function_exists('addtoplaylist_icon')) {
     {
         $image_url  = SERVER_ROOTPATH . "images/playlist.png";
         return $image_url;
+    }
+}
+
+///get_first_playlist_record 
+if (!function_exists('get_first_playlist_record')) {
+    function get_first_playlist_record($user_id)
+    {
+
+        $main_play_list = "select title_playlist_seo  from tbl_user_playlist where user_id_playlist = '" . $user_id . "'";
+        $playlist_arr = \App\Models\Songs::GetRawData($main_play_list);
+
+        return $playlist_arr;
     }
 }
 

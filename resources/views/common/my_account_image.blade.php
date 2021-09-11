@@ -1,10 +1,7 @@
-<?php 
-error_reporting(0);
-$mobile_view = 0;
+<?php  
 $select_img = "select profile_image, user_name, fname, lname from  tbl_users where user_id='" . $user_profile . "' ";
 $result_image = \App\Models\Songs::GetRawData($select_img);
-$result_image = (array)$result_image[0];
-
+$result_image = (array)$result_image[0]; 
 $profile_image = $result_image['profile_image'];
 if ($profile_image != "") {
     $prof_image = SERVER_ROOTPATH . "site_upload/user_images/" . $profile_image;
@@ -72,14 +69,14 @@ if ($counter_main_playlist_like) {
                                                                                                                             if (isset($db_fullname) && ($db_fullname != '')) {
                                                                                                                                 echo $db_fullname;
                                                                                                                             } else {
-                                                                                                                                echo $USER_NAME;
+                                                                                                                                echo $user_name;
                                                                                                                             } ?></a>
 
             <label class="likes" style=" margin-left:10px;  margin-top:-2px;">
                 <?php
-                if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
+                if ($user_id != "") {
 
-                    $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'profile' AND like_id = '$user_profile'");
+                    $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'profile' AND like_id = '$user_profile'");
                     if ($counter) {
                         $counter = count($counter);
                     } else {
@@ -89,7 +86,7 @@ if ($counter_main_playlist_like) {
                     if ($counter == 0) {
                 ?>
 
-                        <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $USER_NAME; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a><span style="font-weight:normal; font-size:14px;"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($USER_NAME); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal; font-size:14px; margin-right:40px;"><?php if ($counter_main_profile_like < 2) {
+                        <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a><span style="font-weight:normal; font-size:14px;"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal; font-size:14px; margin-right:40px;"><?php if ($counter_main_profile_like < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -99,7 +96,7 @@ if ($counter_main_playlist_like) {
                     <?php
                     } else {
                     ?>
-                        <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $USER_NAME; ?>')"><i class="fa fa-heart heart_color heart_size"></i></a><span style="font-weight:normal; font-size:14px;"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($USER_NAME); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal; font-size:14px; margin-right:40px;"><?php if ($counter_main_profile_like < 2) {
+                        <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart heart_color heart_size"></i></a><span style="font-weight:normal; font-size:14px;"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal; font-size:14px; margin-right:40px;"><?php if ($counter_main_profile_like < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -114,17 +111,17 @@ if ($counter_main_playlist_like) {
                     ?>
                     <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>">
                         <?php
-                        if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                        if ($user_id == "") {
                         ?>
                             <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                         <?php
                         } else {
                         ?>
-                            <a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $USER_NAME; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a>
+                            <a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                         <?php
                         }
                         ?>
-                        <span style="font-weight:normal; font-size:14px;"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($USER_NAME); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal; font-size:14px; margin-right:40px;"> <?php if ($counter_main_profile_like < 2) {
+                        <span style="font-weight:normal; font-size:14px;"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal; font-size:14px; margin-right:40px;"> <?php if ($counter_main_profile_like < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -157,14 +154,14 @@ if ($counter_main_playlist_like) {
                 <p class="title" style="font-weight:bold; font-size:20px;"><a style="color:#000000; padding-left:1px;"><?php if ($main_link != "") {
                                                                                                                         } else {
                                                                                                                             echo "Welcome";
-                                                                                                                        } ?> <?php echo $USER_NAME; ?></a></p>
+                                                                                                                        } ?> <?php echo $user_name; ?></a></p>
 
                 <label class="likes" style="font-size:14px; margin-top:4px;">
 
-                    <?php if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
+                    <?php if ($user_id != "") {
 
 
-                        $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'profile' AND like_id = '$user_profile'");
+                        $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'profile' AND like_id = '$user_profile'");
                         if ($counter) {
                             $counter = count($counter);
                         } else {
@@ -175,7 +172,7 @@ if ($counter_main_playlist_like) {
                         if ($counter == 0) {
                     ?>
 
-                            <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $USER_NAME; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a><span style="font-weight:normal;" class="red-text"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($USER_NAME); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal;"><?php if ($counter_main_profile_like < 2) {
+                            <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a><span style="font-weight:normal;" class="red-text"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal;"><?php if ($counter_main_profile_like < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -187,7 +184,7 @@ if ($counter_main_playlist_like) {
                         <?php
                         } else {
                         ?>
-                            <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $USER_NAME; ?>')"><i class="fa fa-heart heart_color heart_size"></i></a><span class="red-text"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($USER_NAME); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal;"><?php if ($counter_main_profile_like < 2) {
+                            <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart heart_color heart_size"></i></a><span class="red-text"> <?php echo $counter_main_profile_like; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal;"><?php if ($counter_main_profile_like < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 echo " Likes";
@@ -200,20 +197,20 @@ if ($counter_main_playlist_like) {
                         ?>
                         <span id="other_dis_sub_profile_main_<?php echo $sr_no; ?>">
                             <?php
-                            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                            if ($user_id == "") {
                             ?>
                                 <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                             <?php
                             } else {
                             ?>
-                                <a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $USER_NAME; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a><span class="red-text">
+                                <a href="javascript:;" onClick="add_in_favourite_main_profile_list_new('<?php echo $user_profile; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a><span class="red-text">
                                 <?php
                             }
                                 ?>
                                 <?php echo $counter_main_profile_like; ?>
                                 </span>
 
-                                <a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($USER_NAME); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal;"> <?php if ($counter_main_profile_like < 2) {
+                                <a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_Modal2_<?php echo $sr_no; ?>" data-title="" class="like link-disable" style="color:#000; font-weight:normal;"> <?php if ($counter_main_profile_like < 2) {
                                                                                                                                                                                                                                                                                                                 echo " Like";
                                                                                                                                                                                                                                                                                                             } else {
                                                                                                                                                                                                                                                                                                                 echo " Likes";

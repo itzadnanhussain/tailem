@@ -11,9 +11,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/sign-up', function () {
-    return view('auth.register');
-})->middleware('auth')->name('sign-up'); 
+Route::get('/sign-up',[LoginController::class,'LoadSignUpPage'])->middleware('auth')->name('sign-up'); 
 
 Route::post('/sign-up', [LoginController::class, 'RegisterUser'])
     ->name('sign-up.RegisterUser'); 

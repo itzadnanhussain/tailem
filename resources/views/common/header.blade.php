@@ -1,8 +1,6 @@
  <?php 
 
-
-	////define device 
-	$mobile_view = 0;
+ 
 
 
 	///general setting arr new query
@@ -24,31 +22,11 @@
 	$rhyming_larics	= stripslashes(html_entity_decode($setting_arr['rhyming_larics']));
 
 
-	if (isset($user_seo) && ($user_seo != "")) {
+	
 
-		$select_img = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
-		$result_image = $db->get_row($select_img, ARRAY_A);
-		$user_name = $result_image['user_name'];
-		$user_profile = $result_image['user_id'];
-		$date_added_db = $result_image['date_added'];
-		$USER_NAME = $user_name;
-		$main_link = get_user_detail($USER_NAME) . "-profile-";
-	} else {
-		//session set temporary
-		$_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
-		
-		$_SESSION[USER_SESSION_ARRAY]['USER_NAME'] = session()->get('user_name');
-
-		$main_link = '';
-		$_SESSION[main_search]['search'] = 'test';
-		$user_profile = $_SESSION[USER_SESSION_ARRAY]['USER_ID'];
-		$USER_NAME = $_SESSION[USER_SESSION_ARRAY]['USER_NAME'];
-		 
-	}
-
-	if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
+	if ($user_id != "") {
 		///old query
-		// $select_notification_count ="select u.user_name,l.like_type,u.profile_image, l.like_id  from  tbl_likes l, tbl_users u  where l.like_from_user_id = u.user_id  AND (l.like_type = 'review_song' OR l.like_type = 'profile' OR l.like_type = 'playlist' OR l.like_type = 'delete_review_song' OR l.like_type = 'admin_review') AND l.like_receive_user = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."' AND l.read_status = 1";
+		// $select_notification_count ="select u.user_name,l.like_type,u.profile_image, l.like_id  from  tbl_likes l, tbl_users u  where l.like_from_user_id = u.user_id  AND (l.like_type = 'review_song' OR l.like_type = 'profile' OR l.like_type = 'playlist' OR l.like_type = 'delete_review_song' OR l.like_type = 'admin_review') AND l.like_receive_user = '".$user_id."' AND l.read_status = 1";
 		// $result_notification_count = count($db->get_results($select_notification_count, ARRAY_A));
 
 
@@ -78,10 +56,7 @@
  	<meta name="google-site-verification" content="bTEn7HDhG7Kcx4pW3zDeFu-PwgLzlE1GDLc1bzj3Wbs" />
  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
  	<title><?php echo ucwords(get_page_name()) . '| Tailem' ?></title>
- 	<?php
-		$currentFile = get_page_name();
-		// $currentFile = 'sign_up';
-		?>
+ 	 
  	@include('common.loadassets')
 
  	<?php
@@ -159,13 +134,13 @@
  						}
  					</style>
  					<form action="<?php echo SERVER_ROOTPATH; ?>searcher" id="ad_search_form" method="POST">
- 						<input class="searcharea" placeholder="Search" name="search" value="<?php echo stripslashes($_SESSION[main_search]['search']); ?>" required>
+ 						<input class="searcharea" placeholder="Search" name="search" value="<?php echo stripslashes($main_search); ?>" required>
  						<input type="hidden" name="submitbtn" value="Search">
  						<button><i class="sprite sprite-icon_search"></i></button>
  					</form>
  				</span>
  				<ul class="account_nav">
- 					<?php if (empty($_SESSION[USER_SESSION_ARRAY]['USER_ID'])) { ?>
+ 					<?php if (empty($user_id)) { ?>
  						<li> <a href="<?php echo SERVER_ROOTPATH; ?>sign-in" class="signin"> <i class="sprite-new sprite-new-xicon_signin-png-pagespeed-ic-d7QTJCwNDt"></i> Sign In</a> </li>
  						<li> <a href="<?php echo SERVER_ROOTPATH; ?>sign-up" class="signup"><i class="sprite-new sprite-new-icon_signup"></i> <span style="margin-left:1px;">Sign UP</span></a> </li>
  					<?php } else { ?>

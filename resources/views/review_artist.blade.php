@@ -1,58 +1,49 @@
-@include('common.header')
-<!-- ./Header end -->
+@include("common.header")
 <?php
- 
- 
-$mobile_view = 0;
-//include_once("common/signin_modal_header.php"); 
-$_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
-$_SESSION[USER_SESSION_ARRAY]['USER_NAME'] = session()->get('user_name');
-$user_profile = $_SESSION[USER_SESSION_ARRAY]['USER_ID'];
- 
-$USER_NAME = ucfirst($_SESSION[USER_SESSION_ARRAY]['USER_NAME']); 
-$USER_NAME =  str_replace(" ", '%20', $USER_NAME);
- 
+$_SESSION['artist_names'] = '';
+$_SESSION['result'] = '';
 
+// error_reporting(0);
 
-// if ($alpha == "unset") {
-// 	unset($_SESSION[search_like_review]['artist_names']);
-// 	unset($_SESSION[search_like_review]['result']);
+//include_once("common/signin_modal_header.php");  
+
+// if($alpha=="unset")
+// {
+// 	unset($_SESSION['artist_names']);
+// 	unset($_SESSION['result']);
 // }
 
 // if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 
-// 	if ($artist_name != "") {
+//     if ($artist_name != "") {
 
-// 		$artist_name = mysqli_escape_string($db->dbh, $artist_name);
-// 		$search_where .= " AND a.artist_name like '%$artist_name%'";
+//         $artist_name = mysqli_escape_string($db->dbh, $artist_name);
+//         $search_where .= " AND a.artist_name like '%$artist_name%'";
 
-// 		$_SESSION[search_like_review]['artist_names'] = $artist_name;
-// 		$_SESSION[search_like_review]['result'] = $search_where;
-// 	} else {
-// 		unset($_SESSION[search_like_review]['artist_names']);
-// 		unset($_SESSION[search_like_review]['result']);
-// 	}
+//         $_SESSION['artist_names'] = $artist_name;
+//         $_SESSION['result'] = $search_where;
+//     } else {
+//         unset($_SESSION['artist_names']);
+//         unset($_SESSION['result']);
+//     }
 // }
- 
-$request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
+
+
+// $request_url_check    =    str_replace("/", '', $_SERVER['REQUEST_URI']);
 
 ?>
 
-
 <script type="text/javascript">
-	function unset_all(user) {
-		if (user == "") {
-			window.location.href = "<?php echo SERVER_ROOTPATH; ?>review-artists-unset";
-		} else {
-			window.location.href = "<?php echo SERVER_ROOTPATH; ?>" + user + "-profile-review-artists-unset";
-		}
+    function unset_all(user) {
+        if (user == "") {
+            window.location.href = "<?php echo SERVER_ROOTPATH; ?>review-artists-unset";
+        } else {
+            window.location.href = "<?php echo SERVER_ROOTPATH; ?>" + user + "-profile-review-artists-unset";
+        }
 
 
-	}
+    }
 </script>
-
-
-
 <!-- Middle Section -->
 <section class="middle_sec">
     <div class="topRwHead-bodyPan">
@@ -63,16 +54,13 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                 <?php if ($mobile_view == 0) { ?>
 
                     <div class="col-lg-12 col-md-12" style="margin-bottom:0; padding-right:0;">
-                         @include("common.my_account_image")
-                         <?php echo 'wait'; die; ?>
+                        @include("common.my_account_image")
 
-                        
                         <div class="activity-panel">
                             @include("include.review_activities")
-                            <?php echo 'wait'; die; ?>
 
                         </div>
-                        <?php include("include/latest_activities.php"); ?>
+                        @include("include.latest_activities")
 
                         <div class="clearfix"></div>
 
@@ -81,34 +69,36 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                     </div>
                     <div class="col-lg-4 col-md-4 review_ipad">
                         <div class="col-sm-12 review_arts" style="padding:2px;">
-                            <?php include("include/right_reivews.php"); ?>
+
+                            @include("include.right_reviews")
                         </div>
                     </div>
 
 
             </div>
         </div>
-
-        <?php include("common/ipad_data.php"); ?>
-
+        @include("common.ipad_data")
     <?php
                 } elseif ($mobile_view == 1) { ?>
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <?php include("common/my_account_image.php"); ?>
+            @include("common.my_account_image")
         </div>
         <div style="clear:both;"></div>
         <div class="col-sm-12 desc-panel">
             <div class="activity-panel">
-                <?php include("include/review_activities.php"); ?>
+                @include("include.review_activities")
             </div>
-            <?php //include("include/latest_activities.php");
+            <?php
+                    //include("include.latest_activities.php"); 
             ?>
+
+
         </div>
 
         <div class="col-lg-4 col-md-4">
             <div class="col-sm-12 review_arts" style="padding:2px;">
-                <?php include("include/right_reivews.php"); ?>
+                @include("include.right_reviews.php")
             </div>
         </div>
 
@@ -118,6 +108,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
 
     <div class="clearfix"></div>
     </div>
+
     <?php if ($main_link != "") { ?>
         <!-- Advertisement Banner Start-->
         <div class="container" style="padding-bottom:10px;">
@@ -134,10 +125,11 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div style="background-color:#FFFFFF; padding:10px;" class="brows-label-penel">
-                <?php include("include/artist_review_like_menu.php"); ?>
+                @include("include.artist_review_like_menu")
             </div>
         </div>
     </div>
+
 
 
     <div class="topRwContent-panel" style="margin-bottom:15px;">
@@ -148,7 +140,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                         <div class="form-group" style="border:1px solid #ccc !important;">
                             <label for="skills" onClick="unset_all('<?php echo $user_seo; ?>')" style="cursor:pointer; border-radius:0;">All</label>
                             <!--for="search"-->
-                            <input placeholder="Search for a Review..." type="text" name="artist_name" id="review_artist" class="form-control ac_input" value="<?php echo $_SESSION[search_like_review]['artist_names']; ?>" required><!-- id="search_text"-->
+                            <input placeholder="Search for a Review..." type="text" name="artist_name" id="review_artist" class="form-control ac_input" value="<?php echo $_SESSION['artist_names']; ?>" required><!-- id="search_text"-->
                             <button class="btn" type="submit" value="Search" name="submit_b"><i class="sprite-new sprite-new-xsearch-icon-png-pagespeed-ic-XjnYgjYQAr"></i></button>
                         </div>
                     </form>
@@ -159,7 +151,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                     <form method="post" action="" style="width:100%;">
                         <div class="form-group" style="border:1px solid #ccc; border-right:none; border-left:none;">
                             <label for="skills" onClick="unset_all('<?php echo $user_seo; ?>')" style="cursor:pointer; border-radius:0;">All</label>
-                            <input placeholder="Search for a Review..." type="text" name="artist_name" id="review_artist" class="form-control ac_input" value="<?php echo $_SESSION[search_like_review]['artist_names']; ?>" required>
+                            <input placeholder="Search for a Review..." type="text" name="artist_name" id="review_artist" class="form-control ac_input" value="<?php echo $_SESSION['artist_names']; ?>" required>
                             <button class="btn" type="submit" value="Search" name="submit_b"><i class="sprite-new sprite-new-xsearch-icon-png-pagespeed-ic-XjnYgjYQAr"></i></button>
 
                         </div>
@@ -191,11 +183,12 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
 							  order by r.review_id desc limit 50
 							 ";
 
-                $artist_list_pick_arr    =    $db->get_results($artist_list_pick, ARRAY_A);
+                $artist_list_pick_arr = \App\Models\Songs::GetRawData($artist_list_pick);
                 $array_alpha    =    array();
                 if (isset($artist_list_pick_arr)) {
                     $u = 0;
                     foreach ($artist_list_pick_arr as $row_alpha) {
+                        $row_alpha = (array) $row_alpha;
                         $row_artist_name    =    stripslashes($row_alpha['artist_name']);
 
                         $array_alpha[$u]        =    substr(strip_tags($row_artist_name), 0, 1);
@@ -266,15 +259,11 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
             </div>
         </div>
 
+
         <div class="row">
             <?php
             $_SESSION['user_profie_id']  = $user_profile;
             $cat_list_arr = array();
-            /*	 $cat_list_arr = array();
-						 if(MEMCACHE_IS_ENABALED){
-									$key = md5("review_artist_cat_list_arr". $where_condition."_".$user_profile); // Unique Words
-									$cat_list_arr = $memcache->get($key); // Memcached object 
-							}*/
 
             if (empty($cat_list_arr)) {
 
@@ -290,13 +279,16 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
 							  group by c.cat_name
 							  order by r.review_id desc 
 							 ";
-                $cat_list_arr    =    $db->get_results($cat_list, ARRAY_A);
-                /* if(MEMCACHE_IS_ENABALED){
-									$memcache->set($key, $cat_list_arr, MEMCACHE_COMPRESSED, MEMCACHE_EXPIRE_TIME); 
-							 }
-							*/
+                // $cat_list_arr    =    $db->get_results($cat_list, ARRAY_A);
+                $cat_list_arr = \App\Models\Songs::GetRawData($cat_list);
+               
+                if ($cat_list_arr) {
+
+                    $count  = count($cat_list_arr);
+                } else {
+                    $count = 0;
+                }
             }
-            $count  = count($cat_list_arr);
 
             if (isset($cat_list_arr)) {
                 $v = 1;
@@ -309,13 +301,14 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                             <ul class="list-inline">
                                 <li>
                                     <?php
-                                    foreach ($cat_list_arr as $val) {
+                                    foreach ($cat_list_arr as $val) { 
+                                        $val = (array)$val;
                                         $cat_id      = $val['cat_id'];
                                         $cat_name = stripslashes(html_entity_decode($val['cat_name']));
                                         $cat_seo_name = strtolower(stripslashes(html_entity_decode($val['cat_seo_name'])));
 
                                     ?>
-                                        <a class="active" href="<?php echo SERVER_ROOTPATH . get_user_detail($USER_NAME); ?>-review-artist-genre-<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a><?php
+                                        <a class="active" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-review-artist-genre-<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a><?php
                                                                                                                                                                                                             if ($v != $count) {
                                                                                                                                                                                                                 echo " | ";
                                                                                                                                                                                                             }
@@ -343,7 +336,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                         $cat_seo_name = strtolower(stripslashes(html_entity_decode($val['cat_seo_name'])));
 
                                     ?>
-                                        <a class="active" href="<?php echo SERVER_ROOTPATH . get_user_detail($USER_NAME); ?>-review-artist-genre-<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a><?php
+                                        <a class="active" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-review-artist-genre-<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a><?php
                                                                                                                                                                                                             if ($v != $count) {
                                                                                                                                                                                                                 echo " | ";
                                                                                                                                                                                                             }
@@ -360,7 +353,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
             <?php }
             } ?>
         </div>
-
+         
         <div class="topsonglistsec col-lg-8 col-md-8 col-sm-12 col-xs-12 pad_zero" style="background:none;">
 
             <?php if ($mobile_view == 0) { ?>
@@ -376,28 +369,20 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                             $where_condition = "";
                             $artist_page = "";
                             if ($genere_seo != "") {
-                                /*	  $get_cat_array = array();
-							 if(MEMCACHE_IS_ENABALED){
-										$key = md5("review_artist_get_cat_array_". $genere_seo); // Unique Words
-										$get_cat_array = $memcache->get($key); // Memcached object 
-								}*/
+
 
                                 if (empty($get_cat_array)) {
                                     $get_cat_array = "select cat_id from tbl_categories where cat_seo_name = '$genere_seo'";
-                                    $get_cat_array    =    $db->get_row($get_cat_array, ARRAY_A);
-                                    /*if(MEMCACHE_IS_ENABALED){
-										$memcache->set($key, $get_cat_array, MEMCACHE_COMPRESSED, MEMCACHE_EXPIRE_TIME); 
-								}	*/
+                                    $get_cat_array = \App\Models\Songs::GetRawData($get_cat_array);
+                                    $get_cat_array = (array)$get_cat_array[0];
                                 }
                                 $cat_genere_id  = $get_cat_array['cat_id'];
-
                                 $where_condition .= " AND c.cat_seo_name = '$genere_seo'";
-
                                 $artist_page = $main_link . "review-artist-genres-" . $genere_seo;
                             }
 
-                            if ($_SESSION[search_like_review]['result'] != "") {
-                                $where_condition .= $_SESSION[search_like_review]['result'];
+                            if ($_SESSION['result'] != "") {
+                                $where_condition .= $_SESSION['result'];
                             }
 
                             if ($alpha != "" && $alpha != "unset") {
@@ -412,10 +397,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                             }
 
                             $artist_list_arr = array();
-                            /* if(MEMCACHE_IS_ENABALED){
-										$key = md5("review_artist_get_cat_array_". $user_profile."_".$where_condition); // Unique Words
-										$artist_list_arr = $memcache->get($key); // Memcached object 
-								}*/
+
 
                             if ($alpha != "" && $alpha != "unset" && $genere_seo != "") {
                                 $artist_page = $main_link . "review-artists-" . $genere_seo . "-genre-" . $alpha;
@@ -425,11 +407,11 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                             if (empty($artist_list_arr)) {
 
 
-                                if ($_SESSION[search_like_review]['result'] != '') {
+                                if ($_SESSION['result'] != '') {
                                     $orderby = "CASE 
-							   WHEN a.artist_name LIKE '" . $_SESSION[search_like_review]['artist_names'] . "' THEN 1 
-							   WHEN a.artist_name LIKE '" . $_SESSION[search_like_review]['artist_names'] . " %' THEN 2 
-							   WHEN a.artist_name LIKE '" . $_SESSION[search_like_review]['artist_names'] . "%' THEN 3 
+							   WHEN a.artist_name LIKE '" . $_SESSION['artist_names'] . "' THEN 1 
+							   WHEN a.artist_name LIKE '" . $_SESSION['artist_names'] . " %' THEN 2 
+							   WHEN a.artist_name LIKE '" . $_SESSION['artist_names'] . "%' THEN 3 
 							   ELSE 4 
 							   END";
                                 } else {
@@ -450,17 +432,16 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
 							  order by $orderby limit 50
 							 ";
 
-                                $artist_list_arr    =    $db->get_results($artist_list, ARRAY_A);
-                                /*if(MEMCACHE_IS_ENABALED){
-									$memcache->set($key, $artist_list_arr, MEMCACHE_COMPRESSED, MEMCACHE_EXPIRE_TIME); 
-								 }
-								*/
+                                $artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
+                                if ($artist_list_arr) {
+                                    $total_pages = count($artist_list_arr);
+                                } else {
+                                    $total_pages = 0;
+                                }
                             }
 
                             $targetpage = SERVER_ROOTPATH . $artist_page; //your file name  (the name of this file)
-                            $total_pages = count($artist_list_arr);
-                            $limit = 10;                     //how many items to show per page
-                            $page = $_GET['page'];
+                            $limit = 10;
                             if ($page)
                                 $start = ($page - 1) * $limit; //first item to display on this page
                             else
@@ -481,6 +462,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                             if (isset($artist_list_arr)) {
                                 $k = 1;
                                 foreach ($artist_list_arr as $val) {
+                                    $val = (array)$val;
 
                                     $id      = $val['id'];
                                     $review_user_id = stripslashes(html_entity_decode($val['review_user_id']));
@@ -491,24 +473,40 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                     $cat_seo_name   = strtolower(stripslashes(html_entity_decode($val['cat_seo_name'])));
 
                                     $artist_name = wordwrap($artist_name, 100, " ", true);
-                                    $counter_main = mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_type = 'artist' AND like_id = '$id'"));
-
+                                    $qry = "select id from tbl_likes where like_type = 'artist' AND like_id = '$id'";
+                                    $counter_main = array();
+                                    $counter_main = \App\Models\Songs::GetRawData($qry);
+                                    if ($counter_main) {
+                                        $counter_main = count($counter_main);
+                                    } else {
+                                        $counter_main = 0;
+                                    }
                                     if ($c % 2 == 0) {
                                         $bgcolor = "#FEFEE4";
                                     } else {
                                         $bgcolor = "#FFFFFF";
                                     }
                                     $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where artist_id = $id AND status = 1";
-                                    $rate_arr    =    $db->get_row($sum_rating, ARRAY_A);
-
-                                    $sum_rate = $rate_arr['sum_rate'];
-                                    $counter = $rate_arr['counter'];
-
-                                    if ($sum_rate == "" || $sum_rate == 0) {
+                                    $rate_arr    =    \App\Models\Songs::GetRawData($sum_rating);
+                                    if ($rate_arr) {
+                                        $rate_arr = (array) $rate_arr[0];
+                                        $sum_rate = $rate_arr['sum_rate'];
+                                        $counter = $rate_arr['counter'];
+                                    } else {
                                         $sum_rate = 0;
+                                        $counter = 0;
+                                        $all_avg = 0;
                                     }
 
-                                    $all_avg  =  $sum_rate / $counter;
+
+                                    if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
+                                        $sum_rate = 0;
+                                        $counter = 0;
+                                        $all_avg = 0;
+                                    } else {
+
+                                        $all_avg  =  $sum_rate / $counter;
+                                    }
 
                                     if ($all_avg == "") {
                                         $all_avg = 0;
@@ -546,16 +544,29 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
 
                                     /*rating current users right side*/
                                     $sum_rating_user = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where artist_id = $id  AND status = 1 and review_user_id = '$review_user_id'";
-                                    $rate_user_arr    =    $db->get_row($sum_rating_user, ARRAY_A);
 
-                                    $sum_user_rate = $rate_user_arr['sum_rate'];
-                                    $counter_user = $rate_user_arr['counter'];
-
-                                    if ($sum_rate == "" || $sum_user_rate == 0) {
+                                    $rate_user_arr    =    \App\Models\Songs::GetRawData($sum_rating_user);
+                                    if ($rate_user_arr) {
+                                        $rate_user_arr = (array) $rate_user_arr[0];
+                                        $sum_user_rate = $sum_user_rate['sum_rate'];
+                                        $counter_user = $counter_user['counter'];
+                                    } else {
                                         $sum_user_rate = 0;
+                                        $counter_user = 0;
+                                        $all_user_avg = 0;
                                     }
 
-                                    $all_user_avg  =  $sum_user_rate / $counter_user;
+
+                                    if ($sum_user_rate == "" || $sum_user_rate == 0 || $counter_user == '' || $counter_user == 0) {
+                                        $sum_user_rate = 0;
+                                        $counter_user = 0;
+                                        $all_user_avg = 0;
+                                    } else {
+
+                                        $all_user_avg  =  $sum_user_rate / $counter_user;
+                                    }
+
+
 
                                     if ($all_user_avg == "") {
                                         $all_user_avg = 0;
@@ -601,7 +612,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                     if ($_REQUEST['user_seo'] == '') {
                                         $url_gen    =    SERVER_ROOTPATH . $artist_seo . "-review-albums";
                                     } else {
-                                        $url_gen    =    SERVER_ROOTPATH . get_user_detail($USER_NAME) . "-profile-" . $artist_seo . "-review-albums";
+                                        $url_gen    =    SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-" . $artist_seo . "-review-albums";
                                     }
 
                                     if ($mobile_view == 0) { ?>
@@ -658,9 +669,15 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                                             <?php
                                                             if ($user_profile != "") {
 
-                                                                $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$id'"));
-
-                                                                if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$id'";
+                                                                $counter = array();
+                                                                $counter = \App\Models\Songs::GetRawData($qry);
+                                                                if ($counter) {
+                                                                    $counter = count($counter);
+                                                                } else {
+                                                                    $counter = 0;
+                                                                }
+                                                                if ($user_id == "") {
                                                                     $bacground_class  =  "text_grey";
                                                                 }
 
@@ -670,7 +687,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
 
                                                                     <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
                                                                         <?php
-                                                                        if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                        if ($user_id == "") {
                                                                         ?>
                                                                             <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                                                                         <?php
@@ -695,7 +712,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                                                 ?>
                                                                     <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
                                                                         <?php
-                                                                        if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                        if ($user_id == "") {
                                                                         ?>
                                                                             <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                                                                         <?php
@@ -721,7 +738,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                                                 <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
 
                                                                     <?php
-                                                                    if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                    if ($user_id == "") {
                                                                     ?>
                                                                         <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                                                                     <?php
@@ -810,9 +827,15 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                                                     <?php
                                                                     if ($user_profile != "") {
 
-                                                                        $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$id'"));
-
-                                                                        if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                        $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$id'";
+                                                                        $counter = array();
+                                                                        $counter = \App\Models\Songs::GetRawData($qry);
+                                                                        if ($counter) {
+                                                                            $counter = count($counter);
+                                                                        } else {
+                                                                            $counter = 0;
+                                                                        }
+                                                                        if ($user_id == "") {
                                                                             $bacground_class  =  "text_grey";
                                                                         }
 
@@ -822,7 +845,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
 
                                                                             <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
                                                                                 <?php
-                                                                                if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                                if ($user_id == "") {
                                                                                 ?>
                                                                                     <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                                                                                 <?php
@@ -847,7 +870,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                                                         ?>
                                                                             <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
                                                                                 <?php
-                                                                                if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                                if ($user_id == "") {
                                                                                 ?>
                                                                                     <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                                                                                 <?php
@@ -872,7 +895,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                                                                         ?>
                                                                         <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
                                                                             <?php
-                                                                            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                            if ($user_id == "") {
                                                                             ?>
                                                                                 <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                                                                             <?php
@@ -927,7 +950,7 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
                         <?php if ($total_pages > $limit) { ?>
                             <div class="page-navigation">
                                 <ul>
-                                    <?php include("common/paging-playlist.php"); ?>
+                                    @include("common.paging-playlist")
                                 </ul>
                             </div>
                         <?php } ?>
@@ -992,46 +1015,54 @@ $request_url_check	=	str_replace("/", '', $_SERVER['REQUEST_URI']);
     </div>
 </section>
 <!-- ./Middle Section -->
+<!--<footer>
+        
+	<div class="ftrcontainer">
+		<div class="container">
+			<ul class="bottom_nav">
+				<li><a href="#">Top Songs</a></li>
+				<li><a href="#">Top Albums</a></li>
+				<li><a href="#">Artists</a></li>
+				<li><a href="#">About Us</a></li>
+				<li><a href="#">Privacy Policy</a></li>
+				<li><a href="#">Terms of Use</a></li>
+				<li><a href="#">Contact Us</a></li>
+			</ul>
+			<div class="social">
+				<a href="#" class="itune"><img src="images/icon_itune.png"></a>
+	 				<span>
+	 					<label>Connect with us</label>
+	 					<a href="#"><img src="images/icon_fb.png"></a>
+	 					<a href="#"><img src="images/icon_tw.png"></a>
+	 					<a href="#"><img src="images/icon_ggl.png"></a>
+	 				</span>
+			</div>
+		</div>
+	</div>
+	<p>&copy; 2015 <a href="#">Tailem</a>.com All Rights Reserved</p>
+</footer>-->
 
-
-
-
-
-
-
+@include("common.signin_modal")
 <?php
-//include("include/thankyou_messages.php");
-//include("common/signin_modal.php");
-?>
-
+// include("include/thankyou_messages.php"); ?>
 
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="#profile_Modal2_99999999" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+@include("common/footer")
 
 
-
-
-
-
-
-
-
-
-
-
-@include('common.footer')
 
 <style>
-	body {
-		overflow-x: hidden;
-	}
+    body {
+        overflow-x: hidden;
+    }
 </style>
 
 <script>
-	var jq = jQuery.noConflict();
-	jq(function() {
-		jq("#review_artist").autocomplete({
-			source: '<?php echo SERVER_ROOTPATH; ?>search_art2.php'
-		});
-	});
+    var jq = jQuery.noConflict();
+    jq(function() {
+        jq("#review_artist").autocomplete({
+            source: '<?php echo SERVER_ROOTPATH; ?>search_art2.php'
+        });
+    });
 </script>
