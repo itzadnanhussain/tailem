@@ -14,38 +14,7 @@ Route::get('/', [SongsController::class , 'GetLoadHomePage']);
 
 
 
-///top-songs-page routes
-Route::get('/top-songs',[SongsController::class, 'GetTopSongs']) 
-->name('top-songs.GetTopSongs');
-
-Route::get('/add-playlist',[SongsController::class, 'GetAddPlayList']) 
-->name('add-playlist.GetAddPlayList');
-
-Route::get('/insert-playlist',[SongsController::class, 'InsertPlayList']) 
-->name('insert-playlist.InsertPlayList');
-
-///songs write-a-review
-Route::get('/write-a-review/{slug}',[SongsController::class , 'SongWriteReview']);
-
-///songs detail
-Route::get('/song-detail/{slug}',[SongsController::class , 'GetSongDetail']);
-
-
-///top-albums
-Route::get('/top-albums',[SongsController::class, 'GetTopAlbums']) 
-->name('top-albums.GetTopAlbums');
  
-
-///latest-songs
-Route::get('/latest-songs',[SongsController::class, 'GetLatestSongs']) 
-->name('latest-songs.GetLatestSongs');
- 
-///artist_page
-Route::get('/artist/{slug}/{sort?}',[SongsController::class , 'GetArtistSongs']); 
-// Route::get('/{artist_seo}-artist-songs',[SongsController::class , 'GetArtistSongs']); 
-// Route::get('/Walter-Melrose-artist-songs',[UserController::class , 'GetArtistSongs']);
-
-
 ///top-artists
 Route::get('/top-artists',[SongsController::class, 'GetTopArtist']) 
 ->name('top-artists.GetTopArtist');
@@ -55,6 +24,10 @@ Route::get('/top-artists',[SongsController::class, 'GetTopArtist'])
 require __DIR__.'/auth.php';
 require __DIR__.'/facebook.php';
 require __DIR__.'/process.php';
+require __DIR__.'/album.php';
+require __DIR__.'/song.php';
+require __DIR__.'/artist.php';
+require __DIR__.'/review.php';
 
  
 ///LoadCMS Footer Link

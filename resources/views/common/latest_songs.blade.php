@@ -137,22 +137,22 @@
                                         $sum_len = $sum_len + $str_length;
                                         if ($sum_len > 15) {
                                             $feature_art  = substr($val_feature->feature_artist, 0, 1) . "...";
-                                            $feature_artists .= " <a style='color:#08aa90' href='" . SERVER_ROOTPATH . $val_feature->f_artist_seo . "-artist-songs'>" . $feature_art . "</a>";
+                                            $feature_artists .= " <a style='color:#08aa90' href='" . SERVER_ROOTPATH . $val_feature->f_artist_seo . "/artist-songs'>" . $feature_art . "</a>";
                                             break;
                                         } else {
                                             $feature_art  = $val_feature->feature_artist;
-                                            $feature_artists .= " <a style='color:#08aa90' href='" . SERVER_ROOTPATH . $val_feature->f_artist_seo . "-artist-songs'>" . $feature_art . "</a>";
+                                            $feature_artists .= " <a style='color:#08aa90' href='" . SERVER_ROOTPATH . $val_feature->f_artist_seo . "/artist-songs'>" . $feature_art . "</a>";
                                         }
                                     } else {
                                         $str_length = strlen($val_feature->feature_artist);
                                         $sum_len = $sum_len + $str_length;
                                         if ($sum_len > 15) {
                                             $feature_art  = substr($val_feature->feature_artist, 0, 1) . "...";
-                                            $feature_artists .= " <a style='color:#08aa90' href='" . SERVER_ROOTPATH . $val_feature->f_artist_seo . "-artist-songs'>" . $feature_art . "</a>";
+                                            $feature_artists .= " <a style='color:#08aa90' href='" . SERVER_ROOTPATH . $val_feature->f_artist_seo . "/artist-songs'>" . $feature_art . "</a>";
                                             break;
                                         } else {
                                             $feature_art  = $val_feature->feature_artist;
-                                            $feature_artists .= " <a style='color:#08aa90' href='" . SERVER_ROOTPATH . $val_feature->f_artist_seo . "-artist-songs'>" . $feature_art . "</a>,";
+                                            $feature_artists .= " <a style='color:#08aa90' href='" . SERVER_ROOTPATH . $val_feature->f_artist_seo . "/artist-songs'>" . $feature_art . "</a>,";
                                         }
                                     }
                                     $num++;
@@ -202,7 +202,7 @@
                                                                                             }
                                                                                             ?></p>
                                                 </a>
-                                                <cite class="cite-margin-top"><a style="color:#08aa90" href="<?php echo SERVER_ROOTPATH . "artist/" . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a> <?php echo $feature_artists; ?> </cite>
+                                                <cite class="cite-margin-top"><a style="color:#08aa90" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a> <?php echo $feature_artists; ?> </cite>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
                                                 <?php

@@ -1,12 +1,5 @@
 @include('common.header')
-<!-- ./Header end -->
-
-<?php
-ini_set('max_execution_time', '300');
-$mobile_view = 0;
-
-?>
-
+<!-- ./Header end --> 
 
 <!-- Middle Section -->
 <section class="middle_sec">
@@ -168,7 +161,7 @@ $mobile_view = 0;
                                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
                                                 <div class="album_cover">
                                                     <!--<img src="images/slideimg1.png">-->
-                                                    <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-album-" . $album_seo; ?>" class="text_grey"><?php
+                                                    <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/album/" . $album_seo; ?>" class="text_grey"><?php
                                                                                                                                                         if ($album_picture != "") {
                                                                                                                                                             $img_api_link = album_img_api($album_picture);
                                                                                                                                                             if ($img_api_link != '') {
@@ -205,20 +198,27 @@ $mobile_view = 0;
                                                     <?php } ?>
                                                 </div>
                                                 <div class="album_details">
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-album-" . $album_seo; ?>"><?php echo substr($album_title, 0, 50);
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/album/" . $album_seo; ?>"><?php echo substr($album_title, 0, 50);
                                                                                                                                                             if (strlen($album_title) > 50) {
                                                                                                                                                                 echo "...";
                                                                                                                                                             } ?></a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                     if (strlen($artist_name) > 30) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a></label>
-                                                    <!--<label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . '-artist-songs'; ?>" class="display_width_inner"><h4 style="margin-top:-10px;"><?php echo $artist_name; ?></h4></a></label>
+                                                    <!--<label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . '/artist-songs'; ?>" class="display_width_inner"><h4 style="margin-top:-10px;"><?php echo $artist_name; ?></h4></a></label>
                                             -->
                                                     <label class="likes" style="height:26px; margin-top:-7px; vertical-align: middle;">
                                                         <?php
-                                                        if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                                            $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'"));
+                                                        if ($user_id != "") {
+                                                            $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'";
+                                                            $counter = array();
+                                                            $counter = \App\Models\Songs::GetRawData($qry);
+                                                            if ($counter) {
+                                                            $counter = count($counter);
+                                                            } else {
+                                                            $counter = 0;
+                                                            }
                                                             if ($counter == 0) {
                                                         ?>
                                                                 <span style="overflow:visible;" id="other_dis_sub_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $album_artist_id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o heart_size heart_color"></i> </a><span class="text_red"><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
@@ -240,7 +240,7 @@ $mobile_view = 0;
                                                         } else { ?>
                                                             <span style="overflow:visible;" id="other_dis_sub_<?php echo $album_artist_id; ?>">
                                                                 <?php
-                                                                if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                if ($user_id == "") {
                                                                 ?>
                                                                     <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_size heart_color"></i></i></a>
                                                                 <?php
@@ -276,7 +276,7 @@ $mobile_view = 0;
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-3" style="padding:0px !important;">
                                                     <div class="album_cover">
                                                         <!--<img src="images/slideimg1.png">-->
-                                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-album-" . $album_seo; ?>" class="text_grey"><?php
+                                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/album/" . $album_seo; ?>" class="text_grey"><?php
                                                                                                                                                             if ($album_picture != "") {
                                                                                                                                                                 $img_api_link = album_img_api($album_picture);
                                                                                                                                                                 if ($img_api_link != '') {
@@ -316,21 +316,28 @@ $mobile_view = 0;
                                                 </div>
                                                 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-9" style="padding:0px !important;">
                                                     <div class="album_details">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-album-" . $album_seo; ?>"><?php echo substr($album_title, 0, 50);
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/album/" . $album_seo; ?>"><?php echo substr($album_title, 0, 50);
                                                                                                                                                                 if (strlen($album_title) > 50) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                         if (strlen($artist_name) > 30) {
                                                                                                                                                             echo "...";
                                                                                                                                                         } ?></a></label>
-                                                        <!--<label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . '-artist-songs'; ?>" class="display_width_inner"><h4 style="margin-top:-10px;"><?php echo $artist_name; ?></h4></a></label>
+                                                        <!--<label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . '/artist-songs'; ?>" class="display_width_inner"><h4 style="margin-top:-10px;"><?php echo $artist_name; ?></h4></a></label>
                                             -->
                                                         <div style="clear:both;"></div>
                                                         <label class="likes" style="float:left; height:26px; margin-left:0px; padding-left:0px;">
                                                             <?php
-                                                            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                                                $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'"));
+                                                            if ($user_id != "") {
+                                                                $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$album_artist_id'";
+                                                                $counter = array();
+                                                                $counter = \App\Models\Songs::GetRawData($qry);
+                                                                if ($counter) {
+                                                                $counter = count($counter);
+                                                                } else {
+                                                                $counter = 0;
+                                                                }
                                                                 if ($counter == 0) {
                                                             ?>
                                                                     <span style="overflow:visible;" id="other_dis_sub_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $album_artist_id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o heart_size heart_color"></i> </a><span class="text_red"><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
@@ -352,7 +359,7 @@ $mobile_view = 0;
                                                             } else { ?>
                                                                 <span style="overflow:visible;" id="other_dis_sub_<?php echo $album_artist_id; ?>">
                                                                     <?php
-                                                                    if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                                    if ($user_id == "") {
                                                                     ?>
                                                                         <a href="#" data-toggle="modal" data-target="#signin_form" class="text_grey"><i class="fa fa-heart-o heart_size heart_color"></i></i></a>
                                                                     <?php
@@ -440,8 +447,8 @@ $mobile_view = 0;
 </style>
 
 
+@include("common.signin_modal")
 <?php
-// include("common/signin_modal.php");
 // include_once("common/popular_review.php");
 ?>
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>

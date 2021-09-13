@@ -37,14 +37,7 @@
         }
     }
 </style>
-<?php
-$screen_chr = 15;
-$ipad_chr = 15;
-$mobile_chr  = 15;
-$screen_rev   = 15;
-$ipad_rev   = 15;
-$mobile_rev    = 15;
-?>
+ 
 <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 rev_right_position">
     <div class="recentreviewsec rev_position">
         <!-- Advertisement Right Side Start-->
@@ -303,9 +296,9 @@ $mobile_rev    = 15;
                                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 pad_zero">
                                     <span style="float:right; margin-right:8px;" class="like-group">
                                         <?php
-                                        if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-                                            // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$artist_id'"));
-                                            $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$artist_id'");
+                                        if ($user_id != "") {
+                                            // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$artist_id'"));
+                                            $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$artist_id'");
                                             if ($counter) {
                                                 $counter = count($counter);
                                             } else {
@@ -336,7 +329,7 @@ $mobile_rev    = 15;
                                             ?>
                                             <span id="other_dis_sub_popular_<?php echo $artist_id; ?>_<?php echo $p_fav; ?>">
                                                 <?php
-                                                if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                if ($user_id == "") {
                                                 ?>
                                                     <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_size heart_color"></i></a>
 
@@ -465,17 +458,17 @@ $mobile_rev    = 15;
                                     }
 
 
-                                    if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
+                                    if ($user_id != "") {
 
-                                        // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'"));
-                                        $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'");
+                                        // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'"));
+                                        $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'");
                                         if ($counter) {
                                             $counter = count($counter);
                                         } else {
                                             $counter = 0;
                                         }
                                         if ($counter == 0) {
-                                            if ($review_user_id == $_SESSION[USER_SESSION_ARRAY]['USER_ID']) {
+                                            if ($review_user_id == $user_id) {
                                     ?>
                                                 <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" title="your own review"><i class="fa fa-heart-o heart_size heart_color text_grey"></i> </a><?php echo $counter_main;
                                                                                                                                                                                                                                             } else {
@@ -503,7 +496,7 @@ $mobile_rev    = 15;
                                                 ?>
                                                 <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>">
                                                     <?php
-                                                    if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                                                    if ($user_id == "") {
                                                     ?>
                                                         <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_size heart_color text_grey"></i></i></a>
 

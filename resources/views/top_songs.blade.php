@@ -177,16 +177,16 @@ $mobile_view = 0;
 
                                             $feature_artt  = substr($val_feature['feature_artist'], 0, 50);
                                             if (strlen($val_feature['feature_artist']) > 50) {
-                                                $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH .'artist/'. strtolower($val_feature['f_artist_seo']) . "-artist-songs'>" . $feature_artt . '..' . "</a>";
+                                                $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . strtolower($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_artt . '..' . "</a>";
                                             } else {
-                                                $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_artt . "</a>";
+                                                $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_artt . "</a>";
                                             }
                                         } else {
                                             $feature_artt  = substr($val_feature['feature_artist'], 0, 50);
                                             if (strlen($val_feature['feature_artist']) > 50) {
-                                                $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_artt . '..' . "</a>,";
+                                                $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_artt . '..' . "</a>,";
                                             } else {
-                                                $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_artt . "</a>,";
+                                                $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_artt . "</a>,";
                                             }
                                         }
                                         $num++;
@@ -300,7 +300,7 @@ $mobile_view = 0;
                                                             } ?>
 
                                                         </a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH .'artist/'. $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                     if (strlen($artist_name) > 30) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a></label>
@@ -391,7 +391,7 @@ $mobile_view = 0;
 
 
 
-                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH .'write-a-review/'. $song_seo . '-write-a-review-' . $artist_seo; ?>'">Write a review</button>
+                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . Slug($song_seo) . '/write-a-review/' . $artist_seo; ?>'">Write a review</button>
                                             </div>
                                         </div>
                                     <?php } elseif ($mobile_view == 1) { ?>
@@ -443,7 +443,7 @@ $mobile_view = 0;
                                                                                                                                                                 if (strlen($song_title) > 50) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH .'artist/'. $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                         if (strlen($artist_name) > 30) {
                                                                                                                                                             echo "...";
                                                                                                                                                         } ?></a></label>
@@ -537,7 +537,7 @@ $mobile_view = 0;
                                                     </div>
 
                                                     <div class="col-sm-7 col-xs-7" style="padding-right:20px; float:right;">
-                                                        <a href="<?php echo SERVER_ROOTPATH .'write-a-review'. $song_seo . "-write-a-review-" . $artist_seo; ?>"><button>Write a review</button></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/write-a-review/" . $artist_seo; ?>"><button>Write a review</button></a>
                                                     </div>
                                                 </div>
                                             </div>

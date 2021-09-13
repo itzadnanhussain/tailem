@@ -163,22 +163,22 @@
 								$sum_len = $sum_len + $str_length;
 								if ($sum_len > 15) {
 									$feature_art  = substr($val_feature['feature_artist'], 0, 1) . "...";
-									$feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+									$feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
 									break;
 								} else {
 									$feature_art  = $val_feature['feature_artist'];
-									$feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+									$feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
 								}
 							} else {
 								$str_length = strlen($val_feature['feature_artist']);
 								$sum_len = $sum_len + $str_length;
 								if ($sum_len > 15) {
 									$feature_art  = substr($val_feature['feature_artist'], 0, 1) . "...";
-									$feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+									$feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
 									break;
 								} else {
 									$feature_art  = $val_feature['feature_artist'];
-									$feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>,";
+									$feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>,";
 								}
 							}
 							$num++;
@@ -266,7 +266,7 @@
 																																													} ?></a></label>
 
 
-											<cite style="white-space:nowrap"><a href="<?php echo SERVER_ROOTPATH . "artist/" . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 16);
+											<cite style="white-space:nowrap"><a href="<?php echo SERVER_ROOTPATH  . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 16);
 																																					if (strlen($artist_name) > 16) {
 																																						echo "..";
 																																					} ?></a><?php echo $feature_artists;
