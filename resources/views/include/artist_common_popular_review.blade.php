@@ -259,7 +259,7 @@
                         <div class="row">
                             <!--Desktop-->
                             <div class="review_screen_txt col-lg-9 col-md-8 col-sm-8 col-xs-8 pad_right">
-                                <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $screen_chr);
+                                <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $screen_chr);
                                                                                                                                                                                                                                                                     if (strlen($song_title) > $screen_chr) {
                                                                                                                                                                                                                                                                         echo "..";
                                                                                                                                                                                                                                                                     } ?></a></label><br>
@@ -267,7 +267,7 @@
                             </div>
                             <!--Ipad-->
                             <div class="review_ipad_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
-                                <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
+                                <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
                                                                                                                                                                                                                                                                     if (strlen($song_title) > $ipad_chr) {
                                                                                                                                                                                                                                                                         echo "..";
                                                                                                                                                                                                                                                                     } ?></a></label><br>
@@ -277,7 +277,7 @@
                             </div>
                             <!--Mobile-->
                             <div class="review_mobile_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
-                                <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
+                                <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
                                                                                                                                                                                                                                                                     if (strlen($song_title) > $mobile_chr) {
                                                                                                                                                                                                                                                                         echo "..";
                                                                                                                                                                                                                                                                     } ?></a></label><br>
@@ -351,7 +351,7 @@
                 </div>
                 <div class="album_detail">
                     <!--Desktop-->
-                    <p class="review_screen_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $screen_rev);
+                    <p class="review_screen_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $screen_rev);
 
                                                                                                                                                                                                                                                         if (strlen($review_title) > $screen_rev) {
                                                                                                                                                                                                                                                             echo "...";
@@ -366,7 +366,7 @@
                                                                                     } ?></cite>
                     </p>
                     <!--Ipad-->
-                    <p class="review_ipad_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $ipad_rev);
+                    <p class="review_ipad_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $ipad_rev);
 
                                                                                                                                                                                                                                                         if (strlen($review_title) > $ipad_rev) {
                                                                                                                                                                                                                                                             echo "...";
@@ -381,7 +381,7 @@
                                                                                     } ?></cite>
                     </p>
                     <!--Mobile-->
-                    <p class="review_mobile_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $mobile_rev);
+                    <p class="review_mobile_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $mobile_rev);
 
                                                                                                                                                                                                                                                         if (strlen($review_title) > $mobile_rev) {
                                                                                                                                                                                                                                                             echo "...";
@@ -396,7 +396,7 @@
                                                                                     } ?></cite>
                     </p>
 
-                    <p style="margin-bottom:16px;"><span style="white-space:normal;"><a class="review_detail darkgrey_rev" href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php
+                    <p style="margin-bottom:16px;"><span style="white-space:normal;"><a class="review_detail darkgrey_rev" href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo . "#review_" . $review_id; ?>"><?php
                                                                                                                                                                                                                                                     $detail_rev  = substr($review_detail, 0, 128);
                                                                                                                                                                                                                                                     echo wordwrap($detail_rev, 15, " ", true);
                                                                                                                                                                                                                                                     if (strlen($review_detail) > 128) {
@@ -477,7 +477,7 @@
                                                                                                                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                                                                                                                         ?>
 
-                                            <a href="detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like darkgrey_rev"> <?php if ($counter_main < 2) {
+                                            <a href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like darkgrey_rev"> <?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                     echo " Likes";
@@ -485,7 +485,7 @@
                                             <span class="darkgrey_rev" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
                                         <?php
                                     } else { ?>
-                                            <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a> <?php echo $counter_main; ?><a href="detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like darkgrey_rev"> <?php if ($counter_main < 2) {
+                                            <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a> <?php echo $counter_main; ?><a href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like darkgrey_rev"> <?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -507,7 +507,7 @@
                                             <?php
                                             }
                                             ?>
-                                            <?php echo $counter_main; ?><a href="detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like darkgrey_rev"> <?php if ($counter_main < 2) {
+                                            <?php echo $counter_main; ?><a href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like darkgrey_rev"> <?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                 echo "Like";
                                                                                                                                                                                                                                                                                             } else {
                                                                                                                                                                                                                                                                                                 echo "Likes";

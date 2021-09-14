@@ -217,7 +217,7 @@ if ($lastfm_url == "") {
                                                     $counter = 0;
                                                 }
                                                 if ($counter == 0) { ?>
-                                                    <span id="other_dis_sub_<?php echo $artist_id_db; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $artist_id_db; ?>','<?php echo $artist_seo; ?>','<?php echo $artist_id_db; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#444;" class="link-disable">
+                                                    <span id="other_dis_sub_<?php echo $artist_id_db; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $artist_id_db; ?>','<?php echo $artist_seo; ?>','<?php echo $artist_id_db; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#444;" class="link-disable">
                                                             <?php if ($counter_main < 2) {
                                                                 echo " Like";
                                                             } else {
@@ -227,7 +227,7 @@ if ($lastfm_url == "") {
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <span id="other_dis_sub_<?php echo $artist_id_db; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $artist_id_db; ?>','<?php echo $artist_seo; ?>','<?php echo $artist_id_db; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#444;" class="link-disable">
+                                                    <span id="other_dis_sub_<?php echo $artist_id_db; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $artist_id_db; ?>','<?php echo $artist_seo; ?>','<?php echo $artist_id_db; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#444;" class="link-disable">
                                                             <?php if ($counter_main < 2) {
                                                                 echo " Like";
                                                             } else {
@@ -250,7 +250,7 @@ if ($lastfm_url == "") {
                                                     <?php
                                                     }
                                                     ?>
-                                                    <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#444;" class="link-disable">
+                                                    <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#444;" class="link-disable">
                                                         <?php if ($counter_main < 2) {
                                                             echo " Like";
                                                         } else {
@@ -582,7 +582,7 @@ if ($lastfm_url == "") {
                                                 <div class="album_cover">
                                                     <!-- <img src="images/slideimg1.png">
                                                     <cite class="yellow">5.0</cite>-->
-                                                    <a href="<?php echo SERVER_ROOTPATH . 'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck">
+                                                    <a href="<?php echo SERVER_ROOTPATH .  $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck">
                                                         <?php
                                                         $pos = strpos($picture, 'http');
                                                         if ($pos === true) {
@@ -665,7 +665,7 @@ if ($lastfm_url == "") {
                                             </div>
                                             <div class="col-lg-7 col-md-7 col-sm-8 col-xs-8 pad_right">
                                                 <div class="album_details" style="width:100%;">
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . 'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></label>
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH .  $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo $song_title; ?></a></label>
                                                     <label class="author"><a href="<?php echo SERVER_ROOTPATH .  $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
                                                     <?php if ($feature_artists != "") { ?>
                                                         <p>
@@ -707,7 +707,7 @@ if ($lastfm_url == "") {
 
 
 
-                                                <a href="<?php echo SERVER_ROOTPATH . "write-a-review/".$song_seo . "-write-a-review-" . $artist_seo; ?>" style="float:right; margin-right:26px;"><button style="margin-left:0">Write a Review</button></a>
+                                                <a href="<?php echo SERVER_ROOTPATH   .$song_seo . "/write-a-review/" . $artist_seo; ?>" style="float:right; margin-right:26px;"><button style="margin-left:0">Write a Review</button></a>
 
                                             </div>
 
@@ -725,7 +725,7 @@ if ($lastfm_url == "") {
                                                 }
                                                 ?>
                                                 <div class="clear"></div>
-                                                <a href="<?php echo SERVER_ROOTPATH . "write-a-review/".$song_seo . "-write-a-review-" . $artist_seo; ?>" style="margin-top:17px; float:right;">
+                                                <a href="<?php echo SERVER_ROOTPATH   .$song_seo . "/write-a-review/" . $artist_seo; ?>" style="margin-top:17px; float:right;">
                                                     <button>Write a review</button>
                                                 </a>
                                             </div>
@@ -744,7 +744,7 @@ if ($lastfm_url == "") {
                                     -->
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding:0px !important;">
-                                                <div class="album_cover"> <a href="<?php echo SERVER_ROOTPATH . 'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck">
+                                                <div class="album_cover"> <a href="<?php echo SERVER_ROOTPATH .  $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck">
                                                         <?php
                                                         if ($picture != "") {
 
@@ -831,7 +831,7 @@ if ($lastfm_url == "") {
                                             </div>
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0px !important;">
                                                 <div class="album_details">
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . 'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></label>
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH .  $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo $song_title; ?></a></label>
                                                     <label class="author"><a href="<?php echo SERVER_ROOTPATH .  $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
                                                     <?php if ($feature_artists != "") { ?>
                                                         <p>
@@ -869,7 +869,7 @@ if ($lastfm_url == "") {
                                                 }
                                                 ?>
                                             </div>
-                                            <div class="col-sm-7 col-xs-7" style="padding-right:20px; float:right;"> <a href="<?php echo SERVER_ROOTPATH . "write-a-review/".$song_seo . "-write-a-review-" . $artist_seo; ?>">
+                                            <div class="col-sm-7 col-xs-7" style="padding-right:20px; float:right;"> <a href="<?php echo SERVER_ROOTPATH   .$song_seo . "/write-a-review/" . $artist_seo; ?>">
                                                     <button>Write a review</button>
                                                 </a> </div>
                                         </div>

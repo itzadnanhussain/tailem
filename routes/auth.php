@@ -16,9 +16,7 @@ Route::get('/sign-up',[LoginController::class,'LoadSignUpPage'])->middleware('au
 Route::post('/sign-up', [LoginController::class, 'RegisterUser'])
     ->name('sign-up.RegisterUser'); 
 
-Route::get('/sign-in', function () {
-    return view('auth.login');
-})->middleware('auth')->name('sign-up');
+Route::get('/sign-in', [LoginController::class, 'LoadSignInPage'])->middleware('auth')->name('sign-in');
 
 Route::post('/sign-in', [LoginController::class, 'LoginUser'])
     ->name('sign-in.LoginUser');

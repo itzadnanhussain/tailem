@@ -1,6 +1,6 @@
- <?php 
+ <?php
 
- 
+
 
 
 	///general setting arr new query
@@ -22,7 +22,7 @@
 	$rhyming_larics	= stripslashes(html_entity_decode($setting_arr['rhyming_larics']));
 
 
-	
+
 
 	if ($user_id != "") {
 		///old query
@@ -55,8 +55,8 @@
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
  	<meta name="google-site-verification" content="bTEn7HDhG7Kcx4pW3zDeFu-PwgLzlE1GDLc1bzj3Wbs" />
  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
- 	<title><?php echo ucwords(get_page_name()) . '| Tailem' ?></title>
- 	 
+ 	<title><?php echo (isset($title)) ? $title : 'No Title Of Page'  ?> | Tailem</title>
+ 	<meta name="csrf-token" content="{{ csrf_token() }}" />
  	@include('common.loadassets')
 
  	<?php
@@ -103,6 +103,13 @@
  			$('#loader_new').html('<img src="<?php echo SERVER_ROOTPATH; ?>images/load.gif" />');
  			$('#loader_new').show();
  		}
+ 	</script>
+ 	<script type="text/javascript">
+ 		$.ajaxSetup({
+ 			headers: {
+ 				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+ 			}
+ 		});
  	</script>
 
  </head>

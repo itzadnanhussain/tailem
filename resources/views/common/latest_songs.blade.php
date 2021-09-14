@@ -169,13 +169,13 @@
                                             if ($img_api_link != '') { ?>
                                                 <img src="<?php echo $img_api_link; ?>">
                                             <?php } else { ?>
-                                                <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                     <p title="<?php echo $song_title; ?>"><img class="img-responsive" src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $val->picture; ?>" border="0" title="<?php echo $val->picture; ?>" style="height:300px;" />
                                                 </a>
                                             <?php
                                             }
                                         } else { ?>
-                                            <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                            <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                 <p title="<?php echo $song_title; ?>"><img src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/images/no_image4.png" class="img-responsive" border="0" style="height:300px;" />
                                             </a>
                                         <?php }
@@ -187,7 +187,7 @@
                                                                                                                             } else {
                                                                                                                                 echo $all_avg;
                                                                                                                             } ?></cite>
-                                        <a style="color:#000;font-weight:400;background:0 0;color:#fff;font-size:12px;padding:12px 5px;position:absolute;right:5px;top:50px"><span class="red-text"><i><?php echo $counter; ?></i></span> Reviews</a>
+                                        <!-- <a style="color:#000;font-weight:400;background:0 0;color:#fff;font-size:12px;padding:12px 5px;position:absolute;right:5px;top:50px"><span class="red-text"><i><?php echo $counter; ?></i></span> Reviews</a> -->
                                     </div>
                                     <div class="list_bottom">
                                         <div class="row">
@@ -195,7 +195,7 @@
                                                 <?php
                                                 $length_song = strlen($song_title);
                                                 ?>
-                                                <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                     <p title="<?php echo $song_title; ?>"><?php echo substr($song_title, 0, 28);
                                                                                             if ($length_song > 28) {
                                                                                                 echo "..";

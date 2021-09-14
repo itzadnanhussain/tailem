@@ -31,11 +31,11 @@
 		</div>
 	</div>
 
-	  
+
 	<!-- ///Latest songs -->
 	@include('common.latest_songs')
-	
-	  
+
+
 	<!-- Advertisement Banner Start-->
 	<div class="container" style="padding:20px 0 20px 0;">
 		<div class="row">
@@ -51,15 +51,15 @@
 		<div class="topsongssec" style="padding-top:0;">
 			<div class="row">
 				<div class="col-lg-7 col-md-6 col-sm-6 col-xs-12">
-					<div class="listslider" id="featured-songs"> 
- 						  @include('common.featured_songs') 
+					<div class="listslider" id="featured-songs">
+						@include('common.featured_songs')
 					</div>
 				</div>
 				<div class="col-lg-5 col-md-6 col-sm-6 col-xs-12">
 					<h3>Top Songs</h3>
 					<p class="songsubhead" style="text-transform: none;">Best collections of the month</p>
-					<table class="song_list"> 
-						 @include('common.top_songs_list') 
+					<table class="song_list">
+						@include('common.top_songs_list')
 					</table>
 					<a href="top-songs"><button>
 							<div style="width:300px;margin-left:auto;margin-right:auto;">view more top songs<i class="sprite sprite-icon_music_white" style="float:right"></i></div>
@@ -67,9 +67,9 @@
 				</div>
 			</div>
 		</div>
-		   
-		  @include('common.popular_reviews_home')
-		  
+
+		@include('common.popular_reviews_home')
+
 		<!-- Advertisement Banner Start-->
 
 		<div class="container" style="padding-bottom:10px;">
@@ -198,10 +198,12 @@
 	</script>
 
 
+	@include("common.signin_modal")
 	<?php
-	//include("common/signin_modal.php");  
 	//include "common/popular_reviews_home.php"; 
 	?>
 
 	<div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 	@include('common.footer')
+
+	<div class="modal fade" id="review_modal" role="dialog"></div>

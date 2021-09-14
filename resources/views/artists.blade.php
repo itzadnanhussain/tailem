@@ -268,9 +268,9 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 														if ($artist_img != "") {
 															$img_api_linka = album_img_api($artist_img);
 															if ($img_api_linka != '') { ?>
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($img_api_linka); ?>" border="0" style="height:300px" title="<?php echo $artist_name; ?>" /></a>
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($img_api_linka); ?>" border="0" style="height:300px" title="<?php echo $artist_name; ?>" /></a>
 															<?php } else { ?>
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $artist_img; ?>" border="0" style="height:300px" title="<?php echo $artist_name; ?>" /></a>
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $artist_img; ?>" border="0" style="height:300px" title="<?php echo $artist_name; ?>" /></a>
 															<?php
 															}
 														} else
@@ -278,11 +278,11 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 
 															if ($req_artist['artist_array']['image4'] != "") {
 															?>
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" style="height:300px" border="0" /></a>
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" style="height:300px" border="0" /></a>
 															<?php
 															} else {
 															?>
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" style="height:300px" title="<?php echo $artist_name; ?>" /></a>
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" style="height:300px" title="<?php echo $artist_name; ?>" /></a>
 															<?php
 															}
 														}
@@ -297,7 +297,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 													<div class="list_bottom" style="padding-bottom:0;">
 														<div class="row">
 															<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>">
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>">
 																	<cite2 style="margin:2px;"><?php echo $artist_name; ?></cite2>
 																</a>
 															</div>
@@ -313,13 +313,13 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 																		$counter = 0;
 																	}
 																	if ($counter == 0) { ?>
-																		<span id="other_dis_<?php echo $id; ?>" class="like-group" style="float:right;"><a href="javascript:;" onClick="add_in_favourite_list('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $m; ?>')" class="like"><i class="fa fa-heart-o heart_color heart_size"></i></a><span style="color:#FFFFFF;"> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px; color:#FFFFFF;"><?php if ($counter_main < 2) {
+																		<span id="other_dis_<?php echo $id; ?>" class="like-group" style="float:right;"><a href="javascript:;" onClick="add_in_favourite_list('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $m; ?>')" class="like"><i class="fa fa-heart-o heart_color heart_size"></i></a><span style="color:#FFFFFF;"> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px; color:#FFFFFF;"><?php if ($counter_main < 2) {
 																																																																																																																																																																echo "Like";
 																																																																																																																																																															} else {
 																																																																																																																																																																echo "Likes";
 																																																																																																																																																															} ?></a></span>
 																		<span class="like-group" style="float:right;" id="myStyle_<?php echo $id; ?>"></span> <?php } else { ?>
-																		<span id="other_dis_<?php echo $id; ?>" class="like-group" style="float:right;"><a href="javascript:;" onClick="add_in_favourite_list('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $m; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a><span style="color:#FFFFFF;"> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px; color:#FFFFFF;"><?php if ($counter_main < 2) {
+																		<span id="other_dis_<?php echo $id; ?>" class="like-group" style="float:right;"><a href="javascript:;" onClick="add_in_favourite_list('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $m; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a><span style="color:#FFFFFF;"> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px; color:#FFFFFF;"><?php if ($counter_main < 2) {
 																																																																																																																																																																				echo "Like";
 																																																																																																																																																																			} else {
 																																																																																																																																																																				echo "Likes";
@@ -340,7 +340,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 																		<?php
 																																							}
 																		?>
-																		<span style="color:#FFFFFF;"> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px; color:#FFFFFF;"><?php if ($counter_main < 2) {
+																		<span style="color:#FFFFFF;"> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px; color:#FFFFFF;"><?php if ($counter_main < 2) {
 																																																																																												echo "Like";
 																																																																																											} else {
 																																																																																												echo "Likes";
@@ -575,9 +575,9 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 
 														$img_api_linkaa = album_img_api($artist_img);
 														if ($img_api_linkaa != '') { ?>
-															<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($img_api_linkaa); ?>" border="0" width="120" /></a>
+															<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($img_api_linkaa); ?>" border="0" width="120" /></a>
 														<?php } else { ?>
-															<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $artist_img; ?>" border="0" width="120" /></a>
+															<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $artist_img; ?>" border="0" width="120" /></a>
 														<?php
 														}
 													} else
@@ -585,11 +585,11 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 
 														if ($req_artist['artist_array']['image4'] != "") {
 														?>
-															<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="120" /></a>
+															<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="120" /></a>
 														<?php
 														} else {
 														?>
-															<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" /></a>
+															<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" /></a>
 													<?php
 														}
 													}
@@ -605,7 +605,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 																																		} ?></cite><?php } else { ?> <cite style="background-color:#dd554e;">0.0</cite> <?php } ?>
 												</div>
 												<div class="album_details" style="margin-top:0;">
-													<label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 24);
+													<label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 24);
 																																					if (strlen($artist_name) > 24) {
 																																						echo "...";
 																																					} ?></a></label>
@@ -622,7 +622,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
                                                             }
 															if ($counter == 0) {
 														?>
-																<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+																<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
 																																																																																																																																															echo " Like";
 																																																																																																																																														} else {
 																																																																																																																																															echo " Likes";
@@ -632,7 +632,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 															<?php
 															} else {
 															?>
-																<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+																<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
 																																																																																																																																																		echo " Like";
 																																																																																																																																																	} else {
 																																																																																																																																																		echo " Likes";
@@ -654,7 +654,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 																<?php
 																}
 																?>
-																<span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+																<span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
 																																																																															echo " Like";
 																																																																														} else {
 																																																																															echo " Likes";
@@ -702,9 +702,9 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 														if ($artist_img != "") {
 															$img_api_linkaa = album_img_api($artist_img);
 															if ($img_api_linkaa != '') { ?>
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($img_api_linkaa); ?>" border="0" width="120" /></a>
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($img_api_linkaa); ?>" border="0" width="120" /></a>
 															<?php } else { ?>
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $artist_img; ?>" border="0" width="120" /></a>
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $artist_img; ?>" border="0" width="120" /></a>
 															<?php
 															}
 														} else
@@ -712,11 +712,11 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 
 															if ($req_artist['artist_array']['image4'] != "") {
 															?>
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="120" /></a>
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="120" /></a>
 															<?php
 															} else {
 															?>
-																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" /></a>
+																<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" /></a>
 														<?php
 															}
 														}
@@ -735,7 +735,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 												</div>
 												<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:0px !important;">
 													<div class="album_details">
-														<label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 24);
+														<label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 24);
 																																						if (strlen($artist_name) > 24) {
 																																							echo "...";
 																																						} ?></a></label>
@@ -752,7 +752,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 																}
 																if ($counter == 0) {
 															?>
-																	<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+																	<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
 																																																																																																																																																echo " Like";
 																																																																																																																																															} else {
 																																																																																																																																																echo " Likes";
@@ -761,7 +761,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 																<?php
 																} else {
 																?>
-																	<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+																	<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
 																																																																																																																																																			echo " Like";
 																																																																																																																																																		} else {
 																																																																																																																																																			echo " Likes";
@@ -771,7 +771,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 																}
 															} else {
 																?>
-																<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a><span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+																<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a><span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
 																																																																																																																																															echo " Like";
 																																																																																																																																														} else {
 																																																																																																																																															echo " Likes";

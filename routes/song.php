@@ -13,14 +13,18 @@ Route::get('/add-playlist',[SongsController::class, 'GetAddPlayList'])
 Route::get('/insert-playlist',[SongsController::class, 'InsertPlayList']) 
 ->name('insert-playlist.InsertPlayList');
 
+ 
 
-///songs detail
-Route::get('/song-detail/{slug}',[SongsController::class , 'GetSongDetail']); 
+// song_like/detail
+// RewriteRule ^(.*)-reviews-(.*)-sort-(.*)-(.*)$ song_like/detail?song_seo=$1&artist_seo=$2&sort=$3&page=$4 [PT]
+// RewriteRule ^(.*)-reviews-(.*)-sort-(.*)$ song_like/detail?song_seo=$1&artist_seo=$2&sort=$3 [PT]
+// RewriteRule ^(.*)-reviews-(.*)-rating-(.*)$ song_like/detail?song_seo=$1&artist_seo=$2&rate=$3 [PT]
+// RewriteRule ^(.*)-reviews-(.*)$ song_like/detail?song_seo=$1&artist_seo=$2 [PT]
 
-// RewriteRule ^(.*)-reviews-(.*)-sort-(.*)-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&sort=$3&page=$4 [PT]
-// RewriteRule ^(.*)-reviews-(.*)-sort-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&sort=$3 [PT]
-// RewriteRule ^(.*)-reviews-(.*)-rating-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&rate=$3 [PT]
-// RewriteRule ^(.*)-reviews-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2 [PT]
+Route::get('/{song_seo}/reviews/{artist_seo}/',[SongsController::class , 'GetSongDetail']); 
+Route::get('/{song_seo}/reviews/{artist_seo}/rating/{value?}',[SongsController::class , 'GetSongDetail']); 
+Route::get('/{song_seo}/reviews/{artist_seo}/sort/{value?}',[SongsController::class , 'GetSongDetail']); 
+
 
 
 ///latest-songs

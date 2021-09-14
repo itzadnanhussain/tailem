@@ -239,7 +239,7 @@
                                             </div>
                                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck"> <?php
                                                                                                                                                         if ($picture != "") {
                                                                                                                                                             $img_api_linka = album_img_api($picture);
 
@@ -289,7 +289,7 @@
                                                 </div>
                                                 <div class="album_details">
 
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                             <?php echo substr($song_title, 0, 45);
                                                             if (strlen($song_title) > 45) {
                                                                 echo "...";
@@ -315,7 +315,7 @@
                                                             if ($counter == 0) {
                                                         ?>
                                                                 <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $album_artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
-                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -323,7 +323,7 @@
                                                                 <span id="myStyle_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"></span>
                                                             <?php } else { ?>
                                                                 <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $album_artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a> <span class="text_red"><?php echo $counter_main; ?></span>
-                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -347,7 +347,7 @@
                                                                 }
                                                                 ?>
                                                                 <span class="text_red"><?php echo $counter_main; ?></span>
-                                                                <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                 echo " Like";
                                                                                                                                                                                                                                                                             } else {
                                                                                                                                                                                                                                                                                 echo " Likes";
@@ -403,7 +403,7 @@
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:2px !important;">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 album-outer-coontainer" style="padding:0px !important;">
                                                     <div class="album_cover">
-                                                        <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
+                                                        <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck"> <?php
                                                                                                                                                             if ($picture != "") {
                                                                                                                                                                 $img_api_linka = album_img_api($picture);
                                                                                                                                                                 if ($img_api_linka != '') {
@@ -436,7 +436,7 @@
                                                 </div>
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 album-detail-container" style="padding:0px !important;">
                                                     <div class="album_details">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 50);
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 50);
                                                                                                                                                                 if (strlen($song_title) > 50) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
@@ -455,7 +455,7 @@
                                                                 if ($counter == 0) {
                                                             ?>
                                                                     <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $album_artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -463,7 +463,7 @@
                                                                     <span id="myStyle_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"></span>
                                                                 <?php } else { ?>
                                                                     <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $album_artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a> <span class="text_red"><?php echo $counter_main; ?></span>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -486,7 +486,7 @@
                                                                     }
                                                                     ?>
                                                                     <span class="text_red"><?php echo $counter_main; ?></span>
-                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -621,3 +621,5 @@
 <div class="modal fade" id="create_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 
 @include('common.footer')
+
+<div class="modal fade" id="review_modal" role="dialog"></div>

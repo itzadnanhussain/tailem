@@ -421,7 +421,7 @@ function add_in_favourite_list_review_screen_new(a, b, c, d) {
 function add_in_favourite_list_sub(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_sub.php?prod_id=" +
+            "process/favourite_like_sub?prod_id=" +
             a +
             "&artist_seo=" +
             b +
@@ -511,7 +511,7 @@ function add_in_favourite_user_profile_mainlist_discussion_new(a, b, c) {
 function add_in_favourite_list_review_song(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_review_song.php?prod_id=" +
+            "process/favourite_like_review_song?prod_id=" +
             a +
             "&user_name=" +
             b +
@@ -559,7 +559,7 @@ function add_in_favourite_list_review_song_second(a, b, c) {
 function add_in_favourite_list_review_song_detail(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_review_song_detail.php?prod_id=" +
+            "process/favourite_like_review_song_like/detail?prod_id=" +
             a +
             "&user_name=" +
             b +
@@ -683,7 +683,7 @@ function newpass_validation_Response(a, b) {
 function add_in_favourite_list_sub_artist_new(a, b, c, d) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_sub_artist2.php?prod_id=" +
+            "process/favourite_like_sub_artist2?prod_id=" +
             a +
             "&sr_no=" +
             b +

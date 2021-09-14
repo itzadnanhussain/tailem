@@ -27,7 +27,6 @@
 			if (empty($reviews_list_arr)) {
 				$reviews_list = "select b.album_seo,b.album_picture,a.artist_seo,a.artist_seo,a.artist_name,s.song_seo,s.picture,s.updated_by_itunes, s.song_title,r.* from tbl_reviews r,tbl_artists a,tbl_songs s,  tbl_artist_album b where r.song_id = s.id AND r.artist_id = a.id AND r.album_id = b.id AND r.is_popular = 1 AND s.song_status = 1 order by r.review_id limit 6";
 				$reviews_list_arr	=	App\Models\Songs::GetRawData($reviews_list, array());
-				 
 			}
 
 
@@ -40,7 +39,7 @@
 
 				foreach ($reviews_list_arr as $val) {
 					$val = (array) $val;
-					 
+
 					$sr_no++;
 					$g++;
 					$r_fav++;
@@ -79,7 +78,7 @@
 					$select_qry = "select user_name from tbl_users where user_id='" . $review_user_id . "' ";
 					//$select_ar  = $db->get_row($select_qry,ARRAY_A);
 					$select_ar  = App\Models\Songs::GetRawData($select_qry, array());
-					 
+
 					$select_ar  = (array) $select_ar[0];
 
 					$user_name = stripslashes(html_entity_decode($select_ar['user_name']));
@@ -103,13 +102,11 @@
 						$rate_arr = (array) $rate_arr[0];
 						$sum_rate = $rate_arr['sum_rate'];
 						$counter = $rate_arr['counter'];
-					}
-					else
-					{
+					} else {
 						$sum_rate = 0;
 						$counter = 0;
 						$all_avg = 0;
-					} 
+					}
 
 
 					if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
@@ -226,7 +223,7 @@
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
 						<div class="pop_sec">
 							<div class="sec_cover topsongssecs">
-								<a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo $image_get; ?>"></a>
+								<a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo $image_get; ?>"></a>
 								<div class="bottom_sec" style="bottom:150px !important; background:none !important; padding:0 10px !important;">
 									<div class="row">
 										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
@@ -234,10 +231,10 @@
 										</div>
 										<div class="col-lg-3 col-md-3 col-sm-3 col-xs-4 txtalnright">
 											<?php if ($all_avg != 0) { ?><span class="score" style="background-color:<?php echo $color_pick; ?>"><?php if ($all_avg < 10) {
-																																				echo number_format($all_avg, 1);
-																																			} else {
-																																				echo $all_avg;
-																																			} ?></span><?php } else { ?> <span class="score_big mt-10">5.0</span><?php } ?>
+																																						echo number_format($all_avg, 1);
+																																					} else {
+																																						echo $all_avg;
+																																					} ?></span><?php } else { ?> <span class="score_big mt-10">5.0</span><?php } ?>
 										</div>
 									</div>
 								</div>
@@ -245,37 +242,45 @@
 									<div class="row">
 										<div class="col-lg-8 col-md-7 col-sm-7 col-xs-7 pad_right">
 											<!--Desktop-->
-											<label class="review_screen_txt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
-																																						if (strlen($song_title) > 25) {
-																																							echo "..";
-																																						} ?></a></label>
+											<label class="review_screen_txt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
+																																								if (strlen($song_title) > 25) {
+																																									echo "..";
+																																								} ?></a></label>
 											<!--Tablet-->
-											<label class="review_tablet_txt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
-																																						if (strlen($song_title) > 25) {
-																																							echo "..";
-																																						} ?></a></label>
+											<label class="review_tablet_txt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
+																																								if (strlen($song_title) > 25) {
+																																									echo "..";
+																																								} ?></a></label>
 											<!--Ipad-->
-											<label class="review_ipad_txt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 22);
-																																						if (strlen($song_title) > 22) {
-																																							echo "..";
-																																						} ?></a></label>
+											<label class="review_ipad_txt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 22);
+																																								if (strlen($song_title) > 22) {
+																																									echo "..";
+																																								} ?></a></label>
 											<!--Mobile-->
-											<label class="review_mobile_txt" style="white-space:nowrap;"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 18);
-																																													if (strlen($song_title) > 18) {
-																																														echo "..";
-																																													} ?></a></label>
+											<label class="review_mobile_txt" style="white-space:nowrap;"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 18);
+																																															if (strlen($song_title) > 18) {
+																																																echo "..";
+																																															} ?></a></label>
 
 
 											<cite style="white-space:nowrap"><a href="<?php echo SERVER_ROOTPATH  . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 16);
-																																					if (strlen($artist_name) > 16) {
-																																						echo "..";
-																																					} ?></a><?php echo $feature_artists;
-											$sum_len = 0; ?></cite>
+																																						if (strlen($artist_name) > 16) {
+																																							echo "..";
+																																						} ?></a><?php echo $feature_artists;
+																																							$sum_len = 0; ?></cite>
 										</div>
 										<div class="col-lg-4 col-md-5 col-sm-5 col-xs-5 pad_left">
 											<?php if ($user_id != "") {
 												// $like_counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  like_type = 'artist' AND like_id = '$artist_id'"));
 												$like_counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  like_type = 'artist' AND like_id = '$artist_id'");
+												if($like_counter)
+												{
+													$like_counter = count($like_counter);
+												}
+												else
+												{
+													$like_counter = 0;
+												}
 												if ($like_counter > 0) {
 													$class = "like-group liked";
 												} else {
@@ -285,10 +290,10 @@
 											?>
 													<span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="reviews_artist_popular_likes('<?php echo $artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
 														<a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
-																																																																								echo " Like";
-																																																																							} else {
-																																																																								echo " Likes";
-																																																																							} ?></a>
+																																																																									echo " Like";
+																																																																								} else {
+																																																																									echo " Likes";
+																																																																								} ?></a>
 													</span>
 													<span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"></span>
 												<?php } else {
@@ -296,10 +301,10 @@
 													<span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>">
 														<a href="javascript:;" onClick="reviews_artist_popular_likes('<?php echo $artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a>
 														<a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
-																																																																								echo " Like";
-																																																																							} else {
-																																																																								echo " Likes";
-																																																																							} ?></a></span>
+																																																																									echo " Like";
+																																																																								} else {
+																																																																									echo " Likes";
+																																																																								} ?></a></span>
 													<span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"></span>
 												<?php
 												}
@@ -320,10 +325,10 @@
 													?>
 
 													<a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
-																																																																												echo " Like";
-																																																																											} else {
-																																																																												echo " Likes";
-																																																																											} ?></a></span>
+																																																																													echo " Like";
+																																																																												} else {
+																																																																													echo " Likes";
+																																																																												} ?></a></span>
 											<?php
 											}
 											?>
@@ -337,39 +342,39 @@
 								<!--Screen View-->
 								<label class="review_screen_txt"><span class="review_title white_space" style="cursor:pointer; font-size:sans-serif !important;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 28);
 
-																																																																												if (strlen($review_title) > 31) {
-																																																																													echo "...";
-																																																																												}
+																																																																																if (strlen($review_title) > 31) {
+																																																																																	echo "...";
+																																																																																}
 
 
-																																																																												?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
+																																																																																?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
 								<!--Tablet View-->
 								<label class="review_tablet_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 24);
 
-																																																																							if (strlen($review_title) > 24) {
-																																																																								echo "...";
-																																																																							}
+																																																																											if (strlen($review_title) > 24) {
+																																																																												echo "...";
+																																																																											}
 
 
-																																																																							?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
+																																																																											?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
 								<!--Ipad View-->
 								<label class="review_ipad_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 29);
 
-																																																																						if (strlen($review_title) > 29) {
-																																																																							echo "...";
-																																																																						}
+																																																																										if (strlen($review_title) > 29) {
+																																																																											echo "...";
+																																																																										}
 
 
-																																																																						?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
+																																																																										?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
 								<!--Mobile View-->
 								<label class="review_mobile_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 20);
 
-																																																																							if (strlen($review_title) > 20) {
-																																																																								echo "...";
-																																																																							}
+																																																																											if (strlen($review_title) > 20) {
+																																																																												echo "...";
+																																																																											}
 
 
-																																																																							?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
+																																																																											?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
 
 
 								<p><span class="review_detail" style="white-space:normal; cursor:pointer; width:100%;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'">
@@ -383,11 +388,11 @@
 								<div class="row" style=" margin-right:0px;">
 									<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-overflow: ellipsis; white-space: nowrap; overflow:hidden;">
 										<span class="usrname"><i class="sprite-new sprite-new-icon_user"></i><a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>"><?php
-																																																			echo substr($user_name, 0, 15);
-																																																			if (strlen($user_name) > 15) {
-																																																				echo "..";
-																																																			}
-																																																			?></a></span>
+																																																				echo substr($user_name, 0, 15);
+																																																				if (strlen($user_name) > 15) {
+																																																					echo "..";
+																																																				}
+																																																				?></a></span>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-2 col-xs-2" style="padding-left:0px !important; text-overflow: ellipsis; white-space: nowrap; text-align:center;">
 										<span class="usrdetails review_screen_txt" style="color:#000000;">
@@ -398,19 +403,22 @@
 										<?php
 										// $counter_main = mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_type = 'review_song' AND like_id = '$db_review_id'"));
 										$counter_main = \App\Models\Songs::GetRawData("select id from tbl_likes where like_type = 'review_song' AND like_id = '$db_review_id'");
-										if($counter_main)
-										{
+										if ($counter_main) {
 											$counter_main = count($counter_main);
-
-										}
-										else
-										{
+										} else {
 											$counter_main = 0;
 										}
 										// $counter_main =  5;
 										if ($user_id != "") {
 											// $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'"));
 											$counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'");
+											if($counter)
+											{
+												$counter = count($counter);
+											}else
+											{
+												$counter = 0;
+											}
 											if ($counter > 0) {
 												$class = "like-group liked";
 											} else {
@@ -427,21 +435,21 @@
 														<?php
 													}
 														?>
-														<a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
-																																																																																						echo " Like";
-																																																																																					} else {
-																																																																																						echo " Likes";
-																																																																																					} ?></a></span>
+														<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+																																																																																							echo " Like";
+																																																																																						} else {
+																																																																																							echo " Likes";
+																																																																																						} ?></a></span>
 														<span class="like-group liked" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
 													<?php
 												} else {
 													?>
 														<span class="like-group liked" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#c63937;"></i></a>
-															<a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
-																																																																																							echo " Like";
-																																																																																						} else {
-																																																																																							echo " Likes";
-																																																																																						} ?></a></span>
+															<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+																																																																																								echo " Like";
+																																																																																							} else {
+																																																																																								echo " Likes";
+																																																																																							} ?></a></span>
 														<span class="like-group liked" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
 													<?php
 												}
@@ -460,12 +468,12 @@
 														<?php
 														}
 														?>
- 
-														<a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
-																																																																																						echo " Like";
-																																																																																					} else {
-																																																																																						echo " Likes";
-																																																																																					} ?></a></span>
+
+														<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+																																																																																							echo " Like";
+																																																																																						} else {
+																																																																																							echo " Likes";
+																																																																																						} ?></a></span>
 													<span id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
 												<?php
 											}

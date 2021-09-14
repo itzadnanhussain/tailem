@@ -120,7 +120,7 @@ class ProcessController extends Controller
 
                 $errorstr .= "Please sign in first.";
                 $response = array("code" => 'warning', 'message' => $errorstr);
-                    return response()->json($response);
+                return response()->json($response);
             }
 
             $query_check  = "select playlist_id from tbl_user_playlist_songs where  user_id  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND song_id  = '" . $song_id . "'";
@@ -191,10 +191,8 @@ class ProcessController extends Controller
 
                 if ($db_count_playlist != 0 && $size_ofplaylist_arr == 0) {
                     $show_message  = "Song has been successfully removed from playlist.";
-                   
                 } else {
                     $show_message  = "Song successfully updated to playlist.";
-                   
                 }
 
 
@@ -241,6 +239,7 @@ class ProcessController extends Controller
     {
         if (isset($_POST)) {
             extract($_POST);
+
             $user_id = session()->get('user_id');
 
             $rating            =   trim($_REQUEST['api-readonly-test']);
@@ -273,6 +272,7 @@ class ProcessController extends Controller
             if ($edit_id == "") {
                 if ($song_id != "") {
                     $count = \App\Models\Songs::GetRawData("select review_id from tbl_reviews where song_id = $song_id AND review_user_id = '" . $user_id . "'");
+
                     if ($count) {
                         $count = 1;
                     } else {
@@ -350,11 +350,11 @@ class ProcessController extends Controller
                 $update_qry = "update tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "' where  	review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
                 \App\Models\Songs::GetRawData($update_qry);
                 \App\Models\Songs::GetRawData("update tbl_songs set rate_song = '$all_avg',review_count = $rev_counter where id = '$song_id'");
-                $slug = SERVER_ROOTPATH . $song_seo_name . "-reviews-" . $artist_seo_name . ".html-SEPARATOR-" . $_REQUEST['num'];
+                $slug = SERVER_ROOTPATH . $song_seo_name . "/reviews/" . $artist_seo_name . ".html-SEPARATOR-" . $_REQUEST['num'];
                 $response = array("code" => 'success', 'url' => $slug);
                 return response()->json($response);
 
-                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $song_seo_name . "-reviews-" . $artist_seo_name . ".html-SEPARATOR-" . $_REQUEST['num'];
+                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $song_seo_name . "/reviews/" . $artist_seo_name . ".html-SEPARATOR-" . $_REQUEST['num'];
                 // exit;
             } else {
 
@@ -404,11 +404,11 @@ class ProcessController extends Controller
                 \App\Models\Songs::GetRawData("update tbl_songs set rate_song = '$all_avg', review_count = review_count + 1 where id = '$song_id'");
 
                 // unset($_SESSION['store']);
-                $slug = SERVER_ROOTPATH . $song_seo_name . "-reviews-" . $artist_seo_name;
+                $slug = SERVER_ROOTPATH . $song_seo_name . "/reviews/" . $artist_seo_name;
                 $response = array("code" => 'success', 'url' => $slug);
                 return response()->json($response);
 
-                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $song_seo_name . "-reviews-" . $artist_seo_name;
+                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $song_seo_name . "/reviews/" . $artist_seo_name;
                 // exit;
             }
         }
@@ -421,16 +421,228 @@ class ProcessController extends Controller
         $data['artist_seo'] = $_GET['artist'];
         $data['criteria'] = $_GET['critaria'];
         $data['user_id'] = session()->get('user_id');
-       
+        $data['mobile_view'] = 0;
+
 
         ///row_artist
         $row_artist = array();
-        $row_artist = \App\Models\Songs::GetRawData("select * from tbl_artists where (artist_seo='".$data['artist_seo']."' and artist_description!='') || id='".$data['artist_seo']."'");
-        if($row_artist)
-        {
+        $row_artist = \App\Models\Songs::GetRawData("select * from tbl_artists where (artist_seo='" . $data['artist_seo'] . "' and artist_description!='') || id='" . $data['artist_seo'] . "'");
+        if ($row_artist) {
             $data['row_artist'] = (array)$row_artist[0];
         }
 
+        // echo '<pre>';
+        // print_r($data);
+        // echo '</pre>';
+        // die;
+
         return view('include.detail', $data);
+    }
+
+
+    ///ReviewsArtistPopularLikes
+    public function ReviewsArtistPopularLikes()
+    {
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['artist_seo'] = $_GET['artist_seo'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.reviews_artist_popular_likes', $data);
+    }
+
+
+    ///FavouriteLikeSubArtist2
+    public function FavouriteLikeSubArtist2()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['artist_seo'] = $_GET['artist_seo'];
+        $data['k'] = $_GET['k'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like_sub_artist2', $data);
+    }
+
+
+    ///FavouriteLikeSubArtistPopularLatest
+    public function FavouriteLikeSubArtistPopularLatest()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['artist_seo'] = $_GET['artist_seo']; 
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like_sub_artist_popular_latest', $data);
+    }
+
+    ///FavouriteLikeSubArtistPopular
+    public function FavouriteLikeSubArtistPopular()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['artist_seo'] = $_GET['artist_seo']; 
+        $data['user_id'] = session()->get('user_id'); 
+        return view('include.favourite_like_sub_artist_popular', $data);
+    }
+
+
+    ///FavouriteLikeReview
+    public function FavouriteLikeReview()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['artist_seo'] = $_GET['artist_seo'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like_review', $data);
+    }
+   
+   
+    ///FavouriteLikeReviewSong
+    public function FavouriteLikeReviewSong()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['user_name'] = $_GET['user_name'];
+        $data['r_fav'] = $_GET['r_fav'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like_review_song', $data);
+    }
+
+
+    ///likeArtistRecentReviews
+    public function likeArtistRecentReviews()
+    { 
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['artist_seo'] = $_GET['artist_seo'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.like_artist_recent_reviews', $data);
+    }
+
+
+    ///FavouriteLikeSub
+    public function FavouriteLikeSub()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['artist_seo'] = $_GET['artist_seo'];
+        $data['k'] = $_GET['k'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like_sub', $data);
+    }
+
+    ///DetailReview
+    public function DetailReview()
+    {
+
+        $data = array();
+        $data['user_seo'] = $_GET['user'];
+        $data['rev_id'] = $_GET['review_id'];
+        $data['critaria'] = $_GET['critaria'];
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+
+        return view('include.detail_review', $data);
+    }
+
+
+    ///Discussion
+    public function Discussion()
+    {
+        if (isset($_POST)) {
+
+
+            $errorstr = "";
+            $case = 1;
+            $song_id        =      trim($_REQUEST['song_id']);
+            $artist_id        =    trim($_REQUEST['artist_id']);
+            $album_id        =     trim($_REQUEST['album_id']);
+
+            $detail        =       trim($_REQUEST['detail']);
+
+            $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
+
+
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                echo $errorstr .= "Please sign in first";
+                $case = 0;
+                exit;
+            }
+
+            if ($song_id != "") {
+                $qry   = "select comment_id from tbl_comments where comment_review_id = $song_id AND comment_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'";
+                $count = array();
+                $count = \App\Models\Songs::GetRawData($qry);
+                if ($count) {
+                    $count = count($count);
+                } else {
+                    $count = 0;
+                }
+            }
+
+
+            if ($song_id == "") {
+                $errorstr .= "Invalid song.\n";
+                $case = 0;
+            }
+
+
+
+
+
+            if ($detail == "") {
+                $errorstr .= "Unfortunately, you have not entered your message.";
+                $case = 0;
+            }
+
+
+            if ($case == 1) {
+
+                $update_qry = "insert into tbl_comments set comment_details = '" . $detail . "', comment_artist_id = '" . $artist_id . "', comment_album_id  = '" . $album_id . "', comment_review_id = '" . $song_id . "', 	comment_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "', comment_post_date = '" . time() . "', comment_status = '1', comment_ip = '" . $_SERVER['REMOTE_ADDR'] . "'";
+
+                \App\Models\Songs::GetRawData($update_qry);
+                echo 'done';
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+
+
+    ///DetailCMS
+    public function DetailCMS()
+    {
+        $data = array();
+        $data['seo_url'] = $_GET['seo_url'];
+        $data['mobile_view'] = 0;
+        $get_page_content_qry = "SELECT * FROM tbl_pages WHERE page_seo_name = '" . $data['seo_url'] . "'";
+        $get_page_content = \App\Models\Songs::GetRawData($get_page_content_qry);
+
+        if (!$get_page_content) { 
+            redirect('/');
+  
+        }
+        else
+        {
+            $data['get_page_content'] = (array)$get_page_content[0];
+        }
+
+        return view('include.detail_cms', $data);
     }
 }

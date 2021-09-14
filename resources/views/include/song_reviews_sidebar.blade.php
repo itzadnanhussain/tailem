@@ -38,7 +38,7 @@
     }
 </style>
 
- 
+<?php error_reporting(0); ?>
 
 <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 rev_right_position">
     <div class="recentreviewsec rev_position">
@@ -49,6 +49,10 @@
         <!-- Advertisement Right Side End-->
         <h3 class="headingmedium">Recent Reviews</h3>
         <?php $popular_review_array = popular_review();
+        // echo '<pre>';
+        // print_r($popular_review_array);
+        // echo '</pre>';
+        // die;
 
         if ($popular_review_array) {
             $g = 0;
@@ -99,6 +103,7 @@
                 $select_qry = "select user_name from tbl_users where user_id='" . $review_user_id . "' ";
                 // $select_ar  = $db->get_row($select_qry, ARRAY_A);
                 $select_ar = \App\Models\Songs::GetRawData($select_qry);
+
                 $select_ar = (array)$select_ar[0];
                 $user_name = stripslashes(html_entity_decode($select_ar['user_name']));
                 $user_name = wordwrap($user_name, 100, " ", true);
@@ -236,9 +241,9 @@
                             if ($img_api_link != '') {
                         ?>
 
-                                <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                             <?php } else { ?>
-                                <a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                             <?php
                             }
                         } else
@@ -258,28 +263,28 @@
                             <div class="row">
                                 <!--Desktop-->
                                 <div class="review_screen_txt col-lg-9 col-md-8 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif;"><?php echo substr($song_title, 0, $screen_chr);
-                                                                                                                                                                                                                                                    if (strlen($song_title) > $screen_chr) {
-                                                                                                                                                                                                                                                        echo "..";
-                                                                                                                                                                                                                                                    } ?></a></label><br>
+                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif;"><?php echo substr($song_title, 0, $screen_chr);
+                                                                                                                                                                                                                                    if (strlen($song_title) > $screen_chr) {
+                                                                                                                                                                                                                                        echo "..";
+                                                                                                                                                                                                                                    } ?></a></label><br>
                                     <label class="font_wgt mrgin_top"><?php echo $featured_screen; ?></label>
                                 </div>
                                 <!--Ipad-->
                                 <div class="review_ipad_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
-                                                                                                                                                                                                                                                                        if (strlen($song_title) > $ipad_chr) {
-                                                                                                                                                                                                                                                                            echo "..";
-                                                                                                                                                                                                                                                                        } ?></a></label><br>
+                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
+                                                                                                                                                                                                                                                        if (strlen($song_title) > $ipad_chr) {
+                                                                                                                                                                                                                                                            echo "..";
+                                                                                                                                                                                                                                                        } ?></a></label><br>
 
                                     <label class="font_wgt mrgin_top"><?php echo $featured_ipad; ?></label>
 
                                 </div>
                                 <!--Mobile-->
                                 <div class="review_mobile_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . "song-detail/" . $song_seo . "-reviews-" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
-                                                                                                                                                                                                                                                                        if (strlen($song_title) > $mobile_chr) {
-                                                                                                                                                                                                                                                                            echo "..";
-                                                                                                                                                                                                                                                                        } ?></a></label><br>
+                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
+                                                                                                                                                                                                                                                        if (strlen($song_title) > $mobile_chr) {
+                                                                                                                                                                                                                                                            echo "..";
+                                                                                                                                                                                                                                                        } ?></a></label><br>
                                     <label class="font_wgt mrgin_top"><?php echo $featured_mobile; ?></label>
                                 </div>
 
@@ -466,8 +471,14 @@
                                     if ($user_id != "") {
 
                                         // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'"));
-                                        $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'");
-
+                                        $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'";
+                                        $counter = array();
+                                        $counter = \App\Models\Songs::GetRawData($qry);
+                                        if ($counter) {
+                                            $counter = count($counter);
+                                        } else {
+                                            $counter = 0;
+                                        }
                                         if ($counter == 0) {
                                             if ($review_user_id == $user_id) {
                                     ?>
@@ -478,11 +489,11 @@
                                                                                                                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                                                                                                                                 ?>
 
-                                                    <a href="detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo "Likes";
-                                                                                                                                                                                                                                                                                    } ?></a></span>
+                                                    <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
+                                                                                                                                                                                                                                                                                                                        echo " Like";
+                                                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                                                        echo "Likes";
+                                                                                                                                                                                                                                                                                                                    } ?></a></span>
 
                                                     <span class="darkgrey_rev" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
 
@@ -490,11 +501,11 @@
                                             } else {
                                                 ?>
                                                     <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px;color:#D73B3B;"></i></a> <?php echo $counter_main; ?>
-                                                        <a href="detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                            echo " Like";
-                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                            echo "Likes";
-                                                                                                                                                                                                                                                                                        } ?></a></span>
+                                                        <a href="<?php echo SERVER_ROOTPATH; ?> process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
+                                                                                                                                                                                                                                                                                                                                echo " Like";
+                                                                                                                                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                                                                                                                                echo "Likes";
+                                                                                                                                                                                                                                                                                                                            } ?></a></span>
                                                     <span class="darkgrey_rev" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
                                                 <?php
                                             }
@@ -514,11 +525,11 @@
                                                     }
                                                     ?>
                                                     <?php echo $counter_main; ?>
-                                                    <a href="detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo "Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo "Likes";
-                                                                                                                                                                                                                                                                                    } ?></a></span>
+                                                    <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
+                                                                                                                                                                                                                                                                                                                        echo "Like";
+                                                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                                                        echo "Likes";
+                                                                                                                                                                                                                                                                                                                    } ?></a></span>
 
                                                 <span class="darkgrey_rev" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
 

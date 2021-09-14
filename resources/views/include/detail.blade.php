@@ -1,5 +1,5 @@
 <?php
-if ($row_artist) {
+if (isset($row_artist) && !empty($row_artist)) {
 	$artist_id_db 			= stripslashes(html_entity_decode($row_artist['id']));
 	$artist_seo 			= stripslashes(html_entity_decode($row_artist['artist_seo']));
 	$db_artist_name 			= stripslashes(html_entity_decode($row_artist['artist_name']));
@@ -51,7 +51,7 @@ if ($row_artist) {
 	<div class="modal-content" style="border-radius:0px;">
 		<div class="modal-header" style="padding:5px;">
 			<button type="button" class="close" data-dismiss="modal" onclick="close_likes_popup();" aria-label="Close"><span aria-hidden="true"><img src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png"></span></button>
-			<h4 style="width:90%;" class="modal-title text_blck">Who likes <a style="color:#d73b3b;" href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"> <?php echo $db_artist_name; ?></a>?</h4>
+			<h4 style="width:90%;" class="modal-title text_blck">Who likes <a style="color:#d73b3b;" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"> <?php echo $db_artist_name; ?></a>?</h4>
 		</div>
 		<div class="modal-body" style="padding:5px; overflow-x:hidden; overflow-y:auto; height:auto; max-height:300px;">
 			<ul class="songlistings">

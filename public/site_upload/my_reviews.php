@@ -494,7 +494,7 @@ a.under_line:hover {
 											if($counter==0)
 											{
 												?>
-												  <span style="overflow:visible;" id="other_dis_sub_<?php echo $sr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id;?>','<?php echo $sr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+												  <span style="overflow:visible;" id="other_dis_sub_<?php echo $sr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id;?>','<?php echo $sr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                   <span style="overflow:visible;" id="myStyle_sub_<?php echo $sr_no;?>_<?php echo $artist_id;?>"></span>
 												  
 												<?php
@@ -502,7 +502,7 @@ a.under_line:hover {
 											else
 											{
 												?>
-												<span style="overflow:visible;" id="other_dis_sub_<?php echo $sr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id;?>','<?php echo $sr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+												<span style="overflow:visible;" id="other_dis_sub_<?php echo $sr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id;?>','<?php echo $sr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
 											   <span style="overflow:visible;" id="myStyle_sub_<?php echo $sr_no;?>_<?php echo $artist_id;?>"></span>
 												<?php
 											}
@@ -525,7 +525,7 @@ a.under_line:hover {
 										<?php
 									  }
 									  ?> 
-                                       <span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                       <span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                              <span style="overflow:visible;" id="myStyle_sub_<?php echo $sr_no;?>_<?php echo $artist_id;?>"></span>
 												
 												
@@ -607,7 +607,7 @@ a.under_line:hover {
 											if($counter==0)
 											{ 
 												?>
-												<span style="overflow:visible;" id="other_dis_sub_<?php echo $srr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id;?>','<?php echo $srr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+												<span style="overflow:visible;" id="other_dis_sub_<?php echo $srr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id;?>','<?php echo $srr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                   <span style="overflow:visible;" id="myStyle_sub_<?php echo $srr_no;?>_<?php echo $artist_id;?>"></span>
 												  
 												<?php
@@ -615,7 +615,7 @@ a.under_line:hover {
 											else
 											{
 												?>
-												<span style="overflow:visible;" id="other_dis_sub_<?php echo $srr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id;?>','<?php echo $srr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+												<span style="overflow:visible;" id="other_dis_sub_<?php echo $srr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id;?>','<?php echo $srr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
 											   <span style="overflow:visible;" id="myStyle_sub_<?php echo $srr_no;?>_<?php echo $artist_id;?>"></span>
 												<?php
 											}
@@ -638,7 +638,7 @@ a.under_line:hover {
 										<?php
 									  }
 									  ?> 
-                                       <span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                       <span><?php echo $counter_main;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                              <span style="overflow:visible;" id="myStyle_sub_<?php echo $srr_no;?>_<?php echo $artist_id;?>"></span>
 												
 												
@@ -789,10 +789,10 @@ a.under_line:hover {
 														  ?>
                                                           </span>
 														  
-                                                          <a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                                          <a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                           <span  id="myStyle_sub_<?php echo $review_id;?>"></span>
                                                      <?php }else{?>
-														<span id="other_dis_sub_<?php echo $review_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $review_id;?>','<?php echo $user_name;?>','<?php echo $k;?>')" class="like" > <i class="fa fa-heart heart_color" style="font-size:20px;"></i></a> <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+														<span id="other_dis_sub_<?php echo $review_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $review_id;?>','<?php echo $user_name;?>','<?php echo $k;?>')" class="like" > <i class="fa fa-heart heart_color" style="font-size:20px;"></i></a> <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                         <span  id="myStyle_sub_<?php echo $review_id;?>"></span>
 										<?php }
 												}else{?>
@@ -811,7 +811,7 @@ a.under_line:hover {
 										<?php
 									  }
 									  ?> 
-                                      <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                      <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                  <span  id="myStyle_sub_<?php echo $review_id;?>"></span>
                                           <?php } ?>
                                     </p>
@@ -982,10 +982,10 @@ a.under_line:hover {
 														  ?>
                                                           </span>
 														  
-                                                          <a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                                          <a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                           <span  id="myStyle_sub_<?php echo $review_id;?>_<?php echo $tm;?>"></span>
                                                      <?php }else{?>
-														<span id="other_dis_sub_<?php echo $review_id;?>_<?php echo $tm;?>"><a href="javascript:;" onClick="add_in_favourite_list_review_screen('<?php echo $review_id;?>','<?php echo $user_name;?>','<?php echo $k;?>','<?php echo $tm;?>')" class="like" > <i class="fa fa-heart heart_color" style="font-size:24px;"></i></a> <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+														<span id="other_dis_sub_<?php echo $review_id;?>_<?php echo $tm;?>"><a href="javascript:;" onClick="add_in_favourite_list_review_screen('<?php echo $review_id;?>','<?php echo $user_name;?>','<?php echo $k;?>','<?php echo $tm;?>')" class="like" > <i class="fa fa-heart heart_color" style="font-size:24px;"></i></a> <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                         <span  id="myStyle_sub_<?php echo $review_id;?>_<?php echo $tm;?>"></span>
 										<?php }
 												}else{
@@ -1006,7 +1006,7 @@ a.under_line:hover {
 										<?php
 									  }
 									  ?> 
-                                      <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                      <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                  <span  id="myStyle_sub_<?php echo $review_id;?>_<?php echo $tm;?>"></span>
                                           <?php } ?>
                                      </p>
@@ -1121,7 +1121,7 @@ a.under_line:hover {
 											if($counter==0)
 											{
 												?>
-												  <span style="overflow:visible;" id="other_dis_sub_mob_<?php echo $sr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_mob('<?php echo $artist_id;?>','<?php echo $sr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main2;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main2<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+												  <span style="overflow:visible;" id="other_dis_sub_mob_<?php echo $sr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_mob('<?php echo $artist_id;?>','<?php echo $sr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main2;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main2<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                   <span style="overflow:visible;" id="myStyle_sub_mob_<?php echo $sr_no;?>_<?php echo $artist_id;?>"></span>
 												  
 												<?php
@@ -1129,7 +1129,7 @@ a.under_line:hover {
 											else
 											{
 												?>
-												<span style="overflow:visible;" id="other_dis_sub_mob_<?php echo $sr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_mob('<?php echo $artist_id;?>','<?php echo $sr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main2;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main2<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+												<span style="overflow:visible;" id="other_dis_sub_mob_<?php echo $sr_no;?>_<?php echo $artist_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_mob('<?php echo $artist_id;?>','<?php echo $sr_no;?>','<?php echo $artist_seo;?>','<?php echo $k;?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main2;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main2<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
 											   <span style="overflow:visible;" id="myStyle_sub_mob_<?php echo $sr_no;?>_<?php echo $artist_id;?>"></span>
 												<?php
 											}
@@ -1152,7 +1152,7 @@ a.under_line:hover {
 										<?php
 									  }
 									  ?> 
-                                       <span><?php echo $counter_main2;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail.php?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main2<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                       <span><?php echo $counter_main2;?></span><a href="<?php echo SERVER_ROOTPATH;?>like/detail?artist=<?php echo $artist_seo;?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main2<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                              <span style="overflow:visible;" id="myStyle_sub_mob_<?php echo $sr_no;?>_<?php echo $artist_id;?>"></span>
 												
 												
@@ -1275,14 +1275,14 @@ a.under_line:hover {
 														  ?>
                                                           </span>
 														  
-                                                          <a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                                          <a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                           <span  id="myStyle_sub_mob_<?php echo $review_id;?>"></span>
                                                      <?php }else{?>
-														<span id="other_dis_sub_mob_<?php echo $review_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_review_mob('<?php echo $review_id;?>','<?php echo $user_name;?>','<?php echo $k;?>')" class="like" > <i class="fa fa-heart heart_color" style="font-size:20px;"></i></a> <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+														<span id="other_dis_sub_mob_<?php echo $review_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_review_mob('<?php echo $review_id;?>','<?php echo $user_name;?>','<?php echo $k;?>')" class="like" > <i class="fa fa-heart heart_color" style="font-size:20px;"></i></a> <span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;" ><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                         <span  id="myStyle_sub_mob_<?php echo $review_id;?>"></span>
 										<?php }
 												}else{?>
-                                                     <span id="other_dis_sub_mob_<?php echo $review_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_review_mob('<?php echo $review_id;?>','<?php echo $user_name;?>','<?php echo $k;?>')" class="text_grey"> <i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>detail_review.php?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
+                                                     <span id="other_dis_sub_mob_<?php echo $review_id;?>"><a href="javascript:;" onClick="add_in_favourite_list_review_mob('<?php echo $review_id;?>','<?php echo $user_name;?>','<?php echo $k;?>')" class="text_grey"> <i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><span class="text_red"><?php echo $counter_main_rev;?></span><a href="<?php echo SERVER_ROOTPATH;?>process/detail_review?user=<?php echo urlencode($user_name);?>&review_id=<?php echo $review_id;?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k;?>" data-title=""  class="like link-disable" style="color:#444;"><?php if($counter_main_rev<2){ echo " Like";} else {  echo " Likes"; }?></a></span>
                                                  <span  id="myStyle_sub_mob_<?php echo $review_id;?>"></span>
                                           <?php } ?>
                                     

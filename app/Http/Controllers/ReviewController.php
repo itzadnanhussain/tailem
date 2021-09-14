@@ -49,7 +49,12 @@ class ReviewController extends Controller
          } else {
              return redirect('/');
          }
+
+
+         ///load view
          $data['currentFile'] = 'song_local_detail';
+         $title = str_replace('-',' ',($artist_seo .' | '.  $song_seo));
+         $data['title'] = ucwords($title);
          return view('song_local_detail', $data);
      }
 }

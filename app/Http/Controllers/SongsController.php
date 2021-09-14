@@ -32,7 +32,6 @@ class SongsController extends Controller
         $data['mobile_rev'] = 15;
 
         ///common header
-        $data['currentFile'] = get_page_name();
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -53,6 +52,8 @@ class SongsController extends Controller
 
 
         //page View
+        $data['title'] = "Music Reviews";
+        $data['currentFile'] = 'home';
         return view('index', $data);
     }
 
@@ -99,8 +100,10 @@ class SongsController extends Controller
 
 
         //page View
+        $data['currentFile'] = 'top-songs';
+        $data['title'] = "Top Songs";
         return view('top_songs', $data);
-    } 
+    }
 
     ///GetLatestSongs
     public function GetLatestSongs()
@@ -200,20 +203,19 @@ class SongsController extends Controller
         $song_id = $_GET['song_id'];
         $art_id = $_GET['art_id'];
         return view('insert_playlist', compact('song_id', 'art_id'));
-    } 
+    }
 
 
     ///GetSongDetail
-    public function GetSongDetail($slug)
+    public function GetSongDetail($song_seo, $artist_seo, $value = null)
     {
         $data = array();
-        $data['song_seo'] = Str::of($slug)->before('-reviews');
-        $data['artist_seo'] = Str::of($slug)->after('reviews-');
-        $data['sort'] = '';
-        $data['rate'] = '';
+        $data['song_seo'] =  $song_seo;
+        $data['artist_seo'] = $artist_seo;
+        $data['sort'] = $value;
+        $data['rate'] = $value;
 
-        ///common header
-        $data['currentFile'] = get_page_name();
+        ///common header 
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['main_search'] = 'test';
@@ -240,9 +242,9 @@ class SongsController extends Controller
             return redirect('/');
         }
 
+        $data['currentFile'] = 'song_detail';
+        $title = str_replace('-',' ',($artist_seo .' | '.  $song_seo));
+        $data['title'] = ucwords($title);
         return view('song_detail', $data);
     }
-
-
-    
 }

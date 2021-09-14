@@ -50,6 +50,7 @@ class AlbumController extends Controller
 
         //page View
         $data['currentFile'] = 'album';
+        $data['title'] = 'Top Albums';
         return view('album', $data);
     }
 
@@ -104,6 +105,7 @@ class AlbumController extends Controller
 
         //page View
         $data['currentFile'] = 'albums_page';
+       
         return view('albums_page', $data);
     }
 }

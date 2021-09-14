@@ -1,7 +1,7 @@
 @include('common.header')
 <!-- ./Header end -->
-<?php  
-error_reporting(0); 
+<?php
+error_reporting(0);
 
 
 
@@ -224,7 +224,7 @@ $img_arr3 = (array)$img_arr3[0];
 
 <script type="text/javascript">
     function sort_area(val) {
-        window.location.href = "<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-sort-" + val;
+        window.location.href = "<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/sort/" + val;
     }
 
     function show_detail_reveiw(rid, pass) {
@@ -279,9 +279,9 @@ $img_arr3 = (array)$img_arr3[0];
                 foreach ($qry_feature_arr as $val_feature) {
                     $val_feature = (array) $val_feature;
                     if ($num == $count) {
-                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs' >" . $val_feature['feature_artist'] . "</a>";
+                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs' >" . $val_feature['feature_artist'] . "</a>";
                     } else {
-                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
+                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
                     }
                     $num++;
                 }
@@ -297,7 +297,7 @@ $img_arr3 = (array)$img_arr3[0];
                             <div class="latestsongssec">
                                 <div class="list_item">
                                     <div class="album_cover" style="border-radius:0px;">
-                                        <a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
 
                                                                                                                             if ($picture != "") {
                                                                                                                                 $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
@@ -340,8 +340,8 @@ $img_arr3 = (array)$img_arr3[0];
                             </div>
                         </div>
                         <div class="col-sm-7 desc-panel">
-                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
-                            <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .'artist/'. $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
+                            <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                 <?php
                                 if ($feature_artists != "") {
                                 ?>
@@ -359,7 +359,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             $counter1 = 0;
                                         }
                                         if ($counter1 == 0) { ?>
-                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -367,7 +367,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             <span id="myStyle_sub_<?php echo $artist_id; ?>"></span>
 
                                         <?php } else { ?>
-                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -390,7 +390,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             }
                                             ?>
 
-                                            <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -463,7 +463,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 echo $data;
                             } ?>
 
-                            <a style="margin-bottom:5px; margin-top:0;" href="<?php echo SERVER_ROOTPATH .'write-a-review/'. $song_seo . "-write-a-review-" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png">Write a Review</a>
+                            <a style="margin-bottom:5px; margin-top:0;" href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png">Write a Review</a>
                             <div class="clearfix"></div>
                             <p class="buyFromPan" style="margin-bottom: 15px; font-size:13px;">Buy from:
                                 <a target="_blank" href="<?php echo $itunes_url; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $img_arr1['store_img'] ?>"></a> |
@@ -507,7 +507,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 <div class="latestsongssec artist-img-panel">
                                     <div class="list_item">
                                         <div class="album_cover" style="border-radius:0;">
-                                            <a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
                                                                                                                                 if ($picture != "") {
                                                                                                                                     $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
                                                                                                                                     $img_api_link = album_img_api($picture);
@@ -546,8 +546,8 @@ $img_arr3 = (array)$img_arr3[0];
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:5px;">
-                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
-                                <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .'artist/'. $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
+                                <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                     <?php
                                     if ($feature_artists != "") {
                                     ?>
@@ -566,7 +566,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             $counter1 = 0;
                                         }
                                         if ($counter1 == 0) { ?>
-                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span class="red-text"><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span class="red-text"><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -575,7 +575,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             <span id="myStyle_sub_<?php echo $artist_id; ?>"></span>
 
                                         <?php } else { ?>
-                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -598,7 +598,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             }
                                             ?>
 
-                                            <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -673,7 +673,7 @@ $img_arr3 = (array)$img_arr3[0];
 
                             ?>
 
-                            <a href="<?php echo SERVER_ROOTPATH .'write-a-review/'. $song_seo . "-write-a-review-" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png" style="float:left;">Write a Review</a>
+                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png" style="float:left;">Write a Review</a>
                             <div class="clearfix"></div>
                             <p class="buyFromPan" style="font-size:12px;">Buy from:
                                 <a target="_blank" href="<?php echo $itunes_url; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $img_arr1['store_img'] ?>"></a> |
@@ -779,10 +779,10 @@ $img_arr3 = (array)$img_arr3[0];
 
 
                         // if ($_REQUEST['rate'] != '') {
-                        //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "-reviewslist-" . $_REQUEST['artist_seo'] . "-rating-" . $_REQUEST['rate'];
+                        //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "-reviewslist-" . $_REQUEST['artist_seo'] . "/rating/" . $_REQUEST['rate'];
                         // } else
                         // 					if ($_REQUEST['sort'] != '') {
-                        //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "-reviews-" . $_REQUEST['artist_seo'] . "-sort-" . $_REQUEST['sort']; //your file name  (the name of this file)
+                        //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "/reviews/" . $_REQUEST['artist_seo'] . "/sort/" . $_REQUEST['sort']; //your file name  (the name of this file)
                         // } else {
                         //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "-reviewslist-" . $_REQUEST['artist_seo']; //your file name  (the name of this file)
                         // }
@@ -814,7 +814,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Excellent
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-excellent">
+                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/excellent">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $excellent_per; ?>%;  cursor:pointer; background-color:#5ebd5e;"></div>
                                         </div>
@@ -829,7 +829,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Very Good
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-verygood">
+                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/verygood">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $verygood_per; ?>%; cursor:pointer; background-color:#5ebd5e;"></div>
                                         </div>
@@ -844,7 +844,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Average
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-average">
+                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/average">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $good_per; ?>%; cursor:pointer; background-color:#e06d21;"></div>
                                         </div>
@@ -859,7 +859,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Poor
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-poor">
+                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/poor">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $poor_per; ?>%; cursor:pointer; background-color:#dd554e;"></div>
                                         </div>
@@ -874,7 +874,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Terrible
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-terrible">
+                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/terrible">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $terrible_per; ?>%; background-color:#dd554e;"></div>
                                         </div>
@@ -890,13 +890,13 @@ $img_arr3 = (array)$img_arr3[0];
                     <div class="clearfix"></div>
                     <div class="rew_list-panel" style=" <?php if ($mobile_view == 0) { ?> padding:0; <?php } ?>">
                         <?php
-                      
+
                         if ($review_list_arr) {
                             $rep = 0;
                             $k = 0;
                             $prof_counter = 0;
                             foreach ($review_list_arr as $val_review) {
-                               
+
                                 $val_review = (array)$val_review;
                                 $k++;
                                 $rep++;
@@ -1225,7 +1225,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             </p>
                                             <?php
                                             $title_db = urlencode("$song_title");
-                                            $url_db = urlencode(SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . "#review_" . $db_review_id);
+                                            $url_db = urlencode(SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . "#review_" . $db_review_id);
                                             $summary = urlencode("$db_review_detail");
                                             $image_fb = urlencode($song_pic);
                                             ?>
@@ -1266,7 +1266,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                                                                                                                                                                                                                                                                                                                                                             }
                                                                         ?>
 
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev" style="font-size:14px;"> <span class="red-text"><?php echo $counter_main; ?></span><?php if ($counter_main < 2) {
+                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev" style="font-size:14px;"> <span class="red-text"><?php echo $counter_main; ?></span><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -1277,7 +1277,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                                     <?php
                                                                 } else {
                                                                     ?>
-                                                                        <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart heart_color" style="font-size:20px"></i></a><a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev" style="font-size:14px;"> <span class="red-text"><?php echo $counter_main; ?></span><?php if ($counter_main < 2) {
+                                                                        <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart heart_color" style="font-size:20px"></i></a><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev" style="font-size:14px;"> <span class="red-text"><?php echo $counter_main; ?></span><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -1288,7 +1288,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                                 }
                                                             } else {
                                                                     ?>
-                                                                    <span class="darkgrey_rev" id="other_dis_sub_<?php echo $review_user_id; ?>"><a href="javascript:;" <?php if ($check_login_var == "") { ?>onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" <?php } ?> <?php echo $check_login_var; ?>><i class="fa fa-heart-o heart_color" style="font-size:20px"></i></a><a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev" style="font-size:14px;"> <span class="red-text"><?php echo $counter_main; ?></span><?php if ($counter_main < 2) {
+                                                                    <span class="darkgrey_rev" id="other_dis_sub_<?php echo $review_user_id; ?>"><a href="javascript:;" <?php if ($check_login_var == "") { ?>onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" <?php } ?> <?php echo $check_login_var; ?>><i class="fa fa-heart-o heart_color" style="font-size:20px"></i></a><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev" style="font-size:14px;"> <span class="red-text"><?php echo $counter_main; ?></span><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -1343,7 +1343,7 @@ $img_arr3 = (array)$img_arr3[0];
 
                                                     &nbsp;
 
-                                                    <a href="javascript: popupWindow('http://twitter.com/share?url=<?php echo $url_db; ?>&source=<?php echo  $db_review_title ; ?>&text=<?php echo substr($db_review_detail, 0, 110); ?>')"><img src="<?php echo SERVER_ROOTPATH; ?>images/tww.png" width="20"></a>
+                                                    <a href="javascript: popupWindow('http://twitter.com/share?url=<?php echo $url_db; ?>&source=<?php echo  $db_review_title; ?>&text=<?php echo substr($db_review_detail, 0, 110); ?>')"><img src="<?php echo SERVER_ROOTPATH; ?>images/tww.png" width="20"></a>
 
 
                                                     &nbsp;
@@ -1494,7 +1494,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                                 if ($counter == 0) {
                                                                     if ($review_user_id == $user_id) {
                                                             ?>
-                                                                        <span class="darkgrey_rev like-group" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart-o heart_color heart_size" style="font-size:20px;"></i></a> <a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"><?php echo $counter_main; ?> <?php if ($counter_main < 2) {
+                                                                        <span class="darkgrey_rev like-group" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart-o heart_color heart_size" style="font-size:20px;"></i></a> <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"><?php echo $counter_main; ?> <?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -1504,7 +1504,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                                     <?php
                                                                     } else {
                                                                     ?>
-                                                                        <span class="darkgrey_rev like-group" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart-o heart_color heart_size" style="font-size:20px;"></i></a> <a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"><?php echo $counter_main; ?> <?php if ($counter_main < 2) {
+                                                                        <span class="darkgrey_rev like-group" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart-o heart_color heart_size" style="font-size:20px;"></i></a> <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"><?php echo $counter_main; ?> <?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -1524,7 +1524,7 @@ $img_arr3 = (array)$img_arr3[0];
 
 
                                                                     <span class="darkgrey_rev like-group" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song_detail('<?php echo $db_review_id; ?>','<?php echo $db_user_name; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart" style="font-size:20px; color:#D73B3B;"></i></a>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"><?php echo $counter_main; ?> <?php if ($counter_main < 2) {
+                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable" style="color:#444;"><?php echo $counter_main; ?> <?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -1550,7 +1550,7 @@ $img_arr3 = (array)$img_arr3[0];
 
                                                                     <span class="red-text" style="font-size:14px;"><?php echo $counter_main; ?></span>
 
-                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev" style="font-size:14px;"><?php if ($counter_main < 2) {
+                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo  urlencode(strtolower($db_user_name)); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev" style="font-size:14px;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -1614,15 +1614,17 @@ $img_arr3 = (array)$img_arr3[0];
                         ?>
                     </div>
 
-                    <?php //if ($total_pages > $limit) { ?>
-                        <div class="page-navigation" style="border-top:none;">
-                            <ul>
-                                <?php
-                                //include("common/paging-playlist.php"); 
-                                ?>
-                            </ul>
-                        </div>
-                    <?php // } ?>
+                    <?php //if ($total_pages > $limit) { 
+                    ?>
+                    <div class="page-navigation" style="border-top:none;">
+                        <ul>
+                            <?php
+                            //include("common/paging-playlist.php"); 
+                            ?>
+                        </ul>
+                    </div>
+                    <?php // } 
+                    ?>
 
                     <div style="height: 30px"></div>
 
@@ -1630,12 +1632,12 @@ $img_arr3 = (array)$img_arr3[0];
                         Write a Review
                     </div>
                     <div class="write-rew-pan" style="width:96%; margin-left:10px;">
-                    <form action="{{url('process/write_a_review')}}" id="api-readonly" class="form-horizontal">
+                        <form action="{{url('process/write_a_review')}}" id="api-readonly" class="form-horizontal">
                             <div>
                                 <p class="starLabel">How would you rate?</p>
 
 
-                                <div class="star-panel"> 
+                                <div class="star-panel">
                                     <input id="input-21b" name="api-readonly-test" value="" type="number" class="rating" min=0 max=10 step=0.5 data-size="xs" data-stars="10">
                                     @csrf
                                     <input type="hidden" name="song_seo_name" value="<?php echo $song_seo; ?>">
@@ -1675,7 +1677,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             $page_info = (array) $page_info;
                                     ?>
 
-                                            <a href="<?php echo SERVER_ROOTPATH . "detail_cms.php?seo_url=" . $page_info['page_seo_name']; ?>" data-toggle="modal" data-target="#cms_<?php echo $kk; ?>" data-title=""><?php echo stripslashes($page_info['page_name']); ?></a>
+                                            <a href="<?php echo SERVER_ROOTPATH . "process/detail_cms?seo_url=" . $page_info['page_seo_name']; ?>" data-toggle="modal" data-target="#cms_<?php echo $kk; ?>" data-title=""><?php echo stripslashes($page_info['page_name']); ?></a>
                                             <?php
                                             if ($kk == 1) {
                                                 echo "and";
@@ -1689,13 +1691,13 @@ $img_arr3 = (array)$img_arr3[0];
                                     }
                                     ?>
                                 </p>
-                               
+
                                 <button type="submit" class="btn btn-default btn-red">Post Review</button>
                                 <!-- <input type="submit" value="Post Review" onClick="return write_a_review_validation_new();" class="btn btn-default btn-red" /> -->
 
 
                         </form>
-                         
+
                     </div>
                 </div>
                 <div style="clear: both"></div>
@@ -1819,11 +1821,28 @@ for ($u = 1; $u <= 20; $u++) {
 <?php
 //include("include/thankyou_messages.php");
 ?>
-@include("common.signin_modal") 
+@include("common.signin_modal")
 
 <div class="modal fade" id="profile_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+<div class="modal fade" id="discussion_popup" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for your post <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    Your post will appear shortly. Thank you for sharing your thoughts and we value your contributions to our site. <br /><br /><br />
 
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -1883,38 +1902,7 @@ for ($u = 1; $u <= 20; $u++) {
         })
     })
 </script>
-<script type="text/javascript">
-    function discussion_post() {
-        valu = jq('#atextarea').val();
-        jq.post(
-            JS_SERVER_PATHROOT + 'process/discussion_process.php?artist_id=<?php echo $artist_id; ?>&album_id=<?php echo $album_id; ?>&song_id=<?php echo $song_id; ?>&detail=' + valu,
 
-
-            function(html) {
-
-
-                if (html == "Please sign in first") {
-
-                    $('#signin_form').modal('show');
-
-                } else
-                if (html.search('done') != -1) {
-                    $('#atextarea').val('');
-                    $('#discussion_popup').modal('show');
-
-                } else {
-                    $('#error_popup').modal('show');
-                    $('#modal_title_error').html('Thank you');
-                    $('#modal_body_error').html(html);
-
-                }
-
-            }
-        );
-    }
-
-    song_id = <?php echo $song_id; ?>;
-</script>
 <?php
 
 
@@ -1933,7 +1921,7 @@ for ($u = 1; $u <= 20; $u++) {
 <script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/bootstrap.js"></script>
 <script src="<?php echo SERVER_ROOTPATH; ?>js/star-rating.js" type="text/javascript"></script>
 
- 
+
 <div class="modal fade" id="already_review" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
     <div class="modal-dialog" style="margin-top:10%;">
         <div class="modal-content" style="border-radius:0px;">
@@ -2035,4 +2023,36 @@ for ($u = 1; $u <= 20; $u++) {
         });
 
     })
+</script>
+
+<script type="text/javascript">
+    function discussion_post() {
+        valu = jq('#atextarea').val();
+        jq.post(
+            JS_SERVER_PATHROOT + 'process/discussion_process?artist_id=<?php echo $artist_id; ?>&album_id=<?php echo $album_id; ?>&song_id=<?php echo $song_id; ?>&detail=' + valu,
+
+
+            function(html) {
+
+
+                if (html == "Please sign in first") {
+                    $('#signin_form').modal('show');
+                } else
+                if (html.search('done') != -1) {
+                    $('#atextarea').val('');
+                    $('#discussion_popup').modal('show');
+
+
+                } else {
+                    $('#error_popup').modal('show');
+                    $('#modal_title_error').html('Thank you');
+                    $('#modal_body_error').html(html);
+
+                }
+
+            }
+        );
+    }
+
+    song_id = <?php echo $song_id; ?>;
 </script>

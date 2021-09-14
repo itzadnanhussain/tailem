@@ -1,9 +1,9 @@
 @include('common.header')
 <!-- ./Header end -->
 <?php
-  
+
 //include_once("common/signin_modal_header.php");
-error_reporting(0); 
+error_reporting(0);
 $song_list_arr = (array)$song_list_arr[0];
 $id      = $song_list_arr['id'];
 $song_id      = $song_list_arr['id'];
@@ -206,7 +206,7 @@ $img_arr3 = (array)$img_arr3[0];
 </style>
 <script type="text/javascript">
     function sort_area(val) {
-        window.location.href = "<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo ?>-reviews-<?php echo $artist_seo; ?>-sort-" + val;
+        window.location.href = "<?php echo SERVER_ROOTPATH . 'song-detail/' . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-sort-" + val;
     }
 
     function show_detail_reveiw(rid, pass) {
@@ -242,9 +242,9 @@ $img_arr3 = (array)$img_arr3[0];
                 foreach ($qry_feature_arr as $val_feature) {
                     $val_feature = (array) $val_feature;
                     if ($num == $count) {
-                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs' >" . $val_feature['feature_artist'] . "</a>";
+                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH .   $val_feature['f_artist_seo'] . "/artist-songs' >" . $val_feature['feature_artist'] . "</a>";
                     } else {
-                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH .'artist/'. $val_feature['f_artist_seo'] . "-artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
+                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH .   $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
                     }
                     $num++;
                 }
@@ -258,35 +258,35 @@ $img_arr3 = (array)$img_arr3[0];
                             <div class="latestsongssec">
                                 <div class="list_item">
                                     <div class="album_cover" style="border-radius:0px;">
-                                        <a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
-                                                                                                                            if ($picture != "") {
-                                                                                                                                $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
-                                                                                                                                $img_api_link = album_img_api($picture);
-                                                                                                                                if ($img_api_link != '') {
-                                                                                                                            ?>
+                                        <a href="<?php echo SERVER_ROOTPATH . 'song-detail/' . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                                                                                                                            if ($picture != "") {
+                                                                                                                                                $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
+                                                                                                                                                $img_api_link = album_img_api($picture);
+                                                                                                                                                if ($img_api_link != '') {
+                                                                                                                                            ?>
                                                     <img src="<?php echo $img_api_link; ?>" class="img-responsive  artist-img" style="max-height:250px;" />
                                                 <?php } else { ?>
                                                     <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" class="img-responsive  artist-img" style="max-height:250px;" />
                                                 <?php
-                                                                                                                                }
-                                                                                                                            } else
+                                                                                                                                                }
+                                                                                                                                            } else
 													 if ($song_image_fm != "") {
                                                 ?>
                                                 <img src="<?php echo $song_image_fm; ?>" class="img-responsive  artist-img" style="max-height:250px;" />
                                             <?php
-                                                                                                                            } else
+                                                                                                                                            } else
 												    if ($album_picture != "") {
-                                                                                                                                $song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
-                                                                                                                                //$song_pic = $album_picture;
+                                                                                                                                                $song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
+                                                                                                                                                //$song_pic = $album_picture;
                                             ?>
                                                 <img src="<?php echo $song_pic; ?>" class="img-responsive  artist-img" style="max-height:250px;" />
                                             <?php
-                                                                                                                            } else {
-                                                                                                                                $song_pic = SERVER_ROOTPATH . "assets/images/no_image4.png";
+                                                                                                                                            } else {
+                                                                                                                                                $song_pic = SERVER_ROOTPATH . "assets/images/no_image4.png";
                                             ?>
                                                 <img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" class="img-responsive  artist-img" style="max-height:250px;" />
                                             <?php
-                                                                                                                            }
+                                                                                                                                            }
                                             ?></a>
                                         <cite style="background-color:<?php echo $color_pick; ?>"><?php if ($all_avg == 10) {
                                                                                                         echo number_format($all_avg, 0);
@@ -298,8 +298,8 @@ $img_arr3 = (array)$img_arr3[0];
                             </div>
                         </div>
                         <div class="col-sm-7 desc-panel">
-                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
-                            <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .'artist/'. $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . 'song-detail/' . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
+                            <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .   $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                 <?php
                                 if ($feature_artists != "") {
                                 ?>
@@ -318,7 +318,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             $counter1 = 0;
                                         }
                                         if ($counter1 == 0) { ?>
-                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -326,7 +326,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             <span id="myStyle_sub_<?php echo $artist_id; ?>"></span>
 
                                         <?php } else { ?>
-                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -348,7 +348,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             <?php
                                             }
                                             ?>
-                                            <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -454,34 +454,34 @@ $img_arr3 = (array)$img_arr3[0];
                                 <div class="latestsongssec artist-img-panel">
                                     <div class="list_item">
                                         <div class="album_cover" style="border-radius:0;">
-                                            <a href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
-                                                                                                                                if ($picture != "") {
-                                                                                                                                    $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
-                                                                                                                                    $img_api_link = album_img_api($picture);
-                                                                                                                                    if ($img_api_link != '') {
-                                                                                                                                ?>
+                                            <a href="<?php echo SERVER_ROOTPATH . 'song-detail/' . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                                                                                                                                if ($picture != "") {
+                                                                                                                                                    $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
+                                                                                                                                                    $img_api_link = album_img_api($picture);
+                                                                                                                                                    if ($img_api_link != '') {
+                                                                                                                                                ?>
                                                         <img src="<?php echo $img_api_link; ?>" class="img-responsive  artist-img" />
                                                     <?php } else { ?>
                                                         <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" class="img-responsive  artist-img" />
                                                     <?php
-                                                                                                                                    }
-                                                                                                                                } else
+                                                                                                                                                    }
+                                                                                                                                                } else
 													 if ($song_image_fm != "") {
                                                     ?>
                                                     <img src="<?php echo $song_image_fm; ?>" class="img-responsive  artist-img" />
                                                 <?php
-                                                                                                                                } else
+                                                                                                                                                } else
 												    if ($album_picture != "") {
-                                                                                                                                    $song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
+                                                                                                                                                    $song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
                                                 ?>
                                                     <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" class="img-responsive  artist-img" />
                                                 <?php
-                                                                                                                                } else {
-                                                                                                                                    $song_pic = SERVER_ROOTPATH . "assets/images/no_image4.png";
+                                                                                                                                                } else {
+                                                                                                                                                    $song_pic = SERVER_ROOTPATH . "assets/images/no_image4.png";
                                                 ?>
                                                     <img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" class="img-responsive  artist-img" />
                                                 <?php
-                                                                                                                                }
+                                                                                                                                                }
                                                 ?></a>
                                             <cite style="background-color:<?php echo $color_pick; ?>"><?php if ($all_avg == 10) {
                                                                                                             echo number_format($all_avg, 0);
@@ -493,8 +493,8 @@ $img_arr3 = (array)$img_arr3[0];
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:5px;">
-                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH .'song-detail/'. $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
-                                <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .'artist/'. $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . 'song-detail/' . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
+                                <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .   $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                     <?php
                                     if ($feature_artists != "") {
                                     ?>
@@ -513,7 +513,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             $counter1 = 0;
                                         }
                                         if ($counter1 == 0) { ?>
-                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span class="red-text"><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span class="red-text"><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -522,7 +522,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             <span id="myStyle_sub_<?php echo $artist_id; ?>"></span>
 
                                         <?php } else { ?>
-                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span id="other_dis_sub_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_rev('<?php echo $artist_id; ?>','<?php echo $artist_seo; ?>')" class="like"><i class="fa fa-heart heart_color heart_size"></i></a> <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -545,7 +545,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             }
                                             ?>
 
-                                            <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
+                                            <span class="red-text"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#000; font-weight:normal;" class="link-disable"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -830,7 +830,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             $page_info = (array) $page_info;
                                     ?>
 
-                                            <a href="<?php echo SERVER_ROOTPATH . "detail_cms.php?seo_url=" . $page_info['page_seo_name']; ?>" data-toggle="modal" data-target="#cms_<?php echo $kk; ?>" data-title=""><?php echo stripslashes($page_info['page_name']); ?></a>
+                                            <a href="<?php echo SERVER_ROOTPATH . "process/detail_cms?seo_url=" . $page_info['page_seo_name']; ?>" data-toggle="modal" data-target="#cms_<?php echo $kk; ?>" data-title=""><?php echo stripslashes($page_info['page_name']); ?></a>
                                             <?php
                                             if ($kk == 1) {
                                                 echo "and";
@@ -965,9 +965,27 @@ for ($g = 1; $g <= 20; $g++) {
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="profile_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+<div class="modal fade" id="discussion_popup" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for your post <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    Your post will appear shortly. Thank you for sharing your thoughts and we value your contributions to our site. <br /><br /><br />
+
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
- 
+
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript">
     var jq = jQuery.noConflict();
@@ -1022,7 +1040,7 @@ for ($g = 1; $g <= 20; $g++) {
     function discussion_post() {
         valu = jq('#atextarea').val();
         jq.post(
-            JS_SERVER_PATHROOT + 'process/discussion_process.php?artist_id=<?php echo $artist_id; ?>&album_id=<?php echo $album_id; ?>&song_id=<?php echo $song_id; ?>&detail=' + valu,
+            JS_SERVER_PATHROOT + 'process/discussion_process?artist_id=<?php echo $artist_id; ?>&album_id=<?php echo $album_id; ?>&song_id=<?php echo $song_id; ?>&detail=' + valu,
 
 
             function(html) {
@@ -1055,8 +1073,8 @@ for ($g = 1; $g <= 20; $g++) {
 
 
 <?php
- // include("include/thankyou_messages.php");
- ?>
+// include("include/thankyou_messages.php");
+?>
 
 @include('common.footer')
 

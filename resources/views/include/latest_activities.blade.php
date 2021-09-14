@@ -94,7 +94,7 @@ if ($like_list_arr) {
                 $db_link  =  $get_info_arr['artist_seo'];
                 $date_db  =  strtotime(date($like_list_arr_inner['date']));
                 $date_db2  =  strtotime(date($like_list_arr_inner['display_date']));
-                $db_link  = SERVER_ROOTPATH . $db_link . "-artist-songs";
+                $db_link  = SERVER_ROOTPATH . $db_link . "/artist-songs";
 
                 $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist'>$user_name</a> likes <a class='user_pnl_col' href='$db_link'>$db_title</a>";
 
@@ -160,7 +160,7 @@ if ($like_list_arr) {
                 $date_db  =  strtotime(date($like_list_arr_inner['date']));
                 $date_db2  =  strtotime(date($like_list_arr_inner['display_date']));
                 $db_link  =  $db_artist_seo . "-album-" .  $get_info_arr['album_seo'];
-                $db_link  = SERVER_ROOTPATH . $db_link . "-artist-songs";
+                $db_link  = SERVER_ROOTPATH . $db_link . "/artist-songs";
                 $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist'>$user_name</a> likes <a class='user_pnl_col' href='$db_link'>$db_title</a>";
 
                 $like_date_check =  date("Y-m-d", $date_db);
