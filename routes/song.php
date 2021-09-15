@@ -15,15 +15,24 @@ Route::get('/insert-playlist',[SongsController::class, 'InsertPlayList'])
 
  
 
-// song_like/detail
-// RewriteRule ^(.*)-reviews-(.*)-sort-(.*)-(.*)$ song_like/detail?song_seo=$1&artist_seo=$2&sort=$3&page=$4 [PT]
-// RewriteRule ^(.*)-reviews-(.*)-sort-(.*)$ song_like/detail?song_seo=$1&artist_seo=$2&sort=$3 [PT]
-// RewriteRule ^(.*)-reviews-(.*)-rating-(.*)$ song_like/detail?song_seo=$1&artist_seo=$2&rate=$3 [PT]
-// RewriteRule ^(.*)-reviews-(.*)$ song_like/detail?song_seo=$1&artist_seo=$2 [PT]
+// song-detail.php
+// RewriteRule ^(.*)-reviews-(.*)-sort-(.*)-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&sort=$3&page=$4 [PT]
+// RewriteRule ^(.*)-reviews-(.*)-sort-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&sort=$3 [PT]
+Route::get('/{song_seo}/reviews/{artist_seo}/sort/{sort?}/{page?}',[SongsController::class , 'GetSongDetailBySort']); 
 
-Route::get('/{song_seo}/reviews/{artist_seo}/',[SongsController::class , 'GetSongDetail']); 
-Route::get('/{song_seo}/reviews/{artist_seo}/rating/{value?}',[SongsController::class , 'GetSongDetail']); 
-Route::get('/{song_seo}/reviews/{artist_seo}/sort/{value?}',[SongsController::class , 'GetSongDetail']); 
+// RewriteRule ^(.*)-reviews-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2 [PT]
+Route::get('/{song_seo}/reviews/{artist_seo}/',[SongsController::class , 'GetSongDetailBySort']); 
+
+// RewriteRule ^(.*)-reviews-(.*)-rating-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&rate=$3 [PT]
+Route::get('/{song_seo}/reviews/{artist_seo}/rating/{rate?}',[SongsController::class , 'GetSongDetailByRating']); 
+
+// RewriteRule ^(.*)-reviewslist-(.*)-rating-(.*)-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&rate=$3&page=$4 [PT]
+Route::get('/{song_seo}/reviewslist/{artist_seo}/rating/{rate?}/{page?}',[SongsController::class , 'GetSongDetailByRating']); 
+
+// RewriteRule ^(.*)-reviewslist-(.*)-(.*)$ song_detail.php?song_seo=$1&artist_seo=$2&page=$3 [PT]
+Route::get('/{song_seo}/reviewslist/{artist_seo}/{page?}',[SongsController::class , 'GetSongDetailReviewsList']); 
+
+
 
 
 

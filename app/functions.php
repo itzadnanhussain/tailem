@@ -302,14 +302,13 @@ if (!function_exists('addtoplaylist_icon')) {
 
 ///remove_spl_char 
 if (!function_exists('remove_spl_char')) {
-    function remove_spl_char($string){
-	
+    function remove_spl_char($string)
+    {
+
         $string = str_replace("'", '&#39;', $string); // Replaces all spaces with hyphens.
         $string = str_replace('"', '&#34;', $string);
         return utf8_encode($string);
-        
     }
-    
 }
 
 ///get_first_playlist_record 
@@ -348,6 +347,31 @@ if (!function_exists('popular_review')) {
             // $reviews_list_arr    =    $db->get_results($reviews_list, ARRAY_A);
             $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list);
         }
+        return  $reviews_list_arr;
+    }
+}
+
+
+///popular_review_artist 
+if (!function_exists('popular_review_artist')) {
+    function popular_review_artist()
+    {
+
+        $reviews_list_arr = array();
+
+
+        $reviews_list = "select b.album_seo,s.picture,s.updated_by_itunes,b.album_picture,a.artist_seo,a.artist_seo, a.artist_name,s.song_seo, s.song_title,r.* 
+					 from tbl_reviews r,tbl_artists a,tbl_songs s,  tbl_artist_album b  
+					 where 1=1 
+					 AND r.song_id = s.id
+					 AND r.artist_id = a.id
+					 AND r.album_id = b.id
+					 AND a.id = r.artist_id 
+					 AND s.song_status = 1 
+					 order by r.review_id desc
+					 limit 3
+					 ";
+        $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list);  
         return  $reviews_list_arr;
     }
 }

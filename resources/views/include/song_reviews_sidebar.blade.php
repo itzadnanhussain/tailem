@@ -362,7 +362,7 @@
                     </div>
                     <div class="album_detail">
                         <!--Desktop-->
-                        <p class="review_screen_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $screen_rev);
+                        <p class="review_screen_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $screen_rev);
 
                                                                                                                                                                                                                                                                         if (strlen($review_title) > $screen_rev) {
                                                                                                                                                                                                                                                                             echo "...";
@@ -377,7 +377,7 @@
                                                                                         } ?></cite>
                         </p>
                         <!--  Ipad-->
-                        <p class="review_ipad_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $ipad_rev);
+                        <p class="review_ipad_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $ipad_rev);
 
                                                                                                                                                                                                                                                                     if (strlen($review_title) > $ipad_rev) {
                                                                                                                                                                                                                                                                         echo "..";
@@ -392,7 +392,7 @@
                                                                                         } ?></cite>
                         </p>
                         <!--Mobile-->
-                        <p class="review_mobile_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $mobile_rev);
+                        <p class="review_mobile_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $mobile_rev);
 
                                                                                                                                                                                                                                                                         if (strlen($review_title) > $mobile_rev) {
                                                                                                                                                                                                                                                                             echo "...";
@@ -408,7 +408,7 @@
                         </p>
 
 
-                        <p style="margin-bottom:16px;"><span style=" white-space:normal;"><a class="review_detail darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>"><?php $detail_rev  = substr($review_detail, 0, 128);
+                        <p style="margin-bottom:16px;"><span style=" white-space:normal;"><a class="review_detail darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php $detail_rev  = substr($review_detail, 0, 128);
                                                                                                                                                                                                                                                                     echo wordwrap($detail_rev, 15, " ", true);
                                                                                                                                                                                                                                                                     if (strlen($review_detail) > 128) {
                                                                                                                                                                                                                                                                         echo "...";
@@ -416,7 +416,7 @@
                         <div class="row">
                             <!--Desktop-->
                             <div class="review_screen_txt col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>">
+                                <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>">
                                         <?php
                                         echo substr($user_name, 0, 12);
                                         if (strlen($user_name) > 12) {
@@ -432,7 +432,7 @@
                             </div>
                             <!--  Ipad-->
                             <div class="review_ipad_txt white_space col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>">
+                                <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>">
                                         <?php
                                         echo substr($user_name, 0, 30);
                                         if (strlen($user_name) > 30) {
@@ -443,7 +443,7 @@
                             </div>
                             <!--Mobile-->
                             <div class="review_mobile_txt col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>">
+                                <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>">
                                         <?php
                                         echo substr($user_name, 0, 16);
                                         if (strlen($user_name) > 16) {

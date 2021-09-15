@@ -132,7 +132,7 @@ if ($row_songseo) {
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0; margin-bottom:15px; margin-top:15px;">
                                     <div class="album_cover col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding:0;">
-                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "-profile-review-artist"; ?>"><img class="img-responsive" src="<?php echo $prof_image; ?>" style="max-height:76px; width:100px; margin-left:15px;"></a>
+                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "/profile-review-artist"; ?>"><img class="img-responsive" src="<?php echo $prof_image; ?>" style="max-height:76px; width:100px; margin-left:15px;"></a>
                                     </div>
                                     <div class="album_details col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0; margin-top:0;">
                                         <div class="row" style="margin-top:4px; margin-left:4px;">
@@ -142,7 +142,7 @@ if ($row_songseo) {
                                                 <?php } elseif ($mobile_view == 0) { ?>
                                                     <label class="label_class title col-lg-7 col-md-7 col-sm-7 col-xs-7">
                                                     <?php } ?>
-                                                    <a style="color:#000000; font-size:18px;" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "-profile-review-artist"; ?>"><?php echo $val['user_name']; ?></a></label>
+                                                    <a style="color:#000000; font-size:18px;" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "/profile-review-artist"; ?>"><?php echo $val['user_name']; ?></a></label>
 
 
                                                     <?php if ($mobile_view == 1) { ?>

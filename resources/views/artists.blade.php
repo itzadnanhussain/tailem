@@ -1,35 +1,28 @@
-@include('common.header')
-<!-- ./Header end -->
-
+@include("common.header")
 <?php
-ini_set('max_execution_time', '300');
-$mobile_view = 0;
+error_reporting(0);
 
-$_SESSION[search]['artist_names'] = 'test-artist';
-$_SESSION[search]['result'] = ' ';
 
-if (isset($alpha) && ($alpha == "unset")) {
-	// unset($_SESSION[search]['artist_names']);
-	// unset($_SESSION[search]['result']);
+if ($alpha == "unset") {
+	$search_artist_names = '';
+	$search_result = '';
 }
 
 
+// if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
+// 	if ($artist_name != "") {
+// 		$artist_name = mysqli_escape_string($db->dbh, $artist_name);
+// 		$search_where .= " AND (artist_name like '%$artist_name%')";
 
-if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
-	if ($artist_name != "") {
-		$artist_name = mysqli_escape_string($db->dbh, $artist_name);
-		$search_where .= " AND (artist_name like '%$artist_name%')";
-
-		$_SESSION[search]['artist_names'] = $artist_name;
-		$_SESSION[search]['result'] = $search_where;
-	} else {
-		unset($_SESSION[search]['artist_names']);
-		unset($_SESSION[search]['result']);
-	}
-}
+// 		$search_artist_names = $artist_name;
+// 		$search_result = $search_where;
+// 	} else {
+// 		$search_artist_names = '';
+// 		$search_result = '';
+// 	}
+// }
 
 ?>
-
 
 <!-- Middle Section -->
 <section class="middle_sec" style="overflow-x : hidden;">
@@ -42,7 +35,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 				<form action="<?php echo SERVER_ROOTPATH; ?>top-artists" method="post">
 					<div class="form-group">
 						<label for="search" onClick="unset_all()" style="cursor:pointer;">All</label>
-						<input type="text" class="form-control" name="artist_name" id="skills" placeholder="Search for an Artist" <?php if ($_SESSION[search]['artist_names'] != '') { ?>value="<?php echo $_SESSION[search]['artist_names']; ?>" <?php } ?> required>
+						<input type="text" class="form-control" name="artist_name" id="skills" placeholder="Search for an Artist" <?php if ($search_artist_names != '') { ?>value="<?php echo $search_artist_names; ?>" <?php } ?> required>
 						<!--<button type="submit" type="submit" name="submit_ba" id="submit_ba" class="btn">Submit</button>-->
 						<button class="btn" type="submit" value="Search" name="submit_b"><i class="sprite-new sprite-new-xsearch-icon-png-pagespeed-ic-XjnYgjYQAr"></i></button>
 					</div>
@@ -50,16 +43,10 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 			</div><!-- banner-search -->
 			<?php
 
-			if (isset($genere_seo)) { 
-				$genere_seo = strtolower($genere_seo);
-			}else
-			{
-				$genere_seo = '';
-			}
+			$genere_seo = strtolower($genere_seo);
 
 
-
-			if (isset($genere_seo) && ($genere_seo != "")) {
+			if ($genere_seo != "") {
 				$urls = "-" . $genere_seo . "-genre";
 			} else {
 				$urls = "";
@@ -67,64 +54,52 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 			?>
 			<div class="col-sm-12 alpha-panel text-center">
 				<ul class="list-inline">
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-number" <?php if ($alpha == "number") { ?>class="active" <?php } ?>>#</a></li> -
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-a" <?php if ($alpha == "a") { ?>class="active" <?php } ?>>A</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-b" <?php if ($alpha == "b") { ?>class="active" <?php } ?>>B</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-c" <?php if ($alpha == "c") { ?>class="active" <?php } ?>>C</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-d" <?php if ($alpha == "d") { ?>class="active" <?php } ?>>D</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-e" <?php if ($alpha == "e") { ?>class="active" <?php } ?>>E</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-f" <?php if ($alpha == "f") { ?>class="active" <?php } ?>>F</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-g" <?php if ($alpha == "g") { ?>class="active" <?php } ?>>G</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-h" <?php if ($alpha == "h") { ?>class="active" <?php } ?>>H</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-i" <?php if ($alpha == "i") { ?>class="active" <?php } ?>>I</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-j" <?php if ($alpha == "j") { ?>class="active" <?php } ?>>J</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-k" <?php if ($alpha == "k") { ?>class="active" <?php } ?>>K</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-l" <?php if ($alpha == "l") { ?>class="active" <?php } ?>>L</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-m" <?php if ($alpha == "m") { ?>class="active" <?php } ?>>M</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-n" <?php if ($alpha == "n") { ?>class="active" <?php } ?>>N</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-o" <?php if ($alpha == "o") { ?>class="active" <?php } ?>>O</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-p" <?php if ($alpha == "p") { ?>class="active" <?php } ?>>P</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-q" <?php if ($alpha == "q") { ?>class="active" <?php } ?>>Q</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-r" <?php if ($alpha == "r") { ?>class="active" <?php } ?>>R</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-s" <?php if ($alpha == "s") { ?>class="active" <?php } ?>>S</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-t" <?php if ($alpha == "t") { ?>class="active" <?php } ?>>T</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-u" <?php if ($alpha == "u") { ?>class="active" <?php } ?>>U</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-v" <?php if ($alpha == "v") { ?>class="active" <?php } ?>>V</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-w" <?php if ($alpha == "w") { ?>class="active" <?php } ?>>W</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-x" <?php if ($alpha == "x") { ?>class="active" <?php } ?>>X</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-y" <?php if ($alpha == "y") { ?>class="active" <?php } ?>>Y</a> </li>-
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>-z" <?php if ($alpha == "z") { ?>class="active" <?php } ?>>Z</a> </li>
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/number" <?php if ($alpha == "number") { ?>class="active" <?php } ?>>#</a></li> -
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/a" <?php if ($alpha == "a") { ?>class="active" <?php } ?>>A</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/b" <?php if ($alpha == "b") { ?>class="active" <?php } ?>>B</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/c" <?php if ($alpha == "c") { ?>class="active" <?php } ?>>C</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/d" <?php if ($alpha == "d") { ?>class="active" <?php } ?>>D</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/e" <?php if ($alpha == "e") { ?>class="active" <?php } ?>>E</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/f" <?php if ($alpha == "f") { ?>class="active" <?php } ?>>F</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/g" <?php if ($alpha == "g") { ?>class="active" <?php } ?>>G</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/h" <?php if ($alpha == "h") { ?>class="active" <?php } ?>>H</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/i" <?php if ($alpha == "i") { ?>class="active" <?php } ?>>I</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/j" <?php if ($alpha == "j") { ?>class="active" <?php } ?>>J</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/k" <?php if ($alpha == "k") { ?>class="active" <?php } ?>>K</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/l" <?php if ($alpha == "l") { ?>class="active" <?php } ?>>L</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/m" <?php if ($alpha == "m") { ?>class="active" <?php } ?>>M</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/n" <?php if ($alpha == "n") { ?>class="active" <?php } ?>>N</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/o" <?php if ($alpha == "o") { ?>class="active" <?php } ?>>O</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/p" <?php if ($alpha == "p") { ?>class="active" <?php } ?>>P</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/q" <?php if ($alpha == "q") { ?>class="active" <?php } ?>>Q</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/r" <?php if ($alpha == "r") { ?>class="active" <?php } ?>>R</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/s" <?php if ($alpha == "s") { ?>class="active" <?php } ?>>S</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/t" <?php if ($alpha == "t") { ?>class="active" <?php } ?>>T</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/u" <?php if ($alpha == "u") { ?>class="active" <?php } ?>>U</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/v" <?php if ($alpha == "v") { ?>class="active" <?php } ?>>V</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/w" <?php if ($alpha == "w") { ?>class="active" <?php } ?>>W</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/x" <?php if ($alpha == "x") { ?>class="active" <?php } ?>>X</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/y" <?php if ($alpha == "y") { ?>class="active" <?php } ?>>Y</a> </li>-
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>artist<?php echo $urls; ?>/z" <?php if ($alpha == "z") { ?>class="active" <?php } ?>>Z</a> </li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<?php
-	$cat_list_arr = array(); 
-	 
-		$cat_list = "SELECT * FROM `tbl_categories`";
-		//$cat_list="select c.cat_id, c.cat_name, c.cat_seo_name from tbl_categories c, tbl_artists a where c.status = 1 AND a.genere_cat = c.cat_id group by c.cat_name";
-		// $cat_list_arr	=	$db->get_results($cat_list, ARRAY_A);
-		$cat_list_arr = \App\Models\Songs::GetRawData($cat_list);
-		if($cat_list_arr)
-		{
-			$count  = count($cat_list_arr);
+	$cat_list_arr = array();
+	$cat_list = "SELECT * FROM `tbl_categories`";
+	$cat_list_arr = \App\Models\Songs::GetRawData($cat_list);
+	if ($cat_list_arr) {
+		$count  = count($cat_list_arr);
+	} else {
+		$count = 0;
+	}
 
-		}
-		else
-		{
-			$count = 0;
-		}
-	 
-	 
 
 	?>
 	<div class="topsonglistsec">
 		<div class="container" style="padding:0;">
 			<?php if (isset($cat_list_arr)) {
-				// echo '<pre>';
-				// print_r($cat_list_arr);
-				// echo '</pre>';
-				// die;
 				$v = 1; ?>
 				<div class="row">
 					<div class="col-sm-12 ">
@@ -171,15 +146,12 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 								<div id="owl-carousel1" class="owl-carousel">
 									<?php
 									$artist_list = "select * from tbl_artists where artist_status = 1 AND popular_artist = 1 order by rand() limit 3";
+
 									$artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
- 									echo '<pre>';
-									 print_r($artist_list_arr);
-									 echo '</pre>';
-									 die;
 									if (isset($artist_list_arr)) {
 										$m = 1;
 										foreach ($artist_list_arr as $val) {
-											$val = (array) $val;
+											$val = (array)$val;
 											$id	  		 		  = $val['id'];
 											$artist_name 		  = stripslashes(html_entity_decode($val['artist_name']));
 											$artist_seo			  = strtolower(stripslashes(html_entity_decode($val['artist_seo'])));
@@ -192,15 +164,16 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 												$req_artist  =  artist_func(urlencode("$artist_name"));
 											}
 
-											// $counter_main =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_type = 'artist' AND like_id = '$id'"));
-
+											$qry = "select id from tbl_likes where like_type = 'artist' AND like_id = '$id'";
 											$counter_main = array();
-											$counter_main = \App\Models\Songs::GetRawData("select id from tbl_likes where like_type = 'artist' AND like_id = '$id'");
+											$counter_main = \App\Models\Songs::GetRawData($qry);
 											if ($counter_main) {
 												$counter_main = count($counter_main);
 											} else {
 												$counter_main = 0;
 											}
+
+
 
 											$sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where artist_id = $id AND status = 1";
 											$rate_arr = array();
@@ -214,16 +187,23 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 												$counter = 0;
 												$all_avg = 0;
 											}
-			
-			
+
+
 											if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
 												$sum_rate = 0;
 												$counter = 0;
 												$all_avg = 0;
 											} else {
-			
+
 												$all_avg  =  $sum_rate / $counter;
 											}
+
+
+
+
+
+
+
 
 											if ($all_avg == "") {
 												$all_avg = 0;
@@ -304,9 +284,10 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 															<div class="col-lg-4 col-md-4 col-sm-5 col-xs-5" style="bottom:4px;">
 																<!--<span class="like-group" style="float:right;"><a href="#"><i class="fa fa-heart-o heart_color heart_size"></i> </a><a href="#" class="like link-disable" style="margin-left:4px;color:#fff;">1 Likes</a></span>-->
 																<?php
-																if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-																	// $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$id'"));
-																	$counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$id'");
+																if ($user_id != "") {
+																	$qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$id'";
+																	$counter = array();
+																	$counter = \App\Models\Songs::GetRawData($qry);
 																	if ($counter) {
 																		$counter = count($counter);
 																	} else {
@@ -330,7 +311,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 																																						} else { ?>
 																	<span id="other_dis_<?php echo $id; ?>" class="like-group" style="float:right;">
 																		<?php
-																																							if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+																																							if ($user_id == "") {
 																		?>
 																			<a href="#" data-toggle="modal" data-target="#signin_form" class="like"><i class="fa fa-heart-o heart_color heart_size"></i> </a>
 																		<?php
@@ -370,17 +351,18 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 						$artist_page = "artists";
 						$where_condition = "";
 
-						if (isset($genere_seo) && ($genere_seo != "")) {
+						if ($genere_seo != "") {
 							$get_cat_array = "select cat_id from tbl_categories where cat_seo_name = '$genere_seo' AND status = 1";
-							// $get_cat_array	=	$db->get_row($get_cat_array, ARRAY_A);
 							$get_cat_array = \App\Models\Songs::GetRawData($get_cat_array);
-							$cat_genere_id  = $get_cat_array['cat_id']; 
+							$get_cat_array = (array)$get_cat_array[0];
+							$cat_genere_id  = $get_cat_array['cat_id'];
+
 							$where_condition .= " AND cat_seo_name = '$genere_seo'";
 							$artist_page = "artists-genres-" . $genere_seo;
 						}
 
-						if ($_SESSION[search]['result'] != "") {
-							$where_condition .= $_SESSION[search]['result'];
+						if ($search_result != "") {
+							$where_condition .= $search_result;
 						}
 
 						if ($alpha != "" && $alpha != "unset") {
@@ -403,50 +385,42 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 						//PAGGING CODE STARTS HERE
 
 						$artist_list_arr = array();
-						 
 
 						if (empty($artist_list_arr)) {
 							if ($where_condition == '') {
 
-								// $artist_list = "select * from topArtist where 1=1  $where_condition limit 50";
-
-
-
-								$artist_list = "select a.artist_seo,a.artist_name, a.artist_img,a.updated_by_itunes, a.id, c.cat_name, c.cat_seo_name from tbl_artists a, tbl_categories c where 1=1 AND a.artist_status = 1 AND a.genere_cat = c.cat_id AND a.popular_artist =1  $where_condition limit 50";
+								$artist_list = "select * from tbl_artists where 1=1  $where_condition limit 50";
 							} else {
 								//echo "2loop";
-								if ($_SESSION[search]['result'] != '') {
+								if ($search_result != '') {
 									$orderby = "CASE 
-												   WHEN artist_name LIKE '" . $_SESSION[search]['artist_names'] . "' THEN 1 
-												   WHEN artist_name LIKE '" . $_SESSION[search]['artist_names'] . "%' THEN 2 
+												   WHEN artist_name LIKE '" . $search_artist_names . "' THEN 1 
+												   WHEN artist_name LIKE '" . $search_artist_names . "%' THEN 2 
 												   ELSE 3 
 												   END, CHAR_LENGTH(artist_name)";
 								} else {
 									$orderby = " artist_name asc";
 								}
 
-								// $artist_list = "select * from topArtistSearch where 1=1 AND $where_condition order by $orderby";
+								$artist_list = "select * from tbl_artists where 1=1  $where_condition order by $orderby";
 
-								$artist_list = "select a.artist_seo,a.artist_name, a.artist_img, a.id, c.cat_name, c.cat_seo_name from tbl_artists a, tbl_categories c where 1=1 AND a.artist_status = 1 AND a.genere_cat = c.cat_id  $where_condition order by $orderby";
+								//$artist_list = "select a.artist_seo,a.artist_name, a.artist_img, a.id, c.cat_name, c.cat_seo_name from tbl_artists a, tbl_categories c where 1=1 AND a.artist_status = 1 AND a.genere_cat = c.cat_id  $where_condition order by $orderby";
 							}
 
 							//echo $artist_list ;
-							// $artist_list_arr	=	$db->get_results($artist_list, ARRAY_A);
-							// echo '<pre>';
-							// print_r($artist_list);
-							// echo '</pre>';
-							// die;
 							$artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
 							if ($artist_list_arr) {
-                                $total_pages = count($artist_list_arr);
-                            } else {
-                                $total_pages =  0;
-                            }
-							 
-						} 
- 
-						$limit = 10; 					//how many items to show per page
- 						if ($page)
+								$total_pages = count($artist_list_arr);
+							} else {
+								$total_pages = 0;
+							}
+						}
+						$targetpage = SERVER_ROOTPATH . $artist_page; //your file name  (the name of this file)
+
+
+
+						$limit = 10;
+						if ($page)
 							$start = ($page - 1) * $limit; //first item to display on this page
 						else
 							$start = 0;					//if no page var is given, set start to 0
@@ -482,43 +456,47 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 
 								$artist_name = wordwrap($artist_name, 100, " ", true);
 
-								// $counter_main = mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_type = 'artist' AND like_id = '$id'"));
+								$qry = "select id from tbl_likes where like_type = 'artist' AND like_id = '$id'";
 								$counter_main = array();
-                                $counter_main = \App\Models\Songs::GetRawData("select id from tbl_likes where like_type = 'artist' AND like_id = '$id'");
-                                if ($counter_main) {
-                                    $counter_main = count($counter_main);
-                                } else {
-                                    $counter_main = 0;
-                                }
+								$counter_main = \App\Models\Songs::GetRawData($qry);
+								if ($counter_main) {
+									$counter_main = count($counter_main);
+								} else {
+									$counter_main = 0;
+								}
 								if ($c % 2 == 0) {
 									$bgcolor = "#FEFEE4";
 								} else {
 									$bgcolor = "#FFFFFF";
 								}
 								$sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where artist_id = $id AND status = 1";
+
+
 								$rate_arr = array();
-                                $rate_arr    =    \App\Models\Songs::GetRawData($sum_rating);
-                                if ($rate_arr) {
-                                    $rate_arr = (array) $rate_arr[0];
-                                    $sum_rate = $rate_arr['sum_rate'];
-                                    $counter = $rate_arr['counter'];
-                                } else {
-                                    $sum_rate = 0;
-                                    $counter = 0;
-                                    $all_avg = 0;
-                                }
+								$rate_arr    =    \App\Models\Songs::GetRawData($sum_rating);
+								if ($rate_arr) {
+									$rate_arr = (array) $rate_arr[0];
+									$sum_rate = $rate_arr['sum_rate'];
+									$counter = $rate_arr['counter'];
+								} else {
+									$sum_rate = 0;
+									$counter = 0;
+									$all_avg = 0;
+								}
 
 
-                                if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
-                                    $sum_rate = 0;
-                                    $counter = 0;
-                                    $all_avg = 0;
-                                } else {
+								if ($sum_rate == "" || $sum_rate == 0 || $counter == '' || $counter == 0) {
+									$sum_rate = 0;
+									$counter = 0;
+									$all_avg = 0;
+								} else {
 
-                                    $all_avg  =  $sum_rate / $counter;
-                                }
+									$all_avg  =  $sum_rate / $counter;
+								}
 
-                               
+
+
+
 
 								if ($all_avg == "") {
 									$all_avg = 0;
@@ -612,14 +590,15 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 													<label class="likes">
 														<!--<i class="fa fa-heart-o heart_color heart_size"></i> <a href="#"><span> 0 </span> Likes</a>-->
 														<?php
-														if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-															// $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$id'"));
-															$counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$id'");
-                                                            if ($counter) {
-                                                                $counter = count($counter);
-                                                            } else {
-                                                                $counter = 0;
-                                                            }
+														if ($user_id != "") {
+															$qry =  "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$id'";
+															$counter = array();
+															$counter = \App\Models\Songs::GetRawData($qry);
+															if ($counter) {
+																$counter = count($counter);
+															} else {
+																$counter = 0;
+															}
 															if ($counter == 0) {
 														?>
 																<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span> <?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
@@ -644,7 +623,7 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 															?>
 															<span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
 																<?php
-																if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+																if ($user_id == "") {
 																?>
 																	<a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i> </a>
 																<?php
@@ -742,9 +721,10 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 														<label class="likes" style="float:left; height:26px; margin-left:0px; padding-left:0px;">
 															<!--<i class="fa fa-heart-o heart_color heart_size"></i> <a href="#"><span> 0 </span> Likes</a>-->
 															<?php
-															if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
-																// $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$id'"));
-																$counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND  	like_type = 'artist' AND like_id = '$id'");
+															if ($user_id != "") {
+																$qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$id'";
+																$counter = array();
+																$counter = \App\Models\Songs::GetRawData($qry);
 																if ($counter) {
 																	$counter = count($counter);
 																} else {
@@ -807,14 +787,13 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 					<?php if ($total_pages > $limit) { ?>
 						<div class="page-navigation">
 							<ul>
-								  @include("common.paging-playlist") 
+								@include("common.paging-playlist")
 							</ul>
 						</div>
 					<?php } ?>
 				</div>
-				<?php 
-				//include "common/artists_common_review.php";
-				 ?>
+				@include ("common.artists_common_review")
+
 				<!-- Advertisement Banner Start-->
 				<div class="clear"></div>
 				<div class="container" style="padding-top:10px;">
@@ -834,10 +813,18 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 		</div>
 	</div>
 </section>
+<?php
 
+//include_once("common/popular_review.php");
 
+?>
+<!-- ./Middle Section -->
 
-
+<!-- JS includes -->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/custom.js"></script>
+<script src="js/owl.carousel.min.js"></script>-->
 <style>
 	body {
 		overflow-x: hidden;
@@ -891,11 +878,8 @@ if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
 	})
 </script>
 
+@include("common.signin_modal")
 
-<?php
-// include("common/signin_modal.php");
-// include_once("common/popular_review.php");
-?>
 <?php
 for ($u = 1; $u <= $m; $u++) {
 ?>
@@ -905,7 +889,5 @@ for ($u = 1; $u <= $m; $u++) {
 
 ?>
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
-
-
-
-@include("common.footer")
+include("common.footer")
+<div class="modal fade" id="review_modal" role="dialog"></div>

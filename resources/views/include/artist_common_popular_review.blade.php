@@ -37,6 +37,7 @@
         }
     }
 </style>
+<?php error_reporting(0); ?>
 <div class="recentreviewsec rev_position recent_style rev_right_position" style="margin-top:30px !important;">
     <h3 class="headingmedium">Recent Reviews</h3>
     <?php
@@ -408,7 +409,7 @@
                         <!--Desktop-->
                         <div class="review_screen_txt col-lg-4 col-md-4 col-sm-4 col-xs-4">
                             <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png">
-                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>" class="darkgrey_rev"><?php
+                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>" class="darkgrey_rev"><?php
                                                                                                                                                         echo substr($user_name, 0, 12);
                                                                                                                                                         if (strlen($user_name) > 12) {
                                                                                                                                                             echo "..";
@@ -425,7 +426,7 @@
                         <!--Ipad-->
                         <div class="review_ipad_txt white_space col-lg-8 col-md-8 col-sm-8 col-xs-8">
                             <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png">
-                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>" class="darkgrey_rev"><?php
+                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>" class="darkgrey_rev"><?php
                                                                                                                                                         echo substr($user_name, 0, 30);
                                                                                                                                                         if (strlen($user_name) > 30) {
                                                                                                                                                             echo "..";
@@ -436,7 +437,7 @@
                         <!--Mobile-->
                         <div class="review_mobile_txt col-lg-4 col-md-4 col-sm-6 col-xs-6">
                             <span class="usrname"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_user.png">
-                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>" class="darkgrey_rev"><?php
+                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>" class="darkgrey_rev"><?php
                                                                                                                                                         echo substr($user_name, 0, 16);
                                                                                                                                                         if (strlen($user_name) > 16) {
                                                                                                                                                             echo "..";

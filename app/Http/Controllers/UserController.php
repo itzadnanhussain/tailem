@@ -15,23 +15,23 @@ class UserController extends Controller
     public function UserWelcome($user_name)
     {
 
-       ///common header
-       $data['user_id'] = session()->get('user_id');
-       $data['mobile_view'] = 0;
-       $data['page'] = 0; 
-       $data['main_search'] = 'test';
-       if (isset($user_seo) && ($user_seo != "")) {
-           $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
-           $result_image = \App\Models\Songs::GetRawData($qry);
-           $data['user_name'] = $result_image[0]->user_name;
-           $data['user_profile'] = $result_image[0]->user_id;
-           $data['date_added_db'] = $result_image[0]->date_added;
-           $data['main_link'] = get_user_detail($data['user_name']) . "-profile-";
-       } else {
-           $data['user_name'] = session()->get('user_name');
-           $data['user_profile'] = session()->get('user_id');
-           $data['main_link'] = '';
-       }
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['page'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "-profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
 
         if (isset($user_name)) {
             $get_user_content_qry = "SELECT user_name FROM tbl_users WHERE user_name = '" . $user_name . "'";
@@ -48,24 +48,34 @@ class UserController extends Controller
 
         ///file data
         $data['get_user_content'] = $get_user_content;
-        $data['currentFile']='welcome';
+        $data['currentFile'] = 'welcome';
 
         return view('welcome', $data);
     }
 
-    //GetReviewArtistPage
-    public function GetReviewArtistPage($user_seo)
+
+    ///*************************Review Artist Page **************************** */
+    //GetReviewArtistPage_One
+    public function GetReviewArtistPage_One($user_seo, $alpha = null, $page = null)
     {
+
         $data = array();
         $data['user_seo'] = strtolower($user_seo);
-        $data['alpha'] = '';
+        $data['alpha'] = $alpha;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = '';
+        $data['album_seo'] = '';
+        $data['sr_no'] = '';
+        $data['page'] = $page;
+        $data['genere_seo'] = null;
 
 
 
         ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
-        $data['page'] = 0; 
+        $data['page'] = $page;
         $data['main_search'] = 'test';
         if (isset($user_seo) && ($user_seo != "")) {
             $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
@@ -73,7 +83,7 @@ class UserController extends Controller
             $data['user_name'] = $result_image[0]->user_name;
             $data['user_profile'] = $result_image[0]->user_id;
             $data['date_added_db'] = $result_image[0]->date_added;
-            $data['main_link'] = get_user_detail($data['user_name']) . "-profile-";
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
         } else {
             $data['user_name'] = session()->get('user_name');
             $data['user_profile'] = session()->get('user_id');
@@ -86,48 +96,35 @@ class UserController extends Controller
         $user_profile =  $data['user_profile'];
         $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
         $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
-        if($like_list_arr)
-        {
+        if ($like_list_arr) {
             $data['like_list_arr'] = (array)$like_list_arr[0];
-        }
-        else
-        {
+        } else {
             $data['like_list_arr'] = array();
-
         }
 
 
-        ///search banner
-        $data['genere_seo'] = '';
-       
+
+
 
 
         ///review_list_arr_top
         $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
         $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
-        if($review_list_arr_top)
-        {
+        if ($review_list_arr_top) {
             $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
-        }
-        else
-        {
+        } else {
             $data['review_list_arr_top'] = array();
-
         }
- 
+
         ///comment_list_arr
         $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
         $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
-        if($comment_list_arr)
-        {
+        if ($comment_list_arr) {
             $data['comment_list_arr'] = (array)$comment_list_arr[0];
-        }
-        else
-        {
+        } else {
             $data['comment_list_arr'] = array();
-
         }
- 
+
 
 
 
@@ -139,9 +136,1447 @@ class UserController extends Controller
 
 
         //loadview
-        $data['currentFile']='review_artist';
+        $data['currentFile'] = 'review_artist';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
+        $data['title'] = ucwords($title);
         return view('review_artist', $data);
     }
 
-   
+
+    //GetReviewArtistPage_Two
+    public function GetReviewArtistPage_Two($user_seo, $genere_seo, $alpha = null , $page = null)
+    {
+
+        $data = array();
+        $data['user_seo'] = strtolower($user_seo);
+        $data['alpha'] = $alpha;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = '';
+        $data['album_seo'] = '';
+        $data['sr_no'] = '';
+        $data['page'] = $page;
+        $data['genere_seo'] = $genere_seo;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['page'] = $page;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+        //loadview
+        $data['currentFile'] = 'review_artist';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
+        $data['title'] = ucwords($title);
+        return view('review_artist', $data);
+    }
+
+
+    //GetReviewArtistPage_Three
+    public function GetReviewArtistPage_Three($user_seo, $genere_seo, $page = null)
+    {
+
+        $data = array();
+        $data['user_seo'] = strtolower($user_seo);
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = '';
+        $data['album_seo'] = '';
+        $data['sr_no'] = '';
+        $data['page'] = $page;
+        $data['genere_seo'] = $genere_seo;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['page'] = $page;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+        //loadview
+        $data['currentFile'] = 'review_artist';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
+        $data['title'] = ucwords($title);
+        return view('review_artist', $data);
+    }
+
+
+
+    ///*****************************My Review Page ****************************** */
+    ///GetMyReviewsPage_One
+    public function GetMyReviewsPage_One($user_seo, $rate, $alpha = null , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = strtolower($user_seo);
+        $data['alpha'] = $alpha;
+        $data['rate'] = $rate;
+        $data['sort'] = null;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+    ///GetMyReviewsPage_Two
+    public function GetMyReviewsPage_Two($user_seo, $sort = null , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = strtolower($user_seo);
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = $sort;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Three
+    public function GetMyReviewsPage_Three($user_seo, $album_seo , $artseo , $sort = null , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = strtolower($user_seo);
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = $sort;
+        $data['artseo'] = $artseo;
+        $data['album_seo'] = $album_seo;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Four
+    public function GetMyReviewsPage_Four($user_seo, $album_seo , $artseo =null , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = strtolower($user_seo);
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = $artseo;
+        $data['album_seo'] = $album_seo;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Five
+    public function GetMyReviewsPage_Five($user_seo, $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = strtolower($user_seo);
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Six
+    public function GetMyReviewsPage_Six($artseo, $album_seo , $sort , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = null;
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = $sort;
+        $data['artseo'] = $artseo;
+        $data['album_seo'] = $album_seo;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        // $data['title'] = ucwords($title);
+        
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Seven
+    public function GetMyReviewsPage_Seven($artseo, $album_seo , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = null;
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = $artseo;
+        $data['album_seo'] = $album_seo;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        // $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Eight
+    public function GetMyReviewsPage_Eight($album_seo)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = null;
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = null;
+        $data['album_seo'] = $album_seo;
+        $data['sr_no'] = null;
+        $data['page'] = null; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        // $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Nine
+    public function GetMyReviewsPage_Nine($user_seo)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = $user_seo;
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = null; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Ten
+    public function GetMyReviewsPage_Ten($rate , $sort , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = null;
+        $data['alpha'] = null;
+        $data['rate'] = $rate;
+        $data['sort'] = $sort;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        // $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Eleven
+    public function GetMyReviewsPage_Eleven($rate , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = null;
+        $data['alpha'] = null;
+        $data['rate'] = $rate;
+        $data['sort'] = null;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        // $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Twelve
+    public function GetMyReviewsPage_Twelve($sort , $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = null;
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = $sort;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        // $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Thirteen
+    public function GetMyReviewsPage_Thirteen($page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = null;
+        $data['alpha'] = null;
+        $data['rate'] = null;
+        $data['sort'] = null;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        // $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
+
+
+    ///GetMyReviewsPage_Fourteen
+    public function GetMyReviewsPage_Fourteen($user_seo , $rate ,  $page = null)
+    {
+
+
+        $data = array();
+        $data['user_seo'] = $user_seo;
+        $data['alpha'] = null;
+        $data['rate'] = $rate;
+        $data['sort'] = null;
+        $data['artseo'] = null;
+        $data['album_seo'] = null;
+        $data['sr_no'] = null;
+        $data['page'] = $page; 
+        $data['genere_seo'] = null;
+
+
+
+        ///common header
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+        $data['main_search'] = 'test';
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "/profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+
+
+        ///page code
+        ///like_list_arr
+        $user_profile =  $data['user_profile'];
+        $like_list_qry = "select count(*) as count_likes from tbl_likes l, tbl_users u, tbl_reviews r where r.review_user_id = '" . $user_profile . "' AND u.user_id = r.review_user_id AND r.review_id = l.like_id  AND (l.like_type = 'review_song') order by l.id desc limit 1";
+        $like_list_arr = \App\Models\Songs::GetRawData($like_list_qry);
+        if ($like_list_arr) {
+            $data['like_list_arr'] = (array)$like_list_arr[0];
+        } else {
+            $data['like_list_arr'] = array();
+        }
+
+
+
+
+
+
+        ///review_list_arr_top
+        $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
+        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+        if ($review_list_arr_top) {
+            $data['review_list_arr_top'] = (array)$review_list_arr_top[0];
+        } else {
+            $data['review_list_arr_top'] = array();
+        }
+
+        ///comment_list_arr
+        $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
+        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+        if ($comment_list_arr) {
+            $data['comment_list_arr'] = (array)$comment_list_arr[0];
+        } else {
+            $data['comment_list_arr'] = array();
+        }
+
+
+
+
+
+        ///redirect
+        if (isset($user_id) && empty($user_id)) {
+            return redirect('/');
+        }
+
+
+
+        //loadview
+        $data['currentFile'] = 'my_reviews';
+        $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
+        $data['title'] = ucwords($title);
+        return view('my_reviews', $data);
+    }
 }

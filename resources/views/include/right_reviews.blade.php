@@ -88,7 +88,7 @@ $all_avg = number_format($all_avg, 1);
         Excellent
     </div>
     <div class="col-sm-6 col-xs-8 progress-panel">
-        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating-excellent">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/excellent">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $excellent_per; ?>%;  cursor:pointer; background-color:#5CB85C;"></div>
             </div>
@@ -103,7 +103,7 @@ $all_avg = number_format($all_avg, 1);
         Very Good
     </div>
     <div class="col-sm-6 col-xs-8 progress-panel">
-        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating-verygood">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/verygood">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $verygood_per; ?>%;  cursor:pointer; background-color:#5CB85C;"></div>
             </div>
@@ -118,7 +118,7 @@ $all_avg = number_format($all_avg, 1);
         Average
     </div>
     <div class="col-sm-6 col-xs-8 progress-panel">
-        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating-average">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/average">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $good_per; ?>%; cursor:pointer; background-color:#e06d21;"></div>
             </div>
@@ -133,7 +133,7 @@ $all_avg = number_format($all_avg, 1);
         Poor
     </div>
     <div class="col-sm-6 col-xs-8 progress-panel">
-        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating-poor">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/poor">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $poor_per; ?>%; cursor:pointer; background-color:#dd554e;"></div>
             </div>
@@ -148,7 +148,7 @@ $all_avg = number_format($all_avg, 1);
         Terrible
     </div>
     <div class="col-sm-6 col-xs-8 progress-panel">
-        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating-terrible">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/terrible">
             <div class="progress">
                 <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $terrible_per; ?>%; background-color:#dd554e;"></div>
             </div>

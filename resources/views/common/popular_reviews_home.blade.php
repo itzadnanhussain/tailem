@@ -340,7 +340,7 @@
 							</div>
 							<div class="album_details">
 								<!--Screen View-->
-								<label class="review_screen_txt"><span class="review_title white_space" style="cursor:pointer; font-size:sans-serif !important;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 28);
+								<label class="review_screen_txt"><span class="review_title white_space" style="cursor:pointer; font-size:sans-serif !important;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 28);
 
 																																																																																if (strlen($review_title) > 31) {
 																																																																																	echo "...";
@@ -349,7 +349,7 @@
 
 																																																																																?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
 								<!--Tablet View-->
-								<label class="review_tablet_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 24);
+								<label class="review_tablet_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 24);
 
 																																																																											if (strlen($review_title) > 24) {
 																																																																												echo "...";
@@ -358,7 +358,7 @@
 
 																																																																											?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
 								<!--Ipad View-->
-								<label class="review_ipad_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 29);
+								<label class="review_ipad_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 29);
 
 																																																																										if (strlen($review_title) > 29) {
 																																																																											echo "...";
@@ -367,7 +367,7 @@
 
 																																																																										?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
 								<!--Mobile View-->
-								<label class="review_mobile_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 20);
+								<label class="review_mobile_txt"><span class="review_title white_space revtitle_wd" style="cursor:pointer;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>'"><?php echo substr($review_title, 0, 20);
 
 																																																																											if (strlen($review_title) > 20) {
 																																																																												echo "...";
@@ -377,7 +377,7 @@
 																																																																											?></span> <cite style="background-color:<?php echo $color_picker; ?>"><?php echo $srating; ?></cite></label>
 
 
-								<p><span class="review_detail" style="white-space:normal; cursor:pointer; width:100%;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>'">
+								<p><span class="review_detail" style="white-space:normal; cursor:pointer; width:100%;" onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>'">
 										<?php
 										$rev_desc_length  = strlen(wordwrap($review_detail, 20, " ", true));
 										echo substr(wordwrap($review_detail, 22, " ", true), 0, 130);
@@ -387,7 +387,7 @@
 										?></span></p>
 								<div class="row" style=" margin-right:0px;">
 									<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6" style="text-overflow: ellipsis; white-space: nowrap; overflow:hidden;">
-										<span class="usrname"><i class="sprite-new sprite-new-icon_user"></i><a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>"><?php
+										<span class="usrname"><i class="sprite-new sprite-new-icon_user"></i><a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>"><?php
 																																																				echo substr($user_name, 0, 15);
 																																																				if (strlen($user_name) > 15) {
 																																																					echo "..";

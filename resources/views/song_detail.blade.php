@@ -1034,19 +1034,19 @@ $img_arr3 = (array)$img_arr3[0];
                                             <div class="latestsongssec" style="width:100%;">
                                                 <div class="list_item">
 
-                                                    <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "-profile-review-artist"; ?>"><img src="<?php echo $prof_image; ?>" width="100%" alt=""></a>
+                                                    <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "/profile-review-artist"; ?>"><img src="<?php echo $prof_image; ?>" width="100%" alt=""></a>
                                                     <div class="list_bottom" style="padding:2px;">
                                                         <div class="row">
                                                             <!--Desktop-->
                                                             <div class="col-lg-7 col-md-6 col-sm-6 col-xs-6 review_screen_txt" style="padding-left:20px; padding-right:2px;">
-                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "-profile-review-artist"; ?>"><cite class="revleftc" style="margin:2px; font-size:12px; color:#FFFFFF;" title="<?php echo $db_user_name; ?>"><?php echo substr($db_user_name, 0, 12);
+                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "/profile-review-artist"; ?>"><cite class="revleftc" style="margin:2px; font-size:12px; color:#FFFFFF;" title="<?php echo $db_user_name; ?>"><?php echo substr($db_user_name, 0, 12);
                                                                                                                                                                                                                                                                                     if (strlen($db_user_name) > 12) {
                                                                                                                                                                                                                                                                                         echo "..";
                                                                                                                                                                                                                                                                                     } ?></cite></a>
                                                             </div>
                                                             <!--Mobile-->
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 review_ipad_txt" style="padding-left:20px; padding-right:2px;">
-                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "-profile-review-artist"; ?>"><cite class="revleftc" style="margin:2px; font-size:12px; color:#FFFFFF;" title="<?php echo $db_user_name; ?>"><?php echo substr($db_user_name, 0, 12);
+                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "/profile-review-artist"; ?>"><cite class="revleftc" style="margin:2px; font-size:12px; color:#FFFFFF;" title="<?php echo $db_user_name; ?>"><?php echo substr($db_user_name, 0, 12);
                                                                                                                                                                                                                                                                                     if (strlen($db_user_name) > 12) {
                                                                                                                                                                                                                                                                                         echo "..";
                                                                                                                                                                                                                                                                                     } ?></cite></a>
@@ -1394,7 +1394,7 @@ $img_arr3 = (array)$img_arr3[0];
 
                                                     <div class="latestsongssec">
                                                         <div class="list_item">
-                                                            <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "-profile-review-artist"; ?>"><img src="<?php echo $prof_image; ?>" style="100%" alt="Image"></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "/profile-review-artist"; ?>"><img src="<?php echo $prof_image; ?>" style="100%" alt="Image"></a>
                                                             <div class="list_bottom" style="width:100%; height:18px; padding:0; padding-right:6px !important;">
 
                                                                 <?php
@@ -1441,7 +1441,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 ">
-                                                    <p class="review_detail red_rev"><a class="darkgrey_rev" style="font-weight:bold;" href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "-profile-review-artist"; ?>"><?php echo substr($db_user_name, 0, 11); ?></a> (<?php echo $review_list_arr_top['count_reviews']; ?> reviews)</p>
+                                                    <p class="review_detail red_rev"><a class="darkgrey_rev" style="font-weight:bold;" href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "/profile-review-artist"; ?>"><?php echo substr($db_user_name, 0, 11); ?></a> (<?php echo $review_list_arr_top['count_reviews']; ?> reviews)</p>
                                                 </div>
                                                 <div class="clearfix"></div>
                                                 <p class="review_detail darkgrey_rev" style="text-align:justify; margin:2px;">
