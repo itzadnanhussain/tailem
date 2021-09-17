@@ -20,6 +20,7 @@ require __DIR__.'/song.php';
 require __DIR__.'/artist.php';
 require __DIR__.'/review.php';
 require __DIR__.'/profile.php';
+require __DIR__.'/search.php';
 
  
 ///LoadCMS Footer Link

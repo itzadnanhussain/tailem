@@ -23,6 +23,7 @@
 				<form action="<?php echo SERVER_ROOTPATH; ?>searcher" method="POST">
 					<div class="form-group">
 						<label for="search">All</label>
+						@csrf
 						<input type="text" class="form-control" id="skills" name="search" placeholder="Search for an Artist, Album or Song" required>
 						<button name="submitbtn" value="Search" type="submit" class="btn"><i class="sprite-new sprite-new-xsearch-icon-png-pagespeed-ic-XjnYgjYQAr"></i></button>
 					</div>
@@ -206,4 +207,4 @@
 	<div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 	@include('common.footer')
 
-	<div class="modal fade" id="review_modal" role="dialog"></div>
+	

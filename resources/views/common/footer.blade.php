@@ -130,3 +130,4 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 </body>
 
 </html>
+<div class="modal fade" id="review_modal" role="dialog"></div>

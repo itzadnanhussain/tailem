@@ -665,7 +665,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                         </div>
                                         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-11 pad_zero">
                                             <div class="album_cover">
-                                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
                                                                                                                                     if ($picture != "") {
 
                                                                                                                                         $img_api_linka = album_img_api($picture);
@@ -708,7 +708,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             </div>
 
                                             <div class="album_details" style="margin-top:-3px; width:65%;">
-                                                <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                         <?php echo substr($song_title, 0, 21);
                                                         if (strlen($song_title) > 21) {
                                                             echo "..";
@@ -799,7 +799,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 pad_zero small-mobile">
                                         <div class="album_cover">
-                                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
                                                                                                                                 if ($picture != "") {
 
                                                                                                                                     $img_api_linka = album_img_api($picture);
@@ -833,7 +833,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                                                                                                 } ?></cite>
                                         </div>
                                         <div class="album_details mrg_top">
-                                            <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                            <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                     <?php echo substr($song_title, 0, 8);
                                                     if (strlen($song_title) > 8) {
                                                         echo "..";
@@ -916,11 +916,11 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                         <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 pad_zero">
                                             <div class="latestsongssec">
                                                 <div class="list_item">
-                                                    <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" width="100" border="0"></a>
+                                                    <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" width="100" border="0"></a>
                                                     <div class="list_bottom" style="padding:2px; width:100px;">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:14px; padding-right:2px;">
-                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo $user_name; ?></cite></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo $user_name; ?></cite></a>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:2px; padding-right:16px;">
 
@@ -1127,11 +1127,11 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3 ">
                                             <div class="latestsongssec">
                                                 <div class="list_item">
-                                                    <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" width="100" border="0" class="img-responsive_remove"></a>
+                                                    <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" width="100" border="0" class="img-responsive_remove"></a>
                                                     <div class="list_bottom" style="padding:2px; width:100px;">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:14px; padding-right:2px;">
-                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo substr($user_name, 0, 9);
+                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo substr($user_name, 0, 9);
                                                                                                                                                                                                                         if (strlen($user_name) > 9) {
                                                                                                                                                                                                                             echo "..";
                                                                                                                                                                                                                         } ?></cite></a>
@@ -1363,7 +1363,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad_zero">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
                                                                                                                                         if ($picture != "") {
 
                                                                                                                                             $img_api_linka = album_img_api($picture);
@@ -1400,7 +1400,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             </div>
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pad_zero mobile-responsive">
                                                 <div class="album_details" style="display:block; margin-top:-3px;">
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                             <?php echo substr($song_title, 0, 20);
                                                             if (strlen($song_title) > 20) {
                                                                 echo "...";
@@ -1498,7 +1498,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2 pad_zero">
                                                 <div class="latestsongssec">
                                                     <div class="list_item">
-                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" class="img-responsive artist-img" width="100%"></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" class="img-responsive artist-img" width="100%"></a>
                                                         <div class="list_bottom pad_zero" style="width:100%; height:20px; padding-right:8px;">
                                                             <div class="row">
                                                                 <div class="like_right" style="padding-right:18px;">
@@ -1567,7 +1567,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             ?>
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 
-                                                <p class="review_detail red_rev"><a class="darkgrey_rev" style="font-weight:bold;" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><?php echo $user_name; ?></a> (<?php echo $review_list_count_array['count_reviews']; ?> reviews)</p>
+                                                <p class="review_detail red_rev"><a class="darkgrey_rev" style="font-weight:bold;" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><?php echo $user_name; ?></a> (<?php echo $review_list_count_array['count_reviews']; ?> reviews)</p>
                                             </div>
                                             <div class="clearfix"></div>
                                             <p class="review_detail" style="color:#000000; text-align:justify;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php

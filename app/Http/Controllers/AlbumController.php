@@ -26,7 +26,7 @@ class AlbumController extends Controller
         $data['mobile_view'] = 0;
         $data['page'] = $page;
 
-        $data['main_search'] = 'test';
+        
         if (isset($user_seo) && ($user_seo != "")) {
             $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
             $result_image = \App\Models\Songs::GetRawData($qry);
@@ -67,7 +67,7 @@ class AlbumController extends Controller
         $data['mobile_view'] = 0;
         $data['page'] = $page;
 
-        $data['main_search'] = 'test';
+        
         if (isset($user_seo) && ($user_seo != "")) {
             $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
             $result_image = \App\Models\Songs::GetRawData($qry);

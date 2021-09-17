@@ -435,7 +435,7 @@ a.under_line:hover {
                                         </div>
                                         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-11 pad_zero">
                                         <div class="album_cover">
-                                        <a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html";?>"> <?php
+                                        <a href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html";?>"> <?php
                                                     if($picture!="")
 													{
 													
@@ -473,7 +473,7 @@ a.under_line:hover {
                                         </div>
                                   		
                                         <div class="album_details" style="margin-top:-3px;">
-                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html";?>">
+                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html";?>">
                                     <?php echo substr($song_title,0,21);if(strlen($song_title)>21)
 									{
 										echo "..";
@@ -548,7 +548,7 @@ a.under_line:hover {
                                     </div>
                              		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 pad_zero small-mobile">
                                     <div class="album_cover">
-                                   <a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html";?>"> <?php
+                                   <a href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html";?>"> <?php
                                                     if($picture!="")
 													{
 													
@@ -585,7 +585,7 @@ a.under_line:hover {
                                    <cite class="score_big mt-10" style="background-color:<?php echo $color_pick;?>"><?php if($all_avg==10){echo number_format($all_avg,0);}else { echo $all_avg;}?></cite>
                                     </div>
                                     <div class="album_details mrg_top">
-                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html";?>">
+                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html";?>">
                                     <?php echo substr($song_title,0,8);if(strlen($song_title)>8)
 									{
 										echo "..";
@@ -744,14 +744,14 @@ a.under_line:hover {
 								?>
                              
 							<div class="col-lg-10 col-md-10 col-sm-9 col-xs-8 desc_pan pad_zero">
-								<p class="title" style="margin-bottom:5px;"><span style="background-color:<?php echo $color_pick;?>; border-radius:5px;"><?php if($review_rating==10){echo number_format($review_rating,0);}else { echo $review_rating;}?></span> <a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html#review_".$review_id;?>"><?php 
+								<p class="title" style="margin-bottom:5px;"><span style="background-color:<?php echo $color_pick;?>; border-radius:5px;"><?php if($review_rating==10){echo number_format($review_rating,0);}else { echo $review_rating;}?></span> <a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html#review_".$review_id;?>"><?php 
 									$title_rev  = substr(wordwrap($review_title,15,' ',true),0,18);
 									echo $title_rev;
 									if(strlen($review_title)>18)
 									{
 										echo "..";
 									}?></a></p>
-                                <p style="color:#000000;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html#review_".$review_id;?>"><?php 
+                                <p style="color:#000000;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html#review_".$review_id;?>"><?php 
 									$length_str  = strlen(wordwrap($review_detail,15," ",true));
 									echo substr(wordwrap($review_detail,15," ",true),0,70);
 									if($length_str>70)
@@ -938,14 +938,14 @@ a.under_line:hover {
 								?>
                                 
                                 <div class="col-lg-9 col-md-9 col-sm-8 col-xs-9 desc_pan pad_zero mrg_15" style="float:right;">
-                             <p class="title" style="margin-bottom:5px;"><span style="background-color:<?php echo $color_pick;?>; border-radius:5px;"><?php if($review_rating==10){echo number_format($review_rating,0);}else { echo $review_rating;}?></span> <a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html#review_".$review_id;?>"><?php 
+                             <p class="title" style="margin-bottom:5px;"><span style="background-color:<?php echo $color_pick;?>; border-radius:5px;"><?php if($review_rating==10){echo number_format($review_rating,0);}else { echo $review_rating;}?></span> <a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html#review_".$review_id;?>"><?php 
 									$title_rev  = substr(wordwrap($review_title,15,' ',true),0,38);
 									echo $title_rev;
 									if(strlen($review_title)>38)
 									{
 										echo "..";
 									}?></a></p>
-                                <p style="color:#000000;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html#review_".$review_id;?>"><?php 
+                                <p style="color:#000000;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html#review_".$review_id;?>"><?php 
 									$length_str  = strlen(wordwrap($review_detail,15," ",true));
 									echo substr(wordwrap($review_detail,15," ",true),0,100);
 									if($length_str>100)
@@ -1057,7 +1057,7 @@ a.under_line:hover {
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad_zero">
  												<div class="album_cover">
-                               						<a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html";?>"> <?php
+                               						<a href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html";?>"> <?php
                                                     if($picture!="")
 													{
 													
@@ -1097,7 +1097,7 @@ a.under_line:hover {
                                     	</div>
                                     		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pad_zero mobile-responsive">
 									<div class="album_details" style="display:block; margin-top:-3px;">
-										<label class="title"><a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html";?>">
+										<label class="title"><a href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html";?>">
                                     <?php echo substr($song_title,0,20);if(strlen($song_title)>20)
 									{
 										echo "...";
@@ -1169,7 +1169,7 @@ a.under_line:hover {
                   				<div class="rew_list-panel pad_zero mrg_top">
 									<div class="rew_item" style="border:none; padding:0 0 12px 0;">
 							 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 desc_pan pad_zero">
-                                                    <p class="title"> <span style="background-color:<?php echo $color_pick;?>; border-radius:5px; font-size:12px;"><?php if($review_rating==10){echo number_format($review_rating,0);}else { echo $review_rating;}?></span><a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html#review_".$review_id;?>"><text class="rec_review_title">"<?php 
+                                                    <p class="title"> <span style="background-color:<?php echo $color_pick;?>; border-radius:5px; font-size:12px;"><?php if($review_rating==10){echo number_format($review_rating,0);}else { echo $review_rating;}?></span><a href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html#review_".$review_id;?>"><text class="rec_review_title">"<?php 
 									$title_rev  = substr(wordwrap($review_title,15,' ',true),0,22);
 									echo $title_rev;
 									if(strlen($review_title)>22)
@@ -1240,7 +1240,7 @@ a.under_line:hover {
                            <p class="review_detail red_rev"><a class="darkgrey_rev" style="font-weight:bold;" href="<?php echo SERVER_ROOTPATH.$user_name;?>-profile-review-artist.html"><?php echo $user_name;?></a> (<?php echo $review_list_arr_top['count_reviews'];?> reviews)</p>
 							</div>
                            				<div class="clearfix"></div>
-                                          <p class="review_detail" style="color:#000000; text-align:justify;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo.".html#review_".$review_id;?>"><?php
+                                          <p class="review_detail" style="color:#000000; text-align:justify;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH.$song_seo."/reviews/".$artist_seo.".html#review_".$review_id;?>"><?php
 									$length_str  = strlen(wordwrap($review_detail,15," ",true));
 									echo substr(wordwrap($review_detail,15," ",true),0,100);
 									if($length_str>100)

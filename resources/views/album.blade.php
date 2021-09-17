@@ -453,4 +453,3 @@
 ?>
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 @include("common.footer")
-<div class="modal fade" id="review_modal" role="dialog"></div>

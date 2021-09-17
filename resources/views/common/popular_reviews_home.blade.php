@@ -483,7 +483,7 @@
 							</div>
 						</div>
 
-						<div class="modal fade" id="review_modal" role="dialog"></div>
+						
 					</div>
 			<?php
 				}

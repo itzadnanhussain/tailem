@@ -70,7 +70,7 @@ if ($row_songseo) {
     <div class="modal-content" style="border-radius:0px;">
         <div class="modal-header" style="padding:5px;">
             <button type="button" class="close" data-dismiss="modal" onclick="close_likes_popup();" aria-label="Close"><span aria-hidden="true"><img src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png"></span></button>
-            <h4 style="width:90%;" class="modal-title text_blck">Who likes <a style="color:#d73b3b;" href="<?php echo SERVER_ROOTPATH . $seo_song . "-reviews-" . $artist_seo; ?>#review_<?php echo $rev_id; ?>"><?php echo $user_name; ?></a> review?</h4>
+            <h4 style="width:90%;" class="modal-title text_blck">Who likes <a style="color:#d73b3b;" href="<?php echo SERVER_ROOTPATH . $seo_song . "/reviews/" . $artist_seo; ?>#review_<?php echo $rev_id; ?>"><?php echo $user_name; ?></a> review?</h4>
 
         </div>
         <div class="modal-body" style="padding:5px; overflow-x:hidden; overflow-y:auto; height:auto; max-height:300px;">

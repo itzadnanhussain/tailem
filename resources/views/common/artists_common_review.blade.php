@@ -35,6 +35,7 @@
             $p_fav = 0;
             foreach ($popular_review_array as $val) {
                 $val = (array)$val;
+                
                 $sr_no++;
                 $g++;
                 $r_fav++;
@@ -66,11 +67,15 @@
                 $artist_name = stripslashes($val['artist_name']);
                 $song_title    =    stripslashes($val['song_title']);
 
+
                 $select_qry = "select user_name from tbl_users where 
 										user_id='" . $review_user_id . "' ";
                 $select_ar = \App\Models\Songs::GetRawData($select_qry);
+                 
                 $user_name = stripslashes(html_entity_decode($select_ar[0]->user_name));
                 $user_name = wordwrap($user_name, 100, " ", true);
+                $user_seo = get_user_detail($user_name);
+                
 
                 $position_find   = review_count_position($review_id, $db_song_id);
 
@@ -210,9 +215,9 @@
                             $img_api_link = album_img_api($picture);
                             if ($img_api_link != '') {
                         ?>
-                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                             <?php } else { ?>
-                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                             <?php
                             }
                         } else
@@ -220,22 +225,22 @@
 
                             if ($req_song['song_array']['image4'] != "") {
                             ?>
-                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><img class="img-responsive" src="<?php echo $req_song['song_array']['image4']; ?>" border="0" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img class="img-responsive" src="<?php echo $req_song['song_array']['image4']; ?>" border="0" style="width:100%; max-height:150px;" /></a>
                                 <?php
                             } else
 												if ($album_picture != "") {
                                 $img_api_link = album_img_api($album_picture);
                                 if ($img_api_link != '') {
                                 ?>
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                                 <?php } else { ?>
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                                 <?php }    ?>
                                 <!-- <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>"  border="0" class="img-responsive"  style="width:100%; max-height:150px;"/>-->
                             <?php
                             } else {
                             ?>
-                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" class="img-responsive" style="max-width:inherit;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" class="img-responsive" style="max-width:inherit;" /></a>
                         <?php
                             }
                         }
@@ -395,7 +400,7 @@
                                     } ?></a></span></p>
                         <div class="row">
                             <div class="review_screen_txt col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>">
+                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
                                         <?php echo substr($user_name, 0, 12);
                                         if (strlen($user_name) > 12) {
                                             echo "..";
@@ -408,7 +413,7 @@
                             </div>
                             <!--Ipad-->
                             <div class="review_ipad_txt white_space col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>">
+                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
                                         <?php echo substr($user_name, 0, 30);
                                         if (strlen($user_name) > 30) {
                                             echo "..";
@@ -418,7 +423,7 @@
                             </div>
                             <!--Mobile-->
                             <div class="review_mobile_txt col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>">
+                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
                                         <?php echo substr($user_name, 0, 16);
                                         if (strlen($user_name) > 16) {
                                             echo "..";

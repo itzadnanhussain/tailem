@@ -729,12 +729,12 @@ if ($lastfm_url == "") {
                                                             $pos = strpos($arr_song_picture[$s], 'http');
                                                             if ($pos !== false) {
                                                         ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $arr_song_picture[$s]; ?>" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $arr_song_picture[$s]; ?>" border="0" width="100" /></a>
                                                             <?php
 
                                                             } else {
                                                             ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $arr_song_picture[$s]; ?>" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $arr_song_picture[$s]; ?>" border="0" width="100" /></a>
                                                             <?php
                                                             }
                                                         } else
@@ -742,19 +742,19 @@ if ($lastfm_url == "") {
                                                             $img_api_link = album_img_api($album_picture);
                                                             if ($img_api_link != '') {
                                                             ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $img_api_link; ?>" border="0" width="170" height="170" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $img_api_link; ?>" border="0" width="170" height="170" /></a>
                                                             <?php } else { ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" width="100" /></a>
                                                             <?php
                                                             }
                                                         } else
 													if ($req_album['album_array']['image4'] != "") {
                                                             ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $req_album['album_array']['image4']; ?>" border="0" width="100" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $req_album['album_array']['image4']; ?>" border="0" width="100" /></a>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
                                                         <?php
                                                         }
                                                         if ($arr_all_avg[$s] != 0) {
@@ -768,7 +768,7 @@ if ($lastfm_url == "") {
                                                 </div>
                                                 <div class="col-lg-7 col-md-7 col-sm-8 col-xs-8 pad_right">
                                                     <div class="album_details" style="width:100%;">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><?php echo  $arr_song_title[$s]; ?></a></label>
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><?php echo  $arr_song_title[$s]; ?></a></label>
                                                         <label class="author"><a href="<?php echo SERVER_ROOTPATH . $arr_artist_seo[$s] . "/artist-songs"; ?>"><?php echo $arr_db_artist_name[$s]; ?></a></label><br>
                                                         <?php if ($arr_feature_artists[$s] != "") { ?>
                                                             <label class="author"><strong>ft. </strong><?php echo $arr_feature_artists[$s]; ?></label><?php } ?>
@@ -784,7 +784,7 @@ if ($lastfm_url == "") {
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $arr_db_song_id[$s]; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                        <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $arr_db_song_id[$s]; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                     <?php
                                                     }
                                                     ?>
@@ -861,12 +861,12 @@ if ($lastfm_url == "") {
                                                             $pos = strpos($arr_song_picture[$s], 'http');
                                                             if ($pos !== false) {
                                                         ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $arr_song_picture[$s]; ?>" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $arr_song_picture[$s]; ?>" border="0" width="100" /></a>
                                                             <?php
 
                                                             } else {
                                                             ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $arr_song_picture[$s]; ?>" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $arr_song_picture[$s]; ?>" border="0" width="100" /></a>
                                                             <?php
                                                             }
                                                         } else
@@ -874,19 +874,19 @@ if ($lastfm_url == "") {
                                                             $img_api_link = album_img_api($album_picture);
                                                             if ($img_api_link != '') {
                                                             ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $img_api_link; ?>" border="0" width="170" height="170" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $img_api_link; ?>" border="0" width="170" height="170" /></a>
                                                             <?php } else { ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" width="100" /></a>
                                                             <?php
                                                             }
                                                         } else
 													if ($req_album['album_array']['image4'] != "") {
                                                             ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $req_album['album_array']['image4']; ?>" border="0" width="100" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo $req_album['album_array']['image4']; ?>" border="0" width="100" /></a>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
                                                         <?php
                                                         }
                                                         ?>
@@ -904,7 +904,7 @@ if ($lastfm_url == "") {
                                                 </div>
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0px !important;  padding-right:0;">
                                                     <div class="album_details">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "-reviews-" . $arr_artist_seo[$s]; ?>"><?php echo  $arr_song_title[$s]; ?></a></label>
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $arr_song_seo[$s] . "/reviews/" . $arr_artist_seo[$s]; ?>"><?php echo  $arr_song_title[$s]; ?></a></label>
                                                         <label class="author"><a href="<?php echo SERVER_ROOTPATH . $arr_artist_seo[$s] . "/artist-songs"; ?>"><?php echo $arr_db_artist_name[$s]; ?></a></label><br>
                                                         <?php if ($arr_feature_artists[$s] != "") { ?>
                                                             <label class="author"><strong>ft. </strong><?php echo $arr_feature_artists[$s]; ?></label><?php } ?>
@@ -925,7 +925,7 @@ if ($lastfm_url == "") {
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $arr_db_song_id[$s]; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                            <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $arr_db_song_id[$s]; ?>&art_id=<?php echo $album_artist_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                         <?php
                                                         }
                                                         ?>

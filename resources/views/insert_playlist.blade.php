@@ -59,8 +59,8 @@ $mobile_view = 0;
 
                     <div style="margin-top:0;">
 
-                        <!-- <form name="add_playlist" id="add_playlist" method="post" style="padding:10px; padding-top:20px;"> -->
-                            <form  class="add-playlist" style="padding:10px; padding-top:20px;" action="{{url('process/add_playlist_process')}}">
+                        <!-- <form name="add-playlist" id="add-playlist" method="post" style="padding:10px; padding-top:20px;"> -->
+                            <form  class="add-playlist" style="padding:10px; padding-top:20px;" action="{{url('process/add-playlist_process')}}">
 
                             <h4 style="font-size:20px; font-weight:normal; margin-bottom:20px;">
                                 <?php
@@ -86,7 +86,7 @@ $mobile_view = 0;
                             <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $song_id; ?>&art_id=<?php echo $art_id; ?>" id="autoclick"></a>
 
                             <button  style="margin-top:15px; display:inline; width:40%;" class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
-                            <!-- <button id="submit_btn" name="submit" style="margin-top:15px; display:inline; width:40%;" class="btn btn-lg btn-primary btn-block" type="submit" onClick="return add_playlist_validations_new();">Create</button> -->
+                            <!-- <button id="submit_btn" name="submit" style="margin-top:15px; display:inline; width:40%;" class="btn btn-lg btn-primary btn-block" type="submit" onClick="return add-playlist_validations_new();">Create</button> -->
 
 
 
@@ -130,16 +130,16 @@ $mobile_view = 0;
 </script>
 
 <script>
-    // function add_playlist_validations_new() {
+    // function add-playlist_validations_new() {
 
-    //     $("#add_playlist").unbind("submit");
+    //     $("#add-playlist").unbind("submit");
     //     var options = {
     //         target: "",
     //         beforeSubmit: validate_playlist_new_Request,
     //         success: validate_playlist_new_Response,
-    //         url: JS_SERVER_PATHROOT + "process/add_playlist_process",
+    //         url: JS_SERVER_PATHROOT + "process/add-playlist_process",
     //     };
-    //     $("#add_playlist").submit(function() {
+    //     $("#add-playlist").submit(function() {
     //         $(this).ajaxSubmit(options);
     //         return false;
     //     });

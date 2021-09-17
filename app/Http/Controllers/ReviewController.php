@@ -21,11 +21,10 @@ class ReviewController extends Controller
          $data['sort'] = $sort;
          $data['rate'] = '';
  
-         ///common header
-        
+         ///common header 
          $data['user_id'] = session()->get('user_id');
          $data['mobile_view'] = 0;
-         $data['main_search'] = 'test';
+         
          if (isset($user_seo) && ($user_seo != "")) {
              $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
              $result_image = \App\Models\Songs::GetRawData($qry);

@@ -779,12 +779,12 @@ $img_arr3 = (array)$img_arr3[0];
 
 
                         // if ($_REQUEST['rate'] != '') {
-                        //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "-reviewslist-" . $_REQUEST['artist_seo'] . "/rating/" . $_REQUEST['rate'];
+                        //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "/reviewslist/" . $_REQUEST['artist_seo'] . "/rating/" . $_REQUEST['rate'];
                         // } else
                         // 					if ($_REQUEST['sort'] != '') {
                         //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "/reviews/" . $_REQUEST['artist_seo'] . "/sort/" . $_REQUEST['sort']; //your file name  (the name of this file)
                         // } else {
-                        //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "-reviewslist-" . $_REQUEST['artist_seo']; //your file name  (the name of this file)
+                        //     $targetpage = SERVER_ROOTPATH . $_REQUEST['song_seo'] . "/reviewslist/" . $_REQUEST['artist_seo']; //your file name  (the name of this file)
                         // }
 
 

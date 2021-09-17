@@ -630,4 +630,3 @@ $mobile_view = 0;
 <div class="modal fade" id="create_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 
 @include('common.footer')
-<div class="modal fade" id="review_modal" role="dialog"></div>

@@ -108,7 +108,7 @@
  		$.ajaxSetup({
  			headers: {
  				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
- 			}
+ 			} 
  		});
  	</script>
 
@@ -141,8 +141,9 @@
  						}
  					</style>
  					<form action="<?php echo SERVER_ROOTPATH; ?>searcher" id="ad_search_form" method="POST">
- 						<input class="searcharea" placeholder="Search" name="search" value="<?php echo stripslashes($main_search); ?>" required>
- 						<input type="hidden" name="submitbtn" value="Search">
+ 						<input class="searcharea" placeholder="Search" name="search" value="<?php echo session()->get('main_search'); ?>" required>
+ 						@csrf
+						 <input type="hidden" name="submitbtn" value="Search">
  						<button><i class="sprite sprite-icon_search"></i></button>
  					</form>
  				</span>

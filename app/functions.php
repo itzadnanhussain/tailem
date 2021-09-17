@@ -222,6 +222,7 @@ if (!function_exists('get_user_detail')) {
 
         $query    =    "select * from tbl_users where user_name = '$un'";
         $arr     =  \App\Models\Songs::GetRawData($query);
+        
         if ($arr) {
             $arr = (array)$arr[0];
             $user_seo         = stripslashes($arr['user_seo']);
@@ -371,7 +372,7 @@ if (!function_exists('popular_review_artist')) {
 					 order by r.review_id desc
 					 limit 3
 					 ";
-        $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list);  
+        $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list);
         return  $reviews_list_arr;
     }
 }
@@ -478,6 +479,72 @@ if (!function_exists('featured_screen')) {
         }
 
         return  $featured_screen;
+    }
+}
+
+///table_last_updated 
+if (!function_exists('table_last_updated')) {
+    function table_last_updated($table)
+    {
+        $last_updated = "SELECT (now()-UPDATE_TIME) as last_updated from information_schema.tables WHERE TABLE_SCHEMA = 'exceed13_music_site' AND TABLE_NAME = '$table'";
+        $updated_on = \App\Models\Songs::GetRawData($last_updated);
+        if($updated_on)
+        {
+            $updated_on = (array)$updated_on[0];
+            $mins = ($updated_on['last_updated'] / 60);
+            if ($mins < 2) {
+                return false;
+            } else {
+                return true;
+            }
+        }else
+        {
+            return false;
+        }
+      
+    }
+}
+
+
+///GetArtistBySongId 
+if (!function_exists('GetArtistBySongId')) {
+    function GetArtistBySongId($song_id)
+    {
+        $data = array();
+        $qry = "select artist_id FROM tbl_songs_artist_album where song_id = '$song_id'";
+        $data1 = \App\Models\Songs::GetRawData($qry);
+        if($data1)
+        {
+            $artist_id = $data1[0]->artist_id;
+            $qry = "select * FROM tbl_artists where id = '$artist_id'";
+            $data = \App\Models\Songs::GetRawData($qry);
+            $data = (array)$data[0];
+
+        }
+        return $data;
+
+      
+    }
+}
+
+///GetArtistByAlbumId 
+if (!function_exists('GetArtistByAlbumId')) {
+    function GetArtistByAlbumId($album_id)
+    {
+        $data = array();
+        $qry = "select artist_id FROM tbl_songs_artist_album where album_id = '$album_id'";
+        $data1 = \App\Models\Songs::GetRawData($qry);
+        if($data1)
+        {
+            $artist_id = $data1[0]->artist_id;
+            $qry = "select * FROM tbl_artists where id = '$artist_id'";
+            $data = \App\Models\Songs::GetRawData($qry);
+            $data = (array)$data[0];
+
+        }
+        return $data;
+
+      
     }
 }
 
