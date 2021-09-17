@@ -389,8 +389,8 @@ if ($srch_search_sess == "") {
                                                     <?php if ($feature_artists != "") { ?> <p><label class="reviews">ft. <?php echo $feature_artists; ?></label></p><?php } ?>
                                                     <div style="clear:both;"></div>
 
-                                                    <p><label class="reviews"><img src="static/images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
-                                                        <label class="reviews"><img src="static/images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
+                                                    <p><label class="reviews"><img src="images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
+                                                        <label class="reviews"><img src="images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
                                                     </p>
                                                 </div>
                                                 <?php
@@ -522,8 +522,8 @@ if ($srch_search_sess == "") {
                                                         </label>
                                                         <div style="clear:both;"></div>
 
-                                                        <p><label class="reviews"><img src="static/images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
-                                                            <label class="reviews"><img src="static/images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
+                                                        <p><label class="reviews"><img src="images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
+                                                            <label class="reviews"><img src="images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
                                                         </p>
                                                     </div>
 

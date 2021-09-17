@@ -772,7 +772,7 @@ if ($lastfm_url == "") {
                                                         <label class="author"><a href="<?php echo SERVER_ROOTPATH . $arr_artist_seo[$s] . "/artist-songs"; ?>"><?php echo $arr_db_artist_name[$s]; ?></a></label><br>
                                                         <?php if ($arr_feature_artists[$s] != "") { ?>
                                                             <label class="author"><strong>ft. </strong><?php echo $arr_feature_artists[$s]; ?></label><?php } ?>
-                                                        <p><label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>static/images/review-book.png"><a>Reviews <span><?php echo $arr_count_reviews[$s]; ?></span></a></label><label class="reviews" style="margin-left:10px;"><img src="static/images/icon_post.png"><a>Posts <span><?php echo $arr_count_discussion[$s]; ?></span></a></label></p>
+                                                        <p><label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"><a>Reviews <span><?php echo $arr_count_reviews[$s]; ?></span></a></label><label class="reviews" style="margin-left:10px;"><img src="images/icon_post.png"><a>Posts <span><?php echo $arr_count_discussion[$s]; ?></span></a></label></p>
                                                     </div>
                                                 </div>
 
@@ -908,7 +908,7 @@ if ($lastfm_url == "") {
                                                         <label class="author"><a href="<?php echo SERVER_ROOTPATH . $arr_artist_seo[$s] . "/artist-songs"; ?>"><?php echo $arr_db_artist_name[$s]; ?></a></label><br>
                                                         <?php if ($arr_feature_artists[$s] != "") { ?>
                                                             <label class="author"><strong>ft. </strong><?php echo $arr_feature_artists[$s]; ?></label><?php } ?>
-                                                        <p><label class="reviews"><img src="static/images/review-book.png"><a>Reviews <span><?php echo $arr_count_reviews[$s]; ?></span></a></label><label class="reviews"><img src="static/images/icon_post.png"><a>Posts <span><?php echo $arr_count_discussion[$s]; ?></span></a></label></p>
+                                                        <p><label class="reviews"><img src="images/review-book.png"><a>Reviews <span><?php echo $arr_count_reviews[$s]; ?></span></a></label><label class="reviews"><img src="images/icon_post.png"><a>Posts <span><?php echo $arr_count_discussion[$s]; ?></span></a></label></p>
                                                         <!-- <p class="album_year">Year <b>2016</b></p>-->
                                                     </div>
 

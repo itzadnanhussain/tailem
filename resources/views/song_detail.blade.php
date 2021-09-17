@@ -403,8 +403,8 @@ $img_arr3 = (array)$img_arr3[0];
                             </p>
 
                             <div class="activity-panel">
-                                <label class="likes"><img src="<?php echo SERVER_ROOTPATH; ?>static/images/review-book.png"> <a style="color:#000000; font-weight:normal;"><span class="red-text"> <?php echo $counter; ?> </span> Reviews</a></label>
-                                <label class="likes"><img src="<?php echo SERVER_ROOTPATH; ?>static/images/icon_post.png"> <a style="color:#000000; font-weight:normal;"><span class="red-text"> <?php echo $count_discussion; ?> </span> Posts</a></label>
+                                <label class="likes"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"> <a style="color:#000000; font-weight:normal;"><span class="red-text"> <?php echo $counter; ?> </span> Reviews</a></label>
+                                <label class="likes"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png"> <a style="color:#000000; font-weight:normal;"><span class="red-text"> <?php echo $count_discussion; ?> </span> Posts</a></label>
 
                                 <?php
                                 if ($user_id == "") {
@@ -624,8 +624,8 @@ $img_arr3 = (array)$img_arr3[0];
                                 <div class="clearfix"></div>
                                 <div class="activity-panel">
 
-                                    <label class="likes"><img src="<?php echo SERVER_ROOTPATH; ?>static/images/review-book.png"> <a style="color:#000000; font-weight:normal;"><span class="red-text"><?php echo $counter; ?> </span> Reviews</a></label>
-                                    <label class="likes"><img src="<?php echo SERVER_ROOTPATH; ?>static/images/icon_post.png"> <a style="color:#000000; font-weight:normal;"><span class="red-text"> <?php echo $count_discussion; ?> </span> Posts</a></label>
+                                    <label class="likes"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"> <a style="color:#000000; font-weight:normal;"><span class="red-text"><?php echo $counter; ?> </span> Reviews</a></label>
+                                    <label class="likes"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png"> <a style="color:#000000; font-weight:normal;"><span class="red-text"> <?php echo $count_discussion; ?> </span> Posts</a></label>
 
 
                                 </div>
@@ -1122,8 +1122,8 @@ $img_arr3 = (array)$img_arr3[0];
                                             <div class="icon-panel" style="margin-top:0;">
                                                 <p class="darkgrey_rev" style="font-size: 13px;"><i class="fa fa-heart-o darkgrey_rev" style="font-size:16px; margin-left:4px; margin-right:2px;"></i> Likes <span style="color:#D73B3B;"><?php echo $counter_rev_song + $counter_prf + $like_playlist_count ?><?php //echo $like_list_arr_user['count_likes'];
                                                                                                                                                                                                                                                                                                                 ?></span></p>
-                                                <p class="darkgrey_rev" style="font-size: 13px;"><img src="<?php echo SERVER_ROOTPATH; ?>static/images/review-book.png"> Reviews <span style="color:#D73B3B;"><?php echo $review_list_arr_top['count_reviews']; ?></span></p>
-                                                <p class="darkgrey_rev" style="font-size: 13px;"><img src="<?php echo SERVER_ROOTPATH; ?>static/images/icon_post.png"> Posts <span style="color:#D73B3B;"><?php echo $comment_list_arr['count_discussion']; ?></span></p>
+                                                <p class="darkgrey_rev" style="font-size: 13px;"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"> Reviews <span style="color:#D73B3B;"><?php echo $review_list_arr_top['count_reviews']; ?></span></p>
+                                                <p class="darkgrey_rev" style="font-size: 13px;"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png"> Posts <span style="color:#D73B3B;"><?php echo $comment_list_arr['count_discussion']; ?></span></p>
 
 
 
