@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 // RewriteRule ^top-albums-(.*)$ album.php?page=$1 [PT]
 // RewriteRule ^top-albums$ album.php [PT]
-Route::get('/top-albums',[AlbumController::class, 'GetTopAlbums']) 
+Route::get('/top-albums/{page?}',[AlbumController::class, 'GetTopAlbums']) 
 ->name('top-albums.GetTopAlbums');
  
 

@@ -463,7 +463,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 echo $data;
                             } ?>
 
-                            <a style="margin-bottom:5px; margin-top:0;" href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png">Write a Review</a>
+                            <a style="margin-bottom:5px; margin-top:0;" href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="<?php echo SERVER_ROOTPATH ?>images/pence;.png">Write a Review</a>
                             <div class="clearfix"></div>
                             <p class="buyFromPan" style="margin-bottom: 15px; font-size:13px;">Buy from:
                                 <a target="_blank" href="<?php echo $itunes_url; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $img_arr1['store_img'] ?>"></a> |
@@ -673,7 +673,7 @@ $img_arr3 = (array)$img_arr3[0];
 
                             ?>
 
-                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="images/pence;.png" style="float:left;">Write a Review</a>
+                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="<?php echo SERVER_ROOTPATH ?>images/pence;.png" style="float:left;">Write a Review</a>
                             <div class="clearfix"></div>
                             <p class="buyFromPan" style="font-size:12px;">Buy from:
                                 <a target="_blank" href="<?php echo $itunes_url; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $img_arr1['store_img'] ?>"></a> |

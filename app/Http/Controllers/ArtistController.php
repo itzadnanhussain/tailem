@@ -15,6 +15,12 @@ class ArtistController extends Controller
     ///GetArtistSongs
     public function GetArtistSongs($artist_seo, $sort = null,  $page = null)
     {
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
+            $page = 1;
+        }
+
 
         $data = array();
         $data['artist_seo'] =  strtolower($artist_seo);
@@ -78,6 +84,12 @@ class ArtistController extends Controller
     ///GetTopArtistsPage
     public function GetTopArtistsPage($alpha = null, $page = null)
     {
+
+        if (isset($_GET['page'])) {
+            $page = $_GET['page'];
+        } else {
+            $page = 1;
+        }
         $data = array();
         $data['alpha'] = $alpha;
         $data['page'] = $page;

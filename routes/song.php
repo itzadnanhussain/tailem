@@ -4,7 +4,7 @@ use App\Http\Controllers\SongsController;
 use Illuminate\Support\Facades\Route;
 
 ///top-songs-page routes
-Route::get('/top-songs',[SongsController::class, 'GetTopSongs']) 
+Route::get('/top-songs/{page?}',[SongsController::class, 'GetTopSongs']) 
 ->name('top-songs.GetTopSongs');
 
 Route::get('/add-playlist',[SongsController::class, 'GetAddPlayList']) 

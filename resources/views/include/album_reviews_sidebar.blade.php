@@ -37,7 +37,7 @@
         }
     }
 </style>
- 
+ <?php error_reporting(0); ?>
 <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 rev_right_position">
     <div class="recentreviewsec rev_position">
         <!-- Advertisement Right Side Start-->

@@ -36,6 +36,7 @@ if ($lastpage > 1) {
         for ($counter = 1; $counter <= $lastpage; $counter++) {
             $link = '';
             $link = $targetpage.'?page='.$counter;
+            // $link = $targetpage . '/' . $counter;
             if ($counter == $page)
                 $pagination .= "<li><a href=\"#\" class=\"active\">$counter <span class=\"sr-only\">(current)</span></a></li>";
             else
