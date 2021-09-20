@@ -24,7 +24,9 @@ Route::get('/{user_seo}/profile-review-artist/{genere_seo}/genre/{alpha?}/{page?
 Route::get('/{user_seo}/profile-review-artist-genres/{genere_seo}/{page?}',[UserController::class , 'GetReviewArtistPage_Three']);
 Route::get('/{user_seo}/profile-review-artist-genre/{genere_seo}/{page?}',[UserController::class , 'GetReviewArtistPage_Three']);
 
-
+// RewriteRule ^review-artist-(.*)$ review_artist.php?page=$1 [PT]
+// RewriteRule ^review-artist$ review_artist.php [PT]
+Route::get('/review-artist/{page?}',[UserController::class , 'GetReviewArtistPage_Four']);
 
 
 
@@ -104,3 +106,23 @@ Route::get('/review-song/{page?}',[UserController::class , 'GetMyReviewsPage_Thi
 
 // RewriteRule ^(.*)-profile-review-song-ratings-(.*)-(.*)$ my_reviews.php?user_seo=$1&rate=$2&page=$3 [PT]
 Route::get('{user_seo}/profile-review-song-ratings/{rate}/{page?}',[UserController::class , 'GetMyReviewsPage_Fourteen']);
+
+
+
+// RewriteRule ^logout$ logout.php [PT]
+// RewriteRule ^sign-up$ sign_up.php [PT]
+// RewriteRule ^cms/(.*)$ CMS.php?seo_url=$1 [PT]
+// RewriteRule ^cms.php/(.*)$ cms.php?seo_url=$1 [PT]
+// RewriteRule ^signup_popup/(.*)$ signup_popup.php?seo_url=$1 [PT]
+// RewriteRule ^signup_popup.php/(.*)$ signup_popup.php?seo_url=$1 [PT]
+// RewriteRule ^change-password$ change_password.php [PT]
+Route::any('change-password',[UserController::class , 'ChangePasswordProcess']);
+// RewriteRule ^change-username$ edit_username.php [PT]
+Route::any('change-username',[UserController::class , 'ChangeUsernameProcess']);
+// RewriteRule ^change-picture$ change_picture.php [PT]
+Route::any('change-picture',[UserController::class , 'ChangePictureProcess']);
+
+// RewriteRule ^forgot-password$ forgot_password.php [PT]
+// RewriteRule ^maintance$ maintance.php [PT]
+// RewriteRule ^reset-password-(.*)$ reset_password.php?code=$1 [PT]
+// RewriteRule ^new-password-(.*)$ new_password.php?code=$1 [PT]

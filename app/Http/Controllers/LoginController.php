@@ -130,7 +130,7 @@ class LoginController extends Controller
                     }
                     else
                     {
-                        $string_url = '/';
+                        $string_url = '/review-artist';
                         $location = 'index';
                     }
                     $response = array("code" => 'success', 'url' => $string_url,'location'=> $location);

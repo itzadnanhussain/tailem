@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 // RewriteRule ^(.*)-artist-sort-(.*)-(.*)$ artist_page.php?artist_seo=$1&sort=$2&page=$3 [PT]
 // RewriteRule ^(.*)-artist-sort-(.*)$ artist_page.php?artist_seo=$1&sort=$2 [PT]
 
-Route::get('/{artist_seo}/artist-songs/{sort?}/{page?}',[ArtistController::class , 'GetArtistSongs']); 
+Route::get('/{artist_seo}/artist-songs/{sort?}',[ArtistController::class , 'GetArtistSongs']); 
  
 
 ///page is artists.php

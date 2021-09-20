@@ -1,4 +1,4 @@
-<?php 
+<?php
 ///setting arr new query 
 $arr_setting = GetByWhere('setting', array('setting_id' => 1));
 $arr_setting = (array)$arr_setting[0];
@@ -14,9 +14,9 @@ $arr_social = (array) $arr_social[0];
 
 ?>
 <?php
-	$currentFile = get_page_name();
-	// $currentFile = 'sign_up';
-	?>
+$currentFile = get_page_name();
+// $currentFile = 'sign_up';
+?>
 <footer>
 	<div class="ftrcontainer">
 		<div class="container">
@@ -110,7 +110,7 @@ if ($currentFile == 'artists' || $currentFile == 'search' || $currentFile == 'se
 if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $currentFile == 'artists') {
 ?>
 	<link rel="stylesheet" href="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-ui.css">
- 	<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-1.10.2.js"></script>
+	<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-1.10.2.js"></script>
 	<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-ui.js"></script>
 	<script>
 		var jq = jQuery.noConflict();
@@ -125,7 +125,7 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 //$this->_mysqli->close();
 ?>
 
- 
+
 
 </body>
 

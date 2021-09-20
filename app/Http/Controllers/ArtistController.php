@@ -79,6 +79,8 @@ class ArtistController extends Controller
         }
 
         $data['currentFile'] = 'artist_page';
+        $title = str_replace('-', ' ', ($artist_seo . ' artists songs'));
+        $data['title'] = ucwords($title);
         return view('artist_page', $data);
     }
 
@@ -99,7 +101,7 @@ class ArtistController extends Controller
         $data['alpha'] = $alpha;
         $data['page'] = $page;
         $data['genere_seo'] = '';
-      
+
 
 
         ///common header
@@ -151,7 +153,7 @@ class ArtistController extends Controller
 
 
     ///GetTopArtistsPageByGenereSoe
-    public function GetTopArtistsPageByGenereSoe($genere_seo , $alpha = null)
+    public function GetTopArtistsPageByGenereSoe($genere_seo, $alpha = null)
     {
 
         ///page
@@ -167,7 +169,7 @@ class ArtistController extends Controller
         $data['alpha'] = $alpha;
         $data['page'] = $page;
         $data['genere_seo'] = $genere_seo;
-      
+
 
 
         ///common header

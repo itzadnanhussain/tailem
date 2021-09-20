@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Classes\Thumbnail;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class ProcessController extends Controller
 {
@@ -457,7 +460,6 @@ class ProcessController extends Controller
     ///FavouriteLike
     public function FavouriteLike()
     {
-
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['artist_seo'] = $_GET['artist_seo'];
@@ -466,6 +468,34 @@ class ProcessController extends Controller
 
         return view('include.favourite_like', $data);
     }
+
+
+    ///FavouriteUserProfileLikesMainList
+    public function FavouriteUserProfileLikesMainList()
+    {
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['user_name'] = $_GET['username'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_userprofile_likes_main_list', $data);
+    }
+
+
+    ///FavouriteLikeSubArtistPop
+    public function FavouriteLikeSubArtistPop()
+    {
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['artist_seo'] = $_GET['artist_seo'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like_sub_artist_pop', $data);
+    }
+
+
     ///FavouriteLikeSubArtist2
     public function FavouriteLikeSubArtist2()
     {
@@ -488,7 +518,7 @@ class ProcessController extends Controller
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['sr_no'] = $_GET['sr_no'];
-        $data['artist_seo'] = $_GET['artist_seo']; 
+        $data['artist_seo'] = $_GET['artist_seo'];
         $data['user_id'] = session()->get('user_id');
 
         return view('include.favourite_like_sub_artist_popular_latest', $data);
@@ -501,8 +531,8 @@ class ProcessController extends Controller
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['sr_no'] = $_GET['sr_no'];
-        $data['artist_seo'] = $_GET['artist_seo']; 
-        $data['user_id'] = session()->get('user_id'); 
+        $data['artist_seo'] = $_GET['artist_seo'];
+        $data['user_id'] = session()->get('user_id');
         return view('include.favourite_like_sub_artist_popular', $data);
     }
 
@@ -518,8 +548,8 @@ class ProcessController extends Controller
 
         return view('include.favourite_like_review', $data);
     }
-   
-   
+
+
     ///FavouriteLikeReviewSong
     public function FavouriteLikeReviewSong()
     {
@@ -536,7 +566,7 @@ class ProcessController extends Controller
 
     ///likeArtistRecentReviews
     public function likeArtistRecentReviews()
-    { 
+    {
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['artist_seo'] = $_GET['artist_seo'];
@@ -572,6 +602,21 @@ class ProcessController extends Controller
         $data['mobile_view'] = 0;
 
         return view('include.detail_review', $data);
+    }
+
+
+    ///DetailProfile
+    public function DetailProfile()
+    {
+
+        $data = array();
+        $data['user_seo'] = $_GET['user'];
+        // $data['rev_id'] = $_GET['review_id'];
+        // $data['critaria'] = $_GET['critaria'];
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+
+        return view('include.detail_profile', $data);
     }
 
 
@@ -647,15 +692,189 @@ class ProcessController extends Controller
         $get_page_content_qry = "SELECT * FROM tbl_pages WHERE page_seo_name = '" . $data['seo_url'] . "'";
         $get_page_content = \App\Models\Songs::GetRawData($get_page_content_qry);
 
-        if (!$get_page_content) { 
+        if (!$get_page_content) {
             redirect('/');
-  
-        }
-        else
-        {
+        } else {
             $data['get_page_content'] = (array)$get_page_content[0];
         }
 
         return view('include.detail_cms', $data);
+    }
+
+    ///ChangeProfilePicture
+    public function ChangeProfilePicture()
+    {
+        error_reporting(0);
+        $case = 1;
+        $errorstr = null;
+        if ($_FILES["image_name"]['name'] == "") {
+            $errorstr .= "Please upload your profile image.\n";
+            $case = 0;
+        } else
+        if ($_FILES["image_name"]['name'] != "") {
+            $filename = $_FILES["image_name"]['name'];
+            $TmpExt   = strtolower(substr($filename, strrpos($filename, '.') + 1));
+            $ext = array('jpg', 'png', 'gif', 'JPEG', 'jpeg');
+            if (!in_array($TmpExt, $ext)) {
+                $errorstr .= "Incorrect file format, please try again.\n";
+                $case = 0;
+            }
+        }
+
+        $path            = 'site_upload/user_images/';
+
+        if ($case == 1) {
+            if ($_FILES["image_name"]['name'] != "") {
+
+                $select_img = "select profile_image from  tbl_users where user_id='" . session()->get('user_id') . "' ";
+                $result = \App\Models\Songs::GetRawData($select_img);
+                $result = (array)$result[0];
+                $old_image  = $result['profile_image'];
+                $imgfile = $path . $old_image;
+                $thumbfile = $path . 'thumb_' . $old_image;
+                $thumbfile_small = $path . 'small_thumb_' . $old_image;
+                @unlink($imgfile);
+                @unlink($thumbfile);
+                @unlink($thumbfile_small);
+
+                $icon_array = $_FILES["image_name"]['name'];
+                $img_formats = array("jpeg", "gif", "png", "jpg", "JPEG", "GIF", "PNG", "JPG");
+                $allowed_size = 2; // Allowed Photo Size in MB			
+                $file_temp = $_FILES["image_name"]['tmp_name'];
+                $h_image_size = filesize($_FILES["image_name"]['tmp_name']);
+                $h_image_size = ($h_image_size / 1024) / 1024;
+                // $h_file_name_array     = $_FILES["user_image"];
+                // $h_file_ext = ltrim(strtolower(strrchr($_FILES["image_name"]['name'], '.')), '.');
+
+                $icon_orgname = rand() . "_" . $_FILES["image_name"]['name'];
+                $h_newthumb_name = 'thumb_' . $icon_orgname;
+                $h_small_thumb_name = 'small_thumb_' . $icon_orgname;
+                $h_photo_path = $path . $icon_orgname;
+                $h_photothumb_path = $path . $h_newthumb_name;
+                $h_dir = $path;
+
+                if ($h_image_size < $allowed_size) {
+                    $t = copy($file_temp, $h_photo_path);
+                    $img_qry = "UPDATE tbl_users SET profile_image='" . $icon_orgname . "' where user_id = '" . session()->get('user_id') . "'";
+                    \App\Models\Songs::GetRawData($img_qry);
+
+                    $a = new Thumbnail($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
+                    // creating thumbnail
+                    $a->create();
+
+                    $b = new Thumbnail($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
+                    // creating thumbnail
+                    $b->create();
+                }
+            }
+            echo "Done";
+        } else {
+            echo $errorstr;
+        }
+    }
+
+
+    ///ChangeUserName
+    public function ChangeUserName()
+    {
+        error_reporting(0);
+        if (isset($_POST)) {
+            $errorstr = "";
+            $case = 1;
+            $username          = trim($_REQUEST['username']);
+
+            if ($username == "") {
+                $errorstr .= "Please enter your new username<br>";
+                $case = 0;
+            } else {
+                $chk_pass_qry = 'select user_name  from tbl_users where 
+		 user_name  = \'' . $username . '\' and user_id!="' . session()->get('user_id') . '" ';
+                $chk_pass_arr = \App\Models\Songs::GetRawData($chk_pass_qry);
+                $db_user_name    = $chk_pass_arr[0]->user_name;
+                if ($db_user_name != "") {
+                    $errorstr .= "Sorry the username is not available, please try using another one.<br>";
+                    $case = 0;
+                }
+            }
+
+            if ($case == 1) {
+                $user_seo    =    str_replace(" ", "_", addslashes($username));
+
+                $update_qry = "UPDATE tbl_users set user_name = '" . $username . "', user_seo = '" . $user_seo . "' where user_id='" . session()->get('user_id') . "'";
+                \App\Models\Songs::GetRawData($update_qry); 
+                session()->put('user_name', $username);
+                echo 'done';
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+
+
+    ///ChangeProfilePassword
+    public function ChangeProfilePassword()
+    {
+
+        error_reporting(0);
+        if (isset($_POST)) {
+            $errorstr = "";
+            $case = 1;
+            $old_password          = trim($_REQUEST['old_password']);
+            $new_password          = trim($_REQUEST['new_password']);
+            $confirm_new_password = trim($_REQUEST['confirm_new_password']);
+
+            if ($old_password == "") {
+                $errorstr .= "Please enter your current password<br>";
+                $case = 0;
+            } else {
+                $chk_pass_qry = 'select password as chk_password from tbl_users where user_id="' . session()->get('user_id') . '" ';
+                $chk_pass_arr = \App\Models\Songs::GetRawData($chk_pass_qry);
+                $chk_password    = $chk_pass_arr[0]->chk_password;
+
+
+                if ($chk_password == "") {
+                    $errorstr .= "Incorrect current password entered, please try again<br>";
+                    $case = 0;
+                } else {
+                    if ($new_password == "") {
+                        $errorstr .= "Please enter your new password<br>";
+                        $case = 0;
+                    } else
+            if (strlen($new_password) < 6) {
+                        $errorstr .= "New password must have at least 6 characters<br>";
+                        $case = 0;
+                    } else
+            if ($confirm_new_password == "") {
+                        $errorstr .= "Please confirm your new password<br>";
+                        $case = 0;
+                    } else
+            if (strlen($confirm_new_password) < 6) {
+                        $errorstr .= "Confirm new password must have at least 6 characters<br>";
+                        $case = 0;
+                    } elseif ($new_password != $confirm_new_password) {
+                        $errorstr .= "Your new password does not match, please try again<br>";
+                        $case = 0;
+                    }
+                }
+            }
+
+            $password = Hash::make($new_password);
+            // if (Hash::check($new_password, $chk_password)) {
+            // } else {
+            //     $errorstr .= "Your old password not correct, please try again<br>";
+            //     $case = 0;
+            // }
+
+            if ($case == 1) {
+
+
+                $update_qry = "UPDATE tbl_users set password = '" . $password . "' 
+         where user_id='" . session()->get('user_id') . "'";
+                \App\Models\Songs::GetRawData($update_qry);
+                echo 'done';
+            } else {
+                echo $errorstr;
+            }
+        }
     }
 }

@@ -27,8 +27,16 @@ Route::post('process/reviews_artist_popular_likes',[ProcessController::class, 'R
 Route::post('process/favourite_like',[ProcessController::class, 'FavouriteLike']);
 
 
+///favourite_userprofile_likes_main_list
+Route::any('process/favourite_userprofile_likes_main_list',[ProcessController::class, 'FavouriteUserProfileLikesMainList']);
+
+
 ///favourite_like_sub_artist2s
 Route::post('process/favourite_like_sub_artist2',[ProcessController::class, 'FavouriteLikeSubArtist2']);
+
+
+///favourite_like_sub_artist_pop
+Route::post('process/favourite_like_sub_artist_pop',[ProcessController::class, 'FavouriteLikeSubArtistPop']);
 
 
 ///favourite_like_sub_artist_popular_latest
@@ -58,6 +66,9 @@ Route::post('process/favourite_like_sub',[ProcessController::class, 'FavouriteLi
 ///detail_review
 Route::get('process/detail_review',[ProcessController::class, 'DetailReview']);
 
+///detail_profile
+Route::get('process/detail_profile',[ProcessController::class, 'DetailProfile']);
+
 
 ///like detail
 Route::get('like/detail',[ProcessController::class, 'GetLikeDetail']) 
@@ -68,6 +79,18 @@ Route::post('process/discussion_process' , [ProcessController::class , 'Discussi
 
 ///detail_cms
 Route::get('process/detail_cms' , [ProcessController::class , 'DetailCMS']);
+ 
+
+///change_picture_process
+Route::post('process/change_picture_process' , [ProcessController::class , 'ChangeProfilePicture']);
+
+
+///change_picture_process
+Route::post('process/change_pass_process' , [ProcessController::class , 'ChangeProfilePassword']);
+
+
+///change_username_process
+Route::post('process/change_username_process' , [ProcessController::class , 'ChangeUserName']);
  
  
  

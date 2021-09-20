@@ -1,3 +1,8 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    } 
+});
 function write_a_review_validation_new() { 
     $("#api-readonly").unbind("submit");
     var options = {
@@ -52,7 +57,7 @@ function changeusername_validation() {
         target: "",
         beforeSubmit: change_username_validation_Request,
         success: change_username_validation_Response,
-        url: JS_SERVER_PATHROOT + "process/change_username_process.php",
+        url: JS_SERVER_PATHROOT + "process/change_username_process",
     };
     $("#user_name").submit(function () {
         $(this).ajaxSubmit(options);
@@ -210,7 +215,7 @@ function changepass_validation_new() {
         target: "",
         beforeSubmit: change_pass_validation_new_Request,
         success: change_pass_validation_new_Response,
-        url: JS_SERVER_PATHROOT + "process/change_pass_process.php",
+        url: JS_SERVER_PATHROOT + "process/change_pass_process",
     };
     $("#user_pass").submit(function () {
         return $(this).ajaxSubmit(a), !1;
@@ -241,7 +246,7 @@ function changeimage_validation_new() {
         target: "",
         beforeSubmit: changeimage_validation_new_Request,
         success: changeimage_validation_new_Response,
-        url: JS_SERVER_PATHROOT + "process/change_picture_process.php",
+        url: JS_SERVER_PATHROOT + "process/change_picture_process",
     };
     $("#profile_pic").submit(function () {
         return $(this).ajaxSubmit(a), !1;
@@ -369,7 +374,7 @@ function add_in_favourite_user_profile_screen_new(a, b, c) {
 function add_in_favourite_main_profile_list_new(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_userprofile_likes_main_list.php?prod_id=" +
+            "process/favourite_userprofile_likes_main_list?prod_id=" +
             a +
             "&sr_no=" +
             b +
