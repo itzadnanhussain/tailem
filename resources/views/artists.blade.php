@@ -6,21 +6,7 @@ error_reporting(0);
 if ($alpha == "unset") {
 	$search_artist_names = '';
 	$search_result = '';
-}
-
-
-// if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
-// 	if ($artist_name != "") {
-// 		$artist_name = mysqli_escape_string($db->dbh, $artist_name);
-// 		$search_where .= " AND (artist_name like '%$artist_name%')";
-
-// 		$search_artist_names = $artist_name;
-// 		$search_result = $search_where;
-// 	} else {
-// 		$search_artist_names = '';
-// 		$search_result = '';
-// 	}
-// }
+} 
 
 ?>
 
@@ -34,6 +20,7 @@ if ($alpha == "unset") {
 			<div class="banner-search">
 				<form action="<?php echo SERVER_ROOTPATH; ?>top-artists" method="post">
 					<div class="form-group">
+						@csrf
 						<label for="search" onClick="unset_all()" style="cursor:pointer;">All</label>
 						<input type="text" class="form-control" name="artist_name" id="skills" placeholder="Search for an Artist" <?php if ($search_artist_names != '') { ?>value="<?php echo $search_artist_names; ?>" <?php } ?> required>
 						<!--<button type="submit" type="submit" name="submit_ba" id="submit_ba" class="btn">Submit</button>-->
@@ -47,7 +34,7 @@ if ($alpha == "unset") {
 
 
 			if ($genere_seo != "") {
-				$urls = "-" . $genere_seo . "-genre";
+				$urls = "/" . $genere_seo . "/genre";
 			} else {
 				$urls = "";
 			}
@@ -114,7 +101,7 @@ if ($alpha == "unset") {
 										$cat_name = stripslashes(html_entity_decode($val['cat_name']));
 										$cat_seo_name = strtolower(stripslashes(html_entity_decode($val['cat_seo_name'])));
 									?>
-										<a href="<?php echo SERVER_ROOTPATH; ?>artists-genre-<?php echo $cat_seo_name; ?>" class="active"><?php echo $cat_name; ?> </a> <?php if ($v != sizeof($cat_list_arr)) {
+										<a href="<?php echo SERVER_ROOTPATH; ?>artists-genre/<?php echo $cat_seo_name; ?>" class="active"><?php echo $cat_name; ?> </a> <?php if ($v != sizeof($cat_list_arr)) {
 																																											echo '|';
 																																										} ?>
 									<?php $v++;
@@ -354,11 +341,15 @@ if ($alpha == "unset") {
 						if ($genere_seo != "") {
 							$get_cat_array = "select cat_id from tbl_categories where cat_seo_name = '$genere_seo' AND status = 1";
 							$get_cat_array = \App\Models\Songs::GetRawData($get_cat_array);
+							// echo '<pre>';
+							// print_r($get_cat_array);
+							// echo '</pre>';
+							// die;
 							$get_cat_array = (array)$get_cat_array[0];
 							$cat_genere_id  = $get_cat_array['cat_id'];
 
-							$where_condition .= " AND cat_seo_name = '$genere_seo'";
-							$artist_page = "artists-genres-" . $genere_seo;
+							$where_condition .= " AND genere_cat = '$cat_genere_id'";
+							$artist_page = "artists-genres/" . $genere_seo;
 						}
 
 						if ($search_result != "") {
@@ -643,7 +634,7 @@ if ($alpha == "unset") {
 													</label>
 													<div style="clear:both;"></div>
 													<p class="mobile-only" style="margin-top:-16px !important;">
-														<label class="reviews"><a style="color:#D73B3B;" href="<?php echo SERVER_ROOTPATH; ?>artists-genre-<?php echo $cat_seo_name; ?>"><?php echo substr($cat_name, 0, 20);
+														<label class="reviews"><a style="color:#D73B3B;" href="<?php echo SERVER_ROOTPATH; ?>artists-genre/<?php echo $cat_seo_name; ?>"><?php echo substr($cat_name, 0, 20);
 
 																																															if (strlen($cat_name) > 20) {
 																																																echo "..";
@@ -656,7 +647,7 @@ if ($alpha == "unset") {
 												<!--<button>Write a review</button>-->
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 artist_type red-text screen-only" style="text-align:right;">
-												<a href="<?php echo SERVER_ROOTPATH; ?>artists-genre-<?php echo $cat_seo_name; ?>" class="red-text"><?php echo "" . substr($cat_name, 0, 25);
+												<a href="<?php echo SERVER_ROOTPATH; ?>artists-genre/<?php echo $cat_seo_name; ?>" class="red-text"><?php echo "" . substr($cat_name, 0, 25);
 
 																																					if (strlen($cat_name) > 25) {
 																																						echo "..";
@@ -761,7 +752,7 @@ if ($alpha == "unset") {
 														</label>
 														<div style="clear:both;"></div>
 														<p>
-															<label class="reviews"><a style="color:#D73B3B;" href="<?php echo SERVER_ROOTPATH; ?>artists-genre-<?php echo $cat_seo_name; ?>"><?php echo $cat_name;
+															<label class="reviews"><a style="color:#D73B3B;" href="<?php echo SERVER_ROOTPATH; ?>artists-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name;
 
 
 
@@ -890,3 +881,4 @@ for ($u = 1; $u <= $m; $u++) {
 ?>
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 include("common.footer")
+<div class="modal fade" id="review_modal" role="dialog"></div>

@@ -21,13 +21,15 @@ Route::get('/{artist_seo}/artist-songs/{sort?}/{page?}',[ArtistController::class
 // RewriteRule ^artist-(.*)$ artists.php?alpha=$1 [PT]
 // RewriteRule ^artist-(.*)-(.*)$ artists.php?alpha=$1&page=$2 [PT] 
 
-Route::get('/top-artists/{page?}',[ArtistController::class , 'GetTopArtistsPage']);
-Route::get('/artist/{alpha?}/{page?}',[ArtistController::class , 'GetTopArtistsPage']);
+Route::any('/top-artists',[ArtistController::class , 'GetTopArtistsPage']);
+Route::any('/artist/{alpha?}',[ArtistController::class , 'GetTopArtistsPage']);
 
 // RewriteRule ^artist-(.*)-genre-(.*)$ artists.php?genere_seo=$1&alpha=$2 [PT]
-
-
-// RewriteRule ^artists-(.*)-genre-(.*)-(.*)$ artists.php?genere_seo=$1&alpha=$2&page=$3 [PT]
+// RewriteRule ^artists-(.*)-genre-(.*)-(.*)$  artists.php?genere_seo=$1&alpha=$2&page=$3 [PT]
 // RewriteRule ^artists-genres-(.*)-(.*)$ artists.php?genere_seo=$1&page=$2 [PT]
 // RewriteRule ^artists-genre-(.*)$ artists.php?genere_seo=$1 [PT]
+Route::any('/artist/{genere_seo}/genre/{alpha?}',[ArtistController::class , 'GetTopArtistsPageByGenereSoe']);
+Route::any('/artists-genres/{genere_seo}',[ArtistController::class , 'GetTopArtistsPageByGenereSoe']);
+Route::any('/artists-genre/{genere_seo}',[ArtistController::class , 'GetTopArtistsPageByGenereSoe']);
+
 

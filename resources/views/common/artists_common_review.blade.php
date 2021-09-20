@@ -35,6 +35,10 @@
             $p_fav = 0;
             foreach ($popular_review_array as $val) {
                 $val = (array)$val;
+                // echo '<pre>';
+                // print_r($val);
+                // echo '</pre>';
+                // die;
                 
                 $sr_no++;
                 $g++;
@@ -50,9 +54,9 @@
                 if ($picture == '' &&  $val['updated_by_itunes'] == '0000-00-00 00:00:00') {
                     $req_song  =  artist_album_song_func($artist_name, $song_title);
                 }
-                $review_title  = stripslashes(html_entity_decode($val['review_title']));
+                $review_title  = $val['review_title'];
                 $review_rating = $val['review_rating'];
-                $review_detail = stripslashes(html_entity_decode($val['review_detail']));
+                $review_detail = StringReplace(html_entity_decode($val['review_detail']));
                 $review_user_id = $val['review_user_id'];
                 $status         = $val['status'];
 
@@ -62,15 +66,18 @@
                 $artist_id     = $val['artist_id'];
                 $is_featured    = $val['is_featured'];
                 $review_post_date  = $val['review_post_date'];
-                $review_title  = wordwrap($review_title, 100, " ", true);
+                // $review_title  = stripslashes(wordwrap($review_title, 100, " ", true));
+                $review_title  = StringReplace($review_title);
 
                 $artist_name = stripslashes($val['artist_name']);
-                $song_title    =    stripslashes($val['song_title']);
+                $song_title    =    StringReplace($val['song_title']);
 
 
                 $select_qry = "select user_name from tbl_users where 
 										user_id='" . $review_user_id . "' ";
                 $select_ar = \App\Models\Songs::GetRawData($select_qry);
+                
+                
                  
                 $user_name = stripslashes(html_entity_decode($select_ar[0]->user_name));
                 $user_name = wordwrap($user_name, 100, " ", true);
@@ -255,7 +262,7 @@
                                 <div class="review_screen_txt col-lg-9 col-md-8 col-sm-8 col-xs-8 pad_right">
                                     <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $screen_chr);
                                                                                                                                                                                                                                                                                                             if (strlen($song_title) > $screen_chr) {
-                                                                                                                                                                                                                                                                                                                echo "..";
+                                                                                                                                                                                                                                                                                                                echo $song_title .  "..";
                                                                                                                                                                                                                                                                                                             } ?></a></label><br>
                                     <label class="font_wgt mrgin_top"><?php echo $featured_screen; ?></label>
                                 </div>
@@ -263,7 +270,7 @@
                                 <div class="review_ipad_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
                                     <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
                                                                                                                                                                                                                                                                                                             if (strlen($song_title) > $ipad_chr) {
-                                                                                                                                                                                                                                                                                                                echo "..";
+                                                                                                                                                                                                                                                                                                                echo $song_title . "..";
                                                                                                                                                                                                                                                                                                             } ?></a></label><br>
 
                                     <label class="font_wgt mrgin_top"><?php echo $featured_ipad; ?></label>
@@ -273,7 +280,7 @@
                                 <div class="review_mobile_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
                                     <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
                                                                                                                                                                                                                                                                                                             if (strlen($song_title) > $mobile_chr) {
-                                                                                                                                                                                                                                                                                                                echo "..";
+                                                                                                                                                                                                                                                                                                                echo $song_title . "..";
                                                                                                                                                                                                                                                                                                             } ?></a></label><br>
                                     <label class="font_wgt mrgin_top"><?php echo $featured_mobile; ?></label>
                                 </div>
@@ -347,7 +354,7 @@
                         <p class="review_screen_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $screen_rev);
 
                                                                                                                                                                                                                                                                         if (strlen($review_title) > $screen_rev) {
-                                                                                                                                                                                                                                                                            echo "...";
+                                                                                                                                                                                                                                                                            echo $review_title . "...";
                                                                                                                                                                                                                                                                         }
 
 
@@ -364,7 +371,7 @@
                         <p class="review_ipad_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $ipad_rev);
 
                                                                                                                                                                                                                                                                     if (strlen($review_title) > $ipad_rev) {
-                                                                                                                                                                                                                                                                        echo "...";
+                                                                                                                                                                                                                                                                        echo $review_title . "...";
                                                                                                                                                                                                                                                                     }
                                                                                                                                                                                                                                                                     ?></a></label>
 
@@ -378,7 +385,7 @@
                         <p class="review_mobile_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $mobile_rev);
 
                                                                                                                                                                                                                                                                         if (strlen($review_title) > $mobile_rev) {
-                                                                                                                                                                                                                                                                            echo "...";
+                                                                                                                                                                                                                                                                            echo $review_title . "...";
                                                                                                                                                                                                                                                                         }
 
 

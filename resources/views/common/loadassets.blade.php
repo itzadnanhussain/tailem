@@ -33,7 +33,7 @@
 
     <script type="text/javascript">
         function unset_all() {
-            window.location.href = "<?php echo SERVER_ROOTPATH; ?>artist-unset";
+            window.location.href = "<?php echo SERVER_ROOTPATH; ?>artist/unset";
         }
     </script>
     <script type="text/javascript">
