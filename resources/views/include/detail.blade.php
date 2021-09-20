@@ -1,5 +1,6 @@
 <?php
 if (isset($row_artist) && !empty($row_artist)) {
+ 
 	$artist_id_db 			= stripslashes(html_entity_decode($row_artist['id']));
 	$artist_seo 			= stripslashes(html_entity_decode($row_artist['artist_seo']));
 	$db_artist_name 			= stripslashes(html_entity_decode($row_artist['artist_name']));

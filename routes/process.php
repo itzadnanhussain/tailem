@@ -23,6 +23,10 @@ Route::post('process/write_a_review',[ProcessController::class, 'WriteReview'])
 Route::post('process/reviews_artist_popular_likes',[ProcessController::class, 'ReviewsArtistPopularLikes']);
 
 
+///favourite_like
+Route::post('process/favourite_like',[ProcessController::class, 'FavouriteLike']);
+
+
 ///favourite_like_sub_artist2s
 Route::post('process/favourite_like_sub_artist2',[ProcessController::class, 'FavouriteLikeSubArtist2']);
 

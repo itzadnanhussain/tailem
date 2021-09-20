@@ -426,7 +426,8 @@ class ProcessController extends Controller
 
         ///row_artist
         $row_artist = array();
-        $row_artist = \App\Models\Songs::GetRawData("select * from tbl_artists where (artist_seo='" . $data['artist_seo'] . "' and artist_description!='') || id='" . $data['artist_seo'] . "'");
+        // $row_artist = \App\Models\Songs::GetRawData("select * from tbl_artists where (artist_seo='" . $data['artist_seo'] . "' and artist_description!='') || id='" . $data['artist_seo'] . "'");
+        $row_artist = \App\Models\Songs::GetRawData("select * from tbl_artists where (artist_seo='" . $data['artist_seo'] . "') || id='" . $data['artist_seo'] . "'");
         if ($row_artist) {
             $data['row_artist'] = (array)$row_artist[0];
         }
@@ -453,6 +454,18 @@ class ProcessController extends Controller
     }
 
 
+    ///FavouriteLike
+    public function FavouriteLike()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['artist_seo'] = $_GET['artist_seo'];
+        $data['m'] = $_GET['m'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like', $data);
+    }
     ///FavouriteLikeSubArtist2
     public function FavouriteLikeSubArtist2()
     {

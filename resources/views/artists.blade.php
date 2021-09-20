@@ -135,6 +135,10 @@ if ($alpha == "unset") {
 									$artist_list = "select * from tbl_artists where artist_status = 1 AND popular_artist = 1 order by rand() limit 3";
 
 									$artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
+									// echo '<pre>';
+									// print_r($artist_list_arr);
+									// echo '</pre>';
+									// die;
 									if (isset($artist_list_arr)) {
 										$m = 1;
 										foreach ($artist_list_arr as $val) {
