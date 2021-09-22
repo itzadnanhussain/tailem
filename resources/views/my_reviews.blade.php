@@ -111,17 +111,17 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
             rateing = "-rating/" + rateing;
         }
 
-        window.location.href = "<?php echo SERVER_ROOTPATH ?>" + user + "review-song" + rateing + "/sort/" + val;
+        window.location.href = "<?php echo SERVER_ROOTPATH ?>" + user + "review-song" + rateing + "-sort/" + val;
 
     }
 
-    function sort_area_2(val, user, artist, album) {
-
+    function sort_area_2(val, user, artist, album) { 
         if (user != "") {
-            jumpto = "<?php echo SERVER_ROOTPATH ?>" + user + "/profile-review-song-" + album + "_" + artist + "-sort-" + val;
+            jumpto = "<?php echo SERVER_ROOTPATH ?>" + user + "/profile-review-song" + album + "_" + artist + "-sort/" + val;
         } else {
-            jumpto = "<?php echo SERVER_ROOTPATH ?>" + artist + "-review-songs-" + album + "-sort-" + val;
+            jumpto = "<?php echo SERVER_ROOTPATH ?>" + artist + "/review-songs/" + album + "/sort/" + val;
         }
+       
         window.location.href = jumpto;
 
     }

@@ -874,6 +874,18 @@ if (!function_exists('calculate_rating_main')) {
     }
 }
 
+///GetTitle
+if(!function_exists('GetTitle'))
+{
+    function GetTitle()
+    {
+        $url = Str::of(url()->current())->after(SERVER_ROOTPATH);
+        $find = array("/","-");
+        $replace = array(" "," "); 
+        return ucwords(str_replace($find,$replace,$url));
+    }
+}
+
 
 ///get_listof_songs_ids_main 
 if (!function_exists('get_listof_songs_ids_main')) {

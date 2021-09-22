@@ -5,7 +5,7 @@
         if ($main_link == "") {
             $full_link = SERVER_ROOTPATH . $main_link . "like-review";
         } else {
-            $full_link = SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-like-review";
+            $full_link = SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-like-review";
         }
         ?>
         <a href="<?php echo $full_link; ?>" <?php if ($currentFile == "my_account" || $currentFile == "like_artist" || $currentFile == "my_account_profile" || $currentFile == "likes_profile" || $currentFile == "likes_playlist") { ?> class="active" <?php } else { ?> <?php } ?>>LIKES</a> |
