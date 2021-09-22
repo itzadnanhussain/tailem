@@ -1,5 +1,6 @@
 <ul class="list-inline">
-     
+
+      
     <li><a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artist" <?php if ($currentFile == "my_reviews" || $currentFile == "review_artist" || $currentFile == "review_album") { ?>class="active" <?php } else { ?><?php } ?>>REVIEWS</a> |
         <?php
         if ($main_link == "") {
@@ -102,3 +103,4 @@ if ($currentFile == "my_playlist") {
 
 }
     ?>
+

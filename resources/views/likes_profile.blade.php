@@ -1,6 +1,8 @@
 @include("common.header")
 <?php
 $USER_NAME = ucfirst($user_name);
+
+
 ?>
 
 <!-- ./Header end -->

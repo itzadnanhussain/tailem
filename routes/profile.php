@@ -184,6 +184,35 @@ Route::any('like-profile/',[UserController::class , 'GetProfileLikesProfile']);
 // RewriteRule ^like-playlist-(.*)$ likes_playlist.php?page=$1 [PT]
 // RewriteRule ^like-playlist$ likes_playlist.php [PT]
 
-Route::any('{user_seo?}/profile-like-playlist/',[UserController::class , 'GetProfilePlaylist']);
-Route::any('like-playlist/',[UserController::class , 'GetProfilePlaylist']);
+Route::any('{user_seo?}/profile-like-playlist/',[UserController::class , 'GetProfileLikePlaylist']);
+Route::any('like-playlist/',[UserController::class , 'GetProfileLikePlaylist']);
 
+
+
+///*******************************************my_discussion.php */
+
+// RewriteRule ^(.*)-profile-discussions-(.*)$ my_discussion.php?user_seo=$1&page=$2 [PT]
+// RewriteRule ^(.*)-profile-discussions$ my_discussion.php?user_seo=$1 [PT]
+// RewriteRule ^profile-discussions-(.*)$ my_discussion.php?page=$1 [PT]
+// RewriteRule ^discussions-(.*)$ my_discussion.php?page=$1 [PT]
+// RewriteRule ^discussions$ my_discussion.php [PT]
+
+Route::any('{user_seo?}/profile-discussions/',[UserController::class , 'GetProfileDiscussion']);
+Route::any('discussions/',[UserController::class , 'GetProfileDiscussion']);
+ 
+
+///********************************************my_playlist.php */
+// RewriteRule ^playlists-(.*)_(.*)$ my_playlist.php?seo_playlist=$1&page=$2 [PT]
+// RewriteRule ^playlists-(.*)$ my_playlist.php?seo_playlist=$1 [PT] 
+// RewriteRule ^playlists$ my_playlist.php [PT] 
+// RewriteRule ^(.*)-profile-playlists-(.*)_(.*)$ my_playlist.php?user_seo=$1&seo_playlist=$2&page=$3 [PT]
+// RewriteRule ^(.*)-profile-playlists-(.*)$ my_playlist.php?user_seo=$1&seo_playlist=$2 [PT]
+// RewriteRule ^(.*)-profile-playlists$ my_playlist.php?user_seo=$1 [PT]
+Route::any('{user_seo?}/profile-playlists/{seo_playlist?}',[UserController::class , 'GetProfilePlaylist']);
+Route::any('/playlists',[UserController::class , 'GetProfilePlaylist']);
+
+
+///******************************* my_account.php */
+// RewriteRule ^like-review-(.*)$ my_account.php?page=$1 [PT]
+// RewriteRule ^like-review$ my_account.php [PT]
+Route::any('/like-review',[UserController::class , 'GetLikeReview']);

@@ -887,6 +887,34 @@ if(!function_exists('GetTitle'))
 }
 
 
+///check_report_discussion
+if(!function_exists('check_report_discussion'))
+{
+    function check_report_discussion($review_id)
+	{
+			global $db;
+			 $report_query = "select r_report_id  from tbl_review_report where r_report_user_id = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."' AND r_report_review_id = '$review_id' AND status = 1";
+ 
+			$chk_report_arr = \App\Models\Songs::GetRawData($report_query); 
+			return $chk_report_arr;
+			
+	}
+}
+
+
+///get_playlist_info
+if(!function_exists('get_playlist_info'))
+{
+    function get_playlist_info($user_id, $id)
+	{ 
+	 	$main_play_list="select *  from tbl_user_playlist where user_id_playlist = '".$user_id."' AND title_playlist_seo = '$id'"; 
+		$playlist_arr	=	\App\Models\Songs::GetRawData($main_play_list);;
+		return $playlist_arr;
+	}
+}
+
+
+
 ///get_listof_songs_ids_main 
 if (!function_exists('get_listof_songs_ids_main')) {
 
