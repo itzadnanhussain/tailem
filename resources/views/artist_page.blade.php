@@ -266,7 +266,7 @@ if ($lastfm_url == "") {
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <p style="padding:5px;"> <a class="heart_color" href="<?php echo SERVER_ROOTPATH .  $artist_seo . "/artist-songs"; ?>" aria-controls="song">Songs</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-albums"; ?>">Albums</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-featured"; ?>">Featured</a></p>
+                                    <p style="padding:5px;"> <a class="heart_color" href="<?php echo SERVER_ROOTPATH .  $artist_seo . "/artist-songs"; ?>" aria-controls="song">Songs</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-albums"; ?>">Albums</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-featured"; ?>">Featured</a></p>
                                 </div>
                             </div>
                             <div class="row">

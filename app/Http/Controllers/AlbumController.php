@@ -50,7 +50,7 @@ class AlbumController extends Controller
 
         //page View
         $data['currentFile'] = 'album';
-        $data['title'] = 'Top Albums';
+        $data['title'] = GetTitle();
         return view('album', $data);
     }
 
@@ -61,8 +61,7 @@ class AlbumController extends Controller
         $data = array();
         $data['artist_seo'] = $artist_seo;
         $data['album_seo'] = $album_seo;
-        ///common header
-        $data['currentFile'] = get_page_name();
+        ///common header 
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -105,6 +104,7 @@ class AlbumController extends Controller
 
         //page View
         $data['currentFile'] = 'albums_page';
+        $data['title'] = GetTitle();
 
         return view('albums_page', $data);
     }

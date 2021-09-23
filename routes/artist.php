@@ -33,3 +33,9 @@ Route::any('/artists-genres/{genere_seo}',[ArtistController::class , 'GetTopArti
 Route::any('/artists-genre/{genere_seo}',[ArtistController::class , 'GetTopArtistsPageByGenereSoe']);
 
 
+
+
+// RewriteRule ^(.*)-artist-featured-(.*)$ featured_page.php?artist_seo=$1&page=$2 [PT]
+// RewriteRule ^(.*)-artist-featured$ featured_page.php?artist_seo=$1 [PT]
+Route::any('/{artist_seo}/artist-featured',[ArtistController::class , 'GetArtistsFeaturedPage']);
+
