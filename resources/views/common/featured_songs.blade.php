@@ -1,3 +1,9 @@
+<style>
+    .ad-feature-img
+    {
+        height: 367px !important;
+    }
+</style>
 <div id="owl-carousel2" class="owl-carousel">
 
 
@@ -196,7 +202,7 @@
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"> <img src="<?php echo $image_get; ?>"></a>
+                                    <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"> <img class="ad-feature-img" src="<?php echo $image_get; ?>"></a>
                                 <?php
                                 }
                                 ?>

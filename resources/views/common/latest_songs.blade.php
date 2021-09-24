@@ -5,7 +5,7 @@
 </style>
 <div class="latestsongssec">
     <div class="container topsongssecs">
-        <h2 class="sec_heading" style="margin-top: 35px;">
+        <h2 class="sec_heading marginbot30" style="margin-top: 35px;">
             <div style="width:300px;margin-left:auto;margin-right:auto"> <i style="float:left" class="sprite sprite-icon_musichead"></i> <a href="https://www.tailem.com/latest-songs" style="color:#2b2b2b" onMouseOver="this.style.color='#70857b'" onMouseOut="this.style.color='#2b2b2b'">Latest Songs</a></div>
 
         </h2>
@@ -202,7 +202,9 @@
                                                                                             }
                                                                                             ?></p>
                                                 </a>
-                                                <cite class="cite-margin-top"><a style="color:#08aa90" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a> <?php echo $feature_artists; ?> </cite>
+                                                <cite class="cite-margin-top">
+                                                    <a style="color:#08aa90" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo  $artist_name; ?></a> <?php echo $feature_artists; ?>
+                                                </cite>
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
                                                 <?php
@@ -224,10 +226,10 @@
                                                 ?>
                                                         <span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular_latest('<?php echo $artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
                                                             <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $ar_likes; ?><?php if ($ar_likes < 2) {
-                                                                                                                                                                                                                                                                                                echo " Like";
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo " Likes";
-                                                                                                                                                                                                                                                                                            } ?></a>
+                                                                                                                                                                                                                                                                                                    echo " Like";
+                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                    echo " Likes";
+                                                                                                                                                                                                                                                                                                } ?></a>
                                                         </span>
                                                         <span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"></span>
                                                     <?php
@@ -236,10 +238,10 @@
                                                         <span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>">
                                                             <a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular_latest('<?php echo $artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart" style="font-size:24px;"></i></a>
                                                             <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $ar_likes; ?><?php if ($ar_likes < 2) {
-                                                                                                                                                                                                                                                                                                echo " Like";
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo " Likes";
-                                                                                                                                                                                                                                                                                            } ?></a></span>
+                                                                                                                                                                                                                                                                                                    echo " Like";
+                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                    echo " Likes";
+                                                                                                                                                                                                                                                                                                } ?></a></span>
                                                         <span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"></span>
                                                     <?php
                                                     }

@@ -28,7 +28,7 @@ if (isset($top_songs_arr)) {
             if ($sum_rate == "" || $sum_rate == 0 || $counter == "" || $counter == 0) {
                 $sum_rate = 0;
                 $counter = 0;
-                $all_avg = 0;
+                $all_avg = 5;
             }
             else
             {

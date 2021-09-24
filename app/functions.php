@@ -327,7 +327,7 @@ if (!function_exists('get_first_playlist_record')) {
         return $playlist_arr;
     }
 }
- 
+
 
 ///check user data
 if (!function_exists('checkUser_profile')) {
@@ -465,6 +465,34 @@ if (!function_exists('popular_review_artist')) {
 					 limit 3
 					 ";
         $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list);
+        return  $reviews_list_arr;
+    }
+}
+
+
+///popular_review 
+if (!function_exists('popular_review')) {
+    function popular_review()
+    {
+
+        $reviews_list_arr = array();
+        if (empty($reviews_list_arr)) {
+            $qry = "select b.album_seo, b.album_picture,a.artist_seo,a.artist_seo, a.artist_name,s.song_seo, s.song_title,s.updated_by_itunes,s.picture,r.* 
+					 from tbl_reviews r,tbl_artists a,tbl_songs s,  tbl_artist_album b , tbl_songs_artist_album saa  
+					 where 1=1 
+					 AND r.song_id = s.id
+					 AND r.artist_id = a.id
+					 AND r.album_id = b.id
+					 AND s.ranking_order != 0
+					 AND s.id = saa.song_id 
+					 AND s.song_status = 1 
+					 AND saa.display_status = 1
+					 group by saa.song_id
+					 order by r.review_id desc					
+					 limit 3
+					 ";
+            $reviews_list_arr    =    \App\Models\Songs::GetRawData($qry);
+        }
         return  $reviews_list_arr;
     }
 }
