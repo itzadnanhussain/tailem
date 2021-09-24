@@ -8,3 +8,9 @@ use Illuminate\Support\Facades\Route;
 // RewriteRule ^(.*)/write-a-review/(.*)$ song_local_like/detail?song_seo=$1&artist_seo=$2 [PT]
 Route::get('/{song_seo}/write-a-review/{artist_seo}/{sort?}',[ReviewController::class , 'SongWriteReview']);
  
+
+
+///report.php
+Route::get('/report/{rev_id?}/{num?}' , [ReviewController::class , 'GetReport']);
+ 
+ 

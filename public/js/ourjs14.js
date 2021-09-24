@@ -86,39 +86,12 @@ function change_username_validation_Response(responseText, statusText) {
     }
 }
 
-/* Validate Report*/
-function validate_report_review_new() {
-    $("#review_report_form").unbind("submit");
-    var options = {
-        target: "",
-        beforeSubmit: null,
-        success: validate_report_review_new_Response,
-        url: JS_SERVER_PATHROOT + "process/report_process.php",
-    };
-    $("#review_report_form").submit(function () {
-        $(this).ajaxSubmit(options);
-        return false;
-    });
-}
 
-function validate_report_review_new_Response(responseText, statusText) {
-    myarray = new Array();
-    myarray = responseText.split("-SEPARATOR-");
-    if (responseText.search("done") != -1) {
-        $("#report_Modal4_" + myarray[1]).modal("hide");
-        $("#add_report_request").modal("show");
-    } else {
-        if (responseText.search("Msg") != -1) {
-            myarray1 = new Array();
-            myarray1 = responseText.split("-SEPARATOR-");
 
-            $("#report_Modal4_" + myarray1[2]).modal("hide");
-            $("#report_success").modal("show");
-        } else {
-            alert(responseText);
-        }
-    }
-}
+ 
+
+
+
 
 function write_a_review_validations_new() {
     $("#api-readonlys").unbind("submit");

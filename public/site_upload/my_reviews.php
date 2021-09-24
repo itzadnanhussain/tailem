@@ -820,7 +820,7 @@ a.under_line:hover {
 												if($db_review_user_id != $_SESSION[USER_SESSION_ARRAY]['USER_ID'])
 												{
 													?>
-                                                    <a class="linkTag under_line" href="<?php echo SERVER_ROOTPATH;?>report.php?rev_id=<?php echo $review_id;?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $sr_no;?>" style="font-size:11px; margin-top:-3px; float:right;" data-title="">Report</a>
+                                                    <a class="linkTag under_line" href="<?php echo SERVER_ROOTPATH;?>report?rev_id=<?php echo $review_id;?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $sr_no;?>" style="font-size:11px; margin-top:-3px; float:right;" data-title="">Report</a>
                                                     <?php		
 												}
 											?>
@@ -1016,7 +1016,7 @@ a.under_line:hover {
 												if($db_review_user_id != $_SESSION[USER_SESSION_ARRAY]['USER_ID'])
 												{
 													?>
-                                                    <a class="linkTag under_line" href="<?php echo SERVER_ROOTPATH;?>report.php?rev_id=<?php echo $review_id;?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $sr_no;?>" data-title="">Report</a>
+                                                    <a class="linkTag under_line" href="<?php echo SERVER_ROOTPATH;?>report?rev_id=<?php echo $review_id;?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $sr_no;?>" data-title="">Report</a>
                                                     <?php		
 												}
 											?>
@@ -1293,7 +1293,7 @@ a.under_line:hover {
 												if($db_review_user_id != $_SESSION[USER_SESSION_ARRAY]['USER_ID'])
 												{
 													?>
-                                                    <a class="linkTag under_line" href="<?php echo SERVER_ROOTPATH;?>report.php?rev_id=<?php echo $review_id;?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $sr_no;?>" data-title="">Report</a>
+                                                    <a class="linkTag under_line" href="<?php echo SERVER_ROOTPATH;?>report?rev_id=<?php echo $review_id;?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $sr_no;?>" data-title="">Report</a>
                                                     <?php		
 												}
 											?>

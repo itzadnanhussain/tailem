@@ -1100,7 +1100,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                             <?php
                                                             } else {
                                                             ?>
-                                                                <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" style="font-size:11px; margin-top:-3px; float:right;" data-title="">Report</a>
+                                                                <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" style="font-size:11px; margin-top:-3px; float:right;" data-title="">Report</a>
                                                     <?php
                                                             }
                                                         }
@@ -1317,7 +1317,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                             <?php
                                                             } else {
                                                             ?>
-                                                                <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="">Report</a>
+                                                                <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="">Report</a>
                                                     <?php
                                                             }
                                                         }
@@ -1644,7 +1644,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                             <?php
                                                             } else {
                                                             ?>
-                                                                <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="">Report</a>
+                                                                <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="">Report</a>
                                                     <?php
                                                             }
                                                         }

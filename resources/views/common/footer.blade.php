@@ -131,3 +131,21 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 
 </html>
 <div class="modal fade" id="review_modal" role="dialog"></div>
+<div class="modal fade in" id="add_report_request" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="false">
+     <div class="modal-dialog" style="margin-top:10%;">
+         <div class="modal-content" style="border-radius:0px;">
+             <div class="modal-header">
+                 <h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                 </h4>
+             </div>
+             <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                 <p>
+                     We will review your request with in 24 hours and take action accordingly.<br><br><br>
+
+                     Warmest Regards,<br>
+                     Team at Tailem.com
+                 </p>
+             </div>
+         </div>
+     </div>
+ </div>

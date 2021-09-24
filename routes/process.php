@@ -96,8 +96,11 @@ Route::post('process/change_username_process' , [ProcessController::class , 'Cha
 
 ///forgot_process
 Route::post('process/forgot_process' , [ProcessController::class , 'PasswordForgot']);
- 
- 
+
+
+///process/report_process
+Route::post('process/report_process' , [ProcessController::class , 'ReportProcess']);
+
  
  
 

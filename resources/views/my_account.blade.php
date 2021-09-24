@@ -753,7 +753,7 @@ if ($page != "") {
                                                                 <?php
                                                                 } else {
                                                                 ?>
-                                                                    <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="" style="font-size:11px; margin-top:-3px; float:right;">Report</a>
+                                                                    <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="" style="font-size:11px; margin-top:-3px; float:right;">Report</a>
                                                             <?php
                                                                 }
                                                             }
@@ -920,7 +920,7 @@ if ($page != "") {
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="">Report</a>
+                                                            <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="">Report</a>
                                                     <?php
                                                         }
                                                     }
@@ -1222,7 +1222,7 @@ if ($page != "") {
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="">Report</a>
+                                                            <a class="linktag_new under_line" href="<?php echo SERVER_ROOTPATH; ?>report?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $k; ?>" data-title="">Report</a>
                                                     <?php
                                                         }
                                                     }

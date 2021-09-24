@@ -877,11 +877,10 @@ $img_arr3 = (array)$img_arr3[0];
             <div class="heading">
                 Related Songs
             </div>
-            <?php //include "related_songs.php";
-            ?>
-            <?php
-            //include "common/related_songs.php"; 
-            ?>
+              
+           
+             @include"common.related_songs"
+            
             <?php //include "common/latest_songs.php";
             ?>
 

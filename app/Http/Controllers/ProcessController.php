@@ -970,13 +970,99 @@ class ProcessController extends Controller
                 $msg_body = str_replace('{LINK}', $link, $msg_body);
 
 
-               
+
                 sendemail($user_email, $cc, $admin_email, $temp_subject, $msg_body, $filename, $filepath);
 
                 echo "done-SEPARATOR-An email has been sent to your email address. Please follow the instructions in your email to recover your password.";
             } else {
                 echo $error_str;
                 exit;
+            }
+        }
+    }
+
+
+    ///ReportProcess
+    public function ReportProcess()
+    {
+
+        if (isset($_POST)) {
+            extract($_POST);
+            error_reporting(0);
+
+            $errorstr = "";
+            $case = 1;
+            $reviewsid          = trim($_REQUEST['reviewsid']);
+            $reviews_id          = trim($_REQUEST['reviewsid']);
+            $num          = trim($_REQUEST['num']);
+            $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
+            $review_detail          = trim($_REQUEST['review_detail']);
+            $report_option = trim($_REQUEST['report_option']);
+
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                echo "Please sign in first";
+                exit;
+            }
+
+
+            if ($reviews_id == '') {
+                $errorstr .= "No review found.\n";
+                $case = 0;
+            } else {
+                $qry = "select r_report_id  from tbl_review_report where r_report_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND r_report_review_id = '$reviewsid'";
+                $chk_report_arr = \App\Models\Songs::GetRawData($qry);
+
+
+                $qry = "select review_id, review_user_id from tbl_reviews where review_id = '$reviewsid'";
+                $chk_review_arr = \App\Models\Songs::GetRawData($qry);
+
+
+
+                if (!$chk_review_arr) {
+                    $errorstr .= "No review found.\n";
+                    $case = 0;
+                }
+            }
+
+            if ($chk_review_arr) {
+                $chk_review_arr = (array)$chk_review_arr[0];
+                if ($chk_review_arr['review_user_id'] == $_SESSION[USER_SESSION_ARRAY]['USER_ID']) {
+                    echo $errorstr .= "You can't report your own post.\n";
+                    exit;
+                    $case = 0;
+                }
+            }
+
+            if ($chk_report_arr) {
+                echo $errorstr .= "Msg-SEPARATOR-We are still in the process of reviewing your request and will take action accordingly.-SEPARATOR-$num";
+                exit;
+                $case = 0;
+            }
+
+            if ($report_option == "") {
+                $errorstr .=  "Please select a report option from the list\n";
+                $case = 0;
+            }
+
+            if ($case == 1) {
+
+                $post = array();
+                $post['r_report_review_id'] = $reviewsid;
+                $post['r_report_user_id'] = $_SESSION[USER_SESSION_ARRAY]['USER_ID'];
+                $post['r_report_date'] = time();
+                $post['r_report_status'] = 1;
+                $post['r_report_ip'] = $_SERVER['REMOTE_ADDR'];
+                $post['r_report_details'] = $review_detail;
+                $post['r_report_option'] = $report_option;
+                $insert_id = addNew('review_report', $post);
+                if ($insert_id) {
+                    echo 'done-SEPARATOR-' . $num;
+                } else {
+                    echo 'Record not added';
+                    exit;
+                }
+            } else {
+                echo $errorstr;
             }
         }
     }
