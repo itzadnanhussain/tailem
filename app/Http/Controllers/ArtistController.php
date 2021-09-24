@@ -80,7 +80,7 @@ class ArtistController extends Controller
 
         $data['currentFile'] = 'artist_page';
         $title = str_replace('-', ' ', ($artist_seo . ' artists songs'));
-        $data['title'] = ucwords($title);
+        $data['title'] = GetTitle();
         return view('artist_page', $data);
     }
 
@@ -139,14 +139,8 @@ class ArtistController extends Controller
 
 
         //loadview
-        $data['currentFile'] = 'artists';
-        if (!empty($alpha)) {
-            $title = str_replace('-', ' ', ('artists ' . $alpha));
-        } else {
-
-            $title = str_replace('-', ' ', ('top artists'));
-        }
-        $data['title'] = ucwords($title);
+        $data['currentFile'] = 'artists'; 
+        $data['title'] = GetTitle();
 
         return view('artists', $data);
     }
@@ -207,14 +201,8 @@ class ArtistController extends Controller
 
 
         //loadview
-        $data['currentFile'] = 'artists';
-        if (!empty($alpha)) {
-            $title = str_replace('-', ' ', ('artists ' . $alpha));
-        } else {
-
-            $title = str_replace('-', ' ', ('top artists'));
-        }
-        $data['title'] = ucwords($title);
+        $data['currentFile'] = 'artists'; 
+        $data['title'] = GetTitle();
 
         return view('artists', $data);
     }

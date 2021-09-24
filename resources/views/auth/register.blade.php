@@ -27,7 +27,7 @@
                         <input style="margin-top:10px;" class="btn btn-lg btn-primary btn-block" type="submit" name="submit_btn" value="Sign Up">
 
                         <label class="terms_txt">
-                            By creating an account, I accept Tailem.com's <a style="color:#3276B1;" href="<?php echo SERVER_ROOTPATH; ?>signup_popup.php/privacy-policy" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="">Privacy Policy </a>and <a style="color:#3276B1;" href="<?php echo SERVER_ROOTPATH; ?>signup_popup.php/terms-of-use" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="">Terms of Use</a>.
+                            By creating an account, I accept Tailem.com's <a style="color:#3276B1;" href="<?php echo SERVER_ROOTPATH; ?>signup_popup/privacy-policy" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="">Privacy Policy </a>and <a style="color:#3276B1;" href="<?php echo SERVER_ROOTPATH; ?>signup_popup/terms-of-use" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="">Terms of Use</a>.
 
                         </label>
                     </form>

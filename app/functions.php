@@ -4,9 +4,9 @@
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Connection;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
+// use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
-
+use App\Classes\Mail;
 
 ///CheckDatabaseConnection
 if (!function_exists('CheckDatabaseConnection')) {
@@ -1376,4 +1376,34 @@ if (!function_exists('count_likes')) {
 
         return $sum_likes;
     }
+}
+
+
+///sendemail
+if (!function_exists('sendemail')) {
+    function sendemail($to, $cc, $from, $sub, $msg, $filename, $filepath)
+	{
+		// for test //
+		//saveto_emaillog($to, $cc, $from, $sub, $msg, $filename, $filepath);
+		
+		// for live //
+		$mContact = new Mail;
+		$mContact->From($from);
+		//$mContact->From("Momsloveit.com <contact@momsloveit.com>");
+		
+		//if(isset($cc) && !empty($cc)) { $mContact->Cc($cc); }
+		$to_arr	=	explode(",",$to);
+		for($i=0; $i<count($to_arr); $i++)
+		{
+			$mContact->To(trim(strtolower($to_arr[$i])));
+			if(isset($filename) && !empty($filename) && isset($filepath) && !empty($filepath)) { $mContact->Attach($filename,$filepath,'attachment'); }
+			
+			$mContact->Subject($sub);
+			$mContact->Body(stripslashes($msg));
+			$mContact->Priority(4) ; 
+			$mContact->Send();
+		}
+		
+		return 1;
+	}
 }

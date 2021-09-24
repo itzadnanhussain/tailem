@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Classes\Thumbnail;
+// use App\Classes\Mail;
+use Illuminate\Support\Facades\Mail;
+
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -701,6 +705,24 @@ class ProcessController extends Controller
         return view('include.detail_cms', $data);
     }
 
+    ///DetailCMS_One
+    public function DetailCMS_One($seo_url)
+    {
+        $data = array();
+        $data['seo_url'] = $seo_url;
+        $data['mobile_view'] = 0;
+        $get_page_content_qry = "SELECT * FROM tbl_pages WHERE page_seo_name = '" . $data['seo_url'] . "'";
+        $get_page_content = \App\Models\Songs::GetRawData($get_page_content_qry);
+
+        if (!$get_page_content) {
+            redirect('/');
+        } else {
+            $data['get_page_content'] = (array)$get_page_content[0];
+        }
+
+        return view('include.signup_popup', $data);
+    }
+
     ///ChangeProfilePicture
     public function ChangeProfilePicture()
     {
@@ -801,7 +823,7 @@ class ProcessController extends Controller
                 $user_seo    =    str_replace(" ", "_", addslashes($username));
 
                 $update_qry = "UPDATE tbl_users set user_name = '" . $username . "', user_seo = '" . $user_seo . "' where user_id='" . session()->get('user_id') . "'";
-                \App\Models\Songs::GetRawData($update_qry); 
+                \App\Models\Songs::GetRawData($update_qry);
                 session()->put('user_name', $username);
                 echo 'done';
             } else {
@@ -874,6 +896,87 @@ class ProcessController extends Controller
                 echo 'done';
             } else {
                 echo $errorstr;
+            }
+        }
+    }
+
+    ///PasswordForgot
+    public function PasswordForgot()
+    {
+        if ($_POST) {
+            extract($_POST);
+            error_reporting(0);
+            $case = 1;
+            $error_str = '';
+            if ($user_email == '') {
+                $error_str .= "Please enter email address <br>";
+                $case = 0;
+            } else {
+                if (!filter_var($user_email, FILTER_VALIDATE_EMAIL)) {
+                    $error_str .= "Please enter valid email address <br>";
+                    $case = 0;
+                } else {
+                    $qry = "select password, email, user_id, user_name,status from tbl_users where email='" . trim($user_email) . "'";
+                    $chk_email_exist = \App\Models\Songs::GetRawData($qry);
+                    // echo '<pre>';
+                    // print_r($chk_email_exist);
+                    // echo '</pre>';
+                    // die;
+
+
+                    if ($chk_email_exist) {
+                        $chk_email_exist = (array)$chk_email_exist[0];
+                        $db_email_address  = $chk_email_exist['email'];
+
+                        $user_id  = $chk_email_exist['user_id'];
+                        $user_name    = $chk_email_exist['user_name'];
+                        $simple_password    = $chk_email_exist['password'];
+                        $status  = $chk_email_exist['status'];
+
+                        $activation_code = base64_encode($user_id . rand());
+
+                        if ($status == 0) {
+                            $error_str .= "Your account is not active <br>";
+                            $case = 0;
+                        }
+                    } else {
+                        $error_str .= "This email is not registered <br>";
+                        $case = 0;
+                    }
+                }
+            }
+
+
+            if ($case == 1) {
+
+                $qry = "update tbl_users set activation_code = '$activation_code' where user_id = '$user_id'";
+                \App\Models\Songs::GetRawData($qry);
+                $adminemail  = "Select email from tbl_admin ";
+                $arradmin    = \App\Models\Songs::GetRawData($adminemail);
+                $admin_email = stripslashes($arradmin[0]->email);
+
+                $qry = "SELECT * FROM  tbl_emailtemplets WHERE etemp_id ='2'";
+                $get_mail_temp     = \App\Models\Songs::GetRawData($qry);
+
+                if ($get_mail_temp) {
+                    $get_mail_temp = (array)$get_mail_temp[0];
+                    $temp_subject = html_entity_decode(stripslashes($get_mail_temp['etemp_subject']));
+                    $msg_body = html_entity_decode(stripslashes($get_mail_temp['etemp_data']));
+                }
+
+                $link = "<a href=\"" . SERVER_ROOTPATH . "reset-password-" . $activation_code . "\">" . "Reset Password</a>";
+
+                $msg_body = str_replace('{USERNAME}', $user_name, $msg_body);
+                $msg_body = str_replace('{LINK}', $link, $msg_body);
+
+
+               
+                sendemail($user_email, $cc, $admin_email, $temp_subject, $msg_body, $filename, $filepath);
+
+                echo "done-SEPARATOR-An email has been sent to your email address. Please follow the instructions in your email to recover your password.";
+            } else {
+                echo $error_str;
+                exit;
             }
         }
     }

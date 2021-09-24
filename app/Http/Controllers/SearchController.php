@@ -102,7 +102,7 @@ class SearchController extends Controller
 
             ///load view
             $data['currentFile'] = 'search';
-            $data['title'] = 'Searcher';
+            $data['title'] = GetTitle();
             return view('search', $data);
         }
     }
@@ -192,7 +192,7 @@ class SearchController extends Controller
 
         ///load view
         $data['currentFile'] = 'search';
-        $data['title'] = 'Searcher';
+        $data['title'] = GetTitle();
         return view('search', $data);
     }
 
@@ -286,7 +286,7 @@ class SearchController extends Controller
 
             ///load view
             $data['currentFile'] = 'search-songs';
-            $data['title'] = 'Searcher';
+            $data['title'] = GetTitle();
             return view('search_song', $data);
         }
     }
@@ -377,7 +377,7 @@ class SearchController extends Controller
 
         ///load view
         $data['currentFile'] = 'search-songs';
-        $data['title'] = 'Searcher';
+        $data['title'] = GetTitle();
         return view('search_song', $data);
     }
 
@@ -482,7 +482,7 @@ class SearchController extends Controller
 
         ///load view
         $data['currentFile'] = 'search-artists';
-        $data['title'] = 'Searcher';
+        $data['title'] = GetTitle();
         return view('search_artist', $data);
     }
 
@@ -593,7 +593,7 @@ class SearchController extends Controller
 
             ///load view
             $data['currentFile'] = 'search-songs';
-            $data['title'] = 'Searcher';
+            $data['title'] = GetTitle();
             return view('search_artist', $data);
         }
     }
@@ -700,7 +700,7 @@ class SearchController extends Controller
 
         ///load view
         $data['currentFile'] = 'search-artists';
-        $data['title'] = 'Searcher';
+        $data['title'] = GetTitle();
         return view('search_albumlist', $data);
     }
 
@@ -812,7 +812,7 @@ class SearchController extends Controller
 
             ///load view
             $data['currentFile'] = 'search-songs';
-            $data['title'] = 'Searcher';
+            $data['title'] = GetTitle();
             return view('search_albumlist', $data);
         }
     }

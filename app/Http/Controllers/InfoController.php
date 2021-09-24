@@ -41,6 +41,7 @@ class InfoController extends Controller
         // $setting_arr = GetByWhere('general_setting', array('setting_id' => 1));
         // $result_notification_count = GetByWhere('general_setting', array('setting_id' => 1));
         $data['currentFile'] = 'contact-us';
+        $data['title'] = GetTitle();
         return view('contact-us', $data);
     }
 
@@ -118,6 +119,7 @@ class InfoController extends Controller
        // $setting_arr = GetByWhere('general_setting', array('setting_id' => 1));
        // $result_notification_count = GetByWhere('general_setting', array('setting_id' => 1));
        $data['currentFile'] = 'contact-us';
+       $data['title'] = GetTitle();
 
 
 

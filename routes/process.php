@@ -79,6 +79,7 @@ Route::post('process/discussion_process' , [ProcessController::class , 'Discussi
 
 ///detail_cms
 Route::get('process/detail_cms' , [ProcessController::class , 'DetailCMS']);
+Route::get('signup_popup/{seo_url}' , [ProcessController::class , 'DetailCMS_One']);
  
 
 ///change_picture_process
@@ -91,6 +92,10 @@ Route::post('process/change_pass_process' , [ProcessController::class , 'ChangeP
 
 ///change_username_process
 Route::post('process/change_username_process' , [ProcessController::class , 'ChangeUserName']);
+
+
+///forgot_process
+Route::post('process/forgot_process' , [ProcessController::class , 'PasswordForgot']);
  
  
  

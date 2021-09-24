@@ -101,7 +101,7 @@ class SongsController extends Controller
 
         //page View
         $data['currentFile'] = 'top-songs';
-        $data['title'] = "Top Songs";
+        $data['title'] = GetTitle();
         return view('top_songs', $data);
     }
 
@@ -204,8 +204,7 @@ class SongsController extends Controller
         }
 
         $data['currentFile'] = 'song_detail';
-        $title = str_replace('-',' ',($artist_seo .' | '.  $song_seo));
-        $data['title'] = ucwords($title);
+         $data['title'] = GetTitle();
         return view('song_detail', $data);
     }
 
@@ -250,8 +249,7 @@ class SongsController extends Controller
         }
 
         $data['currentFile'] = 'song_detail';
-        $title = str_replace('-',' ',($artist_seo .' | '.  $song_seo));
-        $data['title'] = ucwords($title);
+         $data['title'] = GetTitle();
         return view('song_detail', $data);
     }
 
@@ -296,8 +294,7 @@ class SongsController extends Controller
         }
 
         $data['currentFile'] = 'song_detail';
-        $title = str_replace('-',' ',($artist_seo .' | '.  $song_seo));
-        $data['title'] = ucwords($title);
+         $data['title'] =GetTitle();
         return view('song_detail', $data);
     }
 }

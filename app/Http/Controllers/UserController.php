@@ -152,7 +152,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'review_artist';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('review_artist', $data);
     }
 
@@ -253,7 +253,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'review_artist';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('review_artist', $data);
     }
 
@@ -354,7 +354,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'review_artist';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('review_artist', $data);
     }
 
@@ -455,7 +455,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'review_artist';
         $title = str_replace('-', ' ', ('review-artist'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('review_artist', $data);
     }
 
@@ -560,7 +560,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ('review-songs-rating ' . $rate));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -662,7 +662,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -765,7 +765,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -868,7 +868,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -971,7 +971,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1074,7 +1074,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        // $data['title'] = ucwords($title);
+        $data['title'] = GetTitle();
 
         return view('my_reviews', $data);
     }
@@ -1178,7 +1178,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        // $data['title'] = ucwords($title);
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1281,7 +1281,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        // $data['title'] = ucwords($title);
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1384,7 +1384,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1487,7 +1487,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ('review-songs-rating ' . $rate));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1590,7 +1590,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ('review-songs-rating ' . $rate));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1694,7 +1694,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        // $data['title'] = ucwords($title);
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1797,7 +1797,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         // $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        // $data['title'] = ucwords($title);
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1899,7 +1899,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1934,7 +1934,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'change_picture';
         $title = str_replace('-', ' ', ('change picture'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('change_picture', $data);
     }
 
@@ -1969,7 +1969,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'change_password';
         $title = str_replace('-', ' ', ('change password'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('change_password', $data);
     }
 
@@ -2003,7 +2003,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'edit_username';
         $title = str_replace('-', ' ', ('edit username'));
-        $data['title'] = ucwords($title);
+       $data['title'] = GetTitle();
         return view('edit_username', $data);
     }
 

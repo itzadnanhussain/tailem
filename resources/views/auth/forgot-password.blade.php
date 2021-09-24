@@ -1,36 +1,36 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@include("common.header")
+<!-- ./Header end -->
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+<!-- Middle Section -->
+<section class="middle_sec">
+
+    <div class="container" style="min-height:350px;">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-4">
+                <div class="account-wall" style="min-height:268px; min-height: 268px;">
+
+
+                    <form class="form-signin" name="forgot_password_frm" id="forgot_password_frm" method="post" action="" style="margin-top:0; padding-top:0; min-height:160px;">
+
+                        <h4 class="account_hd"> Forgot your password? </h4>
+                        <span><img src="<?php SERVER_ROOTPATH ?>images/sline.png" /> </span>
+@csrf
+                        <label class="terms_txt" style="margin-top:10px; padding-top:0; margin-bottom:20px;">
+                            Please enter your email address below and we will send you a link to reset your password.
+                        </label>
+                        <div class="error" style="color:red;"></div>
+                        <div class="success" style="color:#00CC00;"></div>
+                        <input type="text" class="form-control" id="user_email" name="user_email" placeholder="Your email address" required autofocus>
+
+                        <button style="float:left;" class="btn btn-lg btn-primary" type="submit" onClick="return forgot_pass_validation();" name="submit_btn" id="submit_btn">Send link</button>
+                        <label class="terms_txt" style="cursor:pointer; color:#3276B1; font-size:20px; margin-left:112px;" onClick="window.location.href='<?php echo SERVER_ROOTPATH; ?>sign-in'">Cancel</label>
+
+                    </form>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+<!-- ./Middle Section -->
+@include("common.footer")
