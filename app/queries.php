@@ -57,6 +57,19 @@ if (!function_exists('addNew')) {
 }
 
 
+///UpdateRecord
+if (!function_exists('UpdateRecord')) {
+    function UpdateRecord($table=null, $where = array() ,  $data = array())
+    { 
+        $affected = DB::table($table)
+        ->where($where)
+        ->update($data); 
+        return $affected;
+       
+    }
+}
+
+
 ///TestJoins
 if (!function_exists('TestJoins')) {
     function TestJoins()

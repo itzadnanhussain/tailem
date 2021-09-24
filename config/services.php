@@ -32,8 +32,13 @@ return [
     'facebook' => [
         'client_id' => ' ',
         'client_secret' => ' ',
-        'redirect' => 'http://127.0.0.1:8000/auth/facebook/callback',
+        'redirect' => ' ',
     ],
+    'google' => [
+        'client_id' => '792177933548-co003qp3kj0ephqqei2is5n48riumdka.apps.googleusercontent.com',
+        'client_secret' => 'MkVZEI1MuCh5CCru1_3aQCCe',
+        'redirect' => 'https://www.tailem.com/sign-in',
+    ], 
 
 
 ];

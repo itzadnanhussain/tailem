@@ -297,9 +297,14 @@ if ($playlist_list_arrs) {
 
 
 $data = sortArray($datadataarray, 'date2');
+if($data)
+{
 
+    $size_arr = sizeof($data);
+}else{
+    $size_arr = 0;
+}
 
-$size_arr = sizeof($data);
  
 
 $nn = 0;

@@ -14,6 +14,7 @@ Route::get('/', [SongsController::class , 'GetLoadHomePage']);
 
 require __DIR__.'/auth.php';
 require __DIR__.'/facebook.php';
+require __DIR__.'/google.php';
 require __DIR__.'/process.php';
 require __DIR__.'/album.php';
 require __DIR__.'/song.php';
@@ -36,7 +37,7 @@ Route::get('/about-us',[InfoController::class,'LoadCMS']);
 
 
 //welcome
-Route::get('/welcome-{user_name}',[UserController::class, 'UserWelcome'])->middleware('guest');
+Route::get('/welcome/{user_seo}',[UserController::class, 'UserWelcome'])->middleware('guest');
 
 
 

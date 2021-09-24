@@ -9,8 +9,8 @@
                 <div class="account-wall">
                     <h4 class="account_hd"> Sign in to Tailem.com </h4>
                     <form class="form-signin" id="login-form" method="post" action="sign-in">
-                        <a href="#"><span><img src="images/fb10.png" style="border-radius:5px" /></span></a>
-                        <a href="#"><img src="images/g9.png" style="margin-top:5px; border-radius:5px;" alt="" /></a>
+                        <a href="{{ url('auth/facebook') }}"><span><img src="images/fb10.png" style="border-radius:5px" /></span></a>
+                        <a href="{{ url('auth/google') }}"><img src="images/g9.png" style="margin-top:5px; border-radius:5px;" alt="" /></a>
                         <span><img src="images/line.png" /> </span>
 
                         <div class="error"></div>

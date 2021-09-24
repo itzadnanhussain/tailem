@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     //UserWelcome
-    public function UserWelcome($user_name)
+    public function UserWelcome($user_seo)
     {
 
         ///common header
@@ -33,8 +33,8 @@ class UserController extends Controller
             $data['main_link'] = '';
         }
 
-        if (isset($user_name)) {
-            $get_user_content_qry = "SELECT user_name FROM tbl_users WHERE user_name = '" . $user_name . "'";
+        if (isset($user_seo)) {
+            $get_user_content_qry = "SELECT user_name FROM tbl_users WHERE user_seo = '" . $user_seo . "'";
             $get_user_content = \App\Models\Songs::GetRawData($get_user_content_qry);
 
             if (isset($get_user_content) && !empty($get_user_content)) {
@@ -49,6 +49,7 @@ class UserController extends Controller
         ///file data
         $data['get_user_content'] = $get_user_content;
         $data['currentFile'] = 'welcome';
+        $data['title'] = GetTitle();
 
         return view('welcome', $data);
     }

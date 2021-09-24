@@ -222,7 +222,7 @@ if (!function_exists('get_user_detail')) {
 
         $query    =    "select * from tbl_users where user_name = '$un'";
         $arr     =  \App\Models\Songs::GetRawData($query);
-        
+
         if ($arr) {
             $arr = (array)$arr[0];
             $user_seo         = stripslashes($arr['user_seo']);
@@ -275,16 +275,20 @@ if (!function_exists('artist_info')) {
 
 ///sortArray 
 if (!function_exists('sortArray')) {
-    function sortArray($data, $field)
+    function sortArray($data = array(), $field)
     {
+        error_reporting(0);
         $field = (array) $field;
-        uasort($data, function ($a, $b) use ($field) {
-            $retval = 0;
-            foreach ($field as $fieldname) {
-                if ($retval == 0) $retval = strnatcmp($a[$fieldname], $b[$fieldname]);
-            }
-            return $retval;
-        });
+        if ($data) {
+            uasort($data, function ($a, $b) use ($field) {
+                $retval = 0;
+                foreach ($field as $fieldname) {
+                    if ($retval == 0) $retval = strnatcmp($a[$fieldname], $b[$fieldname]);
+                }
+                return $retval;
+            });
+        }
+
 
         return $data;
     }
@@ -323,35 +327,123 @@ if (!function_exists('get_first_playlist_record')) {
         return $playlist_arr;
     }
 }
+ 
 
-///popular_review 
-if (!function_exists('popular_review')) {
-    function popular_review()
+///check user data
+if (!function_exists('checkUser_profile')) {
+    function checkUser($userData = array())
     {
 
-        $reviews_list_arr = array();
-        if (empty($reviews_list_arr)) {
-            $reviews_list = "select b.album_seo, b.album_picture,a.artist_seo,a.artist_seo, a.artist_name,s.song_seo, s.song_title,s.updated_by_itunes,s.picture,r.* 
-					 from tbl_reviews r,tbl_artists a,tbl_songs s,  tbl_artist_album b , tbl_songs_artist_album saa  
-					 where 1=1 
-					 AND r.song_id = s.id
-					 AND r.artist_id = a.id
-					 AND r.album_id = b.id
-					 AND s.ranking_order != 0
-					 AND s.id = saa.song_id 
-					 AND s.song_status = 1 
-					 AND saa.display_status = 1
-					 group by saa.song_id
-					 order by r.review_id desc					
-					 limit 3
-					 ";
-            // $reviews_list_arr    =    $db->get_results($reviews_list, ARRAY_A);
-            $reviews_list_arr = \App\Models\Songs::GetRawData($reviews_list);
+        if (!empty($userData)) {
+
+
+            $get_email  = $userData['email'];
+            $generate_username  = $userData['first_name'];
+            $lname  = $userData['last_name'];
+            if ($lname != '') {
+                $generate_username  .= " " . $lname;;
+            }
+
+            $useremail  = $get_email;
+
+
+            //Check whether user data already exists in database
+            $prevQuery = "SELECT * FROM  tbl_users WHERE  user_email='" . $userData['email'] . "'";
+            $prevResult = $this->db->query($prevQuery);
+
+            $results = $prevResult->fetch_assoc();
+            if (!empty($userData['picture'])) {
+                $ch = curl_init($userData['picture']);
+                $google_img = $userData['first_name'] . "_" . time() . ".png";
+                $fp = fopen('site_upload/user_images/' . $google_img, 'wb');
+                curl_setopt($ch, CURLOPT_FILE, $fp);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_exec($ch);
+                curl_close($ch);
+                fclose($fp);
+                $userData['picture'] = $google_img;
+                if ($results['profile_image'] != "") {
+
+                    unlink('/site_upload/user_images/' . $results['profile_image']);
+                }
+            }
+
+            if ($prevResult->num_rows > 0) {
+                //Update user data if already exists
+
+                $query = "SELECT user_email,user_name, user_id, status, activation_code, date_added FROM tbl_users where user_email='" . $useremail . "' ";
+                $result_facebook = $this->db->query($query);
+                $results_Fb = $result_facebook->fetch_assoc();
+
+
+
+
+
+
+                $update = $this->db->query($query);
+
+                $generate_username   =  stripslashes($results_Fb['user_name']);
+            } else {
+                $rand  = rand(1, 999);
+                $user_name  = strtolower($userData['first_name']) . $rand;
+
+                $check_user  =  "select user_name from tbl_users where user_name = '$generate_username' and user_name!=''";
+                $Result_query = $this->db->query($check_user);
+                $count  = $Result_query->num_rows;
+                if ($count == 0) {
+                    $generate_username  = ($generate_username);
+                } else {
+                    $rand  = rand(444, 9999);
+                    $generate_username  = ($generate_username) . $rand;
+                }
+
+
+
+                $simple_password  = rand(111111, 99999999);
+                $encrypt  = md5($simple_password);
+
+                $seo_username  = str_replace(" ", "_", $generate_username);
+
+                //Insert user data
+                $query = "INSERT INTO " . $this->userTbl . " SET user_name = '" . $generate_username . "', user_seo = '" . addslashes($seo_username) . "', 	simple_password  = '" . $simple_password . "',encrypted_password = '" . $encrypt . "', oauth_provider = '" . $userData['oauth_provider'] . "', google_oauth_uid = '" . $userData['oauth_uid'] . "', fname = '" . $userData['first_name'] . "', lname = '" . $userData['last_name'] . "', user_email = '" . $userData['email'] . "', gender = '" . $userData['gender'] . "', profile_image = '" . $userData['picture'] . "', link = '" . $userData['link'] . "', status = '1',created_on = '" . date("Y-m-d H:i:s") . "',date_added = '" . time() . "',modified_on = '" . date("Y-m-d H:i:s") . "'";
+                $insert = $this->db->query($query);
+
+
+                $query = "SELECT user_email,user_name, user_id, status, activation_code, date_added FROM tbl_users where user_email='" . $useremail . "' ";
+                $result_facebook = $this->db->query($query);
+                $results_Fb = $result_facebook->fetch_assoc();
+
+
+                if (isset($results_Fb)) {
+
+                    $query = "UPDATE " . $this->userTbl . " SET user_name = '" . $generate_username . "', user_seo = '" . addslashes($seo_username) . "' WHERE user_email = '" . $get_email . "'";
+                } else {
+                    $generate_username  = $generate_username . rand(100, 999);
+                    $seo_username  = str_replace(" ", "_", $generate_username);
+                    $query = "UPDATE " . $this->userTbl . " SET user_name = '" . $generate_username . "', user_seo = '" . addslashes($seo_username) . "' WHERE user_email = '" . $get_email . "'";
+                }
+
+
+
+                $update = $this->db->query($query);
+
+                /*echo $insert_qry_names = "INSERT INTO tbl_social_username SET  fullname = '".addslashes(userData['first_name'])." ".addslashes($userData['last_name'])."',network = 'gmail',user_id= '".$insert."'";
+				exit;*/
+                //$this->db->query($insert_qry_names);
+
+
+            }
+
+            //Get user data from the database
+            $prevQuery = "SELECT * FROM " . $this->userTbl . " WHERE  user_email='" . $userData['email'] . "'";
+            $result = $this->db->query($prevQuery);
+            $userData = $result->fetch_assoc();
         }
-        return  $reviews_list_arr;
+
+        //Return user data
+        return $userData;
     }
 }
-
 
 ///popular_review_artist 
 if (!function_exists('popular_review_artist')) {
@@ -488,8 +580,7 @@ if (!function_exists('table_last_updated')) {
     {
         $last_updated = "SELECT (now()-UPDATE_TIME) as last_updated from information_schema.tables WHERE TABLE_SCHEMA = 'exceed13_music_site' AND TABLE_NAME = '$table'";
         $updated_on = \App\Models\Songs::GetRawData($last_updated);
-        if($updated_on)
-        {
+        if ($updated_on) {
             $updated_on = (array)$updated_on[0];
             $mins = ($updated_on['last_updated'] / 60);
             if ($mins < 2) {
@@ -497,11 +588,9 @@ if (!function_exists('table_last_updated')) {
             } else {
                 return true;
             }
-        }else
-        {
+        } else {
             return false;
         }
-      
     }
 }
 
@@ -513,17 +602,13 @@ if (!function_exists('GetArtistBySongId')) {
         $data = array();
         $qry = "select artist_id FROM tbl_songs_artist_album where song_id = '$song_id'";
         $data1 = \App\Models\Songs::GetRawData($qry);
-        if($data1)
-        {
+        if ($data1) {
             $artist_id = $data1[0]->artist_id;
             $qry = "select * FROM tbl_artists where id = '$artist_id'";
             $data = \App\Models\Songs::GetRawData($qry);
             $data = (array)$data[0];
-
         }
         return $data;
-
-      
     }
 }
 
@@ -534,17 +619,13 @@ if (!function_exists('GetArtistByAlbumId')) {
         $data = array();
         $qry = "select artist_id FROM tbl_songs_artist_album where album_id = '$album_id'";
         $data1 = \App\Models\Songs::GetRawData($qry);
-        if($data1)
-        {
+        if ($data1) {
             $artist_id = $data1[0]->artist_id;
             $qry = "select * FROM tbl_artists where id = '$artist_id'";
             $data = \App\Models\Songs::GetRawData($qry);
             $data = (array)$data[0];
-
         }
         return $data;
-
-      
     }
 }
 
@@ -875,42 +956,38 @@ if (!function_exists('calculate_rating_main')) {
 }
 
 ///GetTitle
-if(!function_exists('GetTitle'))
-{
+if (!function_exists('GetTitle')) {
     function GetTitle()
     {
         $url = Str::of(url()->current())->after(SERVER_ROOTPATH);
-        $find = array("/","-");
-        $replace = array(" "," "); 
-        return ucwords(str_replace($find,$replace,$url));
+        $find = array("/", "-");
+        $replace = array(" ", " ");
+        return ucwords(str_replace($find, $replace, $url));
     }
 }
 
 
 ///check_report_discussion
-if(!function_exists('check_report_discussion'))
-{
+if (!function_exists('check_report_discussion')) {
     function check_report_discussion($review_id)
-	{
-			global $db;
-			 $report_query = "select r_report_id  from tbl_review_report where r_report_user_id = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."' AND r_report_review_id = '$review_id' AND status = 1";
- 
-			$chk_report_arr = \App\Models\Songs::GetRawData($report_query); 
-			return $chk_report_arr;
-			
-	}
+    {
+        global $db;
+        $report_query = "select r_report_id  from tbl_review_report where r_report_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND r_report_review_id = '$review_id' AND status = 1";
+
+        $chk_report_arr = \App\Models\Songs::GetRawData($report_query);
+        return $chk_report_arr;
+    }
 }
 
 
 ///get_playlist_info
-if(!function_exists('get_playlist_info'))
-{
+if (!function_exists('get_playlist_info')) {
     function get_playlist_info($user_id, $id)
-	{ 
-	 	$main_play_list="select *  from tbl_user_playlist where user_id_playlist = '".$user_id."' AND title_playlist_seo = '$id'"; 
-		$playlist_arr	=	\App\Models\Songs::GetRawData($main_play_list);;
-		return $playlist_arr;
-	}
+    {
+        $main_play_list = "select *  from tbl_user_playlist where user_id_playlist = '" . $user_id . "' AND title_playlist_seo = '$id'";
+        $playlist_arr    =    \App\Models\Songs::GetRawData($main_play_list);;
+        return $playlist_arr;
+    }
 }
 
 

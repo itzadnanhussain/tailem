@@ -116,7 +116,7 @@ class LoginController extends Controller
         } else {
 
             ///check user
-            $check_user = getByWhere('users', null, array('email' => $request->email));
+            $check_user = getByWhere('users', array('email' => $request->email));
 
             if ($check_user) {
                 if (Hash::check($request->password, $check_user[0]->password)) {
