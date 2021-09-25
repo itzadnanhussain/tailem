@@ -31,7 +31,7 @@ if ($review_list_arr_top) {
             }
 
             $song_get_name    =    stripslashes($song_get_name);
-            $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a> has posted a review on <a class='user_pnl_col' href='" . SERVER_ROOTPATH . $song_list_arr['song_seo'] . "/reviews/" . $song_list_arr['artist_seo'] . "'>$song_get_name</a>";
+            $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a> has posted a review on <a class='user_pnl_col' href='" . SERVER_ROOTPATH . Slug($song_list_arr['song_seo']) . "/reviews/" . Slug($song_list_arr['artist_seo']) . "'>$song_get_name</a>";
 
             $datadataarray[] = array("name" => "review_date_check", "date" => "$review_date_check", "date2" => "$review_date_check2", "messages" => "$messages");
         }
@@ -65,7 +65,7 @@ if ($comment_list_arr) {
 
             $song_get_name    =    stripslashes($song_get_name);
 
-            $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a>  has posted on <a class='user_pnl_col' href='" . SERVER_ROOTPATH . $c_song_list_arr['song_seo'] . "/reviews/" . $c_song_list_arr['artist_seo'] . "'>$song_get_name</a>";
+            $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a>  has posted on <a class='user_pnl_col' href='" . SERVER_ROOTPATH . Slug($c_song_list_arr['song_seo']) . "/reviews/" . Slug($c_song_list_arr['artist_seo']) . "'>$song_get_name</a>";
 
             $datadataarray[] =    array("name" => "discussion_date_check", "date" => "$discussion_date_check", "date2" => "$discussion_date_check2", "messages" => "$messages");
         }
@@ -218,7 +218,7 @@ if ($review_list_arrs) {
         }
 
 
-        $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a> likes a review on  <a class='user_pnl_col' href='" . SERVER_ROOTPATH . $review_list_arr['song_seo'] . "/reviews/" . $review_list_arr['artist_seo'] . "'>$song_get_name</a> by <a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_arr['user_name']) . "/profile-review-artist'>" . substr($user_arr['user_name'], 0, 10) . "</a>";
+        $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a> likes a review on  <a class='user_pnl_col' href='" . SERVER_ROOTPATH . Slug($review_list_arr['song_seo']) . "/reviews/" . Slug($review_list_arr['artist_seo']) . "'>$song_get_name</a> by <a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_arr['user_name']) . "/profile-review-artist'>" . substr($user_arr['user_name'], 0, 10) . "</a>";
 
         $datadataarray[] = array("name" => "like_review_date_check", "date" => "$like_review_date_check", "date2" => "$like_review_date_check2", "messages" => "$messages");
     }
@@ -276,7 +276,7 @@ if ($playlist_list_arrs) {
         $get_user_seo   =  $myplaylist_arr['user_seo'];
         $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "-profile-playlists-" . $title_playlist_seo;
 
-        $gotosong_url  = SERVER_ROOTPATH . $song_seo_db . "/reviews/" . stripslashes($artist_info_get['artist_seo']);
+        $gotosong_url  = SERVER_ROOTPATH . Slug($song_seo_db) . "/reviews/" . Slug($artist_info_get['artist_seo']);
 
         $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . $get_user_seo . "/profile-review-artist'>$get_username</a> has added <a class='user_pnl_col' href='" . $gotosong_url . "'>$song_name_db</a> to <a class='user_pnl_col' href='" . $db_link_playlist . "'>$title_playlist</a> playlist.";
 

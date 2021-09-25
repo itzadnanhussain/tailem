@@ -690,7 +690,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                             if ($counter == 0) {
                                                         ?>
                                                                 <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $artist_iddb; ?>" style="display: inline-table;"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $artist_iddb; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
-                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -698,7 +698,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                                 <span id="myStyle_sub_<?php echo $sr_no; ?>_<?php echo $artist_iddb; ?>"></span>
                                                             <?php } else { ?>
                                                                 <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $artist_iddb; ?>" style="display: inline-table;"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $artist_iddb; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a>&nbsp;<span class="text_red"><?php echo $counter_main; ?></span>
-                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -722,7 +722,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                                 }
                                                                 ?>
                                                                 <span class="text_red"><?php echo $counter_main; ?></span>
-                                                                <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                 echo " Like";
                                                                                                                                                                                                                                                                             } else {
                                                                                                                                                                                                                                                                                 echo " Likes";
@@ -765,7 +765,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
 
 
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>" style="float:right; margin-right:26px;"><button style="margin-left:0;">Write A Review </button></a>
+                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" style="float:right; margin-right:26px;"><button style="margin-left:0;">Write A Review </button></a>
 
                                                 </div>
                                                 <info class="show_default">
@@ -785,7 +785,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                     ?>
 
 
-                                                    <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>'">Write a review</button>
+                                                    <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>'">Write a review</button>
                                                 </info>
                                             </div>
                                         </div>
@@ -860,7 +860,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                                 if ($counter == 0) {
                                                             ?>
                                                                     <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $artist_iddb; ?>" style="display: inline-table;"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $artist_iddb; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="text_grey"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -868,7 +868,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                                     <span id="myStyle_sub_<?php echo $sr_no; ?>_<?php echo $artist_iddb; ?>"></span>
                                                                 <?php } else { ?>
                                                                     <span id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $artist_iddb; ?>" style="display: inline-table;"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_new('<?php echo $artist_iddb; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')" class="like"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i> </a> <span class="text_red"><?php echo $counter_main; ?></span>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -891,7 +891,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                                     }
                                                                     ?>
                                                                     <span class="text_red"><?php echo $counter_main; ?></span>
-                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
                                                                                                                                                                                                                                                                                     echo " Like";
                                                                                                                                                                                                                                                                                 } else {
                                                                                                                                                                                                                                                                                     echo " Likes";
@@ -930,7 +930,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                         ?>
                                                     </div>
                                                     <div class="col-sm-7 col-xs-7" style="padding-right:20px; float:right;">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-write-a-review-" . $artist_seo; ?>"><button>Write a review</button></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>"><button>Write a review</button></a>
                                                     </div>
                                                 </div>
                                             </div>

@@ -224,7 +224,7 @@ $img_arr3 = (array)$img_arr3[0];
 
 <script type="text/javascript">
     function sort_area(val) {
-        window.location.href = "<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/sort/" + val;
+        window.location.href = "<?php echo SERVER_ROOTPATH . Slug($song_seo) ?>/reviews/<?php echo Slug($artist_seo); ?>/sort/" + val;
     }
 
     function show_detail_reveiw(rid, pass) {
@@ -297,7 +297,7 @@ $img_arr3 = (array)$img_arr3[0];
                             <div class="latestsongssec">
                                 <div class="list_item">
                                     <div class="album_cover" style="border-radius:0px;">
-                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
+                                        <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
 
                                                                                                                             if ($picture != "") {
                                                                                                                                 $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
@@ -340,7 +340,7 @@ $img_arr3 = (array)$img_arr3[0];
                             </div>
                         </div>
                         <div class="col-sm-7 desc-panel">
-                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
+                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
                             <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                 <?php
                                 if ($feature_artists != "") {
@@ -463,7 +463,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 echo $data;
                             } ?>
 
-                            <a style="margin-bottom:5px; margin-top:0;" href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="<?php echo SERVER_ROOTPATH ?>images/pence;.png">Write a Review</a>
+                            <a style="margin-bottom:5px; margin-top:0;" href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/write-a-review/" . Slug($artist_seo); ?>" class="btn btn-default btn-red"> <img src="<?php echo SERVER_ROOTPATH ?>images/pence;.png">Write a Review</a>
                             <div class="clearfix"></div>
                             <p class="buyFromPan" style="margin-bottom: 15px; font-size:13px;">Buy from:
                                 <a target="_blank" href="<?php echo $itunes_url; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $img_arr1['store_img'] ?>"></a> |
@@ -507,7 +507,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 <div class="latestsongssec artist-img-panel">
                                     <div class="list_item">
                                         <div class="album_cover" style="border-radius:0;">
-                                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
+                                            <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
                                                                                                                                 if ($picture != "") {
                                                                                                                                     $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
                                                                                                                                     $img_api_link = album_img_api($picture);
@@ -546,7 +546,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:5px;">
-                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo $song_title; ?></a></p>
+                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
                                 <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                     <?php
                                     if ($feature_artists != "") {
@@ -673,7 +673,7 @@ $img_arr3 = (array)$img_arr3[0];
 
                             ?>
 
-                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" class="btn btn-default btn-red"> <img src="<?php echo SERVER_ROOTPATH ?>images/pence;.png" style="float:left;">Write a Review</a>
+                            <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/write-a-review/" . Slug($artist_seo); ?>" class="btn btn-default btn-red"> <img src="<?php echo SERVER_ROOTPATH ?>images/pence;.png" style="float:left;">Write a Review</a>
                             <div class="clearfix"></div>
                             <p class="buyFromPan" style="font-size:12px;">Buy from:
                                 <a target="_blank" href="<?php echo $itunes_url; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo $img_arr1['store_img'] ?>"></a> |
@@ -814,7 +814,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Excellent
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/excellent">
+                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) ?>/reviews/<?php echo Slug($artist_seo); ?>/rating/excellent">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $excellent_per; ?>%;  cursor:pointer; background-color:#5ebd5e;"></div>
                                         </div>
@@ -829,7 +829,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Very Good
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/verygood">
+                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) ?>/reviews/<?php echo Slug($artist_seo); ?>/rating/verygood">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $verygood_per; ?>%; cursor:pointer; background-color:#5ebd5e;"></div>
                                         </div>
@@ -844,7 +844,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Average
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/average">
+                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) ?>/reviews/<?php echo Slug($artist_seo); ?>/rating/average">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $good_per; ?>%; cursor:pointer; background-color:#e06d21;"></div>
                                         </div>
@@ -859,7 +859,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Poor
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/poor">
+                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) ?>/reviews/<?php echo Slug($artist_seo); ?>/rating/poor">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $poor_per; ?>%; cursor:pointer; background-color:#dd554e;"></div>
                                         </div>
@@ -874,7 +874,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     Terrible
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-xs-8 progress-panel">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>/rating/terrible">
+                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) ?>/reviews/<?php echo Slug($artist_seo); ?>/rating/terrible">
                                         <div class="progress" style="cursor:pointer;">
                                             <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $terrible_per; ?>%; background-color:#dd554e;"></div>
                                         </div>
@@ -1225,7 +1225,7 @@ $img_arr3 = (array)$img_arr3[0];
                                             </p>
                                             <?php
                                             $title_db = urlencode("$song_title");
-                                            $url_db = urlencode(SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . "#review_" . $db_review_id);
+                                            $url_db = urlencode(SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo) . "#review_" . $db_review_id);
                                             $summary = urlencode("$db_review_detail");
                                             $image_fb = urlencode($song_pic);
                                             ?>
@@ -1328,7 +1328,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                     <?php
                                                     if ($review_user_id == $user_id) {
                                                     ?>
-                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $rep; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review.php?rev_id=<?php echo $db_review_id; ?>&num=<?php echo $rep; ?>">Edit</a>
+                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $rep; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review?rev_id=<?php echo $db_review_id; ?>&num=<?php echo $rep; ?>">Edit</a>
                                                     <?php
                                                     }
                                                     ?>
@@ -1591,7 +1591,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                         <?php
                                                         if ($review_user_id == $user_id) {
                                                         ?>
-                                                            <a style="text-decoration:none; float:right;" class="linkTag" data-title="" data-target="#edit_Modal4_<?php echo $rep; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review.php?rev_id=<?php echo $db_review_id; ?>&num=<?php echo $rep; ?>">Edit</a>
+                                                            <a style="text-decoration:none; float:right;" class="linkTag" data-title="" data-target="#edit_Modal4_<?php echo $rep; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review?rev_id=<?php echo $db_review_id; ?>&num=<?php echo $rep; ?>">Edit</a>
                                                         <?php
                                                         }
                                                         ?>
@@ -1728,9 +1728,9 @@ $img_arr3 = (array)$img_arr3[0];
                 Related Songs
             </div>
 
-            
+
             @include("common.related_songs")
-            
+
 
 
             <div class="clearfix"></div>
@@ -1916,10 +1916,10 @@ for ($u = 1; $u <= 20; $u++) {
 @include("common.footer")
 
 
-<!-- ---------My Code----------------
+<!-- ---------My Code---------------- -->
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/bootstrap.js"></script>
-<script src="<?php echo SERVER_ROOTPATH; ?>js/star-rating.js" type="text/javascript"></script> -->
+<!----<script src="<?php echo SERVER_ROOTPATH; ?>js/star-rating.js" type="text/javascript"></script> -->
 
 
 <div class="modal fade" id="already_review" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
@@ -2002,6 +2002,10 @@ for ($u = 1; $u <= 20; $u++) {
                         $("#api-readonly").each(function() {
                             this.reset();
                         });
+
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 1500)
                         break;
                     case 'warning':
                         if (res.message == "Please sign in first.") {
@@ -2023,10 +2027,8 @@ for ($u = 1; $u <= 20; $u++) {
         });
 
     })
-
-
-    
 </script>
+
 
 <script type="text/javascript">
     function discussion_post() {

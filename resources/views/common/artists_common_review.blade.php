@@ -222,9 +222,9 @@
                             $img_api_link = album_img_api($picture);
                             if ($img_api_link != '') {
                         ?>
-                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                             <?php } else { ?>
-                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                             <?php
                             }
                         } else
@@ -232,22 +232,22 @@
 
                             if ($req_song['song_array']['image4'] != "") {
                             ?>
-                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img class="img-responsive" src="<?php echo $req_song['song_array']['image4']; ?>" border="0" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img class="img-responsive" src="<?php echo $req_song['song_array']['image4']; ?>" border="0" style="width:100%; max-height:150px;" /></a>
                                 <?php
                             } else
 												if ($album_picture != "") {
                                 $img_api_link = album_img_api($album_picture);
                                 if ($img_api_link != '') {
                                 ?>
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                                 <?php } else { ?>
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                                 <?php }    ?>
                                 <!-- <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>"  border="0" class="img-responsive"  style="width:100%; max-height:150px;"/>-->
                             <?php
                             } else {
                             ?>
-                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" class="img-responsive" style="max-width:inherit;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" class="img-responsive" style="max-width:inherit;" /></a>
                         <?php
                             }
                         }

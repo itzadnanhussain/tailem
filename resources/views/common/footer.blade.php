@@ -132,20 +132,86 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 </html>
 <div class="modal fade" id="review_modal" role="dialog"></div>
 <div class="modal fade in" id="add_report_request" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="false">
-     <div class="modal-dialog" style="margin-top:10%;">
-         <div class="modal-content" style="border-radius:0px;">
-             <div class="modal-header">
-                 <h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                 </h4>
-             </div>
-             <div class="modal-body" style="overflow-y:auto; min-height:250px;">
-                 <p>
-                     We will review your request with in 24 hours and take action accordingly.<br><br><br>
 
-                     Warmest Regards,<br>
-                     Team at Tailem.com
-                 </p>
-             </div>
-         </div>
-     </div>
- </div>
+	<div class="modal-dialog" style="margin-top:10%;">
+		<div class="modal-content" style="border-radius:0px;">
+			<div class="modal-header">
+				<h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+				</h4>
+			</div>
+			<div class="modal-body" style="overflow-y:auto; min-height:250px;">
+				<p>
+					We will review your request with in 24 hours and take action accordingly.<br><br><br>
+
+					Warmest Regards,<br>
+					Team at Tailem.com
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	///add_in_favourite_list_review_song_detail
+	function add_in_favourite_list_review_song_detail(a, b, c) {
+		let url = JS_SERVER_PATHROOT +
+			"process/favourite_like_review_song_like_detail?prod_id=" +
+			a +
+			"&user_name=" +
+			b +
+			"&r_fav=" +
+			c;
+		$.ajax({
+			type: 'POST',
+			data: {
+				"_token": "{{ csrf_token() }}",
+			},
+			url: url,
+			dataType: 'html',
+			success: function(b) {
+				if (b == "Please sign in first") {
+					$("#signin_form").modal("show");
+				} else if (b.search("You cannot like your own review") != -1) {
+					$("#your_own_review").modal("show");
+				} else {
+					$("#myStyle_sub_" + a).html(b);
+					$("#myStyle_sub_" + a).show();
+					$("#other_dis_sub_" + a).hide();
+
+				}
+			}
+		});
+
+	}
+
+
+	///add_in_favourite_list_rev
+	function add_in_favourite_list_rev(t, e) {
+
+		let url = JS_SERVER_PATHROOT +
+			"process/favourite_like_review?prod_id=" +
+			t +
+			"&artist_seo=" +
+			e;
+		$.ajax({
+			type: 'POST',
+			data: {
+				"_token": "{{ csrf_token() }}",
+			},
+			url: url,
+			dataType: 'html',
+			success: function(e) {
+				"Please sign in first" == e
+					?
+					alert(e) :
+					($("#myStyle_sub_" + t).html(e),
+						$("#myStyle_sub_" + t).show(),
+						$("#other_dis_sub_" + t).hide());
+
+			}
+		});
+
+
+
+	}
+</script>

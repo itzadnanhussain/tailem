@@ -198,11 +198,11 @@
                                 <?php
                                 if (isset($mobile_view) && ($mobile_view == 1)) {
                                 ?>
-                                    <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"> <img src="<?php echo $image_get; ?>" style="height:300px;"></a>
+                                    <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <img src="<?php echo $image_get; ?>" style="height:300px;"></a>
                                 <?php
                                 } else {
                                 ?>
-                                    <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"> <img class="ad-feature-img" src="<?php echo $image_get; ?>"></a>
+                                    <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <img class="ad-feature-img" src="<?php echo $image_get; ?>"></a>
                                 <?php
                                 }
                                 ?>
@@ -218,7 +218,7 @@
                                 <div class="list_bottom">
                                     <div class="row">
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <p><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo $song_title; ?></a><a class="artist-name" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a><span><?php echo $feature_artists;
+                                            <p><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a><a class="artist-name" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a><span><?php echo $feature_artists;
                                                                                                                                                                                                                                                                                                                             $sum_len  = 0; ?></span></p>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">

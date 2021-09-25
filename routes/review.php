@@ -12,5 +12,13 @@ Route::get('/{song_seo}/write-a-review/{artist_seo}/{sort?}',[ReviewController::
 
 ///report.php
 Route::get('/report/{rev_id?}/{num?}' , [ReviewController::class , 'GetReport']);
+
+
+///Review_Edit
+Route::get('/edit_review' , [ReviewController::class , 'Review_Edit']);
+ 
+
+///Review_Delete
+Route::get('/delete_review' , [ReviewController::class , 'Review_Delete']);
  
  

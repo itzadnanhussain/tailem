@@ -76,7 +76,7 @@ if (isset($top_songs_arr)) {
                                                                                                                     echo number_format($all_avg, 1, '.', '');
                                                                                                                 } ?></cite></td>
                 <td class="song">
-                    <p><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo $song_title; ?></a> (<a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><span><?php echo $artist_name; ?></span></a>)</p>
+                    <p><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a> (<a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><span><?php echo $artist_name; ?></span></a>)</p>
                 </td>
             </tr>
 <?php

@@ -665,7 +665,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                         </div>
                                         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-11 pad_zero">
                                             <div class="album_cover">
-                                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
+                                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
                                                                                                                                     if ($picture != "") {
 
                                                                                                                                         $img_api_linka = album_img_api($picture);
@@ -708,7 +708,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             </div>
 
                                             <div class="album_details" style="margin-top:-3px; width:65%;">
-                                                <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
+                                                <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
                                                         <?php echo substr($song_title, 0, 21);
                                                         if (strlen($song_title) > 21) {
                                                             echo "..";
@@ -799,7 +799,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                     </div>
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 pad_zero small-mobile">
                                         <div class="album_cover">
-                                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
+                                            <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
                                                                                                                                 if ($picture != "") {
 
                                                                                                                                     $img_api_linka = album_img_api($picture);
@@ -833,7 +833,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                                                                                                 } ?></cite>
                                         </div>
                                         <div class="album_details mrg_top">
-                                            <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
+                                            <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
                                                     <?php echo substr($song_title, 0, 8);
                                                     if (strlen($song_title) > 8) {
                                                         echo "..";
@@ -1110,7 +1110,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                     <?php
                                                     if ($db_review_user_id == $user_id) {
                                                     ?>
-                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $k; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" style="float:right;">Edit</a>
+                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $k; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>" style="float:right;">Edit</a>
                                                     <?php
                                                     }
                                                     ?>
@@ -1327,7 +1327,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                     <?php
                                                     if ($db_review_user_id == $user_id) {
                                                     ?>
-                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $k; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>">Edit</a>
+                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $k; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>">Edit</a>
                                                     <?php
                                                     }
                                                     ?>
@@ -1363,7 +1363,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad_zero">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
                                                                                                                                         if ($picture != "") {
 
                                                                                                                                             $img_api_linka = album_img_api($picture);
@@ -1400,7 +1400,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             </div>
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pad_zero mobile-responsive">
                                                 <div class="album_details" style="display:block; margin-top:-3px;">
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
                                                             <?php echo substr($song_title, 0, 20);
                                                             if (strlen($song_title) > 20) {
                                                                 echo "...";
@@ -1654,7 +1654,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                     <?php
                                                     if ($db_review_user_id == $user_id) {
                                                     ?>
-                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $k; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>">Edit</a>
+                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $k; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_review?rev_id=<?php echo $review_id; ?>&num=<?php echo $k; ?>">Edit</a>
                                                     <?php
                                                     }
                                                     ?>

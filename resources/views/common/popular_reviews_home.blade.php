@@ -223,7 +223,7 @@
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 ">
 						<div class="pop_sec">
 							<div class="sec_cover topsongssecs">
-								<a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo $image_get; ?>"></a>
+								<a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo $image_get; ?>"></a>
 								<div class="bottom_sec" style="bottom:150px !important; background:none !important; padding:0 10px !important;">
 									<div class="row">
 										<div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
@@ -242,22 +242,22 @@
 									<div class="row">
 										<div class="col-lg-8 col-md-7 col-sm-7 col-xs-7 pad_right">
 											<!--Desktop-->
-											<label class="review_screen_txt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
+											<label class="review_screen_txt"><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 25);
 																																								if (strlen($song_title) > 25) {
 																																									echo "..";
 																																								} ?></a></label>
 											<!--Tablet-->
-											<label class="review_tablet_txt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
+											<label class="review_tablet_txt"><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 25);
 																																								if (strlen($song_title) > 25) {
 																																									echo "..";
 																																								} ?></a></label>
 											<!--Ipad-->
-											<label class="review_ipad_txt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 22);
+											<label class="review_ipad_txt"><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 22);
 																																								if (strlen($song_title) > 22) {
 																																									echo "..";
 																																								} ?></a></label>
 											<!--Mobile-->
-											<label class="review_mobile_txt" style="white-space:nowrap;"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 18);
+											<label class="review_mobile_txt" style="white-space:nowrap;"><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 18);
 																																															if (strlen($song_title) > 18) {
 																																																echo "..";
 																																															} ?></a></label>

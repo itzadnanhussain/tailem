@@ -246,6 +246,7 @@ class ProcessController extends Controller
     {
         if (isset($_POST)) {
             extract($_POST);
+            error_reporting(0);
 
             $user_id = session()->get('user_id');
 
@@ -317,8 +318,9 @@ class ProcessController extends Controller
             }
 
             if ($edit_id != "") {
-                $song_query = "select song_id from tbl_reviews where review_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND review_id = '$edit_id'";
+                $song_query = "select song_id from tbl_reviews where review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
                 $song_arr = \App\Models\Songs::GetRawData($song_query);
+
                 $song_arr = (array)$song_arr[0];
                 $song_id    = $song_arr['song_id'];
 
@@ -357,11 +359,11 @@ class ProcessController extends Controller
                 $update_qry = "update tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "' where  	review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
                 \App\Models\Songs::GetRawData($update_qry);
                 \App\Models\Songs::GetRawData("update tbl_songs set rate_song = '$all_avg',review_count = $rev_counter where id = '$song_id'");
-                $slug = SERVER_ROOTPATH . $song_seo_name . "/reviews/" . $artist_seo_name . ".html-SEPARATOR-" . $_REQUEST['num'];
+                $slug = SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name);
                 $response = array("code" => 'success', 'url' => $slug);
                 return response()->json($response);
 
-                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $song_seo_name . "/reviews/" . $artist_seo_name . ".html-SEPARATOR-" . $_REQUEST['num'];
+                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name) . ".html-SEPARATOR-" . $_REQUEST['num'];
                 // exit;
             } else {
 
@@ -411,15 +413,110 @@ class ProcessController extends Controller
                 \App\Models\Songs::GetRawData("update tbl_songs set rate_song = '$all_avg', review_count = review_count + 1 where id = '$song_id'");
 
                 // unset($_SESSION['store']);
-                $slug = SERVER_ROOTPATH . $song_seo_name . "/reviews/" . $artist_seo_name;
+                $slug = SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name);
                 $response = array("code" => 'success', 'url' => $slug);
                 return response()->json($response);
 
-                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $song_seo_name . "/reviews/" . $artist_seo_name;
+                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name);
                 // exit;
             }
         }
     }
+
+
+    ///DeleteReview
+    public function DeleteReview()
+    {
+        if (isset($_POST)) {
+            extract($_POST);
+
+            $errorstr = "";
+            $case = 1;
+            $reviewid  = $review_id;
+            $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
+
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                $errorstr .= "Please sign in first.\n";
+                $response = array('a' => $errorstr);
+                return response()->json($response);
+                $case = 0;
+                exit;
+            }
+
+            if ($reviewid == "") {
+                $errorstr .= "This review doesn't exist.\n";
+                $case = 0;
+            } else {
+                $qry   = "select review_id, song_id from tbl_reviews where review_id = $reviewid AND review_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'";
+                $Query = array();
+                $Query = \App\Models\Songs::GetRawData($qry);
+                if ($Query) {
+                    $count = count($Query);
+                } else {
+                    $count = 0;
+                }
+
+
+                if ($count == 0) {
+                    $errorstr .= "This review doesn't exist.\n";
+                    $case = 0;
+                } else {
+                    $row_song  =     \App\Models\Songs::GetRawData($qry);
+                    $song_id   =    $row_song[0]->song_id;
+                }
+            }
+
+
+
+            if ($case == 1) {
+                $qry = "Delete from tbl_reviews where review_id = $reviewid";
+                \App\Models\Songs::GetRawData($qry);
+
+                $qry = "Delete from tbl_likes where like_id = $reviewid AND like_type = 'review_song'";
+                \App\Models\Songs::GetRawData($qry);
+
+                $qry = "Delete from tbl_comments where comment_review_id = $reviewid";
+                \App\Models\Songs::GetRawData($qry);
+
+                $qry = "Delete from tbl_review_report where r_report_review_id = $reviewid";
+                \App\Models\Songs::GetRawData($qry);
+
+
+
+                $main_query = "SELECT avg(r.review_rating) as sum, s.song_title, s.id, count(*) as counter FROM `tbl_reviews` r, tbl_songs s WHERE s.id = r.song_id AND r.song_id = '$song_id' group by r.song_id ";
+                $query_arr    =    \App\Models\Songs::GetRawData($main_query);
+
+                if ($query_arr) {
+                    foreach ($query_arr as $info) {
+                        $info = (array)$info;
+                        $average  =  number_format($info['sum'], 1);
+                        $sid  = $info['id'];
+
+                        $updatequeryA = "update `tbl_songs` set rate_song = '$average', review_count = review_count - 1 where id = '$song_id'";
+                        \App\Models\Songs::GetRawData($updatequeryA);
+                    }
+                } else {
+
+                    $updatequeryA = "update `tbl_songs` set rate_song = '0.0', review_count = review_count - 1 where id = '$song_id'";
+                    \App\Models\Songs::GetRawData($updatequeryA);
+                }
+
+                $response = array("a" => 'done', 'b' => $num);
+                return response()->json($response);
+
+
+                // echo 'done-'.$num;
+                // exit;
+            } else {
+                echo $errorstr;
+                $response = array('a' => $errorstr);
+                return response()->json($response);
+            }
+        }
+    }
+
+
+
 
     ///GetLikeDetail
     public function GetLikeDetail()
@@ -471,6 +568,19 @@ class ProcessController extends Controller
         $data['user_id'] = session()->get('user_id');
 
         return view('include.favourite_like', $data);
+    }
+
+
+    ///favourite_like_review_song_detail
+    public function favourite_like_review_song_detail()
+    {
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['user_name'] = $_GET['user_name'];
+        $data['r_fav'] = $_GET['r_fav'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like_review_song_detail', $data);
     }
 
 
@@ -1065,5 +1175,18 @@ class ProcessController extends Controller
                 echo $errorstr;
             }
         }
+    }
+
+    ///notification_display
+    public function notification_display()
+    {
+        $data = array();
+        $data['user_id'] = session()->get('user_id');
+
+
+        ///load view
+        $data['currentFile'] = 'notification_display'; 
+        $data['title'] =  GetTitle();
+        return view('include.notification_display', $data);
     }
 }

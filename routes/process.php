@@ -18,6 +18,9 @@ Route::post('process/add_songto_playlist_process',[ProcessController::class, 'Ad
 Route::post('process/write_a_review',[ProcessController::class, 'WriteReview']) 
 ->name('process/write_a_review.WriteReview');
 
+///write a review update process
+Route::post('process/delete_review_process',[ProcessController::class, 'DeleteReview']);
+
 
 ///write a review process
 Route::post('process/reviews_artist_popular_likes',[ProcessController::class, 'ReviewsArtistPopularLikes']);
@@ -45,6 +48,11 @@ Route::post('process/favourite_like_sub_artist_popular_latest',[ProcessControlle
 
 ///favourite_like_sub_artist_popular
 Route::post('process/favourite_like_sub_artist_popular',[ProcessController::class, 'FavouriteLikeSubArtistPopular']);
+
+
+
+///favourite_like_review_song_detail/detail.php
+Route::post('process/favourite_like_review_song_like_detail',[ProcessController::class, 'favourite_like_review_song_detail']);
 
 
 ///favourite_like_review_song
@@ -100,6 +108,10 @@ Route::post('process/forgot_process' , [ProcessController::class , 'PasswordForg
 
 ///process/report_process
 Route::post('process/report_process' , [ProcessController::class , 'ReportProcess']);
+
+
+///process/notification_display
+Route::post('process/notification_display' , [ProcessController::class , 'notification_display']);
 
  
  

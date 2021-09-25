@@ -169,13 +169,13 @@
                                             if ($img_api_link != '') { ?>
                                                 <img src="<?php echo $img_api_link; ?>">
                                             <?php } else { ?>
-                                                <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>">
+                                                <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
                                                     <p title="<?php echo $song_title; ?>"><img class="img-responsive" src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $val->picture; ?>" border="0" title="<?php echo $val->picture; ?>" style="height:300px;" />
                                                 </a>
                                             <?php
                                             }
                                         } else { ?>
-                                            <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>">
+                                            <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
                                                 <p title="<?php echo $song_title; ?>"><img src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/images/no_image4.png" class="img-responsive" border="0" style="height:300px;" />
                                             </a>
                                         <?php }
@@ -195,7 +195,7 @@
                                                 <?php
                                                 $length_song = strlen($song_title);
                                                 ?>
-                                                <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>">
+                                                <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
                                                     <p title="<?php echo $song_title; ?>"><?php echo substr($song_title, 0, 28);
                                                                                             if ($length_song > 28) {
                                                                                                 echo "..";

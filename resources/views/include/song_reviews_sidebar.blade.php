@@ -241,9 +241,9 @@
                             if ($img_api_link != '') {
                         ?>
 
-                                <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                             <?php } else { ?>
-                                <a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
+                                <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
                             <?php
                             }
                         } else
@@ -263,7 +263,7 @@
                             <div class="row">
                                 <!--Desktop-->
                                 <div class="review_screen_txt col-lg-9 col-md-8 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif;"><?php echo substr($song_title, 0, $screen_chr);
+                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif;"><?php echo substr($song_title, 0, $screen_chr);
                                                                                                                                                                                                                                     if (strlen($song_title) > $screen_chr) {
                                                                                                                                                                                                                                         echo "..";
                                                                                                                                                                                                                                     } ?></a></label><br>
@@ -271,7 +271,7 @@
                                 </div>
                                 <!--Ipad-->
                                 <div class="review_ipad_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
+                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
                                                                                                                                                                                                                                                         if (strlen($song_title) > $ipad_chr) {
                                                                                                                                                                                                                                                             echo "..";
                                                                                                                                                                                                                                                         } ?></a></label><br>
@@ -281,7 +281,7 @@
                                 </div>
                                 <!--Mobile-->
                                 <div class="review_mobile_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . $song_seo . "/reviews/" . $artist_seo; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
+                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
                                                                                                                                                                                                                                                         if (strlen($song_title) > $mobile_chr) {
                                                                                                                                                                                                                                                             echo "..";
                                                                                                                                                                                                                                                         } ?></a></label><br>

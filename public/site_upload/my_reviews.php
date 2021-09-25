@@ -829,7 +829,7 @@ a.under_line:hover {
 										if($db_review_user_id == $_SESSION[USER_SESSION_ARRAY]['USER_ID'])
 										{
 											?>
-                                            <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no;?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH;?>edit_review.php?rev_id=<?php echo $review_id;?>">Edit</a>
+                                            <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no;?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH;?>edit_review?rev_id=<?php echo $review_id;?>">Edit</a>
                                             <?php
 										}
 											?>
@@ -1025,7 +1025,7 @@ a.under_line:hover {
 										if($db_review_user_id == $_SESSION[USER_SESSION_ARRAY]['USER_ID'])
 										{
 											?>
-                                            <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no;?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH;?>edit_review.php?rev_id=<?php echo $review_id;?>">Edit</a>
+                                            <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no;?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH;?>edit_review?rev_id=<?php echo $review_id;?>">Edit</a>
                                             <?php
 										}
 											?>
@@ -1302,7 +1302,7 @@ a.under_line:hover {
 										if($db_review_user_id == $_SESSION[USER_SESSION_ARRAY]['USER_ID'])
 										{
 											?>
-                                            <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no;?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH;?>edit_review.php?rev_id=<?php echo $review_id;?>">Edit</a>
+                                            <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no;?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH;?>edit_review?rev_id=<?php echo $review_id;?>">Edit</a>
                                             <?php
 										}
 											?>

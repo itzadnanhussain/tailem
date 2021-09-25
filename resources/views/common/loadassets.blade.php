@@ -56,7 +56,7 @@
     }
 
     .sprite {
-        background-image: url(<?php echo COOKIE_FREE_ROOTPATH; ?>images/icons.png);
+        background-image: url("<?php echo COOKIE_FREE_ROOTPATH; ?>images/icons.png");
         background-repeat: no-repeat;
         display: block;
     }
@@ -118,7 +118,7 @@
 
 
     .sprite-new {
-        background-image: url(<?php echo COOKIE_FREE_ROOTPATH; ?>images/iconsheet.png);
+        background-image: url("<?php echo COOKIE_FREE_ROOTPATH; ?>images/iconsheet.png");
         background-repeat: no-repeat;
         display: inline-block;
     }

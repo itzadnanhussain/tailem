@@ -1,8 +1,10 @@
+ 
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     } 
 });
+
 function write_a_review_validation_new() { 
     $("#api-readonly").unbind("submit");
     var options = {
@@ -93,19 +95,19 @@ function change_username_validation_Response(responseText, statusText) {
 
 
 
-function write_a_review_validations_new() {
-    $("#api-readonlys").unbind("submit");
-    var options = {
-        target: "",
-        beforeSubmit: validate_reviews_new_Request,
-        success: validate_reviews_new_Response,
-        url: JS_SERVER_PATHROOT + "process/writeareview_process.php",
-    };
-    $("#api-readonlys").submit(function () {
-        $(this).ajaxSubmit(options);
-        return false;
-    });
-}
+// function write_a_review_validations_new() {
+//     $("#api-readonlys").unbind("submit");
+//     var options = {
+//         target: "",
+//         beforeSubmit: validate_reviews_new_Request,
+//         success: validate_reviews_new_Response,
+//         url: JS_SERVER_PATHROOT + "process/writeareview_process.php",
+//     };
+//     $("#api-readonlys").submit(function () {
+//         $(this).ajaxSubmit(options);
+//         return false;
+//     });
+// }
 function validate_reviews_new_Request(formData, jqForm, options) {
     var queryString = $.param(formData);
     return true;
@@ -534,30 +536,30 @@ function add_in_favourite_list_review_song_second(a, b, c) {
     );
 }
 
-function add_in_favourite_list_review_song_detail(a, b, c) {
-    $.post(
-        JS_SERVER_PATHROOT +
-            "process/favourite_like_review_song_like/detail?prod_id=" +
-            a +
-            "&user_name=" +
-            b +
-            "&r_fav=" +
-            c,
-        function (b) {
-            if (b == "Please sign in first") {
-                $("#signin_form").modal("show");
-            } else if (b.search("You cannot like your own review") != -1) {
-                $("#your_own_review").modal("show");
-            } else {
-                $("#myStyle_sub_" + a).html(b);
-                $("#myStyle_sub_" + a).show();
-                $("#other_dis_sub_" + a).hide();
-                /*$("#myStyle_sub_"+a).removeClass("like-group liked");
-		$("#myStyle_sub_"+a).addClass("like-group");*/
-            }
-        }
-    );
-}
+// function add_in_favourite_list_review_song_detail(a, b, c) {
+//     $.post(
+//         JS_SERVER_PATHROOT +
+//             "process/favourite_like_review_song_like_detail?prod_id=" +
+//             a +
+//             "&user_name=" +
+//             b +
+//             "&r_fav=" +
+//             c,
+//         function (b) {
+//             if (b == "Please sign in first") {
+//                 $("#signin_form").modal("show");
+//             } else if (b.search("You cannot like your own review") != -1) {
+//                 $("#your_own_review").modal("show");
+//             } else {
+//                 $("#myStyle_sub_" + a).html(b);
+//                 $("#myStyle_sub_" + a).show();
+//                 $("#other_dis_sub_" + a).hide();
+//                 /*$("#myStyle_sub_"+a).removeClass("like-group liked");
+// 		$("#myStyle_sub_"+a).addClass("like-group");*/
+//             }
+//         }
+//     );
+// }
 
 function add_in_favourite_user_profile_mob(a, b, c) {
     $.post(
@@ -606,27 +608,27 @@ function add_in_favourite_list_review_mob(a, b, c) {
     );
 }
 
-function review_delete_new(a, b) {
-    if ("" != a) {
-        $.post(
-            JS_SERVER_PATHROOT +
-                "process/delete_review_process.php?reviewid=" +
-                a,
-            function (a) {
-                if (a == "Please sign in first") {
-                    $("#signin_form").modal("show");
-                } else {
-                    if (a.search("done") != -1) {
-                        $("#delete_review_" + b).hide();
-                        $("#review_delete").modal("show");
-                    } else {
-                        alert(a);
-                    }
-                }
-            }
-        );
-    }
-}
+// function review_delete_new(a, b) {
+//     if ("" != a) {
+//         $.post(
+//             JS_SERVER_PATHROOT +
+//                 "process/delete_review_process?reviewid=" +
+//                 a,
+//             function (a) {
+//                 if (a == "Please sign in first") {
+//                     $("#signin_form").modal("show");
+//                 } else {
+//                     if (a.search("done") != -1) {
+//                         $("#delete_review_" + b).hide();
+//                         $("#review_delete").modal("show");
+//                     } else {
+//                         alert(a);
+//                     }
+//                 }
+//             }
+//         );
+//     }
+// }
 
 function newpass_validation_new() {
     $("#user_pass").unbind("submit");

@@ -25,17 +25,13 @@
 
 
 	if ($user_id != "") {
-		///old query
-		// $select_notification_count ="select u.user_name,l.like_type,u.profile_image, l.like_id  from  tbl_likes l, tbl_users u  where l.like_from_user_id = u.user_id  AND (l.like_type = 'review_song' OR l.like_type = 'profile' OR l.like_type = 'playlist' OR l.like_type = 'delete_review_song' OR l.like_type = 'admin_review') AND l.like_receive_user = '".$user_id."' AND l.read_status = 1";
-		// $result_notification_count = count($db->get_results($select_notification_count, ARRAY_A));
+		$select_notification_count = "select u.user_name,l.like_type,u.profile_image, l.like_id  from  tbl_likes l, tbl_users u  where l.like_from_user_id = u.user_id  AND (l.like_type = 'review_song' OR l.like_type = 'profile' OR l.like_type = 'playlist' OR l.like_type = 'delete_review_song' OR l.like_type = 'admin_review') AND l.like_receive_user = '" . $user_id . "' AND l.read_status = 1";
+		$result_notification_count = \App\Models\Songs::GetRawData($select_notification_count);
 
-
-		///new query 
-		$result_notification_count = GetByWhere('general_setting', array('setting_id' => 1));
-
-		$result_notification_count = (array)$result_notification_count[0];
 		if (isset($result_notification_count)) {
 			$result_notification_count = count($result_notification_count);
+		} else {
+			$result_notification_count = 0;
 		}
 	}
 
@@ -80,8 +76,10 @@
 
  			$.ajax({
  				type: "POST",
- 				url: JS_SERVER_PATHROOT + 'process/notification_display.php',
- 				data: '',
+ 				url: JS_SERVER_PATHROOT + 'process/notification_display',
+ 				data: {
+ 					"_token": "{{ csrf_token() }}",
+ 				},
  				before: gotonew(),
  				success: function(msg) {
 
@@ -108,7 +106,7 @@
  		$.ajaxSetup({
  			headers: {
  				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
- 			} 
+ 			}
  		});
  	</script>
 
@@ -143,7 +141,7 @@
  					<form action="<?php echo SERVER_ROOTPATH; ?>searcher" id="ad_search_form" method="POST">
  						<input class="searcharea" placeholder="Search" name="search" value="<?php echo session()->get('main_search'); ?>" required>
  						@csrf
-						 <input type="hidden" name="submitbtn" value="Search">
+ 						<input type="hidden" name="submitbtn" value="Search">
  						<button><i class="sprite sprite-icon_search"></i></button>
  					</form>
  				</span>
@@ -452,9 +450,3 @@
  			}
  		}
  	</style>
-
-
- 
-
-
- 

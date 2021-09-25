@@ -285,7 +285,7 @@ if ($srch_search_sess == "") {
                                             </div>
                                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" class="text_blck"> <?php
                                                                                                                                                         if ($picture != "") {
                                                                                                                                                             $img_api_linka = album_img_api($picture);
                                                                                                                                                             if ($img_api_linka != '') {
@@ -316,12 +316,12 @@ if ($srch_search_sess == "") {
                                                                                                                                         } ?></cite><?php } else { ?> <cite style="background-color:#dd554e">0.0</cite><?php } ?>
                                                 </div>
                                                 <div class="album_details" style="margin-top:0; padding: 2% 0 0 4%;">
-                                                    <label class="review_screen_txt title" style="margin-bottom:5px;"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 45);
+                                                    <label class="review_screen_txt title" style="margin-bottom:5px;"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 45);
                                                                                                                                                                                                         if (strlen($song_title) > 45) {
                                                                                                                                                                                                             echo "...";
                                                                                                                                                                                                         } ?></a></label>
 
-                                                    <label class="review_ipad_txt title" style="margin-bottom:5px;"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 16);
+                                                    <label class="review_ipad_txt title" style="margin-bottom:5px;"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 16);
                                                                                                                                                                                                         if (strlen($song_title) > 16) {
                                                                                                                                                                                                             echo "...";
                                                                                                                                                                                                         } ?></a></label>
@@ -405,7 +405,7 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
                                                 <?php
                                                 }
                                                 ?>
-                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>'">Write a review</button>
+                                                <button onclick="window.location.href='<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/write-a-review/" . Slug($artist_seo); ?>'">Write a review</button>
                                             </div>
                                         </div>
 
@@ -421,7 +421,7 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:2px !important;">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding:0px !important;">
                                                     <div class="album_cover">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck"> <?php
+                                                        <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" class="text_blck"> <?php
                                                                                                                                                             if ($picture != "") {
                                                                                                                                                                 $img_api_linka = album_img_api($picture);
                                                                                                                                                                 if ($img_api_linka != '') {
@@ -455,7 +455,7 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
                                                 </div>
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0px !important;">
                                                     <div class="album_details" style="margin-top:0;">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 25);
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 25);
                                                                                                                                                                 if (strlen($song_title) > 25) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
@@ -547,7 +547,7 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
                                                         ?>
                                                     </div>
                                                     <div class="col-sm-7 col-xs-7" style="padding-right:20px; float:right;">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>"><button>Write a review</button></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/write-a-review/" . Slug($artist_seo); ?>"><button>Write a review</button></a>
                                                     </div>
                                                 </div>
                                             </div>
