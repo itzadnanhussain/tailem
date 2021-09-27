@@ -60,7 +60,7 @@ $mobile_view = 0;
                     <div style="margin-top:0;">
 
                         <!-- <form name="add-playlist" id="add-playlist" method="post" style="padding:10px; padding-top:20px;"> -->
-                            <form  class="add-playlist" style="padding:10px; padding-top:20px;" action="{{url('process/add-playlist_process')}}">
+                        <form class="add-playlist" style="padding:10px; padding-top:20px;" action="{{url('process/add_playlist_process')}}">
 
                             <h4 style="font-size:20px; font-weight:normal; margin-bottom:20px;">
                                 <?php
@@ -85,7 +85,7 @@ $mobile_view = 0;
 
                             <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $song_id; ?>&art_id=<?php echo $art_id; ?>" id="autoclick"></a>
 
-                            <button  style="margin-top:15px; display:inline; width:40%;" class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
+                            <button style="margin-top:15px; display:inline; width:40%;" class="btn btn-lg btn-primary btn-block" type="submit">Create</button>
                             <!-- <button id="submit_btn" name="submit" style="margin-top:15px; display:inline; width:40%;" class="btn btn-lg btn-primary btn-block" type="submit" onClick="return add-playlist_validations_new();">Create</button> -->
 
 
@@ -105,8 +105,8 @@ $mobile_view = 0;
     $(".add-playlist").submit(function(e) {
         e.preventDefault();
         e.stopPropagation();
-        let form = $(this).serialize(); 
-        let url = $(this).attr("action"); 
+        let form = $(this).serialize();
+        let url = $(this).attr("action");
         $.ajax({
             type: "POST",
             url: url,
@@ -137,7 +137,7 @@ $mobile_view = 0;
     //         target: "",
     //         beforeSubmit: validate_playlist_new_Request,
     //         success: validate_playlist_new_Response,
-    //         url: JS_SERVER_PATHROOT + "process/add-playlist_process",
+    //         url: JS_SERVER_PATHROOT + "process/add_playlist_process",
     //     };
     //     $("#add-playlist").submit(function() {
     //         $(this).ajaxSubmit(options);

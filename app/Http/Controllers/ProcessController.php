@@ -90,7 +90,7 @@ class ProcessController extends Controller
                 // $db->query($update_qry);
                 \App\Models\Songs::GetRawData($update_qry);
 
-                $response = array("success" => 'warning', 'message' => 'done');
+                $response = array("code" => 'success', 'message' => 'done');
                 return response()->json($response);
             } else {
                 $errorstr;

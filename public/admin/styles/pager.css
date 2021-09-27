@@ -1,0 +1,125 @@
+﻿#pager ul.pages {
+display:block;
+border:none;
+text-transform:uppercase;
+font-size:10px;
+/*margin:10px 0 50px;*/
+padding:0;
+margin:0;
+width:auto;
+float:right;
+overflow:hidden;
+font-family:Arial, Helvetica, sans-serif;
+text-align:center;
+}
+
+#pager ul.pages li {
+list-style:none;
+float:left;
+width:auto;
+/*border: 1px solid #6C6C6C;
+color: #666;*/
+border:#B1B1B1 1px solid;
+color:#B1B1B1;
+/*border:1px solid #ccc;*/
+text-decoration:none;
+margin:0 5px 0 0;
+padding:5px;
+text-align:center;
+}
+
+#pager ul.pages li:hover {
+/*border:1px solid #003f7e;*/
+/*border:#eee 1px solid;
+color:#eee;*/
+border: 1px solid #6C6C6C;
+color: #666;
+}
+
+#pager ul.pages li.pgEmpty {
+/*border:1px solid #eee;
+color:#eee;*/
+border:1px solid #D2D2D2;
+color:#D2D2D2;
+cursor:default;
+}
+
+#pager ul.pages li.pgCurrent {
+/*border:1px solid #003f7e;*/
+border: 1px solid #6D84B4;
+color:#FFFFFF;
+font-weight:bold;
+/*background-color:#eee;*/
+background:#6D84B4;
+}
+
+
+
+#pager2 ul.pages {
+display:block;
+border:none;
+text-transform:uppercase;
+font-size:10px;
+padding:0;
+margin:0;
+width:auto;
+float:left;
+overflow:hidden;
+font-family:Arial, Helvetica, sans-serif;
+text-align:center;
+
+/*display:block;
+border:none;
+text-transform:uppercase;
+font-size:10px;
+margin:10px 0 50px;
+padding:0;*/
+}
+
+#pager2 ul.pages li {
+/*list-style:none;
+float:left;
+border:1px solid #ccc;
+text-decoration:none;
+margin:0 5px 0 0;
+padding:5px;
+border: 1px solid #6C6C6C;
+color: #666;*/
+list-style:none;
+float:left;
+width:auto;
+border:#B1B1B1 1px solid;
+color:#B1B1B1;
+text-decoration:none;
+margin:0 5px 0 0;
+padding:5px;
+text-align:center;
+
+}
+
+#pager2 ul.pages li:hover {
+/*border:1px solid #003f7e;*/
+border: 1px solid #6C6C6C;
+color: #666;
+/*border:#eee 1px solid;
+color:#eee;*/
+}
+
+#pager2 ul.pages li.pgEmpty {
+border:1px solid #D2D2D2;
+color:#D2D2D2;
+/*border:1px solid #eee;
+color:#eee;*/
+cursor:default;
+}
+
+#pager2 ul.pages li.pgCurrent {
+/*border:1px solid #003f7e;
+color:#FFFFFF;
+font-weight:700;
+background-color:#eee;*/
+border: 1px solid #6D84B4;
+color:#FFFFFF;
+font-weight:bold;
+background:#6D84B4;
+}

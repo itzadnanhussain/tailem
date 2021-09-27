@@ -275,7 +275,7 @@ if (!function_exists('artist_info')) {
 
 ///sortArray 
 if (!function_exists('sortArray')) {
-    function sortArray($data = array(), $field)
+    function sortArray($data, $field)
     {
         error_reporting(0);
         $field = (array) $field;

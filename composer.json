@@ -30,7 +30,8 @@
         },
         "files": [
             "app/functions.php",
-            "app/queries.php" 
+            "app/adminfns.php",
+            "app/queries.php"
         ]
     },
     "autoload-dev": {

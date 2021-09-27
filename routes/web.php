@@ -22,6 +22,7 @@ require __DIR__.'/artist.php';
 require __DIR__.'/review.php';
 require __DIR__.'/profile.php';
 require __DIR__.'/search.php';
+require __DIR__.'/admin.php';
 
  
 ///LoadCMS Footer Link

@@ -1,0 +1,100 @@
+#facebox .b {
+  background:url(../images/popupbox/b.png);
+}
+
+#facebox .tl {
+  background:url(../images/popupbox/tl.png);
+}
+
+#facebox .tr {
+  background:url(../images/popupbox/tr.png);
+}
+
+#facebox .bl {
+  background:url(../images/popupbox/bl.png);
+}
+
+#facebox .br {
+  background:url(../images/popupbox/br.png);
+}
+
+#facebox {
+  position: absolute;
+  top: 100;
+  left: 100;
+  z-index: 100;
+  text-align: left;
+}
+
+#facebox .popup {
+  position: relative;
+}
+
+#facebox table {
+  border-collapse: collapse;
+}
+
+#facebox td {
+  border-bottom: 0;
+  padding: 0;
+}
+
+#facebox .body {
+  padding: 0px;
+  background: #fff;
+  width: 370px;
+}
+
+#facebox .loading {
+  text-align: center;
+}
+
+#facebox .image {
+  text-align: center;
+}
+
+#facebox img {
+  border: 0;
+  margin: 0;
+}
+
+#facebox .footer {
+  padding: 8px 8px 8px 8px;
+  margin-top: 10px;
+  text-align: right;
+  background-color:#FFFFFF;
+  height:40px;
+  text-decoration:none;
+}
+
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br {
+  height: 10px;
+  width: 10px;
+  overflow: hidden;
+  padding: 0;
+}
+
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+}
+
+.facebox_hide {
+  z-index:-100;
+}
+
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+}
+
+* html #facebox_overlay { /* ie6 hack */
+  position: absolute;
+  height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');
+}
+
+
+.close { text-decoration:none; }

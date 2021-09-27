@@ -1,0 +1,13 @@
+#comp_images_listing{
+	border:1px solid #CCCCCC !important;
+	width:800px !important;
+}
+
+
+#comp_images_listing th{
+	color:#336699; font-family:Tahoma; font-size:14px; padding:5px;
+}
+
+#comp_images_listing td{
+	font-family:Tahoma; font-size:11px; padding:5px;
+}
