@@ -32,8 +32,8 @@ return [
     'facebook' => [
         'client_id' => ' ',
         'client_secret' => ' ',
-        'redirect' => ' ',
-    ],
+        'redirect' => 'http://tailem.com.au/auth/facebook/callback',
+    ], 
     'google' => [
         'client_id' => '792177933548-co003qp3kj0ephqqei2is5n48riumdka.apps.googleusercontent.com',
         'client_secret' => 'MkVZEI1MuCh5CCru1_3aQCCe',

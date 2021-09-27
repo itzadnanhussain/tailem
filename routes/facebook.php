@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SocialController;
+use App\Http\Controllers\FacebookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use App\Http\Controllers\SocialController;
 |
 */
 
-Route::get('auth/facebook', [SocialController::class, 'facebookRedirect']);
+Route::get('auth/facebook', [FacebookController::class, 'facebookRedirect']);
 
-Route::get('auth/facebook/callback', [SocialController::class, 'loginWithFacebook']);
+Route::get('auth/facebook/callback', [FacebookController::class, 'loginWithFacebook']);
