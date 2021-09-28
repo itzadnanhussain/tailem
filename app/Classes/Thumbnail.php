@@ -59,6 +59,7 @@ class Thumbnail
 			5 = PSD, 
 			6 = BMP, 
 			*/
+          
         $this->thumb_type = ($this->img_type < 4) ? ($this->img_type < 3) ? ($this->img_type < 2) ? ($this->img_type < 1) ? Null : imagecreatefromgif($this->scr) : imagecreatefromjpeg($this->scr) : imagecreatefrompng($this->scr) : Null;
 
 

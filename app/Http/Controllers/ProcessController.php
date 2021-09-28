@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Classes\Thumbnail;
 // use App\Classes\Mail;
-use Illuminate\Support\Facades\Mail;
-
+use Illuminate\Support\Facades\Mail; 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -881,7 +880,7 @@ class ProcessController extends Controller
                 $icon_orgname = rand() . "_" . $_FILES["image_name"]['name'];
                 $h_newthumb_name = 'thumb_' . $icon_orgname;
                 $h_small_thumb_name = 'small_thumb_' . $icon_orgname;
-                $h_photo_path = $path . $icon_orgname;
+                $h_photo_path = $path . $icon_orgname; 
                 $h_photothumb_path = $path . $h_newthumb_name;
                 $h_dir = $path;
 
@@ -898,6 +897,8 @@ class ProcessController extends Controller
                     // creating thumbnail
                     $b->create();
                 }
+
+
             }
             echo "Done";
         } else {
