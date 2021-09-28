@@ -1,6 +1,7 @@
 <title><?php echo (isset($title) ? $title : '');?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta http-equiv="pragma" content="no-cache">
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <style type="text/css">
 	@import url("<?php echo SERVER_ADMIN_PATH;?>styles/styles.css");
 	@import url("<?php echo SERVER_ADMIN_PATH;?>styles/slidingdoors.css");

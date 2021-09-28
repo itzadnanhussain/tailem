@@ -1706,7 +1706,7 @@ function validate_user(){
 
 		success: validate_user_Response,
 
-		url: JS_ADMIN_SERVER_PATHROOT+'process/user_process.php'
+		url: JS_ADMIN_SERVER_PATHROOT+'process/user_process'
 
 		
 
@@ -1756,7 +1756,7 @@ function validate_user_Response(responseText, statusText)
 
 		alert("Record Save Successfully");
 
-		window.location.href = JS_ADMIN_SERVER_PATHROOT+"users_list.php";
+		window.location.href = JS_ADMIN_SERVER_PATHROOT+"users_list";
 
 	}
 
@@ -1777,21 +1777,20 @@ function delete_user(del_id)
 {		
 
 	var conBox = confirm("Are you sure,you want to delete this Record?");
+	var csrf_token = $('meta[name=csrf-token]').attr('content');
+
 
 	if(conBox)
 
 	{
 
-		$.ajax({
-
-		   type: "POST",
-
-		   url: JS_ADMIN_SERVER_PATHROOT+'process/delete_user.php',
-
-		   data: 'del_id='+del_id,
-
-	
-
+		$.ajax({ 
+		   type: "POST", 
+		   url: JS_ADMIN_SERVER_PATHROOT+'process/delete_user', 
+		   data: {
+			   "_token": csrf_token,
+			   "del_id" : del_id,
+			}, 
 		   beforeSend: function(){
 
 		   },

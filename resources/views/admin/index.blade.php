@@ -77,12 +77,12 @@
                                 <div class="childdiv" onMouseOver="overdivfunc(this.id);" onMouseOut="outdivfun(this.id);" id="users">
                                     <div class="MidHeading" id="usersMidHeading"><img src="images/user.gif" align="absmiddle" width="16" height="16">&nbsp;Manage Users</div>
                                     <ul>
-                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>users_list.php">Manage Users</a></li>
+                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>users_list">Manage Users</a></li>
                                     <?php
 									if($top_users_module_add=='Yes')
 									{
 									?>
-                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_user.php">Add User</a></li>
+                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_user">Add User</a></li>
                                     <?php
 									}
 									?>

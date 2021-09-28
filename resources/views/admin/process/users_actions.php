@@ -44,7 +44,7 @@ if(!empty($_POST['user_ids']))
 		if($result)
 		{		
 			 $okmsg = base64_encode("Deletion Successfully Done.");
-			 header('Location:'.SERVER_ADMIN_PATH."users_list.php?msg=$okmsg&case=1");
+			 header('Location:'.SERVER_ADMIN_PATH."users_list?msg=$okmsg&case=1");
 		}
 		else
 		{ 
@@ -77,7 +77,7 @@ if(!empty($_POST['user_ids']))
 		 if($result)
 		 {			
 			 $okmsg = base64_encode("status changed successfully.");
-			 header('Location:'.SERVER_ADMIN_PATH."users_list.php?msg=$okmsg&case=1");
+			 header('Location:'.SERVER_ADMIN_PATH."users_list?msg=$okmsg&case=1");
 		 }
 		 else
 		 {
@@ -109,7 +109,7 @@ if(!empty($_POST['user_ids']))
 	   if($result)
 	   {		
 			$okmsg = base64_encode('status changed successfully.');
-			header('Location:'.SERVER_ADMIN_PATH."users_list.php?msg=$okmsg&case=1");
+			header('Location:'.SERVER_ADMIN_PATH."users_list?msg=$okmsg&case=1");
 	   }
 	   else
 	   {
@@ -120,6 +120,6 @@ if(!empty($_POST['user_ids']))
 else
 {
 	$errormsg = base64_encode('First select a record to perform some action');
-	header('Location:'.SERVER_ADMIN_PATH."users_list.php?msg=$errormsg&case=2");
+	header('Location:'.SERVER_ADMIN_PATH."users_list?msg=$errormsg&case=2");
 }
 ?>

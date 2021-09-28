@@ -76,12 +76,16 @@ class Thumbnail
 
     function create()
     {
-        if ($this->thumb_type !== Null) {        //destination to save file is not equal to null
+       
+        if ($this->thumb_type !== Null) { 
+            
+                 //destination to save file is not equal to null
             if ($this->des !== "") {
                 imagejpeg($this->new_img, $this->des, $this->comp);
             }
             imagedestroy($this->thumb_type);
             imagedestroy($this->new_img);
         }
+        
     } // END function create
 }

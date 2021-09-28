@@ -97,6 +97,18 @@ class Songs extends Model
 
         return $results;
     }
+    ///GetRawDataAdmin
+    public static function GetRawDataAdmin($expression, $where = array())
+    {
+        $results = array();
+        $results = DB::select(DB::raw($expression), $where);
+        if($results)
+        {
+            $results = (array)$results[0];
+        }
+
+        return $results ;
+    }
 
     ///GetFeatureArr 
     public static function GetFeatureArr($id)
