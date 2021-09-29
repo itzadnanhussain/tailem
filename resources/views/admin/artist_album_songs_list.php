@@ -111,7 +111,7 @@ function change_status(song_id, status)
                         <td class="body"><table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tr>
                                 <td><a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a> 
-                                &raquo; <a href="artist_list.php">Artist Listing</a>
+                                &raquo; <a href="artist_list">Artist Listing</a>
                                 &raquo; <a>Artist <?php echo utf8_decode($artist_name);?> Album Listing</a></td>
                               </tr>
                               

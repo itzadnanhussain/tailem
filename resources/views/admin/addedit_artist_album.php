@@ -92,7 +92,7 @@ exit;
 												<tr>
 												  <td align="left">
 												  <a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a>
-													&raquo;<a href="<?php echo SERVER_ADMIN_PATH;?>artist_list.php">Artist Listing</a>&raquo;
+													&raquo;<a href="<?php echo SERVER_ADMIN_PATH;?>artist_list">Artist Listing</a>&raquo;
                                                   <a href="<?php echo SERVER_ADMIN_PATH;?>artist_album_list.php?artist_id=<?php echo $artist_id;?>">Artist <?php echo $artist_name;?> Album Listing</a>
                                                  &raquo;
                                                   <a>Add Album</a>

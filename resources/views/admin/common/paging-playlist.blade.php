@@ -91,6 +91,8 @@ padding: 2px 5px 2px 5px;
 	$tbl_name="";		//your table name
 	// How many adjacent pages should be shown on each side?
 	$adjacents = 2;
+	// $paramstring = null;
+	error_reporting(0);
 	
 	/* 
 	   First get total number of rows in data table. 
@@ -101,20 +103,27 @@ padding: 2px 5px 2px 5px;
 	/* Setup page vars for display. */
 	if ($page == 0) $page = 1;					//if no page var is given, default to 1.
 	$prev = $page - 1;							//previous page is page - 1
-	$next = $page + 1;							//next page is page + 1
-	$lastpage = ceil($total_pages/$limit);		//lastpage is = total pages / items per page, rounded up.
+	$next = $page + 1;
+	if($total_pages > 0 && $limit > 0)
+	{
+		$lastpage = ceil($total_pages/$limit);		//lastpage is = total pages / items per page, rounded up.
+
+	}	else
+	{
+		$lastpage = 1;
+	}						//next page is page + 1
 	$lpm1 = $lastpage - 1;						//last page minus 1
 	
 	/* 
 		Now we apply our rules and draw the pagination object. 
 		We're actually saving the code to a variable in case we want to draw it more than once.
 	*/
-	if($serach_postcode=="")
+	if(isset($serach_postcode) && ($serach_postcode == ""))
 	{
 		//$paramstring = "";
 	}
 	
-	if($dat_sort=="")
+	if(isset($dat_sort) && ($dat_sort == ""))
 	{
 		//$paramstring = "";
 	}

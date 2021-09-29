@@ -224,7 +224,7 @@ function show_detail(id)
                       <tr>
                         <td class="body"><table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tr>
-                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a> &raquo; <a href="<?php echo SERVER_ADMIN_PATH;?>artist_list.php">Artist Listing</a> &raquo; <a>Single Artist</a></td>
+                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a> &raquo; <a href="<?php echo SERVER_ADMIN_PATH;?>artist_list">Artist Listing</a> &raquo; <a>Single Artist</a></td>
                               </tr>
                             
                               <tr>
@@ -261,7 +261,7 @@ function show_detail(id)
 						  		   if($top_artist_module_add=='Yes' || $_SESSION['reviewsite_cpadmin_type']=='admin')
 						            {
 										?>
-                                        <a href="<?php echo SERVER_ADMIN_PATH; ?>addedit_artist.php"><img src="images/add.png" border="0" title="Add New"></a>
+                                        <a href="<?php echo SERVER_ADMIN_PATH; ?>addedit_artist"><img src="images/add.png" border="0" title="Add New"></a>
                                         <?php
 									}
 									?>	
@@ -298,7 +298,7 @@ function show_detail(id)
 											and `tbl_artists.id` =  $artistid $orderby";
 											$res_count_mypro = mysqli_query($db->dbh, $qry_count_mypro);
 												
-											$targetpage = "artist_list.php"; //your file name  (the name of this file)
+											$targetpage = "artist_list"; //your file name  (the name of this file)
 											
 											$total_pages = mysqli_num_rows($res_count_mypro);
 											
@@ -511,7 +511,7 @@ function show_detail(id)
 										 if($top_artist_module_add=='Yes' || $_SESSION['reviewsite_cpadmin_type']=='admin')
 										{
 										?>
-                                        <a href="addedit_artist.php?edit_id=<?php echo base64_encode($id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>
+                                        <a href="addedit_artist?edit_id=<?php echo base64_encode($id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>
                                          <?php
 										}
 										?>

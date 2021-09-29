@@ -81,7 +81,7 @@ if(isset($_POST['Reset']))
 	unset($_SESSION['where_query']);
 	$_SESSION['where_query'] = "";
 	
-	header("Location:artist_list.php");
+	header("Location:artist_list");
 }
 /*================== Search Filter End Here=================*/
 //---------- Ordering ----------//
@@ -125,7 +125,7 @@ if(isset($status) && !empty($status))
 	}
 	
 	$db->query($sqlquery);
-	header("Location:artist_list.php?msg=$update_ok_msg&case=1");
+	header("Location:artist_list?msg=$update_ok_msg&case=1");
 	exit;
 }
 ?>
@@ -279,7 +279,7 @@ function show_detail(id)
 						  		   if($top_artist_module_add=='Yes' || $_SESSION['reviewsite_cpadmin_type']=='admin')
 						            {
 										?>
-                                        <a href="<?php echo SERVER_ADMIN_PATH; ?>addedit_artist.php"><img src="images/add.png" border="0" title="Add New"></a>
+                                        <a href="<?php echo SERVER_ADMIN_PATH; ?>addedit_artist"><img src="images/add.png" border="0" title="Add New"></a>
                                         <?php
 									}
 									?>	
@@ -293,9 +293,9 @@ function show_detail(id)
                                          <td width="200" id="Heading_list">Image</td>
                                          <td width="200" id="Heading_list">
                                         <?php if($sortby == 'artist_desc'){?>
-                                        <a href="artist_list.php?sortby=artist_name_asc&page=<?php echo $page;?>" class="link_class">Artist</a>
+                                        <a href="artist_list?sortby=artist_name_asc&page=<?php echo $page;?>" class="link_class">Artist</a>
                                         <?php }else{?>
-                                        <a href="artist_list.php?sortby=artist_desc&page=<?php echo $page;?>" class="link_class">Artist</a>
+                                        <a href="artist_list?sortby=artist_desc&page=<?php echo $page;?>" class="link_class">Artist</a>
                                         <?php }?>
                                         </td>
                                         
@@ -306,9 +306,9 @@ function show_detail(id)
                                         <td width="70" id="Heading_list">Popular artist</td>
                                         <td width="70" id="Heading_list">
                                         <?php if($sortby == 'statusdesc'){?>
-                                        <a href="artist_list.php?sortby=statusasc&page=<?php echo $page;?>" class="link_class">Status</a>
+                                        <a href="artist_list?sortby=statusasc&page=<?php echo $page;?>" class="link_class">Status</a>
                                         <?php }else{?>
-                                        <a href="artist_list.php?sortby=statusdesc&page=<?php echo $page;?>" class="link_class">Status</a>
+                                        <a href="artist_list?sortby=statusdesc&page=<?php echo $page;?>" class="link_class">Status</a>
                                         <?php }?>
                                         </td>
                                         
@@ -358,7 +358,7 @@ function show_detail(id)
 											//exit;
 											//$res_count_mypro = mysqli_query($db->dbh, $qry_count_mypro);
 												
-											$targetpage = "artist_list.php"; //your file name  (the name of this file)
+											$targetpage = "artist_list"; //your file name  (the name of this file)
 											
 											$count_query = "SELECT count(tbl_artists.ids) as total_page FROM tbl_artists where 1=1
     											$session_where ";
@@ -549,11 +549,11 @@ function show_detail(id)
 										  <?php
 											if($status==0)
 											{
-												echo '<a href="artist_list.php?status='.base64_encode(1).'&status_id='.base64_encode($id).'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>'; 
+												echo '<a href="artist_list?status='.base64_encode(1).'&status_id='.base64_encode($id).'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>'; 
 											}
 											if($status==1)
 											{
-												echo '<a href="artist_list.php?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
+												echo '<a href="artist_list?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
 											}
 										  ?></td>
                                           
@@ -565,7 +565,7 @@ function show_detail(id)
 										 if($top_artist_module_add=='Yes' || $_SESSION['reviewsite_cpadmin_type']=='admin')
 										{
 										?>
-                                        <a href="addedit_artist.php?edit_id=<?php echo base64_encode($id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>
+                                        <a href="addedit_artist?edit_id=<?php echo base64_encode($id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>
                                          <?php
 										}
 										?>

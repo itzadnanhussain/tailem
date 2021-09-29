@@ -120,12 +120,12 @@
                                 <div class="childdiv" onMouseOver="overdivfunc(this.id);" onMouseOut="outdivfun(this.id);" id="artist">
                                     <div class="MidHeading" id="artistMidHeading"><img src="images/faq.gif" align="absmiddle" width="16" height="16">&nbsp;Manage Artists</div>
                                     <ul>
-                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>artist_list.php">Manage Artists</a></li>
+                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>artist_list">Manage Artists</a></li>
                                     <?php
 									if($top_faq_module_add=='Yes')
 									{
 									?>
-                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_artist.php">Add Artists</a></li>
+                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_artist">Add Artists</a></li>
                                     <?php
 									}
 									?>
