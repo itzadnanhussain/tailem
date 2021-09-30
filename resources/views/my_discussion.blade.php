@@ -338,16 +338,16 @@ if ($page != "") {
                                     if ($num == $count) {
                                         $feature_art  = substr($val_feature['feature_artist'], 0, 9);
                                         if (strlen($val_feature['feature_artist']) > 9) {
-                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $feature_art . '..' . "</a>";
+                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $feature_art . '..' . "</a>";
                                         } else {
-                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
+                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
                                         }
                                     } else {
                                         $feature_art  = substr($val_feature['feature_artist'], 0, 6);
                                         if (strlen($val_feature['feature_artist']) > 6) {
-                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'> " . $feature_art . '..' . "</a>";
+                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'> " . $feature_art . '..' . "</a>";
                                         } else {
-                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
+                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
                                         }
                                     }
                                     $num++;
@@ -406,7 +406,7 @@ if ($page != "") {
                                                         if (strlen($song_title) > 19) {
                                                             echo "..";
                                                         } ?></a></label>
-                                                <label class="author pad_left"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 19);
+                                                <label class="author pad_left"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 19);
                                                                                                                                                         if (strlen($artist_name) > 19) {
                                                                                                                                                             echo "..";
                                                                                                                                                         } ?></a></label>
@@ -525,7 +525,7 @@ if ($page != "") {
                                                     if (strlen($song_title) > 9) {
                                                         echo "..";
                                                     } ?></a></label>
-                                            <label class="author mrg_btm"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 10);
+                                            <label class="author mrg_btm"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 10);
                                                                                                                                                     if (strlen($artist_name) > 10) {
                                                                                                                                                         echo "..";
                                                                                                                                                     } ?></a></label><br>
@@ -882,7 +882,7 @@ if ($page != "") {
                                                             if (strlen($song_title) > 20) {
                                                                 echo "...";
                                                             } ?></a></label>
-                                                    <label class="author mrg_btm"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                                                    <label class="author mrg_btm"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
 
 
                                                         <?php /*if($feature_artists!="") {?>

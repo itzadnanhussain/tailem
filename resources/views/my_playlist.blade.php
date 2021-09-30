@@ -575,9 +575,9 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
                                             $feature_art  = substr($val_feature['feature_artist'], 0, 16);
                                             if (strlen($val_feature['feature_artist']) > 16) {
-                                                $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $feature_art . '..' . "</a>";
+                                                $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $feature_art . '..' . "</a>";
                                             } else {
-                                                $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
+                                                $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
                                             }
                                             if ($num == 2) {
                                                 break;
@@ -585,9 +585,9 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                         } else {
                                             $feature_art  = substr($val_feature['feature_artist'], 0, 16);
                                             if (strlen($val_feature['feature_artist']) > 16) {
-                                                $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;' >" . $feature_art . '..' . "</a>";
+                                                $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;' >" . $feature_art . '..' . "</a>";
                                             } else {
-                                                $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
+                                                $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
                                             }
                                             if ($num == 2) {
                                                 break;
@@ -597,7 +597,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                     }
                                 }
 
-                                $url_gen    =    SERVER_ROOTPATH . $artist_seo . "-artist-songs";
+                                $url_gen    =    SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs";
 
 
                         ?>
@@ -670,7 +670,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                             } ?>
 
                                                         </a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 25);
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 25);
                                                                                                                                                     if (strlen($artist_name) > 25) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a></label>
@@ -838,7 +838,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                                                                                                                                 if (strlen($song_title) > 50) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                         if (strlen($artist_name) > 30) {
                                                                                                                                                             echo "...";
                                                                                                                                                         } ?></a></label>

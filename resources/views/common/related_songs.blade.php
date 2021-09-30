@@ -187,14 +187,14 @@
 
                                         $feature_art  = substr($val_feature['feature_artist'], 0, 1) . "...";
 
-                                        $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+                                        $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
 
                                         break;
                                     } else {
 
                                         $feature_art  = $val_feature['feature_artist'];
 
-                                        $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+                                        $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                                     }
                                 } else {
 
@@ -208,14 +208,14 @@
 
                                         $feature_art  = substr($val_feature['feature_artist'], 0, 4) . "...";
 
-                                        $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>";
+                                        $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
 
                                         break;
                                     } else {
 
                                         $feature_art  = $val_feature['feature_artist'];
 
-                                        $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $feature_art . "</a>, ";
+                                        $feature_artists .= " <a style='color:#d73b3b' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>, ";
                                     }
                                 }
 
@@ -275,7 +275,7 @@
                                             <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
                                                 <p><?php echo $song_title; ?></p>
                                             </a>
-                                            <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>">
+                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>">
                                                 <cite2 style="margin-top:0;"><?php echo $artist_name; ?> </cite2>
                                             </a>
 

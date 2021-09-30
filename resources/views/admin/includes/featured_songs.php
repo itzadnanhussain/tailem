@@ -78,23 +78,23 @@ if(isset($artist_list_arr_new)){
 	$sum_len = $sum_len + $str_length;
 	if($sum_len>25)	{
 		$feature_art  = substr($val_feature['feature_artist'],0,1)."...";
-		$feature_artists .= " <a style='display: inline;' href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs'>".$feature_art."</a>";
+		$feature_artists .= " <a style='display: inline;' href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs'>".$feature_art."</a>";
 		break;
 	}
 else{
 $feature_art  = $val_feature['feature_artist'];
-$feature_artists .= "<a style='display: inline;' href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs'>".$feature_art."</a>";
+$feature_artists .= "<a style='display: inline;' href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs'>".$feature_art."</a>";
 	}	
 	}else{
 	$str_length = strlen($val_feature['feature_artist']);
 	$sum_len = $sum_len + $str_length;
 	if($sum_len>25){
 	$feature_art  = substr($val_feature['feature_artist'],0,1)."...";
-	$feature_artists .= " <a style='display: inline;' href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs'>".$feature_art."</a>";
+	$feature_artists .= " <a style='display: inline;' href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs'>".$feature_art."</a>";
 	break;
 	}else{
 	$feature_art  = $val_feature['feature_artist'];
-	$feature_artists .= " <a style='display: inline;' href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs'>".$feature_art."</a>,";
+	$feature_artists .= " <a style='display: inline;' href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs'>".$feature_art."</a>,";
 	}
 	}
 	$num++;
@@ -194,7 +194,7 @@ $feature_artists .= "<a style='display: inline;' href='".SERVER_ROOTPATH.$val_fe
 					<div class="list_bottom">
 						<div class="row">
 							<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-								<p><a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo;?>"><?php echo $song_title; ?></a><a class="artist-name" href="<?php echo SERVER_ROOTPATH.$artist_seo."-artist-songs";?>"><?php echo $artist_name;?></a><span><?php echo $feature_artists; $sum_len  = 0;?></span></p>
+								<p><a href="<?php echo SERVER_ROOTPATH.$song_seo."-reviews-".$artist_seo;?>"><?php echo $song_title; ?></a><a class="artist-name" href="<?php echo SERVER_ROOTPATH.Slug($artist_seo)."/artist-songs";?>"><?php echo $artist_name;?></a><span><?php echo $feature_artists; $sum_len  = 0;?></span></p>
 							</div>
 							<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 							<?php

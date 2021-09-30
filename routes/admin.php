@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ManageUsers;
 use App\Http\Controllers\Admin\ManageArtist;
+use App\Http\Controllers\Admin\ManageCategories;
+use App\Http\Controllers\Admin\ManageSetting;
 
 
 ///**********************Login Controller**************************/
@@ -57,12 +59,28 @@ Route::post('admin/process/artist_actions', [ManageArtist::class, 'Artist_Action
 Route::get('admin/artist_featured_songs_list', [ManageArtist::class, 'Artist_Featured_Songs_List']);
 
 
+///Single_Artist_View
+Route::get('admin/view_artist', [ManageArtist::class, 'Single_Artist_View']);
+
+///**********************ManageCategories Controller**************************/
+
+///Category List
+Route::any('admin/main_cat_list', [ManageCategories::class, 'Load_Category_List']);
+Route::post('admin/process/main_cat_actions', [ManageCategories::class, 'Category_Actions']);
+
+
+///Add_Category
+Route::any('admin/addedit_main_cat', [ManageCategories::class, 'Add_Category']);
+Route::post('admin/process/main_cat_process', [ManageCategories::class, 'Category_Process']);
+
+
+///**********************ManageSetting Controller**************************/
+
+///Load_Setting
+Route::any('admin/setting', [ManageSetting::class, 'Load_Setting']);
 
 
 
-
-
- 
 
 
  

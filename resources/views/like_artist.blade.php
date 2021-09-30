@@ -549,9 +549,9 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                             $img_api_linka = album_img_api($artist_img);
                                                             if ($img_api_linka != '') {
                                                         ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($img_api_linka); ?>" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($img_api_linka); ?>" border="0" width="100" /></a>
                                                             <?php } else { ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>" border="0" width="100" /></a>
                                                             <?php
                                                             }
                                                         } else
@@ -559,11 +559,11 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
 
                                                             if ($req_artist['artist_array']['image4'] != "") {
                                                             ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="100" style="max-width:inherit; max-height:90px;" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="100" style="max-width:inherit; max-height:90px;" /></a>
                                                             <?php
                                                             } else {
                                                             ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
                                                         <?php
                                                             }
                                                         }
@@ -571,7 +571,7 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                         ?>
                                                     </div>
                                                     <div class="album_details" style="width:65%;">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo substr($artist_name, 0, 15);
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 15);
                                                                                                                                                         if (strlen($artist_name) > 15) {
                                                                                                                                                             echo "..";
                                                                                                                                                         } ?></a></label>
@@ -699,9 +699,9 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                                 $img_api_linka = album_img_api($artist_img);
                                                                 if ($img_api_linka != '') {
                                                             ?>
-                                                                    <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo $artist_img; ?>" border="0" width="100" /></a>
+                                                                    <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo $artist_img; ?>" border="0" width="100" /></a>
                                                                 <?php } else { ?>
-                                                                    <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>" border="0" width="100" /></a>
+                                                                    <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>" border="0" width="100" /></a>
                                                                 <?php
                                                                 }
                                                             } else
@@ -709,11 +709,11 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                                 $req_artist  =  artist_func(urlencode("$artist_name"));
                                                                 if ($req_artist['artist_array']['image4'] != "") {
                                                                 ?>
-                                                                    <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="100" /></a>
+                                                                    <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="100" /></a>
                                                                 <?php
                                                                 } else {
                                                                 ?>
-                                                                    <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
+                                                                    <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
                                                             <?php
                                                                 }
                                                             }
@@ -724,7 +724,7 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                     </div>
                                                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:0px !important;">
                                                         <div class="album_details" style="display:block;">
-                                                            <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>"><?php echo $artist_name; ?></a></label>
+                                                            <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $artist_name; ?></a></label>
                                                             <p><label class="likes" style="float:left; height:26px; margin-left:0px; padding-left:0px;">
                                                                     <?php
                                                                     if ($user_profile != "") {

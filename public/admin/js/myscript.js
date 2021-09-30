@@ -159,7 +159,7 @@ function validate_social_links() {
 
         success: validate_social_links_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/social_link_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/social_link_process",
     };
 
     // bind to the form's submit event
@@ -183,7 +183,7 @@ function validate_social_links_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "social_links.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "social_links";
     } else {
         alert(responseText);
     }
@@ -201,7 +201,7 @@ function validate_email() {
 
         success: validate_email_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/admin_email_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/admin_email_process",
     };
 
     // bind to the form's submit event
@@ -225,7 +225,7 @@ function validate_email_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting";
     } else {
         alert(responseText);
     }
@@ -245,7 +245,7 @@ function validate_admin_password() {
 
         url:
             JS_ADMIN_SERVER_PATHROOT +
-            "process/admin_change_password_process.php",
+            "process/admin_change_password_process",
     };
 
     // bind to the form's submit event
@@ -269,7 +269,7 @@ function validate_admin_password_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting";
     } else {
         alert(responseText);
     }
@@ -287,7 +287,7 @@ function validate_country() {
 
         success: validate_country_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/country_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/country_process",
     };
 
     // bind to the form's submit event
@@ -312,7 +312,7 @@ function validate_country_Response(responseText, statusText) {
         alert("Record Saved Successfully");
 
         window.location.href =
-            JS_ADMIN_SERVER_PATHROOT + "countries_listing.php";
+            JS_ADMIN_SERVER_PATHROOT + "countries_listing";
     } else {
         alert(responseText);
     }
@@ -330,7 +330,7 @@ function validate_region() {
 
         success: validate_region_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/region_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/region_process",
     };
 
     // bind to the form's submit event
@@ -354,7 +354,7 @@ function validate_region_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "regions_listing.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "regions_listing";
     } else {
         alert(responseText);
     }
@@ -369,7 +369,7 @@ function delete_region(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_regions.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_regions",
 
             data: "del_id=" + del_id,
 
@@ -401,7 +401,7 @@ function delete_region(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_regions.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_regions",
 
             data: "del_id=" + del_id,
 
@@ -434,7 +434,7 @@ function delete_sub_cate_more_info_data(del_id) {
 
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/delete_sub_cate_more_info_data.php",
+                "process/delete_sub_cate_more_info_data",
 
             data: "del_id=" + del_id,
 
@@ -466,7 +466,7 @@ function delete_country(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_counntry.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_counntry",
 
             data: "del_id=" + del_id,
 
@@ -498,7 +498,7 @@ function delete_main_cat(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_main_category.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_main_category",
 
             data: "del_id=" + del_id,
 
@@ -525,15 +525,19 @@ function delete_main_cat(del_id) {
 
 function validate_main_cat() {
     $("#main_cat_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
 
     var options = {
         target: "",
+        data : {
+            "_token": csrf_token, 
+        },
 
         beforeSubmit: validate_main_cat_Request,
 
         success: validate_main_cat_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/main_cat_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/main_cat_process",
     };
 
     // bind to the form's submit event
@@ -557,7 +561,7 @@ function validate_main_cat_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "main_cat_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "main_cat_list";
     } else {
         alert(responseText);
     }
@@ -575,7 +579,7 @@ function validate_add_sub_cat() {
 
         success: validate_add_sub_cat_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/add_sub_cat_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/add_sub_cat_process",
     };
 
     // bind to the form's submit event
@@ -601,10 +605,10 @@ function validate_add_sub_cat_Response(responseText, statusText) {
         alert("Record Saved Successfully");
         if (myarray[1] == "sub") {
             window.location.href =
-                JS_ADMIN_SERVER_PATHROOT + "sub_cat_list.php";
+                JS_ADMIN_SERVER_PATHROOT + "sub_cat_list";
         } else {
             window.location.href =
-                JS_ADMIN_SERVER_PATHROOT + "all_cat_list.php";
+                JS_ADMIN_SERVER_PATHROOT + "all_cat_list";
         }
     } else {
         alert(responseText);
@@ -622,7 +626,7 @@ function validate_sub_cat() {
 
         success: validate_sub_cat_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/sub_cat_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/sub_cat_process",
     };
 
     // bind to the form's submit event
@@ -646,7 +650,7 @@ function validate_sub_cat_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "sub_cat_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "sub_cat_list";
     } else {
         alert(responseText);
     }
@@ -661,7 +665,7 @@ function delete_sub_cat(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_sub_category.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_sub_category",
 
             data: "del_id=" + del_id,
 
@@ -693,7 +697,7 @@ function delete_product(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_product.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_product",
 
             data: "del_id=" + del_id,
 
@@ -725,7 +729,7 @@ function delete_faq(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_faq.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_faq",
 
             data: "del_id=" + del_id,
 
@@ -773,7 +777,7 @@ function delete_artist(del_id) {
                     alert("Some Error occured in deleting Record");
                 }
 
-                window.location.reload();
+                window.location = "artist_list";
             },
 
             error: function () {},
@@ -788,7 +792,7 @@ function delete_song(del_id) {
     if (conBox) {
         $.ajax({
             type: "POST",
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_song.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_song",
             data: "del_id=" + del_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -813,7 +817,7 @@ function delete_artist_song(del_id, songid) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_artist_songs.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_artist_songs",
 
             data: "del_id=" + del_id + "&songid=" + songid,
 
@@ -848,7 +852,7 @@ function validate_faq() {
 
         success: validate_faq_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/faq_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/faq_process",
     };
 
     // bind to the form's submit event
@@ -872,7 +876,7 @@ function validate_faq_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "faq_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "faq_list";
     } else {
         alert(responseText);
     }
@@ -962,7 +966,7 @@ function delete_slideshow(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_slide_show.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_slide_show",
 
             data: "del_id=" + del_id,
 
@@ -998,7 +1002,7 @@ function delete_ads(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_ads.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_ads",
 
             data: "del_id=" + del_id,
 
@@ -1033,7 +1037,7 @@ function validate_page() {
 
         success: validate_page_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/pages_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/pages_process",
     };
 
     // bind to the form's submit event
@@ -1057,7 +1061,7 @@ function validate_page_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "page_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "page_list";
     } else {
         alert(responseText);
     }
@@ -1070,7 +1074,7 @@ function load_category_type(id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/get_ads_category.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/get_ads_category",
 
             data: "cat_id=" + id,
 
@@ -1102,7 +1106,7 @@ function load_edit_category_type(id, update_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/get_ads_edit_category.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/get_ads_edit_category",
 
             data: "cat_id=" + id + "&update_id=" + update_id,
 
@@ -1139,7 +1143,7 @@ function validate_ads() {
 
         success: validate_ads_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/ads_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/ads_process",
     };
 
     // bind to the form's submit event
@@ -1163,7 +1167,7 @@ function validate_ads_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "ads_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "ads_list";
     } else {
         alert(responseText);
     }
@@ -1181,7 +1185,7 @@ function validate_email_templates() {
 
         success: validate_email_templates_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/email_templates_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/email_templates_process",
     };
 
     // bind to the form's submit event
@@ -1206,7 +1210,7 @@ function validate_email_templates_Response(responseText, statusText) {
         alert("Record Update Successfully");
 
         window.location.href =
-            JS_ADMIN_SERVER_PATHROOT + "email_templates_list.php";
+            JS_ADMIN_SERVER_PATHROOT + "email_templates_list";
     } else {
         alert(responseText);
     }
@@ -1221,7 +1225,7 @@ function set_top_member(user_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/set_top_member.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/set_top_member",
 
             data: "userid=" + user_id,
 
@@ -1255,7 +1259,7 @@ function unset_top_member(user_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/set_untop_member.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/set_untop_member",
 
             data: "userid=" + user_id,
 
@@ -1287,7 +1291,7 @@ function set_popular(review_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/set_popular.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/set_popular",
 
             data: "reviewid=" + review_id,
 
@@ -1319,7 +1323,7 @@ function unset_popular(review_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/set_popular.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/set_popular",
 
             data: "reviewid=" + review_id,
 
@@ -1351,7 +1355,7 @@ function delete_review(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_review.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_review",
 
             data: "del_id=" + del_id,
 
@@ -1386,7 +1390,7 @@ function validate_review() {
 
         success: validate_review_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/review_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/review_process",
     };
 
     // bind to the form's submit event
@@ -1410,7 +1414,7 @@ function validate_review_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Save Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "reviews_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "reviews_list";
     } else {
         alert(responseText);
     }
@@ -1428,7 +1432,7 @@ function validate_slide_show() {
 
         success: validate_slide_show_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/slide_show_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/slide_show_process",
     };
 
     // bind to the form's submit event
@@ -1452,7 +1456,7 @@ function validate_slide_show_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "slide_show_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "slide_show_list";
     } else {
         alert(responseText);
     }
@@ -1470,7 +1474,7 @@ function validate_moderator() {
 
         success: validate_moderator_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/moderator_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/moderator_process",
     };
 
     // bind to the form's submit event
@@ -1494,7 +1498,7 @@ function validate_moderator_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "moderator_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "moderator_list";
     } else {
         alert(responseText);
     }
@@ -1511,7 +1515,7 @@ function delete_moderator(del_id) {
 
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/delete_moderator_process.php",
+                "process/delete_moderator_process",
 
             data: "del_id=" + del_id,
 
@@ -1548,7 +1552,7 @@ function validate_report_option() {
 
         success: validate_report_option_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/report_option_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/report_option_process",
     };
 
     // bind to the form's submit event
@@ -1573,7 +1577,7 @@ function validate_report_option_Response(responseText, statusText) {
         alert("Record Saved Successfully");
 
         window.location.href =
-            JS_ADMIN_SERVER_PATHROOT + "report_checkbox_list.php";
+            JS_ADMIN_SERVER_PATHROOT + "report_checkbox_list";
     } else {
         alert(responseText);
     }
@@ -1588,7 +1592,7 @@ function delete_report_option(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_report_option.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_report_option",
 
             data: "del_id=" + del_id,
 
@@ -1620,7 +1624,7 @@ function delete_comment_report(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_comment_report.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_comment_report",
 
             data: "del_id=" + del_id,
 
@@ -1653,7 +1657,7 @@ function delete_gcomment_report(del_id) {
             type: "POST",
 
             url:
-                JS_ADMIN_SERVER_PATHROOT + "process/delete_gcomment_report.php",
+                JS_ADMIN_SERVER_PATHROOT + "process/delete_gcomment_report",
 
             data: "del_id=" + del_id,
 
@@ -1688,7 +1692,7 @@ function moderator_rights_validatation() {
 
         success: moderator_rights_validatation_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/moderator_right_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/moderator_right_process",
     };
 
     // bind to the form's submit event
@@ -1712,7 +1716,7 @@ function moderator_rights_validatation_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "moderator_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "moderator_list";
     } else {
         alert(responseText);
     }
@@ -1740,7 +1744,7 @@ function validate_site_mode() {
 
         success: validate_site_mode_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/site_mode_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/site_mode_process",
     };
 
     // bind to the form's submit event
@@ -1764,7 +1768,7 @@ function validate_site_mode_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting";
     } else {
         alert(responseText);
     }
@@ -1781,7 +1785,7 @@ function validate_analytic() {
 
         success: validate_analaytic_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/analytic_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/analytic_process",
     };
 
     // bind to the form's submit event
@@ -1805,7 +1809,7 @@ function validate_analaytic_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting";
     } else {
         alert(responseText);
     }
@@ -1823,7 +1827,7 @@ function validate_product() {
 
         success: validate_product_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/product_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/product_process",
     };
 
     // bind to the form's submit event
@@ -1847,7 +1851,7 @@ function validate_product_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "product_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "product_list";
     } else {
         alert(responseText);
     }
@@ -1859,7 +1863,7 @@ function validate_product_embed_code() {
         target: "",
         beforeSubmit: validate_product_embed_code_Request,
         success: validate_product_embed_code_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/embed_code_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/embed_code_process",
     };
     // bind to the form's submit event
     $("#product_form").submit(function () {
@@ -1875,7 +1879,7 @@ function validate_product_embed_code_Request(formData, jqForm, options) {
 function validate_product_embed_code_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "embed_code_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "embed_code_list";
     } else {
         alert(responseText);
     }
@@ -1891,7 +1895,7 @@ function delete_product_embed_code(del_id) {
 
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/delete_product_embed_code.php",
+                "process/delete_product_embed_code",
 
             data: "del_id=" + del_id,
 
@@ -1920,7 +1924,7 @@ function validate_video() {
         target: "",
         beforeSubmit: validate_video_Request,
         success: validate_video_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/video_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/video_process",
     };
     // bind to the form's submit event
     $("#video_form").submit(function () {
@@ -1936,7 +1940,7 @@ function validate_video_Request(formData, jqForm, options) {
 function validate_video_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "video_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "video_list";
     } else {
         alert(responseText);
     }
@@ -1950,7 +1954,7 @@ function delete_video(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_video.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_video",
 
             data: "del_id=" + del_id,
 
@@ -1981,7 +1985,7 @@ function delete_question(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_questions.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_questions",
 
             data: "del_id=" + del_id,
 
@@ -2012,7 +2016,7 @@ function delete_question(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_questions.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_questions",
 
             data: "del_id=" + del_id,
 
@@ -2043,7 +2047,7 @@ function delete_answer(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_answer.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_answer",
 
             data: "del_id=" + del_id,
 
@@ -2074,7 +2078,7 @@ function delete_answer_like(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_answer_like.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_answer_like",
 
             data: "del_id=" + del_id,
 
@@ -2108,7 +2112,7 @@ function validate_category_image() {
 
         success: validate_category_image_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/category_images_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/category_images_process",
     };
 
     // bind to the form's submit event
@@ -2133,7 +2137,7 @@ function validate_category_image_Response(responseText, statusText) {
         alert("Record Saved Successfully");
 
         window.location.href =
-            JS_ADMIN_SERVER_PATHROOT + "category_image_list.php";
+            JS_ADMIN_SERVER_PATHROOT + "category_image_list";
     } else {
         alert(responseText);
     }
@@ -2147,7 +2151,7 @@ function delete_category_image(del_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_category_image.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_category_image",
 
             data: "del_id=" + del_id,
 
@@ -2178,7 +2182,7 @@ function get_category_level4_attributes(id) {
 
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level4_attributes_process.php",
+                "process/category_level4_attributes_process",
 
             data: "level4_id=" + id,
 
@@ -2211,7 +2215,7 @@ function get_category_level5_attributes(id) {
 
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level5_attributes_process.php",
+                "process/category_level5_attributes_process",
 
             data: "level5_id=" + id,
 
@@ -2239,7 +2243,7 @@ function get_category_level2_details(level1_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level2_details_process.php",
+                "process/category_level2_details_process",
             data: "level1_id=" + level1_id,
             beforeSend: function () {
                 $("#level5_attributes_id").hide();
@@ -2272,7 +2276,7 @@ function get_category_level3_details(level2_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level3_details_process.php",
+                "process/category_level3_details_process",
             data: "level2_id=" + level2_id,
             beforeSend: function () {
                 $("#level5_attributes_id").hide();
@@ -2303,7 +2307,7 @@ function get_category_level4_details(level3_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level4_details_process.php",
+                "process/category_level4_details_process",
             data: "level3_id=" + level3_id,
             beforeSend: function () {
                 $("#level5_attributes_id").hide();
@@ -2332,7 +2336,7 @@ function get_category_level5_details(level4_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level5_details_process.php",
+                "process/category_level5_details_process",
             data: "level4_id=" + level4_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -2357,7 +2361,7 @@ function validate_category_more_info() {
         beforeSubmit: validate_category_more_info_Request,
         success: validate_category_more_info_Response,
         url:
-            JS_ADMIN_SERVER_PATHROOT + "process/category_more_info_process.php",
+            JS_ADMIN_SERVER_PATHROOT + "process/category_more_info_process",
     };
     // bind to the form's submit event
     $("#more_info_form").submit(function () {
@@ -2374,7 +2378,7 @@ function validate_category_more_info_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
         window.location.href =
-            JS_ADMIN_SERVER_PATHROOT + "sub_cat_more_info_list.php";
+            JS_ADMIN_SERVER_PATHROOT + "sub_cat_more_info_list";
     } else {
         alert(responseText);
     }
@@ -2388,7 +2392,7 @@ function validate_mobile_ads() {
         target: "",
         beforeSubmit: validate_mobile_ads_Request,
         success: validate_mobile_ads_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/ads_mobile_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/ads_mobile_process",
     };
     // bind to the form's submit event
     $("#ads_mobile_form").submit(function () {
@@ -2406,7 +2410,7 @@ function validate_mobile_ads_Request(formData, jqForm, options) {
 function validate_mobile_ads_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "ads_mobile_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "ads_mobile_list";
     } else {
         alert(responseText);
     }
@@ -2419,7 +2423,7 @@ function delete_mobile_ads(del_id) {
     if (conBox) {
         $.ajax({
             type: "POST",
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_mobile_ads.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_mobile_ads",
             data: "del_id=" + del_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -2441,13 +2445,13 @@ function delete_mobile_ads(del_id) {
 function get_category_level1_details(level) {
     if (level != "") {
         if (level == "2") {
-            var process_file = "category_level1_details_process.php";
+            var process_file = "category_level1_details_process";
         } else if (level == "3") {
-            var process_file = "category_level2_process.php";
+            var process_file = "category_level2_process";
         } else if (level == "4") {
-            var process_file = "category_level3_process.php";
+            var process_file = "category_level3_process";
         } else if (level == "5") {
-            var process_file = "category_level3_process.php";
+            var process_file = "category_level3_process";
         }
         $.ajax({
             type: "POST",
@@ -2485,7 +2489,7 @@ function get_category_level2_data(level1_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level2_data_process.php",
+                "process/category_level2_data_process",
             data: "level1_id=" + level1_id,
             beforeSend: function () {
                 $("#level5_attributes_id").hide();
@@ -2517,7 +2521,7 @@ function get_category_level4_data(level3_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level4_data_process.php",
+                "process/category_level4_data_process",
             data: "level3_id=" + level3_id,
             beforeSend: function () {
                 $("#level5_attributes_id").hide();
@@ -2546,7 +2550,7 @@ function edit_category_level2_details(level1_id, selected_level2_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level2_details_process.php",
+                "process/edit_category_level2_details_process",
             data:
                 "level1_id=" +
                 level1_id +
@@ -2583,7 +2587,7 @@ function edit_category_level3_details(level2_id, selected_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level3_details_process.php",
+                "process/edit_category_level3_details_process",
             data:
                 "level2_id=" + level2_id + "&selected_level2_id=" + selected_id,
             beforeSend: function () {
@@ -2615,7 +2619,7 @@ function edit_category_level4_details(level3_id, selected_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level4_details_process.php",
+                "process/edit_category_level4_details_process",
             data:
                 "level3_id=" + level3_id + "&selected_level3_id=" + selected_id,
             beforeSend: function () {
@@ -2645,7 +2649,7 @@ function edit_category_level5_details(level4_id, selected_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level5_details_process.php",
+                "process/edit_category_level5_details_process",
             data:
                 "level4_id=" + level4_id + "&selected_level4_id=" + selected_id,
             beforeSend: function () {},
@@ -2673,7 +2677,7 @@ function edit_category_level5_attributes(id) {
 
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level5_attributes_process.php",
+                "process/edit_category_level5_attributes_process",
 
             data: "level5_id=" + id,
 
@@ -2702,7 +2706,7 @@ function validate_edit_sub_cat() {
         target: "",
         beforeSubmit: validate_edit_sub_cat_Request,
         success: validate_edit_sub_cat_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_sub_cat_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_sub_cat_process",
     };
     // bind to the form's submit event
     $("#edit_sub_cat_form").submit(function () {
@@ -2718,7 +2722,7 @@ function validate_edit_sub_cat_Request(formData, jqForm, options) {
 function validate_edit_sub_cat_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "sub_cat_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "sub_cat_list";
     } else {
         alert(responseText);
     }
@@ -2731,7 +2735,7 @@ function category_level2_review(level1_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level2_review_process.php",
+                "process/category_level2_review_process",
             data: "level1_id=" + level1_id,
             beforeSend: function () {
                 $("#load_level5_id").hide();
@@ -2764,7 +2768,7 @@ function category_level3_review(level2_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level3_review_process.php",
+                "process/category_level3_review_process",
             data: "level2_id=" + level2_id,
             beforeSend: function () {
                 $("#load_level5_id").hide();
@@ -2795,7 +2799,7 @@ function category_level4_review(level3_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level4_review_process.php",
+                "process/category_level4_review_process",
             data: "level3_id=" + level3_id,
             beforeSend: function () {
                 $("#load_level5_id").hide();
@@ -2824,7 +2828,7 @@ function get_category_level5_review(level4_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/category_level5_review_process.php",
+                "process/category_level5_review_process",
             data: "level4_id=" + level4_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -2852,7 +2856,7 @@ function validate_add_review() {
 
         success: validate_add_review_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/add_review_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/add_review_process",
     };
 
     // bind to the form's submit event
@@ -2876,7 +2880,7 @@ function validate_add_review_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Save Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "reviews_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "reviews_list";
     } else {
         alert(responseText);
     }
@@ -2893,7 +2897,7 @@ function validate_edit_review() {
 
         success: validate_edit_review_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_review_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_review_process",
     };
 
     // bind to the form's submit event
@@ -2917,7 +2921,7 @@ function validate_edit_review_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Save Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "reviews_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "reviews_list";
     } else {
         alert(responseText);
     }
@@ -2930,7 +2934,7 @@ function edit_category_level2_review(level1_id, reviews_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level2_review_process.php",
+                "process/edit_category_level2_review_process",
             data: "level1_id=" + level1_id + "&reviews_id=" + reviews_id,
             beforeSend: function () {
                 $("#load_level5_id").hide();
@@ -2963,7 +2967,7 @@ function edit_category_level3_review(level2_id, reviews_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level3_review_process.php",
+                "process/edit_category_level3_review_process",
             data: "level2_id=" + level2_id + "&reviews_id=" + reviews_id,
             beforeSend: function () {
                 $("#load_level5_id").hide();
@@ -2994,7 +2998,7 @@ function edit_category_level4_review(level3_id, reviews_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level4_review_process.php",
+                "process/edit_category_level4_review_process",
             data: "level3_id=" + level3_id + "&reviews_id=" + reviews_id,
             beforeSend: function () {
                 $("#load_level5_id").hide();
@@ -3023,7 +3027,7 @@ function edit_category_level5_review(level4_id, reviews_id) {
             type: "POST",
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/edit_category_level5_review_process.php",
+                "process/edit_category_level5_review_process",
             data: "level4_id=" + level4_id + "&reviews_id=" + reviews_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -3048,7 +3052,7 @@ function validate_allocate_review() {
         target: "",
         beforeSubmit: validate_allocate_review_Request,
         success: validate_allocate_review_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/allocate_review_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/allocate_review_process",
     };
     // bind to the form's submit event
     $("#allocate_review_form").submit(function () {
@@ -3064,7 +3068,7 @@ function validate_allocate_review_Request(formData, jqForm, options) {
 function validate_allocate_review_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Save Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "reviews_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "reviews_list";
     } else {
         alert(responseText);
     }
@@ -3076,7 +3080,7 @@ function validate_general_setting() {
         target: "",
         beforeSubmit: validate_general_setting_Request,
         success: validate_general_setting_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/general_setting_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/general_setting_process",
     };
     // bind to the form's submit event
     $("#setting_form").submit(function () {
@@ -3092,7 +3096,7 @@ function validate_general_setting_Request(formData, jqForm, options) {
 function validate_general_setting_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "general_setting.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "general_setting";
     } else {
         alert(responseText);
     }
@@ -3111,7 +3115,7 @@ function set_featured_review(review_id) {
 
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/featured_review_process.php",
+                "process/featured_review_process",
 
             data: "reviewid=" + review_id,
 
@@ -3148,7 +3152,7 @@ function unset_featured_review(review_id) {
 
             url:
                 JS_ADMIN_SERVER_PATHROOT +
-                "process/featured_review_process.php",
+                "process/featured_review_process",
 
             data: "reviewid=" + review_id,
 
@@ -3180,7 +3184,7 @@ function set_featured_topic(review_topic_id) {
         $.ajax({
             type: "POST",
             url:
-                JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process.php",
+                JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process",
             data: "review_topic_id=" + review_topic_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -3204,7 +3208,7 @@ function unset_featured_topic(review_topic_id) {
         $.ajax({
             type: "POST",
             url:
-                JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process.php",
+                JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process",
             data: "review_topic_id=" + review_topic_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -3229,7 +3233,7 @@ function validate_edit_discussion() {
         target: "",
         beforeSubmit: validate_edit_discussion_Request,
         success: validate_edit_discussion_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_discussion_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_discussion_process",
     };
     // bind to the form's submit event
     $("#edit_discussion_form").submit(function () {
@@ -3247,7 +3251,7 @@ function validate_edit_discussion_Request(formData, jqForm, options) {
 function validate_edit_discussion_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Save Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "gcomments.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "gcomments";
     } else {
         alert(responseText);
     }
@@ -3260,7 +3264,7 @@ function validate_edit_comment() {
         target: "",
         beforeSubmit: validate_edit_comment_Request,
         success: validate_edit_comment_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_comment_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_comment_process",
     };
     // bind to the form's submit event
     $("#edit_comment_form").submit(function () {
@@ -3278,7 +3282,7 @@ function validate_edit_comment_Request(formData, jqForm, options) {
 function validate_edit_comment_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Save Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "comments_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "comments_list";
     } else {
         alert(responseText);
     }
@@ -3291,7 +3295,7 @@ function validate_edit_answer() {
         target: "",
         beforeSubmit: validate_edit_answer_Request,
         success: validate_edit_answer_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_answer_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_answer_process",
     };
     // bind to the form's submit event
     $("#edit_answer_form").submit(function () {
@@ -3309,7 +3313,7 @@ function validate_edit_answer_Request(formData, jqForm, options) {
 function validate_edit_answer_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Save Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "answer_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "answer_list";
     } else {
         alert(responseText);
     }
@@ -3322,7 +3326,7 @@ function validate_edit_question() {
         target: "",
         beforeSubmit: validate_edit_question_Request,
         success: validate_edit_question_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_question_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/edit_question_process",
     };
     // bind to the form's submit event
     $("#edit_question_form").submit(function () {
@@ -3340,7 +3344,7 @@ function validate_edit_question_Request(formData, jqForm, options) {
 function validate_edit_question_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Save Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "question_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "question_list";
     } else {
         alert(responseText);
     }
@@ -3353,7 +3357,7 @@ function validate_sub_categories() {
         target: "",
         beforeSubmit: validate_sub_categories_Request,
         success: validate_sub_categories_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/sub_categories_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/sub_categories_process",
     };
     // bind to the form's submit event
     $("#sub_categories_form").submit(function () {
@@ -3369,7 +3373,7 @@ function validate_sub_categories_Request(formData, jqForm, options) {
 function validate_sub_categories_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "all_cat_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "all_cat_list";
     } else {
         alert(responseText);
     }
@@ -3436,7 +3440,7 @@ function validate_album() {
 
         success: validate_album_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/album_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/album_process",
     };
 
     // bind to the form's submit event
@@ -3481,7 +3485,7 @@ function delete_album(del_id, artist_id) {
         $.ajax({
             type: "POST",
 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_album.php",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_album",
 
             data: "del_id=" + del_id + "&artist_id=" + artist_id,
 
@@ -3514,7 +3518,7 @@ function validate_song() {
         target: "",
         beforeSubmit: validate_song_Request,
         success: validate_song_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/song_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/song_process",
     };
     // bind to the form's submit event
     $("#song_form").submit(function () {
@@ -3553,7 +3557,7 @@ function validate_song_artist_album() {
         target: "",
         beforeSubmit: validate_song_artist_album_Request,
         success: validate_song_artist_album_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/song_artist_album_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/song_artist_album_process",
     };
 
     // bind to the form's submit event
@@ -3574,7 +3578,7 @@ function validate_featured_atritst_assocs() {
         success: validate_songs_featured_assocs_response,
         url:
             JS_ADMIN_SERVER_PATHROOT +
-            "process/featured_artist_album_assocs.php",
+            "process/featured_artist_album_assocs",
     };
 
     // bind to the form's submit event
@@ -3597,7 +3601,7 @@ function validate_songs_featured_assocs_response(responseText, statusText) {
         window.location.href = myarray[1];
         window.location.href =
             JS_ADMIN_SERVER_PATHROOT +
-            "artist_album_songs_list.php?" +
+            "artist_album_songs_list?" +
             myarray[1];
     } else {
         alert(responseText);
@@ -3635,7 +3639,7 @@ function jump_char(val) {
     $.ajax({
         type: "POST",
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/artist_list_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/artist_list_process",
 
         data: "pass_val=" + val,
 
@@ -3662,7 +3666,7 @@ function validate_store_images() {
         target: "",
         beforeSubmit: validate_store_images_Request,
         success: validate_store_images_Response,
-        url: JS_ADMIN_SERVER_PATHROOT + "process/store_images_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/store_images_process",
     };
     // bind to the form's submit event
     $("#store_images_form").submit(function () {
@@ -3685,7 +3689,7 @@ function validate_store_images_Response(responseText, statusText) {
     $("#save").show();
     if (responseText.search("done") != -1) {
         alert("Saved Successfully");
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "images_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "images_list";
     } else {
         alert(responseText);
     }
@@ -3703,7 +3707,7 @@ function validate_itune() {
 
         success: validate_itune_Response,
 
-        url: JS_ADMIN_SERVER_PATHROOT + "process/itune_process.php",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/itune_process",
     };
 
     // bind to the form's submit event
@@ -3727,7 +3731,7 @@ function validate_itune_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
 
-        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting";
     } else {
         alert(responseText);
     }

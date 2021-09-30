@@ -324,9 +324,9 @@ a.under_line:hover {
 															
 															$feature_art  = substr($val_feature['feature_artist'],0,9);
 																if(strlen($val_feature['feature_artist'])>9){
-																$feature_artists .= " <a href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>".$feature_art.'..'."</a>";
+																$feature_artists .= " <a href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>".$feature_art.'..'."</a>";
 																}else{
-																$feature_artists .= " <a href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>".$val_feature['feature_artist']."</a>";}
+																$feature_artists .= " <a href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>".$val_feature['feature_artist']."</a>";}
 															
 														}
 														
@@ -334,9 +334,9 @@ a.under_line:hover {
 														{
 															$feature_art  = substr($val_feature['feature_artist'],0,9);
 																if(strlen($val_feature['feature_artist'])>9){
-																$feature_artists .= " <a href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>".$feature_art.'..'."</a>";
+																$feature_artists .= " <a href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>".$feature_art.'..'."</a>";
 																}else{
-																$feature_artists .= " <a href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>".$val_feature['feature_artist']."</a>";}
+																$feature_artists .= " <a href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>".$val_feature['feature_artist']."</a>";}
 															
 														}
 														$num++;

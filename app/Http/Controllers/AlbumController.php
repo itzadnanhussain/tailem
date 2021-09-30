@@ -48,6 +48,8 @@ class AlbumController extends Controller
         $data['ipad_rev'] = 15;
         $data['mobile_rev'] = 15;
 
+        echo 'wait';
+        dei;
         //page View
         $data['currentFile'] = 'album';
         $data['title'] = GetTitle();

@@ -139,7 +139,7 @@ class ArtistController extends Controller
 
 
         //loadview
-        $data['currentFile'] = 'artists'; 
+        $data['currentFile'] = 'artists';
         $data['title'] = GetTitle();
 
         return view('artists', $data);
@@ -201,7 +201,7 @@ class ArtistController extends Controller
 
 
         //loadview
-        $data['currentFile'] = 'artists'; 
+        $data['currentFile'] = 'artists';
         $data['title'] = GetTitle();
 
         return view('artists', $data);
@@ -286,5 +286,52 @@ class ArtistController extends Controller
         $data['title'] = GetTitle();
 
         return view('featured_page', $data);
+    }
+
+
+    ///GetPreviewArtist
+    public function GetPreviewArtist($artist_seo)
+    {
+        $data = array();
+        $data['artist_seo'] = $artist_seo;
+        $data['page'] = null;
+        $data['sort'] = null;
+
+        if(isset($_GET['page']))
+        {
+            $data['page'] = $_GET['page'];
+        }
+
+
+        ///common header 
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+
+
+        if (isset($user_seo) && ($user_seo != "")) {
+            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+            $result_image = \App\Models\Songs::GetRawData($qry);
+            $data['user_name'] = $result_image[0]->user_name;
+            $data['user_profile'] = $result_image[0]->user_id;
+            $data['date_added_db'] = $result_image[0]->date_added;
+            $data['main_link'] = get_user_detail($data['user_name']) . "-profile-";
+        } else {
+            $data['user_name'] = session()->get('user_name');
+            $data['user_profile'] = session()->get('user_id');
+            $data['main_link'] = '';
+        }
+
+        ///screen char
+        $data['screen_chr'] = 15;
+        $data['ipad_chr'] = 15;
+        $data['mobile_chr'] = 15;
+        $data['screen_rev'] = 15;
+        $data['ipad_rev'] = 15;
+        $data['mobile_rev'] = 15; 
+
+
+        $data['currentFile'] = 'preview_artist';
+        $data['title'] = GetTitle();
+        return view('preview_artist', $data);
     }
 }

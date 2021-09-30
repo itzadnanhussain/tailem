@@ -1,12 +1,13 @@
+@include("admin.includes.top")
+@include("admin.common.security")
 <?php 
-include("includes/top.php");
-include("common/security.php");
+
 if($edit_id!="")
 {
 	$edit_id = base64_decode($edit_id);
 
-	$row  =  $db->get_row("select cat_id,cat_name from tbl_categories where cat_id='".$edit_id."'",ARRAY_A);
-	
+	$qry  =  "select cat_id,cat_name from tbl_categories where cat_id='".$edit_id."'";
+	$row = \App\Models\Songs::GetRawDataAdmin($qry); 
 	$cat_id  = $row['cat_id'];
 	$cat_name 	  = stripslashes(html_entity_decode($row['cat_name']));
 	
@@ -27,7 +28,7 @@ else
  }
 </style>
 
-<?php include("common/header.php");?>
+@include("admin.common.header")
 </head>
 <body>
 
@@ -35,7 +36,7 @@ else
 	<tbody>
 		<tr>
             <td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-                <?php include("common/top_right_menu.php"); ?>
+                @include("admin.common.top_right_menu")
             </td>
         </tr>
 	
@@ -164,7 +165,9 @@ else
 				</table>
 			</td>
 		</tr>
-		<tr><td height="20"><?php include("common/footer.php");?></td></tr>
+		<tr><td height="20">
+			@include("admin.common.footer")
+		</td></tr>
 	</tbody>
 </table>
 <!-- End pagefooter -->

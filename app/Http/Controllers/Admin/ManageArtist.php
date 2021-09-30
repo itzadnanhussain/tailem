@@ -18,6 +18,9 @@ class ManageArtist extends Controller
         $data['page'] = null;
         $data['msg'] = null;
         $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+        $data['artist_name'] = null;
         $data['sess_artist_name_query'] = null;
         $data['sess_artist_status_query'] = null;
 
@@ -44,6 +47,17 @@ class ManageArtist extends Controller
             $data['case'] = $_GET['case'];
         }
 
+          ///status
+          if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///artist_name
+        if (isset($_GET['artist_name'])) {
+            $data['artist_name'] = $_GET['artist_name']; 
+        }
+
         ///common  lines
         $data['currentFile'] = 'artist_list';
         $data['targetpage'] = 'artist_list';
@@ -68,31 +82,6 @@ class ManageArtist extends Controller
         if (isset($_GET['edit_id'])) {
             $data['edit_id'] = $_GET['edit_id'];
         }
-
-        // if (isset($_REQUEST['del_id']) && ($_REQUEST['del_id'] != "")) {
-        //     $del_id = $_REQUEST['del_id'];
-
-        //     $select_img = "select artist_img from tbl_artists where id='" . base64_decode($_REQUEST['del_id']) . "'";
-        //     $result = \App\Models\Songs::GetRawDataAdmin($select_img);
-
-        //     $old_image  = $result['artist_img'];
-
-        //     if ($old_image != "") {
-        //         $path			= 'site_upload/artist_images/';
-        //         $imgfile = $path . $old_image;
-        //         $thumbfile = $path . 'thumb_' . $old_image;
-        //         $thumbfile_small = $path . 'small_thumb_' . $old_image;
-        //         unlink($thumbfile_small);
-        //         unlink($imgfile);
-        //         unlink($thumbfile);
-
-        //         $qry = "update tbl_artists set artist_img = '' where id='" . base64_decode($_REQUEST['del_id']) . "'";
-        //         \App\Models\Songs::GetRawData($qry);
-        //     }
-        //     $url = 'addedit_artist?edit_id=' . $del_id;
-        //     return redirect($url);
-        // }
-
 
         ///common  lines
         $data['currentFile'] = 'addedit_artist';
@@ -591,5 +580,76 @@ class ManageArtist extends Controller
         $data['title'] = GetTitle();
 
         return view('admin.artist_featured_songs_list', $data);
+    }
+
+    ///Single_Artist_View 
+    public function Single_Artist_View()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['orderby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['iTunesid'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+        $data['artist_name'] = null;
+        $data['fetch_details'] = null;
+
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///orderby
+        if (isset($_GET['orderby'])) {
+            $data['orderby'] = $_GET['orderby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///iTunesid
+        if (isset($_GET['iTunesid'])) {
+            $data['iTunesid'] = $_GET['iTunesid'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///artist_name
+        if (isset($_GET['artist_name'])) {
+            $data['artist_name'] = $_GET['artist_name']; 
+        }
+
+        ///fetch_details
+        if (isset($_GET['fetch_details'])) {
+            $data['fetch_details'] = $_GET['fetch_details']; 
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'view_artist';
+        $data['targetpage'] = 'view_artist';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.view_artist', $data);
     }
 }

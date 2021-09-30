@@ -143,16 +143,16 @@ include_once("common/signin_modal_header.php");
 														
 														$feature_artt  = substr($val_feature['feature_artist'],0,50);
 														if(strlen($val_feature['feature_artist'])>50){
-														$feature_artists .= " <a style='color:#d73b3b' href='".SERVER_ROOTPATH.strtolower($val_feature['f_artist_seo'])."-artist-songs'>".$feature_artt.'..'."</a>";}else{
-														$feature_artists .= " <a style='color:#d73b3b' href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs'>".$feature_artt."</a>";}
+														$feature_artists .= " <a style='color:#d73b3b' href='".SERVER_ROOTPATH.strtolower($val_feature['f_artist_seo'])."/artist-songs'>".$feature_artt.'..'."</a>";}else{
+														$feature_artists .= " <a style='color:#d73b3b' href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs'>".$feature_artt."</a>";}
 														}
 														
 														else
 														{
 															$feature_artt  = substr($val_feature['feature_artist'],0,50);
 															if(strlen($val_feature['feature_artist'])>50){
-															$feature_artists .= " <a style='color:#d73b3b' href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs'>".$feature_artt.'..'."</a>,";}else{
-															$feature_artists .= " <a style='color:#d73b3b' href='".SERVER_ROOTPATH.$val_feature['f_artist_seo']."-artist-songs'>".$feature_artt."</a>,";}
+															$feature_artists .= " <a style='color:#d73b3b' href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs'>".$feature_artt.'..'."</a>,";}else{
+															$feature_artists .= " <a style='color:#d73b3b' href='".SERVER_ROOTPATH.Slug($val_feature['f_artist_seo'])."/artist-songs'>".$feature_artt."</a>,";}
 														}
 														$num++;
 													 }
@@ -274,7 +274,7 @@ include_once("common/signin_modal_header.php");
 									}?>
                                             
                                             </a></label>
-                                         	<label class="author"><a href="<?php echo SERVER_ROOTPATH.$artist_seo."-artist-songs";?>"><?php echo substr($artist_name,0,30);if(strlen($artist_name)>30)
+                                         	<label class="author"><a href="<?php echo SERVER_ROOTPATH.Slug($artist_seo)."/artist-songs";?>"><?php echo substr($artist_name,0,30);if(strlen($artist_name)>30)
 									{
 										echo "...";
 									}?></a></label>
@@ -403,7 +403,7 @@ include_once("common/signin_modal_header.php");
 									{
 										echo "...";
 									}?></a></label>
-                                         	<label class="author"><a href="<?php echo SERVER_ROOTPATH.$artist_seo."-artist-songs";?>"><?php echo substr($artist_name,0,30);if(strlen($artist_name)>30)
+                                         	<label class="author"><a href="<?php echo SERVER_ROOTPATH.Slug($artist_seo)."/artist-songs";?>"><?php echo substr($artist_name,0,30);if(strlen($artist_name)>30)
 									{
 										echo "...";
 									}?></a></label>

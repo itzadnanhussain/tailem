@@ -174,8 +174,8 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <p style="padding:5px;">
-                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>" aria-controls="song">Songs</a> -
-                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-albums"; ?>">Albums</a> -
+                                        <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>" aria-controls="song">Songs</a> -
+                                        <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-albums"; ?>">Albums</a> -
                                         <a class="heart_color" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-featured"; ?>">Featured</a>
                                     </p>
                                 </div>
@@ -189,7 +189,7 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                         $array_score = sum_of_artist_rating($artist_id_db);
 
                                         ?>
-                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist-songs"; ?>" class="pull-left mr-15" target="_blank">
+                                        <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>" class="pull-left mr-15" target="_blank">
                                             <?php
                                             if ($artist_img != "") {
                                                 $img_api_link = album_img_api($artist_img);
@@ -450,9 +450,9 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                     foreach ($qry_feature_arr as $val_feature) {
                                         $val_feature = (array)$val_feature;
                                         if ($num == $count) {
-                                            $feature_artists .= " <a class='ft_size' style='color:#d73b3b;' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $val_feature['feature_artist'] . "</a>";
+                                            $feature_artists .= " <a class='ft_size' style='color:#d73b3b;' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>";
                                         } else {
-                                            $feature_artists .= " <a class='ft_size' style='color:#d73b3b;' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "-artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
+                                            $feature_artists .= " <a class='ft_size' style='color:#d73b3b;' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
                                         }
                                         $num++;
                                     }
@@ -524,7 +524,7 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                             <div class="col-lg-7 col-md-7 col-sm-8 col-xs-8">
                                                 <div class="album_details" style="width:100%;">
                                                     <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo; ?>-artist-songs"><?php echo $artist_name; ?></a></label>
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo); ?>/artist-songs"><?php echo $artist_name; ?></a></label>
                                                     <p><label class="author"><?php if ($feature_artists != "") { ?> <strong>ft.</strong> <?php echo $feature_artists;
                                                                                                                                         } ?></label></p>
                                                     <p><label class="reviews"><img src="static/images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
@@ -631,7 +631,7 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0px !important;">
                                                 <div class="album_details" style="width:100%;">
                                                     <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo; ?>-artist-songs"><?php echo $artist_name; ?></a></label>
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo); ?>/artist-songs"><?php echo $artist_name; ?></a></label>
                                                     <p>
                                                         <label class="reviews" style="float:left !important;"><?php echo "ft. " . $feature_artists; ?></label>
 

@@ -241,7 +241,12 @@ if (!function_exists('get_user_detail')) {
 if (!function_exists('Slug')) {
     function Slug($string)
     {
-        return strtolower(trim(preg_replace('~[^0-9a-z]+~i', '-', html_entity_decode(preg_replace('~&([a-z]{1,2})(?:acute|cedil|circ|grave|lig|orn|ring|slash|th|tilde|uml);~i', '$1', htmlentities($string, ENT_QUOTES, 'UTF-8')), ENT_QUOTES, 'UTF-8')), '-'));
+        if (gettype($string) == 'array') {
+            $string = implode("=>", $string);
+        }
+
+        $slug = strtolower(trim(preg_replace('/[^A-Za-z0-9-]+/', '-', $string)));
+        return  $slug;
     }
 }
 
@@ -264,7 +269,6 @@ if (!function_exists('song_info')) {
 if (!function_exists('artist_info')) {
     function artist_info($artistid)
     {
-        global $db;
         $query_list        =    "select  artist_seo from tbl_artists where id = '$artistid'";
         $artist_list_arr = \App\Models\Songs::GetRawData($query_list);
         $artist_list_arr = (array)$artist_list_arr[0];
@@ -1250,7 +1254,7 @@ if (!function_exists('sum_of_artist_rating')) {
 
 
 
-
+        $color_pick = null;
         if ($all_avg == "") {
             $all_avg = 0;
         }
@@ -1382,28 +1386,29 @@ if (!function_exists('count_likes')) {
 ///sendemail
 if (!function_exists('sendemail')) {
     function sendemail($to, $cc, $from, $sub, $msg, $filename, $filepath)
-	{
-		// for test //
-		//saveto_emaillog($to, $cc, $from, $sub, $msg, $filename, $filepath);
-		
-		// for live //
-		$mContact = new Mail;
-		$mContact->From($from);
-		//$mContact->From("Momsloveit.com <contact@momsloveit.com>");
-		
-		//if(isset($cc) && !empty($cc)) { $mContact->Cc($cc); }
-		$to_arr	=	explode(",",$to);
-		for($i=0; $i<count($to_arr); $i++)
-		{
-			$mContact->To(trim(strtolower($to_arr[$i])));
-			if(isset($filename) && !empty($filename) && isset($filepath) && !empty($filepath)) { $mContact->Attach($filename,$filepath,'attachment'); }
-			
-			$mContact->Subject($sub);
-			$mContact->Body(stripslashes($msg));
-			$mContact->Priority(4) ; 
-			$mContact->Send();
-		}
-		
-		return 1;
-	}
+    {
+        // for test //
+        //saveto_emaillog($to, $cc, $from, $sub, $msg, $filename, $filepath);
+
+        // for live //
+        $mContact = new Mail;
+        $mContact->From($from);
+        //$mContact->From("Momsloveit.com <contact@momsloveit.com>");
+
+        //if(isset($cc) && !empty($cc)) { $mContact->Cc($cc); }
+        $to_arr    =    explode(",", $to);
+        for ($i = 0; $i < count($to_arr); $i++) {
+            $mContact->To(trim(strtolower($to_arr[$i])));
+            if (isset($filename) && !empty($filename) && isset($filepath) && !empty($filepath)) {
+                $mContact->Attach($filename, $filepath, 'attachment');
+            }
+
+            $mContact->Subject($sub);
+            $mContact->Body(stripslashes($msg));
+            $mContact->Priority(4);
+            $mContact->Send();
+        }
+
+        return 1;
+    }
 }

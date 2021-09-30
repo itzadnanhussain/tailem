@@ -39,3 +39,8 @@ Route::any('/artists-genre/{genere_seo}',[ArtistController::class , 'GetTopArtis
 // RewriteRule ^(.*)-artist-featured$ featured_page.php?artist_seo=$1 [PT]
 Route::any('/{artist_seo}/artist-featured',[ArtistController::class , 'GetArtistsFeaturedPage']);
 
+//preview-artist
+// RewriteRule ^(.*)-preview-artist-(.*)$ preview_artist.php?artist_seo=$1&page=$2 [PT]
+// RewriteRule ^(.*)-preview-artist$ preview_artist.php?artist_seo=$1 [PT]
+
+Route::any('/{artist_seo}/preview-artist',[ArtistController::class , 'GetPreviewArtist']);
