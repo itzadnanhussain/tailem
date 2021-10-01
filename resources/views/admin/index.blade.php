@@ -222,7 +222,7 @@
                                     <div class="MidHeading" id="adsMidHeading"><img src="images/services.png" align="absmiddle" width="16" height="16">&nbsp;Manage Advertisement</div>
                                     <ul>
                                     <li>
-                                   <a href="<?php echo SERVER_ADMIN_PATH;?>ads_list.php">Manage Advertisement</a>
+                                   <a href="<?php echo SERVER_ADMIN_PATH;?>ads_list">Manage Advertisement</a>
                                     </li>
                                     <?php
 									if($top_advertisement_module_add=='Yes')

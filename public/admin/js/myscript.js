@@ -193,9 +193,15 @@ function validate_social_links_Response(responseText, statusText) {
 
 function validate_email() {
     $("#email_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
 
     var options = {
         target: "",
+        data : {
+            "_token": csrf_token,
+
+        },
 
         beforeSubmit: validate_email_Request,
 
@@ -235,17 +241,21 @@ function validate_email_Response(responseText, statusText) {
 
 function validate_admin_password() {
     $("#change_pass_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+
 
     var options = {
         target: "",
+        data:{
+            "_token": csrf_token,
+        },
 
         beforeSubmit: validate_admin_password_Request,
 
         success: validate_admin_password_Response,
 
-        url:
-            JS_ADMIN_SERVER_PATHROOT +
-            "process/admin_change_password_process",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/admin_change_password_process",
     };
 
     // bind to the form's submit event
@@ -311,8 +321,7 @@ function validate_country_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
 
-        window.location.href =
-            JS_ADMIN_SERVER_PATHROOT + "countries_listing";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "countries_listing";
     } else {
         alert(responseText);
     }
@@ -525,12 +534,12 @@ function delete_main_cat(del_id) {
 
 function validate_main_cat() {
     $("#main_cat_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
-        data : {
-            "_token": csrf_token, 
+        data: {
+            _token: csrf_token,
         },
 
         beforeSubmit: validate_main_cat_Request,
@@ -604,11 +613,9 @@ function validate_add_sub_cat_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
         if (myarray[1] == "sub") {
-            window.location.href =
-                JS_ADMIN_SERVER_PATHROOT + "sub_cat_list";
+            window.location.href = JS_ADMIN_SERVER_PATHROOT + "sub_cat_list";
         } else {
-            window.location.href =
-                JS_ADMIN_SERVER_PATHROOT + "all_cat_list";
+            window.location.href = JS_ADMIN_SERVER_PATHROOT + "all_cat_list";
         }
     } else {
         alert(responseText);
@@ -763,7 +770,7 @@ function delete_artist(del_id) {
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_artist",
 
-			data: {
+            data: {
                 _token: csrf_token,
                 del_id: del_id,
             },
@@ -997,24 +1004,25 @@ function delete_slideshow(del_id) {
 
 function delete_ads(del_id) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+
 
     if (conBox) {
         $.ajax({
-            type: "POST",
-
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_ads",
-
-            data: "del_id=" + del_id,
-
-            beforeSend: function () {},
-
+            type: "POST", 
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_ads", 
+            data: {
+                "del_id" : del_id,
+                "_token": csrf_token
+            }, 
+            beforeSend: function () {}, 
             success: function (msg) {
                 if (msg.search("done") != -1) {
                     alert("Record Delete Successfully");
                 } else {
                     alert("Some Error occured in deleting Record");
-                }
-
+                } 
                 window.location.reload();
             },
 
@@ -1135,10 +1143,13 @@ function load_edit_category_type(id, update_id) {
 
 function validate_ads() {
     $("#ads_form").unbind("submit");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
-
+        data: {
+            _token: csrf_token,
+        },
         beforeSubmit: validate_ads_Request,
 
         success: validate_ads_Response,
@@ -1513,9 +1524,7 @@ function delete_moderator(del_id) {
         $.ajax({
             type: "POST",
 
-            url:
-                JS_ADMIN_SERVER_PATHROOT +
-                "process/delete_moderator_process",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_moderator_process",
 
             data: "del_id=" + del_id,
 
@@ -1656,8 +1665,7 @@ function delete_gcomment_report(del_id) {
         $.ajax({
             type: "POST",
 
-            url:
-                JS_ADMIN_SERVER_PATHROOT + "process/delete_gcomment_report",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_gcomment_report",
 
             data: "del_id=" + del_id,
 
@@ -1736,14 +1744,18 @@ function show_rights(id, type) {
 
 function validate_site_mode() {
     $("#site_mode_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+
+
 
     var options = {
-        target: "",
-
-        beforeSubmit: validate_site_mode_Request,
-
-        success: validate_site_mode_Response,
-
+        target: "", 
+        data: {
+            "_token": csrf_token,
+        },
+        beforeSubmit: validate_site_mode_Request, 
+        success: validate_site_mode_Response, 
         url: JS_ADMIN_SERVER_PATHROOT + "process/site_mode_process",
     };
 
@@ -1777,9 +1789,13 @@ function validate_site_mode_Response(responseText, statusText) {
 
 function validate_analytic() {
     $("#analaytic_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
 
     var options = {
         target: "",
+        data : {
+            "_token": csrf_token,
+        },
 
         beforeSubmit: validate_analaytic_Request,
 
@@ -1893,9 +1909,7 @@ function delete_product_embed_code(del_id) {
         $.ajax({
             type: "POST",
 
-            url:
-                JS_ADMIN_SERVER_PATHROOT +
-                "process/delete_product_embed_code",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_product_embed_code",
 
             data: "del_id=" + del_id,
 
@@ -2136,8 +2150,7 @@ function validate_category_image_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
 
-        window.location.href =
-            JS_ADMIN_SERVER_PATHROOT + "category_image_list";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "category_image_list";
     } else {
         alert(responseText);
     }
@@ -2360,8 +2373,7 @@ function validate_category_more_info() {
         target: "",
         beforeSubmit: validate_category_more_info_Request,
         success: validate_category_more_info_Response,
-        url:
-            JS_ADMIN_SERVER_PATHROOT + "process/category_more_info_process",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/category_more_info_process",
     };
     // bind to the form's submit event
     $("#more_info_form").submit(function () {
@@ -3113,9 +3125,7 @@ function set_featured_review(review_id) {
         $.ajax({
             type: "POST",
 
-            url:
-                JS_ADMIN_SERVER_PATHROOT +
-                "process/featured_review_process",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/featured_review_process",
 
             data: "reviewid=" + review_id,
 
@@ -3150,9 +3160,7 @@ function unset_featured_review(review_id) {
         $.ajax({
             type: "POST",
 
-            url:
-                JS_ADMIN_SERVER_PATHROOT +
-                "process/featured_review_process",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/featured_review_process",
 
             data: "reviewid=" + review_id,
 
@@ -3183,8 +3191,7 @@ function set_featured_topic(review_topic_id) {
     if (conBox) {
         $.ajax({
             type: "POST",
-            url:
-                JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process",
             data: "review_topic_id=" + review_topic_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -3207,8 +3214,7 @@ function unset_featured_topic(review_topic_id) {
     if (conBox) {
         $.ajax({
             type: "POST",
-            url:
-                JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process",
             data: "review_topic_id=" + review_topic_id,
             beforeSend: function () {},
             success: function (msg) {
@@ -3576,9 +3582,7 @@ function validate_featured_atritst_assocs() {
         target: "",
         beforeSubmit: validate_song_artist_album_Request,
         success: validate_songs_featured_assocs_response,
-        url:
-            JS_ADMIN_SERVER_PATHROOT +
-            "process/featured_artist_album_assocs",
+        url: JS_ADMIN_SERVER_PATHROOT + "process/featured_artist_album_assocs",
     };
 
     // bind to the form's submit event
@@ -3600,9 +3604,7 @@ function validate_songs_featured_assocs_response(responseText, statusText) {
         alert("Record Saved Successfully");
         window.location.href = myarray[1];
         window.location.href =
-            JS_ADMIN_SERVER_PATHROOT +
-            "artist_album_songs_list?" +
-            myarray[1];
+            JS_ADMIN_SERVER_PATHROOT + "artist_album_songs_list?" + myarray[1];
     } else {
         alert(responseText);
     }
@@ -3699,9 +3701,15 @@ function validate_store_images_Response(responseText, statusText) {
 
 function validate_itune() {
     $("#itune_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+
 
     var options = {
         target: "",
+        data:{
+            "_token": csrf_token,
+        },
 
         beforeSubmit: validate_itune_Request,
 

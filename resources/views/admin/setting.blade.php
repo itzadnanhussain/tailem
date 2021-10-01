@@ -4,7 +4,7 @@
 // @include("admin.includes.operations.myaccount_op");
 /************************************ Get Admin email *************************************************/
 $admin_id       = 	session()->get('reviewsite_cpadmin_id');
-$getadmindata	=	"select email from tbl_admin where id=\"".$admin_id."\"";
+$getadmindata	=	"select email from tbl_admin where id=\"" . $admin_id . "\"";
 $rowadmindata	=	\App\Models\Songs::GetRawDataAdmin($getadmindata);;
 $adminemail		=	$rowadmindata['email'];
 
@@ -269,6 +269,7 @@ $itune_url   	  = stripslashes($setting_data_arr['itune_url']);
 
 		function validate_itune() {
 
+			var csrf_token = $('meta[name=csrf-token]').attr('content');
 
 
 			$('#itune_form').unbind('submit');
@@ -276,12 +277,15 @@ $itune_url   	  = stripslashes($setting_data_arr['itune_url']);
 			var options = {
 
 				target: '',
+				data: {
+					"_token": csrf_token,
+				},
 
 				beforeSubmit: validate_itune_Request,
 
 				success: validate_itune_Response,
 
-				url: JS_ADMIN_SERVER_PATHROOT + 'process/itune_process.php'
+				url: JS_ADMIN_SERVER_PATHROOT + 'process/itune_process'
 
 
 
@@ -331,7 +335,7 @@ $itune_url   	  = stripslashes($setting_data_arr['itune_url']);
 
 				alert("Record Update Successfully");
 
-				window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting.php";
+				window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting";
 
 			} else
 

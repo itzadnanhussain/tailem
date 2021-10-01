@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ManageUsers;
 use App\Http\Controllers\Admin\ManageArtist;
 use App\Http\Controllers\Admin\ManageCategories;
 use App\Http\Controllers\Admin\ManageSetting;
+use App\Http\Controllers\Admin\ManageAdvertisement;
 
 
 ///**********************Login Controller**************************/
@@ -74,10 +75,31 @@ Route::any('admin/addedit_main_cat', [ManageCategories::class, 'Add_Category']);
 Route::post('admin/process/main_cat_process', [ManageCategories::class, 'Category_Process']);
 
 
+
+///**********************ManageAdvertisement Controller**************************/
+
+///Load_Advertisement_List
+Route::any('admin/ads_list', [ManageAdvertisement::class, 'Load_Advertisement_List']);
+Route::post('admin/process/ads_actions', [ManageAdvertisement::class, 'Advertisement_Actions']);
+
+
+///Add_Category
+Route::any('admin/addedit_ads', [ManageAdvertisement::class, 'Add_Advertisement']);
+Route::post('admin/process/ads_process', [ManageAdvertisement::class, 'Advertisement_Process']);
+
+///Delete_Process
+Route::post('admin/process/delete_ads', [ManageAdvertisement::class, 'Advertisement_Delete']);
+
+
 ///**********************ManageSetting Controller**************************/
 
 ///Load_Setting
 Route::any('admin/setting', [ManageSetting::class, 'Load_Setting']);
+Route::post('admin/process/admin_change_password_process', [ManageSetting::class, 'Change_Admin_Password']);
+Route::post('admin/process/admin_email_process', [ManageSetting::class, 'Change_Admin_Email']);
+Route::post('admin/process/itune_process', [ManageSetting::class, 'Change_ITune_Url']);
+Route::post('admin/process/site_mode_process', [ManageSetting::class, 'Change_Site_Mode']);
+Route::post('admin/process/analytic_process', [ManageSetting::class, 'Update_Analytic']);
 
 
 
