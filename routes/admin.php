@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\ManageArtist;
 use App\Http\Controllers\Admin\ManageCategories;
 use App\Http\Controllers\Admin\ManageSetting;
 use App\Http\Controllers\Admin\ManageAdvertisement;
+use App\Http\Controllers\Admin\ManageSong;
+use App\Http\Controllers\Admin\ManageGeneralSetting;
 
 
 ///**********************Login Controller**************************/
@@ -83,13 +85,36 @@ Route::any('admin/ads_list', [ManageAdvertisement::class, 'Load_Advertisement_Li
 Route::post('admin/process/ads_actions', [ManageAdvertisement::class, 'Advertisement_Actions']);
 
 
-///Add_Category
+///Add_Advertisement
 Route::any('admin/addedit_ads', [ManageAdvertisement::class, 'Add_Advertisement']);
 Route::post('admin/process/ads_process', [ManageAdvertisement::class, 'Advertisement_Process']);
 
 ///Delete_Process
 Route::post('admin/process/delete_ads', [ManageAdvertisement::class, 'Advertisement_Delete']);
 
+/*
+|----------------------------------------------------
+|                ManageSong Controller
+|----------------------------------------------------
+*/ 
+
+///Load_Song_List
+Route::any('admin/song_list', [ManageSong::class, 'Load_Song_List']);
+Route::post('admin/process/songs_actions', [ManageSong::class, 'Song_Actions']);
+
+
+///Add_Song
+Route::any('admin/addedit_song', [ManageSong::class, 'Add_Song']);
+Route::post('admin/process/song_process', [ManageSong::class, 'Song_Process']);
+
+///Delete_Process
+Route::post('admin/process/delete_song', [ManageSong::class, 'Song_Delete']);
+
+///Change Song Status
+Route::any('admin/process/song_status', [ManageSong::class, 'Change_Song_Status']);
+
+///Load Artist
+Route::any('admin/loadartists', [ManageSong::class, 'Load_Artist']);
 
 ///**********************ManageSetting Controller**************************/
 
@@ -101,6 +126,25 @@ Route::post('admin/process/itune_process', [ManageSetting::class, 'Change_ITune_
 Route::post('admin/process/site_mode_process', [ManageSetting::class, 'Change_Site_Mode']);
 Route::post('admin/process/analytic_process', [ManageSetting::class, 'Update_Analytic']);
 
+
+/*
+|----------------------------------------------------
+|                ManageGeneralSetting Controller
+|----------------------------------------------------
+*/ 
+
+///General_Setting_Page
+Route::any('admin/general_setting', [ManageGeneralSetting::class, 'General_Setting_Page']);
+
+///social_links
+Route::any('admin/social_links', [ManageGeneralSetting::class, 'Social_Links']);
+Route::post('admin/process/social_link_process', [ManageGeneralSetting::class, 'Social_Links_Process']);
+
+
+///page_list
+Route::any('admin/page_list', [ManageGeneralSetting::class, 'Page_List']);
+Route::any('admin/edit_page', [ManageGeneralSetting::class, 'Edit_Page']);
+Route::any('admin/process/pages_process', [ManageGeneralSetting::class, 'Edit_Page_Update']);
 
 
 

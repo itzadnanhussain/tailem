@@ -94,23 +94,7 @@ if(isset($_POST))
 		
 	}*/
 	
-/*	if($years == "")
-	{
-		$errorstr .="Please select year\n";
-		$case = 0;
-	}*/
-	
-	
-	/*if($description == "")
-	{
-		$errorstr .= "Please Enter Summary\n";
-		$case = 0;
-	}*/
-	/*if($years == "")
-	{
-		$errorstr .="Please select song year\n";
-		$case = 0;
-	}*/
+ 
 	
 	if($sizeofarray==0)
 	{
@@ -204,16 +188,7 @@ if(isset($_POST))
 		else
 		{
 
-/* $get_rang_query_list		=	"select Max(ranking_order) as rank from tbl_songs";	
-$rank_list_arr	=	$db->get_row($get_rang_query_list,ARRAY_A);
-if($rank_list_arr['rank']==0)
-{
-	$rank  = 1;
-}
-else
-{
-	$rank  = $rank_list_arr['rank']+1;
-}*/
+ 
 
 			$db->query("insert into tbl_songs set  ranking_order ='".$ranking_order."',song_title='".mysqli_escape_string($db->dbh, stripslashes($song_title))."',keywords='".mysqli_escape_string($db->dbh, stripslashes($keywords))."',song_seo='".mysqli_escape_string($db->dbh, stripslashes(SEO($song_title)))."', description ='".mysqli_escape_string($db->dbh, stripslashes($description))."', song_status = '1',itunes_url='".mysqli_escape_string($db->dbh, stripslashes($itunes_url))."',amazon_url='".mysqli_escape_string($db->dbh, stripslashes($amazon_url))."',google_url='".mysqli_escape_string($db->dbh, stripslashes($google_url))."',lastfm_url='".mysqli_escape_string($db->dbh, stripslashes($lastfm_url))."', posted_date='".time()."', ad_code='".mysqli_escape_string($db->dbh, stripslashes($ad_code))."', video_code='".mysqli_escape_string($db->dbh, stripslashes($video_code))."', song_year ='".$years."'");
 			
@@ -304,4 +279,4 @@ $arr=explode(',',$keyrds);
 echo '<pre>';
 print_r($arr);
 die;
-}?>
+}

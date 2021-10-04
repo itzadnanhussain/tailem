@@ -33,6 +33,9 @@
             "app/functions.php",
             "app/adminfns.php",
             "app/queries.php"
+        ],
+        "classmap": [
+            "app/libraries/ckeditor"
         ]
     },
     "autoload-dev": {

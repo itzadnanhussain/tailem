@@ -61,13 +61,19 @@ function show_detail(id)
 
 function change_status(song_id, status)
 {
+	var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+
 	$.ajax({
 
 		   type: "POST",
 
-		   url: JS_ADMIN_SERVER_PATHROOT+'process/song_status.php',
+		   url: JS_ADMIN_SERVER_PATHROOT+'process/song_status',
 
-		   data: 'song_id='+song_id+'&status='+status,
+		   data: {
+			   'song_id' : song_id,
+			   'status' : status,
+			   "_token": csrf_token,
+		   },
 	
 
 		   beforeSend: function(){

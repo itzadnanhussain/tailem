@@ -20,7 +20,3 @@ include("../common/security.php");
 			//echo '<a href="song_list.php?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
 			echo '<a href="javascript:;" onclick = "change_status('.$song_id.', 0)" id = "remove_song_'.$id.'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
 		}
-											
-		
-		
-?>

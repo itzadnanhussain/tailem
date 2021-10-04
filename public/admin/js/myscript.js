@@ -796,11 +796,17 @@ function delete_artist(del_id) {
 
 function delete_song(del_id) {
     var conBox = confirm("Are you sure,you want to delete this Records?");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+
     if (conBox) {
         $.ajax({
             type: "POST",
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_song",
-            data: "del_id=" + del_id,
+            data : {
+                "del_id" :del_id,
+                "_token": csrf_token,
+            },
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_song", 
             beforeSend: function () {},
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -3520,8 +3526,13 @@ function delete_album(del_id, artist_id) {
 
 function validate_song() {
     $("#song_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+
     var options = {
         target: "",
+        data :{
+            "_token": csrf_token,
+        },
         beforeSubmit: validate_song_Request,
         success: validate_song_Response,
         url: JS_ADMIN_SERVER_PATHROOT + "process/song_process",
