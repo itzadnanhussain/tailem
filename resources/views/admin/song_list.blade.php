@@ -728,11 +728,10 @@ if (isset($latest) && !empty($latest)) {
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="100">
 																					<?php
 																					$albums_list = "select b.album_title, b.album_seo from   tbl_songs_artist_album saa, tbl_artist_album b where saa.album_id = b.id AND saa.artist_id = '$db_art_id' AND saa.song_id = '$id' AND saa.display_status = 1";
-																					// echo 'wait';
-																					// die;
-																					// $albums_list_arr	= \App\Models\Songs::GetRawData($album_list);
-
-
+																					 
+																					$albums_list_arr	= \App\Models\Songs::GetRawData($albums_list);
+																					 
+																					
 																					if (isset($albums_list_arr)) {
 																						$g = 1;
 																						$count_album  = count($albums_list_arr);
