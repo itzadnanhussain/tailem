@@ -101,7 +101,7 @@
 
 <div style="clear:both;">
 	<?php
-	//include_once("common/popular_review.php"); 
+	//include_once("common/popular_review"); 
 	?>
 
 
@@ -151,7 +151,7 @@
 		$(function() {
 			/*	
 			$.ajax({
-				url: "<?php echo SERVER_ROOTPATH; ?>ajax_calls/featured_songs.php",
+				url: "<?php echo SERVER_ROOTPATH; ?>ajax_calls/featured_songs",
 				beforeSend: function( xhr ) {
 					$("#featured-songs").html("Loading...");
 				}
@@ -201,7 +201,7 @@
 
 	@include("common.signin_modal")
 	<?php
-	//include "common/popular_reviews_home.php"; 
+	//include "common/popular_reviews_home"; 
 	?>
 
 	<div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>

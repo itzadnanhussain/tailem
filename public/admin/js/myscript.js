@@ -193,14 +193,12 @@ function validate_social_links_Response(responseText, statusText) {
 
 function validate_email() {
     $("#email_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
-        data : {
-            "_token": csrf_token,
-
+        data: {
+            _token: csrf_token,
         },
 
         beforeSubmit: validate_email_Request,
@@ -241,14 +239,12 @@ function validate_email_Response(responseText, statusText) {
 
 function validate_admin_password() {
     $("#change_pass_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
-        data:{
-            "_token": csrf_token,
+        data: {
+            _token: csrf_token,
         },
 
         beforeSubmit: validate_admin_password_Request,
@@ -796,17 +792,16 @@ function delete_artist(del_id) {
 
 function delete_song(del_id) {
     var conBox = confirm("Are you sure,you want to delete this Records?");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
             type: "POST",
-            data : {
-                "del_id" :del_id,
-                "_token": csrf_token,
+            data: {
+                del_id: del_id,
+                _token: csrf_token,
             },
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_song", 
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_song",
             beforeSend: function () {},
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1010,25 +1005,23 @@ function delete_slideshow(del_id) {
 
 function delete_ads(del_id) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
-            type: "POST", 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_ads", 
+            type: "POST",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_ads",
             data: {
-                "del_id" : del_id,
-                "_token": csrf_token
-            }, 
-            beforeSend: function () {}, 
+                del_id: del_id,
+                _token: csrf_token,
+            },
+            beforeSend: function () {},
             success: function (msg) {
                 if (msg.search("done") != -1) {
                     alert("Record Delete Successfully");
                 } else {
                     alert("Some Error occured in deleting Record");
-                } 
+                }
                 window.location.reload();
             },
 
@@ -1194,10 +1187,12 @@ function validate_ads_Response(responseText, statusText) {
 
 function validate_email_templates() {
     $("#email_templates_form").unbind("submit");
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content"); 
     var options = {
         target: "",
-
+        data: {
+            _token: csrf_token,
+        },
         beforeSubmit: validate_email_templates_Request,
 
         success: validate_email_templates_Response,
@@ -1303,6 +1298,7 @@ function unset_top_member(user_id) {
 
 function set_popular(review_id) {
     var conBox = confirm("Are you sure,You want to set this as Popular?");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
@@ -1310,7 +1306,10 @@ function set_popular(review_id) {
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/set_popular",
 
-            data: "reviewid=" + review_id,
+            data: {
+                reviewid: review_id,
+                _token: csrf_token,
+            },
 
             beforeSend: function () {},
 
@@ -1335,6 +1334,7 @@ function set_popular(review_id) {
 
 function unset_popular(review_id) {
     var conBox = confirm("Are you sure,You want to UnSet Popular?");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
@@ -1342,7 +1342,10 @@ function unset_popular(review_id) {
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/set_popular",
 
-            data: "reviewid=" + review_id,
+            data: {
+                reviewid: review_id,
+                _token: csrf_token,
+            },
 
             beforeSend: function () {},
 
@@ -1367,15 +1370,17 @@ function unset_popular(review_id) {
 
 function delete_review(del_id) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
             type: "POST",
-
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_review",
 
-            data: "del_id=" + del_id,
-
+            data: {
+                del_id: del_id,
+                _token: csrf_token,
+            },
             beforeSend: function () {},
 
             success: function (msg) {
@@ -1750,18 +1755,15 @@ function show_rights(id, type) {
 
 function validate_site_mode() {
     $("#site_mode_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-
-
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
-        target: "", 
+        target: "",
         data: {
-            "_token": csrf_token,
+            _token: csrf_token,
         },
-        beforeSubmit: validate_site_mode_Request, 
-        success: validate_site_mode_Response, 
+        beforeSubmit: validate_site_mode_Request,
+        success: validate_site_mode_Response,
         url: JS_ADMIN_SERVER_PATHROOT + "process/site_mode_process",
     };
 
@@ -1795,12 +1797,12 @@ function validate_site_mode_Response(responseText, statusText) {
 
 function validate_analytic() {
     $("#analaytic_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
-        data : {
-            "_token": csrf_token,
+        data: {
+            _token: csrf_token,
         },
 
         beforeSubmit: validate_analaytic_Request,
@@ -2907,9 +2909,13 @@ function validate_add_review_Response(responseText, statusText) {
 
 function validate_edit_review() {
     $("#edit_review_form").unbind("submit");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
+        data: {
+            _token: csrf_token,
+        },
 
         beforeSubmit: validate_edit_review_Request,
 
@@ -3126,15 +3132,17 @@ function set_featured_review(review_id) {
     var conBox = confirm(
         "Are you sure,You want to set this as Featured Review?"
     );
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
             type: "POST",
-
             url: JS_ADMIN_SERVER_PATHROOT + "process/featured_review_process",
 
-            data: "reviewid=" + review_id,
-
+            data: {
+                reviewid: review_id,
+                _token: csrf_token,
+            },
             beforeSend: function () {},
 
             success: function (msg) {
@@ -3161,6 +3169,7 @@ function set_featured_review(review_id) {
 
 function unset_featured_review(review_id) {
     var conBox = confirm("Are you sure,You want to UnSet Featured Review?");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
@@ -3168,7 +3177,10 @@ function unset_featured_review(review_id) {
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/featured_review_process",
 
-            data: "reviewid=" + review_id,
+            data: {
+                reviewid: review_id,
+                _token: csrf_token,
+            },
 
             beforeSend: function () {},
 
@@ -3526,12 +3538,12 @@ function delete_album(del_id, artist_id) {
 
 function validate_song() {
     $("#song_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
-        data :{
-            "_token": csrf_token,
+        data: {
+            _token: csrf_token,
         },
         beforeSubmit: validate_song_Request,
         success: validate_song_Response,
@@ -3712,14 +3724,12 @@ function validate_store_images_Response(responseText, statusText) {
 
 function validate_itune() {
     $("#itune_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
-        data:{
-            "_token": csrf_token,
+        data: {
+            _token: csrf_token,
         },
 
         beforeSubmit: validate_itune_Request,

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Classes\Thumbnail;
+use App\libraries\thumb\Thumbnail;
 // use App\Classes\Mail;
 use Illuminate\Support\Facades\Mail; 
 use Illuminate\Support\Arr;
@@ -889,13 +889,13 @@ class ProcessController extends Controller
                     $img_qry = "UPDATE tbl_users SET profile_image='" . $icon_orgname . "' where user_id = '" . session()->get('user_id') . "'";
                     \App\Models\Songs::GetRawData($img_qry);
 
-                    $a = new Thumbnail($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
+                    $a = new Thumbnail();
                     // creating thumbnail
-                    $a->create();
+                    $a->create($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
 
-                    $b = new Thumbnail($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
+                    $b = new Thumbnail();
                     // creating thumbnail
-                    $b->create();
+                    $b->create($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
                 }
 
 

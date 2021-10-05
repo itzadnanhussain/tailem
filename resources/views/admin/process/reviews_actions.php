@@ -40,7 +40,7 @@ if(!empty($_POST['review_ids']))
 
 
 
-//delete review
+ 
 			$del_review_qry="Delete from tbl_reviews where review_id='".$review_id."'";
 			$result = $db->query($del_review_qry);
 			
@@ -161,4 +161,3 @@ else
 	$errormsg = base64_encode('First select a record to perform some action');
 	header('Location:'.SERVER_ADMIN_PATH."reviews_list.php?msg=$errormsg&case=2");
 }
-?>

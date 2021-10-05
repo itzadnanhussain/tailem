@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Classes\Thumbnail;
+use App\libraries\thumb\Thumbnail;
 use Illuminate\Support\Facades\Hash;
 
 

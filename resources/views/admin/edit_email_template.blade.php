@@ -1,22 +1,24 @@
-<?php
-include("includes/top.php");
-include("common/security.php");
+@include("admin.includes.top")
+@include("admin.common.security")
+<?php 
+error_reporting(0);
+use App\libraries\ckeditor\CKEditor;
 if(isset($edit_id) && !empty($edit_id))
 {
 	$edit_id	 =	base64_decode($edit_id);
 	$pointchk	 =	"SELECT * from tbl_emailtemplets WHERE etemp_id='".$edit_id."'";
-	$rowpointchk =	$db->get_row($pointchk,ARRAY_A);
+	$rowpointchk =	\App\Models\Songs::GetRawDataAdmin($pointchk);
 }
 ?>
 <html>
 <head>
-<?php include("common/header.php");?>
+@include("admin.common.header")
 <?php
 if($rowpointchk['etemp_id']=="")
 {
 ?>
 	<script>
-        window.location.href = JS_ADMIN_SERVER_PATHROOT+ "email_templates_list.php";
+        window.location.href = JS_ADMIN_SERVER_PATHROOT+ "email_templates_list";
     </script>
 <?php
 }
@@ -27,7 +29,7 @@ if($rowpointchk['etemp_id']=="")
   <tbody>
     <tr>
         <td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-            <?php include("common/top_right_menu.php"); ?>
+             @include("admin.common.top_right_menu")
         </td>
     </tr>
     <tr>
@@ -46,10 +48,11 @@ if($rowpointchk['etemp_id']=="")
                       <tr>
                         <td class="body">
                         	<form name="email_templates_form" id="email_templates_form" action="" method="post">
-                            <table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
+                          @csrf
+                          <table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tbody>
                                 <tr>
-                                  <td><a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a> &raquo; <a href="<?php echo SERVER_ADMIN_PATH;?>email_templates_list.php">Email Templates Listing</a> &raquo; <a>Edit Email Template</a></td>
+                                  <td><a href="<?php echo SERVER_ADMIN_PATH;?>index">Home</a> &raquo; <a href="<?php echo SERVER_ADMIN_PATH;?>email_templates_list">Email Templates Listing</a> &raquo; <a>Edit Email Template</a></td>
                                 </tr>
                                 <tr>
                                   <td><table class="Panel">
@@ -71,8 +74,7 @@ if($rowpointchk['etemp_id']=="")
                                           <td align="left" valign="top" nowrap="nowrap" class="SmallFieldLabel2">Message  : </td>
                                           <td width="869" align="left" valign="top">
 										<?php
-										include_once 'ckeditor/ckeditor.php';  
-										$etemp_data = stripslashes(html_entity_decode($rowpointchk['etemp_data']));
+ 										$etemp_data = stripslashes(html_entity_decode($rowpointchk['etemp_data']));
 										$ckeditor = new CKEditor();
 										$ckeditor->basePath = '';
 										$ckeditor->config['filebrowserBrowseUrl'] = '/ckfinder/ckfinder.html';
@@ -129,7 +131,9 @@ if($rowpointchk['etemp_id']=="")
         </table></td>
     </tr>
     <tr>
-      <td height="20"><?php include("common/footer.php");?>      </td>
+      <td height="20">
+        @include("admin.common.footer")
+            </td>
     </tr>
   </tbody>
 </table>

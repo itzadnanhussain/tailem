@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Classes\Thumbnail;
+use App\libraries\thumb\Thumbnail;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -220,6 +220,7 @@ class ManageGeneralSetting extends Controller
         return view('admin.edit_page', $data);
     }
 
+
     ///Edit_Page_Update
     public function Edit_Page_Update()
     {
@@ -264,6 +265,160 @@ class ManageGeneralSetting extends Controller
                     echo 'Some Error has Occured';
                 }
             } else {
+                echo $errorstr;
+            }
+        }
+    }
+
+
+
+
+    ///Email_Templates_List
+    public function Email_Templates_List()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+
+        ///common  lines
+        $data['currentFile'] = 'email_templates_list';
+        $data['targetpage'] = 'email_templates_list';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+        return view('admin.email_templates_list', $data);
+    }
+
+    ///Edit_Email_Template
+    public function Edit_Email_Template()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['edit_id'] = null;
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///edit_id
+        if (isset($_GET['edit_id'])) {
+            $data['edit_id'] = $_GET['edit_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+
+        ///common  lines
+        $data['currentFile'] = 'edit_email_template';
+        $data['targetpage'] = 'edit_email_template';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.edit_email_template', $data);
+    }
+
+     
+    ///Edit_Email_Template_Update
+    public function Edit_Email_Template_Update()
+    {
+        error_reporting(0);
+        if(isset($_POST)) 
+        {
+            $errorstr="";
+            $case = 1;
+            $etemp_name    = trim($_REQUEST['etemp_name']);
+            $etemp_subject = trim($_REQUEST['etemp_subject']);
+            $etemp_data    = trim($_REQUEST['etemp_data']);
+            $update_id     = $_REQUEST['update_id'];
+            
+            $chk_qry = "select etemp_id from tbl_emailtemplets where etemp_id='".$update_id."' ";
+            $chk_arr = \App\Models\Songs::GetRawDataAdmin($chk_qry);
+            $etemp_id = $chk_arr['etemp_id'];
+            
+            if($etemp_id=="" || $update_id=="")
+            {
+                $errorstr .= "Invalid Email Template is selected\n";
+                $case = 0;
+            }
+            if($etemp_name == "")
+            {
+                $errorstr .="Please Enter Templates Name\n";
+                $case = 0;
+            }
+            if($etemp_subject == "")
+            {
+                $errorstr .= "Please Enter Subject\n";
+                $case = 0;
+            }
+            if($etemp_data == "")
+            {
+                $errorstr .= "Please Enter Message\n";
+                $case = 0;
+            }
+             
+        
+            if($case==1)
+            {
+                if($update_id != '')
+                {
+                    $qry = "update tbl_emailtemplets set etemp_name ='". stripcslashes($etemp_name)."',  etemp_data ='". stripcslashes($etemp_data)."' , etemp_subject ='". stripcslashes($etemp_subject)."' where etemp_id='".$update_id."'";
+                    \App\Models\Songs::GetRawData($qry);
+                    echo 'done';
+                }
+                else
+                {
+                    echo 'Some Error has Occured';
+                }
+            }
+            else
+            {
                 echo $errorstr;
             }
         }

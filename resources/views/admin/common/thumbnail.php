@@ -41,8 +41,7 @@ function copyImage($srcFile, $destFile, $w, $h, $quality = 75)
     $tmpSrc     = pathinfo(strtolower($srcFile));
     $tmpDest    = pathinfo(strtolower($destFile));
     $size       = getimagesize($srcFile);
-//echo $tmpDest['extension']; exit;
-    if ($tmpDest['extension'] == "gif" || $tmpDest['extension'] == "jpg" || $tmpDest['extension'] == "peg")
+     if ($tmpDest['extension'] == "gif" || $tmpDest['extension'] == "jpg" || $tmpDest['extension'] == "peg")
     {
       //$destFile  = substr_replace($destFile, 'jpg', -3);
        $dest      = imagecreatetruecolor($w, $h);
@@ -86,4 +85,3 @@ function copyImage($srcFile, $destFile, $w, $h, $quality = 75)
     return $destFile;
 
 }
- ?>

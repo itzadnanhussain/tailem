@@ -35,9 +35,16 @@ define('SQL_INJECTION_SECURITY_ENABLED', true);
 // SITE'S IMAGE PATH //
 define('SERVER_IMAGES_PATH', SERVER_ROOTPATH.'assets/images/');
 
-// $memcache = new Memcache;
-// $memcache->connect('localhost', 1337) or die ("Could not connect");
-// define('MEMCACHE_EXPIRE_TIME',2400);
-// define('MEMCACHE_IS_ENABALED',true);
+define('MAX_CATEGORY_IMAGE_WIDTH', 75);
+
+// do we need to limit the product image width?
+// setting this value to 'true' is recommended
+define('LIMIT_PRODUCT_WIDTH',     true);
+
+// maximum width for all product image
+define('MAX_PRODUCT_IMAGE_WIDTH', 300);
+
+// the width for product thumbnail
+define('THUMBNAIL_WIDTH', 95);
 
  

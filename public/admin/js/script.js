@@ -19,10 +19,17 @@ $(document).ready(function(){
 			 if(event.keyCode != 40 && event.keyCode != 38 && event.keyCode != 13)
 			 {
 				 $("#loading").css("visibility","visible");
+				 var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+
 				 $.ajax({
 				   type: "POST",
-				   url: "name_fetch.php",
-				   data: "data="+keyword,
+				   url: "name_fetch",
+				   data:
+				   {
+					"data" : keyword,
+					"_token": csrf_token,
+				   },
 				   success: function(msg){	
 					if(msg != 0)
 					  $("#ajax_response").fadeIn("slow").html(msg);

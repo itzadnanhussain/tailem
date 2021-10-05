@@ -10,6 +10,8 @@ use App\Http\Controllers\Admin\ManageSetting;
 use App\Http\Controllers\Admin\ManageAdvertisement;
 use App\Http\Controllers\Admin\ManageSong;
 use App\Http\Controllers\Admin\ManageGeneralSetting;
+use App\Http\Controllers\Admin\ReviewManagement;
+use App\Http\Controllers\Admin\PartialController;
 
 
 ///**********************Login Controller**************************/
@@ -146,7 +148,59 @@ Route::any('admin/page_list', [ManageGeneralSetting::class, 'Page_List']);
 Route::any('admin/edit_page', [ManageGeneralSetting::class, 'Edit_Page']);
 Route::any('admin/process/pages_process', [ManageGeneralSetting::class, 'Edit_Page_Update']);
 
+///email_templates_list
+Route::any('admin/email_templates_list', [ManageGeneralSetting::class, 'Email_Templates_List']);
+Route::any('admin/edit_email_template', [ManageGeneralSetting::class, 'Edit_Email_Template']);
+Route::any('admin/process/email_templates_process', [ManageGeneralSetting::class, 'Edit_Email_Template_Update']);
 
+
+
+/*
+|----------------------------------------------------
+|                ReviewManagement Controller
+|----------------------------------------------------
+*/
+
+///Add_New_Review
+Route::any('admin/review_add', [ReviewManagement::class, 'Add_New_Review']);
+Route::post('admin/process/add_review_process', [ReviewManagement::class, 'Review_Process']);
+
+///Edit_Review
+Route::any('admin/edit_review', [ReviewManagement::class, 'Edit_Review']);
+Route::post('admin/process/edit_review_process', [ReviewManagement::class, 'Edit_Review_Process']);
+
+
+///Review_List
+Route::any('admin/reviews_list', [ReviewManagement::class, 'Review_List']);
+
+///Delete_Process
+Route::post('admin/process/delete_review', [ReviewManagement::class, 'Review_Delete']);
+
+///Review_Actions
+Route::post('admin/process/reviews_actions', [ReviewManagement::class, 'Review_Actions']);
+
+///Set_Review_Popular_Or_Unpopular
+Route::post('admin/process/set_popular', [ReviewManagement::class, 'Set_Review_Popular_Or_Unpopular']);
+
+///Featured_Review_Process
+Route::post('admin/process/featured_review_process', [ReviewManagement::class, 'Featured_Review_Process']);
+
+
+///Review_Likes
+Route::any('admin/review_likes', [ReviewManagement::class, 'Review_Likes']);
+
+///Review_Report
+Route::any('admin/review_reports', [ReviewManagement::class, 'Review_Report']);
+
+
+/*
+|----------------------------------------------------
+|                Partial  Controller
+|----------------------------------------------------
+*/
+
+///User_Name_Fetch
+Route::any('admin/name_fetch', [PartialController::class, 'User_Name_Fetch']);
 
 
  

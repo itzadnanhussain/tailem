@@ -56,12 +56,12 @@
                                 <div class="childdiv" onMouseOver="overdivfunc(this.id);" onMouseOut="outdivfun(this.id);" id="slider">
                                     <div class="MidHeading" id="sliderMidHeading"><img src="images/video2.png" align="absmiddle" width="16" height="16">&nbsp;Manage Slider</div>
                                     <ul>
-                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>slide_show_list.php">Manage Slider List</a></li>
+                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>slide_show_list">Manage Slider List</a></li>
                                     <?php
 									if($top_slider_module_add=='Yes')
 									{
 									?>
-                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_slideshow.php">Add Slider</a></li>
+                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_slideshow">Add Slider</a></li>
                                     <?php
 									}
 									?>
@@ -98,12 +98,12 @@
                                 <div class="childdiv" onMouseOver="overdivfunc(this.id);" onMouseOut="outdivfun(this.id);" id="faq">
                                     <div class="MidHeading" id="faqMidHeading"><img src="images/faq.gif" align="absmiddle" width="16" height="16">&nbsp;Manage Faq</div>
                                     <ul>
-                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>faq_list.php">Manage FAQ</a></li>
+                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>faq_list">Manage FAQ</a></li>
                                     <?php
 									if($top_faq_module_add=='Yes')
 									{
 									?>
-                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_faq.php">Add FAQ</a></li>
+                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_faq">Add FAQ</a></li>
                                     <?php
 									}
 									?>
@@ -143,24 +143,24 @@
                                     <div class="MidHeading" id="categoriesMidHeading"><img src="images/object.png" align="absmiddle" width="16" height="16">&nbsp;Manage Categories</div>
                                     <ul>
                                     <li>
-                                   <a href="<?php echo SERVER_ADMIN_PATH;?>main_cat_list.php">Manage Main Categories</a>
+                                   <a href="<?php echo SERVER_ADMIN_PATH;?>main_cat_list">Manage Main Categories</a>
                                     </li>
                                     <?php
 									if($top_categories_module_add=='Yes')
 									{
 									?>
                                     <li>
-                                    <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_main_cat.php">Add Main Category</a>
+                                    <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_main_cat">Add Main Category</a>
                                     </li>
                                     <?php
 									}
 									?>
                                     <br />
                                     <li>
-                                    <a href="<?php echo SERVER_ADMIN_PATH;?>all_cat_list.php">Manage Sub Categories</a>
+                                    <a href="<?php echo SERVER_ADMIN_PATH;?>all_cat_list">Manage Sub Categories</a>
                                     </li>
                                     <li>
-                                    <a href="<?php echo SERVER_ADMIN_PATH;?>sub_cat_list.php">Manage Review Topics</a>
+                                    <a href="<?php echo SERVER_ADMIN_PATH;?>sub_cat_list">Manage Review Topics</a>
                                     </li>
                                     
                                     <?php
@@ -168,34 +168,34 @@
 									{
 									?>
                                         <li>
-                                       <a href="<?php echo SERVER_ADMIN_PATH;?>add_sub_cat.php">Add Sub Category</a>
+                                       <a href="<?php echo SERVER_ADMIN_PATH;?>add_sub_cat">Add Sub Category</a>
                                         </li>
                                     <?php
 									}
 									?>
                                     <!--<br />
                                     <li>
-                                    <a href="<?php echo SERVER_ADMIN_PATH;?>embed_code_list.php">Manage Products Embed Code </a>
+                                    <a href="<?php echo SERVER_ADMIN_PATH;?>embed_code_list">Manage Products Embed Code </a>
                                     </li>-->
                                     <?php
 									if($top_categories_module_add=='Yes')
 									{
 									?>
                                        <!-- <li>
-                                       <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_embed_code.php">Add Product Embed Code</a>
+                                       <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_embed_code">Add Product Embed Code</a>
                                         </li>-->
                                     <?php
 									}
 									?>
                                    <!-- <br />
-                                      <li><a href="<?php echo SERVER_ADMIN_PATH;?>category_image_list.php">Manage Category Images List </a>
+                                      <li><a href="<?php echo SERVER_ADMIN_PATH;?>category_image_list">Manage Category Images List </a>
                                     </li>-->
                                     <?php
 									if($top_categories_module_add=='Yes')
 									{
 									?>
                                        <!-- <br /><li>
-                                       <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_category_image.php">Add Category Images</a>
+                                       <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_category_image">Add Category Images</a>
                                         </li>-->
                                     <?php
 									}
@@ -205,7 +205,7 @@
 									{
 									?>
                                       <br />
-                                      <li><a href="<?php echo SERVER_ADMIN_PATH;?>questions.php">Questions List</a></li>
+                                      <li><a href="<?php echo SERVER_ADMIN_PATH;?>questions">Questions List</a></li>
                                     <?php
 									}
 									?>-->
@@ -229,21 +229,21 @@
 									{
 									?>
                                     <li>
-                                    <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_ads.php">Add Advertisement</a>
+                                    <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_ads">Add Advertisement</a>
                                     </li>
                                     <?php
 									}
 									?>
                                    <!-- <br/>
                                      <li>
-                                   		<a href="<?php echo SERVER_ADMIN_PATH;?>ads_mobile_list.php">Manage Mobile Advertisement</a>
+                                   		<a href="<?php echo SERVER_ADMIN_PATH;?>ads_mobile_list">Manage Mobile Advertisement</a>
                                     </li>
                                     <?php
 									if($top_advertisement_module_add=='Yes')
 									{
 									?>
                                         <li>
-                                        <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_mobile_ads.php">Add Mobile Advertisement</a>
+                                        <a href="<?php echo SERVER_ADMIN_PATH;?>addedit_mobile_ads">Add Mobile Advertisement</a>
                                         </li>
                                     <?php
 									}
@@ -264,8 +264,8 @@
 										if($top_social_link_module=='Yes')
 										{
 										?>
-                                        <li><a href="<?php echo SERVER_ADMIN_PATH;?>general_setting.php">Manage General Setting</a></li>							
-                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>social_links.php">Manage Follow Us</a></li>							
+                                        <li><a href="<?php echo SERVER_ADMIN_PATH;?>general_setting">Manage General Setting</a></li>							
+                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>social_links">Manage Follow Us</a></li>							
                                         <?php
 										}
 										?>
@@ -273,7 +273,7 @@
 										if($top_content_module=='Yes')
 										{
 										?>
-                                        <li><a href="<?php echo SERVER_ADMIN_PATH;?>page_list.php">Manage Contents</a></li>										
+                                        <li><a href="<?php echo SERVER_ADMIN_PATH;?>page_list">Manage Contents</a></li>										
                                         <?php
 										}
 										?>
@@ -282,21 +282,21 @@
 										{
 										?>
 
-                                         <li><a href="<?php echo SERVER_ADMIN_PATH;?>email_templates_list.php">Manage Email Templates</a></li>				<?php
+                                         <li><a href="<?php echo SERVER_ADMIN_PATH;?>email_templates_list">Manage Email Templates</a></li>				<?php
 										}
 										?>
-                                 		<a href="<?php echo SERVER_ADMIN_PATH;?>images_list.php">Manage Stores Images</a>
+                                 		<a href="<?php echo SERVER_ADMIN_PATH;?>images_list">Manage Stores Images</a>
                                          <?php
 										/* if($top_country_module=='Yes')
 										 {
 										 ?>
-                                        	<li><a href="<?php echo SERVER_ADMIN_PATH;?>countries_listing.php">Manage Countries</a></li>						
+                                        	<li><a href="<?php echo SERVER_ADMIN_PATH;?>countries_listing">Manage Countries</a></li>						
 											<?php
                                             if($top_country_module_add=='Yes')
                                             {
                                             ?>
                                             	<li>
-                                            		<a href="<?php echo SERVER_ADMIN_PATH;?>addedit_country.php">Add Country</a>
+                                            		<a href="<?php echo SERVER_ADMIN_PATH;?>addedit_country">Add Country</a>
                                             	</li>
 										   <?php
                                             }
@@ -317,20 +317,20 @@
                                 <div class="childdiv" onMouseOver="overdivfunc(this.id);" onMouseOut="outdivfun(this.id);" id="reviews">                                
                                     <div class="MidHeading" id="reviewsMidHeading"><img src="images/language.png" align="absmiddle" width="16" height="16">&nbsp;Manage Reviews</div>
                                     <ul>
-                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>reviews_list.php">Local Reviews Listing</a></li>
+                                    <li><a href="<?php echo SERVER_ADMIN_PATH;?>reviews_list">Local Reviews Listing</a></li>
                                     <?php
                                     if($top_reviews_module_add=='Yes')
                                     {
                                     ?>
-                                       <!-- 20-10-2016 artist_id, song_id, album_id<li><a href="<?php echo SERVER_ADMIN_PATH; ?>add_review.php">Add Review</a></li>-->
+                                       <!-- 20-10-2016 artist_id, song_id, album_id<li><a href="<?php echo SERVER_ADMIN_PATH; ?>add_review">Add Review</a></li>-->
                                     <?php
                                     }
                                     ?>
                                    
-                                   <li><a href="<?php echo SERVER_ADMIN_PATH; ?>gcomments.php">Discussions Listing</a></li>
-                                  <!-- <li><a href="<?php echo SERVER_ADMIN_PATH; ?>comments_list.php">Comments Listing</a></li>-->
+                                   <li><a href="<?php echo SERVER_ADMIN_PATH; ?>gcomments">Discussions Listing</a></li>
+                                  <!-- <li><a href="<?php echo SERVER_ADMIN_PATH; ?>comments_list">Comments Listing</a></li>-->
                                    
-                                   <li><a href="<?php echo SERVER_ADMIN_PATH;?>report_checkbox_list.php">Report Option List</a></li>
+                                   <li><a href="<?php echo SERVER_ADMIN_PATH;?>report_checkbox_list">Report Option List</a></li>
                                    
                                     </ul>
                                 </div>
@@ -344,12 +344,12 @@
 								<div class="childdiv" onMouseOver="overdivfunc(this.id);" onMouseOut="outdivfun(this.id);" id="slider">
 									<div class="MidHeading" id="sliderMidHeading"><img src="images/video2.png" align="absmiddle" width="16" height="16">&nbsp;Manage Videos</div>
 									<ul>
-									<li><a href="<?php echo SERVER_ADMIN_PATH;?>video_list.php">Manage Video List</a></li>
+									<li><a href="<?php echo SERVER_ADMIN_PATH;?>video_list">Manage Video List</a></li>
 									<?php
 									if($top_video_module_add=='Yes')
 									{
 									?>
-										<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_video.php">Add Video</a></li>
+										<li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_video">Add Video</a></li>
 									<?php
 									}
 									?>
@@ -365,8 +365,8 @@
                                 <div class="childdiv" onMouseOver="overdivfunc(this.id);" onMouseOut="outdivfun(this.id);" id="moderator">
                                     <div class="MidHeading" id="moderatorMidHeading"><img src="images/moderator.png" align="absmiddle" width="16" height="16">&nbsp;Manage Moderator</div>
                                     <ul>
-                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>moderator_list.php">Manage Moderator List</a></li>
-                                        <li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_moderator.php">Add Moderator</a></li>
+                                    	<li><a href="<?php echo SERVER_ADMIN_PATH;?>moderator_list">Manage Moderator List</a></li>
+                                        <li><a href="<?php echo SERVER_ADMIN_PATH;?>addedit_moderator">Add Moderator</a></li>
                                     </ul>
                                 </div>
                                 <?php

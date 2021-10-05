@@ -35,7 +35,8 @@
             "app/queries.php"
         ],
         "classmap": [
-            "app/libraries/ckeditor"
+            "app/libraries/ckeditor",
+            "app/libraries/thumb"
         ]
     },
     "autoload-dev": {

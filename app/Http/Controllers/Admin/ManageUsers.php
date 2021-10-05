@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Classes\Thumbnail;
+use App\libraries\thumb\Thumbnail;
 use Illuminate\Support\Facades\Hash;
 
 
@@ -23,6 +23,8 @@ class ManageUsers extends Controller
         $data['page'] = null;
         $data['msg'] = null;
         $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
 
         ///sortby
         if (isset($_GET['sortby'])) {
@@ -42,6 +44,12 @@ class ManageUsers extends Controller
         ///case
         if (isset($_GET['case'])) {
             $data['case'] = $_GET['case'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
         }
 
 
@@ -140,10 +148,10 @@ class ManageUsers extends Controller
 
             $select_img = "select profile_image from tbl_users where user_id='" . base64_decode($_GET['del_id']) . "'";
             $result = \App\Models\Songs::GetRawData($select_img);
-           
-        
+
+
             $old_image  = $result[0]->profile_image;
-        
+
             if ($old_image != "") {
                 error_reporting(0);
                 $path            = 'site_upload/user_images/';
@@ -153,13 +161,13 @@ class ManageUsers extends Controller
                 unlink($thumbfile_small);
                 unlink($imgfile);
                 unlink($thumbfile);
-        
+
                 $qry =  "update tbl_users set profile_image = '' where user_id='" . base64_decode($_REQUEST['del_id']) . "'";
                 \App\Models\Songs::GetRawData($qry);
             }
             $url =  'admin/addedit_user?edit_id=' . $_GET['del_id'];
             return redirect($url);
-        } 
+        }
 
         ///common  lines
         $data['currentFile'] = 'addedit_user';
@@ -304,15 +312,16 @@ class ManageUsers extends Controller
                     if ($h_image_size < $allowed_size) {
 
                         copy($file_temp, $h_photo_path);
-                        $a = new Thumbnail($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
+                        $a = new Thumbnail();
+                        // $a = new Thumbnail($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
 
 
                         // creating thumbnail
-                        $a->create();
+                        $a->create($file_temp, 241, '238', $h_dir . $h_newthumb_name);
 
-                        $b = new Thumbnail($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
+                        $b = new Thumbnail();
                         // creating thumbnail
-                        $b->create();
+                        $b->create($file_temp, 50, '50', $h_dir . $h_small_thumb_name);
 
                         $img_qry = "UPDATE tbl_users SET profile_image='" . $icon_orgname . "' where user_id='" . $last_record . "' ";
                         \App\Models\Songs::GetRawData($img_qry);
@@ -324,8 +333,6 @@ class ManageUsers extends Controller
                 echo $errorstr;
             }
         }
-
-      
     }
 
     ///Delete_User_Database

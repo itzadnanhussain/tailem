@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Classes\Thumbnail;
+use App\libraries\thumb\Thumbnail;
 
 
 class ManageSong extends Controller
@@ -203,13 +203,13 @@ class ManageSong extends Controller
 
                         if ($h_image_size < $allowed_size) {
                             copy($file_temp, $h_photo_path);
-                            $a = new Thumbnail($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
+                            $a = new Thumbnail();
                             // creating thumbnail
-                            $a->create();
+                            $a->create($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
 
-                            $b = new Thumbnail($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
+                            $b = new Thumbnail();
                             // creating thumbnail
-                            $b->create();
+                            $b->create($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
 
                             $img_qry = "UPDATE tbl_songs SET picture='" . $icon_orgname . "' where id='" . $update_id . "'";
                             \App\Models\Songs::GetRawData($img_qry);
@@ -268,13 +268,13 @@ class ManageSong extends Controller
 
                         if ($h_image_size < $allowed_size) {
                             copy($file_temp, $h_photo_path);
-                            $a = new Thumbnail($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
+                            $a = new Thumbnail();
                             // creating thumbnail
-                            $a->create();
+                            $a->create($_FILES["image_name"]['tmp_name'], 241, '238', $h_dir . $h_newthumb_name);
 
-                            $b = new Thumbnail($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
+                            $b = new Thumbnail();
                             // creating thumbnail
-                            $b->create();
+                            $b->create($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
 
                             $img_qry = "UPDATE tbl_songs SET picture='" . $icon_orgname . "' where id='" . $last_record . "'";
                             \App\Models\Songs::GetRawData($img_qry);

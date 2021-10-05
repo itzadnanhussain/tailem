@@ -67,9 +67,12 @@ if (isset($status) && !empty($status)) {
 		$sqlquery	=	"update tbl_users set status='$status',is_top_member='0' where user_id='$status_id'";
 	}
 
-	$db->query($sqlquery);
-	header("Location:users_list?msg=$update_ok_msg&case=1");
+	\App\Models\Songs::GetRawData($sqlquery);
+	$update_ok_msg = base64_encode("Status has been changed Successfully!");
+	$url = "users_list?msg=$update_ok_msg&case=1";
+	echo '<script>window.location = "' . $url . '";</script>';
 	exit;
+	 
 }
 
 ?>
