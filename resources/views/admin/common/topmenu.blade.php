@@ -340,6 +340,7 @@
         ?>
             <a href="<?php echo SERVER_ADMIN_PATH; ?>general_setting" title="Manage General Setting">General Setting</a> 
             <a href="<?php echo SERVER_ADMIN_PATH; ?>social_links" title="Manage Social Links">Follow Us</a>
+            <a href="<?php echo SERVER_ADMIN_PATH; ?>social_icons" title="Manage Social Icons">Social Icons</a>
             
 
         <?php

@@ -1187,7 +1187,7 @@ function validate_ads_Response(responseText, statusText) {
 
 function validate_email_templates() {
     $("#email_templates_form").unbind("submit");
-    var csrf_token = $("meta[name=csrf-token]").attr("content"); 
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
     var options = {
         target: "",
         data: {
@@ -1488,9 +1488,13 @@ function validate_slide_show_Response(responseText, statusText) {
 
 function validate_moderator() {
     $("#moderator_form").unbind("submit");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
+        data: {
+            _token: csrf_token,
+        },
 
         beforeSubmit: validate_moderator_Request,
 
@@ -1530,6 +1534,7 @@ function validate_moderator_Response(responseText, statusText) {
 
 function delete_moderator(del_id) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
@@ -1537,7 +1542,10 @@ function delete_moderator(del_id) {
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_moderator_process",
 
-            data: "del_id=" + del_id,
+            data: {
+                del_id: del_id,
+                _token: csrf_token,
+            },
 
             beforeSend: function () {},
 
@@ -1564,10 +1572,13 @@ function delete_moderator(del_id) {
 
 function validate_report_option() {
     $("#report_form").unbind("submit");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
-
+        data: {
+            _token: csrf_token,
+        },
         beforeSubmit: validate_report_option_Request,
 
         success: validate_report_option_Response,
@@ -1607,14 +1618,19 @@ function validate_report_option_Response(responseText, statusText) {
 
 function delete_report_option(del_id) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
-
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+   
+    
     if (conBox) {
         $.ajax({
             type: "POST",
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_report_option",
 
-            data: "del_id=" + del_id,
+            data: { 
+             "del_id" : del_id,
+             "_token": csrf_token,
+            },
 
             beforeSend: function () {},
 
@@ -1703,9 +1719,13 @@ function delete_gcomment_report(del_id) {
 
 function moderator_rights_validatation() {
     $("#moderator_right_form").unbind("submit");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
+        data: {
+            _token: csrf_token,
+        },
 
         beforeSubmit: moderator_rights_validatation_Request,
 
@@ -3456,9 +3476,12 @@ function validate_artist_Response(responseText, statusText) {
 
 function validate_album() {
     $("#album_form").unbind("submit");
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
     var options = {
         target: "",
+        data: {
+            _token: csrf_token,
+        },
 
         beforeSubmit: validate_album_Request,
 
@@ -3504,6 +3527,7 @@ function validate_album_Response(responseText, statusText) {
 
 function delete_album(del_id, artist_id) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     if (conBox) {
         $.ajax({
@@ -3511,7 +3535,11 @@ function delete_album(del_id, artist_id) {
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_album",
 
-            data: "del_id=" + del_id + "&artist_id=" + artist_id,
+            data: {
+                del_id: del_id,
+                artist_id: artist_id,
+                _token: csrf_token,
+            },
 
             beforeSend: function () {},
 

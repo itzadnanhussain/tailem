@@ -692,7 +692,7 @@ class ReviewManagement extends Controller
         return view('admin.review_likes', $data);
     }
 
-    
+
     ///Review_Report
     public function Review_Report()
     {
@@ -742,7 +742,217 @@ class ReviewManagement extends Controller
         $data['targetpage'] = 'review_reports';
         $data = top_file_data($data);
         $data['title'] = GetTitle();
-        
+
         return view('admin.review_reports', $data);
+    }
+
+    ///Discussion_List
+    public function Discussion_List()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'gcomments';
+        $data['targetpage'] = 'gcomments';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.gcomments', $data);
+    }
+
+    ///Report_Checkbox_List
+    public function Report_Checkbox_List()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'report_checkbox_list';
+        $data['targetpage'] = 'report_checkbox_list';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.report_checkbox_list', $data);
+    }
+
+
+    ///Add_Report_Checkbox
+    public function Add_Report_Checkbox()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+        $data['edit_id'] = null;
+
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///edit_id
+        if (isset($_GET['edit_id'])) {
+            $data['edit_id'] = $_GET['edit_id'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'add_report_checkbox';
+        $data['targetpage'] = 'add_report_checkbox';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.add_report_checkbox', $data);
+    }
+
+    ///Report_Option_Process
+    public function Report_Option_Process()
+    {
+        error_reporting(0);
+        if (isset($_POST)) {
+            $errorstr = "";
+            $case = 1;
+            $report_chk_box_name  = trim($_REQUEST['report_chk_box_name']);
+            $update_id = $_REQUEST['update_id'];
+            if ($report_chk_box_name == "") {
+                $errorstr .= "Please Enter Report Option Label\n";
+                $case = 0;
+            } else {
+                if ($update_id != '') {
+                    $chk_cat_qry = "select count(report_chk_box_id) as chk_report from tbl_reports_checkbox where report_chk_box_name=\"" . $report_chk_box_name . "\" 
+			and report_chk_box_id!='" . $update_id . "'";
+                } else {
+                    $chk_cat_qry = "select count(report_chk_box_id) as chk_report from tbl_reports_checkbox where report_chk_box_name=\"" . $report_chk_box_name . "\" ";
+                }
+                $chk_cat_arr = \App\Models\Songs::GetRawDataAdmin($chk_cat_qry);
+                $chk_report = $chk_cat_arr['chk_report'];
+                if ($chk_report > 0) {
+                    $errorstr .= "This Report Option Label Already Exsist\n";
+                    $case = 0;
+                }
+            }
+
+            if ($case == 1) {
+                if ($update_id != '') {
+
+                    \App\Models\Songs::GetRawData("update tbl_reports_checkbox set report_chk_box_name ='" .  stripcslashes($report_chk_box_name) . "' where report_chk_box_id='" . $update_id . "'");
+                } else {
+                    \App\Models\Songs::GetRawData("insert into tbl_reports_checkbox set report_chk_box_name ='" .  stripcslashes($report_chk_box_name) . "'");
+                }
+
+                echo 'done';
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+
+    ///Delete_Report_Option
+    public function Delete_Report_Option()
+    {
+        if (!empty($_POST['del_id'])) {
+            $select_qry = "select report_chk_box_id from tbl_reports_checkbox where report_chk_box_id='" . $_POST['del_id'] . "' ";
+            $select_arr = \App\Models\Songs::GetRawDataAdmin($select_qry);
+            $report_chk_box_id     = $select_arr['report_chk_box_id'];
+            if ($report_chk_box_id == "") {
+                echo 'Error';
+            } else {
+                $del_qry = "Delete from tbl_reports_checkbox where report_chk_box_id='" . $report_chk_box_id . "'";
+                \App\Models\Songs::GetRawData($del_qry);
+
+                echo 'done';
+            }
+        } else {
+            echo 'Error';
+        }
     }
 }

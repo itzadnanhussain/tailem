@@ -46,7 +46,7 @@ $mobile_version_logo	= $setting_arr['mobile_version_logo'];
 											<tbody>
 												<tr>
 
-													<td class="heading1">General Setting</td>
+													<td class="heading1">Social Icons Setting</td>
 												</tr>
 
 												<tr>
@@ -54,7 +54,7 @@ $mobile_version_logo	= $setting_arr['mobile_version_logo'];
 														<table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
 															<tbody>
 																<tr>
-																	<td align="left"><a href="<?php echo SERVER_ADMIN_PATH; ?>index">Home</a> &raquo; <a>General Setting</a></td>
+																	<td align="left"><a href="<?php echo SERVER_ADMIN_PATH; ?>index">Home</a> &raquo; <a>Social Icons Setting</a></td>
 																</tr>
 																<?php if (isset($msg) && $msg != "") { ?>
 																	<tr>
@@ -87,27 +87,21 @@ $mobile_version_logo	= $setting_arr['mobile_version_logo'];
 																			<table class="Panel" style="width:1300px;">
 																				<tbody>
 																					<tr>
-																						<td class="Heading2" colspan="2"><strong>General Setting</strong></td>
+																						<td class="Heading2" colspan="2"><strong>Social Icons Setting</strong></td>
 																					</tr>
 																					<tr>
 																						<td colspan="2">&nbsp;</td>
 																					</tr>
 
 																					<tr>
-																						<td width="15%" nowrap="nowrap" class="SmallFieldLabel2">Upload Logo for Desktop version:</td>
+																						<td width="15%" nowrap="nowrap" class="SmallFieldLabel2">Upload Icon for Facebook:</td>
 																						<td width="85%">
 																							<input type="file" name="desktop_version_logo" id="desktop_version_logo" /><br />
 																							<span class="required"><strong>Only JPG,GIF or PNG format of size: 286X44</strong></span>
-																							<?php
-																							if ($desktop_version_logo != '') {
-																								$desktop_version_logo_path =  SERVER_ROOTPATH . 'assets/phpthumb/phpThumb?src=' . SERVER_ROOTPATH . 'site_upload/general_setting/' . $desktop_version_logo . '&w=286&h=44&zc=1';
-																							?>
-																								<br /><br />
-																								<img src="<?php echo $desktop_version_logo_path; ?>" border="0" />
-																								<br /><br />
-																							<?php } ?>  
+																							 
+                                                                                            <br /><br />
 																							<img src="<?php echo  SERVER_ROOTPATH ?>images/logo11.png" alt="">
-
+                                                                                            <br /><br />
 																							 
 																						</td>
 																					</tr>

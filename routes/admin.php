@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\ManageSong;
 use App\Http\Controllers\Admin\ManageGeneralSetting;
 use App\Http\Controllers\Admin\ReviewManagement;
 use App\Http\Controllers\Admin\PartialController;
+use App\Http\Controllers\Admin\AlbumsManagement;
+use App\Http\Controllers\Admin\ModerateManagement;
 
 
 ///**********************Login Controller**************************/
@@ -43,7 +45,11 @@ Route::post('admin/process/delete_user', [ManageUsers::class, 'Delete_User_Datab
 ///User Actions
 Route::post('admin/process/users_actions', [ManageUsers::class, 'User_Actions']);
 
-///**********************ManageArtists Controller**************************/
+/*
+|----------------------------------------------------
+|                ManageArtists Controller
+|----------------------------------------------------
+*/ 
 
 ///Artist List
 Route::any('admin/artist_list', [ManageArtist::class, 'Load_Artist_List']);
@@ -66,6 +72,8 @@ Route::get('admin/artist_featured_songs_list', [ManageArtist::class, 'Artist_Fea
 
 ///Single_Artist_View
 Route::get('admin/view_artist', [ManageArtist::class, 'Single_Artist_View']);
+
+
 
 ///**********************ManageCategories Controller**************************/
 
@@ -118,6 +126,10 @@ Route::any('admin/process/song_status', [ManageSong::class, 'Change_Song_Status'
 ///Load Artist
 Route::any('admin/loadartists', [ManageSong::class, 'Load_Artist']);
 
+///Artist_Song_List
+Route::any('admin/artist_list_song', [ManageSong::class, 'Artist_Song_List']);
+
+
 ///**********************ManageSetting Controller**************************/
 
 ///Load_Setting
@@ -153,7 +165,8 @@ Route::any('admin/email_templates_list', [ManageGeneralSetting::class, 'Email_Te
 Route::any('admin/edit_email_template', [ManageGeneralSetting::class, 'Edit_Email_Template']);
 Route::any('admin/process/email_templates_process', [ManageGeneralSetting::class, 'Edit_Email_Template_Update']);
 
-
+///Social_Icon
+Route::any('admin/social_icons', [ManageGeneralSetting::class, 'Social_Icon']);
 
 /*
 |----------------------------------------------------
@@ -192,6 +205,87 @@ Route::any('admin/review_likes', [ReviewManagement::class, 'Review_Likes']);
 ///Review_Report
 Route::any('admin/review_reports', [ReviewManagement::class, 'Review_Report']);
 
+///Discussion_List
+Route::any('admin/gcomments', [ReviewManagement::class, 'Discussion_List']);
+
+///Report_Checkbox_List
+Route::any('admin/report_checkbox_list', [ReviewManagement::class, 'Report_Checkbox_List']);
+
+///Add_Report_Checkbox
+Route::any('admin/add_report_checkbox', [ReviewManagement::class, 'Add_Report_Checkbox']);
+Route::post('admin/process/report_option_process', [ReviewManagement::class, 'Report_Option_Process']);
+
+///Delete_Report_Option
+Route::post('admin/process/delete_report_option', [ReviewManagement::class, 'Delete_Report_Option']);
+
+
+/*
+|----------------------------------------------------
+|                AlbumsManagement Controller
+|----------------------------------------------------
+*/ 
+
+///Album_List_Page
+Route::any('admin/album_list', [AlbumsManagement::class, 'Album_List_Page']);
+
+///Change_Album_Status
+Route::post('admin/process/album_status', [AlbumsManagement::class, 'Change_Album_Status']);
+
+///Album_Actions
+Route::post('admin/process/album_actions2', [AlbumsManagement::class, 'Album_Actions_2']);
+
+
+///Add_Album
+Route::any('admin/addedit_album', [AlbumsManagement::class, 'Add_Album']);
+Route::post('admin/process/album_process', [AlbumsManagement::class, 'Album_Process']);
+
+///Delete_Process
+Route::post('admin/process/delete_album', [AlbumsManagement::class, 'Album_Delete']);
+
+///Add_Edit_Artist_Album
+Route::any('admin/addedit_artist_album', [AlbumsManagement::class, 'Add_Edit_Artist_Album']);
+
+///Album_Process
+Route::any('admin/process/album_process', [AlbumsManagement::class, 'Album_Process']);
+
+
+///Artist_Album_List
+Route::any('admin/artist_album_list', [AlbumsManagement::class, 'Artist_Album_List']);
+Route::post('admin/process/album_actions', [AlbumsManagement::class, 'Album_Actions']);
+
+
+///Artist_Album_Songs_List
+Route::any('admin/artist_album_songs_list', [AlbumsManagement::class, 'Artist_Album_Songs_List']);
+
+
+/*
+|----------------------------------------------------
+|                ModerateManagement Controller
+|----------------------------------------------------
+*/ 
+
+///Load_Moderate_List
+Route::any('admin/moderator_list', [ModerateManagement::class, 'Load_Moderate_List']);
+
+///Moderate_Actions
+Route::any('admin/process/moderator_actions', [ModerateManagement::class, 'Moderate_Actions']);
+
+
+///Add_Edit_Artist_Moderate
+Route::any('admin/addedit_moderator', [ModerateManagement::class, 'Add_Edit_Artist_Moderate']);
+
+///Moderate_Process
+Route::post('admin/process/moderator_process', [ModerateManagement::class, 'Moderate_Process']);
+
+
+///Delete_Moderate
+Route::post('admin/process/delete_moderator_process', [ModerateManagement::class, 'Delete_Moderate']);
+
+///Moderate_Rights
+Route::any('admin/moderator_rights', [ModerateManagement::class, 'Moderate_Rights']);
+
+///Moderate_Right_Process
+Route::post('admin/process/moderator_right_process', [ModerateManagement::class, 'Moderate_Right_Process']);
 
 /*
 |----------------------------------------------------

@@ -341,6 +341,7 @@ if (isset($status) && !empty($status)) {
 
 if (isset($popular) && !empty($popular)) {
 	$popular		=	base64_decode($popular);
+ 
 
 	$status_id	=	base64_decode($status_id);
 
@@ -377,6 +378,8 @@ if (isset($popular) && !empty($popular)) {
 if (isset($latest) && !empty($latest)) {
 	$latest		=	base64_decode($latest);
 	$status_id	=	base64_decode($status_id);
+	// echo $latest;
+	// die;
 	$time = time();
 
 	if ($latest == 1) {
@@ -385,10 +388,10 @@ if (isset($latest) && !empty($latest)) {
 	} else {
 		$sqlquery	=	"update tbl_songs set latest='$latest',timeupdated='" . $time . "' where id='$status_id'";
 	}
-	\App\Models\Songs::GetRawData($sqlquery);;
+	\App\Models\Songs::GetRawData($sqlquery);
 
-	$select_query =  "INSERT INTO tbl_latest_songs SELECT * FROM tbl_songs where id='$status_id' ON DUPLICATE KEY UPDATE latest= $latest";
-	\App\Models\Songs::GetRawData($select_query);
+	// $select_query =  "INSERT INTO tbl_latest_songs SELECT * FROM tbl_songs where id='$status_id' ON DUPLICATE KEY UPDATE latest= $latest";
+	// \App\Models\Songs::GetRawData($select_query);
 	$update_ok_msg = base64_encode("Status has been changed Successfully!");
 	$url = "song_list?msg=$update_ok_msg&case=1";
 	echo '<script>window.location = "' . $url . '";</script>';

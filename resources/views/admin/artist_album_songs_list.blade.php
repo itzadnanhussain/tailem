@@ -1,7 +1,8 @@
-<?php 
-include("includes/top.php");
-include("common/security.php"); 
-
+@include("admin.includes.top")
+@include("admin.common.security")
+<?php
+error_reporting(0); 
+ 
 $dec_artist_id = base64_decode($artist_id);
 
 $dec_album_id = base64_decode($album_id);
@@ -10,9 +11,9 @@ $albmlist="select tab.album_title, ta.artist_name from tbl_artist_album tab
 			inner join tbl_artists ta on ta.id=tab.album_artist_id
 			where tab.album_artist_id = '$dec_artist_id' and tab.id = '$dec_album_id'";
 
-			$artist_list_arr	=	$db->get_results($albmlist,ARRAY_A);
-			$album_title = $artist_list_arr[0]['album_title'];
-			$artist_name = $artist_list_arr[0]['artist_name'];
+			$artist_list_arr	=	\App\Models\Songs::GetRawData($albmlist);
+			$album_title = $artist_list_arr[0]->album_title;
+			$artist_name = $artist_list_arr[0]->artist_name;
 			
 			
     //New code			
@@ -23,15 +24,17 @@ $albmlist="select tab.album_title, ta.artist_name from tbl_artist_album tab
 		$album_id = base64_decode($_REQUEST['album_id']);
 		//echo "update `tbl_songs_artist_album` SET `deletion`= 0 where `song_id`= $song_id  and `artist_id`= $artist_id and `album_id`= $album_id"; exit;
 		mysqli_query($db->dbh, "update `tbl_songs_artist_album` SET `deletion`= 1 where `song_id`= $song_id  and `artist_id`= $artist_id and `album_id`= $album_id");
-header('Location: '.SERVER_ADMIN_PATH.'artist_album_songs_list.php?artist_id='.$_REQUEST['artist_id'].'&album_id='.$_REQUEST['album_id']);
-	} 
+// header('Location: '.SERVER_ADMIN_PATH.'artist_album_songs_list?artist_id='.$_REQUEST['artist_id'].'&album_id='.$_REQUEST['album_id']);
+ 	$url = 'admin/artist_album_songs_list?artist_id='.$_REQUEST['artist_id'].'&album_id='.$_REQUEST['album_id'];
+	echo '<script>window.location = "' . $url . '";</script>';	
+} 
 						
 ?>
 
 <html>
 <head>
 <title>Artist <?php echo $artist_name;?>Album Listing</title>
-<?php include("common/header.php");?>
+  @include("admin.common.header") 
 <script language="javascript" type="text/javascript">
 // check boxess submit code
 function toggleChecked(status)
@@ -98,8 +101,7 @@ function change_status(song_id, status)
   
     <tr>
         <td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-            <?php include("common/top_right_menu.php"); ?>
-        </td>
+            @include("admin.common.top_right_menu") 
     </tr>
     <tr>
       <td valign="top"><table border="0" width="100%">
@@ -116,7 +118,7 @@ function change_status(song_id, status)
                       <tr>
                         <td class="body"><table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tr>
-                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a> 
+                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index">Home</a> 
                                 &raquo; <a href="artist_list">Artist Listing</a>
                                 &raquo; <a>Artist <?php echo utf8_decode($artist_name);?> Album Listing</a></td>
                               </tr>
@@ -152,7 +154,7 @@ function change_status(song_id, status)
                                       
 									  <!--<tr>
 										  <td colspan="6" width="105" align="right" valign="middle" id="addsymbol" >
-											<a href="<?php echo SERVER_ADMIN_PATH; ?>addedit_artist_album.php?artist_id=<?php echo $_REQUEST['artist_id'];?>"><img src="images/add.png" border="0" title="Add New"></a>
+											<a href="<?php echo SERVER_ADMIN_PATH; ?>addedit_artist_album?artist_id=<?php echo $_REQUEST['artist_id'];?>"><img src="images/add.png" border="0" title="Add New"></a>
                                           </td>
 									  </tr>-->
 									  
@@ -165,7 +167,7 @@ function change_status(song_id, status)
 
                                       </tr>
                                       
-									  <form action="<?php echo SERVER_ADMIN_PATH; ?>process/album_actions.php" method="post" id="faq_form">
+									  <form action="<?php echo SERVER_ADMIN_PATH; ?>process/album_actions" method="post" id="faq_form">
                                       <input type="hidden" name="artist_id" id="artist_id" value="<?php echo $_REQUEST['artist_id'];?>">
 									  <?php
 									
@@ -182,21 +184,24 @@ function change_status(song_id, status)
 			inner join tbl_artist_album tab on tsa.album_id=tab.id
 			where tsa.artist_id = '$dec_artist_id' and tsa.album_id = '$dec_album_id' and tsa.deletion='0' AND tsa.display_status = 1  group by ts.id ";
 
-											$res_count_mypro = mysqli_query($db->dbh, $qry_count_mypro);
+										
+			$res_count_mypro = \App\Models\Songs::GetRawData($qry_count_mypro);
+			if ($res_count_mypro) {
+				$total_pages = count($res_count_mypro);
+			} else {
+				$total_pages = 0;
+			}	
 
-												
-
-											$targetpage = "artist_album_songs_list.php?artist_id=$artist_id&album_id=$album_id"; //your file name  (the name of this file)
+											$targetpage = "artist_album_songs_list?artist_id=$artist_id&album_id=$album_id"; //your file name  (the name of this file)
 
 											
 
-											$total_pages = mysqli_num_rows($res_count_mypro);
 
 											
 
 											$limit = 20; 					//how many items to show per page
 
-											$page = $_GET['page'];
+											 
 
 											if($page) 
 
@@ -253,7 +258,7 @@ function change_status(song_id, status)
 			inner join tbl_artist_album tab on tsa.album_id=tab.id
 			where tsa.artist_id = '$dec_artist_id' and tsa.album_id = '$dec_album_id' and tsa.deletion='0' AND tsa.display_status = 1 group by ts.id LIMIT $start, $limit"; 
 			
-			$artist_list_arr	=	$db->get_results($artist_list,ARRAY_A);
+			$artist_list_arr	=	\App\Models\Songs::GetRawData($artist_list);
 										
 								 if(isset($artist_list_arr))
 									{
@@ -313,7 +318,7 @@ function change_status(song_id, status)
 											}
 											else
 											{
-												$image  =  "../site_upload/song_images/".$song_picture;
+												$image  =  "site_upload/song_images/".$song_picture;
 											}
 											?>
 											 <img src="<?php echo $image;?>"  border="0" style="width:70px"/>
@@ -336,7 +341,7 @@ function change_status(song_id, status)
 										}
 										else
 										{
-											$album_picture  =  "../site_upload/song_images/small_thumb_".$album_picture;
+											$album_picture  =  "site_upload/song_images/small_thumb_".$album_picture;
 										}
 										?>
 										<img src="<?php echo $album_picture;?>" width="74" height="71"  border="0"/>
@@ -369,24 +374,24 @@ function change_status(song_id, status)
 									  <?php echo $featured_artist;?>
                                       &nbsp;&nbsp;
                                       
-									 <a href="addedit_featured_artist.php?song_id=<?php echo base64_encode($song_id); ?>=&artist_id=<?php echo base64_encode($artist_id);?>=&album_id=<?php echo base64_encode($album_id);?>"><?php echo $add_feature; ?></a>
+									 <a href="addedit_featured_artist?song_id=<?php echo base64_encode($song_id); ?>=&artist_id=<?php echo base64_encode($artist_id);?>=&album_id=<?php echo base64_encode($album_id);?>"><?php echo $add_feature; ?></a>
 									 &nbsp;&nbsp;
 									 
-									<!--<a href="artist_album_songs_list.php?artist_id=<?php echo base64_encode($artist_id);?>&album_id=<?php echo base64_encode($album_id);?>&song_id=<?php echo base64_encode($song_id);?>" ><img src="images/delet.gif" border="0" title="Delete" class="Action"></a>
+									<!--<a href="artist_album_songs_list?artist_id=<?php echo base64_encode($artist_id);?>&album_id=<?php echo base64_encode($album_id);?>&song_id=<?php echo base64_encode($song_id);?>" ><img src="images/delet.gif" border="0" title="Delete" class="Action"></a>
 									&nbsp;&nbsp;-->
-									<a href="addedit_song.php?edit_id=<?php echo base64_encode($song_id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action" /></a>
+									<a href="addedit_song?edit_id=<?php echo base64_encode($song_id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action" /></a>
 									&nbsp;&nbsp; 
-									<a href="addedit_song.php?artist_id=<?php echo base64_encode($artist_id);?>&album_id=<?php echo base64_encode($album_id);?>">Add Song</a>
+									<a href="addedit_song?artist_id=<?php echo base64_encode($artist_id);?>&album_id=<?php echo base64_encode($album_id);?>">Add Song</a>
                                     &nbsp;&nbsp; 
                                      <?php
 											if($song_status==0)
 											{
-												//echo '<a href="song_list.php?status='.base64_encode(1).'&status_id='.base64_encode($id).'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>'; 
+												//echo '<a href="song_list?status='.base64_encode(1).'&status_id='.base64_encode($id).'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>'; 
 												echo '<a href="javascript:;" onclick = "change_status('.$song_id.', 1)" id = "remove_song_'.$song_id.'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>'; 
 											}
 											if($song_status==1)
 											{
-												//echo '<a href="song_list.php?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
+												//echo '<a href="song_list?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
 												echo '<a href="javascript:;" onclick = "change_status('.$song_id.', 0)" id = "remove_song_'.$song_id.'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
 											}
 										  ?>
@@ -410,7 +415,7 @@ function change_status(song_id, status)
 										}
 									  ?>
 									  <tr>
-                                        <td colspan="6" align="center" valign="middle"><?php include("common/cat_details_paging.php"); ?></td>
+                                        <td colspan="6" align="center" valign="middle"><?php @include("admin.common.cat_details_paging"); ?></td>
                                       </tr>
 									  </form>
 									  
@@ -439,7 +444,9 @@ function change_status(song_id, status)
     </tr>
 	
     <tr>
-      <td height="20"><?php include("common/footer.php");?></td>
+      <td height="20">
+		   @include("admin.common.footer")
+		</td>
     </tr>
   </tbody>
 </table>

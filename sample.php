@@ -2,18 +2,18 @@
 
 /*
 |----------------------------------------------------
-|                ManageSong Controller
+|                ModerateManagement Controller
 |----------------------------------------------------
 */ 
 
-///Load_Song_List
-Route::any('admin/song_list', [ManageSong::class, 'Load_Song_List']);
-Route::post('admin/process/song_actions', [ManageSong::class, 'Song_Actions']);
+///Load_Moderate_List
+Route::any('admin/album_list', [ModerateManagement::class, 'Load_Moderate_List']);
+Route::post('admin/process/album_actions', [ModerateManagement::class, 'Moderate_Actions']);
 
 
-///Add_Song
-Route::any('admin/addedit_song', [ManageSong::class, 'Add_Song']);
-Route::post('admin/process/song_process', [ManageSong::class, 'Song_Process']);
+///Add_Moderate
+Route::any('admin/addedit_album', [ModerateManagement::class, 'Add_Moderate']);
+Route::post('admin/process/album_process', [ModerateManagement::class, 'Moderate_Process']);
 
 ///Delete_Process
-Route::post('admin/process/delete_song', [ManageSong::class, 'Song_Delete']);
+Route::post('admin/process/delete_album', [ModerateManagement::class, 'Moderate_Delete']);

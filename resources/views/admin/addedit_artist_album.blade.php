@@ -1,12 +1,16 @@
+@include("admin.includes.top")
+@include("admin.common.security")
 <?php 
-include("includes/top.php");
-include("common/security.php");
+
+error_reporting(0);
+
 
 
 
 $dec_id 				= base64_decode($artist_id);
 
-$row_artist  			=  $db->get_row("select * from tbl_artists where id='".$dec_id."'",ARRAY_A);
+$qry  			=  "select * from tbl_artists where id='".$dec_id."'";
+$row_artist  			= \App\Models\Songs::GetRawDataAdmin($qry);;
 
 if($row_artist)
 {
@@ -22,7 +26,8 @@ if($edit_id!="")
 {
 	$edit_id = base64_decode($edit_id);
 
-	$row  =  $db->get_row("select * from tbl_artist_album where id='".$edit_id."' AND album_artist_id = '".$dec_id."'",ARRAY_A);
+	$qry  =   "select * from tbl_artist_album where id='".$edit_id."' AND album_artist_id = '".$dec_id."'";
+	$row  =   \App\Models\Songs::GetRawDataAdmin($qry);;
 	$album_title 	= stripslashes(html_entity_decode($row['album_title']));
 	$album_seo  = $row['album_seo'];
 	$ranking_order  = $row['ranking_order'];
@@ -59,7 +64,7 @@ exit;
  }
 </style>
 
-<?php include("common/header.php");?>
+@include("admin.common.header")
 </head>
 <body>
 
@@ -67,7 +72,7 @@ exit;
 	<tbody>
 		<tr>
             <td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-                <?php include("common/top_right_menu.php"); ?>
+                 @include("admin.common.top_right_menu")
             </td>
         </tr>
 	
@@ -91,9 +96,9 @@ exit;
 											  <tbody>
 												<tr>
 												  <td align="left">
-												  <a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a>
+												  <a href="<?php echo SERVER_ADMIN_PATH;?>index">Home</a>
 													&raquo;<a href="<?php echo SERVER_ADMIN_PATH;?>artist_list">Artist Listing</a>&raquo;
-                                                  <a href="<?php echo SERVER_ADMIN_PATH;?>artist_album_list.php?artist_id=<?php echo $artist_id;?>">Artist <?php echo $artist_name;?> Album Listing</a>
+                                                  <a href="<?php echo SERVER_ADMIN_PATH;?>artist_album_list?artist_id=<?php echo $artist_id;?>">Artist <?php echo $artist_name;?> Album Listing</a>
                                                  &raquo;
                                                   <a>Add Album</a>
 													
@@ -129,7 +134,8 @@ exit;
 												<tr>
 												  <td>
 													  <form name="album_form" id="album_form" action="" method="post" enctype="multipart/form-data"> 
-														  <table class="Panel">
+													@csrf	 
+													  <table class="Panel">
 															<tbody>
                                                               
 															  <tr>
@@ -249,7 +255,8 @@ exit;
 				</table>
 			</td>
 		</tr>
-		<tr><td height="20"><?php include("common/footer.php");?></td></tr>
+		<tr><td height="20">
+			 @include("admin.common.footer")</td></tr>
 	</tbody>
 </table>
 <!-- End pagefooter -->

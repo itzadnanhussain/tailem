@@ -185,4 +185,3 @@ else
 	$errormsg = base64_encode('First select a record to perform some action');
 	header('Location:'.SERVER_ADMIN_PATH."artist_album_list.php?artist_id=".$_REQUEST['artist_id']."&msg=$errormsg&case=2");
 }
-?>

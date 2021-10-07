@@ -1,6 +1,8 @@
-<?php 
-include("includes/top.php");
-include("common/security.php"); 
+@include("admin.includes.top")
+@include("admin.common.security")
+<?php
+error_reporting(0); 
+ 
 //---------- Ordering ----------//
 switch($sortby)
 {
@@ -21,7 +23,7 @@ switch($sortby)
 <html>
 <head>
 <title>Report Option Listing</title>
-<?php include("common/header.php");?>
+ @include("admin.common.header") 
 </head>
 <body>
 
@@ -29,7 +31,7 @@ switch($sortby)
   
     <tr>
         <td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-            <?php include("common/top_right_menu.php"); ?>
+          @include("admin.common.top_right_menu") 
         </td>
     </tr>
     <tr>
@@ -47,7 +49,7 @@ switch($sortby)
                       <tr>
                         <td class="body"><table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tr>
-                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a> &raquo; <a>Report Option Listing</a></td>
+                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index">Home</a> &raquo; <a>Report Option Listing</a></td>
                               </tr>
                               
                               <tr>
@@ -61,16 +63,16 @@ switch($sortby)
                                         <td width="30" id="Heading_list">Sr #</td>
                                         <td width="300" id="Heading_list">
                                         <?php if($sortby == 'name_desc'){?>
-                                        <a href="report_checkbox_list.php?sortby=name_asc&page=<?php echo $page;?>" class="link_class">Report Option Name</a>
+                                        <a href="report_checkbox_list?sortby=name_asc&page=<?php echo $page;?>" class="link_class">Report Option Name</a>
                                         <?php }else{?>
-                                        <a href="report_checkbox_list.php?sortby=name_desc&page=<?php echo $page;?>" class="link_class">Report Option Name</a>
+                                        <a href="report_checkbox_list?sortby=name_desc&page=<?php echo $page;?>" class="link_class">Report Option Name</a>
                                         <?php }?>
                                         </td>
                                         
                                         <td width="70" id="Heading_list" class="righttd_border"> Action</td>
                                       </tr>
                                       
-									  <form action="<?php echo SERVER_ADMIN_PATH; ?>process/faq_actions.php" method="post" id="faq_form">
+									  <form action="<?php echo SERVER_ADMIN_PATH; ?>process/faq_actions" method="post" id="faq_form">
 									  <?php
 											
 											//============================================================
@@ -78,14 +80,18 @@ switch($sortby)
 											$qry_count_mypro = "SELECT report_chk_box_id FROM tbl_reports_checkbox where 1=1
 											$session_where  $orderby";
 											
-											$res_count_mypro = mysqli_query($db->dbh, $qry_count_mypro);
-												
-											$targetpage = "report_checkbox_list.php"; //your file name  (the name of this file)
+											$res_count_mypro = array();
+											$res_count_mypro = \App\Models\Songs::GetRawData($qry_count_mypro);
+											if ($res_count_mypro) {
+												$total_pages = count($res_count_mypro);
+											} else {
+												$total_pages = 0;
+											}		
+											$targetpage = "report_checkbox_list"; //your file name  (the name of this file)
 											
-											$total_pages = mysqli_num_rows($res_count_mypro);
 											
 											$limit = 15; 					//how many items to show per page
-											$page = $_GET['page'];
+										 
 											
 											if($page) 
 												$start = ($page - 1) * $limit;//first item to display on this page
@@ -108,12 +114,13 @@ switch($sortby)
 										$report_option_list="select * from tbl_reports_checkbox where 1=1 $orderby 
 										LIMIT $start, $limit";	
 											
-										$report_option_list_arr	=	$db->get_results($report_option_list,ARRAY_A);
+										$report_option_list_arr	=	\App\Models\Songs::GetRawData($report_option_list);
 										
-										if(isset($report_option_list_arr))
+										if(isset($report_option_list_arr) && !empty($report_option_list_arr))
 										{
 											foreach($report_option_list_arr as $val)
 											{
+												$val = (array)$val;
 												$report_chk_box_id	  = $val['report_chk_box_id'];	
 												$report_chk_box_name = stripslashes(html_entity_decode($val['report_chk_box_name']));
 												$report_chk_box_name = wordwrap($report_chk_box_name,100," ",true);
@@ -143,7 +150,7 @@ switch($sortby)
 										if($top_reviews_module_add=="Yes")
 										{
 										?>	
-                                        <a href="add_report_checkbox.php?edit_id=<?php echo base64_encode($report_chk_box_id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>
+                                        <a href="add_report_checkbox?edit_id=<?php echo base64_encode($report_chk_box_id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>
                                         <?php
 										}
 										?>
@@ -172,7 +179,7 @@ switch($sortby)
 										}
 									  ?>
 									  <tr>
-                                        <td colspan="3" align="center" valign="middle"><?php include("common/paging-playlist.php"); ?></td>
+                                        <td colspan="3" align="center" valign="middle"><?php @include("admin.common.paging-playlist"); ?></td>
                                       </tr>
 									  </form>
                                     
@@ -200,7 +207,9 @@ switch($sortby)
     </tr>
 	
     <tr>
-      <td height="20"><?php include("common/footer.php");?></td>
+      <td height="20">
+		   @include("admin.common.footer") 
+		</td>
     </tr>
   </tbody>
 </table>

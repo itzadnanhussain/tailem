@@ -47,15 +47,15 @@ class ManageArtist extends Controller
             $data['case'] = $_GET['case'];
         }
 
-          ///status
-          if (isset($_GET['status'])) {
+        ///status
+        if (isset($_GET['status'])) {
             $data['status'] = $_GET['status'];
             $data['status_id'] = $_GET['status_id'];
         }
 
         ///artist_name
         if (isset($_GET['artist_name'])) {
-            $data['artist_name'] = $_GET['artist_name']; 
+            $data['artist_name'] = $_GET['artist_name'];
         }
 
         ///common  lines
@@ -636,12 +636,12 @@ class ManageArtist extends Controller
 
         ///artist_name
         if (isset($_GET['artist_name'])) {
-            $data['artist_name'] = $_GET['artist_name']; 
+            $data['artist_name'] = $_GET['artist_name'];
         }
 
         ///fetch_details
         if (isset($_GET['fetch_details'])) {
-            $data['fetch_details'] = $_GET['fetch_details']; 
+            $data['fetch_details'] = $_GET['fetch_details'];
         }
 
         ///common  lines
@@ -652,4 +652,6 @@ class ManageArtist extends Controller
 
         return view('admin.view_artist', $data);
     }
+
+   
 }

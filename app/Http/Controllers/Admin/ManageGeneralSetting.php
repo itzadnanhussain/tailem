@@ -57,6 +57,53 @@ class ManageGeneralSetting extends Controller
         return view('admin.general_setting', $data);
     }
 
+    ///Social_Icon
+    public function Social_Icon()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+
+        ///common  lines
+        $data['currentFile'] = 'social_icon';
+        $data['targetpage'] = 'social_icon';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.social_icon', $data);
+
+    }
+
     ///Social_Links
     public function Social_Links()
     {

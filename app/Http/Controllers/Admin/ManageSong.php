@@ -20,6 +20,8 @@ class ManageSong extends Controller
         $data['case'] = null;
         $data['status'] = null;
         $data['status_id'] = null;
+        $data['latest'] = null;
+        $data['status_id'] = null;
 
         // $data['db_art_id'] = null;
         // $data['album_list'] = null;
@@ -41,12 +43,24 @@ class ManageSong extends Controller
         if (isset($_GET['msg'])) {
             $data['msg'] = $_GET['msg'];
         }
+        ///status_id
+        if (isset($_GET['status_id'])) {
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///latest
+        if (isset($_GET['latest'])) {
+            $data['latest'] = $_GET['latest'];
+        }
+        // ///latest
+        if (isset($_GET['popular'])) {
+            $data['popular'] = $_GET['popular'];
+        }
 
         ///status
         if (isset($_GET['status'])) {
             $data['status'] = $_GET['status'];
-            $data['status_id'] = $_GET['status_id'];
-        }
+         }
 
         ///case
         if (isset($_GET['case'])) {
@@ -548,5 +562,64 @@ class ManageSong extends Controller
 
 
         echo json_encode($data_results);
+    }
+
+    ///Artist_Song_List
+    public function Artist_Song_List()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+        $data['latest'] = null;
+        $data['song_id'] = null;
+ 
+
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+        ///status_id
+        if (isset($_GET['status_id'])) {
+            $data['status_id'] = $_GET['status_id'];
+        }
+       
+        ///song_id
+        if (isset($_GET['song_id'])) {
+            $data['song_id'] = $_GET['song_id'];
+        } 
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+         }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        } 
+
+        ///common  lines
+        $data['currentFile'] = 'artist_list_song';
+        $data['targetpage'] = 'artist_list_song';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.artist_list_song', $data);
+
     }
 }

@@ -88,7 +88,7 @@ if (isset($fetch_details) && !empty($fetch_details)) {
 
 		$artistdata = get_data($artist_url);
 		$artist_data = json_decode($artistdata);
-		if (isset($artist_data) && !empty($artist_data)) {  
+		if (isset($artist_data) && !empty($artist_data)) {
 			if (!$artist_data->error && $artist_data->artist) {
 
 				$artist_pic = (array)$artist_data->artist->image[3];
@@ -287,6 +287,7 @@ if (isset($fetch_details) && !empty($fetch_details)) {
 																	$qry_count_mypro = "SELECT id FROM tbl_artists where 1=1 and id =  $artistid $orderby";
 																	$res_count_mypro = array();
 																	$res_count_mypro = \App\Models\Songs::GetRawData($qry_count_mypro);
+																 
 																	if ($res_count_mypro) {
 																		$total_pages = count($res_count_mypro);
 																	} else {
@@ -354,44 +355,6 @@ if (isset($fetch_details) && !empty($fetch_details)) {
 																					<?php
 
 
-																					/*$req_artist  =  artist_func(urlencode("$artist_name"));
-									if($req_artist['artist_array']['image4']!="")
-									{
-									?>
-									 <a href="<?php echo SERVER_ROOTPATH.$artist_seo."-artist.html";?>"><img class="img-responsive" src="<?php echo $req_artist['artist_array']['image4'];?>"  border="0"/></a>
-									<?php
-										
-										
-										if($req_artist['artist_array']['image4']!="")
-												{
-													$image	=	$req_artist['artist_array']['image4'];
-													$path			= '../site_upload/artist_images/';
-													$time = $sr_no.time();
-													$newname = $time.".jpg";	
-													
-													copy($image,$path.$newname);	
-													$icon_orgname = $newname;
-													$h_newthumb_name = 'thumb_'.$icon_orgname;	
-													$h_small_thumb_name = 'small_thumb_'.$icon_orgname;			
-													$h_photo_path = $path.$icon_orgname;
-													$h_photothumb_path = $path.$h_newthumb_name;
-													$h_dir = $path;
-													
-													
-													$a = new Thumbnail($path.$newname,241,'238',$h_dir.$h_newthumb_name);
-													$a->create();
-													
-													$b = new Thumbnail($path.$newname,50,'50',$h_dir.$h_small_thumb_name);
-													// creating thumbnail
-													$b->create();
-												}
-												else
-												{
-													$newname = "";	
-												}
-											
-										 mysqli_query($db->dbh, "update tbl_artists set artist_img = '$newname' where id = '$id'");		
-										 }*/
 
 																					if ($artist_img != "") {
 																						$img_artist = album_img_api($artist_img);
@@ -526,8 +489,8 @@ if (isset($fetch_details) && !empty($fetch_details)) {
 																	<?php
 																	if ($total_pages > 0) {
 																	?>
-																		<tr>
-																			<td colspan="7" nowrap="nowrap" class="SmallFieldLabel righttd_border">
+																		<!-- <tr>
+																			<td colspan="12" nowrap="nowrap" class="SmallFieldLabel righttd_border">
 																				<span style="float:right; padding-bottom:10px; margin-right:8px;">
 																					<select name="dropdown" onChange="multiple_action('faq_form');">
 																						<option value="">Choose an action...</option>
@@ -545,7 +508,7 @@ if (isset($fetch_details) && !empty($fetch_details)) {
 																					</select>
 																				</span>
 																			</td>
-																		</tr>
+																		</tr> -->
 																	<?php
 																	}
 																	?>
