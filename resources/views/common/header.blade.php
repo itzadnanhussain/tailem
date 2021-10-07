@@ -7,9 +7,16 @@
 	$setting_arr = GetByWhere('general_setting', array('setting_id' => 1));
 	$setting_arr = (array)$setting_arr[0];
 
-	// old query
-	// $setting_qry = "select * from tbl_general_setting where setting_id='1'";
-	// $setting_arr	=	$db->get_row($setting_qry,ARRAY_A);
+	///setting arr new query 
+	$arr_setting = GetByWhere('setting', array('setting_id' => 1));
+	$arr_setting = (array)$arr_setting[0];
+	if ($arr_setting['site_mode'] == 1) {
+		echo '<script>window.location = "maintenance";</script>';
+		die;
+	}
+	$itune_url	=	$arr_setting['itune_url'];
+	// echo $analytics	= '<script>' . $arr_setting['analaytic'] . '</script>';
+	echo $analytics	=  $arr_setting['analaytic'];
 
 
 	$facebook_right_script  = stripslashes(html_entity_decode($setting_arr['facebook_right_script']));
@@ -54,21 +61,6 @@
  	<title><?php echo (isset($title)) ? $title : 'No Title Of Page'  ?> | Tailem</title>
  	<meta name="csrf-token" content="{{ csrf_token() }}" />
  	@include('common.loadassets')
-
- 	<?php
-
-		///old query
-		// $setting_qry = "select * from tbl_setting where setting_id='1'";
-		// $setting_arr	=	$db->get_row($setting_qry, ARRAY_A);
-		// echo $analaytic	=	$setting_arr['analaytic'];
-
-		///setting arr new query 
-		$arr_setting = GetByWhere('setting', array('setting_id' => 1));
-		$arr_setting = (array)$arr_setting[0];
-		$itune_url	=	$arr_setting['itune_url'];
-		// echo $analytics	= '<script>' . $arr_setting['analaytic'] . '</script>';
-		echo $analytics	=  $arr_setting['analaytic'];
-		?>
 
 
  	<script type="text/javascript">

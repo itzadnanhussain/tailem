@@ -5,12 +5,16 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\SongsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\GeneralController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route; 
  
 
 //index
-Route::get('/', [SongsController::class , 'GetLoadHomePage']);  
+Route::get('/', [SongsController::class , 'GetLoadHomePage']); 
+
+///maintenance
+Route::get('/maintenance', [GeneralController::class , 'Maintenance']); 
 
 require __DIR__.'/auth.php';
 require __DIR__.'/facebook.php';
