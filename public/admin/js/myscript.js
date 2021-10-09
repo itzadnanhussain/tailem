@@ -3753,8 +3753,14 @@ function artist_check(val) {
 //Stores Images
 function validate_store_images() {
     $("#store_images_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+
     var options = {
         target: "",
+        data: {
+            "_token": csrf_token,
+        },
         beforeSubmit: validate_store_images_Request,
         success: validate_store_images_Response,
         url: JS_ADMIN_SERVER_PATHROOT + "process/store_images_process",

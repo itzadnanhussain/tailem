@@ -1,12 +1,12 @@
+@include("admin.includes.top")
+@include("admin.common.security")
 <?php 
-include("includes/top.php");
-include("common/security.php");
-
+ error_reporting(0);
 if($edit_id!="")
 {
 	$edit_id = base64_decode($edit_id);
 
-	$row  =  $db->get_row("select * from tbl_store_img where store_id='".$edit_id."'",ARRAY_A);
+	$row  =  \App\Models\Songs::GetRawDataAdmin("select * from tbl_store_img where store_id='".$edit_id."'");
 	$store_id  		= $row['store_id'];
 	$store_title  	= $row['store_title'];
 	$store_img  	= $row['store_img'];
@@ -26,7 +26,7 @@ else
  }
 </style>
 
-<?php include("common/header.php");?>
+@include("admin.common.header")
 </head>
 <body>
 
@@ -34,7 +34,7 @@ else
 	<tbody>
 		<tr>
             <td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-                <?php include("common/top_right_menu.php"); ?>
+                @include("admin.common.top_right_menu")
             </td>
         </tr>
 	
@@ -200,7 +200,8 @@ else
 				</table>
 			</td>
 		</tr>
-		<tr><td height="20"><?php include("common/footer.php");?></td></tr>
+		<tr><td height="20">
+			@include("admin.common.footer") </td></tr>
 	</tbody>
 </table>
 <!-- End pagefooter -->

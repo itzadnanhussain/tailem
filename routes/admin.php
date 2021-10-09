@@ -13,6 +13,7 @@ use App\Http\Controllers\Admin\ManageGeneralSetting;
 use App\Http\Controllers\Admin\ReviewManagement;
 use App\Http\Controllers\Admin\PartialController;
 use App\Http\Controllers\Admin\AlbumsManagement;
+use App\Http\Controllers\Admin\ImagesManage;
 use App\Http\Controllers\Admin\ModerateManagement;
 
 
@@ -288,6 +289,24 @@ Route::any('admin/moderator_rights', [ModerateManagement::class, 'Moderate_Right
 
 ///Moderate_Right_Process
 Route::post('admin/process/moderator_right_process', [ModerateManagement::class, 'Moderate_Right_Process']);
+
+
+/*
+|----------------------------------------------------
+|                ImagesManage Controller
+|----------------------------------------------------
+*/ 
+
+///Load_Images_List
+Route::any('admin/images_list', [ImagesManage::class, 'Load_Images_List']);
+
+
+///Edit_Image
+Route::any('admin/store_images', [ImagesManage::class, 'Store_Image']);
+
+///Store_Image_Process
+Route::post('admin/process/store_images_process', [ImagesManage::class, 'Store_Image_Process']);
+
 
 /*
 |----------------------------------------------------
