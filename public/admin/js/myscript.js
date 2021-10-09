@@ -3120,8 +3120,12 @@ function validate_allocate_review_Response(responseText, statusText) {
 /*===================Validate General Setting====================*/
 function validate_general_setting() {
     $("#setting_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
     var options = {
         target: "",
+        data : {
+            "_token": csrf_token,
+        },
         beforeSubmit: validate_general_setting_Request,
         success: validate_general_setting_Response,
         url: JS_ADMIN_SERVER_PATHROOT + "process/general_setting_process",
@@ -3141,6 +3145,40 @@ function validate_general_setting_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
         window.location.href = JS_ADMIN_SERVER_PATHROOT + "general_setting";
+    } else {
+        alert(responseText);
+    }
+}
+
+
+/*===================validate_social_icon====================*/
+function validate_social_icon() {
+    $(".social_icons").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var options = {
+        target: "",
+        data : {
+            "_token": csrf_token,
+        },
+        beforeSubmit: validate_general_setting_Request,
+        success: validate_general_setting_Response,
+        url: JS_ADMIN_SERVER_PATHROOT + "process/social_icons_process",
+    };
+    // bind to the form's submit event
+    $(".social_icons").submit(function () {
+        $(this).ajaxSubmit(options);
+        return false;
+    });
+}
+// pre-submit callback
+function validate_general_setting_Request(formData, jqForm, options) {
+    var queryString = $.param(formData);
+    return true;
+}
+function validate_general_setting_Response(responseText, statusText) {
+    if (responseText.search("done") != -1) {
+        alert("Record Update Successfully");
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "social_icons";
     } else {
         alert(responseText);
     }

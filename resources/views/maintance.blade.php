@@ -1,5 +1,7 @@
 <?php
  error_reporting(0);
+//  phpinfo();
+//  die;
 ?>
 <!DOCTYPE html>
 <html lang="en">

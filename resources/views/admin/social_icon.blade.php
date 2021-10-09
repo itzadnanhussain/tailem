@@ -80,27 +80,33 @@ $mobile_version_logo	= $setting_arr['mobile_version_logo'];
 																		</td>
 																	</tr>
 																<?php } ?>
+																 
+																<?php foreach ($icon_data as  $value) { ?>  
 																<tr>
 																	<td>
-																		<form name="setting_form" id="setting_form" action="" method="post" enctype="application/x-www-form-urlencoded">
+																		<form class="social_icons" action="" method="post" enctype="application/x-www-form-urlencoded">
 																			@csrf
+																			<input type="hidden" name="icon_id" value="<?php echo $value->icon_id ?>" />
+																			<input type="hidden" name="icon_name" value="<?php echo $value->icon_name ?>" />
+
 																			<table class="Panel" style="width:1300px;">
 																				<tbody>
 																					<tr>
-																						<td class="Heading2" colspan="2"><strong>Social Icons Setting</strong></td>
+																						<td class="Heading2" colspan="2"><strong>Social Icons <?php echo $value->icon_name ?></strong></td>
 																					</tr>
 																					<tr>
 																						<td colspan="2">&nbsp;</td>
 																					</tr>
 
 																					<tr>
-																						<td width="15%" nowrap="nowrap" class="SmallFieldLabel2">Upload Icon for Facebook:</td>
+																						<td width="15%" nowrap="nowrap" class="SmallFieldLabel2">Upload Icon for <?php echo $value->icon_name ?>:</td>
 																						<td width="85%">
-																							<input type="file" name="desktop_version_logo" id="desktop_version_logo" /><br />
-																							<span class="required"><strong>Only JPG,GIF or PNG format of size: 286X44</strong></span>
+																							<input type="file" name="large_screen_icon" id="social_icon" />
+																							<br />
+																							<!-- <span class="required"><strong>Only JPG,GIF or PNG format of size: 286X44</strong></span> -->
 																							 
                                                                                             <br /><br />
-																							<img src="<?php echo  SERVER_ROOTPATH ?>images/logo11.png" alt="">
+																							<img src="<?php echo  SERVER_ROOTPATH .$value->large_screen_icon ?>" alt="">
                                                                                             <br /><br />
 																							 
 																						</td>
@@ -110,7 +116,7 @@ $mobile_version_logo	= $setting_arr['mobile_version_logo'];
 																					<tr>
 																						<td>&nbsp;</td>
 																						<td>
-																							<input name="update_record" id="update_record" value="Update" class="FormButton" type="submit" onClick="validate_general_setting();">
+																							<input name="update_icon" id="update_record" value="Update" class="FormButton" type="submit" onClick="validate_social_icon();">
 																						</td>
 																					</tr>
 																				</tbody>
@@ -120,6 +126,10 @@ $mobile_version_logo	= $setting_arr['mobile_version_logo'];
 																</tr>
 																<tr>
 																</tr>
+																<?php  } ?>
+
+															 
+																
 															</tbody>
 														</table>
 													</td>

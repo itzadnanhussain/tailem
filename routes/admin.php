@@ -149,6 +149,7 @@ Route::post('admin/process/analytic_process', [ManageSetting::class, 'Update_Ana
 
 ///General_Setting_Page
 Route::any('admin/general_setting', [ManageGeneralSetting::class, 'General_Setting_Page']);
+Route::post('admin/process/general_setting_process', [ManageGeneralSetting::class, 'General_Setting_Process']);
 
 ///social_links
 Route::any('admin/social_links', [ManageGeneralSetting::class, 'Social_Links']);
@@ -167,6 +168,7 @@ Route::any('admin/process/email_templates_process', [ManageGeneralSetting::class
 
 ///Social_Icon
 Route::any('admin/social_icons', [ManageGeneralSetting::class, 'Social_Icon']);
+Route::post('admin/process/social_icons_process', [ManageGeneralSetting::class, 'Social_Icons_Process']);
 
 /*
 |----------------------------------------------------

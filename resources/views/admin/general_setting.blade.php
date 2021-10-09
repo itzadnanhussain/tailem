@@ -100,13 +100,14 @@ $mobile_version_logo	= $setting_arr['mobile_version_logo'];
 																							<span class="required"><strong>Only JPG,GIF or PNG format of size: 286X44</strong></span>
 																							<?php
 																							if ($desktop_version_logo != '') {
-																								$desktop_version_logo_path =  SERVER_ROOTPATH . 'assets/phpthumb/phpThumb?src=' . SERVER_ROOTPATH . 'site_upload/general_setting/' . $desktop_version_logo . '&w=286&h=44&zc=1';
+																								// $desktop_version_logo_path =  SERVER_ROOTPATH . 'assets/phpthumb/phpThumb?src=' . SERVER_ROOTPATH . 'site_upload/general_setting/' . $desktop_version_logo . '&w=286&h=44&zc=1';
+																								$desktop_version_logo_path = SERVER_ROOTPATH . 'site_upload/general_setting/' . $desktop_version_logo;
 																							?>
 																								<br /><br />
 																								<img src="<?php echo $desktop_version_logo_path; ?>" border="0" />
 																								<br /><br />
 																							<?php } ?>  
-																							<img src="<?php echo  SERVER_ROOTPATH ?>images/logo11.png" alt="">
+																							<!-- <img src="<?php echo  SERVER_ROOTPATH ?>images/logo11.png" alt=""> -->
 
 																							 
 																						</td>

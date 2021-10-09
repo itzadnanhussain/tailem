@@ -9,8 +9,9 @@
 
 	///setting arr new query 
 	$arr_setting = GetByWhere('setting', array('setting_id' => 1));
+ 
 	$arr_setting = (array)$arr_setting[0];
-	if ($arr_setting['site_mode'] == 1) {
+	if ($arr_setting['site_mode'] == 2) {
 		echo '<script>window.location = "maintenance";</script>';
 		die;
 	}
