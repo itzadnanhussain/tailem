@@ -69,6 +69,8 @@ Route::post('admin/process/artist_actions', [ManageArtist::class, 'Artist_Action
 
 ///Artist Actions
 Route::get('admin/artist_featured_songs_list', [ManageArtist::class, 'Artist_Featured_Songs_List']);
+Route::get('admin/addedit_featured_artist', [ManageArtist::class, 'Addedit_Featured_Artist']);
+Route::post('admin/process/featured_artist_album_assocs', [ManageArtist::class, 'Featured_Artist_Album_Assocs']);
 
 
 ///Single_Artist_View

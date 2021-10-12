@@ -1,6 +1,7 @@
 @include("admin.includes.top")
 @include("admin.common.security")
 <?php
+error_reporting(0);
 $setting_qry = "select * from tbl_general_setting where setting_id='1'";
 $setting_arr	=	\App\Models\Songs::GetRawDataAdmin($setting_qry);
 // echo '<pre>';

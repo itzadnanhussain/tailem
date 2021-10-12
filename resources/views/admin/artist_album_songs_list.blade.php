@@ -265,6 +265,7 @@ function change_status(song_id, status)
 									$c=0; $sr_no=0;
 										foreach($artist_list_arr as $val)
 										{
+											$val = (array)$val;
 											$song_id	  = $val['song_id'];
 
 											//New code
@@ -366,10 +367,10 @@ function change_status(song_id, status)
 									<td nowrap="nowrap" class="SmallFieldLabel" width="70">
 									<?php 
 									
-									$add_feature= '<img src="'.SERVER_ROOTPATH.'Admin-Cp/images/edit.gif" title="Edit Featured In"  border="0" />'; 
+									$add_feature= '<img src="'.SERVER_ROOTPATH.'admin/images/edit.gif" title="Edit Featured In"  border="0" />'; 
 									if(empty($featured_artist))
 									{
-									$add_feature= '<img src="'.SERVER_ROOTPATH.'Admin-Cp/images/add_icon.png"  border="0" title="Add Featured In" />'; 
+									$add_feature= '<img src="'.SERVER_ROOTPATH.'admin/images/add_icon.png"  border="0" title="Add Featured In" />'; 
 									}?>
 									  <?php echo $featured_artist;?>
                                       &nbsp;&nbsp;

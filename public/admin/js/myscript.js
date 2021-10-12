@@ -3666,9 +3666,12 @@ function validate_song_artist_album() {
 
 function validate_featured_atritst_assocs() {
     $("#featured_song_form").unbind("submit");
-
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
     var options = {
         target: "",
+        data: {
+            "_token": csrf_token,
+        },
         beforeSubmit: validate_song_artist_album_Request,
         success: validate_songs_featured_assocs_response,
         url: JS_ADMIN_SERVER_PATHROOT + "process/featured_artist_album_assocs",

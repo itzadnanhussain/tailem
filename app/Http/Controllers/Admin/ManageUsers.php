@@ -5,9 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\libraries\thumb\Thumbnail;
-use Illuminate\Support\Facades\Hash;
-
-
+use Illuminate\Support\Facades\Hash; 
 
 
 class ManageUsers extends Controller
@@ -21,6 +19,7 @@ class ManageUsers extends Controller
         $data['sortby'] = null;
         $data['user_name'] = null;
         $data['page'] = null;
+        $data['limit'] = 15;
         $data['msg'] = null;
         $data['case'] = null;
         $data['status'] = null;

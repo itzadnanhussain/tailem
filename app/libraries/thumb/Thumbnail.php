@@ -34,9 +34,11 @@ class Thumbnail
 
 
 		if ($this->thumb_type !== Null) {
+			
+			 
 			// created thumbnail reference
 			$this->new_img = imagecreatetruecolor($this->thumb_w, $this->thumb_h);
-
+		
 
 			$this->result = imagecopyresampled($this->new_img, $this->thumb_type, 0, 0, 0, 0, $this->thumb_w, $this->thumb_h, $this->img_w, $this->img_h);
 		}
@@ -58,7 +60,9 @@ class Thumbnail
  		if ($this->thumb_type !== Null) {
 			//destination to save file is not equal to null
 			if ($this->des !== "") {
+			
 				imagejpeg($this->new_img, $this->des, $this->comp);
+			 
 			}
 			imagedestroy($this->thumb_type);
 			imagedestroy($this->new_img);

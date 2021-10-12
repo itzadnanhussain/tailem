@@ -8,7 +8,7 @@
 	@import url("<?php echo SERVER_ADMIN_PATH;?>styles/comp_img_styles.css");
 </style>
 <script type="text/javascript" src="<?php echo SERVER_ADMIN_PATH;?>js/jsconfig.js"></script>
-<?PHP if($currentFile == 'addedit_song'){?>
+<?PHP if($currentFile == 'addedit_song' || $currentFile == "addedit_featured_artist"){?>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href="<?php echo SERVER_ADMIN_PATH;?>styles/jquery.tokenize.css" />
   <script type="text/javascript" src="<?php echo SERVER_ADMIN_PATH;?>js/jquery.tokenize.js"></script>

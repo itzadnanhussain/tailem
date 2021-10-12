@@ -111,6 +111,8 @@ if (isset($edit_id)) {
 	$addedit = 'Edit';
 } else {
 	$addedit  = 'Add';
+	$artist_id = $_REQUEST['artist_id'];
+	$album_id  = $_REQUEST['album_id'];
 }
 ?>
 <html>

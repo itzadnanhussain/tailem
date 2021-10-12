@@ -2,7 +2,7 @@
 @include("admin.common.security")
 
 <?php
-use App\libraries\ckeditor\CKEditor;
+use App\libraries\ckeditor\ckeditor;
 error_reporting(0);
  $rowpointchk = array();
 if (isset($edit_id) && !empty($edit_id)) {

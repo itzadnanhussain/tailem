@@ -47,12 +47,7 @@ float:left;
 .pagination a:active {
 	border: 1px solid #999;
 	color: #666;
-	/*border: 1px solid #999;
-	color: #666;*/
-	/*border: 1px solid #EEE;
-	color:#EEE;*/
-	/*border: 1px solid #567E00;
-	color: #442302;*/
+ 
 }
 .pagination .current {
 	/*padding: 6px 5px 5px 5px;*/

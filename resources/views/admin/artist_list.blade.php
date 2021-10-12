@@ -143,16 +143,11 @@ if (isset($_POST['filter'])) {
 	}
 
 
-	$limit = 20; 					//how many items to show per page
+	 					 
 	$start = 0;
 	$sr_no = 0;
 
-	//$sess_where .= " and ids > $start $orderby  limit $limit ";
-	//session()->get('sess_song_query') = $sess_where;
-	//echo "ram1";
-	//echo $session_where = session()->get('sess_song_query');
-
-
+	 
 
 	$sess_where_total = $sess_where;
 
@@ -196,11 +191,16 @@ if (isset($_POST['filter'])) {
 } elseif (isset($page) && !empty($page)) {
 	
 
-	$limit = 20;  
+	  
 	if ($page)
-		$start = ($page - 1) * $limit; //first item to display on this page
-	else
+	{
+		$start = ($page - 1) * $limit; 
+
+	}
+	else{
+
 		$start = 0;
+	}
 
 
 	if (isset($page) && $page != "") {
@@ -271,7 +271,7 @@ if (isset($_POST['filter'])) {
 
 } else {
 
-	$limit = 20; 					//how many items to show per page
+	 					//how many items to show per page
 	$start = 0;
 	$sr_no = 0;
 
@@ -328,14 +328,9 @@ if (isset($_POST['Reset'])) {
 
 $c = 1;
 
-//echo $artist_list="select * from tbl_artists where 1=1 $session_where";	 echo " list count count"; echo "</br>";
-
-// $artist_list_arr	=	$db->get_results($artist_list, ARRAY_A);
+ 
 $artist_list_arr	=	\App\Models\Songs::GetRawData($artist_list);
-// echo '<pre>';
-// print_r($artist_list_arr);
-// echo '</pre>';
-// die;
+ 
 
 //============================================================
 
@@ -601,45 +596,7 @@ if (isset($status) && !empty($status)) {
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="200">
 																					<?php
 
-
-																					/*$req_artist  =  artist_func(urlencode("$artist_name"));
-									if($req_artist['artist_array']['image4']!="")
-									{
-									?>
-									 <a href="<?php echo SERVER_ROOTPATH.$artist_seo."-artist.html";?>"><img class="img-responsive" src="<?php echo $req_artist['artist_array']['image4'];?>"  border="0"/></a>
-									<?php
-										
-										
-										if($req_artist['artist_array']['image4']!="")
-												{
-													$image	=	$req_artist['artist_array']['image4'];
-													$path			= '../site_upload/artist_images/';
-													$time = $sr_no.time();
-													$newname = $time.".jpg";	
-													
-													copy($image,$path.$newname);	
-													$icon_orgname = $newname;
-													$h_newthumb_name = 'thumb_'.$icon_orgname;	
-													$h_small_thumb_name = 'small_thumb_'.$icon_orgname;			
-													$h_photo_path = $path.$icon_orgname;
-													$h_photothumb_path = $path.$h_newthumb_name;
-													$h_dir = $path;
-													
-													
-													$a = new Thumbnail($path.$newname,241,'238',$h_dir.$h_newthumb_name);
-													$a->create();
-													
-													$b = new Thumbnail($path.$newname,50,'50',$h_dir.$h_small_thumb_name);
-													// creating thumbnail
-													$b->create();
-												}
-												else
-												{
-													$newname = "";	
-												}
-											
-										 mysqli_query($db->dbh, "update tbl_artists set artist_img = '$newname' where id = '$id'");		
-										 }*/
+ 
 
 																					if ($artist_img != "") {
 																						$img_artist = album_img_api($artist_img);

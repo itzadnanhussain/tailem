@@ -855,6 +855,6 @@ class AlbumsManagement extends Controller
         $data['title'] = GetTitle();
 
 
-        return view('admin.artist_album_list', $data);
+        return view('admin.artist_album_songs_list', $data);
     }
 }

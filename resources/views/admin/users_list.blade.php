@@ -72,7 +72,6 @@ if (isset($status) && !empty($status)) {
 	$url = "users_list?msg=$update_ok_msg&case=1";
 	echo '<script>window.location = "' . $url . '";</script>';
 	exit;
-	 
 }
 
 ?>
@@ -166,48 +165,7 @@ if (isset($status) && !empty($status)) {
 																			<input name="user_email" id="user_email" class="Field300" value="<?php echo session()->get('user_email_sess'); ?>" type="text" />
 																		</td>
 																	</tr>
-																	<!-- <tr height="30">
-                                                <td class="SmallFieldLabelnew font_bold" align="left" width="150">
-                                                Country
-                                                </td>
-                                                <td align="center">
-                                                  <select name="country_id" id="country_id" class="Field300">
-                                                    <option value=""> ------ Please Select Country ------</option>
-                                                 <?php
-													$qry = "select country_id,name from tbl_countries order by 
-												 name asc";
-													$select_arr = \App\Models\Songs::GetRawData($qry);
-													if ($select_arr) {
-														foreach ($select_arr as $val) {
-															$val = (array)$val;
-															$country_id = $val['country_id'];
-															$name	    = html_entity_decode(stripslashes($val['name']));
-															if ($_SESSION['country_id_sess'] == $country_id) {
-																$selected = "selected='selected'";
-															} else {
-																$selected = "";
-															}
-													?>
-                                                    <option value="<?php echo $country_id; ?>" <?php echo $selected; ?>><?php echo $name; ?></option>
-                                                    <?php
-														}
-													?>
-                                                 
-                                                 <?php
-													}
-													?>
-                                                 </select>
-                                                </td>
-                                            </tr>
-                                            <tr height="30">
-                                                <td class="SmallFieldLabelnew font_bold" align="left" width="150">
-                                                State/Region
-                                                </td>
-                                                <td align="center">
-                                                    <input name="region" id="region" class="Field300" 
-                                                    value="<?php echo $_SESSION['region_sess']; ?>" type="text"/>
-                                                </td>
-                                            </tr>-->
+
 																	<tr height="30">
 																		<td class="SmallFieldLabelnew font_bold" align="left" width="150">
 																			Status
@@ -225,22 +183,7 @@ if (isset($status) && !empty($status)) {
 																		</td>
 																	</tr>
 
-																	<!--  <tr height="30">
-                                                <td class="SmallFieldLabelnew font_bold" align="left"  width="150"> 
-                                                	Member Type 
-                                                </td>
-                                                <td align="center">
-                                                <select name="is_top_member" id="is_top_member" class="Field300">
-                                                    <option value=""> ------- Please Select Member Type------- </option>
-                                                    <option value="1" <?php if (session()->get('is_top_member_sess') == '1') {
-																			echo 'selected="selected"';
-																		} ?>>Top Members</option>
-                                                    <option value="0" <?php if (session()->get('is_top_member_sess') == '0') {
-																			echo 'selected="selected"';
-																		} ?>>Other Members</option>	
-                                                 </select>
-                                                 </td>
-                                            </tr>-->
+
 
 																	<tr height="30">
 																		<td class="SmallFieldLabelnew font_bold" align="left" width="150">&nbsp;</td>
@@ -315,20 +258,7 @@ if (isset($status) && !empty($status)) {
 																		<?php } ?>
 																	</td>
 
-																	<!--   <td width="100" id="Heading_list">
-                                        <?php if ($sortby == 'country_desc') { ?>
-                                        <a href="users_list?sortby=country_asc&page=<?php echo $page; ?>" class="link_class">Country</a>
-                                        <?php } else { ?>
-                                        <a href="users_list?sortby=country_desc&page=<?php echo $page; ?>" class="link_class">Country</a>
-                                        <?php } ?>
-                                        </td>
-                                        <td width="100" id="Heading_list">
-                                        <?php if ($sortby == 'region_desc') { ?>
-                                        <a href="users_list?sortby=region_asc&page=<?php echo $page; ?>" class="link_class">Region</a>
-                                        <?php } else { ?>
-                                        <a href="users_list?sortby=region_desc&page=<?php echo $page; ?>" class="link_class">Region</a>
-                                        <?php } ?>
-                                        </td>-->
+
 																	<td width="50" id="Heading_list">
 																		<?php if ($sortby == 'statusdesc') { ?>
 																			<a href="users_list?sortby=statusasc&page=<?php echo $page; ?>" class="link_class">Status</a>
@@ -340,12 +270,11 @@ if (isset($status) && !empty($status)) {
 																</tr>
 
 																<form action="<?php echo SERVER_ADMIN_PATH; ?>process/users_actions" method="post" id="user_form">
-																@csrf
+																	@csrf
 																	<?php
 																	//============================================================
 																	//PAGGING CODE STARTS HERE
-																	$qry_count_mypro = "SELECT user_id FROM tbl_users where 1=1
-											$session_where  $orderby";
+																	$qry_count_mypro = "SELECT user_id FROM tbl_users where 1=1 $session_where  $orderby";
 																	$res_count_mypro = \App\Models\Songs::GetRawData($qry_count_mypro);
 																	if ($res_count_mypro) {
 																		$total_pages = count($res_count_mypro);
@@ -355,7 +284,7 @@ if (isset($status) && !empty($status)) {
 																	$targetpage = "users_list"; //your file name  (the name of this file)
 
 
-																	$limit = 15; 					//how many items to show per page
+																						//how many items to show per page
 																	if ($page)
 																		$start = ($page - 1) * $limit; //first item to display on this page
 																	else
@@ -371,8 +300,7 @@ if (isset($status) && !empty($status)) {
 
 																	$c = 1;
 
-																	$user_list = "select * from tbl_users where 1=1 $session_where $orderby 
-										LIMIT $start, $limit";
+																	$user_list = "select * from tbl_users where 1=1 $session_where $orderby LIMIT $start, $limit";
 
 																	$user_list_arr	=	\App\Models\Songs::GetRawData($user_list);
 
@@ -390,8 +318,7 @@ if (isset($status) && !empty($status)) {
 																			$is_top_member = $val['is_top_member'];
 																			$user_name  = wordwrap($user_name, 100, " ", true);
 
-																			$select_qry = "select name as country_name from tbl_countries where 
-												country_id='" . $country_id . "' ";
+																			$select_qry = "select name as country_name from tbl_countries where country_id='" . $country_id . "' ";
 																			$select_ar  = \App\Models\Songs::GetRawData($select_qry);
 																			$select_ar = (array)$select_ar[0];
 																			$country_name = stripslashes(html_entity_decode($select_ar['country_name']));
@@ -410,53 +337,20 @@ if (isset($status) && !empty($status)) {
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="25"><?php echo $sr_no; ?></td>
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="150">
 																					<?php echo $user_name; ?></br></br>
-																					<?php
-																					/*if($is_top_member==0 && $status==1)
-											{
-											?>
-                                           	 <a href="javascript:;" onClick="set_top_member('<?php echo base64_encode($user_id);?>')">Set as Top Member</a>
-                                            <?php
-											}
-											elseif($is_top_member==1)
-											{
-											?>
-                                           	 <a href="javascript:;" onClick="unset_top_member('<?php echo base64_encode($user_id);?>')">UnSet Top Member</a>
-                                            <?php
-											}*/
-																					?>
+																				 
 																				</td>
 
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="150">
 																					<?php
 																					echo $user_name;
-																					/*$query_data ="select fullname from tbl_social_username where user_id = '$user_id'";
-                                                $info_arr = $db->get_results($query_data,ARRAY_A);
-												if($info_arr)
-												{
-													$count_names   =  count($info_arr);
-													$mn=1;
-													foreach($info_arr as $name_get)
-													{
-														echo stripslashes($name_get['fullname']);
-														if($count_names!=$mn)
-														{
-															echo ", ";
-														}
-														$mn++;
-													}
-												}*/
+																				 
 																					?>
 																				</td>
 
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="150">
 																					<?php echo $user_email; ?>
 																				</td>
-																				<!-- <td nowrap="nowrap" class="SmallFieldLabel" width="100">
-                                           <?php echo $country_name; ?>
-                                        </td>
-                                        <td nowrap="nowrap" class="SmallFieldLabel" width="100">
-                                           <?php echo $region; ?>
-                                        </td>-->
+																			 
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="50">
 																					<?php
 																					if ($status == 0) {
@@ -474,10 +368,7 @@ if (isset($status) && !empty($status)) {
 																						echo '<a href="users_list?status=' . base64_encode(0) . '&status_id=' . base64_encode($user_id) . '"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>';
 																					}
 
-																					/*if($is_top_member==1)
-											{
-												echo '<br><br><strong>Top Member</strong>';
-											}*/
+																					 
 																					?>
 
 																				</td>

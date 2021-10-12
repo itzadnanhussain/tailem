@@ -15,6 +15,7 @@ class ManageArtist extends Controller
     {
         $data = array();
         $data['sortby'] = null;
+        $data['limit'] = 15;
         $data['page'] = null;
         $data['msg'] = null;
         $data['case'] = null;
@@ -582,6 +583,112 @@ class ManageArtist extends Controller
         return view('admin.artist_featured_songs_list', $data);
     }
 
+
+    ///Addedit_Featured_Artist
+    public function Addedit_Featured_Artist()
+    {
+        $data = array();
+        $data['artist_id'] = null;
+        $data['album_id '] = null;
+        $data['song_id '] = null;
+        $data['msg '] = null;
+        $data['case '] = null;
+        $data['page '] = null;
+
+
+
+
+
+        ///artist_id
+        if (isset($_GET['artist_id'])) {
+            $data['main_artist'] = $_GET['artist_id'];
+        }
+
+        ///album_id 
+        if (isset($_GET['album_id'])) {
+            $data['album_id'] = $_GET['album_id'];
+        }
+
+
+        ///song_id 
+        if (isset($_GET['song_id'])) {
+            $data['song_id'] = $_GET['song_id'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+
+
+        ///common  lines
+        $data['currentFile'] = 'addedit_featured_artist';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+
+        return view('admin.addedit_featured_artist', $data);
+    }
+
+    ///Featured_Artist_Album_Assocs
+    public function Featured_Artist_Album_Assocs()
+    {
+        if (isset($_POST)) {
+
+            $errorstr = "";
+            $case = 1;
+
+
+            $song_id = trim($_REQUEST['song_id']);
+            $main_artist = trim($_REQUEST['main_artist']);
+            $album_id = trim($_REQUEST['album_id']);
+            $sizeofarray   =  sizeof($_REQUEST['featured_artist']);
+
+
+            $dec_main_artist   = base64_decode($main_artist);
+            $dec_album_id   = base64_decode($album_id);
+            $dec_song_id    = base64_decode($song_id);
+            $link    =    "artist_id=" . $main_artist . "&album_id=" . $album_id;
+
+
+
+
+            if ($case == 1) {
+
+                $arr  = $_REQUEST['featured_artist'];
+                $del_qry = "delete from tbl_featured_artist_assocs where  main_artist = '$dec_main_artist' and album_id='$dec_album_id' and song_id='$dec_song_id'";
+
+                \App\Models\Songs::GetRawData($del_qry);
+
+                for ($m = 0; $m < $sizeofarray; $m++) {
+                    $query = "insert into 
+		 tbl_featured_artist_assocs
+		 set 
+		 main_artist='$dec_main_artist',
+		 featured_artist='" . stripslashes($arr[$m]) . "',
+		 album_id='$dec_album_id',
+		 song_id='$dec_song_id',
+		 add_date=NOW()";
+                    \App\Models\Songs::GetRawData($query);
+                }
+                echo 'done-SEPARATOR-' . $link;
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+
     ///Single_Artist_View 
     public function Single_Artist_View()
     {
@@ -652,6 +759,4 @@ class ManageArtist extends Controller
 
         return view('admin.view_artist', $data);
     }
-
-   
 }
