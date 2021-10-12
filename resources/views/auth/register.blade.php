@@ -58,14 +58,9 @@
             success: function(data) {
                 let res = JSON.parse(data);
                 switch (res.code) {
-                    case 'success':
-                        // $('.alert').addClass('alert-fill-success');
-                        // $('#alert-text').append(res.message);
-                        // $('.alert').show();
-
+                    case 'success': 
                         ///redirect to dashboard
-                        setTimeout(function() {
-                            // window.location.href = "{{ url('/welcome')}}";
+                        setTimeout(function() { 
                             window.location.replace(res.url);
                         }, 500)
 

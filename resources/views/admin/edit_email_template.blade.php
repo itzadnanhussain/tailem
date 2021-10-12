@@ -2,7 +2,7 @@
 @include("admin.common.security")
 <?php 
 error_reporting(0);
-use App\libraries\ckeditor\CKEditor;
+use App\libraries\ckeditor\ckeditor;
 if(isset($edit_id) && !empty($edit_id))
 {
 	$edit_id	 =	base64_decode($edit_id);
