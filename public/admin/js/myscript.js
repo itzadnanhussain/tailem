@@ -3684,9 +3684,15 @@ function validate_song_Response(responseText, statusText) {
 // here is validate song artist album
 function validate_song_artist_album() {
     $("#song_form").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+
 
     var options = {
         target: "",
+        data:{
+            "_token": csrf_token,
+        },
         beforeSubmit: validate_song_artist_album_Request,
         success: validate_song_artist_album_Response,
         url: JS_ADMIN_SERVER_PATHROOT + "process/song_artist_album_process",

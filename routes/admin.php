@@ -132,6 +132,15 @@ Route::any('admin/loadartists', [ManageSong::class, 'Load_Artist']);
 ///Artist_Song_List
 Route::any('admin/artist_list_song', [ManageSong::class, 'Artist_Song_List']);
 
+///artist_list_album_song
+Route::any('admin/artist_list_album_song', [ManageSong::class, 'Artist_List_Album_Song']);
+
+
+///addedit_song_artist_album
+Route::any('admin/addedit_song_artist_album', [ManageSong::class, 'Addedit_Song_Artist_Album']);
+
+///song_artist_album_process
+Route::post('admin/process/song_artist_album_process', [ManageSong::class, 'Song_Artist_Album_Process']);
 
 ///**********************ManageSetting Controller**************************/
 

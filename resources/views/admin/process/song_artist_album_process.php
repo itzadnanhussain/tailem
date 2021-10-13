@@ -33,17 +33,13 @@ if(isset($_POST))
 	$multi_artist = $db->get_results($song_list,ARRAY_A);
 	$count_num = count($multi_artist);
 												
-$song_list_arr	=	$db->get_row($song_list,ARRAY_A);
+	$song_list_arr	=	$db->get_row($song_list,ARRAY_A);
 	
 	$sizeofalbum  = sizeof($_REQUEST['album']);
 	
 	
 	$update_id = $_REQUEST['update_id'];
-	/*if($sizeofalbum == "")
-	{
-		$errorstr .="Please select at least one album\n";
-		$case = 0;
-	}*/
+ 
 	
 	if(!$song_list_arr)
 	{
@@ -141,4 +137,3 @@ $song_list_arr	=	$db->get_row($song_list,ARRAY_A);
 		echo $errorstr;
 	}
 }
-?>

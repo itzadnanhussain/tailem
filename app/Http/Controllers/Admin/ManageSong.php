@@ -60,7 +60,7 @@ class ManageSong extends Controller
         ///status
         if (isset($_GET['status'])) {
             $data['status'] = $_GET['status'];
-         }
+        }
 
         ///case
         if (isset($_GET['case'])) {
@@ -252,10 +252,10 @@ class ManageSong extends Controller
                     $last_record  =  addNew('songs', $post_data);
                     $arr  = $_REQUEST['artist'];
 
-                    for ($m = 0; $m < $sizeofarray; $m++) {   
+                    for ($m = 0; $m < $sizeofarray; $m++) {
                         $artist_nn = "select id from tbl_artists where artist_name='" . trim($arr[$m]) . "' ";
-                        $artist_nn_arr = \App\Models\Songs::GetRawData($artist_nn);  
-                        $update_id = $last_record; 
+                        $artist_nn_arr = \App\Models\Songs::GetRawData($artist_nn);
+                        $update_id = $last_record;
                         $qry = "insert into tbl_songs_artist set song_id='" .  stripslashes($update_id) . "',artist_id='" . $arr[$m] . "', posted_date='" . time() . "'";
                         \App\Models\Songs::GetRawData($qry);
                     }
@@ -372,17 +372,17 @@ class ManageSong extends Controller
     {
         if (!empty($_POST['del_id'])) {
             extract($_POST);
-            $del_qry="Delete from tbl_songs_artist_album where song_id='".$del_id."'";
-            \App\Models\Songs::GetRawData($del_qry);
-            
-            $del_qry="Delete from tbl_reviews where song_id='".$del_id."'";
+            $del_qry = "Delete from tbl_songs_artist_album where song_id='" . $del_id . "'";
             \App\Models\Songs::GetRawData($del_qry);
 
-                
-            $sql = "DELETE from tbl_songs where id = '".$del_id."'";
+            $del_qry = "Delete from tbl_reviews where song_id='" . $del_id . "'";
+            \App\Models\Songs::GetRawData($del_qry);
+
+
+            $sql = "DELETE from tbl_songs where id = '" . $del_id . "'";
             \App\Models\Songs::GetRawData($sql);
 
-             echo 'done';
+            echo 'done';
         } else {
             echo 'Error';
         }
@@ -532,11 +532,11 @@ class ManageSong extends Controller
 
 
             if ($status == 0) {
-                //echo '<a href="song_list.php?status='.base64_encode(1).'&status_id='.base64_encode($id).'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>'; 
+                //echo '<a href="song_list?status='.base64_encode(1).'&status_id='.base64_encode($id).'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>'; 
                 echo '<a href="javascript:;" onclick = "change_status(' . $song_id . ', 1)" id = "remove_song_' . $song_id . '"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>';
             }
             if ($status == 1) {
-                //echo '<a href="song_list.php?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
+                //echo '<a href="song_list?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
                 echo '<a href="javascript:;" onclick = "change_status(' . $song_id . ', 0)" id = "remove_song_' . $song_id . '"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>';
             }
         }
@@ -576,7 +576,7 @@ class ManageSong extends Controller
         $data['status_id'] = null;
         $data['latest'] = null;
         $data['song_id'] = null;
- 
+
 
 
         ///sortby
@@ -597,21 +597,21 @@ class ManageSong extends Controller
         if (isset($_GET['status_id'])) {
             $data['status_id'] = $_GET['status_id'];
         }
-       
+
         ///song_id
         if (isset($_GET['song_id'])) {
             $data['song_id'] = $_GET['song_id'];
-        } 
+        }
 
         ///status
         if (isset($_GET['status'])) {
             $data['status'] = $_GET['status'];
-         }
+        }
 
         ///case
         if (isset($_GET['case'])) {
             $data['case'] = $_GET['case'];
-        } 
+        }
 
         ///common  lines
         $data['currentFile'] = 'artist_list_song';
@@ -620,6 +620,238 @@ class ManageSong extends Controller
         $data['title'] = GetTitle();
 
         return view('admin.artist_list_song', $data);
+    }
 
+
+    ///Artist_List_Album_Song
+    public function Artist_List_Album_Song()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+        $data['latest'] = null;
+        $data['song_id'] = null;
+        $data['artist_id'] = null;
+
+
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+        ///status_id
+        if (isset($_GET['status_id'])) {
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///song_id
+        if (isset($_GET['song_id'])) {
+            $data['song_id'] = $_GET['song_id'];
+        }
+
+        ///artist_id
+        if (isset($_GET['artist_id'])) {
+            $data['artist_id'] = $_GET['artist_id'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'artist_list_album_song';
+        $data['targetpage'] = 'artist_list_album_song';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.artist_list_album_song', $data);
+    }
+
+    ///Addedit_Song_Artist_Album
+    public function Addedit_Song_Artist_Album()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+        $data['latest'] = null;
+        $data['song_id'] = null;
+        $data['artist_id'] = null;
+
+
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+        ///status_id
+        if (isset($_GET['status_id'])) {
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///song_id
+        if (isset($_GET['song_id'])) {
+            $data['song_id'] = $_GET['song_id'];
+        }
+
+        ///artist_id
+        if (isset($_GET['artist_id'])) {
+            $data['artist_id'] = $_GET['artist_id'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'addedit_song_artist_album';
+        $data['targetpage'] = 'addedit_song_artist_album';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.addedit_song_artist_album', $data);
+    }
+
+    ///Song_Artist_Album_Process
+    public function Song_Artist_Album_Process()
+    {
+        error_reporting(0);
+        if (isset($_POST)) {
+
+
+            $errorstr = "";
+            $case = 1;
+
+            function SEO($input)
+            {
+                $input = str_replace("&nbsp;", " ", $input);
+                $input = str_replace(array("'", "-"), "", $input); //remove single quote and dash
+                $input = mb_convert_case($input, MB_CASE_LOWER, "UTF-8"); //convert to lowercase
+                $input = preg_replace("#[^a-zA-Z]+#", "-", $input); //replace everything non an with dashes
+                $input = preg_replace("#(-){2,}#", "$1", $input); //replace multiple dashes with one
+                $input = trim($input, "-"); //trim dashes from beginning and end of string if any
+                return $input;
+            }
+
+
+            $artist_id    = trim($_REQUEST['artist_id']);
+            $song_id    = trim($_REQUEST['song_id']);
+            $album   =  sizeof($_REQUEST['album']);
+
+            $dec_artist_id    = base64_decode(trim($_REQUEST['artist_id']));
+            $dec_id    = base64_decode(trim($_REQUEST['song_id']));
+
+
+            $song_list = "SELECT sa.id,a.artist_img,s.song_title,a.artist_name, sa.song_id, sa.artist_id FROM tbl_songs s, tbl_songs_artist sa, tbl_artists a where 1=1 AND a.id = sa.artist_id AND sa.song_id = s.id AND sa.song_id = '$dec_id'";
+            $multi_artist = \App\Models\Songs::GetRawData($song_list);
+            $count_num = count($multi_artist); 
+            $song_list_arr    =    \App\Models\Songs::GetRawData($song_list); 
+            $sizeofalbum  = sizeof($_REQUEST['album']); 
+            $update_id = $_REQUEST['update_id'];
+
+
+            if (!$song_list_arr) {
+                $errorstr .= "Invalid song and artist ID\n";
+                $case = 0;
+            }
+            if ($case == 1) {  
+                $arr  = $_REQUEST['album']; 
+                \App\Models\Songs::GetRawData("update tbl_songs_artist_album set display_status = 0 where song_id='" . stripslashes($dec_id) . "' AND artist_id='" . stripslashes($dec_artist_id) . "'");
+
+                $check_count = 0;
+                for ($m = 0; $m <= $sizeofalbum; $m++) {
+
+                    if ($count_num > 1) {
+
+                        foreach ($multi_artist as $multi_artist) {
+                            $artist_get_id  =  $multi_artist['artist_id'];
+
+                            $query_list = "select display_status from tbl_songs_artist_album where song_id = $dec_id AND artist_id = $artist_get_id  AND album_id = '" . $arr[$m] . "'";
+
+                            $album_list_arr    =    \App\Models\Songs::GetRawData($query_list);
+
+                            //echo $album_list_arr['display_status'];	
+
+
+                            if ($album_list_arr) {
+                                if ($album_list_arr['display_status'] == 0) {
+                                    \App\Models\Songs::GetRawData("update tbl_songs_artist_album set display_status = 1 where song_id='" . stripslashes($dec_id) . "' AND artist_id='" . stripslashes($artist_get_id) . "' AND album_id = '" . $arr[$m] . "'");
+                                }
+                            } else {
+                                $check_count++;
+
+                                if ($arr[$m] != "" && $arr[$m] != 0) {
+
+                                    \App\Models\Songs::GetRawData("insert into tbl_songs_artist_album set song_id='" . stripslashes($dec_id) . "',artist_id='" . stripslashes($artist_get_id) . "',status='1', 	display_status='1', posted_date='" . time() . "', album_id = '" . $arr[$m] . "'");
+                                }
+                            }
+                        }
+                    } else {
+                        $query_list = "select display_status from tbl_songs_artist_album where song_id = $dec_id AND artist_id = $dec_artist_id  AND album_id = '" . $arr[$m] . "'";
+
+                        $album_list_arr    =    \App\Models\Songs::GetRawData($query_list);
+
+
+                        if ($album_list_arr) {
+                            if ($album_list_arr['display_status'] == 0) {
+
+                                \App\Models\Songs::GetRawData("update tbl_songs_artist_album set display_status = 1 where song_id='" . stripslashes($dec_id) . "' AND artist_id='" . stripslashes($dec_artist_id) . "' AND album_id = '" . $arr[$m] . "'");
+                            }
+                        } else {
+                            $check_count++;
+
+                            if ($arr[$m] != "" && $arr[$m] != 0) {
+
+
+                                \App\Models\Songs::GetRawData("insert into tbl_songs_artist_album set song_id='" . stripslashes($dec_id) . "',artist_id='" . stripslashes($dec_artist_id) . "',status='1', 	display_status='1', posted_date='" . time() . "', album_id = '" . $arr[$m] . "'");
+                            }
+                        }
+                    }
+                }
+
+                echo 'done-SEPARATOR-' . SERVER_ADMIN_PATH . "artist_list_album_song?song_id=$song_id&artist_id=$artist_id";
+            } else {
+                echo $errorstr;
+            }
+        }
     }
 }
