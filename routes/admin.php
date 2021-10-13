@@ -224,6 +224,13 @@ Route::post('admin/process/report_option_process', [ReviewManagement::class, 'Re
 Route::post('admin/process/delete_report_option', [ReviewManagement::class, 'Delete_Report_Option']);
 
 
+///Edit_Discussion
+Route::any('admin/edit_discussion', [ReviewManagement::class, 'Edit_Discussion']);
+Route::post('admin/process/edit_discussion_process', [ReviewManagement::class, 'Edit_Discussion_Process']);
+Route::any('admin/gcomments_reports', [ReviewManagement::class, 'Gcomments_Reports']);
+Route::any('admin/process/delete_review_comment', [ReviewManagement::class, 'Delete_Review_Comment']);
+Route::any('admin/process/review_comment_actions', [ReviewManagement::class, 'Review_Comment_Actions']);
+
 /*
 |----------------------------------------------------
 |                AlbumsManagement Controller

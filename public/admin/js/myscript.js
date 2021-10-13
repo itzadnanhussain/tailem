@@ -365,6 +365,40 @@ function validate_region_Response(responseText, statusText) {
     }
 }
 
+/****************************Delete Review********************/
+
+function delete_review_comment(del_id) {
+    var conBox = confirm("Are you sure,you want to delete this Record?");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
+
+    if (conBox) {
+        $.ajax({
+            type: "POST", 
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_review_comment", 
+            data: {
+                del_id: del_id,
+                _token: csrf_token,
+            },
+
+            beforeSend: function () {},
+
+            success: function (msg) {
+                if (msg.search("done") != -1) {
+                    alert("Record Delete Successfully");
+                } else {
+                    alert("Some Error occured in deleting Record");
+                }
+
+                window.location.reload();
+            },
+
+            error: function () {},
+        });
+    } else {
+        return;
+    }
+}
+
 /****************************Delete Regions********************/
 
 function delete_region(del_id) {
@@ -1618,18 +1652,17 @@ function validate_report_option_Response(responseText, statusText) {
 
 function delete_report_option(del_id) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-   
-    
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
+
     if (conBox) {
         $.ajax({
             type: "POST",
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_report_option",
 
-            data: { 
-             "del_id" : del_id,
-             "_token": csrf_token,
+            data: {
+                del_id: del_id,
+                _token: csrf_token,
             },
 
             beforeSend: function () {},
@@ -3120,11 +3153,11 @@ function validate_allocate_review_Response(responseText, statusText) {
 /*===================Validate General Setting====================*/
 function validate_general_setting() {
     $("#setting_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
     var options = {
         target: "",
-        data : {
-            "_token": csrf_token,
+        data: {
+            _token: csrf_token,
         },
         beforeSubmit: validate_general_setting_Request,
         success: validate_general_setting_Response,
@@ -3150,15 +3183,14 @@ function validate_general_setting_Response(responseText, statusText) {
     }
 }
 
-
 /*===================validate_social_icon====================*/
 function validate_social_icon() {
     $(".social_icons").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
     var options = {
         target: "",
-        data : {
-            "_token": csrf_token,
+        data: {
+            _token: csrf_token,
         },
         beforeSubmit: validate_general_setting_Request,
         success: validate_general_setting_Response,
@@ -3311,7 +3343,12 @@ function unset_featured_topic(review_topic_id) {
 /*===================Validate Edit Discussion ====================*/
 function validate_edit_discussion() {
     $("#edit_discussion_form").unbind("submit");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
+
     var options = {
+        data: {
+            _token: csrf_token,
+        },
         target: "",
         beforeSubmit: validate_edit_discussion_Request,
         success: validate_edit_discussion_Response,
@@ -3666,11 +3703,11 @@ function validate_song_artist_album() {
 
 function validate_featured_atritst_assocs() {
     $("#featured_song_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
     var options = {
         target: "",
         data: {
-            "_token": csrf_token,
+            _token: csrf_token,
         },
         beforeSubmit: validate_song_artist_album_Request,
         success: validate_songs_featured_assocs_response,
@@ -3756,13 +3793,12 @@ function artist_check(val) {
 //Stores Images
 function validate_store_images() {
     $("#store_images_form").unbind("submit");
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
 
     var options = {
         target: "",
         data: {
-            "_token": csrf_token,
+            _token: csrf_token,
         },
         beforeSubmit: validate_store_images_Request,
         success: validate_store_images_Response,

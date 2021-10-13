@@ -1,6 +1,7 @@
+@include("admin.includes.top")
+@include("admin.common.security")
 <?php 
-include("includes/top.php");
-include("common/security.php"); 
+ error_reporting(0);
 /*================== Search Filter Start Here=================*/
 $keys  = $_REQUEST['key'];
 $gcommentsid = base64_decode($keys);
@@ -42,7 +43,7 @@ if(isset($_POST['Reset']))
 	unset($_SESSION['sess_rreport']);
 	$_SESSION['sess_rreport']="";
 	
-	header("Location:gcomments_reports.php?key=".$_REQUEST['key']."&review=".$_REQUEST['review']);
+	header("Location:gcomments_reports?key=".$_REQUEST['key']."&review=".$_REQUEST['review']);
 }
 /*================== Search Filter End Here=================*/
 //---------- Ordering ----------//
@@ -68,7 +69,7 @@ switch($sortby)
 <html>
 <head>
 <title>Comments Reports Listing</title>
-<?php include("common/header.php");?>
+ @include("admin.common.header") 
 <script language="javascript" type="text/javascript">
 // check boxess submit code
 function toggleChecked(c_report_status)
@@ -104,7 +105,7 @@ function show_detail(id)
   
     <tr>
         <td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-            <?php include("common/top_right_menu.php"); ?>
+          @include("admin.common.top_right_menu") 
         </td>
     </tr>
     <tr>
@@ -122,19 +123,20 @@ function show_detail(id)
                       <tr>
                         <td class="body"><table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tr>
-                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a> &raquo; <a>&raquo; <a href="<?php echo SERVER_ADMIN_PATH;?>gcomments.php">Discussions Listing</a>&raquo; <a>Comments Report Listing</a></td>
+                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index">Home</a> &raquo; <a>&raquo; <a href="<?php echo SERVER_ADMIN_PATH;?>gcomments">Discussions Listing</a>&raquo; <a>Comments Report Listing</a></td>
                               </tr>
 							  <?php
                               $comments_qry="select * from tbl_comments where 
 							  comment_id='".$gcommentsid."' ";
-                              $comment_arr	=	$db->get_row($comments_qry,ARRAY_A);
+                              $comment_arr	=	\App\Models\Songs::GetRawDataAdmin($comments_qry);
                               if($comment_arr)
                               {
                               ?>
                               <tr>
                                 <td>
                                 	<form name="search_form" id="search_form" method="post" action="">
-                                    <table border="0" cellpadding="0" cellspacing="0" align="center" width="500" 
+                                  @csrf 
+                                  <table border="0" cellpadding="0" cellspacing="0" align="center" width="500" 
                                     style="border:1px solid #000000; padding:10px;">
                                         <tbody>
                                             <tr>
@@ -162,11 +164,12 @@ function show_detail(id)
                                                      <?php
                                                      $users_qry ="select u.user_id,u.user_name from tbl_users u, tbl_review_report r where u.status=1 AND u.user_id = r.r_report_user_id AND r.status = 1 group by r.r_report_user_id
                                                      order by user_name asc";
-                                                     $users_arr = $db->get_results($users_qry,ARRAY_A);
+                                                     $users_arr = \App\Models\Songs::GetRawData($users_qry);;
                                                      if($users_arr)
                                                      {
                                                         foreach($users_arr as $val)
                                                         {
+                                                          $val = (array)$val;
                                                             $user_id   = $val['user_id'];
                                                             $user_name = $val['user_name'];
 															$user_name = html_entity_decode(stripslashes($user_name));
@@ -215,13 +218,13 @@ function show_detail(id)
 									
 									$select_qry ="select user_name from tbl_users where 
 									user_id='".$gcomment_user_id."' ";
-									$select_ar  = $db->get_row($select_qry,ARRAY_A);
+									$select_ar  = \App\Models\Songs::GetRawDataAdmin($select_qry);
 									$user_name = stripslashes(html_entity_decode($select_ar['user_name']));
 									$user_name = wordwrap($user_name,100," ",true);
 									
 									$cat_qry ="select cat_name from tbl_categories where 
 									cat_id='".$gcomment_cat_id."' ";
-									$cat_arr  = $db->get_row($cat_qry,ARRAY_A);
+									$cat_arr  = \App\Models\Songs::GetRawData($cat_qry);;
 									$cat_name = stripslashes(html_entity_decode($cat_arr['cat_name']));
 									$cat_name = wordwrap($cat_name,100," ",true);
 								?>
@@ -300,17 +303,17 @@ function show_detail(id)
                                         <td width="30" id="Heading_list">Sr #</td>
                                         <td width="200" id="Heading_list">
                                         <?php if($sortby == 'user_desc'){?>
-                                        <a href="gcomments_reports.php?sortby=user_asc&page=<?php echo $page;?>&key=<?php echo $key;?>" class="link_class">Report User</a>
+                                        <a href="gcomments_reports?sortby=user_asc&page=<?php echo $page;?>&key=<?php echo $key;?>" class="link_class">Report User</a>
                                         <?php }else{?>
-                                        <a href="gcomments_reports.php?sortby=user_desc&page=<?php echo $page;?>&key=<?php echo $key;?>" class="link_class">Report User</a>
+                                        <a href="gcomments_reports?sortby=user_desc&page=<?php echo $page;?>&key=<?php echo $key;?>" class="link_class">Report User</a>
                                         <?php }?>
                                         </td>
                                         
                                         <td width="150" id="Heading_list">
                                         <?php if($sortby == 'issue_desc'){?>
-                                        <a href="review_reports.php?sortby=issue_asc&page=<?php echo $page;?>&key=<?php echo $key;?>" class="link_class">Issue</a>
+                                        <a href="review_reports?sortby=issue_asc&page=<?php echo $page;?>&key=<?php echo $key;?>" class="link_class">Issue</a>
                                         <?php }else{?>
-                                        <a href="review_reports.php?sortby=issue_desc&page=<?php echo $page;?>&key=<?php echo $key;?>" class="link_class">Issue</a>
+                                        <a href="review_reports?sortby=issue_desc&page=<?php echo $page;?>&key=<?php echo $key;?>" class="link_class">Issue</a>
                                         <?php }?>
                                         </td>
                                         
@@ -326,21 +329,25 @@ function show_detail(id)
 										?>
                                       </tr>
                                       
-									  <form action="<?php echo SERVER_ADMIN_PATH; ?>process/gcomment_report_actions.php" method="post" id="gc_report_form">
-									  <?php
+									  <form action="<?php echo SERVER_ADMIN_PATH; ?>process/gcomment_report_actions" method="post" id="gc_report_form">
+									 @csrf
+                   <?php
 									  		
 											//============================================================
 											//PAGGING CODE STARTS HERE
 											$qry_count_mypro = "select r.r_report_id from tbl_review_report r, tbl_reports_checkbox c  where 1=1 and 
 										r.r_report_review_id='".$gcommentsid."' AND r.status = 1 AND r.r_report_option = c.report_chk_box_id $session_where $orderby";
-											$res_count_mypro = mysqli_query($db->dbh, $qry_count_mypro);
-												
-											$targetpage = "gcomments_reports.php"; 
-											
-											$total_pages = mysqli_num_rows($res_count_mypro);
-											
+										
+                    $res_count_mypro = array();
+                    $res_count_mypro = \App\Models\Songs::GetRawData($qry_count_mypro);
+                    if ($res_count_mypro) {
+                      $total_pages = count($res_count_mypro);
+                    } else {
+                      $total_pages = 0;
+                    }
+											$targetpage = "gcomments_reports"; 
 											$limit = 10; 					//how many items to show per page
-											$page = $_GET['page'];
+										 
 											if($page) 
 												$start = ($page - 1) * $limit;//first item to display on this page
 											else
@@ -363,12 +370,13 @@ function show_detail(id)
 										r.r_report_review_id='".$gcommentsid."' AND r.status = 1 AND r.r_report_option = c.report_chk_box_id $session_where $orderby 
 										LIMIT $start, $limit";	
 											
-										$report_arr	=	$db->get_results($report_query,ARRAY_A);
+										$report_arr	=	\App\Models\Songs::GetRawData($report_query);
 										
 										if(isset($report_arr))
 										{
 											foreach($report_arr as $val)
 											{
+                        $val = (array)$val;
 												$gc_report_id	  = $val['r_report_id'];	
 												$gc_report_user_id = $val['r_report_user_id'];
 												$gc_report_deatil = $val['r_report_details'];
@@ -380,7 +388,7 @@ function show_detail(id)
 												
 												$select_qry ="select user_name from tbl_users where 
 												user_id='".$gc_report_user_id."' ";
-                                                $select_ar  = $db->get_row($select_qry,ARRAY_A);
+                                                $select_ar  = \App\Models\Songs::GetRawData($select_qry);;
 												$user_name = stripslashes(html_entity_decode($select_ar['user_name']));
 												$user_name = wordwrap($user_name,100," ",true);
 												
@@ -483,7 +491,8 @@ function show_detail(id)
 									  }
 									  ?>
 									  <tr>
-                                        <td colspan="5" align="center" valign="middle"><?php include("common/comment_paging.php"); ?></td>
+                                        <td colspan="5" align="center" valign="middle">
+                                           @include("admin.common.comment_paging") </td>
                                       </tr>
 									  </form>
                                     
@@ -511,7 +520,8 @@ function show_detail(id)
     </tr>
 	
     <tr>
-      <td height="20"><?php include("common/footer.php");?></td>
+      <td height="20">
+         @include("admin.common.footer") </td>
     </tr>
   </tbody>
 </table>

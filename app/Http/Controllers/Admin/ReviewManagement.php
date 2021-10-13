@@ -955,4 +955,202 @@ class ReviewManagement extends Controller
             echo 'Error';
         }
     }
+
+    ///Edit_Discussion
+    public function Edit_Discussion()
+    {
+        $data = array();
+
+        ///edit_id
+        if (isset($_GET['edit_id'])) {
+            $data['edit_id'] = $_GET['edit_id'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'edit_discussion';
+        $data['targetpage'] = 'edit_discussion';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.edit_discussion', $data);
+    }
+
+    ///Edit_Discussion_Process
+    public function Edit_Discussion_Process()
+    {
+        if (isset($_POST)) {
+            extract($_POST);
+            $errorstr = "";
+            $case = 1;
+            if ($update_id == "") {
+                $errorstr .= "Please Select Valid discussion for Edit\n";
+                $case = 0;
+            } elseif ($update_id != "") {
+                $chk_discussion_qry = "select comment_id as chk_discussion_id, comment_user_id  from tbl_comments where comment_id='" . $update_id . "' ";
+                $chk_discussion_arr = \App\Models\Songs::GetRawDataAdmin($chk_discussion_qry);
+
+                $chk_discussion_id  = $chk_discussion_arr['chk_discussion_id'];
+                $gcomment_user_id   = $chk_discussion_arr['comment_user_id'];
+                // $gcomment_cat_id    = $chk_discussion_arr['gcomment_cat_id'];
+                if ($chk_discussion_id == "") {
+                    $errorstr .= "Please Select Valid discussion for Edit\n";
+                    $case = 0;
+                } else {
+                    if ($gcomment_detail == "") {
+                        $errorstr .= "Please Enter Discussion Details\n";
+                        $case = 0;
+                    }
+                }
+            }
+
+
+            if ($case == 1) {
+                \App\Models\Songs::GetRawData("Update tbl_comments set comment_details ='" .  $gcomment_detail  . "' where  comment_id='" . $update_id . "' ");
+
+                //Insert Notification
+                $insert_notification_qry = "INSERT INTO tbl_notifications set 
+		notification_sent_user_id='" . session()->get('reviewsite_cpadmin_id') . "', notification_receive_user_id='" . $gcomment_user_id . "',type='Moderator Edit Discussion', read_status='unread', status='1', date_added='" . time() . "' ";
+                \App\Models\Songs::GetRawData($insert_notification_qry);
+
+                echo 'done';
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+
+
+    ///Gcomments_Reports
+    public function Gcomments_Reports()
+    {
+        $data = array();
+        $data['key'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+
+
+        ///key
+        if (isset($_GET['key'])) {
+            $data['key'] = $_GET['key'];
+        }
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'gcomments_reports';
+        $data['targetpage'] = 'gcomments_reports';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.gcomments_reports', $data);
+    }
+
+
+    ///Delete_Review_Comment
+    public function Delete_Review_Comment()
+    {
+        if (!empty($_POST['del_id'])) {
+            $select_qry = "select comment_id from tbl_comments where comment_id='" . $_POST['del_id'] . "' ";
+            $select_arr = \App\Models\Songs::GetRawDataAdmin($select_qry);
+            $comment_id     = $select_arr['comment_id'];
+            if ($comment_id == "") {
+                echo 'Error';
+            } else {
+                $del_qry = "Delete from tbl_comments where comment_id='" . $comment_id . "'";
+                \App\Models\Songs::GetRawData($del_qry);
+
+                echo 'done';
+            }
+        } else {
+            echo 'Error';
+        }
+    }
+
+    ///Review_Comment_Actions
+    public function Review_Comment_Actions()
+    {
+      
+        if (!empty($_POST['gcomment_ids'])) {
+            if ($_POST['dropdown'] == 'Delete') // from button name="delete"
+            {
+                $checkbox = $_POST['gcomment_ids']; //from name="checkbox[]"
+                $countCheck = count($_POST['gcomment_ids']);
+
+                for ($i = 0; $i < $countCheck; $i++) {
+                    $del_id    = base64_decode($checkbox[$i]);
+                    // $del_report = "DELETE from tbl_comment_report where c_report_comment_id = '" . $del_id . "' ";
+                    // \App\Models\Songs::GetRawData($del_report);
+
+                    // $del_like = "DELETE from tbl_comments_likes where comment_like_comment_id = '" . $del_id . "' ";
+                    // \App\Models\Songs::GetRawData($del_like);
+
+                    $del_comment = "DELETE from tbl_comments where comment_id = '" . $del_id . "' ";
+                    $result = \App\Models\Songs::GetRawData($del_comment);
+                }
+
+                if (empty($result)) {
+                    $okmsg = base64_encode("Deletion Successfully Done.");
+                    $url = "admin/gcomments?msg=$okmsg&case=1";
+                    return  redirect($url);
+                } else {
+                    $errormsg = base64_encode('There are something wrong');
+                    $url = "admin/gcomments?msg=$errormsg&case=2";
+                    return redirect($url);
+                }
+            }
+        } else {
+
+            $errormsg = base64_encode('First select a record to perform some action');
+            $url = "admin/gcomments?msg=$errormsg&case=2";
+            return redirect($url);
+        }
+    }
 }

@@ -221,6 +221,7 @@ switch ($sortby) {
                                   ?>
                                 </tr>
                                 <form action="<?php echo SERVER_ADMIN_PATH; ?>process/review_comment_actions" method="post" id="comment_form">
+                                  @csrf
                                   <?php
                                   //============================================================
                                   //PAGGING CODE STARTS HERE

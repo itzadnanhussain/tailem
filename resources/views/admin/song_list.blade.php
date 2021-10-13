@@ -648,6 +648,7 @@ if (isset($latest) && !empty($latest)) {
 																	if (isset($song_list_arr)) {
 																		foreach ($song_list_arr as $val) {
 																			$val = (array)$val;
+																			 
 																			$id	  = $val['id'];
 																			$song_title = stripslashes(html_entity_decode($val['song_title']));
 																			$picture   = stripslashes(html_entity_decode($val['picture']));
@@ -667,6 +668,18 @@ if (isset($latest) && !empty($latest)) {
 
 																			$c++;
 																			$sr_no++;
+																			// if($val['id'] == 697365691)
+																			// {
+																			// 	// Get artist list
+																			// $artist_list	=	"select a.id as db_art_id,a.artist_name, a.artist_seo from tbl_artists a, tbl_songs_artist sa where a.id = sa.artist_id AND sa.song_id = $id order by sa.id asc";
+																			// $artist_list_arr	=	\App\Models\Songs::GetRawData($artist_list);
+																			// echo '<pre>';
+																			// print_r($artist_list_arr);
+																			// echo '</pre>';
+																			// die;
+
+
+																			// }
 																			// Get artist list
 																			$artist_list	=	"select a.id as db_art_id,a.artist_name, a.artist_seo from tbl_artists a, tbl_songs_artist sa where a.id = sa.artist_id AND sa.song_id = $id order by sa.id asc";
 																			$artist_list_arr	=	\App\Models\Songs::GetRawData($artist_list);
