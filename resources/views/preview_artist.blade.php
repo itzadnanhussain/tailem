@@ -648,8 +648,8 @@ $counter = 0;
                                                         </p>
                                                     <?php } ?>
                                                     <p>
-                                                        <label class="reviews"><img src="static/images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
-                                                        <label class="reviews" style="margin-left:10px;"><img src="static/images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
+                                                        <label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
+                                                        <label class="reviews" style="margin-left:10px;"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
                                                     </p>
                                                 </div>
                                             </div>
@@ -776,8 +776,8 @@ $counter = 0;
                                                         </p>
                                                     <?php } ?>
                                                     <p>
-                                                        <label class="reviews"><img src="static/images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
-                                                        <label class="reviews"><img src="static/images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
+                                                        <label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
+                                                        <label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
                                                     </p>
                                                     <p style="float:left; margin-left:0; font-size: 18px;">
                                                         <?php

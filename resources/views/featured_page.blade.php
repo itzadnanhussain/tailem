@@ -528,8 +528,8 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                                     <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo); ?>/artist-songs"><?php echo $artist_name; ?></a></label>
                                                     <p><label class="author"><?php if ($feature_artists != "") { ?> <strong>ft.</strong> <?php echo $feature_artists;
                                                                                                                                         } ?></label></p>
-                                                    <p><label class="reviews"><img src="static/images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
-                                                        <label class="reviews" style="margin-left:10px;"><img src="static/images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
+                                                    <p><label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"><a>Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label>
+                                                        <label class="reviews" style="margin-left:10px;"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label>
                                                     </p>
                                                 </div>
                                             </div>
@@ -639,7 +639,7 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                                     </p>
                                                     <div style="clear:both;"></div>
 
-                                                    <p><label class="reviews"><img src="static/images/review-book.png"><a href="#">Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label><label class="reviews"><img src="static/images/icon_post.png"><a href="#">Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label></p>
+                                                    <p><label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"><a href="#">Reviews <span><?php echo $review_list_arr_top['count_reviews']; ?></span></a></label><label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png"><a href="#">Posts <span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label></p>
                                                     <p style="float:left; margin-left:0; font-size: 18px;"><?php echo $years; ?>
                                                     </p>
                                                 </div>

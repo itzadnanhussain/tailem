@@ -269,8 +269,8 @@
                                    <div class="activity-panel">
                                         <label class="likes darkgrey_rev" ><i class="fa fa-heart-o heart_size ft_20"></i> Likes <text class="heart_color"> <?php echo $like_list_arr_user['count_likes'] + $counter_main_profile_like2;?></text></label>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <label class="likes darkgrey_rev" ><img src="static/images/review-book.png" >Reviews <text class="heart_color"> <?php echo $review_list_arr_top['count_reviews'];?></text></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <label class="likes darkgrey_rev" ><img src="static/images/icon_post.png" >Posts <text class="heart_color"> <?php echo $comment_list_arr['count_discussion'];?></text></label>
+                                        <label class="likes darkgrey_rev" ><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png" >Reviews <text class="heart_color"> <?php echo $review_list_arr_top['count_reviews'];?></text></label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <label class="likes darkgrey_rev" ><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png" >Posts <text class="heart_color"> <?php echo $comment_list_arr['count_discussion'];?></text></label>
 						</div>
                                     
                                      </div>
@@ -349,8 +349,8 @@
                                               <div class="clearfix"></div>
                                               <div class="activity-panel">
 						 	<label class="likes darkgrey_rev" ><i class="fa fa-heart-o heart_size ft_20"></i> Likes <text class="heart_color"><?php echo $like_list_arr_user['count_likes'] + $counter_main_profile_like2;?></text></label><br>
-                        	<label class="likes darkgrey_rev" style="margin-bottom:0;" ><img src="static/images/review-book.png" style="margin-bottom:10px; margin-top:7px;"> Reviews <text class="heart_color"><?php echo $review_list_arr_top['count_reviews'];?></text></label>
-							&nbsp;&nbsp;&nbsp;&nbsp;<label class="likes darkgrey_rev" ><img src="static/images/icon_post.png" style="margin-bottom:5px;"> Posts <text class="heart_color"><?php echo $comment_list_arr['count_discussion'];?></text></label>
+                        	<label class="likes darkgrey_rev" style="margin-bottom:0;" ><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png" style="margin-bottom:10px; margin-top:7px;"> Reviews <text class="heart_color"><?php echo $review_list_arr_top['count_reviews'];?></text></label>
+							&nbsp;&nbsp;&nbsp;&nbsp;<label class="likes darkgrey_rev" ><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post.png" style="margin-bottom:5px;"> Posts <text class="heart_color"><?php echo $comment_list_arr['count_discussion'];?></text></label>
 						</div>
                                     </div>
 								</div>
