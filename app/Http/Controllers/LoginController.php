@@ -122,6 +122,7 @@ class LoginController extends Controller
 
             if ($check_user) {
                 if (Hash::check($request->password, $check_user[0]->password)) {
+                   
                     ///set session
                     $request->session()->put('user_id', $check_user[0]->user_id);
                     $request->session()->put('user_name', $check_user[0]->user_name);
@@ -135,6 +136,7 @@ class LoginController extends Controller
                     $response = array("code" => 'success', 'url' => $string_url, 'location' => $location);
                     return response()->json($response);
                 }
+                
 
                 return response()->json(['code' => 'warning', 'message' => 'Password Not Match']);
             }

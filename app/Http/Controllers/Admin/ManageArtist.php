@@ -645,15 +645,22 @@ class ManageArtist extends Controller
     public function Featured_Artist_Album_Assocs()
     {
         if (isset($_POST)) {
-
+            extract($_POST);
+            error_reporting(0);
             $errorstr = "";
             $case = 1;
 
 
-            $song_id = trim($_REQUEST['song_id']);
-            $main_artist = trim($_REQUEST['main_artist']);
-            $album_id = trim($_REQUEST['album_id']);
-            $sizeofarray   =  sizeof($_REQUEST['featured_artist']);
+            // $song_id = trim($_REQUEST['song_id']);
+            // $main_artist = trim($_REQUEST['main_artist']);
+            // $album_id = trim($_REQUEST['album_id']);
+            if(isset($featured_artist) && !empty($featured_artist))
+            {
+                $sizeofarray   =  sizeof($_REQUEST['featured_artist']);
+
+            }else{
+                $sizeofarray = 0;
+            }
 
 
             $dec_main_artist   = base64_decode($main_artist);

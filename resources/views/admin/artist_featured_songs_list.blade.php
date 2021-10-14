@@ -2,7 +2,7 @@
 @include("admin.common.security")
 
 <?php
-// error_reporting(0);
+error_reporting(0);
 $dec_artist_id = base64_decode($artist_id);
 // $dec_album_id = base64_decode($album_id);
 
@@ -47,7 +47,7 @@ $artist_name = $artist_list_arr[0]->artist_name;
                     <td class="body">
                       <table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
                         <tr>
-                          <td><a href="<?php echo SERVER_ADMIN_PATH; ?>index.php">Home</a>
+                          <td><a href="<?php echo SERVER_ADMIN_PATH; ?>index">Home</a>
                             &raquo; <a href="artist_list">Artist Listing</a>
                             &raquo; <a>Artist <?php echo $artist_name; ?> Album Listing</a></td>
                         </tr>
@@ -94,7 +94,7 @@ $artist_name = $artist_list_arr[0]->artist_name;
                                   <td width="100" class="righttd_border" id="Heading_list">Main Artist</td>
                                 </tr>
 
-                                <form action="<?php echo SERVER_ADMIN_PATH; ?>process/album_actions.php" method="post" id="faq_form">
+                                <form action="<?php echo SERVER_ADMIN_PATH; ?>process/album_actions" method="post" id="faq_form">
                                   <input type="hidden" name="artist_id" id="artist_id" value="<?php echo $_REQUEST['artist_id']; ?>">
                                   <?php
                                   $artist_list = "select tfa.main_artist,tfa.album_id,ts.song_title,ts.picture,tab.album_picture,tab.album_title,ta.artist_name as artists, tfa.add_date  from tbl_featured_artist_assocs tfa
@@ -158,7 +158,7 @@ where tfa.featured_artist= '$dec_artist_id'";
 
 
                                         <td nowrap="nowrap" class="SmallFieldLabel" width="70">
-                                          <a href="<?php echo SERVER_ROOTPATH; ?>Admin-Cp/artist_album_songs_list.php?artist_id=<?php echo base64_encode($main_artist); ?>&album_id=<?php echo base64_encode($album_id); ?>">
+                                          <a href="<?php echo SERVER_ROOTPATH; ?>admin/artist_album_songs_list?artist_id=<?php echo base64_encode($main_artist); ?>&album_id=<?php echo base64_encode($album_id); ?>">
                                             <?php echo $album_title; ?>
                                           </a>
                                         </td>
