@@ -504,7 +504,7 @@ if (isset($status) && !empty($status)) {
 
 																				</td>
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="65">
-																					<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" style="color:#0000FF; text-decoration:none;" target="_blank"><?php echo $song_title; ?></a>
+																					<a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" style="color:#0000FF; text-decoration:none;" target="_blank"><?php echo $song_title; ?></a>
 																				</td>
 
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="65">

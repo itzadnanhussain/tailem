@@ -112,7 +112,7 @@ if (isset($status) && !empty($status)) {
 
 		<tr>
 			<td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-				@include("admin.common.top_right_menu")>
+				@include("admin.common.top_right_menu")
 			</td>
 		</tr>
 		<tr>
@@ -379,6 +379,7 @@ if (isset($status) && !empty($status)) {
 																					if ($top_users_module_add == 'Yes') {
 																					?>
 																						<a href="addedit_user?edit_id=<?php echo base64_encode($user_id); ?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>
+																						<a href="<?php echo  SERVER_ROOTPATH . Slug($user_name) ?>/profile-review-artist" target="_blank">Details</a>
 																					<?php
 																					}
 																					?>

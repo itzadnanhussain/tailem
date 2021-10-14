@@ -232,6 +232,8 @@ Route::post('admin/process/report_option_process', [ReviewManagement::class, 'Re
 ///Delete_Report_Option
 Route::post('admin/process/delete_report_option', [ReviewManagement::class, 'Delete_Report_Option']);
 
+///review_details
+Route::any('admin/review_details', [ReviewManagement::class, 'Review_Details']);
 
 ///Edit_Discussion
 Route::any('admin/edit_discussion', [ReviewManagement::class, 'Edit_Discussion']);

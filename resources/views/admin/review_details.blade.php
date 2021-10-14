@@ -1,11 +1,13 @@
-<?php 
-include("includes/top.php");
-include("common/security.php"); 
+@include("admin.includes.top")
+@include("admin.common.security") 
+<?php
+error_reporting(0);
 ?>
+
 <html>
 <head>
 <title>Review Details</title>
-<?php include("common/header.php");?>
+ @include("admin.common.header") 
 
 </head>
 <body>
@@ -14,7 +16,7 @@ include("common/security.php");
   
     <tr>
         <td style="background:#1F3C5C; background-repeat:repeat-x; height:60px;" height="60">
-            <?php include("common/top_right_menu.php"); ?>
+            @include("admin.common.top_right_menu") 
         </td>
     </tr>
     <tr>
@@ -32,7 +34,7 @@ include("common/security.php");
                       <tr>
                         <td class="body"><table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
                               <tr>
-                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index.php">Home</a> &raquo; <a>&raquo; <a href="<?php echo SERVER_ADMIN_PATH;?>reviews_list.php">Review Listing</a>&raquo; <a>Review Details</a></td>
+                                <td><a href="<?php echo SERVER_ADMIN_PATH;?>index">Home</a> &raquo; <a>&raquo; <a href="<?php echo SERVER_ADMIN_PATH;?>reviews_list">Review Listing</a>&raquo; <a>Review Details</a></td>
                               </tr>
 							  <?php
                               $key  = $_REQUEST['key'];
@@ -40,7 +42,7 @@ include("common/security.php");
                               $reviews_list="select review_title, review_detail, review_rating, 
                               review_user_id, review_ip, review_post_date, status, is_popular 
                               from tbl_reviews where review_id='".$reviewsid."' ";
-                              $reviews_arr	=	$db->get_row($reviews_list,ARRAY_A);
+                              $reviews_arr	=	\App\Models\Songs::GetRawDataAdmin($reviews_list);
                               if($reviews_arr)
                               {
                               ?>
@@ -60,15 +62,15 @@ include("common/security.php");
 									
 									$select_qry ="select user_name from tbl_users where 
 									user_id='".$review_user_id."' ";
-									$select_ar  = $db->get_row($select_qry,ARRAY_A);
+									$select_ar  = \App\Models\Songs::GetRawDataAdmin($select_qry);
 									$user_name = stripslashes(html_entity_decode($select_ar['user_name']));
 									$user_name = wordwrap($user_name,100," ",true);
 									
-									$cat_qry ="select cat_name from tbl_categories where 
-									cat_id='".$category_id."' ";
-									$cat_arr  = $db->get_row($cat_qry,ARRAY_A);
-									$cat_name = stripslashes(html_entity_decode($cat_arr['cat_name']));
-									$cat_name = wordwrap($cat_name,100," ",true);
+									// $cat_qry ="select cat_name from tbl_categories where 
+									// cat_id='".$category_id."' ";
+									// $cat_arr  = \App\Models\Songs::GetRawDataAdmin($cat_arr);
+									// $cat_name = stripslashes(html_entity_decode($cat_arr['cat_name']));
+									// $cat_name = wordwrap($cat_name,100," ",true);
 								?>
                                 <table border="0" cellpadding="0" cellspacing="0" align="center" class="report_table">
                                         <tbody>
@@ -96,13 +98,7 @@ include("common/security.php");
                                                 </td>
                                                 <td align="left"><?php echo $user_name;?> </td>
                                             </tr>
-                                          <!--  
-                                            <tr height="30">
-                                                <td class="SmallFieldLabelnew font_bold" align="left"  width="150"> 
-                                                	Category
-                                                </td>
-                                                <td align="left"><?php echo $cat_name;?> </td>
-                                            </tr>-->
+                                       
                                             <tr height="30">
                                                 <td class="SmallFieldLabelnew font_bold" align="left"  width="150"> 
                                                 	Post Date
@@ -149,7 +145,8 @@ include("common/security.php");
     </tr>
 	
     <tr>
-      <td height="20"><?php include("common/footer.php");?></td>
+      <td height="20">
+         @include("admin.common.footer") </td>
     </tr>
   </tbody>
 </table>

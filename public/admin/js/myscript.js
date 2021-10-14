@@ -3192,8 +3192,8 @@ function validate_social_icon() {
         data: {
             _token: csrf_token,
         },
-        beforeSubmit: validate_general_setting_Request,
-        success: validate_general_setting_Response,
+        beforeSubmit: validate_social_icon_Request,
+        success: validate_social_icon_Response,
         url: JS_ADMIN_SERVER_PATHROOT + "process/social_icons_process",
     };
     // bind to the form's submit event
@@ -3203,11 +3203,11 @@ function validate_social_icon() {
     });
 }
 // pre-submit callback
-function validate_general_setting_Request(formData, jqForm, options) {
+function validate_social_icon_Request(formData, jqForm, options) {
     var queryString = $.param(formData);
     return true;
 }
-function validate_general_setting_Response(responseText, statusText) {
+function validate_social_icon_Response(responseText, statusText) {
     if (responseText.search("done") != -1) {
         alert("Record Update Successfully");
         window.location.href = JS_ADMIN_SERVER_PATHROOT + "social_icons";

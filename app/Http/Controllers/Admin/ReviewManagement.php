@@ -1153,4 +1153,58 @@ class ReviewManagement extends Controller
             return redirect($url);
         }
     }
+
+    ///Review_Details
+    public function Review_Details()
+    {
+        $data = array();
+        $data['sortby'] = null;
+        $data['page'] = null;
+        $data['msg'] = null;
+        $data['case'] = null;
+        $data['status'] = null;
+        $data['status_id'] = null;
+        $data['key'] = null;
+
+
+        ///key
+        if (isset($_GET['key'])) {
+            $data['key'] = $_GET['key'];
+        }
+
+        ///sortby
+        if (isset($_GET['sortby'])) {
+            $data['sortby'] = $_GET['sortby'];
+        }
+
+        ///page
+        if (isset($_GET['page'])) {
+            $data['page'] = $_GET['page'];
+        }
+
+        ///msg
+        if (isset($_GET['msg'])) {
+            $data['msg'] = $_GET['msg'];
+        }
+
+        ///status
+        if (isset($_GET['status'])) {
+            $data['status'] = $_GET['status'];
+            $data['status_id'] = $_GET['status_id'];
+        }
+
+        ///case
+        if (isset($_GET['case'])) {
+            $data['case'] = $_GET['case'];
+        }
+
+        ///common  lines
+        $data['currentFile'] = 'review_details';
+        $data['targetpage'] = 'review_details';
+        $data = top_file_data($data);
+        $data['title'] = GetTitle();
+
+        return view('admin.review_details', $data);
+
+    }
 }
