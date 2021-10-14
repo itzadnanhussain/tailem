@@ -654,11 +654,9 @@ class ManageArtist extends Controller
             // $song_id = trim($_REQUEST['song_id']);
             // $main_artist = trim($_REQUEST['main_artist']);
             // $album_id = trim($_REQUEST['album_id']);
-            if(isset($featured_artist) && !empty($featured_artist))
-            {
+            if (isset($featured_artist) && !empty($featured_artist)) {
                 $sizeofarray   =  sizeof($_REQUEST['featured_artist']);
-
-            }else{
+            } else {
                 $sizeofarray = 0;
             }
 
@@ -765,5 +763,62 @@ class ManageArtist extends Controller
         $data['title'] = GetTitle();
 
         return view('admin.view_artist', $data);
+    }
+
+    ///Artist_Song_Actions
+    public function Artist_Song_Actions()
+    {
+        error_reporting(0);
+        $path            = 'site_upload/artist_images/';
+        extract($_POST);
+        $song_id = base64_encode($song_id);
+        if (!empty($_POST['ids'])) {
+            if ($_POST['dropdown'] == 'Delete') // from button name="delete"
+            {
+                $checkbox = $_POST['ids']; //from name="checkbox[]"
+                $countCheck = count($_POST['ids']);
+
+                for ($i = 0; $i < $countCheck; $i++) {
+                    $del_id    = base64_decode($checkbox[$i]);
+
+                    $sql = "Delete from tbl_songs_artist where id='" . $del_id . "'";
+                    $result = \App\Models\Songs::GetRawData($sql); //or die(mysqli_error($mysqli));
+
+                }
+
+                if (empty($result)) {
+                    $okmsg = base64_encode("Deletion Successfully Done.");
+                    $url = "admin/artist_list_song?song_id=$song_id&msg=$okmsg&case=1";
+                    return  redirect($url);
+                } else {
+                    $errormsg = base64_encode('There are something wrong');
+                    $url = "admin/artist_list_song?song_id=$song_id&msg=$errormsg&case=2";
+                    return redirect($url);
+                }
+            }
+        } else {
+            $errormsg = base64_encode('First select a record to perform some action');
+            $url = "admin/artist_list_song?song_id=$song_id&msg=$errormsg&case=2";
+            return  redirect($url);
+        }
+    }
+
+    ///Delete_Artist_Songs
+    public function Delete_Artist_Songs()
+    {
+        if (!empty($_POST['del_id'])) {
+            $select_qry = "select id from tbl_songs_artist where id='" . $_POST['del_id'] . "' ";
+            $select_arr = \App\Models\Songs::GetRawDataAdmin($select_qry);
+            $id     = $select_arr['id'];
+            if ($id == "") {
+                echo 'Error';
+            } else {
+                $del_qry = "Delete from tbl_songs_artist where id='" . $id . "'";
+                \App\Models\Songs::GetRawData($del_qry); 
+                echo 'done';
+            }
+        } else {
+            echo 'Error';
+        }
     }
 }

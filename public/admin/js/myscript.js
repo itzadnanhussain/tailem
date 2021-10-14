@@ -854,14 +854,18 @@ function delete_song(del_id) {
 
 function delete_artist_song(del_id, songid) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
-
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
     if (conBox) {
         $.ajax({
             type: "POST",
 
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_artist_songs",
 
-            data: "del_id=" + del_id + "&songid=" + songid,
+            data: {
+                "del_id" : del_id,
+                "songid" : songid,
+                "_token": csrf_token,
+            },
 
             beforeSend: function () {},
 

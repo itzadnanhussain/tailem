@@ -208,7 +208,8 @@ if (isset($status) && !empty($status)) {
 																</tr>
 
 																<form action="<?php echo SERVER_ADMIN_PATH; ?>process/artist_song_actions" method="post" id="faq_form">
-																	<input type="hidden" name="song_id" value="<?php echo $dec_id; ?>">
+																@csrf	
+																<input type="hidden" name="song_id" value="<?php echo $dec_id; ?>">
 																	<?php
 
 																	//============================================================

@@ -76,6 +76,11 @@ Route::post('admin/process/featured_artist_album_assocs', [ManageArtist::class, 
 ///Single_Artist_View
 Route::get('admin/view_artist', [ManageArtist::class, 'Single_Artist_View']);
 
+///artist_song_actions
+Route::post('admin/process/artist_song_actions', [ManageArtist::class, 'Artist_Song_Actions']);
+
+///delete_artist_songs
+Route::post('admin/process/delete_artist_songs', [ManageArtist::class, 'Delete_Artist_Songs']);
 
 
 ///**********************ManageCategories Controller**************************/
