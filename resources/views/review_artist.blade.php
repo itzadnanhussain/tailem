@@ -44,6 +44,7 @@ if($alpha=="unset")
 <!-- Middle Section -->
 <section class="middle_sec">
     <div class="topRwHead-bodyPan">
+         
         <div class="container pad_zero">
 
             <div class="topRwHead-panel" style="margin:12px 0 !important; padding-bottom:0; padding-top:10px;">
@@ -74,7 +75,9 @@ if($alpha=="unset")
 
             </div>
         </div>
+        
         @include("common.ipad_data")
+        
     <?php
                 } elseif ($mobile_view == 1) { ?>
 

@@ -60,7 +60,15 @@ class AlbumController extends Controller
     //GetAlbumDetail
     public function GetAlbumDetail($artist_seo, $album_seo = null, $page = null)
     {
-        $data = array();
+         $data = array();
+
+        ///admin
+        if(isset($_GET['user_type']))
+        {
+            $data['user_type'] = $_GET['user_type'];
+            $data = top_file_data($data);
+
+        }
         $data['artist_seo'] = $artist_seo;
         $data['album_seo'] = $album_seo;
         ///common header 
@@ -122,7 +130,15 @@ class AlbumController extends Controller
             $page = 1;
         }
 
-        $data = array();
+         $data = array();
+
+        ///admin
+        if(isset($_GET['user_type']))
+        {
+            $data['user_type'] = $_GET['user_type'];
+            $data = top_file_data($data);
+
+        }
         $data['artist_seo'] = $artist_seo;
         $data['album_seo'] = null;
 
@@ -205,7 +221,15 @@ class AlbumController extends Controller
             $page = 1;
         }
 
-        $data = array();
+         $data = array();
+
+        ///admin
+        if(isset($_GET['user_type']))
+        {
+            $data['user_type'] = $_GET['user_type'];
+            $data = top_file_data($data);
+
+        }
         $data['artist_seo'] = null;
         $data['album_seo'] = null;
 

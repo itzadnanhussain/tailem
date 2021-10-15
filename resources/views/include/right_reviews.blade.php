@@ -83,7 +83,84 @@ $all_avg = number_format($all_avg, 1);
 ?>
 
 <h3>Reviews</h3>
+<?php if( isset($user_type) && ($user_type == 'admin')) { ?>
 <div class="row rating-panel">
+    <div class="col-lg-5 col-md-4 col-sm-2 col-xs-3 progressLabel" style="color:#5CB85C; text-align:left;">
+        Excellent
+    </div>
+    <div class="col-sm-6 col-xs-8 progress-panel">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/excellent?user_type=admin">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $excellent_per; ?>%;  cursor:pointer; background-color:#5CB85C;"></div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xs-1 progressVal" style="color:#5CB85C;">
+        <?php echo $excellent; ?>
+    </div>
+</div>
+<div class="row rating-panel">
+    <div class="col-lg-5 col-md-4 col-sm-2 col-xs-3 progressLabel" style="color:#5CB85C; text-align:left;">
+        Very Good
+    </div>
+    <div class="col-sm-6 col-xs-8 progress-panel">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/verygood?user_type=admin">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="11" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $verygood_per; ?>%;  cursor:pointer; background-color:#5CB85C;"></div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xs-1 progressVal" style="color:#5CB85C;">
+        <?php echo $verygood; ?>
+    </div>
+</div>
+<div class="row rating-panel">
+    <div class="col-lg-5 col-md-4 col-sm-2 col-xs-3 progressLabel" style="color:#e06d21; text-align:left;">
+        Average
+    </div>
+    <div class="col-sm-6 col-xs-8 progress-panel">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/average?user_type=admin">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $good_per; ?>%; cursor:pointer; background-color:#e06d21;"></div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xs-1 progressVal" style="color:#e06d21;">
+        <?php echo $good; ?>
+    </div>
+</div>
+<div class="row rating-panel">
+    <div class="col-lg-5 col-md-4 col-sm-2 col-xs-3 progressLabel" style="color:#dd554e; text-align:left;">
+        Poor
+    </div>
+    <div class="col-sm-6 col-xs-8 progress-panel">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/poor?user_type=admin">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="12" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $poor_per; ?>%; cursor:pointer; background-color:#dd554e;"></div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xs-1 progressVal" style="color:#dd554e;">
+        <?php echo $poor; ?>
+    </div>
+</div>
+<div class="row rating-panel">
+    <div class="col-lg-5 col-md-4 col-sm-2 col-xs-3 progressLabel" style="color:#dd554e; text-align:left;">
+        Terrible
+    </div>
+    <div class="col-sm-6 col-xs-8 progress-panel">
+        <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-song-rating/terrible?user_type=admin">
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo $terrible_per; ?>%; background-color:#dd554e;"></div>
+            </div>
+        </a>
+    </div>
+    <div class="col-xs-1 progressVal" style="color:#dd554e;">
+        <?php echo $terrible; ?>
+    </div>
+</div>
+<?php } else { ?>
+    <div class="row rating-panel">
     <div class="col-lg-5 col-md-4 col-sm-2 col-xs-3 progressLabel" style="color:#5CB85C; text-align:left;">
         Excellent
     </div>
@@ -158,3 +235,4 @@ $all_avg = number_format($all_avg, 1);
         <?php echo $terrible; ?>
     </div>
 </div>
+    <?php } ?>

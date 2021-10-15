@@ -284,7 +284,7 @@ if (isset($status) && !empty($status)) {
 																	$targetpage = "users_list"; //your file name  (the name of this file)
 
 
-																						//how many items to show per page
+																	//how many items to show per page
 																	if ($page)
 																		$start = ($page - 1) * $limit; //first item to display on this page
 																	else
@@ -337,20 +337,20 @@ if (isset($status) && !empty($status)) {
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="25"><?php echo $sr_no; ?></td>
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="150">
 																					<?php echo $user_name; ?></br></br>
-																				 
+
 																				</td>
 
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="150">
 																					<?php
 																					echo $user_name;
-																				 
+
 																					?>
 																				</td>
 
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="150">
 																					<?php echo $user_email; ?>
 																				</td>
-																			 
+
 																				<td nowrap="nowrap" class="SmallFieldLabel" width="50">
 																					<?php
 																					if ($status == 0) {
@@ -368,7 +368,7 @@ if (isset($status) && !empty($status)) {
 																						echo '<a href="users_list?status=' . base64_encode(0) . '&status_id=' . base64_encode($user_id) . '"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>';
 																					}
 
-																					 
+
 																					?>
 
 																				</td>
@@ -379,7 +379,7 @@ if (isset($status) && !empty($status)) {
 																					if ($top_users_module_add == 'Yes') {
 																					?>
 																						<a href="addedit_user?edit_id=<?php echo base64_encode($user_id); ?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>
-																						<a href="<?php echo  SERVER_ROOTPATH . Slug($user_name) ?>/profile-review-artist" target="_blank">Details</a>
+																						<a href="<?php echo  SERVER_ROOTPATH . Slug($user_name) ?>/profile-review-artist?user_type=admin" target="_blank">Details</a>
 																					<?php
 																					}
 																					?>

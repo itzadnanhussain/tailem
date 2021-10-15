@@ -4,12 +4,15 @@
 
 
 	///general setting arr new query
+
+	use phpDocumentor\Reflection\DocBlock\Tags\See;
+
 	$setting_arr = GetByWhere('general_setting', array('setting_id' => 1));
 	$setting_arr = (array)$setting_arr[0];
 
 	///setting arr new query 
 	$arr_setting = GetByWhere('setting', array('setting_id' => 1));
- 
+
 	$arr_setting = (array)$arr_setting[0];
 	if ($arr_setting['site_mode'] == 2) {
 		echo '<script>window.location = "maintenance";</script>';
@@ -59,7 +62,11 @@
  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
  	<meta name="google-site-verification" content="bTEn7HDhG7Kcx4pW3zDeFu-PwgLzlE1GDLc1bzj3Wbs" />
  	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
- 	<title><?php echo (isset($title)) ? $title : 'No Title Of Page'  ?> | Tailem</title>
+ 	<?php if (isset($user_type) && ($user_type =='admin')) { ?>
+ 		@include("admin.common.header")
+ 	<?php  } else { ?>
+ 		<title><?php echo (isset($title)) ? $title : 'No Title Of Page'  ?> | Tailem</title>
+ 	<?php } ?>
  	<meta name="csrf-token" content="{{ csrf_token() }}" />
  	@include('common.loadassets')
 
@@ -110,98 +117,110 @@
 
 
  	<!-- Header start -->
- 	<header>
- 		<div class="container pad_left" style="padding-right:8px;"> <a href="<?php echo SERVER_ROOTPATH; ?>" class="logo" style="float:left;"> <img src="<?php echo SERVER_ROOTPATH; ?>images/logo11.png" style="margin-bottom:2px;"> </a>
- 			<div class="mob_elements">
- 				<p class="mob_search" id="mob_search"> <a href="javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a> </p>
- 				<p class="mob_navigat" style="margin-right:0; font-size:32px;"> <a href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a> </p>
- 			</div>
- 			<div class="head_left" style="float:right;">
- 				<ul class="topnav" id="nav">
- 					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top Songs</a></li>
- 					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top Albums</a></li>
- 					<li><a href="<?php echo SERVER_ROOTPATH; ?>latest-songs">Latest Songs</a></li>
- 					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a></li>
- 				</ul>
- 				<span class="search_container" id="search_bar">
- 					<style>
- 						@media (max-width:767px) {
- 							#ad_search_form {
- 								margin-bottom: 8px;
+ 	<?php if (isset($user_type) && ($user_type =='admin')) { ?>
+		<?php error_reporting(0); ?>
+ 		<table style="border-collapse: collapse;" border="0" cellpadding="0" width="100%" >
+ 			 
+ 				<tr>
+ 					<td style="background:#1F3C5C; background-repeat:repeat-x;" height="20">
+ 						@include("admin.common.top_right_menu")
+ 					</td>
+ 				</tr>
+ 			 
+ 		</table>
+ 	<?php  } else { ?>
+ 		<header>
+ 			<div class="container pad_left" style="padding-right:8px;"> <a href="<?php echo SERVER_ROOTPATH; ?>" class="logo" style="float:left;"> <img src="<?php echo SERVER_ROOTPATH; ?>images/logo11.png" style="margin-bottom:2px;"> </a>
+ 				<div class="mob_elements">
+ 					<p class="mob_search" id="mob_search"> <a href="javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a> </p>
+ 					<p class="mob_navigat" style="margin-right:0; font-size:32px;"> <a href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a> </p>
+ 				</div>
+ 				<div class="head_left" style="float:right;">
+ 					<ul class="topnav" id="nav">
+ 						<li><a href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top Songs</a></li>
+ 						<li><a href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top Albums</a></li>
+ 						<li><a href="<?php echo SERVER_ROOTPATH; ?>latest-songs">Latest Songs</a></li>
+ 						<li><a href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a></li>
+ 					</ul>
+ 					<span class="search_container" id="search_bar">
+ 						<style>
+ 							@media (max-width:767px) {
+ 								#ad_search_form {
+ 									margin-bottom: 8px;
+ 								}
  							}
- 						}
- 					</style>
- 					<form action="<?php echo SERVER_ROOTPATH; ?>searcher" id="ad_search_form" method="POST">
- 						<input class="searcharea" placeholder="Search" name="search" value="<?php echo session()->get('main_search'); ?>" required>
- 						@csrf
- 						<input type="hidden" name="submitbtn" value="Search">
- 						<button><i class="sprite sprite-icon_search"></i></button>
- 					</form>
- 				</span>
- 				<ul class="account_nav">
- 					<?php if (empty($user_id)) { ?>
- 						<li> <a href="<?php echo SERVER_ROOTPATH; ?>sign-in" class="signin"> <i class="sprite-new sprite-new-xicon_signin-png-pagespeed-ic-d7QTJCwNDt"></i> Sign In</a> </li>
- 						<li> <a href="<?php echo SERVER_ROOTPATH; ?>sign-up" class="signup"><i class="sprite-new sprite-new-icon_signup"></i> <span style="margin-left:1px;">Sign UP</span></a> </li>
- 					<?php } else { ?>
- 						<li><a href="<?php echo SERVER_ROOTPATH; ?>review-artist" class="my-account">MY ACCOUNT</a></li>
+ 						</style>
+ 						<form action="<?php echo SERVER_ROOTPATH; ?>searcher" id="ad_search_form" method="POST">
+ 							<input class="searcharea" placeholder="Search" name="search" value="<?php echo session()->get('main_search'); ?>" required>
+ 							@csrf
+ 							<input type="hidden" name="submitbtn" value="Search">
+ 							<button><i class="sprite sprite-icon_search"></i></button>
+ 						</form>
+ 					</span>
+ 					<ul class="account_nav">
+ 						<?php if (empty($user_id)) { ?>
+ 							<li> <a href="<?php echo SERVER_ROOTPATH; ?>sign-in" class="signin"> <i class="sprite-new sprite-new-xicon_signin-png-pagespeed-ic-d7QTJCwNDt"></i> Sign In</a> </li>
+ 							<li> <a href="<?php echo SERVER_ROOTPATH; ?>sign-up" class="signup"><i class="sprite-new sprite-new-icon_signup"></i> <span style="margin-left:1px;">Sign UP</span></a> </li>
+ 						<?php } else { ?>
+ 							<li><a href="<?php echo SERVER_ROOTPATH; ?>review-artist" class="my-account">MY ACCOUNT</a></li>
 
- 						<li>
- 							<form method="POST" action="<?php echo SERVER_ROOTPATH ?>logout">
- 								@csrf
- 								<a class="logout" href="<?php echo SERVER_ROOTPATH ?>logout" onclick="event.preventDefault();
+ 							<li>
+ 								<form method="POST" action="<?php echo SERVER_ROOTPATH ?>logout">
+ 									@csrf
+ 									<a class="logout" href="<?php echo SERVER_ROOTPATH ?>logout" onclick="event.preventDefault();
                                         this.closest('form').submit();" sl-processed="1">
- 									LOGOUT
- 								</a>
- 							</form>
- 						</li>
+ 										LOGOUT
+ 									</a>
+ 								</form>
+ 							</li>
 
- 						<!-- <li><a href="logout.php" class="logout">LOGOUT</a></li> -->
- 						<li id="notification_li" style="text-transform:none;">
- 							<?php if ($result_notification_count != 0) {
-								?>
- 								<span id="notification_count">
- 									<?php
-										echo $result_notification_count;
-										?>
- 								</span>
- 							<?php
-								}
-								?>
-
-
- 							<style>
- 								.ad_notification_link {
- 									padding-left: 0 !important;
- 								}
-
- 								.ad_notification_link img {
- 									height: 18px;
- 									margin: 4px 0;
- 								}
+ 							<!-- <li><a href="logout.php" class="logout">LOGOUT</a></li> -->
+ 							<li id="notification_li" style="text-transform:none;">
+ 								<?php if ($result_notification_count != 0) {
+									?>
+ 									<span id="notification_count">
+ 										<?php
+											echo $result_notification_count;
+											?>
+ 									</span>
+ 								<?php
+									}
+									?>
 
 
- 								@media (max-width:767px) {
+ 								<style>
  									.ad_notification_link {
- 										padding-left: none;
+ 										padding-left: 0 !important;
  									}
- 								}
- 							</style>
- 							<script>
- 								if ($(window).width() > 767) {
- 									$('.ad_notification_link img').addClass('ipad_float');
- 								} else {
- 									$('.ad_notification_link img').removeClass('ipad_float');
 
- 								}
- 							</script>
- 							<a href="javascript:;" class="ad_notification_link" id="notificationLink" onClick="show_notification()">
- 								<span id="shownotification">
- 									<img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post6.png" style="" border="0" title="Notification" class="ipad_float">
- 									<b class="mobile-only" style="font-weight: normal; float: left; margin-left: 5px;">NOTIFICATIONS</b>
- 								</span>
- 							</a>
+ 									.ad_notification_link img {
+ 										height: 18px;
+ 										margin: 4px 0;
+ 									}
 
- 							<!-- <a href="javascript:;" id="notificationLink" onClick="show_notification()">
+
+ 									@media (max-width:767px) {
+ 										.ad_notification_link {
+ 											padding-left: none;
+ 										}
+ 									}
+ 								</style>
+ 								<script>
+ 									if ($(window).width() > 767) {
+ 										$('.ad_notification_link img').addClass('ipad_float');
+ 									} else {
+ 										$('.ad_notification_link img').removeClass('ipad_float');
+
+ 									}
+ 								</script>
+ 								<a href="javascript:;" class="ad_notification_link" id="notificationLink" onClick="show_notification()">
+ 									<span id="shownotification">
+ 										<img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post6.png" style="" border="0" title="Notification" class="ipad_float">
+ 										<b class="mobile-only" style="font-weight: normal; float: left; margin-left: 5px;">NOTIFICATIONS</b>
+ 									</span>
+ 								</a>
+
+ 								<!-- <a href="javascript:;" id="notificationLink" onClick="show_notification()">
 									<span id="shownotification"> <img src="<?php echo SERVER_ROOTPATH; ?>images/icon_post6.png" style="height:18px; margin:4px 0; float:left;" border="0" title="Notification">
 										<b class="mobile-only" style="font-weight: normal; float: left; margin-left: 5px;">NOTIFICATIONS</b>
 									</span>
@@ -211,24 +230,25 @@
 
 
 
- 							<div id="notificationContainer" style="z-index:999999">
- 								<div id="notificationTitle">Notifications <a style="float:right; font-size:10px; font-family:Arial, Helvetica, sans-serif; cursor:pointer;" onClick="remove_all_notifications()" id="removeall">Remove All</a> </div>
- 								<div id="notificationsBody" class="notifications" style="float:left; overflow-y: auto; overflow-x: hidden; width:100%; height: 302px;">
- 									<div id="loader_new"></div>
- 									<div id="notify_list2" class="notification_outer"></div>
+ 								<div id="notificationContainer" style="z-index:999999">
+ 									<div id="notificationTitle">Notifications <a style="float:right; font-size:10px; font-family:Arial, Helvetica, sans-serif; cursor:pointer;" onClick="remove_all_notifications()" id="removeall">Remove All</a> </div>
+ 									<div id="notificationsBody" class="notifications" style="float:left; overflow-y: auto; overflow-x: hidden; width:100%; height: 302px;">
+ 										<div id="loader_new"></div>
+ 										<div id="notify_list2" class="notification_outer"></div>
+ 									</div>
  								</div>
- 							</div>
- 							<div style="clear:both;"></div>
- 						</li>
- 					<?php } ?>
- 					<li class="mobile_only"> <a href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top Songs</a> </li>
- 					<li class="mobile_only"> <a href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top Albums</a> </li>
- 					<li class="mobile_only"><a href="<?php echo SERVER_ROOTPATH; ?>latest-songs">Latest Songs</a> </li>
- 					<li class="mobile_only"> <a href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a> </li>
- 				</ul>
+ 								<div style="clear:both;"></div>
+ 							</li>
+ 						<?php } ?>
+ 						<li class="mobile_only"> <a href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top Songs</a> </li>
+ 						<li class="mobile_only"> <a href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top Albums</a> </li>
+ 						<li class="mobile_only"><a href="<?php echo SERVER_ROOTPATH; ?>latest-songs">Latest Songs</a> </li>
+ 						<li class="mobile_only"> <a href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a> </li>
+ 					</ul>
+ 				</div>
  			</div>
- 		</div>
- 	</header>
+ 		</header>
+ 	<?php } ?>
  	<!-- ./Header end -->
  	<?php
 		// latest comment date

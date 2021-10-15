@@ -16,49 +16,8 @@ $arr_social = (array) $arr_social[0];
 <?php
 $currentFile = get_page_name();
 // $currentFile = 'sign_up';
-?>
-<footer>
-	<div class="ftrcontainer">
-		<div class="container">
-			<ul class="bottom_nav">
-				<li><a href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top Songs</a></li>
-				<li><a href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top Albums</a></li>
-				<li><a href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a></li>
-				<li><a href="<?php echo SERVER_ROOTPATH; ?>about-us">About Us</a></li>
-				<li><a href="<?php echo SERVER_ROOTPATH; ?>privacy-policy">Privacy Policy</a></li>
-				<li><a href="<?php echo SERVER_ROOTPATH; ?>terms-of-use">Terms of Use</a></li>
-				<li><a href="<?php echo SERVER_ROOTPATH; ?>contact-us">Contact Us</a></li>
-			</ul>
-			<ul class="bottom_nav" style="float:right">
+?> 
 
-				<?php
-				if ($itune_url != '') {
-				?>
-					<li><a href="<?php echo $itune_url; ?>" class="itune" target="_blank"><img src="<?php echo SERVER_ROOTPATH; ?>images/ituneimg.png"></a></li>
-				<?php
-				}
-				?>
-				<li><label>Connect with us</label></li>
-				<li> <a href="<?php echo $arr_social['facebook']; ?>" target="_blank"> <i class="sprite sprite-icon_fb"></i></a></li>
-				<li><a href="<?php echo $arr_social['twitter']; ?>" target="_blank"><i class="sprite sprite-icon_tw"></i></a></li>
-				<li><a href="<?php echo $arr_social['google']; ?>" target="_blank"> <i class="sprite sprite-icon_ggl"></i></a></li>
-			</ul>
-		</div>
-	</div>
-	<script type='text/javascript'>
-		var _merchantSettings = _merchantSettings || [];
-		_merchantSettings.push(['AT', '1000l6dT']);
-		(function() {
-			var autolink = document.createElement('script');
-			autolink.type = 'text/javascript';
-			autolink.async = true;
-			autolink.src = ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(autolink, s);
-		})();
-	</script>
-	<p>&copy; 2017 <a href="<?php echo SERVER_ROOTPATH; ?>">Tailem</a>.com All Rights Reserved</p>
-</footer>
 <?php
 for ($popular_review = 1; $popular_review <= 10; $popular_review++) {
 ?>
@@ -124,6 +83,67 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 }
 //$this->_mysqli->close();
 ?>
+<!-- Header start -->
+<?php if (isset($user_type) && ($user_type =='admin')) { ?>
+	<footer>
+		<div class="ftrcontainer" style="background: white;">
+			<div class="container">  
+			 <a target="_blank" href="http://www.evsoft.pk/" style="font-size: 11px;
+    color: #000000; float:right;text-decoration: underline;"  >Powered By eVISION Softwares </a>
+ 
+					 	 
+			</div>
+		</div>
+	</footer>
+ 
+
+	 
+<?php  } else { ?>
+	<footer>
+		<div class="ftrcontainer">
+			<div class="container">
+				<ul class="bottom_nav">
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top Songs</a></li>
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top Albums</a></li>
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a></li>
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>about-us">About Us</a></li>
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>privacy-policy">Privacy Policy</a></li>
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>terms-of-use">Terms of Use</a></li>
+					<li><a href="<?php echo SERVER_ROOTPATH; ?>contact-us">Contact Us</a></li>
+				</ul>
+				<ul class="bottom_nav" style="float:right">
+
+					<?php
+					if ($itune_url != '') {
+					?>
+						<li><a href="<?php echo $itune_url; ?>" class="itune" target="_blank"><img src="<?php echo SERVER_ROOTPATH; ?>images/ituneimg.png"></a></li>
+					<?php
+					}
+					?>
+					<li><label>Connect with us</label></li>
+					<li> <a href="<?php echo $arr_social['facebook']; ?>" target="_blank"> <i class="sprite sprite-icon_fb"></i></a></li>
+					<li><a href="<?php echo $arr_social['twitter']; ?>" target="_blank"><i class="sprite sprite-icon_tw"></i></a></li>
+					<li><a href="<?php echo $arr_social['google']; ?>" target="_blank"> <i class="sprite sprite-icon_ggl"></i></a></li>
+				</ul>
+			</div>
+		</div>
+		<script type='text/javascript'>
+			var _merchantSettings = _merchantSettings || [];
+			_merchantSettings.push(['AT', '1000l6dT']);
+			(function() {
+				var autolink = document.createElement('script');
+				autolink.type = 'text/javascript';
+				autolink.async = true;
+				autolink.src = ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
+				var s = document.getElementsByTagName('script')[0];
+				s.parentNode.insertBefore(autolink, s);
+			})();
+		</script>
+		<p>&copy; 2017 <a href="<?php echo SERVER_ROOTPATH; ?>">Tailem</a>.com All Rights Reserved</p>
+	</footer>
+
+<?php } ?>
+
 
 
 

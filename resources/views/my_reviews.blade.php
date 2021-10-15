@@ -110,9 +110,11 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
         if (rateing != "") {
             rateing = "-rating/" + rateing;
         }
-
-        window.location.href = "<?php echo SERVER_ROOTPATH ?>" + user + "review-song" + rateing + "-sort/" + val;
-
+ <?php if(isset($user_type) && ($user_type == 'admin')) { ?>
+        window.location.href = "<?php echo SERVER_ROOTPATH ?>" + user + "review-song" + rateing + "-sort/" + val +"?user_type=admin";
+        <?php } else { ?>
+            window.location.href = "<?php echo SERVER_ROOTPATH ?>" + user + "review-song" + rateing + "-sort/" + val;
+    <?php } ?>
     }
 
     function sort_area_2(val, user, artist, album) { 
@@ -122,7 +124,11 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
             jumpto = "<?php echo SERVER_ROOTPATH ?>" + artist + "/review-songs/" + album + "/sort/" + val;
         }
        
-        window.location.href = jumpto;
+        <?php if(isset($user_type) && ($user_type == 'admin')) { ?>
+            window.location.href = jumpto+"?user_type=admin";
+            <?php } else { ?>
+                window.location.href = jumpto;
+     <?php } ?>
 
     }
 </script>
