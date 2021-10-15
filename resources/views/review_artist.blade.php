@@ -1,13 +1,12 @@
 @include("common.header")
-<?php 
+<?php
 // error_reporting(0);
 
 //include_once("common/signin_modal_header.php");  
 
-if($alpha=="unset")
-{
-	$search_artist_names = '';
-	$search_result = '';
+if ($alpha == "unset") {
+    $search_artist_names = '';
+    $search_result = '';
 }
 
 // if (isset($_REQUEST['submit_b']) && $_REQUEST['submit_b'] != "") {
@@ -44,7 +43,7 @@ if($alpha=="unset")
 <!-- Middle Section -->
 <section class="middle_sec">
     <div class="topRwHead-bodyPan">
-         
+
         <div class="container pad_zero">
 
             <div class="topRwHead-panel" style="margin:12px 0 !important; padding-bottom:0; padding-top:10px;">
@@ -75,9 +74,9 @@ if($alpha=="unset")
 
             </div>
         </div>
-        
+
         @include("common.ipad_data")
-        
+
     <?php
                 } elseif ($mobile_view == 1) { ?>
 
@@ -282,7 +281,7 @@ if($alpha=="unset")
 							 ";
                 // $cat_list_arr    =    $db->get_results($cat_list, ARRAY_A);
                 $cat_list_arr = \App\Models\Songs::GetRawData($cat_list);
-               
+
                 if ($cat_list_arr) {
 
                     $count  = count($cat_list_arr);
@@ -302,7 +301,7 @@ if($alpha=="unset")
                             <ul class="list-inline">
                                 <li>
                                     <?php
-                                    foreach ($cat_list_arr as $val) { 
+                                    foreach ($cat_list_arr as $val) {
                                         $val = (array)$val;
                                         $cat_id      = $val['cat_id'];
                                         $cat_name = stripslashes(html_entity_decode($val['cat_name']));
@@ -354,7 +353,7 @@ if($alpha=="unset")
             <?php }
             } ?>
         </div>
-         
+
         <div class="topsonglistsec col-lg-8 col-md-8 col-sm-12 col-xs-12 pad_zero" style="background:none;">
 
             <?php if ($mobile_view == 0) { ?>
@@ -687,8 +686,12 @@ if($alpha=="unset")
                                                             ?>
 
                                                                     <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
+
                                                                         <?php
-                                                                        if ($user_id == "") {
+                                                                        if (isset($user_type) && ($user_type == 'admin')) { ?>
+                                                                            <a href="javascript:;"><i class="fa fa-heart-o heart_color heart_size"></i></a>
+
+                                                                        <?php } else if ($user_id == "") {
                                                                         ?>
                                                                             <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
                                                                         <?php
@@ -700,10 +703,10 @@ if($alpha=="unset")
                                                                         ?>
                                                                         <span><?php echo $counter_main; ?></span>
                                                                         <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                    } ?></a></span>
+                                                                                                                                                                                                                                                                                            echo " Like";
+                                                                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                                                            echo " Likes";
+                                                                                                                                                                                                                                                                                        } ?></a></span>
 
                                                                     <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
 
@@ -725,10 +728,10 @@ if($alpha=="unset")
                                                                         ?>
                                                                         <span><?php echo $counter_main; ?></span>
                                                                         <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                    } ?></a></span>
+                                                                                                                                                                                                                                                                                            echo " Like";
+                                                                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                                                            echo " Likes";
+                                                                                                                                                                                                                                                                                        } ?></a></span>
 
 
                                                                     <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
@@ -751,10 +754,10 @@ if($alpha=="unset")
                                                                     ?>
                                                                     <span><?php echo $counter_main; ?></span>
                                                                     <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                    echo " Like";
-                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                    echo " Likes";
-                                                                                                                                                                                                                                                                                } ?></a></span>
+                                                                                                                                                                                                                                                                                        echo " Like";
+                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                        echo " Likes";
+                                                                                                                                                                                                                                                                                    } ?></a></span>
 
                                                                 <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
                                                             <?php
@@ -858,10 +861,10 @@ if($alpha=="unset")
                                                                                 ?>
                                                                                 <span><?php echo $counter_main; ?></span>
                                                                                 <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                echo " Like";
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo " Likes";
-                                                                                                                                                                                                                                                                                            } ?></a></span>
+                                                                                                                                                                                                                                                                                                    echo " Like";
+                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                    echo " Likes";
+                                                                                                                                                                                                                                                                                                } ?></a></span>
 
                                                                             <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
 
@@ -883,10 +886,10 @@ if($alpha=="unset")
                                                                                 ?>
                                                                                 <span><?php echo $counter_main; ?></span>
                                                                                 <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                echo " Like";
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo " Likes";
-                                                                                                                                                                                                                                                                                            } ?></a></span>
+                                                                                                                                                                                                                                                                                                    echo " Like";
+                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                    echo " Likes";
+                                                                                                                                                                                                                                                                                                } ?></a></span>
 
 
                                                                             <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
@@ -909,10 +912,10 @@ if($alpha=="unset")
 
                                                                             <span><?php echo $counter_main; ?></span>
                                                                             <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                            echo " Like";
-                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                            echo " Likes";
-                                                                                                                                                                                                                                                                                        } ?></a></span>
+                                                                                                                                                                                                                                                                                                echo " Like";
+                                                                                                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                                                                                                echo " Likes";
+                                                                                                                                                                                                                                                                                            } ?></a></span>
 
                                                                         <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
                                                                     <?php
@@ -1042,10 +1045,13 @@ if($alpha=="unset")
 	</div>
 	<p>&copy; 2015 <a href="#">Tailem</a>.com All Rights Reserved</p>
 </footer>-->
-
-@include("common.signin_modal")
+<?php if (isset($user_type) && ($user_type == 'admin')) { ?>
+<?php } else { ?>
+    @include("common.signin_modal")
+<?php } ?>
 <?php
-// include("include/thankyou_messages.php"); ?>
+// include("include/thankyou_messages.php"); 
+?>
 
 <div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="#profile_Modal2_99999999" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
