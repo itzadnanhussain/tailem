@@ -1,11 +1,11 @@
 <p class="title" style="font-size:18px !important;">Latest Activity</p>
 <?php
 
- //define some arrays
- error_reporting(0);
- $discussion_date_check = '';
- $like_date_check  = '';
- $like_review_date_check  = '';
+//define some arrays
+error_reporting(0);
+$discussion_date_check = '';
+$like_date_check  = '';
+$like_review_date_check  = '';
 
 if ($review_list_arr_top) {
 
@@ -41,14 +41,14 @@ if ($comment_list_arr) {
     $c_song_list = "select c.comment_post_date, s.song_title, s.song_seo,a.artist_seo, s.song_title from tbl_artist_album b, tbl_artists a, tbl_comments c, tbl_songs s where 1=1 AND s.id = c.comment_review_id AND a.id = c.comment_artist_id AND b.id = c.comment_album_id  AND c.comment_user_id = '" . $user_profile . "' AND s.song_status = 1  order by c.comment_id desc limit 5";
 
     $c_song_list_arr_array = \App\Models\Songs::GetRawData($c_song_list);
-    
+
 
     if ($c_song_list_arr_array) {
-       
+
         foreach ($c_song_list_arr_array as $c_song_list_arr) {
             $c_song_list_arr = (array) $c_song_list_arr;
             $discussion_date_check =  date("Y-m-d", $c_song_list_arr['comment_post_date']);
-            
+
             $discussion_date_check2 =  date("Y-m-d H:i:s", $c_song_list_arr['comment_post_date']);
 
 
@@ -72,7 +72,7 @@ if ($comment_list_arr) {
     }
 }
 
- 
+
 if ($like_list_arr) {
 
 
@@ -103,8 +103,7 @@ if ($like_list_arr) {
 
 
                 $datadataarray[] =    array("name" => "like_date_check", "date" => "$like_date_check", "date2" => "$like_date_check2", "messages" => "$messages");
-            } 
-            else
+            } else
 				if ($like_type == "profile") {
                 $query_info = "select user_name from tbl_users where user_id = '" . $like_list_arr_inner['like_id'] . "'";
 
@@ -127,14 +126,14 @@ if ($like_list_arr) {
 									if ($like_type == "playlist") {
                 $query_info = "select u.user_name, p.title_playlist, p.title_playlist_seo from tbl_users u, tbl_user_playlist p where   u.user_id = '" . $like_list_arr_inner['like_receive_user'] . "' AND p.id = '" . $like_list_arr_inner['like_id'] . "' ";
 
-              
+
                 $get_info_arr = \App\Models\Songs::GetRawData($query_info);
-                $get_info_arr = (array)$get_info_arr[0]; 
-               
+                $get_info_arr = (array)$get_info_arr[0];
+
 
                 $user_name_db  =   $get_info_arr['user_name'];
                 $db_title  =   $get_info_arr['title_playlist'];
-                
+
                 $db_title_playlist_seo  =   $get_info_arr['title_playlist_seo'];
 
                 $date_db      =  strtotime(date($like_list_arr_inner['date']));
@@ -153,7 +152,7 @@ if ($like_list_arr) {
                 $query_info = "select b.album_seo, b.album_title, a.artist_seo from tbl_artist_album b,  tbl_artists a  where b.id = '" . $like_list_arr_inner['like_id'] . "' AND b.album_artist_id  = a.id";
 
                 $get_info_arr = \App\Models\Songs::GetRawData($query_info);
-                $get_info_arr = (array)$get_info_arr[0]; 
+                $get_info_arr = (array)$get_info_arr[0];
 
                 $db_title  =   $get_info_arr['album_title'];
                 $db_artist_seo  =   $get_info_arr['artist_seo'];
@@ -172,7 +171,7 @@ if ($like_list_arr) {
         }
     }
 }
- 
+
 
 $like_review_query = "select rev.review_user_id, s.song_title,s.song_seo,a.artist_seo, l.date , l.display_date
 							from tbl_artist_album b, tbl_artists a, tbl_songs s, tbl_likes l, tbl_reviews rev, tbl_users u 
@@ -187,7 +186,7 @@ $like_review_query = "select rev.review_user_id, s.song_title,s.song_seo,a.artis
 							AND s.song_status = 1
 							order by l.id desc limit 5";
 
- $review_list_arrs = \App\Models\Songs::GetRawData($like_review_query);
+$review_list_arrs = \App\Models\Songs::GetRawData($like_review_query);
 
 if ($review_list_arrs) {
     foreach ($review_list_arrs as $review_list_arr) {
@@ -199,7 +198,7 @@ if ($review_list_arrs) {
 									where 1=1 
 									AND user_id = '" . $review_user_id . "'";
 
-         $user_arr = \App\Models\Songs::GetRawData($user_query);
+        $user_arr = \App\Models\Songs::GetRawData($user_query);
 
 
         $like_review_date_check =  date("Y-m-d", strtotime(date($review_list_arr['date'])));
@@ -227,7 +226,7 @@ if ($review_list_arrs) {
 
 $playlist_query = "select p.*, u.user_name, u.user_seo from tbl_user_playlist p, tbl_users u where p.user_id_playlist = '$user_profile' AND u.user_id = p.user_id_playlist order by p.id desc limit 5";
 
- $playlist_list_arrs = \App\Models\Songs::GetRawData($playlist_query);
+$playlist_list_arrs = \App\Models\Songs::GetRawData($playlist_query);
 
 if ($playlist_list_arrs) {
     foreach ($playlist_list_arrs as $myplaylist_arr) {
@@ -293,19 +292,18 @@ if ($playlist_list_arrs) {
 
 
 
- 
+
 
 
 $data = sortArray($datadataarray, 'date2');
-if($data)
-{
+if ($data) {
 
     $size_arr = sizeof($data);
-}else{
+} else {
     $size_arr = 0;
 }
 
- 
+
 
 $nn = 0;
 foreach ($data as $bd) {
@@ -323,8 +321,8 @@ if ($size_arr > 5) {
     $start_point  = 0;
 }
 
-for ($sz = $size_arr-1; $sz >= $start_point; $sz--) {
-    
+for ($sz = $size_arr - 1; $sz >= $start_point; $sz--) {
+
 
     if ($dates[$sz] == '') {
     } else {
@@ -335,24 +333,22 @@ for ($sz = $size_arr-1; $sz >= $start_point; $sz--) {
 }
 
 $data = array("$review_date_check", "$discussion_date_check", "$like_date_check", "$like_review_date_check", "$addplaylist_date_check", "$addplaylistsong_date_check");
- 
-// $other = usort($data, 'date_compare');
 
+// $other = usort($data, 'date_compare');
+$user_data = GetByWhere('users',array('user_id'=>$user_profile));
+if($user_data)
+{
+    $user_date = date('d M Y',strtotime($user_data[0]->created_at));
+}else{
+    $user_date = date("d M Y", time());
+}
+ 
 
 
 if ($mobile_view == 0) { ?>
     <div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
         <p>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Member Since<br><a class="heart_color"><?php
-
-                                                                                                                    if ($date_added_db != "") {
-                                                                                                                        $date_added  =  date("d M Y", $date_added_db);
-                                                                                                                    } else
-							if ($date_added != "") {
-                                                                                                                        $date_added  =  date("d M Y", $date_added);
-                                                                                                                    }
-                                                                                                                    echo $date_added;
-                                                                                                                    ?></a></div>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Member Since<br><a class="heart_color"><?php echo $user_date; ?></a></div>
         <?php
         if ($review_list_arr_top) {
             $query = "select r.review_post_date  from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
@@ -370,9 +366,9 @@ if ($mobile_view == 0) { ?>
         if ($comment_list_arr) {
             $query = "select comment_post_date from tbl_comments where comment_user_id = '" . $user_profile . "' order by comment_id desc limit 1";
             $info_q_arr = \App\Models\Songs::GetRawData($query);
-            
+
             $info_q_arr = (array)$info_q_arr[0];
- 
+
             if ($info_q_arr['comment_post_date'] != '') {
             ?>
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a></div>
@@ -406,7 +402,7 @@ if ($mobile_view == 0) { ?>
 
                 $info_q_arr = \App\Models\Songs::GetRawData($query);
                 $info_q_arr = (array)$info_q_arr[0];
-     
+
                 if ($info_q_arr['comment_post_date'] != '') {
     ?>
         <div class="col-sm-6 col-xs-6" style="padding:0; text-align:right;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a></div>
