@@ -69,7 +69,8 @@ class ArtistController extends Controller
 
         ///row_artist
         $row_artist = array();
-        $qry = "select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_seo='" . $data['artist_seo'] . "' and artist_description!=''";
+        // $qry = "select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_seo='" . $data['artist_seo'] . "' and artist_description!=''";
+        $qry = "select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_seo='" . $data['artist_seo'] ."'";
 
         $row_artist = \App\Models\Songs::GetRawData($qry);
         if (isset($row_artist) && !empty($row_artist)) {
