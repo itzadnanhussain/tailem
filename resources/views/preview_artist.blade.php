@@ -265,7 +265,7 @@ $counter = 0;
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <p style="padding:5px;"> <a class="heart_color" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>" aria-controls="song">Songs</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-albums"; ?>">Albums</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-featured"; ?>">Featured</a></p>
+                                    <p style="padding:5px;"> <a class="heart_color" href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>" aria-controls="song">Songs</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-albums"; ?>">Albums</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-featured"; ?>">Featured</a></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -407,7 +407,7 @@ $counter = 0;
                 if (isset($_REQUEST['sort']) && !empty($_REQUEST['sort'])) {
                     $targetpage = SERVER_ROOTPATH . $artist_seo . "/artist-sort/" . $_REQUEST['sort']; //your file name  (the name of this file)
                 } else {
-                    $targetpage = SERVER_ROOTPATH . $artist_seo . "/artist-songs"; //your file name  (the name of this file)
+                    $targetpage = SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; //your file name  (the name of this file)
                 }
 
 
@@ -645,7 +645,7 @@ $counter = 0;
                                             <div class="col-lg-7 col-md-7 col-sm-8 col-xs-8 pad_right">
                                                 <div class="album_details" style="width:100%;">
                                                     <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
                                                     <?php if ($feature_artists != "") { ?>
                                                         <p>
                                                             <label class="author"><strong>ft. </strong><?php echo $feature_artists; ?></label>
@@ -773,7 +773,7 @@ $counter = 0;
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0px !important;">
                                                 <div class="album_details">
                                                     <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews-" . $artist_seo; ?>"><?php echo $song_title; ?></a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
                                                     <?php if ($feature_artists != "") { ?>
                                                         <p>
                                                             <label class="author"><strong>ft. </strong><?php echo $feature_artists; ?></label>

@@ -527,7 +527,7 @@ if (!function_exists('featured_screen')) {
 
         $num = 1;
 
-        $featured_screen = "<a class='featured_art' href='" . SERVER_ROOTPATH .  $artist_seo . "/artist-songs'>" . $artist_name . "</a>";
+        $featured_screen = "<a class='featured_art' href='" . SERVER_ROOTPATH .  Slug($artist_seo) . "/artist-songs'>" . $artist_name . "</a>";
 
         if ($qry_feature_arr) {
             $sum_len = 0;
@@ -557,17 +557,17 @@ if (!function_exists('featured_screen')) {
                         if ($sum_len > $minString) {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval);
                             if (strlen($val_feature['feature_artist']) > $totval) {
-                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             } else {
-                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             }
                             break;
                         } else {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval);
                             if (strlen($val_feature['feature_artist']) > $totval) {
-                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
-                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             }
                             break;
                         }
@@ -580,20 +580,20 @@ if (!function_exists('featured_screen')) {
 
                                 //echo $remaing_space = strlen($val_feature['feature_artist']) - $totval;
                                 //echo $remaining_feature_art  = substr($val_feature['feature_artist'],0,$remaing_space);
-                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
 
                                 $remaing_space =  28 - $sum_len - 5;
                                 $remaing_feature_art  = substr($val_feature['feature_artist'], 0, $remaing_space);
-                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $remaing_feature_art . "..</a>";
+                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $remaing_feature_art . "..</a>";
                             }
                             break;
                         } else {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval);
                             if (strlen($val_feature['feature_artist']) > $totval) {
-                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>, ";
+                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>, ";
                             } else {
-                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>, ";
+                                $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>, ";
                             }
                         }
                     }
@@ -711,17 +711,17 @@ if (!function_exists('featured_ipad')) {
                         if ($sum_len > 15) {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval_pad);
                             if (strlen($val_feature['feature_artist']) > $totval_pad) {
-                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
-                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             }
                             break;
                         } else {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval_pad);
                             if (strlen($val_feature['feature_artist']) > $totval_pad) {
-                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
-                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             }
                         }
                     } else {
@@ -730,17 +730,17 @@ if (!function_exists('featured_ipad')) {
                         if ($sum_len > 15) {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval_pad);
                             if (strlen($val_feature['feature_artist']) > $totval_pad) {
-                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
-                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             }
                             break;
                         } else {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval_pad);
                             if (strlen($val_feature['feature_artist']) > $totval_pad) {
-                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>,";
+                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>,";
                             } else {
-                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>,";
+                                $featured_ipad .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>,";
                             }
                         }
                     }
@@ -804,17 +804,17 @@ if (!function_exists('featured_mobile')) {
                         if ($sum_len > 15) {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval);
                             if (strlen($val_feature['feature_artist']) > $totval) {
-                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
-                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             }
                             break;
                         } else {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval);
                             if (strlen($val_feature['feature_artist']) > $totval) {
-                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
-                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             }
                         }
                     } else {
@@ -823,17 +823,17 @@ if (!function_exists('featured_mobile')) {
                         if ($sum_len > 15) {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval);
                             if (strlen($val_feature['feature_artist']) > $totval) {
-                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
-                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                             }
                             break;
                         } else {
                             $feature_art  = substr($val_feature['feature_artist'], 0, $totval);
                             if (strlen($val_feature['feature_artist']) > $totval) {
-                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>,";
+                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>,";
                             } else {
-                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>,";
+                                $featured_mobile .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>,";
                             }
                         }
                     }
@@ -883,17 +883,17 @@ if (!function_exists('feature_songs')) {
                     if ($sum_len > 15) {
                         $feature_art  = substr($val_feature['feature_artist'], 0, 10);
                         if (strlen($val_feature['feature_artist']) > 10) {
-                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                         } else {
-                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                         }
                         break;
                     } else {
                         $feature_art  = substr($val_feature['feature_artist'], 0, 10);
                         if (strlen($val_feature['feature_artist']) > 10) {
-                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                         } else {
-                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                         }
                     }
                 } else {
@@ -902,17 +902,17 @@ if (!function_exists('feature_songs')) {
                     if ($sum_len > 15) {
                         $feature_art  = substr($val_feature['feature_artist'], 0, 10);
                         if (strlen($val_feature['feature_artist']) > 10) {
-                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>";
+                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                         } else {
-                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>";
+                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>";
                         }
                         break;
                     } else {
                         $feature_art  = substr($val_feature['feature_artist'], 0, 10);
                         if (strlen($val_feature['feature_artist']) > 10) {
-                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . '..' . "</a>,";
+                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>,";
                         } else {
-                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $feature_art . "</a>,";
+                            $feature_artists .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . "</a>,";
                         }
                     }
                 }

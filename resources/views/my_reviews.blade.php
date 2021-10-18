@@ -629,9 +629,9 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
                                         $feature_art  = substr($val_feature['feature_artist'], 0, 8);
                                         if (strlen($val_feature['feature_artist']) > 8) {
-                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $feature_art . '..' . "</a>";
+                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $feature_art . '..' . "</a>";
                                         } else {
-                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
+                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
                                         }
                                         if ($num == 2) {
                                             break;
@@ -639,9 +639,9 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                     } else {
                                         $feature_art  = substr($val_feature['feature_artist'], 0, 8);
                                         if (strlen($val_feature['feature_artist']) > 8) {
-                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;' >" . $feature_art . '..' . "</a>";
+                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;' >" . $feature_art . '..' . "</a>";
                                         } else {
-                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
+                                            $feature_artists .= " <a href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' style='color:#d73b3b; font-size: 16px;  font-weight: 500;'>" . $val_feature['feature_artist'] . "</a>";
                                         }
                                         if ($num == 2) {
                                             break;

@@ -279,9 +279,9 @@ $img_arr3 = (array)$img_arr3[0];
                 foreach ($qry_feature_arr as $val_feature) {
                     $val_feature = (array) $val_feature;
                     if ($num == $count) {
-                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs' >" . $val_feature['feature_artist'] . "</a>";
+                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs' >" . $val_feature['feature_artist'] . "</a>";
                     } else {
-                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
+                        $feature_artists .= " <a style='color:#D73B3B' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
                     }
                     $num++;
                 }
@@ -341,7 +341,7 @@ $img_arr3 = (array)$img_arr3[0];
                         </div>
                         <div class="col-sm-7 desc-panel">
                             <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
-                            <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                            <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                 <?php
                                 if ($feature_artists != "") {
                                 ?>
@@ -547,7 +547,7 @@ $img_arr3 = (array)$img_arr3[0];
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:5px;">
                                 <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
-                                <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
+                                <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                     <?php
                                     if ($feature_artists != "") {
                                     ?>

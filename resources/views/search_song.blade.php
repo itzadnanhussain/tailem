@@ -326,7 +326,7 @@ if ($srch_search_sess == "") {
                                                                                                                                                                                                             echo "...";
                                                                                                                                                                                                         } ?></a></label>
 
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
                                                                                                                                                     if (strlen($artist_name) > 20) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a></label>
@@ -459,7 +459,7 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
                                                                                                                                                                 if (strlen($song_title) > 25) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
                                                                                                                                                         if (strlen($artist_name) > 20) {
                                                                                                                                                             echo "...";
                                                                                                                                                         } ?></a></label>

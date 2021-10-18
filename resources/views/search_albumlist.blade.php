@@ -281,13 +281,13 @@ if ($srch_search_sess == "") {
                                                             if ($various) {
 
                                                             ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $various['artist_seo'] . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 25);
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($various['artist_seo']) . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 25);
                                                                                                                                                     if (strlen($various['artist_name']) > 25) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a>
                                                             <?php
                                                             } else {
-                                                            ?> <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
+                                                            ?> <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
                                                                                                                                         if (strlen($artist_name) > 20) {
                                                                                                                                             echo "...";
                                                                                                                                         } ?></a>
@@ -411,13 +411,13 @@ if ($srch_search_sess == "") {
                                                             <?php
                                                             if ($various) {
                                                             ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $various['artist_seo'] . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 20);
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($various['artist_seo']) . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 20);
                                                                                                                                                     if (strlen($various['artist_name']) > 20) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a>
                                                             <?php
                                                             } else {
-                                                            ?> <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
+                                                            ?> <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
                                                                                                                                         if (strlen($artist_name) > 20) {
                                                                                                                                             echo "...";
                                                                                                                                         } ?></a>

@@ -265,7 +265,7 @@ if ($lastfm_url == "") {
                             </div>
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <p style="padding:5px;"> <a class="heart_color" href="<?php echo SERVER_ROOTPATH .  $artist_seo . "/artist-songs"; ?>" aria-controls="song">Songs</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-albums"; ?>">Albums</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-featured"; ?>">Featured</a></p>
+                                    <p style="padding:5px;"> <a class="heart_color" href="<?php echo SERVER_ROOTPATH .  Slug($artist_seo) . "/artist-songs"; ?>" aria-controls="song">Songs</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-albums"; ?>">Albums</a> - <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-featured"; ?>">Featured</a></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -277,7 +277,7 @@ if ($lastfm_url == "") {
                                         $array_score = sum_of_artist_rating($artist_id_db);
 
                                         ?>
-                                        <a href="<?php echo SERVER_ROOTPATH .  $artist_seo . "/artist-songs"; ?>" class="pull-left mr-15" target="_blank">
+                                        <a href="<?php echo SERVER_ROOTPATH .  Slug($artist_seo) . "/artist-songs"; ?>" class="pull-left mr-15" target="_blank">
                                             <?php
                                             if ($artist_img != "") {
                                                 $img_api_link = album_img_api($artist_img);
@@ -401,9 +401,9 @@ if ($lastfm_url == "") {
 
 
                 if ($sort != '') {
-                    $targetpage = SERVER_ROOTPATH . $artist_seo . "/artist-songs" . $sort; //your file name  (the name of this file)
+                    $targetpage = SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs" . $sort; //your file name  (the name of this file)
                 } else {
-                    $targetpage = SERVER_ROOTPATH . $artist_seo . "/artist-songs"; //your file name  (the name of this file)
+                    $targetpage = SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; //your file name  (the name of this file)
                 }
 
 
@@ -557,9 +557,9 @@ if ($lastfm_url == "") {
                                         $val_feature = (array)$val_feature;
                                         $val_feature['f_artist_seo'] = strtolower($val_feature['f_artist_seo']);
                                         if ($num == $count) {
-                                            $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>";
+                                            $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>";
                                         } else {
-                                            $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
+                                            $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
                                         }
                                         $num++;
                                     }
@@ -665,7 +665,7 @@ if ($lastfm_url == "") {
                                             <div class="col-lg-7 col-md-7 col-sm-8 col-xs-8 pad_right">
                                                 <div class="album_details" style="width:100%;">
                                                     <label class="title"><a href="<?php echo SERVER_ROOTPATH .  Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH .  $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH .  Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
                                                     <?php if ($feature_artists != "") { ?>
                                                         <p>
                                                             <label class="author"><strong>ft. </strong><?php echo $feature_artists; ?></label>
@@ -831,7 +831,7 @@ if ($lastfm_url == "") {
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0px !important;">
                                                 <div class="album_details">
                                                     <label class="title"><a href="<?php echo SERVER_ROOTPATH .  Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH .  $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH .  Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a></label>
                                                     <?php if ($feature_artists != "") { ?>
                                                         <p>
                                                             <label class="author"><strong>ft. </strong><?php echo $feature_artists; ?></label>

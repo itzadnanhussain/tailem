@@ -202,11 +202,11 @@
                                                                                                                                                             if (strlen($album_title) > 50) {
                                                                                                                                                                 echo "...";
                                                                                                                                                             } ?></a></label>
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                     if (strlen($artist_name) > 30) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a></label>
-                                                    <!--<label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . '/artist-songs'; ?>" class="display_width_inner"><h4 style="margin-top:-10px;"><?php echo $artist_name; ?></h4></a></label>
+                                                    <!--<label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . '/artist-songs'; ?>" class="display_width_inner"><h4 style="margin-top:-10px;"><?php echo $artist_name; ?></h4></a></label>
                                             -->
                                                     <label class="likes" style="height:26px; margin-top:-7px; vertical-align: middle;">
                                                         <?php
@@ -320,11 +320,11 @@
                                                                                                                                                                 if (strlen($album_title) > 50) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 30);
                                                                                                                                                         if (strlen($artist_name) > 30) {
                                                                                                                                                             echo "...";
                                                                                                                                                         } ?></a></label>
-                                                        <!--<label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . '/artist-songs'; ?>" class="display_width_inner"><h4 style="margin-top:-10px;"><?php echo $artist_name; ?></h4></a></label>
+                                                        <!--<label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . '/artist-songs'; ?>" class="display_width_inner"><h4 style="margin-top:-10px;"><?php echo $artist_name; ?></h4></a></label>
                                             -->
                                                         <div style="clear:both;"></div>
                                                         <label class="likes" style="float:left; height:26px; margin-left:0px; padding-left:0px;">

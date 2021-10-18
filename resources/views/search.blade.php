@@ -205,9 +205,9 @@ if ($srch_search_sess == "") {
                                         $val_feature = (array)$val_feature;
                                         $val_feature['f_artist_seo'] = strtolower($val_feature['f_artist_seo']);
                                         if ($num == $count) {
-                                            $feature_artists .= " <a style='color:#d73b3b;' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>";
+                                            $feature_artists .= " <a style='color:#d73b3b;' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>";
                                         } else {
-                                            $feature_artists .= " <a style='color:#d73b3b;' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
+                                            $feature_artists .= " <a style='color:#d73b3b;' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
                                         }
                                         $num++;
                                     }
@@ -345,7 +345,7 @@ if ($srch_search_sess == "") {
                                                                                                                                                                                                             echo "...";
                                                                                                                                                                                                         } ?></a></label>
 
-                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
+                                                    <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
                                                                                                                                                     if (strlen($artist_name) > 32) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?></a></label>
@@ -487,7 +487,7 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
                                                                                                                                                                 if (strlen($song_title) > 22) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
                                                                                                                                                         if (strlen($artist_name) > 20) {
                                                                                                                                                             echo "...";
                                                                                                                                                         } ?></a></label>
@@ -765,9 +765,9 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                     if ($artist_img != "") {
                                                         $img_api_linka = album_img_api($artist_img);
                                                         if ($img_api_linka != '') { ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($artist_img); ?>" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($artist_img); ?>" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
                                                         <?php } else { ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo '' . $artist_img; ?>" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo '' . $artist_img; ?>" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
                                                         <?php
                                                         }
                                                     } else
@@ -775,11 +775,11 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                         $req_artist  =  artist_func(urlencode("$artist_name"));
                                                         if ($req_artist['artist_array']['image4'] != "") {
                                                         ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="120" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="120" /></a>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
                                                     <?php
                                                         }
                                                     }
@@ -795,12 +795,12 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                 </div>
                                                 <div class="album_details" style="margin-top:0; padding: 2% 0 0 4%;">
                                                     <!--Desktop-->
-                                                    <label class="review_screen_txt title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 50);
+                                                    <label class="review_screen_txt title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 50);
                                                                                                                                                                     if (strlen($artist_name) > 50) {
                                                                                                                                                                         echo "...";
                                                                                                                                                                     } ?></a></label>
                                                     <!-- Ipad-->
-                                                    <label class="review_ipad_txt title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
+                                                    <label class="review_ipad_txt title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
                                                                                                                                                                     if (strlen($artist_name) > 20) {
                                                                                                                                                                         echo "...";
                                                                                                                                                                     } ?></a></label>
@@ -878,21 +878,21 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                             $img_api_linka = album_img_api($artist_img);
 
                                                             if ($img_api_linka != '') { ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($artist_img); ?>" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($artist_img); ?>" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
 
                                                             <?php } else { ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>" border="0" width="120" /></a>
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>" border="0" width="120" /></a>
 
                                                             <?php
                                                             }
                                                         } else
 											if ($req_artist) {
                                                             ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo $req_artist['artist_array']['image4']; ?>" border="0" width="100" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo $req_artist['artist_array']['image4']; ?>" border="0" width="100" /></a>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" /></a>
                                                         <?php
                                                         }
                                                         ?>
@@ -908,7 +908,7 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                 </div>
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 album-detail-container" style="padding:0px !important;">
                                                     <div class="album_details" style="margin-top:0;">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
                                                                                                                                                         if (strlen($artist_name) > 20) {
                                                                                                                                                             echo "...";
                                                                                                                                                         } ?><?php //echo $artist_name;
@@ -1167,14 +1167,14 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                         <label class="author" style="width:200px; float:left;"><?php
                                                                                                                 if ($various['artist_name'] != "") {
                                                                                                                 ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $various['artist_seo'] . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 32);
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($various['artist_seo']) . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 32);
                                                                                                                                                     if (strlen($various['artist_name']) > 32) {
                                                                                                                                                         echo "...";
                                                                                                                                                     } ?><?php //echo $various['artist_name'];
                                                                                                                                                         ?></a>
                                                             <?php
                                                                                                                 } else {
-                                                            ?> <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
+                                                            ?> <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
                                                                                                                                         if (strlen($artist_name) > 32) {
                                                                                                                                             echo "...";
                                                                                                                                         } ?><?php //echo $artist_name;
@@ -1298,14 +1298,14 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                         <label class="author"><?php
                                                                                 if ($various['artist_name']) {
                                                                                 ?>
-                                                                <a href="<?php echo SERVER_ROOTPATH . $various['artist_seo'] . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 32);
+                                                                <a href="<?php echo SERVER_ROOTPATH . Slug($various['artist_seo']) . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 32);
                                                                                                                                                     if (strlen($various['artist_name']) > 32) {
                                                                                                                                                         echo "..";
                                                                                                                                                     } ?><?php //echo $various['artist_name'];
                                                                                                                                                         ?></a>
                                                             <?php
                                                                                 } else {
-                                                            ?> <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
+                                                            ?> <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
                                                                                                                                         if (strlen($artist_name) > 32) {
                                                                                                                                             echo "..";
                                                                                                                                         } ?><?php //echo $artist_name;

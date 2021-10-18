@@ -185,7 +185,7 @@ if (isset($get_user_content) && !empty($get_user_content)) {
                                                     $req_artist  =  artist_func(urlencode("$artist_name"));
                                                     if ($req_artist['artist_array']['image4'] != "") {
                                                     ?>
-                                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><img class="img-responsive" src="<?php echo $req_artist['artist_array']['image4']; ?>" border="0" /></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img class="img-responsive" src="<?php echo $req_artist['artist_array']['image4']; ?>" border="0" /></a>
                                                     <?php
                                                     } else {
                                                     ?>
@@ -206,7 +206,7 @@ if (isset($get_user_content) && !empty($get_user_content)) {
                                             <div class="list_bottom" style="padding-bottom:0;">
                                                 <div class="row">
                                                     <div class="col-lg-7 col-md-8 col-sm-6 col-xs-7">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>">
+                                                        <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>">
                                                             <cite2 style="margin:2px;"><?php echo $artist_name; ?></cite>
                                                         </a>
                                                     </div>

@@ -216,7 +216,7 @@ if ($lastfm_url == "") {
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <p style="padding:5px;">
-                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>" aria-controls="song">Songs</a> -
+                                        <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>" aria-controls="song">Songs</a> -
                                         <a class="heart_color" href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-albums"; ?>">Albums</a> -
                                         <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-featured"; ?>">Featured</a>
                                     </p>
@@ -231,7 +231,7 @@ if ($lastfm_url == "") {
                                         $array_score = sum_of_artist_rating($artist_id_db);
 
                                         ?>
-                                        <a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>" class="pull-left mr-15" target="_blank">
+                                        <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>" class="pull-left mr-15" target="_blank">
                                             <?php
                                             if ($artist_img != "") {
                                                 $img_api_link = album_img_api($artist_img);
@@ -629,9 +629,9 @@ if ($lastfm_url == "") {
                                         if ($qry_feature_arr) {
                                             foreach ($qry_feature_arr as $val_feature) {
                                                 if ($num == $count) {
-                                                    $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>";
+                                                    $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>";
                                                 } else {
-                                                    $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . $val_feature['f_artist_seo'] . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
+                                                    $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>,";
                                                 }
                                                 $num++;
                                             }
@@ -697,9 +697,9 @@ if ($lastfm_url == "") {
                                                     <label class="author">
                                                         <?php
                                                         if ($various) {
-                                                        ?><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a>
+                                                        ?><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a>
                                                         <?php } else {
-                                                        ?><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a>
+                                                        ?><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a>
                                                         <?php
                                                         } ?>
                                                     </label>
@@ -769,7 +769,7 @@ if ($lastfm_url == "") {
                                                 <div class="col-lg-7 col-md-7 col-sm-8 col-xs-8 pad_right">
                                                     <div class="album_details" style="width:100%;">
                                                         <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($arr_song_seo[$s]) . "/reviews/" . Slug($arr_artist_seo[$s]); ?>"><?php echo  $arr_song_title[$s]; ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $arr_artist_seo[$s] . "/artist-songs"; ?>"><?php echo $arr_db_artist_name[$s]; ?></a></label><br>
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($arr_artist_seo[$s]) . "/artist-songs"; ?>"><?php echo $arr_db_artist_name[$s]; ?></a></label><br>
                                                         <?php if ($arr_feature_artists[$s] != "") { ?>
                                                             <label class="author"><strong>ft. </strong><?php echo $arr_feature_artists[$s]; ?></label><?php } ?>
                                                         <p><label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>images/review-book.png"><a>Reviews <span><?php echo $arr_count_reviews[$s]; ?></span></a></label><label class="reviews" style="margin-left:10px;"><img src="<?php echo SERVER_ROOTPATH; ?>
@@ -835,9 +835,9 @@ images/icon_post.png"><a>Posts <span><?php echo $arr_count_discussion[$s]; ?></s
                                                     <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/album/" . $album_seo; ?>"><?php echo $album_title; ?></a></label>
                                                     <label class="author"><?php
                                                                             if ($various) {
-                                                                            ?><a href="<?php echo SERVER_ROOTPATH . $various['artist_seo'] . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a>
+                                                                            ?><a href="<?php echo SERVER_ROOTPATH . Slug($various['artist_seo']) . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a>
                                                         <?php } else {
-                                                        ?><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a>
+                                                        ?><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $db_artist_name; ?></a>
                                                         <?php
                                                                             } ?></label>
                                                     <p>Album Songs <a id="show_song_<?php echo $id; ?>" title="Album Songs" style="color:#DE6161;" href="javascript:;" onClick="view_album_song('<?php echo $id; ?>');">( + )</a><a id="hide_song_<?php echo $id; ?>" title="Album Songs" style="display:none; color:#DE6161;" href="javascript:;" onClick="hide_album_song('<?php echo $id; ?>');">( - )</a></p>
@@ -906,7 +906,7 @@ images/icon_post.png"><a>Posts <span><?php echo $arr_count_discussion[$s]; ?></s
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9" style="padding:0px !important;  padding-right:0;">
                                                     <div class="album_details">
                                                         <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($arr_song_seo[$s]) . "/reviews/" . Slug($arr_artist_seo[$s]); ?>"><?php echo  $arr_song_title[$s]; ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . $arr_artist_seo[$s] . "/artist-songs"; ?>"><?php echo $arr_db_artist_name[$s]; ?></a></label><br>
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($arr_artist_seo[$s]) . "/artist-songs"; ?>"><?php echo $arr_db_artist_name[$s]; ?></a></label><br>
                                                         <?php if ($arr_feature_artists[$s] != "") { ?>
                                                             <label class="author"><strong>ft. </strong><?php echo $arr_feature_artists[$s]; ?></label><?php } ?>
                                                         <p><label class="reviews"><img src="images/review-book.png"><a>Reviews <span><?php echo $arr_count_reviews[$s]; ?></span></a></label><label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>
