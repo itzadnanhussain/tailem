@@ -384,7 +384,7 @@ if ($alpha == "unset") {
 						if (empty($artist_list_arr)) {
 							if ($where_condition == '') {
 
-								$artist_list = "select * from tbl_artists where 1=1  $where_condition limit 50";
+								$artist_list = "select * from tbl_artists where artist_status = 1  $where_condition limit 50";
 							} else {
 								//echo "2loop";
 								if ($search_result != '') {
@@ -397,7 +397,7 @@ if ($alpha == "unset") {
 									$orderby = " artist_name asc";
 								}
 
-								$artist_list = "select * from tbl_artists where 1=1  $where_condition order by $orderby";
+								$artist_list = "select * from tbl_artists where artist_status = 1  $where_condition order by $orderby";
 
 								//$artist_list = "select a.artist_seo,a.artist_name, a.artist_img, a.id, c.cat_name, c.cat_seo_name from tbl_artists a, tbl_categories c where 1=1 AND a.artist_status = 1 AND a.genere_cat = c.cat_id  $where_condition order by $orderby";
 							}

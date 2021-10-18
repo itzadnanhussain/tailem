@@ -2,11 +2,12 @@
 <?php ob_start();
  
 //echo "Jai shree ram";
-$qry      = "select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_seo='" . $artist_seo . "'";
+$qry      = "select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_status = 1 and artist_seo='" . $artist_seo . "'";
 $row_artist = \App\Models\Songs::GetRawDataAdmin($qry);
+ 
 //$row_artist  	=  $db->get_row("select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_seo='".$artist_seo."' and artist_description!=''",ARRAY_A);	
 
-if ($row_artist) {
+if (isset($row_artist) && !empty($row_artist)) {
     $artist_id_db             = stripslashes(html_entity_decode($row_artist['id']));
     $artist_seo             = strtolower(stripslashes(html_entity_decode($row_artist['artist_seo'])));
     $db_artist_name         = stripslashes(html_entity_decode($row_artist['artist_name']));
@@ -56,11 +57,14 @@ if ($row_artist) {
         $info   =  strip_tags(str_replace($val2, "", $info1));
     }
 } else {
-
     $url = SERVER_ROOTPATH;
-    echo "<script> window.location = " . $url . "</script>";
-    ob_flush();
-    exit;
+	echo '<script>window.location = "' . $url . '";</script>';
+	exit;
+
+    // $url = SERVER_ROOTPATH;
+    // echo "<script> window.location = " . $url . "</script>";
+    // ob_flush();
+    // exit;
 }
 ?>
 <style>

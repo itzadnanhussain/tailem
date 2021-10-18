@@ -46,6 +46,15 @@
 		}
 	}
 
+	$get_logo_data = GetByWhere('general_setting',array('setting_id'=>1));
+	if($get_logo_data)
+	{
+		$logo = $get_logo_data[0]->desktop_version_logo;
+	}else{
+		$logo = '';
+	}
+	
+
 
 
 
@@ -130,7 +139,7 @@
  		</table>
  	<?php  } else { ?>
  		<header>
- 			<div class="container pad_left" style="padding-right:8px;"> <a href="<?php echo SERVER_ROOTPATH; ?>" class="logo" style="float:left;"> <img src="<?php echo SERVER_ROOTPATH; ?>images/logo11.png" style="margin-bottom:2px;"> </a>
+ 			<div class="container pad_left" style="padding-right:8px;"> <a href="<?php echo SERVER_ROOTPATH; ?>" class="logo" style="float:left;"> <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/general_setting/<?php echo $logo ?>" style="margin-bottom:2px;"> </a>
  				<div class="mob_elements">
  					<p class="mob_search" id="mob_search"> <a href="javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a> </p>
  					<p class="mob_navigat" style="margin-right:0; font-size:32px;"> <a href="javascript:void(0)"><i class="fa fa-bars" aria-hidden="true"></i></a> </p>

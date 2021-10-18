@@ -195,6 +195,7 @@ if (isset($_POST['filter'])) {
 	if ($page)
 	{
 		$start = ($page - 1) * $limit; 
+		 
 
 	}
 	else{
@@ -260,7 +261,10 @@ if (isset($_POST['filter'])) {
 		$session_where .= "  $orderby limit $start, $limit ";
 	} else {
 
-		$session_where .= " and id > $start $orderby limit $limit ";
+		// $session_where .= " and id > $start $orderby limit $limit ";
+		$session_where .= "limit $limit , $start";
+		// echo $session_where;
+		// die;
 	}
 	session()->put('sess_song_query', $session_where);
 	//echo "ram2";
@@ -274,6 +278,7 @@ if (isset($_POST['filter'])) {
 	 					//how many items to show per page
 	$start = 0;
 	$sr_no = 0;
+	
 
 	//echo "ram3";
 	//$orderby = "ORDER BY ids ASC";
