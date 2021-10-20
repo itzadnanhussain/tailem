@@ -1,5 +1,6 @@
 @include('common.header')
 <!-- ./Header end --> 
+<?php error_reporting(0); ?>
 
 <!-- Middle Section -->
 <section class="middle_sec">

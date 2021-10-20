@@ -141,10 +141,11 @@ if ($srch_search_sess == "") {
                                 $artist_name = stripslashes(html_entity_decode($val['artist_name']));
                                 $album_picture   = stripslashes(html_entity_decode($val['album_picture']));
                                 $album_artist_id = stripslashes(html_entity_decode($val['album_artist_id']));
-                                $artist_data = GetArtistByAlbumId($id); 
+                                $artist_data = GetArtistByAlbumId($id);
+
                                 $artist_seo = strtolower($artist_data['artist_seo']);
-                                // $db_art_id      = $artist_data['id'];
-                               
+                                $artist_name = strtolower($artist_data['artist_name']);
+ 
                                 $album_seo  = strtolower(stripslashes(html_entity_decode($val['album_seo'])));
                                 $db_album_title = $album_title1;
                                 $album_title = wordwrap($album_title, 100, " ", true);
@@ -212,9 +213,9 @@ if ($srch_search_sess == "") {
 
                                 $songs_list = "select a.artist_seo,a.artist_name from  tbl_artist_album b,tbl_songs_artist_album saa, tbl_artists a where 1=1 AND saa.album_id = b.id   AND b.album_title = '" . $db_album_title . "' AND a.id = saa.artist_id AND saa.display_status = 1";
 
-                                $various = \App\Models\Songs::GetRawData($songs_list);
-                                $various['artist_seo'] = strtolower($various[0]->artist_seo);
-                        ?>
+                                $various = \App\Models\Songs::GetRawDataAdmin($songs_list); 
+                               
+                         ?>
                                 <li>
                                     <?php if ($mobile_view == 0) { ?>
                                         <div class="row">
@@ -274,7 +275,7 @@ if ($srch_search_sess == "") {
                                                                                                                                                                                                     } ?></a></label>
                                                     <div style="clear:both;"></div>
                                                     <div>
-                                                        <label class="author" style="width:215px; float:left;">
+                                                        <label class="author" style="width:100px; float:left;">
                                                             <?php
 
 
@@ -405,7 +406,7 @@ if ($srch_search_sess == "") {
                                                     <div class="album_details" style="margin-top:0;">
                                                         <label class="title"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/album/" . $album_seo; ?>"><?php echo substr($album_title, 0, 25);
                                                                                                                                                                 if (strlen($album_title) > 25) {
-                                                                                                                                                                    echo "...";
+                                                                                                                                                                    echo $album_title. "...";
                                                                                                                                                                 } ?></a></label>
                                                         <label class="author">
                                                             <?php
@@ -413,13 +414,13 @@ if ($srch_search_sess == "") {
                                                             ?>
                                                                 <a href="<?php echo SERVER_ROOTPATH . Slug($various['artist_seo']) . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 20);
                                                                                                                                                     if (strlen($various['artist_name']) > 20) {
-                                                                                                                                                        echo "...";
+                                                                                                                                                        echo $various['artist_name']. "...";
                                                                                                                                                     } ?></a>
                                                             <?php
                                                             } else {
                                                             ?> <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
                                                                                                                                         if (strlen($artist_name) > 20) {
-                                                                                                                                            echo "...";
+                                                                                                                                            echo $artist_name."...";
                                                                                                                                         } ?></a>
                                                             <?php
                                                             }

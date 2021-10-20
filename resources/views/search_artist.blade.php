@@ -64,6 +64,8 @@ if ($srch_search_sess == "") {
 
                 </div>
             </div>
+
+
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-7 col-xs-12">
                     <div class="brows-label-penel search_bread_crumb">
@@ -245,9 +247,9 @@ if ($srch_search_sess == "") {
                                                     if ($artist_img != "") {
                                                         $img_api_linka = album_img_api($artist_img);
                                                         if ($img_api_linka != '') { ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($artist_img); ?>" border="0" title="<?php echo $artist_name; ?>" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($artist_img); ?>" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
                                                         <?php } else { ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo '' . $artist_img; ?>" border="0" title="<?php echo $artist_name; ?>" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo '' . $artist_img; ?>" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
                                                         <?php
                                                         }
                                                     } else
@@ -255,11 +257,11 @@ if ($srch_search_sess == "") {
 
                                                         if ($req_artist['artist_array']['image4'] != "") {
                                                         ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="120" /></a>
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" title="<?php echo $artist_name; ?>" /></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" title="<?php echo $artist_name; ?>" /></a>
                                                     <?php
                                                         }
                                                     }

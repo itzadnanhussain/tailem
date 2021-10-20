@@ -1,6 +1,6 @@
 @include("common.header")
 <?php
- 
+
 error_reporting(0);
 $srch_search_sess   =  session()->get('main_search');
 $srch_sess          =  session()->get('main_result');
@@ -139,9 +139,11 @@ if ($srch_search_sess == "") {
                                 $album_picture   = null;
                                 $song_title = stripslashes(html_entity_decode($val['song_title']));
                                 // $artist_seo = strtolower(stripslashes(html_entity_decode($val['artist_seo'])));
-                                $artist_data = GetArtistBySongId($id); 
+                                $artist_data = GetArtistBySongId($id);
+
                                 $artist_seo = strtolower($artist_data['artist_seo']);
-                                
+                                $artist_name = strtolower($artist_data['artist_name']);
+
 
                                 $song_seo   = strtolower(stripslashes(html_entity_decode($val['song_seo'])));
                                 //$req_song  =  artist_album_song_func($artist_name,$song_title);
@@ -295,30 +297,30 @@ if ($srch_search_sess == "") {
                                                 <div class="album_cover">
 
                                                     <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" class="text_blck"> <?php
-                                                                                                                                                        if ($picture != "") {
-                                                                                                                                                            $img_api_linka = album_img_api($picture);
-                                                                                                                                                            if ($img_api_linka != '') {
-                                                                                                                                                        ?>
+                                                                                                                                                                    if ($picture != "") {
+                                                                                                                                                                        $img_api_linka = album_img_api($picture);
+                                                                                                                                                                        if ($img_api_linka != '') {
+                                                                                                                                                                    ?>
                                                                 <img src="<?php echo album_img_api($picture); ?>" border="0" width="120" />
                                                             <?php } else { ?>
                                                                 <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" width="120" />
                                                             <?php
-                                                                                                                                                            }
-                                                                                                                                                        } else
+                                                                                                                                                                        }
+                                                                                                                                                                    } else
 													if ($req_song['song_array']['image4'] != "") {
                                                             ?>
                                                             <img src="<?php echo album_img_api($req_song['song_array']['image4']); ?>" border="0" width="120" />
                                                         <?php
-                                                                                                                                                        } else
+                                                                                                                                                                    } else
 													if ($album_picture != "") {
                                                         ?>
                                                             <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" width="120" />
                                                         <?php
-                                                                                                                                                        } else {
+                                                                                                                                                                    } else {
                                                         ?>
                                                             <img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="120" />
                                                         <?php
-                                                                                                                                                        }
+                                                                                                                                                                    }
                                                         ?>
                                                     </a>
                                                     <!--<cite style="background-color:#e06d21">6.0</cite> -->
@@ -337,19 +339,19 @@ if ($srch_search_sess == "") {
                                                 <div class="album_details" style="margin-top:0; padding: 2% 0 0 4%;">
 
                                                     <label class="review_screen_txt title" style="margin-bottom:5px;"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 45);
-                                                                                                                                                                                                        if (strlen($song_title) > 45) {
-                                                                                                                                                                                                            echo "...";
-                                                                                                                                                                                                        } ?></a></label>
+                                                                                                                                                                                                                    if (strlen($song_title) > 45) {
+                                                                                                                                                                                                                        echo "...";
+                                                                                                                                                                                                                    } ?></a></label>
 
                                                     <label class="review_ipad_txt title" style="margin-bottom:5px;"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 32);
-                                                                                                                                                                                                        if (strlen($song_title) > 32) {
-                                                                                                                                                                                                            echo "...";
-                                                                                                                                                                                                        } ?></a></label>
+                                                                                                                                                                                                                    if (strlen($song_title) > 32) {
+                                                                                                                                                                                                                        echo "...";
+                                                                                                                                                                                                                    } ?></a></label>
 
                                                     <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
-                                                                                                                                                    if (strlen($artist_name) > 32) {
-                                                                                                                                                        echo "...";
-                                                                                                                                                    } ?></a></label>
+                                                                                                                                                            if (strlen($artist_name) > 32) {
+                                                                                                                                                                echo "...";
+                                                                                                                                                            } ?></a></label>
                                                     <label class="likes" style="float:right; height:26px; margin-top:-9px;">
                                                         <?php
                                                         if ($user_id != "") {
@@ -446,30 +448,30 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 album-outer-coontainer" style="padding:0px !important;">
                                                     <div class="album_cover">
                                                         <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" class="text_blck"> <?php
-                                                                                                                                                            if ($picture != "") {
-                                                                                                                                                                $img_api_linka = album_img_api($picture);
-                                                                                                                                                                if ($img_api_linka != '') {
-                                                                                                                                                            ?>
+                                                                                                                                                                        if ($picture != "") {
+                                                                                                                                                                            $img_api_linka = album_img_api($picture);
+                                                                                                                                                                            if ($img_api_linka != '') {
+                                                                                                                                                                        ?>
                                                                     <img src="<?php echo album_img_api($picture); ?>" border="0" class="fixed-hgt-img" style="max-width:inherit; height:80px !important;" />
                                                                 <?php } else { ?>
                                                                     <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" class="fixed-hgt-img" border="0" />
                                                                 <?php
-                                                                                                                                                                }
-                                                                                                                                                            } else
+                                                                                                                                                                            }
+                                                                                                                                                                        } else
 													if ($req_song['song_array']['image4'] != "") {
                                                                 ?>
                                                                 <img src="<?php echo album_img_api($req_song['song_array']['image4']); ?>" class="img-responsive" border="0" style="max-width:inherit; " />
                                                             <?php
-                                                                                                                                                            } else
+                                                                                                                                                                        } else
 													if ($album_picture != "") {
                                                             ?>
                                                                 <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" class="fixed-hgt-img" border="0" />
                                                             <?php
-                                                                                                                                                            } else {
+                                                                                                                                                                        } else {
                                                             ?>
                                                                 <img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" class="fixed-hgt-img" border="0" style="max-width:inherit; " />
                                                             <?php
-                                                                                                                                                            }
+                                                                                                                                                                        }
                                                             ?>
                                                         </a>
                                                         <?php
@@ -485,13 +487,13 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 album-detail-container" style="padding:0px !important;">
                                                     <div class="album_details" style="margin-top:0;">
                                                         <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo substr($song_title, 0, 22);
-                                                                                                                                                                if (strlen($song_title) > 22) {
+                                                                                                                                                                            if (strlen($song_title) > 22) {
+                                                                                                                                                                                echo "...";
+                                                                                                                                                                            } ?></a></label>
+                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
+                                                                                                                                                                if (strlen($artist_name) > 20) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?></a></label>
-                                                        <label class="author"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
-                                                                                                                                                        if (strlen($artist_name) > 20) {
-                                                                                                                                                            echo "...";
-                                                                                                                                                        } ?></a></label>
                                                         <div style="clear:both;"></div>
                                                         <?php
                                                         if ($feature_artists != "") { ?>
@@ -557,10 +559,10 @@ images/icon_post.png"><a>Posts <span><?php echo $comment_list_arr['count_discuss
 
                                                         <p><label class="reviews"><img src="images/review-book.png"><a>Reviews <span> <?php echo $review_list_arr_top['count_reviews']; ?></span></a></label><label class="reviews"><img src="<?php echo SERVER_ROOTPATH; ?>
 images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
-                                                                                                                                                                                                                                                                                            echo "Posts ";
-                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                            echo "Posts ";
-                                                                                                                                                                                                                                                                                        } ?><span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label></p>
+                                            echo "Posts ";
+                                        } else {
+                                            echo "Posts ";
+                                        } ?><span><?php echo $comment_list_arr['count_discussion']; ?></span></a></label></p>
 
                                                     </div>
 
@@ -628,7 +630,7 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                             } else {
                                 $artist_count  =  0;
                             }
-                        
+
                             ?>
                             <div class="col-xs-6">
                                 <ul class="list-inline">
@@ -652,7 +654,7 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                             $k_artist = 1;
                             foreach ($artist_list_arr as $val) {
                                 $val = (array)$val;
-                                
+
                                 $id      = $val['id'];
                                 $artist_name = stripslashes(html_entity_decode($val['artist_name']));
                                 $artist_seo = strtolower(stripslashes(html_entity_decode($val['artist_seo'])));
@@ -684,7 +686,7 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
 
                                 $rate_arr    =    \App\Models\Songs::GetRawData($sum_rating);
 
-                                
+
                                 if ($rate_arr) {
                                     $rate_arr = (array) $rate_arr[0];
                                     $sum_rate = $rate_arr['sum_rate'];
@@ -797,14 +799,14 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                 <div class="album_details" style="margin-top:0; padding: 2% 0 0 4%;">
                                                     <!--Desktop-->
                                                     <label class="review_screen_txt title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 50);
-                                                                                                                                                                    if (strlen($artist_name) > 50) {
-                                                                                                                                                                        echo "...";
-                                                                                                                                                                    } ?></a></label>
+                                                                                                                                                                            if (strlen($artist_name) > 50) {
+                                                                                                                                                                                echo "...";
+                                                                                                                                                                            } ?></a></label>
                                                     <!-- Ipad-->
                                                     <label class="review_ipad_txt title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
-                                                                                                                                                                    if (strlen($artist_name) > 20) {
-                                                                                                                                                                        echo "...";
-                                                                                                                                                                    } ?></a></label>
+                                                                                                                                                                        if (strlen($artist_name) > 20) {
+                                                                                                                                                                            echo "...";
+                                                                                                                                                                        } ?></a></label>
 
                                                     <label class="likes">
                                                         <?php
@@ -910,9 +912,9 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 album-detail-container" style="padding:0px !important;">
                                                     <div class="album_details" style="margin-top:0;">
                                                         <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 20);
-                                                                                                                                                        if (strlen($artist_name) > 20) {
-                                                                                                                                                            echo "...";
-                                                                                                                                                        } ?><?php //echo $artist_name;
+                                                                                                                                                            if (strlen($artist_name) > 20) {
+                                                                                                                                                                echo "...";
+                                                                                                                                                            } ?><?php //echo $artist_name;
                                                                                                                                                             ?></a></label>
                                                         <p><label class="likes" style=" float:left;">
                                                                 <?php
@@ -1014,19 +1016,22 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                             $k_album = 1;
                             foreach ($artist_list_arr as $val) {
                                 $val = (array)$val;
+                                
                                 $id      = $val['id'];
                                 $db_art_id    =     $val['art_id'];
                                 $album_title = stripslashes(html_entity_decode($val['album_title']));
                                 $artist_name = stripslashes(html_entity_decode($val['artist_name']));
                                 $album_picture   = stripslashes(html_entity_decode($val['album_picture']));
                                 $album_artist_id = stripslashes(html_entity_decode($val['album_artist_id']));
-                                $artist_seo = strtolower(stripslashes(html_entity_decode($val['artist_seo'])));
-                                $album_seo  = strtolower(stripslashes(html_entity_decode($val['album_seo'])));
+                                 $album_seo  = strtolower(stripslashes(html_entity_decode($val['album_seo'])));
 
                                 //	$req_artist  =  artist_album_func("$artist_name",stripslashes(html_entity_decode($val['album_title'])));
                                 $album_title = wordwrap($album_title, 100, " ", true);
-                                $artist_name = wordwrap($artist_name, 100, " ", true);
+ 
+                                $artist_data = GetArtistByAlbumId($id);
 
+                                $artist_seo = strtolower($artist_data['artist_seo']);
+                                $artist_name = strtolower($artist_data['artist_name']);
 
                                 $qry =  "select id from tbl_likes where like_type = 'artist' AND like_id = '$db_art_id'";
                                 $counter_main = array();
@@ -1099,11 +1104,13 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                 $sr_no++;
 
 
-                                $songs_list = "select a.artist_seo,a.artist_name from  tbl_artist_album b,tbl_songs_artist_album saa, tbl_artists a where 1=1 AND saa.album_id = b.id AND saa.artist_id = '67'  AND b.album_title = '" .  $album_title . "' AND a.id = saa.artist_id AND saa.display_status = 1";
+                                $songs_list = "select a.artist_seo,a.artist_name from  tbl_artist_album b,tbl_songs_artist_album saa, tbl_artists a where 1=1 AND saa.album_id = b.id AND  b.album_title = '" .  $album_title . "' AND a.id = saa.artist_id AND saa.display_status = 1";
 
-                                $various = \App\Models\Songs::GetRawData($songs_list);
 
-                                $various['artist_seo'] = strtolower($various[0]->artist_seo);
+                                $various = \App\Models\Songs::GetRawDataAdmin($songs_list);
+                              
+
+
                         ?>
 
                                 <li>
@@ -1161,27 +1168,27 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                     <!--Ipad-->
                                                     <label class="review_ipad_txt title" style="margin-bottom:5px;"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "/album/" . $album_seo; ?>"><?php echo substr($album_title, 0, 14);
                                                                                                                                                                                                     if (strlen($album_title) > 14) {
-                                                                                                                                                                                                        echo "...";
+                                                                                                                                                                                                        echo $album_title . "...";
                                                                                                                                                                                                     } ?></a></label>
 
                                                     <div>
-                                                        <label class="author" style="width:200px; float:left;"><?php
-                                                                                                                if ($various['artist_name'] != "") {
-                                                                                                                ?>
+                                                        <label class="author" style=" float:left;"><?php
+                                                                                                    if ($various['artist_name'] != "") {
+                                                                                                    ?>
                                                                 <a href="<?php echo SERVER_ROOTPATH . Slug($various['artist_seo']) . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 32);
-                                                                                                                                                    if (strlen($various['artist_name']) > 32) {
-                                                                                                                                                        echo "...";
-                                                                                                                                                    } ?><?php //echo $various['artist_name'];
+                                                                                                                                                            if (strlen($various['artist_name']) > 32) {
+                                                                                                                                                                echo $various['artist_name'] . "...";
+                                                                                                                                                            } ?><?php //echo $various['artist_name'];
                                                                                                                                                         ?></a>
                                                             <?php
-                                                                                                                } else {
+                                                                                                    } else {
                                                             ?> <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
-                                                                                                                                        if (strlen($artist_name) > 32) {
-                                                                                                                                            echo "...";
-                                                                                                                                        } ?><?php //echo $artist_name;
+                                                                                                                                                if (strlen($artist_name) > 32) {
+                                                                                                                                                    echo "...";
+                                                                                                                                                } ?><?php //echo $artist_name;
                                                                                                                                             ?></a>
                                                             <?php
-                                                                                                                }
+                                                                                                    }
                                                             ?></label>
                                                         <label class="likes" style="margin-top:-9px;">
                                                             <?php
@@ -1300,16 +1307,16 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                                                                                 if ($various['artist_name']) {
                                                                                 ?>
                                                                 <a href="<?php echo SERVER_ROOTPATH . Slug($various['artist_seo']) . "/artist-songs"; ?>"><?php echo substr($various['artist_name'], 0, 32);
-                                                                                                                                                    if (strlen($various['artist_name']) > 32) {
-                                                                                                                                                        echo "..";
-                                                                                                                                                    } ?><?php //echo $various['artist_name'];
+                                                                                                                                                            if (strlen($various['artist_name']) > 32) {
+                                                                                                                                                                echo "..";
+                                                                                                                                                            } ?><?php //echo $various['artist_name'];
                                                                                                                                                         ?></a>
                                                             <?php
                                                                                 } else {
                                                             ?> <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 32);
-                                                                                                                                        if (strlen($artist_name) > 32) {
-                                                                                                                                            echo "..";
-                                                                                                                                        } ?><?php //echo $artist_name;
+                                                                                                                                                if (strlen($artist_name) > 32) {
+                                                                                                                                                    echo "..";
+                                                                                                                                                } ?><?php //echo $artist_name;
                                                                                                                                             ?></a>
                                                             <?php
                                                                                 }
@@ -1380,9 +1387,9 @@ images/icon_post.png"><a><?php if ($comment_list_arr['count_discussion'] < 2) {
                     </ul>
                 </div>
 
-                 
-                 @include("common.common_popular_review") 
-                 
+
+                @include("common.common_popular_review")
+
                 <!-- Advertisement Banner Start-->
                 <div class="clear"></div>
                 <div class="container" style="padding:20px 0 20px 0;">
