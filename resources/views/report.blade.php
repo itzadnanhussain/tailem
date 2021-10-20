@@ -74,7 +74,7 @@
          </div>
      </div>
  </div>
- 
+
  <script type="text/javascript">
      function close_report_popup() {
          $(document).on('hidden.bs.modal', function(e) {
@@ -102,9 +102,14 @@
                  myarray = responseText.split("-SEPARATOR-");
 
                  if (responseText.search("done") != -1) {
-                     alert('here');
                      $("#report_Modal4_" + myarray[1]).modal("hide");
                      $("#add_report_request").modal("show");
+
+                     ///redirect to dashboard
+                     setTimeout(function() { 
+                            window.location.reload();
+                        }, 2000)
+
                  } else {
                      if (responseText.search("Msg") != -1) {
                          myarray1 = new Array();
@@ -112,7 +117,15 @@
 
                          $("#report_Modal4_" + myarray1[2]).modal("hide");
                          $("#report_success").modal("show");
-                     } else {
+                     } else if(responseText.search("Please sign in first") != -1) {
+                         $("#report_Modal4_1").modal("hide");
+                         $("#signin_form").modal("show");
+                           ///redirect to dashboard
+                     setTimeout(function() { 
+                            window.location.reload();
+                        }, 5000)
+
+                     }else{
                          alert(responseText);
                      }
                  }
