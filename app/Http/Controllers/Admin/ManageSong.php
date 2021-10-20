@@ -85,6 +85,7 @@ class ManageSong extends Controller
         // $backtopage =  session()->get('backtopage');
         $backtopage =  'song_list';
         if (isset($_POST)) {
+            
             error_reporting(0);
             $errorstr = "";
             $case = 1;
@@ -171,7 +172,7 @@ class ManageSong extends Controller
                 if ($update_id != '') {
 
                     $qry = "update tbl_songs set ranking_order ='" . $ranking_order . "', song_title='" .  stripslashes($song_title) . "',itunes_url='" .  stripslashes($itunes_url) . "',amazon_url='" .  stripslashes($amazon_url) . "',google_url='" .  stripslashes($google_url) . "',lastfm_url='" .  stripslashes($lastfm_url) . "',keywords='" .  stripslashes($keywords) . "',song_seo='" .  stripslashes(SEO($song_seo)) . "', description ='" .  stripslashes($description) . "', ad_code='" .  stripslashes($ad_code) . "', video_code='" .  stripslashes($video_code) . "', song_year ='" . $years . "' where id = '$update_id'";
-
+\App\Models\Songs::GetRawData($qry);
                     $arr  = $_REQUEST['artist'];
 
                     $qry = "delete from tbl_songs_artist where song_id = $update_id";
