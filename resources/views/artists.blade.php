@@ -437,13 +437,17 @@ if ($alpha == "unset") {
 							$k = 1;
 							foreach ($artist_list_arr as $val) {
 								$val = (array)$val;
+							 
+							
 								$id	  = $val['id'];
 								$artist_name = stripslashes(html_entity_decode($val['artist_name']));
 								$artist_seo = strtolower(stripslashes(html_entity_decode($val['artist_seo'])));
 								$artist_img   = stripslashes(html_entity_decode($val['artist_img']));
-								$cat_name   = stripslashes(html_entity_decode($val['cat_name']));
-								$cat_seo_name   = stripslashes(html_entity_decode($val['cat_seo_name']));
-
+								$genere_cat_data = GetByWhere('categories',array('cat_id'=>$val['genere_cat']));
+								 
+								$cat_name   = stripslashes(html_entity_decode($genere_cat_data[0]->cat_name));
+								$cat_seo_name   = stripslashes(html_entity_decode($genere_cat_data[0]->cat_seo_name));
+ 
 								if ($artist_img == '' &&  $val['updated_by_itunes'] == '0000-00-00 00:00:00') {
 									$req_artist  =  artist_func(urlencode("$artist_name"));
 								}
