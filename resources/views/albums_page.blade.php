@@ -628,6 +628,7 @@ if ($lastfm_url == "") {
                                         $feature_artists = "";
                                         if ($qry_feature_arr) {
                                             foreach ($qry_feature_arr as $val_feature) {
+                                                $val_feature = (array)$val_feature;
                                                 if ($num == $count) {
                                                     $feature_artists .= " <a class='ft_size' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $val_feature['feature_artist'] . "</a>";
                                                 } else {

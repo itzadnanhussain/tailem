@@ -66,6 +66,9 @@ Route::post('process/favourite_like_review',[ProcessController::class, 'Favourit
 ///like_artist_recent_reviews
 Route::post('process/like_artist_recent_reviews',[ProcessController::class, 'likeArtistRecentReviews']);
 
+///favourite_like_review_screen
+Route::post('process/favourite_like_review_screen',[ProcessController::class, 'FavouriteLikeReviewScreen']);
+
 
 ///favourite_like_sub
 Route::post('process/favourite_like_sub',[ProcessController::class, 'FavouriteLikeSub']);

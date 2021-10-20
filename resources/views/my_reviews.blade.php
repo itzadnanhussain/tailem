@@ -1727,7 +1727,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                 </div>
                 <div class="modal-body">
                     <div class="well">
-                        <form>
+                        <form >
                             <div class="form-group text-right">
                                 <span class="Oswald text_16 mr-10">What is your rating?</span>
                                 <a href="#" class="text_blck"><i class="fa fa-star"></i></a>
@@ -1762,7 +1762,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 <?php } else { ?>
     @include("common.signin_modal")
 <?php } ?>
- include("common.footer")
+@include("common.footer")
 
 
 
@@ -1808,3 +1808,72 @@ for ($g = 1; $g <= $k; $g++) {
 </style>
 <script src='<?php echo SERVER_ROOTPATH; ?>jquery.MetaData.js' type="text/javascript" language="javascript"></script>
 <link rel="stylesheet" href="css/star-rating.css" media="all" type="text/css" />
+<!-- Cannot like your own Review-->
+<div class="modal fade" id="your_own_review" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+    <div class="modal-dialog" style="margin-top:10%;">
+        <div class="modal-content" style="border-radius:0px;">
+            <div class="modal-header">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you <img data-dismiss="modal" style="cursor:pointer; float:right;" src="https://www.tailem.com/images/crosspng.png" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                </h4>
+            </div>
+            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
+                <p>
+                    Unfortunately, you cannot like your own review. <br /><br /><br />
+
+                    Warmest Regards,<br />
+                    Team at Tailem.com
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+                $('#api-readonlys').submit(function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    let form = $(this).serialize();
+                    let url = $(this).attr('action');
+
+                    $.ajax({
+                        type: 'POST',
+                        url: url,
+                        data: form,
+                        dataType: 'html',
+                        success: function(data) {
+                            let res = JSON.parse(data);
+                            switch (res.code) {
+                                case 'success':
+                                    // this.modal("hide");
+                                    // $("#show_success_message_song").modal("show");
+                                    $("#api-readonly").each(function() {
+                                        this.reset();
+                                    });
+
+                                    setTimeout(function() {
+                                        window.location.reload();
+                                    }, 1500)
+                                    break;
+                                case 'warning':
+                                    if (res.message == "Please sign in first.") {
+                                        $("#signin_form").modal("show");
+                                    } else if (
+                                        res.message ==
+                                        "You have already posted a review on this song. Please use the EDIT function to revise your review."
+                                    ) {
+                                        $("#already_review").modal("show");
+                                    } else {
+                                        $("#error_popup").modal("show");
+                                        $("#modal_title_error").html("Thank you");
+                                        responseText = res.message.replace(/\n/g, "<br />");
+                                        $("#modal_body_error").html(responseText);
+                                    }
+
+                            }
+                        }
+                    });
+
+                })
+            </script>

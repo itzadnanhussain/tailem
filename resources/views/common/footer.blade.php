@@ -16,7 +16,7 @@ $arr_social = (array) $arr_social[0];
 <?php
 $currentFile = get_page_name();
 // $currentFile = 'sign_up';
-?> 
+?>
 
 <?php
 for ($popular_review = 1; $popular_review <= 10; $popular_review++) {
@@ -84,20 +84,20 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 //$this->_mysqli->close();
 ?>
 <!-- Header start -->
-<?php if (isset($user_type) && ($user_type =='admin')) { ?>
+<?php if (isset($user_type) && ($user_type == 'admin')) { ?>
 	<footer>
 		<div class="ftrcontainer" style="background: white;">
-			<div class="container">  
-			 <a target="_blank" href="http://www.evsoft.pk/" style="font-size: 11px;
-    color: #000000; float:right;text-decoration: underline;"  >Powered By eVISION Softwares </a>
- 
-					 	 
+			<div class="container">
+				<a target="_blank" href="http://www.evsoft.pk/" style="font-size: 11px;
+    color: #000000; float:right;text-decoration: underline;">Powered By eVISION Softwares </a>
+
+
 			</div>
 		</div>
 	</footer>
- 
 
-	 
+
+
 <?php  } else { ?>
 	<footer>
 		<div class="ftrcontainer">
@@ -171,6 +171,7 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 	</div>
 </div>
 
+
 <script>
 	///add_in_favourite_list_review_song_detail
 	function add_in_favourite_list_review_song_detail(a, b, c) {
@@ -235,3 +236,4 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 
 	}
 </script>
+

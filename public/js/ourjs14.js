@@ -6,7 +6,7 @@ $.ajaxSetup({
 });
 
 function write_a_review_validation_new() { 
-    $("#api-readonly").unbind("submit");
+    $("#api-readonly").unbind("submit"); 
     var options = {
         target: "",
         beforeSubmit: write_a_review_validation_Request_new,
@@ -371,20 +371,26 @@ function add_in_favourite_main_profile_list_new(a, b, c) {
 
 /*Like user Review*/
 function add_in_favourite_list_review_screen_new(a, b, c, d) {
-    $.post(
-        JS_SERVER_PATHROOT +
-            "process/favourite_like_review_screen.php?prod_id=" +
-            a +
-            "&user_name=" +
-            b +
-            "&r_fav=" +
-            c +
-            "&tm=" +
-            d,
-        function (b) {
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    $.ajax({ 
+        type: "POST",
+        url: JS_SERVER_PATHROOT +
+        "process/favourite_like_review_screen?prod_id=" +
+        a +
+        "&user_name=" +
+        b +
+        "&r_fav=" +
+        c +
+        "&tm=" +
+        d,
+        data: {
+            "_token": csrf_token,
+        }, 
+        success:function (b) {
             if (b == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (b.search("You cannot like your own review") != -1) {
+                // alert("Record Delete Successfully");
                 $("#your_own_review").modal("show");
             } else {
                 $("#myStyle_sub_" + a + "_" + d).html(b);
@@ -395,7 +401,7 @@ function add_in_favourite_list_review_screen_new(a, b, c, d) {
                 );
             }
         }
-    );
+    });
 }
 
 function add_in_favourite_list_sub(a, b, c) {

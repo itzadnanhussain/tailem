@@ -245,6 +245,10 @@ class ProcessController extends Controller
     {
         if (isset($_POST)) {
             extract($_POST);
+            // echo '<pre>';
+            // print_r($_POST);
+            // echo '</pre>';
+            // die;
             error_reporting(0);
 
             $user_id = session()->get('user_id');
@@ -317,14 +321,18 @@ class ProcessController extends Controller
             }
 
             if ($edit_id != "") {
+                // echo 'wait';
+                // die;
                 $song_query = "select song_id from tbl_reviews where review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
-                $song_arr = \App\Models\Songs::GetRawData($song_query);
+                $song_arr = \App\Models\Songs::GetRawDataAdmin($song_query);
+                
 
-                $song_arr = (array)$song_arr[0];
+               
                 $song_id    = $song_arr['song_id'];
 
                 $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where song_id = $song_id";
                 $rate_arr = \App\Models\Songs::GetRawData($sum_rating);
+               
                 if ($rate_arr) {
                     $rate_arr = (array)$rate_arr[0];
                     $sum_rate = $rate_arr['sum_rate'];
@@ -353,10 +361,19 @@ class ProcessController extends Controller
                 if ($all_avg == 0) {
                     $all_avg  =  $rating + $all_avg;
                 }
+                $review_detail = StringReplace($review_detail);
 
 
+                // $update_qry = "update tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "' where  	review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
                 $update_qry = "update tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "' where  	review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
+            //   echo '<pre>';
+            //   print_r($update_qry);
+            //   echo '</pre>';
+            //   die;
                 \App\Models\Songs::GetRawData($update_qry);
+
+                // echo 'wait';
+                // die;
                 \App\Models\Songs::GetRawData("update tbl_songs set rate_song = '$all_avg',review_count = $rev_counter where id = '$song_id'");
                 $slug = SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name);
                 $response = array("code" => 'success', 'url' => $slug);
@@ -687,6 +704,20 @@ class ProcessController extends Controller
         $data['user_id'] = session()->get('user_id');
 
         return view('include.like_artist_recent_reviews', $data);
+    }
+
+
+    ///FavouriteLikeReviewScreen
+    public function FavouriteLikeReviewScreen()
+    {
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['user_name'] = $_GET['user_name'];
+        $data['r_fav'] = $_GET['r_fav'];
+        $data['tm'] = $_GET['tm'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_like_review_screen', $data);
     }
 
 
