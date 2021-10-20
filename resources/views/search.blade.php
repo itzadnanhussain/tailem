@@ -1,5 +1,6 @@
 @include("common.header")
 <?php
+ 
 error_reporting(0);
 $srch_search_sess   =  session()->get('main_search');
 $srch_sess          =  session()->get('main_result');

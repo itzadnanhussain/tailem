@@ -256,7 +256,7 @@
                                 <div class="review_screen_txt col-lg-9 col-md-8 col-sm-8 col-xs-8 pad_right">
                                     <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $screen_chr);
                                                                                                                                                                                                                                                         if (strlen($song_title) > $screen_chr) {
-                                                                                                                                                                                                                                                            echo "..";
+                                                                                                                                                                                                                                                            echo $song_title."..";
                                                                                                                                                                                                                                                         } ?></a></label><br>
                                     <label class="font_wgt mrgin_top"><?php echo $featured_screen; ?></label>
                                 </div>
@@ -264,7 +264,7 @@
                                 <div class="review_ipad_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
                                     <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
                                                                                                                                                                                                                                                         if (strlen($song_title) > $ipad_chr) {
-                                                                                                                                                                                                                                                            echo "..";
+                                                                                                                                                                                                                                                            echo $song_title."..";
                                                                                                                                                                                                                                                         } ?></a></label><br>
 
                                     <label class="font_wgt mrgin_top"><?php echo $featured_ipad; ?></label>
@@ -274,7 +274,7 @@
                                 <div class="review_mobile_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
                                     <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
                                                                                                                                                                                                                                                         if (strlen($song_title) > $mobile_chr) {
-                                                                                                                                                                                                                                                            echo "..";
+                                                                                                                                                                                                                                                            echo $song_title."..";
                                                                                                                                                                                                                                                         } ?></a></label><br>
                                     <label class="font_wgt mrgin_top"><?php echo $featured_mobile; ?></label>
                                 </div>
@@ -412,7 +412,7 @@
                                 <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>"> <?php
                                                                                                                                                                                                                 echo substr($user_name, 0, 12);
                                                                                                                                                                                                                 if (strlen($user_name) > 12) {
-                                                                                                                                                                                                                    echo "..";
+                                                                                                                                                                                                                    echo $user_name."..";
                                                                                                                                                                                                                 }
                                                                                                                                                                                                                 ?></a>
                                 </span>
@@ -427,7 +427,7 @@
                                 <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>"> <?php
                                                                                                                                                                                                                 echo substr($user_name, 0, 30);
                                                                                                                                                                                                                 if (strlen($user_name) > 30) {
-                                                                                                                                                                                                                    echo "..";
+                                                                                                                                                                                                                    echo $user_name."..";
                                                                                                                                                                                                                 }
                                                                                                                                                                                                                 ?></a>
                                 </span>
@@ -437,7 +437,7 @@
                                 <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>"> <?php
                                                                                                                                                                                                                 echo substr($user_name, 0, 16);
                                                                                                                                                                                                                 if (strlen($user_name) > 16) {
-                                                                                                                                                                                                                    echo "..";
+                                                                                                                                                                                                                    echo $user_name."..";
                                                                                                                                                                                                                 }
                                                                                                                                                                                                                 ?></a>
                                 </span>
