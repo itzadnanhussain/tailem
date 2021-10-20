@@ -141,16 +141,18 @@ if ($srch_search_sess == "") {
                             foreach ($artist_list_arr as $val) {
                                 $val = (array)$val;
                                 
+                                
                                 $id      = $val['id'];
                                
                                 $album_title = stripslashes(html_entity_decode($val['album_title']));
-                                $artist_name = stripslashes(html_entity_decode($val['artist_name']));
-                                $album_picture   = stripslashes(html_entity_decode($val['album_picture']));
+                                 $album_picture   = stripslashes(html_entity_decode($val['album_picture']));
                                 $picture   = stripslashes(html_entity_decode($val['picture']));
                                 $song_title = stripslashes(html_entity_decode($val['song_title']));
+                                $song_seo = stripslashes(html_entity_decode($val['song_seo']));
                                 ///
                                 $artist_data = GetArtistBySongId($id); 
                                 $artist_seo = strtolower($artist_data['artist_seo']);
+                                $artist_name =  $artist_data['artist_name'];
                                 $db_art_id      = $artist_data['id'];
                                
                                 //	$req_song  =  artist_album_song_func($artist_name,$song_title);
