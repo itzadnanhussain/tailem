@@ -38,6 +38,7 @@
 	if ($user_id != "") {
 		$select_notification_count = "select u.user_name,l.like_type,u.profile_image, l.like_id  from  tbl_likes l, tbl_users u  where l.like_from_user_id = u.user_id  AND (l.like_type = 'review_song' OR l.like_type = 'profile' OR l.like_type = 'playlist' OR l.like_type = 'delete_review_song' OR l.like_type = 'admin_review') AND l.like_receive_user = '" . $user_id . "' AND l.read_status = 1";
 		$result_notification_count = \App\Models\Songs::GetRawData($select_notification_count);
+	 
 
 		if (isset($result_notification_count)) {
 			$result_notification_count = count($result_notification_count);

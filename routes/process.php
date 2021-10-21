@@ -116,6 +116,14 @@ Route::post('process/report_process' , [ProcessController::class , 'ReportProces
 ///process/notification_display
 Route::post('process/notification_display' , [ProcessController::class , 'notification_display']);
 
+///process/delete_notification
+Route::any('process/delete_notification' , [ProcessController::class , 'delete_notification']);
+
+
+///process/update_notification_click
+Route::post('process/update_notification_click' , [ProcessController::class , 'update_notification_click']);
+
+
  
  
 

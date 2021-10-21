@@ -3,10 +3,11 @@ error_reporting(0);
 $qry = "select l.notification_click,l.read_status,l.id,u.user_name,l.like_type,l.description,l.date,u.profile_image, l.like_id, l.like_receive_user, l.like_from_user_id  from  tbl_likes l, tbl_users u  where l.like_from_user_id = u.user_id  AND (l.like_type = 'review_song' OR l.like_type = 'profile' OR l.like_type = 'delete_review_song' OR l.like_type = 'playlist' OR l.like_type = 'admin_review') AND l.like_receive_user = '" . $user_id . "' AND l.del_notification = 0 order by l.id desc";
 
 $result_notification = \App\Models\Songs::GetRawData($qry);
+ 
 if ($result_notification) {
     $notify = 0;
     foreach ($result_notification as $notif) {
-        $notif = (array)$notify;
+        $notif = (array)$notif;
         $notify++;
         $db_like_id  = $notif['id'];
         $db_like_type  = $notif['like_type'];
@@ -17,7 +18,7 @@ if ($result_notification) {
         $read_status  = $notif['read_status'];
         $notification_click    = $notif['notification_click'];
         if ($read_status == 1) {
-            mysqli_query($db->dbh, "update tbl_likes set read_status = 0 where id = $db_like_id");
+           \App\Models\Songs::GetRawData("update tbl_likes set read_status = 0 where id = $db_like_id");
         }
 
         if ($profile_image != "") {
@@ -123,11 +124,15 @@ if ($result_notification) {
 ?>
 <script type="text/javascript">
     function gotolink(url, status, id) {
+        var csrf_token = $('meta[name=csrf-token]').attr('content');  
         if (status == 1) {
             $.ajax({
                 type: "POST",
-                url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click.php',
-                data: 'id=' + id,
+                url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click',
+                data: {
+                    'id':id,
+                    "_token": csrf_token,
+                },
                 beforeSend: function() {},
                 success: function(data) {
                     window.location.href = url;
@@ -142,11 +147,16 @@ if ($result_notification) {
     }
 
     function tab_click(status, id) {
+        var csrf_token = $('meta[name=csrf-token]').attr('content');  
+
         if (status == 1) {
             $.ajax({
                 type: "POST",
-                url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click.php',
-                data: 'id=' + id,
+                url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click',
+                data: {
+                    'id':id,
+                    "_token": csrf_token,
+                },
                 beforeSend: function() {},
                 success: function(data) {
 
@@ -160,10 +170,15 @@ if ($result_notification) {
     }
 
     function remove_all_notifications() {
+        var csrf_token = $('meta[name=csrf-token]').attr('content');  
         $.ajax({
             type: "POST",
-            url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click.php',
-            data: 'delete=all',
+            url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click',
+            
+            data: {
+                    'delete':'all',
+                    "_token": csrf_token,
+                },
             beforeSend: function() {},
             success: function(data) {
 

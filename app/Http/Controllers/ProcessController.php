@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\libraries\thumb\Thumbnail;
 // use App\Classes\Mail;
-use Illuminate\Support\Facades\Mail; 
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -325,14 +325,14 @@ class ProcessController extends Controller
                 // die;
                 $song_query = "select song_id from tbl_reviews where review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
                 $song_arr = \App\Models\Songs::GetRawDataAdmin($song_query);
-                
 
-               
+
+
                 $song_id    = $song_arr['song_id'];
 
                 $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where song_id = $song_id";
                 $rate_arr = \App\Models\Songs::GetRawData($sum_rating);
-               
+
                 if ($rate_arr) {
                     $rate_arr = (array)$rate_arr[0];
                     $sum_rate = $rate_arr['sum_rate'];
@@ -366,10 +366,10 @@ class ProcessController extends Controller
 
                 // $update_qry = "update tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "' where  	review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
                 $update_qry = "update tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "' where  	review_user_id = '" . $user_id . "' AND review_id = '$edit_id'";
-            //   echo '<pre>';
-            //   print_r($update_qry);
-            //   echo '</pre>';
-            //   die;
+                //   echo '<pre>';
+                //   print_r($update_qry);
+                //   echo '</pre>';
+                //   die;
                 \App\Models\Songs::GetRawData($update_qry);
 
                 // echo 'wait';
@@ -911,7 +911,7 @@ class ProcessController extends Controller
                 $icon_orgname = rand() . "_" . $_FILES["image_name"]['name'];
                 $h_newthumb_name = 'thumb_' . $icon_orgname;
                 $h_small_thumb_name = 'small_thumb_' . $icon_orgname;
-                $h_photo_path = $path . $icon_orgname; 
+                $h_photo_path = $path . $icon_orgname;
                 $h_photothumb_path = $path . $h_newthumb_name;
                 $h_dir = $path;
 
@@ -928,8 +928,6 @@ class ProcessController extends Controller
                     // creating thumbnail
                     $b->create($_FILES["image_name"]['tmp_name'], 50, '50', $h_dir . $h_small_thumb_name);
                 }
-
-
             }
             echo "Done";
         } else {
@@ -1217,8 +1215,74 @@ class ProcessController extends Controller
 
 
         ///load view
-        $data['currentFile'] = 'notification_display'; 
+        $data['currentFile'] = 'notification_display';
         $data['title'] =  GetTitle();
         return view('include.notification_display', $data);
+    }
+
+
+    ///delete_notification
+    public function delete_notification()
+    {
+        error_reporting(0);
+        if (isset($_REQUEST)) {
+            $user_id = session()->get('user_id');
+
+            $errorstr = "";
+            $case = 1;
+            $reviewid  = $_REQUEST['id'];
+
+            if ($user_id == "") {
+                echo $errorstr .= "Please sign in first.\n";
+                $case = 0;
+                exit;
+            }
+
+            if ($reviewid == "") {
+                $errorstr .= "This notification doesn't exist.\n";
+                $case = 0;
+            }
+
+            if ($case == 1) {
+                \App\Models\Songs::GetRawData("update tbl_likes set del_notification = '1' where like_receive_user = '" . $user_id . "' AND id = $reviewid");
+
+                echo 'done-SEPARATOR-' . $reviewid;
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+
+    ///update_notification_click
+    public function update_notification_click()
+    {
+        error_reporting(0); 
+        if (isset($_REQUEST)) {
+            extract($_REQUEST);
+            $errorstr = "";
+            $case = 1;
+            $user_id = session()->get('user_id');
+
+
+            if ($user_id == "") {
+                echo $errorstr = "Please sign in first.";
+                $case = 0;
+                exit;
+            }
+
+
+            if ($case == 1) {
+                if ($_REQUEST['delete'] == 'all') {
+                    \App\Models\Songs::GetRawData("update tbl_likes set del_notification = '1' where  like_receive_user = '" . $user_id . "'");
+                } else {
+                    $id  = $_REQUEST['id'];
+                    \App\Models\Songs::GetRawData("update tbl_likes set notification_click = '0' where like_receive_user = '" . $user_id . "' AND id = $id");
+                }
+
+                //echo 'done-SEPARATOR-'.$reviewid;
+            } else {
+                echo $errorstr;
+            }
+        }
     }
 }

@@ -109,8 +109,8 @@ switch ($sortby) {
                         <tr>
                           <td>
                             <form name="search_form" id="search_form" method="post" action="">
-                            @csrf 
-                            <table border="0" cellpadding="0" cellspacing="0" align="center" width="500" style="border:1px solid #000000; padding:10px;">
+                              @csrf
+                              <table border="0" cellpadding="0" cellspacing="0" align="center" width="500" style="border:1px solid #000000; padding:10px;">
                                 <tbody>
                                   <tr>
                                     <td class="SmallFieldLabelnew font_bold" align="center" colspan="2">
@@ -210,6 +210,7 @@ switch ($sortby) {
                                       <a href="<?php echo $sort_path; ?>sortby=user_desc&page=<?php echo $page; ?>" class="link_class">Comment User</a>
                                     <?php } ?>
                                   </td>
+                                  <td width="300" id="Heading_list">Song</td>
                                   <td width="300" id="Heading_list">Details</td>
                                   <td width="60" id="Heading_list">Report</td>
                                   <?php
@@ -227,17 +228,17 @@ switch ($sortby) {
                                   //PAGGING CODE STARTS HERE
                                   $qry_count_mypro = "SELECT c.*,u.user_name FROM tbl_comments c, tbl_users u where 1=1 AND c.comment_user_id = u.user_id  $key_where $session_where $orderby";
                                   $res_count_mypro = array();
-																	$res_count_mypro = \App\Models\Songs::GetRawData($qry_count_mypro);
-																	if ($res_count_mypro) {
-																		$total_pages = count($res_count_mypro);
-																	} else {
-																		$total_pages = 0;
-																	}
+                                  $res_count_mypro = \App\Models\Songs::GetRawData($qry_count_mypro);
+                                  if ($res_count_mypro) {
+                                    $total_pages = count($res_count_mypro);
+                                  } else {
+                                    $total_pages = 0;
+                                  }
                                   $targetpage = "gcomments"; //your file name  (the name of this file)
 
 
                                   $limit = 15;           //how many items to show per page
-                                 
+
                                   if ($page)
                                     $start = ($page - 1) * $limit; //first item to display on this page
                                   else
@@ -257,6 +258,7 @@ switch ($sortby) {
                                   if (isset($comment_arr) && !empty($comment_arr)) {
                                     foreach ($comment_arr as $val) {
                                       $val = (array)$val;
+
                                       $gcomment_id      = $val['comment_id'];
                                       $gcomment_user_id   = $val['gcomment_user_id'];
                                       $gcomment_detail    = $val['comment_details'];
@@ -269,6 +271,12 @@ switch ($sortby) {
 												 tbl_review_report where r_report_review_id ='" . $gcomment_id . "' ";
                                       $report_arr  = \App\Models\Songs::GetRawDataAdmin($report_qry);
                                       $total_reports = $report_arr['total_reports'];
+                                      $song_data = array();
+                                      $song_data = GetByWhere('songs', array('id' => $val['comment_review_id']));
+                                      $song_name = $song_data[0]->song_title;
+                                      $song_seo = $song_data[0]->song_seo;
+                                      $artist_seo = GetArtistBySongId($song_data[0]->id);
+                                      $artist_seo = Slug($artist_seo['artist_seo']);
 
                                       if ($c % 2 == 0) {
                                         $bgcolor = "#FEFEE4";
@@ -283,6 +291,9 @@ switch ($sortby) {
                                         <td nowrap="nowrap" class="SmallFieldLabel" width="30"><?php echo $sr_no; ?></td>
                                         <td nowrap="nowrap" class="SmallFieldLabel" width="200">
                                           <?php echo $user_name; ?>
+                                        </td>
+                                        <td nowrap="nowrap" class="SmallFieldLabel" width="200">
+                                          <a target="_blank" href="<?php echo SERVER_ROOTPATH .Slug($song_seo).'/reviews/'.$artist_seo; ?>"><?php echo $song_name; ?></a>
                                         </td>
                                         <td nowrap="nowrap" class="SmallFieldLabel" width="300">
                                           <div id="before_details_div_<?php echo $gcomment_id; ?>">
@@ -350,7 +361,7 @@ switch ($sortby) {
                                   ?>
                                   <tr>
                                     <td colspan="5" align="center" valign="middle">
-                                        @include("admin.common.paging-playlist") 
+                                      @include("admin.common.paging-playlist")
                                     </td>
                                   </tr>
                                 </form>
@@ -379,8 +390,8 @@ switch ($sortby) {
     </tr>
     <tr>
       <td height="20">
-         @include("admin.common.footer")
-        </td>
+        @include("admin.common.footer")
+      </td>
     </tr>
     </tbody>
   </table>

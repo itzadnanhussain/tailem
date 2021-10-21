@@ -206,7 +206,7 @@ $img_arr3 = (array)$img_arr3[0];
 </style>
 <script type="text/javascript">
     function sort_area(val) {
-        window.location.href = "<?php echo SERVER_ROOTPATH . 'song-detail/' . Slug($song_seo) ?>/reviews/<?php echo Slug($artist_seo); ?>-sort-" + val;
+        window.location.href = "<?php echo SERVER_ROOTPATH .  Slug($song_seo) ?>/reviews/<?php echo Slug($artist_seo); ?>-sort-" + val;
     }
 
     function show_detail_reveiw(rid, pass) {
@@ -258,7 +258,7 @@ $img_arr3 = (array)$img_arr3[0];
                             <div class="latestsongssec">
                                 <div class="list_item">
                                     <div class="album_cover" style="border-radius:0px;">
-                                        <a href="<?php echo SERVER_ROOTPATH . 'song-detail/' . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
+                                        <a href="<?php echo SERVER_ROOTPATH .  Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
                                                                                                                                             if ($picture != "") {
                                                                                                                                                 $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
                                                                                                                                                 $img_api_link = album_img_api($picture);
@@ -298,7 +298,7 @@ $img_arr3 = (array)$img_arr3[0];
                             </div>
                         </div>
                         <div class="col-sm-7 desc-panel">
-                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . 'song-detail/' . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
+                            <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH .  Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
                             <p class="sub-title" style="font-size:14px;"> <a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .   Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                 <?php
                                 if ($feature_artists != "") {
@@ -454,7 +454,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 <div class="latestsongssec artist-img-panel">
                                     <div class="list_item">
                                         <div class="album_cover" style="border-radius:0;">
-                                            <a href="<?php echo SERVER_ROOTPATH . 'song-detail/' . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
+                                            <a href="<?php echo SERVER_ROOTPATH .  Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
                                                                                                                                                 if ($picture != "") {
                                                                                                                                                     $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
                                                                                                                                                     $img_api_link = album_img_api($picture);
@@ -493,7 +493,7 @@ $img_arr3 = (array)$img_arr3[0];
                                 </div>
                             </div>
                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:5px;">
-                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . 'song-detail/' . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
+                                <p class="title" style="font-weight:bold; font-size:20px; margin-bottom:5px;"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH .  Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
                                 <p class="sub-title" style="color:#dd554e; font-size:18px; margin-bottom:4px; min-height:30px;"><a style='color:#D73B3B;' href="<?php echo SERVER_ROOTPATH .   Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $artist_name; ?></a>
                                     <?php
                                     if ($feature_artists != "") {

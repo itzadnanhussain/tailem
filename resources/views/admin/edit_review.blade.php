@@ -21,6 +21,7 @@
 		$edit_id = base64_decode($edit_id);
 		$qry  = "select review_id, review_title, review_detail, review_rating, review_user_id from tbl_reviews where review_id='" . $edit_id . "' ";
 		$row  = \App\Models\Songs::GetRawDataAdmin($qry);
+		 
 		$db_review_id   = $row['review_id'];
 		$review_rating  = $row['review_rating'];
 		$review_user_id = $row['review_user_id'];
@@ -243,6 +244,7 @@
 																							<?php
 																							$users_qry = "select user_name from tbl_users where user_id='" . $review_user_id . "' ";
 																							$users_arr = \App\Models\Songs::GetRawDataAdmin($users_qry);
+																							 
 																							echo '<strong>' . $user_name = html_entity_decode(stripslashes($users_arr['user_name'])) . '</strong>';
 																							?>
 																							<select name="review_user_id" id="review_user_id" style="width:300px;padding:4px 1px;display:none;">
@@ -253,6 +255,7 @@
 																								$users_qry = "select user_id,user_name from tbl_users where status=1
                      order by user_name asc";
 																								$users_arr = \App\Models\Songs::GetRawData($users_qry);
+																							 
 																								 
 																								if ($users_arr) {
 																									foreach ($users_arr as $val) {
