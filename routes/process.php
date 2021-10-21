@@ -73,6 +73,9 @@ Route::post('process/favourite_like_review_screen',[ProcessController::class, 'F
 ///favourite_like_sub
 Route::post('process/favourite_like_sub',[ProcessController::class, 'FavouriteLikeSub']);
 
+///process/favourite_userprofile_mainlikes
+Route::any('process/favourite_userprofile_mainlikes',[ProcessController::class, 'favourite_userprofile_mainlikes']);
+
 
 ///detail_review
 Route::get('process/detail_review',[ProcessController::class, 'DetailReview']);
@@ -123,6 +126,13 @@ Route::any('process/delete_notification' , [ProcessController::class , 'delete_n
 ///process/update_notification_click
 Route::post('process/update_notification_click' , [ProcessController::class , 'update_notification_click']);
 
+
+///process/favourite_playlist
+Route::post('process/favourite_playlist' , [ProcessController::class , 'favourite_playlist']);
+
+
+///detail_playlist
+Route::any('detail_playlist' , [ProcessController::class , 'detail_playlist']);
 
  
  

@@ -733,6 +733,20 @@ class ProcessController extends Controller
 
         return view('include.favourite_like_sub', $data);
     }
+    ///favourite_userprofile_mainlikes
+    public function favourite_userprofile_mainlikes()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['db_user_name'] = urlencode($_GET['db_user_name']);
+       
+       
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_userprofile_mainlikes', $data);
+    }
 
     ///DetailReview
     public function DetailReview()
@@ -1284,5 +1298,41 @@ class ProcessController extends Controller
                 echo $errorstr;
             }
         }
+    }
+
+    ///detail_playlist
+    public function detail_playlist()
+    {
+        $data = array();
+        $data['user_id'] = session()->get('user_id');
+
+        ///artist
+        if(isset($_GET['artist']))
+        {
+            $data['artist'] = $_GET['artist'];
+        }
+
+        ///critaria
+        if(isset($_GET['critaria']))
+        {
+            $data['critaria'] = $_GET['critaria'];
+        }
+
+
+        ///load view
+        $data['currentFile'] = 'detail_playlist';
+        $data['title'] =  GetTitle();
+        return view('include.detail_playlist', $data);
+    }
+
+
+    ///favourite_playlist
+    public function favourite_playlist()
+    {
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id']; 
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_playlist', $data);
     }
 }

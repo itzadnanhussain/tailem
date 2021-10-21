@@ -199,6 +199,7 @@ if ($currentFile == "my_playlist") {
                 $total_playlist    =    count($playlist_arr);
                 $pl = 1;
                 foreach ($playlist_arr as $arr_playlist) {
+                    $arr_playlist = (array)$arr_playlist;
             ?><a href="<?php echo SERVER_ROOTPATH . $main_link; ?>playlists-<?php echo stripslashes($arr_playlist['title_playlist_seo']); ?>" <?php if ($seo_playlist == $arr_playlist['title_playlist_seo']) { ?> class="active" <?php } else { ?> <?php } ?>><?php echo stripslashes($arr_playlist['title_playlist']); ?></a>
             <?php
                     if ($total_playlist != $pl) {

@@ -301,15 +301,20 @@ function validate_report_discussion_new_report_Response(a, b) {
 }
 
 function add_in_favourite_user_profile_mainlist_new(a, b, c) {
-    $.post(
-        JS_SERVER_PATHROOT +
-            "process/favourite_userprofile_mainlikes.php?prod_id=" +
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+
+    $.ajax({
+        url : JS_SERVER_PATHROOT +
+            "process/favourite_userprofile_mainlikes?prod_id=" +
             a +
             "&sr_no=" +
             b +
             "&db_user_name=" +
             c,
-        function (a) {
+        data : {
+            "_token": csrf_token,
+        },
+        success:function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (a == "aa") {
@@ -320,7 +325,7 @@ function add_in_favourite_user_profile_mainlist_new(a, b, c) {
                 $("#other_dis_sub_profile_" + b).hide();
             }
         }
-    );
+    });
 }
 
 function add_in_favourite_user_profile_screen_new(a, b, c) {
@@ -690,9 +695,14 @@ function add_in_favourite_list_sub_artist_new(a, b, c, d) {
 }
 
 function add_in_playlist(a) {
-    $.post(
-        JS_SERVER_PATHROOT + "process/favourite_playlist.php?prod_id=" + a,
-        function (c) {
+    var csrf_token = $('meta[name=csrf-token]').attr('content');  
+    $.ajax({
+        type : 'POST',
+        url : JS_SERVER_PATHROOT + "process/favourite_playlist?prod_id=" + a,
+        data : {
+            "_token": csrf_token,
+        },
+        success : function (c) {
             if (c == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (c == "aa") {
@@ -711,7 +721,7 @@ function add_in_playlist(a) {
                 $("#show_playlist_likes_" + a).hide();
             }
         }
-    );
+    });
 }
 
 $(document).ready(function () {

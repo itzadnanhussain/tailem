@@ -164,6 +164,8 @@ Route::any('{user_seo}/profile-like-artist/{alpha?}',[UserController::class , 'G
 
 // RewriteRule ^like-artist-(.*)$ like_artist.php?page=$1 [PT]
 // RewriteRule ^like-artist$ like_artist.php [PT]
+Route::any('like-artist/',[UserController::class , 'LikeArtist']);
+
 
 
 ///***************************************likes_profile.php */
@@ -204,12 +206,16 @@ Route::any('discussions/',[UserController::class , 'GetProfileDiscussion']);
 ///********************************************my_playlist.php */
 // RewriteRule ^playlists-(.*)_(.*)$ my_playlist.php?seo_playlist=$1&page=$2 [PT]
 // RewriteRule ^playlists-(.*)$ my_playlist.php?seo_playlist=$1 [PT] 
+Route::any('/playlists-{seo_playlist?}',[UserController::class , 'GetProfilePlaylist_1']);
+
 // RewriteRule ^playlists$ my_playlist.php [PT] 
+Route::any('/playlists',[UserController::class , 'GetProfilePlaylist']);
+
+
 // RewriteRule ^(.*)-profile-playlists-(.*)_(.*)$ my_playlist.php?user_seo=$1&seo_playlist=$2&page=$3 [PT]
 // RewriteRule ^(.*)-profile-playlists-(.*)$ my_playlist.php?user_seo=$1&seo_playlist=$2 [PT]
 // RewriteRule ^(.*)-profile-playlists$ my_playlist.php?user_seo=$1 [PT]
 Route::any('{user_seo?}/profile-playlists/{seo_playlist?}',[UserController::class , 'GetProfilePlaylist']);
-Route::any('/playlists',[UserController::class , 'GetProfilePlaylist']);
 
 
 ///******************************* my_account.php */

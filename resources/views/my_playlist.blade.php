@@ -164,7 +164,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
             <div class="activity-panel">
                 @include("include.review_activities")
             </div>
-            <?php //include("include/latest_activities.php");
+            <?php //include("include/latest_activities");
             ?>
         </div>
 
@@ -205,7 +205,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-bottom:10px; margin-top:10px;">
                     <?php
 
-                    if ($currentFile == "my_playlist.php") {
+                    if ($currentFile == "my_playlist") {
 
 
                         if ($seo_playlist != '') {
@@ -221,7 +221,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                     }
                     ?>
                                     <span style="margin-right:20px;"></span>
-                                    <a data-title="" data-target="#create_playlist" data-dismiss="modal" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>update_playlist.php?song_id=<?php echo $pick_playlist['song_id']; ?>&art_id=<?php echo $pick_playlist['artist_id']; ?>&edit_id=<?php echo $pick_playlist['id'] . $newparameter; ?>" style="font-weight:normal;">Edit</a>
+                                    <a data-title="" data-target="#create_playlist" data-dismiss="modal" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>update_playlist?song_id=<?php echo $pick_playlist['song_id']; ?>&art_id=<?php echo $pick_playlist['artist_id']; ?>&edit_id=<?php echo $pick_playlist['id'] . $newparameter; ?>" style="font-weight:normal;">Edit</a>
                             <?php
                                 }
                             }
@@ -249,7 +249,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                 }
                                 if ($counter == 0) {
                             ?>
-                                    <span style="overflow:visible;" id="show_playlist_likes_<?php echo $pick_playlist['id']; ?>"><a href="javascript:;" onClick="add_in_playlist('<?php echo $pick_playlist['id']; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main_playlist; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_playlist.php?artist=<?php echo $pick_playlist['id']; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_playlist < 2) {
+                                    <span style="overflow:visible;" id="show_playlist_likes_<?php echo $pick_playlist['id']; ?>"><a href="javascript:;" onClick="add_in_playlist('<?php echo $pick_playlist['id']; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main_playlist; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_playlist?artist=<?php echo $pick_playlist['id']; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_playlist < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -259,7 +259,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                 <?php
                                 } else {
                                 ?>
-                                    <span style="overflow:visible;" id="show_playlist_likes_<?php echo $pick_playlist['id']; ?>"><a href="javascript:;" onClick="add_in_playlist('<?php echo $pick_playlist['id']; ?>')"><i class="fa fa-heart heart_color heart_size"></i></a>&nbsp;<span><?php echo $counter_main_playlist; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_playlist.php?artist=<?php echo $pick_playlist['id']; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_playlist < 2) {
+                                    <span style="overflow:visible;" id="show_playlist_likes_<?php echo $pick_playlist['id']; ?>"><a href="javascript:;" onClick="add_in_playlist('<?php echo $pick_playlist['id']; ?>')"><i class="fa fa-heart heart_color heart_size"></i></a>&nbsp;<span><?php echo $counter_main_playlist; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_playlist?artist=<?php echo $pick_playlist['id']; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_playlist < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             echo " Likes";
@@ -281,7 +281,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                     <?php
                                     }
                                     ?>
-                                    <span><?php echo $counter_main_playlist; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_playlist.php?artist=<?php echo $pick_playlist['id']; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_playlist < 2) {
+                                    <span><?php echo $counter_main_playlist; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_playlist?artist=<?php echo $pick_playlist['id']; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_playlist < 2) {
                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                         echo " Likes";
@@ -303,7 +303,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
                             if ($user_seo != '') {
                             ?>
-                                <a onClick="popupWindow('http://www.facebook.com/sharer.php?s=100&amp;p[title]=<?php echo $db_title_playlist; ?>&amp;p[summary]=<?php echo $playlist_summary; ?>&amp;p[url]=<?php echo $playlist_url; ?>', 'sharer', 'toolbar=0,status=0,width=620,height=280');" href="javascript: void(0)"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_fb.png" width="20"></a>
+                                <a onClick="popupWindow('http://www.facebook.com/sharer?s=100&amp;p[title]=<?php echo $db_title_playlist; ?>&amp;p[summary]=<?php echo $playlist_summary; ?>&amp;p[url]=<?php echo $playlist_url; ?>', 'sharer', 'toolbar=0,status=0,width=620,height=280');" href="javascript: void(0)"><img src="<?php echo SERVER_ROOTPATH; ?>images/icon_fb.png" width="20"></a>
 
                                 &nbsp;
 
@@ -440,9 +440,9 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
 
                                 if ($db_profile_image != "") {
-                                    $prof_image = SERVER_ROOTPATH . "assets/phpthumb/phpThumb.php?src=" . SERVER_ROOTPATH . "site_upload/user_images/" . $db_profile_image . "&w=100&h=75&zc=0";
+                                    $prof_image = SERVER_ROOTPATH . "assets/phpthumb/phpThumb?src=" . SERVER_ROOTPATH . "site_upload/user_images/" . $db_profile_image . "&w=100&h=75&zc=0";
                                 } else {
-                                    $prof_image = SERVER_ROOTPATH . "assets/phpthumb/phpThumb.php?src=" . SERVER_ROOTPATH . "assets/images/no_image4.png&w=101&h=75&zc=0";
+                                    $prof_image = SERVER_ROOTPATH . "assets/phpthumb/phpThumb?src=" . SERVER_ROOTPATH . "assets/images/no_image4.png&w=101&h=75&zc=0";
                                 }
 
                                 $description   = stripslashes(html_entity_decode($review_like_info['description']));
@@ -758,7 +758,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                        <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                     <?php
                                                     }
                                                     ?>
@@ -779,7 +779,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                     } else {
                                                     ?>
 
-                                                        <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                        <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                     <?php
                                                     }
                                                     ?>
@@ -924,7 +924,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                            <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                         <?php
                                                         }
                                                         ?>
@@ -1033,7 +1033,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 @include("common.footer")
 <?php
 
-// include("include/thankyou_messages.php");
+// include("include/thankyou_messages");
 
 
 
@@ -1083,3 +1083,21 @@ for ($g = 1; $g <= $k; $g++) {
 <div class="modal fade" id="show_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="create_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <div class="modal fade" id="delete_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+<div class="modal fade" id="error_popup" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+	<div class="modal-dialog" style="margin-top:10%;">
+		<div class="modal-content" style="border-radius:0px;">
+			<div class="modal-header">
+				<h4 class="modal-title" style="color:#3276b1;"> <span id="modal_title_error"></span> <img data-dismiss="modal" style="cursor:pointer; float:right;" src="<?php echo SERVER_ROOTPATH .'images/crosspng.png'  ?> " data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+				</h4>
+			</div>
+			<div class="modal-body" style="overflow-y:auto; min-height:250px;">
+				<p>
+					<span id="modal_body_error"></span> <br /><br /><br />
+
+					Warmest Regards,<br />
+					Team at Tailem.com
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
