@@ -123,24 +123,7 @@ $artist_seo_name  = $review_like_info['artist_seo'];
     </div>
 </div>
 
-<div class="modal fade" id="report_edit_success" tabindex="-1" role="dialog" aria-labelledby="basicModal">
-    <div class="modal-dialog" style="margin-top:10%;">
-        <div class="modal-content" style="border-radius:0px;">
-            <div class="modal-header">
-                <h4 class="modal-title" style="color:#3276b1;"> Thank you for updating your review <img data-dismiss="modal" style="cursor:pointer; float:right;" src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
-                </h4>
-            </div>
-            <div class="modal-body" style="overflow-y:auto; min-height:250px;">
-                <p>
-                    Your review has been updated and will appear shortly. Thank you for sharing your thoughts and we value your contributions to our site. <br /><br /><br />
 
-                    Warmest Regards,<br />
-                    Team at Tailem.com
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
 
  
 <script src="<?php echo SERVER_ROOTPATH ?>js/star-rating.js" type="text/javascript"></script>
@@ -168,17 +151,18 @@ $artist_seo_name  = $review_like_info['artist_seo'];
             dataType: 'html',
             success: function(data) {
                 let res = JSON.parse(data);
-                switch (res.code) {
+                $("#edit_Modal4_1").modal('hide');
+                switch (res.code) { 
                     case 'success':
-                        // this.modal("hide");
-                        // $("#report_edit_success").css('display:block');
+                        // this.modal("hide"); 
+                        $("#report_edit_success").modal('show');
                         $("#api-readonly").each(function() {
                             this.reset();
                         });
 
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 1500)
+                        // setTimeout(function() {
+                        //     window.location.reload();
+                        // }, 1500)
                         break;
                     case 'warning':
                         if (res.message == "Please sign in first.") {
