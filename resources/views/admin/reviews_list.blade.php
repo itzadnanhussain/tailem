@@ -2,6 +2,7 @@
 @include("admin.common.security")
 
 <?php
+error_reporting(0);
 
 /*================== Search Filter Start Here=================*/
 if (isset($_POST['filter'])) {
@@ -445,12 +446,13 @@ if (isset($status) && !empty($status)) {
 																			$review_title  = wordwrap($review_title, 100, " ", true);
 
 																			$song_title	=	$val['song_title'];
+																		 
 
 
 																			$select_qry = "select user_name from tbl_users where 
 												user_id='" . $review_user_id . "' ";
 																			$select_ar  = \App\Models\Songs::GetRawDataAdmin($select_qry);
-																			$user_name = stripslashes(html_entity_decode($select_ar['user_name']));
+																			$user_name = stripslashes($select_ar['user_name']);
 																			$user_name = wordwrap($user_name, 100, " ", true);
 
 																			$like_qry = "select count(id) as total_likes from 

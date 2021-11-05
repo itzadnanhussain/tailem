@@ -171,8 +171,25 @@ class ManageSong extends Controller
             if ($case == 1) {
                 if ($update_id != '') {
 
-                    $qry = "update tbl_songs set ranking_order ='" . $ranking_order . "', song_title='" .  stripslashes($song_title) . "',itunes_url='" .  stripslashes($itunes_url) . "',amazon_url='" .  stripslashes($amazon_url) . "',google_url='" .  stripslashes($google_url) . "',lastfm_url='" .  stripslashes($lastfm_url) . "',keywords='" .  stripslashes($keywords) . "',song_seo='" .  stripslashes(SEO($song_seo)) . "', description ='" .  stripslashes($description) . "', ad_code='" .  stripslashes($ad_code) . "', video_code='" .  stripslashes($video_code) . "', song_year ='" . $years . "' where id = '$update_id'";
-\App\Models\Songs::GetRawData($qry);
+                    $post_data = array();
+                    $post_data['ranking_order'] = $ranking_order;
+                    $post_data['song_title'] = $song_title;
+                    $post_data['keywords'] = $keywords;
+                    $post_data['song_seo'] = SEO($song_title);
+                    $post_data['itunes_url'] = $itunes_url;
+                    $post_data['amazon_url'] = $amazon_url;
+                    $post_data['google_url'] = $google_url;
+                    $post_data['lastfm_url'] = $lastfm_url;
+                    $post_data['description'] = $description;
+                    $post_data['ad_code'] = $ad_code;
+                    $post_data['video_code'] = $video_code;
+                    $post_data['song_year'] = $years;
+                    UpdateRecord('songs',array('id'=>$update_id),$post_data);
+                    // $qry = "update tbl_songs set    where id = '$update_id'";
+                  
+                    // \App\Models\Songs::GetRawData($qry);
+                    // echo 'wait';
+                    // die;
                     $arr  = $_REQUEST['artist'];
 
                     $qry = "delete from tbl_songs_artist where song_id = $update_id";
@@ -231,7 +248,6 @@ class ManageSong extends Controller
                         }
                     }
                 } else {
-
 
 
 

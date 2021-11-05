@@ -1,7 +1,8 @@
  <?php
 
 
-
+//  echo phpinfo();
+//  die;
 
 	///general setting arr new query
 

@@ -93,6 +93,7 @@ if ($counter_main) {
 
 $discussion_list_qry = "select u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id order by comment_id desc";
 $discussion_list_arr = \App\Models\Songs::GetRawData($discussion_list_qry);
+e 
 if (isset($discussion_list_arr)) {
     $count_discussion  = count($discussion_list_arr);
 } else {
