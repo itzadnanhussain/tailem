@@ -192,13 +192,17 @@ class SongsController extends Controller
             $data['user_profile'] = session()->get('user_id');
             $data['main_link'] = '';
         }
-
+       
         ///song list arr
         $song_list_arr = array();
-        $song_list = "select a.id as artist_id,b.album_seo,b.album_artist_id, s.itunes_url,s.amazon_url, s.google_url, s.lastfm_url, s.song_title, s.picture, s.song_seo, a.artist_seo, a.artist_name,b.album_title, b.album_picture, s.id,s.description, b.id as album_id from tbl_artist_album b, tbl_artists a, tbl_songs_artist_album saa, tbl_songs s where 1=1 AND s.id = saa.song_id AND a.id = saa.artist_id AND b.id = saa.album_id AND s.song_seo = '$data[song_seo]' AND saa.display_status = 1 AND a.artist_seo = '$data[artist_seo]' AND s.song_status = 1";
-        $song_list_arr = \App\Models\Songs::GetRawData($song_list);
+        // $song_list = "select a.id as artist_id,b.album_seo,b.album_artist_id, s.itunes_url,s.amazon_url, s.google_url, s.lastfm_url, s.song_title, s.picture, s.song_seo, a.artist_seo, a.artist_name,b.album_title, b.album_picture, s.id,s.description, b.id as album_id from tbl_artist_album b, tbl_artists a, tbl_songs_artist_album saa, tbl_songs s where s.id = saa.song_id AND a.id = saa.artist_id AND b.id = saa.album_id AND s.song_seo = '".$data['song_seo']."' AND saa.display_status = 1 AND a.artist_seo = '".$data['artist_seo']."' AND s.song_status = 1";
+        $song_list = "select a.id as artist_id,b.album_seo,b.album_artist_id, s.itunes_url,s.amazon_url, s.google_url, s.lastfm_url, s.song_title, s.picture, s.song_seo, a.artist_seo, a.artist_name,b.album_title, b.album_picture, s.id,s.description, b.id as album_id from tbl_artist_album b, tbl_artists a, tbl_songs_artist_album saa, tbl_songs s where s.id = saa.song_id AND a.id = saa.artist_id AND b.id = saa.album_id AND s.song_seo = '".$data['song_seo']."' AND a.artist_seo = '".$data['artist_seo']."' AND s.song_status = 1";
+        $song_list_arr = \App\Models\Songs::GetRawDataAdmin($song_list);
+        
+     
         if (isset($song_list_arr) && !empty($song_list_arr)) {
             $data['song_list_arr'] = $song_list_arr;
+            // $data['song_id'] = $song_list_arr[0]->id;
         } else {
             return redirect('/');
         }

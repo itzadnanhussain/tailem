@@ -94,7 +94,7 @@ class Songs extends Model
     public static function GetRawData($expression, $where = array())
     {
         $results = DB::select(DB::raw($expression), $where);
-
+ 
         return $results;
     }
     ///GetRawDataAdmin

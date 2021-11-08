@@ -5,9 +5,11 @@ error_reporting(0);
 
 
 
-$song_list_arr = (array)$song_list_arr[0];
+// $song_list_arr = (array)$song_list_arr[0];
 $id      = $song_list_arr['id'];
 $song_id      = $song_list_arr['id'];
+
+
 
 $album_title = stripslashes(html_entity_decode($song_list_arr['album_title']));
 $album_id = stripslashes(html_entity_decode($song_list_arr['album_id']));
@@ -91,9 +93,14 @@ if ($counter_main) {
 
 
 
+
 $discussion_list_qry = "select u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id order by comment_id desc";
+
 $discussion_list_arr = \App\Models\Songs::GetRawData($discussion_list_qry);
-e 
+// echo '<pre>';
+// print_r($discussion_list_arr);
+// echo '</pre>';
+// die;
 if (isset($discussion_list_arr)) {
     $count_discussion  = count($discussion_list_arr);
 } else {
@@ -300,36 +307,36 @@ $img_arr3 = (array)$img_arr3[0];
                                     <div class="album_cover" style="border-radius:0px;">
                                         <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
 
-                                                                                                                            if ($picture != "") {
-                                                                                                                                $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
-                                                                                                                                $img_api_link = album_img_api($picture);
-                                                                                                                                if ($img_api_link != '') {
-                                                                                                                            ?>
+                                                                                                                                        if ($picture != "") {
+                                                                                                                                            $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
+                                                                                                                                            $img_api_link = album_img_api($picture);
+                                                                                                                                            if ($img_api_link != '') {
+                                                                                                                                        ?>
                                                     <img src="<?php echo $img_api_link; ?>" class="img-responsive  artist-img" style="max-height:250px;" />
                                                 <?php } else { ?>
                                                     <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" class="img-responsive  artist-img" style="max-height:250px;" />
                                                 <?php
-                                                                                                                                }
-                                                                                                                            } else
+                                                                                                                                            }
+                                                                                                                                        } else
 													 if ($song_image_fm != "") {
                                                 ?>
                                                 <img src="<?php echo $song_image_fm; ?>" class="img-responsive  artist-img" style="max-height:250px;" />
                                             <?php
-                                                                                                                            } else
+                                                                                                                                        } else
 												    if ($album_picture != "") {
 
 
-                                                                                                                                $song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
-                                                                                                                                //$song_pic = $album_picture;
+                                                                                                                                            $song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
+                                                                                                                                            //$song_pic = $album_picture;
                                             ?>
                                                 <img src="<?php echo $album_picture; ?>" class="img-responsive  artist-img" style="max-height:250px;" />
                                             <?php
-                                                                                                                            } else {
-                                                                                                                                $song_pic = SERVER_ROOTPATH . "assets/images/no_image4.png";
+                                                                                                                                        } else {
+                                                                                                                                            $song_pic = SERVER_ROOTPATH . "assets/images/no_image4.png";
                                             ?>
                                                 <img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" class="img-responsive  artist-img" style="max-height:250px;" />
                                             <?php
-                                                                                                                            }
+                                                                                                                                        }
                                             ?></a>
                                         <cite style="background-color:<?php echo $color_pick; ?>"><?php if ($all_avg == 10) {
                                                                                                         echo number_format($all_avg, 0);
@@ -339,6 +346,12 @@ $img_arr3 = (array)$img_arr3[0];
                                     </div>
                                 </div>
                             </div>
+                            <div class="p-add">
+
+                                <p>Album : <span style="color: #D73B3B;"><?php echo $album_title; ?></span></p>
+                            </div>
+
+
                         </div>
                         <div class="col-sm-7 desc-panel">
                             <p class="title"><a style='color:#000000;' href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a></p>
@@ -509,33 +522,33 @@ $img_arr3 = (array)$img_arr3[0];
                                     <div class="list_item">
                                         <div class="album_cover" style="border-radius:0;">
                                             <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <?php
-                                                                                                                                if ($picture != "") {
-                                                                                                                                    $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
-                                                                                                                                    $img_api_link = album_img_api($picture);
-                                                                                                                                    if ($img_api_link != '') {
-                                                                                                                                ?>
+                                                                                                                                            if ($picture != "") {
+                                                                                                                                                $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
+                                                                                                                                                $img_api_link = album_img_api($picture);
+                                                                                                                                                if ($img_api_link != '') {
+                                                                                                                                            ?>
                                                         <img src="<?php echo $img_api_link; ?>" class="img-responsive  artist-img" />
                                                     <?php } else { ?>
                                                         <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" class="img-responsive  artist-img" />
                                                     <?php
-                                                                                                                                    }
-                                                                                                                                } else
+                                                                                                                                                }
+                                                                                                                                            } else
 													 if ($song_image_fm != "") {
                                                     ?>
                                                     <img src="<?php echo $song_image_fm; ?>" class="img-responsive  artist-img" />
                                                 <?php
-                                                                                                                                } else
+                                                                                                                                            } else
 												    if ($album_picture != "") {
-                                                                                                                                    $song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
+                                                                                                                                                $song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
                                                 ?>
                                                     <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" class="img-responsive  artist-img" />
                                                 <?php
-                                                                                                                                } else {
-                                                                                                                                    $song_pic = SERVER_ROOTPATH . "assets/images/no_image4.png";
+                                                                                                                                            } else {
+                                                                                                                                                $song_pic = SERVER_ROOTPATH . "assets/images/no_image4.png";
                                                 ?>
                                                     <img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" class="img-responsive  artist-img" />
                                                 <?php
-                                                                                                                                }
+                                                                                                                                            }
                                                 ?></a>
                                             <cite style="background-color:<?php echo $color_pick; ?>"><?php if ($all_avg == 10) {
                                                                                                             echo number_format($all_avg, 0);
@@ -1721,7 +1734,58 @@ $img_arr3 = (array)$img_arr3[0];
                     <input id="submit_btn" class="btn btn-default btn-green btn-block" type="submit" onClick="return discussion_post();" value="Post" name="submit_btn">
                     <!--<button type="button" class="btn btn-default btn-green btn-block">Post</button>-->
                 </div>
-                <div id="pagination" cellspacing="0"></div>
+                <div id="pagination" cellspacing="0">
+                    <style>
+                        span.under_line {
+                            text-decoration: none !important;
+                        }
+
+                        span.under_line:hover {
+                            text-decoration: underline !important;
+                        }
+
+                        .page-numbers {
+                            padding: 5px 7px;
+                            font-size: 12px;
+                        }
+
+                        .pagination {
+                            width: 100%;
+                            text-align: center;
+                        }
+                    </style>
+                    <div class="disc_listPan" style="padding:10px;">
+                        <!-- <?php foreach ($discussion_list_arr as $key => $value) { ?>
+
+                            <div class="disc_list">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 img-div" style="padding:0;">
+                                    <div class="latestsongssec" style="width:100%;">
+                                        <div class="list_item">
+                                            <img src="<?php echo SERVER_ROOTPATH; ?>assets/phpthumb/phpThumb.php?src=https://www.tailem.com/assets/images/no_image4.png&amp;w=100&amp;h=75&amp;zc=0" class="img-responsive artist-img" style="width:100%;">
+                                            <div class="list_bottom" style="padding:2px;">
+                                                <div class="row">
+                                                    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 pad_right">
+                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "/profile-review-artist"; ?>" sl-processed="1"><cite class="reviewscite" style="margin-top:0; font-size:10px; margin-left:6px; color:#fff;" title="<?php echo $value->username; ?>"><?php echo $value->username; ?></cite></a>
+                                                    </div>
+                                                    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5 pad_zero">
+                                                        <span class="revlikespan3" id="other_dis_sub_profile_discussion_1"><a href="javascript:;" data-toggle="modal" data-target="#signin_form" class="like" sl-processed="1"><i class="fa fa-heart-o heart_color"></i> </a><span class="like" style=" color:#fff; margin-left:2px;"></span><a href="https://www.tailem.com/detail_profile.php?user=test1234&amp;critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" style="color:#fff; margin-right:4px; font-size:10px;" sl-processed="1">0</a></span><span id="myStyle_sub_profile_discussion_1"></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8  text-panel" style="margin-top:0; padding-right:2px;">
+                                    <p class="review_detail darkgrey_rev" style="color:#000000; min-height:60px;"><?php echo $value->comment_details; ?></p>
+                                    <p><span><?php echo date("d-m-Y", $value->comment_post_date); ?></span>&nbsp; <span class="under_line" style="float:right;"><a href="javascript:;" data-toggle="modal" data-target="#signin_form" class="linktag_new under_line" sl-processed="1">Report</a> </span></p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                        <?php } ?> -->
+
+                    </div>
+                </div>
 
             </div>
             <div style="clear: both"></div>
@@ -2062,4 +2126,3 @@ for ($u = 1; $u <= 20; $u++) {
 
     song_id = <?php echo $song_id; ?>;
 </script>
-
