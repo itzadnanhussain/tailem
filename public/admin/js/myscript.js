@@ -217,8 +217,8 @@ function validate_email() {
     });
 }
 
-// pre-submit callback
 
+// pre-submit callback
 function validate_email_Request(formData, jqForm, options) {
     var queryString = $.param(formData);
 
@@ -234,6 +234,53 @@ function validate_email_Response(responseText, statusText) {
         alert(responseText);
     }
 }
+
+
+
+/*===================Update_copyright_text Admin Email ====================*/
+
+function Update_copyright_text() { 
+    $("#copyright_text").unbind("submit");
+    var csrf_token = $("meta[name=csrf-token]").attr("content");
+
+    var options = {
+        target: "",
+        data: {
+            _token: csrf_token,
+        },
+
+        beforeSubmit: validate_update_copyright_text_Request,
+
+        success: validate_update_copyright_text_Response,
+
+        url: JS_ADMIN_SERVER_PATHROOT + "process/update_copyright_text",
+    };
+
+    // bind to the form's submit event
+
+    $("#copyright_text").submit(function () {
+        $(this).ajaxSubmit(options);
+
+        return false;
+    });
+}
+
+function validate_update_copyright_text_Request(formData, jqForm, options) {
+    var queryString = $.param(formData);
+
+    return true;
+}
+
+function validate_update_copyright_text_Response(responseText, statusText) {
+    if (responseText.search("done") != -1) {
+        alert("Record Update Successfully");
+
+        window.location.href = JS_ADMIN_SERVER_PATHROOT + "setting";
+    } else {
+        alert(responseText);
+    }
+}
+
 
 /*===================Validate Change Password ====================*/
 
@@ -373,14 +420,14 @@ function delete_review_comment(del_id) {
 
     if (conBox) {
         $.ajax({
-            type: "POST", 
-            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_review_comment", 
+            type: "POST",
+            url: JS_ADMIN_SERVER_PATHROOT + "process/delete_review_comment",
             data: {
                 del_id: del_id,
                 _token: csrf_token,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -392,7 +439,7 @@ function delete_review_comment(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -412,7 +459,7 @@ function delete_region(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -424,7 +471,7 @@ function delete_region(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -444,7 +491,7 @@ function delete_region(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -456,7 +503,7 @@ function delete_region(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -477,7 +524,7 @@ function delete_sub_cate_more_info_data(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -489,7 +536,7 @@ function delete_sub_cate_more_info_data(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -509,7 +556,7 @@ function delete_country(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -521,7 +568,7 @@ function delete_country(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -541,7 +588,7 @@ function delete_main_cat(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -553,7 +600,7 @@ function delete_main_cat(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -706,7 +753,7 @@ function delete_sub_cat(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -718,7 +765,7 @@ function delete_sub_cat(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -738,7 +785,7 @@ function delete_product(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -750,7 +797,7 @@ function delete_product(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -770,7 +817,7 @@ function delete_faq(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -782,7 +829,7 @@ function delete_faq(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -805,7 +852,7 @@ function delete_artist(del_id) {
                 del_id: del_id,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -817,7 +864,7 @@ function delete_artist(del_id) {
                 window.location = "artist_list";
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -836,7 +883,7 @@ function delete_song(del_id) {
                 _token: csrf_token,
             },
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_song",
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg.search("done") != -1) {
                     alert("Record Delete Successfully");
@@ -845,7 +892,7 @@ function delete_song(del_id) {
                 }
                 window.location.reload();
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -854,7 +901,7 @@ function delete_song(del_id) {
 
 function delete_artist_song(del_id, songid) {
     var conBox = confirm("Are you sure,you want to delete this Record?");
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
     if (conBox) {
         $.ajax({
             type: "POST",
@@ -862,12 +909,12 @@ function delete_artist_song(del_id, songid) {
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_artist_songs",
 
             data: {
-                "del_id" : del_id,
-                "songid" : songid,
+                "del_id": del_id,
+                "songid": songid,
                 "_token": csrf_token,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -879,7 +926,7 @@ function delete_artist_song(del_id, songid) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -984,7 +1031,7 @@ function delete_user(del_id) {
                 _token: csrf_token,
                 del_id: del_id,
             },
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -996,7 +1043,7 @@ function delete_user(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1016,7 +1063,7 @@ function delete_slideshow(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1032,7 +1079,7 @@ function delete_slideshow(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1053,7 +1100,7 @@ function delete_ads(del_id) {
                 del_id: del_id,
                 _token: csrf_token,
             },
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg.search("done") != -1) {
                     alert("Record Delete Successfully");
@@ -1063,7 +1110,7 @@ function delete_ads(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1123,7 +1170,7 @@ function load_category_type(id) {
 
             data: "cat_id=" + id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 $("#cat_type_div").show();
@@ -1131,7 +1178,7 @@ function load_category_type(id) {
                 document.getElementById("cat_type_div").innerHTML = msg;
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         //document.getElementById("cat_type_div").style.display='none';
@@ -1155,7 +1202,7 @@ function load_edit_category_type(id, update_id) {
 
             data: "cat_id=" + id + "&update_id=" + update_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 $("#cat_type_div").show();
@@ -1163,7 +1210,7 @@ function load_edit_category_type(id, update_id) {
                 document.getElementById("cat_type_div").innerHTML = msg;
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         //document.getElementById("cat_type_div").style.display='none';
@@ -1279,7 +1326,7 @@ function set_top_member(user_id) {
 
             data: "userid=" + user_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1293,7 +1340,7 @@ function set_top_member(user_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1313,7 +1360,7 @@ function unset_top_member(user_id) {
 
             data: "userid=" + user_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1325,7 +1372,7 @@ function unset_top_member(user_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1349,7 +1396,7 @@ function set_popular(review_id) {
                 _token: csrf_token,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1361,7 +1408,7 @@ function set_popular(review_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1385,7 +1432,7 @@ function unset_popular(review_id) {
                 _token: csrf_token,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1397,7 +1444,7 @@ function unset_popular(review_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1419,7 +1466,7 @@ function delete_review(del_id) {
                 del_id: del_id,
                 _token: csrf_token,
             },
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1431,7 +1478,7 @@ function delete_review(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1585,7 +1632,7 @@ function delete_moderator(del_id) {
                 _token: csrf_token,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1599,7 +1646,7 @@ function delete_moderator(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1669,7 +1716,7 @@ function delete_report_option(del_id) {
                 _token: csrf_token,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1681,7 +1728,7 @@ function delete_report_option(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1701,7 +1748,7 @@ function delete_comment_report(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1713,7 +1760,7 @@ function delete_comment_report(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1733,7 +1780,7 @@ function delete_gcomment_report(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1745,7 +1792,7 @@ function delete_gcomment_report(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -1978,7 +2025,7 @@ function delete_product_embed_code(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -1990,7 +2037,7 @@ function delete_product_embed_code(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -2037,7 +2084,7 @@ function delete_video(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -2049,7 +2096,7 @@ function delete_video(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -2068,7 +2115,7 @@ function delete_question(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -2080,7 +2127,7 @@ function delete_question(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -2099,7 +2146,7 @@ function delete_question(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -2111,7 +2158,7 @@ function delete_question(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -2130,7 +2177,7 @@ function delete_answer(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -2142,7 +2189,7 @@ function delete_answer(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -2161,7 +2208,7 @@ function delete_answer_like(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -2173,7 +2220,7 @@ function delete_answer_like(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -2233,7 +2280,7 @@ function delete_category_image(del_id) {
 
             data: "del_id=" + del_id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -2245,7 +2292,7 @@ function delete_category_image(del_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -2276,7 +2323,7 @@ function get_category_level4_attributes(id) {
                 }
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2297,7 +2344,7 @@ function get_category_level5_attributes(id) {
 
             data: "level5_id=" + id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg != -1) {
@@ -2307,7 +2354,7 @@ function get_category_level5_attributes(id) {
                 }
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         alert("Please select valid level5 category");
@@ -2336,7 +2383,7 @@ function get_category_level2_details(level1_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2368,7 +2415,7 @@ function get_category_level3_details(level2_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2398,7 +2445,7 @@ function get_category_level4_details(level3_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2416,7 +2463,7 @@ function get_category_level5_details(level4_id) {
                 JS_ADMIN_SERVER_PATHROOT +
                 "process/category_level5_details_process",
             data: "level4_id=" + level4_id,
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg != -1) {
                     $("#load_level5_id").show();
@@ -2424,7 +2471,7 @@ function get_category_level5_details(level4_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         alert("Please select valid level5 category");
@@ -2502,7 +2549,7 @@ function delete_mobile_ads(del_id) {
             type: "POST",
             url: JS_ADMIN_SERVER_PATHROOT + "process/delete_mobile_ads",
             data: "del_id=" + del_id,
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg.search("done") != -1) {
                     alert("Record Delete Successfully");
@@ -2511,7 +2558,7 @@ function delete_mobile_ads(del_id) {
                 }
                 window.location.reload();
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -2548,7 +2595,7 @@ function get_category_level1_details(level) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2581,7 +2628,7 @@ function get_category_level2_data(level1_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2611,7 +2658,7 @@ function get_category_level4_data(level3_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2646,7 +2693,7 @@ function edit_category_level2_details(level1_id, selected_level2_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2679,7 +2726,7 @@ function edit_category_level3_details(level2_id, selected_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2710,7 +2757,7 @@ function edit_category_level4_details(level3_id, selected_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#level5_attributes_id").hide();
@@ -2729,7 +2776,7 @@ function edit_category_level5_details(level4_id, selected_id) {
                 "process/edit_category_level5_details_process",
             data:
                 "level4_id=" + level4_id + "&selected_level4_id=" + selected_id,
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg != -1) {
                     $("#load_level5_id").show();
@@ -2737,7 +2784,7 @@ function edit_category_level5_details(level4_id, selected_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         alert("Please select valid level5 category");
@@ -2758,7 +2805,7 @@ function edit_category_level5_attributes(id) {
 
             data: "level5_id=" + id,
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg != -1) {
@@ -2768,7 +2815,7 @@ function edit_category_level5_attributes(id) {
                 }
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         alert("Please select valid level5 category");
@@ -2827,7 +2874,7 @@ function category_level2_review(level1_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#load_level5_id").hide();
@@ -2859,7 +2906,7 @@ function category_level3_review(level2_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#load_level5_id").hide();
@@ -2889,7 +2936,7 @@ function category_level4_review(level3_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#load_level5_id").hide();
@@ -2907,7 +2954,7 @@ function get_category_level5_review(level4_id) {
                 JS_ADMIN_SERVER_PATHROOT +
                 "process/category_level5_review_process",
             data: "level4_id=" + level4_id,
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg != -1) {
                     $("#load_level5_id").show();
@@ -2915,7 +2962,7 @@ function get_category_level5_review(level4_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#load_level5_id").hide();
@@ -3030,7 +3077,7 @@ function edit_category_level2_review(level1_id, reviews_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#load_level5_id").hide();
@@ -3062,7 +3109,7 @@ function edit_category_level3_review(level2_id, reviews_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#load_level5_id").hide();
@@ -3092,7 +3139,7 @@ function edit_category_level4_review(level3_id, reviews_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#load_level5_id").hide();
@@ -3110,7 +3157,7 @@ function edit_category_level5_review(level4_id, reviews_id) {
                 JS_ADMIN_SERVER_PATHROOT +
                 "process/edit_category_level5_review_process",
             data: "level4_id=" + level4_id + "&reviews_id=" + reviews_id,
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg != -1) {
                     $("#load_level5_id").show();
@@ -3118,7 +3165,7 @@ function edit_category_level5_review(level4_id, reviews_id) {
                 } else {
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         $("#load_level5_id").hide();
@@ -3237,7 +3284,7 @@ function set_featured_review(review_id) {
                 reviewid: review_id,
                 _token: csrf_token,
             },
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -3252,7 +3299,7 @@ function set_featured_review(review_id) {
                     window.location.reload();
                 }
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -3276,7 +3323,7 @@ function unset_featured_review(review_id) {
                 _token: csrf_token,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 if (msg.search("done") != -1) {
@@ -3288,7 +3335,7 @@ function unset_featured_review(review_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -3305,7 +3352,7 @@ function set_featured_topic(review_topic_id) {
             type: "POST",
             url: JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process",
             data: "review_topic_id=" + review_topic_id,
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg.search("done") != -1) {
                     alert("Review Topic is set as Featured Topic");
@@ -3314,7 +3361,7 @@ function set_featured_topic(review_topic_id) {
                 }
                 window.location.reload();
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -3328,7 +3375,7 @@ function unset_featured_topic(review_topic_id) {
             type: "POST",
             url: JS_ADMIN_SERVER_PATHROOT + "process/featured_topic_process",
             data: "review_topic_id=" + review_topic_id,
-            beforeSend: function () {},
+            beforeSend: function () { },
             success: function (msg) {
                 if (msg.search("done") != -1) {
                     alert("Review Topic is set UnFeatured Topic");
@@ -3337,7 +3384,7 @@ function unset_featured_topic(review_topic_id) {
                 }
                 window.location.reload();
             },
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -3620,7 +3667,7 @@ function delete_album(del_id, artist_id) {
                 _token: csrf_token,
             },
 
-            beforeSend: function () {},
+            beforeSend: function () { },
 
             success: function (msg) {
                 myarray = msg.split("-SEPARATOR-");
@@ -3634,7 +3681,7 @@ function delete_album(del_id, artist_id) {
                 window.location.reload();
             },
 
-            error: function () {},
+            error: function () { },
         });
     } else {
         return;
@@ -3694,7 +3741,7 @@ function validate_song_artist_album() {
 
     var options = {
         target: "",
-        data:{
+        data: {
             "_token": csrf_token,
         },
         beforeSubmit: validate_song_artist_album_Request,
@@ -3784,7 +3831,7 @@ function jump_char(val) {
 
         data: "pass_val=" + val,
 
-        beforeSend: function () {},
+        beforeSend: function () { },
 
         success: function (msg) {
             $("#jump_div").show();
@@ -3793,7 +3840,7 @@ function jump_char(val) {
             document.getElementById("jump_div").innerHTML = msg;
         },
 
-        error: function () {},
+        error: function () { },
     });
 }
 

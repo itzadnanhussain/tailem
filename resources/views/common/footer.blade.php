@@ -3,6 +3,7 @@
 $arr_setting = GetByWhere('setting', array('setting_id' => 1));
 $arr_setting = (array)$arr_setting[0];
 $itune_url	=	$arr_setting['itune_url'];
+$copy_right_text	=	$arr_setting['copy_right_text'];
 
 ///old query
 // $social_query  = "Select * from tbl_social_links ";
@@ -139,7 +140,7 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 				s.parentNode.insertBefore(autolink, s);
 			})();
 		</script>
-		<p>&copy; 2017 <a href="<?php echo SERVER_ROOTPATH; ?>">Tailem</a>.com All Rights Reserved</p>
+		<p>&copy; <a href="<?php echo SERVER_ROOTPATH; ?>"><?php echo $copy_right_text; ?> </a></p>
 	</footer>
 
 <?php } ?>

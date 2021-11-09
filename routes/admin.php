@@ -153,6 +153,7 @@ Route::post('admin/process/song_artist_album_process', [ManageSong::class, 'Song
 Route::any('admin/setting', [ManageSetting::class, 'Load_Setting']);
 Route::post('admin/process/admin_change_password_process', [ManageSetting::class, 'Change_Admin_Password']);
 Route::post('admin/process/admin_email_process', [ManageSetting::class, 'Change_Admin_Email']);
+Route::post('admin/process/update_copyright_text', [ManageSetting::class, 'Update_Copy_Right_text']);
 Route::post('admin/process/itune_process', [ManageSetting::class, 'Change_ITune_Url']);
 Route::post('admin/process/site_mode_process', [ManageSetting::class, 'Change_Site_Mode']);
 Route::post('admin/process/analytic_process', [ManageSetting::class, 'Update_Analytic']);

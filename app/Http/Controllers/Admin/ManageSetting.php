@@ -122,6 +122,28 @@ class ManageSetting extends Controller
             }
         }
     }
+    ///Update_Copy_Right_text
+    public function Update_Copy_Right_text()
+    {
+        error_reporting(0);
+        if (isset($_POST)) { 
+            $errorstr = "";
+            $case = 1;
+            $copy_right_text  = trim($_REQUEST['copy_right_text']);
+
+            if ($copy_right_text == "") {
+                $errorstr .= "Please enter Text.\n";
+                $case = 0;
+            } 
+            if ($case == 1) {
+                $update_qry = "UPDATE tbl_setting set copy_right_text = '" .  $copy_right_text . "'";
+                \App\Models\Songs::GetRawData($update_qry); 
+                echo 'done';
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
 
     ///Change_ITune_Url
     public function Change_ITune_Url()

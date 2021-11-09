@@ -8,11 +8,12 @@ $getadmindata	=	"select email from tbl_admin where id=\"" . $admin_id . "\"";
 $rowadmindata	=	\App\Models\Songs::GetRawDataAdmin($getadmindata);;
 $adminemail		=	$rowadmindata['email'];
 
-$setting_data_qry = "select site_mode, analaytic, itune_url from tbl_setting where setting_id='1'";
+$setting_data_qry = "select site_mode, analaytic,copy_right_text, itune_url from tbl_setting where setting_id='1'";
 $setting_data_arr = \App\Models\Songs::GetRawDataAdmin($setting_data_qry);
 $site_mode   	  = $setting_data_arr['site_mode'];
 $analaytic   	  = stripslashes($setting_data_arr['analaytic']);
 $itune_url   	  = stripslashes($setting_data_arr['itune_url']);
+$copy_right_text   	  = stripslashes($setting_data_arr['copy_right_text']);
 
 ?>
 <html>
@@ -134,6 +135,35 @@ $itune_url   	  = stripslashes($setting_data_arr['itune_url']);
 																						<td>&nbsp;</td>
 																						<td>
 																							<input name="updatemyaccountemail" id="updatemyaccountemail" value="Update" class="FormButton" type="submit" onClick="validate_email();">
+																						</td>
+																					</tr>
+																				</tbody>
+																			</table>
+																		</form>
+																	</td>
+																</tr>
+
+ 																<tr>
+																	<td>
+																		<form name="copyright_text" id="copyright_text" action="" method="post">
+																			<table class="Panel">
+																				<tbody>
+																					<tr>
+																						<td class="Heading2" colspan="2">Change Copy Right Text</td>
+																					</tr>
+																					<tr>
+																						<td width="19%" nowrap="nowrap" class="SmallFieldLabel2">Copy Right Text:</td>
+																						<td width="81%">
+																							@csrf
+																							<input name="copy_right_text" id="copy_right_text" type="text" class="Field150" value="<?php echo $copy_right_text; ?>">
+																						</td>
+																					</tr>
+
+
+																					<tr>
+																						<td>&nbsp;</td>
+																						<td>
+																							<input value="Update" class="FormButton" type="submit" onClick="Update_copyright_text();">
 																						</td>
 																					</tr>
 																				</tbody>
