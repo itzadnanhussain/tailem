@@ -2126,3 +2126,35 @@ for ($u = 1; $u <= 20; $u++) {
 
     song_id = <?php echo $song_id; ?>;
 </script>
+
+
+<script type="text/javascript">
+    //<![CDATA[
+    jq(function() {
+        jq.ajax({
+            url: "<?php echo SERVER_ROOTPATH; ?>process/dbmanupulate",
+            type: "POST",
+            data: "actionfunction=showData&page=1&song_id=" + <?php echo $song_id ?>,
+            cache: false,
+            success: function(response) {
+                jq('#pagination').html(response);
+            }
+        });
+        jq('#pagination').on('click', '.page-numbers', function() {
+            jqpage = jq(this).attr('href');
+            jqpageind = jqpage.indexOf('page=');
+            jqpage = jqpage.substring((jqpageind + 5));
+            jq.ajax({
+                url: "dbmanupulate.php",
+                type: "POST",
+                data: "actionfunction=showData&song_id=" + song_id + "&page=" + jqpage,
+                cache: false,
+                success: function(response) {
+                    jq('#pagination').html(response);
+                }
+            });
+            return false;
+        });
+    });
+    //]]>
+</script>

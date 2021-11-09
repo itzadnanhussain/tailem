@@ -263,8 +263,8 @@
 																																															} ?></a></label>
 
 
-											<cite style="white-space:nowrap"><a href="<?php echo SERVER_ROOTPATH  . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 16);
-																																						if (strlen($artist_name) > 16) {
+											<cite style="white-space:nowrap"><a href="<?php echo SERVER_ROOTPATH  . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 25);
+																																						if (strlen($artist_name) > 25) {
 																																							echo "..";
 																																						} ?></a><?php echo $feature_artists;
 																																							$sum_len = 0; ?></cite>

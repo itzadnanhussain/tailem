@@ -91,6 +91,10 @@ Route::get('like/detail',[ProcessController::class, 'GetLikeDetail'])
 ///discussion_process
 Route::post('process/discussion_process' , [ProcessController::class , 'Discussion']);
 
+
+///process/dbmanupulate
+Route::post('process/dbmanupulate' , [ProcessController::class , 'DM_Manipulate']);
+
 ///detail_cms
 Route::get('process/detail_cms' , [ProcessController::class , 'DetailCMS']);
 Route::get('signup_popup/{seo_url}' , [ProcessController::class , 'DetailCMS_One']);

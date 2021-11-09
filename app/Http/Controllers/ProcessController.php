@@ -572,6 +572,19 @@ class ProcessController extends Controller
 
         return view('include.reviews_artist_popular_likes', $data);
     }
+    ///DM_Manipulate
+    public function DM_Manipulate()
+    {
+        
+        $data = array();
+        $data['actionfunction'] = $_POST['actionfunction'];
+        $data['page'] = $_POST['page'];
+        $data['song_id'] = $_POST['song_id'];
+        $data['limit'] = 1;
+        $data['user_id'] = session()->get('user_id'); 
+        $data['user_name'] = session()->get('user_name'); 
+        return view('common.dbmanupulate', $data);
+    }
 
 
     ///FavouriteLike
