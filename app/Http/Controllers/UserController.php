@@ -60,20 +60,18 @@ class UserController extends Controller
     public function GetReviewArtistPage_One($user_seo, $alpha = null, $page = null)
     {
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
 
-       
+
 
 
 
@@ -165,7 +163,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'review_artist';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('review_artist', $data);
     }
 
@@ -174,17 +172,15 @@ class UserController extends Controller
     public function GetReviewArtistPage_Two($user_seo, $genere_seo, $alpha = null, $page = null)
     {
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = $alpha;
@@ -277,7 +273,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'review_artist';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('review_artist', $data);
     }
 
@@ -286,17 +282,15 @@ class UserController extends Controller
     public function GetReviewArtistPage_Three($user_seo, $genere_seo, $page = null)
     {
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
@@ -389,7 +383,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'review_artist';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('review_artist', $data);
     }
 
@@ -398,17 +392,15 @@ class UserController extends Controller
     public function GetReviewArtistPage_Four($page = null)
     {
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = null;
         $data['alpha'] = null;
@@ -499,9 +491,9 @@ class UserController extends Controller
 
 
         //loadview
-        $data['currentFile'] = 'review_artist';
-        $title = str_replace('-', ' ', ('review-artist'));
-       $data['title'] = GetTitle();
+        $data['currentFile'] = 'review-artist';
+        $data['title'] = GetTitle();
+       
         return view('review_artist', $data);
     }
 
@@ -513,17 +505,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = $alpha;
@@ -617,7 +607,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ('review-songs-rating ' . $rate));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -626,17 +616,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
@@ -730,7 +718,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -740,17 +728,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
@@ -844,7 +830,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -854,17 +840,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
@@ -958,7 +942,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -968,17 +952,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
@@ -1072,7 +1054,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1082,17 +1064,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = null;
         $data['alpha'] = null;
@@ -1197,17 +1177,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = null;
         $data['alpha'] = null;
@@ -1311,17 +1289,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = null;
         $data['alpha'] = null;
@@ -1425,17 +1401,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = $user_seo;
         $data['alpha'] = null;
@@ -1529,7 +1503,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1539,17 +1513,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = null;
         $data['alpha'] = null;
@@ -1643,7 +1615,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ('review-songs-rating ' . $rate));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1653,17 +1625,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = null;
         $data['alpha'] = null;
@@ -1757,7 +1727,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ('review-songs-rating ' . $rate));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -1767,17 +1737,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = null;
         $data['alpha'] = null;
@@ -1882,17 +1850,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = null;
         $data['alpha'] = null;
@@ -1996,17 +1962,15 @@ class UserController extends Controller
     {
 
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['user_seo'] = $user_seo;
         $data['alpha'] = null;
@@ -2099,7 +2063,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'my_reviews';
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-songs-rating'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('my_reviews', $data);
     }
 
@@ -2134,7 +2098,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'change_picture';
         $title = str_replace('-', ' ', ('change picture'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('change_picture', $data);
     }
 
@@ -2169,7 +2133,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'change_password';
         $title = str_replace('-', ' ', ('change password'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('change_password', $data);
     }
 
@@ -2203,7 +2167,7 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'edit_username';
         $title = str_replace('-', ' ', ('edit username'));
-       $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('edit_username', $data);
     }
 
@@ -2218,17 +2182,15 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
         }
         $data['artist_seo'] = null;
         $data['album_seo'] = null;
@@ -2304,7 +2266,7 @@ class UserController extends Controller
 
 
     ///GetProfileLike_One
-    public function GetProfileLike_One($user_seo , $alpha = null)
+    public function GetProfileLike_One($user_seo, $alpha = null)
     {
         ///page
         if (isset($_GET['page'])) {
@@ -2313,18 +2275,16 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
-        } 
+        }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = $alpha;
         $data['rate'] = null;
@@ -2429,18 +2389,16 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
-        } 
+        }
         $data['user_seo'] = null;
         $data['alpha'] = null;
         $data['rate'] = null;
@@ -2544,18 +2502,16 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
-        } 
+        }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
         $data['rate'] = null;
@@ -2660,18 +2616,16 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
-        } 
+        }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
         $data['rate'] = null;
@@ -2776,18 +2730,16 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
-        } 
+        }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
         $data['rate'] = null;
@@ -2883,7 +2835,7 @@ class UserController extends Controller
 
 
     ///GetProfilePlaylist
-    public function GetProfilePlaylist($user_seo = null , $seo_playlist = null)
+    public function GetProfilePlaylist($user_seo = null, $seo_playlist = null)
     {
         ///page
         if (isset($_GET['page'])) {
@@ -2892,18 +2844,16 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
-        } 
+        }
         $data['user_seo'] = strtolower($user_seo);
         $data['alpha'] = null;
         $data['rate'] = null;
@@ -2998,7 +2948,7 @@ class UserController extends Controller
         return view('my_playlist', $data);
     }
 
-    
+
     ///GetProfilePlaylist_1
     public function GetProfilePlaylist_1($seo_playlist = null)
     {
@@ -3009,18 +2959,16 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
-        } 
+        }
         $data['user_seo'] = null;
         $data['alpha'] = null;
         $data['rate'] = null;
@@ -3126,18 +3074,16 @@ class UserController extends Controller
             $page = 1;
         }
 
-          
+
 
         ///admin
-         $data = array();
+        $data = array();
 
         ///admin
-        if(isset($_GET['user_type']))
-        {
+        if (isset($_GET['user_type'])) {
             $data['user_type'] = $_GET['user_type'];
             $data = top_file_data($data);
-
-        } 
+        }
         $data['user_seo'] = null;
         $data['alpha'] = null;
         $data['rate'] = null;
