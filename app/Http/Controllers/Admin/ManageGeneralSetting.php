@@ -195,8 +195,11 @@ class ManageGeneralSetting extends Controller
             $case = 1;
             $path = 'site_upload/social_icons/'; 
             if (!file_exists($path)) {
+               
                 mkdir($path, 0777, true); 
+                
             }
+        
             $large_screen_icon              = $_FILES["large_screen_icon"]['name'];
 
             if ($_FILES["large_screen_icon"]['name'] != "") {

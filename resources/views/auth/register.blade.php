@@ -49,6 +49,7 @@
         e.stopPropagation();
         let form = $(this).serialize();
         let url = $(this).attr('action');
+        $('.error').html('');
 
         $.ajax({
             type: 'POST',

@@ -107,7 +107,7 @@ $mobile_version_logo	= $setting_arr['mobile_version_logo'];
 																							<!-- <span class="required"><strong>Only JPG,GIF or PNG format of size: 286X44</strong></span> -->
 																							 
                                                                                             <br /><br />
-																							<img src="<?php echo  SERVER_ROOTPATH .$value->large_screen_icon ?>" alt="">
+																							<img src="<?php echo  SERVER_ROOTPATH .$value->large_screen_icon ?>" width="60" alt="">
                                                                                             <br /><br />
 																							 
 																						</td>

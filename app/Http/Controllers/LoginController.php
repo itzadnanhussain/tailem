@@ -75,11 +75,16 @@ class LoginController extends Controller
             'user_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             // 'password_confirmation' => 'required',
-            'password' => ['required']
-        ]);
+            'password' => 'required|min:6'
+        ],['email' => 'Incorrect email address entered, please try again','password' => 'Your password must be at least 6 characters long']);
 
         if ($validation->fails()) {
-            return response()->json(['code' => "error", 'message' => $validation->errors()->first()]);
+            error_reporting(0);
+            $user_name = $validation->errors()->toArray()['user_name'][0];
+            $email_error = $validation->errors()->toArray()['email'][0];
+            $password = $validation->errors()->toArray()['password'][0];
+             $string = $user_name .'<br>'.$email_error.'<br>'.$password;
+            return response()->json(['code' => "error", 'message' => $string]);
         } else {
             ///post data to database
             $post = array();
@@ -142,7 +147,7 @@ class LoginController extends Controller
                 return response()->json(['code' => 'warning', 'message' => 'Password Not Match']);
             }
 
-            return response()->json(['code' => "warning", 'message' => 'user not available']);
+            return response()->json(['code' => "warning", 'message' => 'Incorrect login details entered, please try again.']);
         }
     }
 

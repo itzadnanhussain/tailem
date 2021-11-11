@@ -13,6 +13,12 @@ $copy_right_text	=	$arr_setting['copy_right_text'];
 $arr_social = GetAllRecords('social_links');
 $arr_social = (array) $arr_social[0];
 
+$social_icons = GetByWhere('social_icons');
+// echo '<pre>';
+// print_r($social_icons);
+// echo '</pre>';
+// die;
+
 ?>
 <?php
 $currentFile = get_page_name();
@@ -122,9 +128,13 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 					}
 					?>
 					<li><label>Connect with us</label></li>
-					<li> <a href="<?php echo $arr_social['facebook']; ?>" target="_blank"> <i class="sprite sprite-icon_fb"></i></a></li>
-					<li><a href="<?php echo $arr_social['twitter']; ?>" target="_blank"><i class="sprite sprite-icon_tw"></i></a></li>
-					<li><a href="<?php echo $arr_social['google']; ?>" target="_blank"> <i class="sprite sprite-icon_ggl"></i></a></li>
+					<!-- <li> <a href="<?php echo $arr_social['facebook']; ?>" target="_blank"> <i class="sprite sprite-icon_fb"></i></a></li> -->
+					<li> <a href="<?php echo $arr_social['facebook']; ?>" target="_blank"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>" alt=""></a></li>
+					<!-- <li><a href="<?php echo $arr_social['twitter']; ?>" target="_blank"><i class="sprite sprite-icon_tw"></i></a></li> -->
+					<li><a href="<?php echo $arr_social['twitter']; ?>" target="_blank"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>" alt=""></a></li>
+					<!-- <li><a href="<?php echo $arr_social['google']; ?>" target="_blank"> <i class="sprite sprite-icon_ggl"></i></a></li> -->
+					<li><a href="<?php echo $arr_social['google']; ?>" target="_blank"><img class="sprite-icon_ggl" src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>" alt=""></a></li>
+					<li><a href="<?php echo $arr_social['google']; ?>" target="_blank"> <img src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>" width="34" alt=""></a></li>
 				</ul>
 			</div>
 		</div>
