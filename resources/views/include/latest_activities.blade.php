@@ -15,6 +15,7 @@ if ($review_list_arr_top) {
 
     if ($song_list_arr_data) {
         foreach ($song_list_arr_data as $song_list_arr) {
+            
             $song_list_arr = (array)$song_list_arr;
             $review_date_check =  date("Y-m-d", $song_list_arr['review_post_date']);
             $review_date_check2 =  date("Y-m-d H:i:s", $song_list_arr['review_post_date']);
@@ -22,15 +23,16 @@ if ($review_list_arr_top) {
 
             $length_of_username  = strlen($user_name);
 
-            $song_get_name        =   strlen($song_list_arr['song_title']);
-            $length_of_song  = strlen($song_get_name);
-            $total_lenth    =    $song_get_name + $length_of_song;
+            $song_get_name        =   $song_list_arr['song_title']; 
+            
+            $total_lenth    =    strlen($song_get_name);
             if ($total_lenth > 25) {
                 $find  = 25 - $length_of_username;
                 $song_get_name    =    substr($song_get_name, 0, $find) . "..";
             }
 
             $song_get_name    =    stripslashes($song_get_name);
+           
             $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a> has posted a review on <a class='user_pnl_col' href='" . SERVER_ROOTPATH . Slug($song_list_arr['song_seo']) . "/reviews/" . Slug($song_list_arr['artist_seo']) . "'>$song_get_name</a>";
 
             $datadataarray[] = array("name" => "review_date_check", "date" => "$review_date_check", "date2" => "$review_date_check2", "messages" => "$messages");
@@ -55,10 +57,9 @@ if ($comment_list_arr) {
 
             $length_of_username  = strlen($user_name);
 
-            $song_get_name        =     strlen($c_song_list_arr['song_title']);
-            $length_of_song  = strlen($song_get_name);
-            $total_lenth    =    $song_get_name + $length_of_song;
-            if ($total_lenth > 40) {
+            $song_get_name        =      $c_song_list_arr['song_title'];
+            $total_lenth  = strlen($song_get_name);
+             if ($total_lenth > 40) {
                 $find  = 40 - $length_of_username;
                 $song_get_name    =    substr($song_get_name, 0, $find) . "..";
             }
@@ -208,10 +209,9 @@ if ($review_list_arrs) {
 
         $length_of_username  = strlen($user_name);
 
-        $song_get_name        =    stripslashes(mysqli_escape_string($db->dbh, $review_list_arr['song_title']));
-        $length_of_song  = strlen($song_get_name);
-        $total_lenth    =    $song_get_name + $length_of_song;
-        if ($total_lenth > 20) {
+        $song_get_name        =    stripslashes($review_list_arr['song_title']);
+        $total_lenth  = strlen($song_get_name);
+         if ($total_lenth > 20) {
             $find  = 20 - $length_of_username;
             $song_get_name    =    substr($song_get_name, 0, $find) . "..";
         }

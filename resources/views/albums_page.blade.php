@@ -334,7 +334,7 @@ if ($lastfm_url == "") {
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="bottom:12px; padding-left:0px;">
-                                <h3 class="alb_heading headingmedium">Albums <?php if ($album_seo != "") {
+                                <h3 class="alb_heading headingmedium" style="font-size: 22px;">Albums <?php if ($album_seo != "") {
                                                                                     $show = str_replace("-", " ", $album_seo);
                                                                                 ?><span style="text-transform:capitalize;"><?php echo ucfirst($show);
                                                                                                                         } ?></span></h3>

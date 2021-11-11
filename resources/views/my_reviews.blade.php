@@ -719,8 +719,8 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                         if (strlen($song_title) > 21) {
                                                             echo "..";
                                                         } ?></a></label>
-                                                <label class="author pad_left"><a href="<?php echo $url_gen; ?>"><?php echo substr($artist_name, 0, 13);
-                                                                                                                    if (strlen($artist_name) > 13) {
+                                                <label class="author pad_left"><a href="<?php echo $url_gen; ?>"><?php echo substr($artist_name, 0, 25);
+                                                                                                                    if (strlen($artist_name) > 25) {
                                                                                                                         echo "..";
                                                                                                                     } ?></a></label>
                                                 <label class="author pad_left ft_vall" style=" overflow: hidden;
