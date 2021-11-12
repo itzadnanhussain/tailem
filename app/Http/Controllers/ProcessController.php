@@ -570,19 +570,77 @@ class ProcessController extends Controller
         $data['artist_seo'] = $_GET['artist_seo'];
         $data['user_id'] = session()->get('user_id');
 
+
+
         return view('include.reviews_artist_popular_likes', $data);
     }
+
+
+    ///edit_comment
+    public function edit_comment()
+    {
+        $data = array();
+        $data['comment_id'] = $_GET['comment_id'];
+        $data['num'] = $_GET['num'];
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+
+        return view('include.edit_comment', $data);
+    }
+
+    ///discussion_update_process
+    public function discussion_update_process()
+    {
+        if (isset($_POST)) {
+            error_reporting(0);
+            extract($_POST);
+            $errorstr = "";
+            $case = 1;
+
+            $discussion_detail  =      trim($_POST['discussion_detail']);
+
+            if (session()->get('user_id') == "") {
+                echo $errorstr .= "Please sign in first.\n";
+                $case = 0;
+                exit;
+            }
+
+            if ($discussion_detail == "") {
+                $errorstr .= "Please enter discussion detail.\n";
+                $case = 0;
+            }
+
+
+
+
+
+
+            if ($case == 1) {
+                if ($edit_id != "") {
+                    $update_qry = "update tbl_comments set comment_details = '" . $discussion_detail . "' where  	comment_user_id = '" . session()->get('user_id') . "' AND comment_id = '$edit_id'";
+
+                    \App\Models\Songs::GetRawData($update_qry);
+                }
+
+                echo 'done-SEPARATOR-' . $_POST['num'];
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+
+
     ///DM_Manipulate
     public function DM_Manipulate()
     {
-        
+
         $data = array();
         $data['actionfunction'] = $_POST['actionfunction'];
         $data['page'] = $_POST['page'];
         $data['song_id'] = $_POST['song_id'];
         $data['limit'] = 1;
-        $data['user_id'] = session()->get('user_id'); 
-        $data['user_name'] = session()->get('user_name'); 
+        $data['user_id'] = session()->get('user_id');
+        $data['user_name'] = session()->get('user_name');
         return view('common.dbmanupulate', $data);
     }
 
@@ -754,8 +812,8 @@ class ProcessController extends Controller
         $data['prod_id'] = $_GET['prod_id'];
         $data['sr_no'] = $_GET['sr_no'];
         $data['db_user_name'] = urlencode($_GET['db_user_name']);
-       
-       
+
+
         $data['user_id'] = session()->get('user_id');
 
         return view('include.favourite_userprofile_mainlikes', $data);
@@ -1283,7 +1341,7 @@ class ProcessController extends Controller
     ///update_notification_click
     public function update_notification_click()
     {
-        error_reporting(0); 
+        error_reporting(0);
         if (isset($_REQUEST)) {
             extract($_REQUEST);
             $errorstr = "";
@@ -1320,14 +1378,12 @@ class ProcessController extends Controller
         $data['user_id'] = session()->get('user_id');
 
         ///artist
-        if(isset($_GET['artist']))
-        {
+        if (isset($_GET['artist'])) {
             $data['artist'] = $_GET['artist'];
         }
 
         ///critaria
-        if(isset($_GET['critaria']))
-        {
+        if (isset($_GET['critaria'])) {
             $data['critaria'] = $_GET['critaria'];
         }
 
@@ -1343,7 +1399,7 @@ class ProcessController extends Controller
     public function favourite_playlist()
     {
         $data = array();
-        $data['prod_id'] = $_GET['prod_id']; 
+        $data['prod_id'] = $_GET['prod_id'];
         $data['user_id'] = session()->get('user_id');
 
         return view('include.favourite_playlist', $data);

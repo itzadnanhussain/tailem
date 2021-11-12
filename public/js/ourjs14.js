@@ -132,7 +132,7 @@ function discussion_validation_new() {
         target: "",
         beforeSubmit: null,
         success: validate_discussion_new_Response,
-        url: JS_SERVER_PATHROOT + "process/discussion_update_process.php",
+        url: JS_SERVER_PATHROOT + "process/discussion_update_process",
     };
     $("#discussion_form").submit(function () {
         $(this).ajaxSubmit(options);

@@ -695,7 +695,7 @@ if ($page != "") {
 
                                                     if ($user_profile == $user_id) {
                                                         ?>
-                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_comment.php?comment_id=<?php echo $comment_id; ?>&num=<?php echo $sr_no; ?>">Edit</a>
+                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_comment?comment_id=<?php echo $comment_id; ?>&num=<?php echo $sr_no; ?>">Edit</a>
                                                     <?php
                                                     }
                                                     ?>
@@ -791,7 +791,7 @@ if ($page != "") {
                                                                                                 /*if($user_profile == $user_id && $user_id!="")
 									{
 									?>
-                                    (<a data-title="" data-target="#edit_Modal4_<?php echo $sr_no;?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH;?>edit_comment.php?comment_id=<?php echo $comment_id;?>">Edit</a>)
+                                    (<a data-title="" data-target="#edit_Modal4_<?php echo $sr_no;?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH;?>edit_comment?comment_id=<?php echo $comment_id;?>">Edit</a>)
 									</p>
                                     <?php
 									}*/
@@ -821,7 +821,7 @@ if ($page != "") {
                                                     <?php
                                                     if ($user_profile == $user_id) {
                                                     ?>
-                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_comment.php?comment_id=<?php echo $comment_id; ?>&num=<?php echo $sr_no; ?>">Edit</a>
+                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_comment?comment_id=<?php echo $comment_id; ?>&num=<?php echo $sr_no; ?>">Edit</a>
                                                     <?php
                                                     }
                                                     ?>
@@ -998,7 +998,7 @@ if ($page != "") {
                                                     <?php
                                                     if ($user_profile == $user_id) {
                                                     ?>
-                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_comment.php?comment_id=<?php echo $comment_id; ?>&num=<?php echo $sr_no; ?>">Edit</a>
+                                                        <a class="linkTag under_line" data-title="" data-target="#edit_Modal4_<?php echo $sr_no; ?>" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>edit_comment?comment_id=<?php echo $comment_id; ?>&num=<?php echo $sr_no; ?>">Edit</a>
                                                     <?php
                                                     }
                                                     ?>

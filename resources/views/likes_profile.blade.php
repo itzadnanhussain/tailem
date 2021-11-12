@@ -184,11 +184,11 @@ $USER_NAME = ucfirst($user_name);
                             }
                             $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_ids . "' order by r.review_id desc limit 1";
 
-                            $review_list_arr_top    =   \App\Models\Songs::GetRawData($review_list_qry);
+                            $review_list_arr_top    =   \App\Models\Songs::GetRawDataAdmin($review_list_qry);
 
                             $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_ids . "' order by comment_id desc limit 1";
 
-                            $comment_list_arr    =    \App\Models\Songs::GetRawData($comment_list_qry);
+                            $comment_list_arr    =    \App\Models\Songs::GetRawDataAdmin($comment_list_qry);
 
                     ?>
                             <?php if ($mobile_view == 0) { ?>
@@ -206,7 +206,7 @@ $USER_NAME = ucfirst($user_name);
                                                 <div class="latestsongssec">
                                                     <div class="list_item">
                                                         <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "-profile-review-artist"; ?>"><img src="<?php echo get_small_thumb($prof_image); ?>" border="0"></a>
-                                                        <div class="list_bottom likeprofileimg" style="padding:2px; width:100% !important;">
+                                                        <div class="list_bottom likeprofileimg" style="padding:2px; ;">
                                                             <div class="row">
                                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:14px; padding-right:2px;">
                                                                     <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "-profile-review-artist"; ?>"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo $user_name_get_db; ?></cite></a>

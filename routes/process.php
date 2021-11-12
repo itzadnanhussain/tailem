@@ -138,6 +138,11 @@ Route::post('process/favourite_playlist' , [ProcessController::class , 'favourit
 ///detail_playlist
 Route::any('detail_playlist' , [ProcessController::class , 'detail_playlist']);
 
+
+///edit_comment
+Route::any('edit_comment' , [ProcessController::class , 'edit_comment']);
+Route::any('process/discussion_update_process' , [ProcessController::class , 'discussion_update_process']);
+
  
  
 

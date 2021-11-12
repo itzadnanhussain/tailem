@@ -121,7 +121,7 @@ function showData($data, $con, $limit, $adjacent)
 			}
 
 			if ($db_user_name == $user_name) {
-				$report_status  = '<a data-title="" data-target="#edit_Modal4_' . $sr_no . '" data-toggle="modal" href="' . SERVER_ROOTPATH . 'edit_comment.php?comment_id=' . $db_comment_id . '&num=' . $sr_no . '">Edit </a>';
+				$report_status  = '<a data-title="" data-target="#edit_Modal4_' . $sr_no . '" data-toggle="modal" href="' . SERVER_ROOTPATH . 'edit_comment?comment_id=' . $db_comment_id . '&num=' . $sr_no . '">Edit </a>';
 			} else {
 				if ($user_id == "") {
 

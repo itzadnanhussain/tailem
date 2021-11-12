@@ -339,7 +339,7 @@ function show_detail(id)
                                         <td nowrap="nowrap" class="SmallFieldLabel righttd_border" width="70"> 
     &nbsp;&nbsp; <input type="checkbox" class="check-all" name="comment_ids[]" id="comment_ids[]" value="<?php echo base64_encode($comment_id);?>" style="margin-top:-5px;" />&nbsp; &nbsp;
                                          
-                                        <a href="edit_comment.php?edit_id=<?php echo base64_encode($comment_id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>&nbsp; &nbsp;
+                                        <a href="edit_comment?edit_id=<?php echo base64_encode($comment_id);?>"><img src="images/edit.gif" border="0" title="Edit" class="Action"></a>&nbsp; &nbsp;
                                         <a href="javascript:;" onClick="delete_review_comment('<?php echo $comment_id;?>')"><img src="images/delet.gif" border="0" title="Delete Comment" class="Action" ></a>
                                         </td>
                                         <?php
