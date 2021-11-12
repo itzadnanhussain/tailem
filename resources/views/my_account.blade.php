@@ -746,8 +746,9 @@ if ($page != "") {
                                                         <p class="col-lg-4 col-md-3 col-sm-3 col-xs-2 pad_zero">
                                                             <?php
                                                             if ($db_user_id != $user_id) {
+                                                              
 
-                                                                if (isset($report_status)) {
+                                                                if (isset($report_status) && !empty($report_status)) {
                                                             ?>
                                                                     <a class="linktag_new under_line" href="#" data-toggle="modal" data-target="#report_already_message" data-title="" style="font-size:11px; margin-top:-3px; float:right;">Report</a>
                                                                 <?php
@@ -914,7 +915,7 @@ if ($page != "") {
                                                 <p class="col-lg-3 col-md-2 col-sm-3 col-xs-3 pad_zero">
                                                     <?php
                                                     if ($db_user_id != $user_id) {
-                                                        if (isset($report_status)) {
+                                                        if (isset($report_status) && !empty($report_status)) {
                                                     ?>
                                                             <a class="linktag_new under_line" href="#" data-toggle="modal" data-target="#report_already_message" data-title="">Report</a>
                                                         <?php
@@ -1216,7 +1217,7 @@ if ($page != "") {
 
                                                     <?php
                                                     if ($db_user_id != $user_id) {
-                                                        if (isset($report_status)) {
+                                                        if (isset($report_status) && !empty($report_status)) {
                                                     ?>
                                                             <a class="linktag_new under_line" href="#" data-toggle="modal" data-target="#report_already_message" data-title="">Report</a>
                                                         <?php

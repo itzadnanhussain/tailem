@@ -79,6 +79,7 @@
      function close_report_popup() {
          $(document).on('hidden.bs.modal', function(e) {
              $(e.target).removeData('bs.modal');
+             window.location.reload();
 
          });
      }

@@ -181,7 +181,24 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="report_already_message" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+	<div class="modal-dialog" style="margin-top:10%;">
+		<div class="modal-content" style="border-radius:0px;">
+			<div class="modal-header">
+				<h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img data-dismiss="modal" style="cursor:pointer; float:right;" src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+				</h4>
+			</div>
+			<div class="modal-body" style="overflow-y:auto; min-height:250px;">
+				<p>
+					We are still in the process of reviewing your request and will take action accordingly. <br /><br /><br />
 
+					Warmest Regards,<br />
+					Team at Tailem.com
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script>
 	///add_in_favourite_list_review_song_detail
@@ -247,4 +264,3 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 
 	}
 </script>
-

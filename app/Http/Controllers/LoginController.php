@@ -98,8 +98,9 @@ class LoginController extends Controller
               
                 ///set session
                 $request->session()->put('user_id', $insert_id);
-                $request->session()->put('user_name', $request->user_name);
-                $string_url = 'welcome/' . $post['user_name'];
+                $request->session()->put('user_seo', $post['user_seo']);
+                $request->session()->put('user_name', $post['user_name']);
+                $string_url = 'welcome/' . $post['user_seo'];
                 return response()->json(['code' => "success", 'url' => $string_url]);
                 die;
             }
