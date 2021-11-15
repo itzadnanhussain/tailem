@@ -627,13 +627,13 @@ if ($page != "") {
 
                                                                     if ($counter == 0) { ?>
 
-                                                                        <span class="like-group" style="float:right; line-height:20px !important;" id="other_dis_sub_profile_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_user_profile_mainlist_new('<?php echo $comment_user_id; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
+                                                                        <span class="like-group" style="float:right; line-height:20px !important;" id="other_dis_sub_profile_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_user_profile_mainlist_new('<?php echo $comment_user_id; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_profile?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
 
                                                                         <span class="like-group" style="float:right; line-height:20px !important;" id="myStyle_sub_profile_<?php echo $sr_no; ?>"></span>
                                                                     <?php
                                                                     } else {
                                                                     ?>
-                                                                        <span class="like-group" style="float:right; line-height:20px !important;" id="other_dis_sub_profile_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_user_profile_mainlist_new('<?php echo $comment_user_id; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart" style="color:#d73b3b !important; font-size:20px;"></i> </a><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
+                                                                        <span class="like-group" style="float:right; line-height:20px !important;" id="other_dis_sub_profile_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_user_profile_mainlist_new('<?php echo $comment_user_id; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart" style="color:#d73b3b !important; font-size:20px;"></i> </a><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_profile?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
                                                                         <span class="like-group" style="float:right; line-height:20px !important;" id="myStyle_sub_profile_<?php echo $sr_no; ?>"></span>
                                                                     <?php
                                                                     }
@@ -651,7 +651,7 @@ if ($page != "") {
                                                                         <?php
                                                                         }
                                                                         ?>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
+                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_profile?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
                                                                     <span class="like-group" style="float:right; line-height:20px !important;" id="myStyle_sub_profile_<?php echo $sr_no; ?>"></span>
 
                                                                 <?php
@@ -742,13 +742,13 @@ if ($page != "") {
 
                                                                     if ($counter == 0) { ?>
 
-                                                                        <span class="like-group" style="float:right; line-height:20px !important;" id="other_dis_sub_profile_sc_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_user_profile_screen_new('<?php echo $comment_user_id; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
+                                                                        <span class="like-group" style="float:right; line-height:20px !important;" id="other_dis_sub_profile_sc_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_user_profile_screen_new('<?php echo $comment_user_id; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_profile?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
 
                                                                         <span class="like-group" style="float:right; line-height:20px !important;" id="myStyle_sub_profile_sc_<?php echo $sr_no; ?>"></span>
                                                                     <?php
                                                                     } else {
                                                                     ?>
-                                                                        <span class="like-group" style="float:right; line-height:20px !important;" id="other_dis_sub_profile_sc_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_user_profile_screen_new('<?php echo $comment_user_id; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart" style="color:#d73b3b !important; font-size:20px;"></i> </a><a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
+                                                                        <span class="like-group" style="float:right; line-height:20px !important;" id="other_dis_sub_profile_sc_<?php echo $sr_no; ?>"><a href="javascript:;" onClick="add_in_favourite_user_profile_screen_new('<?php echo $comment_user_id; ?>','<?php echo $sr_no; ?>','<?php echo $user_name; ?>')"><i class="fa fa-heart" style="color:#d73b3b !important; font-size:20px;"></i> </a><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_profile?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
                                                                         <span class="like-group" style="float:right; line-height:20px !important;" id="myStyle_sub_profile_sc_<?php echo $sr_no; ?>"></span>
                                                                     <?php
                                                                     }
@@ -767,7 +767,7 @@ if ($page != "") {
                                                                         <?php
                                                                         }
                                                                         ?>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
+                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>process/detail_profile?user=<?php echo urlencode($user_name); ?>&critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" class="like link-disable" style="color:#FFFFFF;"> <?php echo $counter_main; ?></a></span>
                                                                     <span class="like-group" style="float:right; line-height:20px !important;" id="myStyle_sub_profile_sc_<?php echo $sr_no; ?>"></span>
 
                                                                 <?php

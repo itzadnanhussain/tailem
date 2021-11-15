@@ -165,6 +165,7 @@ Route::any('{user_seo}/profile-like-artist/{alpha?}',[UserController::class , 'G
 // RewriteRule ^like-artist-(.*)$ like_artist.php?page=$1 [PT]
 // RewriteRule ^like-artist$ like_artist.php [PT]
 Route::any('like-artist/',[UserController::class , 'LikeArtist']);
+Route::any('like-artists-{alpha}/',[UserController::class , 'LikeArtistByAlpha']);
 
 
 

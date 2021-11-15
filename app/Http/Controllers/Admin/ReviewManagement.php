@@ -1117,7 +1117,7 @@ class ReviewManagement extends Controller
     ///Review_Comment_Actions
     public function Review_Comment_Actions()
     {
-      
+
         if (!empty($_POST['gcomment_ids'])) {
             if ($_POST['dropdown'] == 'Delete') // from button name="delete"
             {
@@ -1205,6 +1205,5 @@ class ReviewManagement extends Controller
         $data['title'] = GetTitle();
 
         return view('admin.review_details', $data);
-
     }
 }

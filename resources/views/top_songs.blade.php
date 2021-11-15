@@ -245,7 +245,9 @@ $mobile_view = 0;
                                                 <div class="album_cover">
                                                     <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>" class="text_blck"> <?php
                                                                                                                                                         if ($picture != "") {
+                                                                                                                                                           
                                                                                                                                                             $img_api_linka = album_img_api($picture);
+                                                                                                                                                           
 
                                                                                                                                                             if ($img_api_linka != '') {
                                                                                                                                                         ?>

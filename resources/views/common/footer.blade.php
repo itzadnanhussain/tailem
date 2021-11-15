@@ -219,6 +219,26 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 	</div>
 </div>
 
+
+<!-- Cannot like your own profile-->
+<div class="modal fade" id="your_own_profile" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+	<div class="modal-dialog" style="margin-top:10%;">
+		<div class="modal-content" style="border-radius:0px;">
+			<div class="modal-header">
+				<h4 class="modal-title" style="color:#3276b1;"> Thank you <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+				</h4>
+			</div>
+			<div class="modal-body" style="overflow-y:auto; min-height:250px;">
+				<p>
+					Unfortunately, you cannot like your own profile. <br /><br /><br />
+
+					Warmest Regards,<br />
+					Team at Tailem.com
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
 <script>
 	///add_in_favourite_list_review_song_detail
 	function add_in_favourite_list_review_song_detail(a, b, c) {
@@ -285,9 +305,9 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 </script>
 
 <script type="text/javascript">
-			function close_popup(){
- 			 
-            window.location.reload(); 
-				 	 
-				}
-			</script>
+	function close_popup() {
+
+		window.location.reload();
+
+	}
+</script>

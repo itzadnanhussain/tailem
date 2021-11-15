@@ -679,7 +679,7 @@ $counter = 0;
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id_db; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id_db; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                 <?php
                                                 }
                                                 ?>
@@ -699,7 +699,7 @@ $counter = 0;
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id_db; ?>" style="margin-top:17px; float:right;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                    <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id_db; ?>" style="margin-top:17px; float:right;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                 <?php
                                                 }
                                                 ?>
@@ -805,7 +805,7 @@ $counter = 0;
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id_db; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id_db; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                 <?php
                                                 }
                                                 ?>

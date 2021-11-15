@@ -629,6 +629,194 @@ class ProcessController extends Controller
         }
     }
 
+    ///update_playlist
+    public function update_playlist()
+    {
+        $data = array();
+        $data['song_id'] = $_GET['song_id'];
+        $data['art_id'] = $_GET['art_id'];
+        $data['edit_id'] = $_GET['edit_id'];
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+
+        return view('include.update_playlist', $data);
+    }
+
+    ///update_playlist_process
+    public function update_playlist_process()
+    {
+        if (isset($_POST)) {
+            extract($_POST);
+            error_reporting(0);
+
+            function SEO($input)
+            {
+                $input = str_replace("&nbsp;", " ", $input);
+                $input = str_replace(array("'", "-"), "", $input); //remove single quote and dash
+                $input = mb_convert_case($input, MB_CASE_LOWER, "UTF-8"); //convert to lowercase
+                $input = preg_replace("#[^a-zA-Z0-9]+#", "-", $input); //replace everything non an with dashes
+                $input = preg_replace("#(-){}#", "$1", $input); //replace multiple dashes with one
+                $input = trim($input, "-"); //trim dashes from beginning and end of string if any
+                return $input;
+            }
+            $errorstr = "";
+            $case = 1;
+
+
+            // $playlist_title   =     mysqli_escape_string($db->dbh, stripslashes(trim($_REQUEST['playlist_title'])));
+            // $song_id          =     mysqli_escape_string($db->dbh, stripslashes(trim($_REQUEST['song_id'])));
+            // $artist_id          =     mysqli_escape_string($db->dbh, stripslashes(trim($_REQUEST['art_id'])));
+
+            // $edit_id          =     mysqli_escape_string($db->dbh, stripslashes(trim($_REQUEST['edit_id'])));
+
+            if (session()->get('user_id') == "") {
+
+                echo $errorstr .= "Please sign in first.";
+                $case = 0;
+                exit;
+            }
+
+            if ($playlist_title == '') {
+                echo $errorstr = "Please enter a name for your playlist..";
+                $case = 0;
+                exit;
+            } else {
+                $query_check  = "select id from tbl_user_playlist where title_playlist  = '" . $playlist_title . "' AND user_id_playlist  = '" . session()->get('user_id') . "' AND id != $edit_id";
+                $artist_list_arr    =    \App\Models\Songs::GetRawData($query_check);
+
+                if (isset($artist_list_arr) && !empty($artist_list_arr)) {
+                    echo $errorstr = "Sorry, this playlist name has already been used, please try again.";
+                    $case = 0;
+                    exit;
+                }
+            }
+
+
+
+            if ($case == 1) {
+
+                $update_qry = "update tbl_user_playlist set title_playlist  = '" . $playlist_title . "', title_playlist_seo  = '" . SEO($playlist_title) . "' where user_id_playlist  = '" . session()->get('user_id'). "' AND id = '$edit_id'";
+                \App\Models\Songs::GetRawData($update_qry);
+
+                if ($p != '') {
+                    if ($p != '') {
+                        $p = $p . "/profile/";
+                    }
+                } else {
+                    $p = '';
+                }
+
+
+                if(isset($p) && !empty($p))
+                {
+                    
+                    echo 'done-SEPARATOR-' . SERVER_ROOTPATH . "playlists-" . SEO($playlist_title);
+                }else
+                {
+                    echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $p . "playlists-" . SEO($playlist_title);
+
+                }
+                exit;
+            } else {
+                echo $errorstr;
+            }
+        }
+    }
+    ///delete_playlist
+    public function delete_playlist()
+    {
+        $data = array();
+        $data['edit_id'] = $_GET['edit_id'];
+        $data['critaria'] = $_GET['critaria']; 
+        $data['mobile_view '] = 0 ; 
+        $data['user_id'] = session()->get('user_id');
+       
+
+        return view('include.delete_playlist', $data);
+    }
+
+    ///delete_playlist_process
+    public function delete_playlist_process()
+    {
+        if(isset($_REQUEST)) 
+        {
+            error_reporting(0);
+            
+            $errorstr="";
+            $case = 1;
+            $comment_id  = $_REQUEST['id'];
+            $id  = $_REQUEST['id'];
+            $num	=	$_REQUEST['num'];
+            $p	=	$_REQUEST['p'];
+            $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
+            
+            if($_SESSION[USER_SESSION_ARRAY]['USER_ID']=="")
+            {
+                echo $errorstr .="Please sign in first.\n";
+                $case = 0;
+                exit;
+            }
+            
+            if($id=="")
+            {
+                $errorstr .="This Playlist doesn't exist.\n";
+                $case = 0;
+            }
+            else
+            {
+                 $query_check  = "select id from tbl_user_playlist where  user_id_playlist  = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."' AND id = $id";
+                
+                $artist_list_arr	=	  \App\Models\Songs::GetRawData($query_check);
+                if(!isset($artist_list_arr))
+                {
+                    echo $errorstr ="Sorry, this playlist does not exist.";
+                    $case = 0;
+                    exit;
+                }
+                
+                
+            }
+         
+        
+            if($case==1)
+            { 
+                
+                    
+                \App\Models\Songs::GetRawData("Delete from tbl_user_playlist where id = $id AND  user_id_playlist  = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."'");
+                    
+                \App\Models\Songs::GetRawData("Delete from tbl_user_playlist_songs where playlist_id = $id AND  user_id   = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."'");
+                
+                $playlist_arr =  get_first_playlist_record($_SESSION[USER_SESSION_ARRAY]['USER_ID']);
+                
+                if($p!='n')
+                {
+                        $p = $p."-profile-";
+                
+                }
+                else
+                {
+                    $p = '';
+                }
+             
+                if(isset($p) && !empty($p))
+                {
+                    
+                    echo 'done-SEPARATOR-' . SERVER_ROOTPATH . "playlists";
+                }else
+                {
+                    echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $p . "playlists";
+
+                }
+                
+            }
+            else
+            {
+                echo $errorstr;
+            }
+        }
+
+    }
+
 
     ///DM_Manipulate
     public function DM_Manipulate()
@@ -749,6 +937,18 @@ class ProcessController extends Controller
 
         return view('include.favourite_like_review', $data);
     }
+    ///favourite_userprofile_likes_page
+    public function favourite_userprofile_likes_page()
+    {
+
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['sr_no'] = $_GET['sr_no'];
+        $data['username'] = $_GET['username'];
+        $data['user_id'] = session()->get('user_id');
+
+        return view('include.favourite_userprofile_likes_page', $data);
+    }
 
 
     ///FavouriteLikeReviewSong
@@ -837,11 +1037,12 @@ class ProcessController extends Controller
     ///DetailProfile
     public function DetailProfile()
     {
+        error_reporting(0);
 
         $data = array();
         $data['user_seo'] = $_GET['user'];
         // $data['rev_id'] = $_GET['review_id'];
-        // $data['critaria'] = $_GET['critaria'];
+        $data['critaria'] = $_GET['critaria'];
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
 

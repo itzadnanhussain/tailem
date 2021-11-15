@@ -968,7 +968,7 @@ $img_arr3 = (array)$img_arr3[0];
                                     $query_likes_count_all = 0;
                                 }
 
-                                $db_review_detail = stripslashes($val_review['review_detail']);
+                                $db_review_detail = StringReplace($val_review['review_detail']);
                                 $db_review_post_date     = stripslashes($val_review['review_post_date']);
                                 $db_review_rating     = stripslashes($val_review['review_rating']);
                                 $db_profile_image     = stripslashes($val_review['profile_image']);

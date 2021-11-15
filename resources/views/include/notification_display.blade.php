@@ -3,6 +3,7 @@ error_reporting(0);
 $qry = "select l.notification_click,l.read_status,l.id,u.user_name,l.like_type,l.description,l.date,u.profile_image, l.like_id, l.like_receive_user, l.like_from_user_id  from  tbl_likes l, tbl_users u  where l.like_from_user_id = u.user_id  AND (l.like_type = 'review_song' OR l.like_type = 'profile' OR l.like_type = 'delete_review_song' OR l.like_type = 'playlist' OR l.like_type = 'admin_review') AND l.like_receive_user = '" . $user_id . "' AND l.del_notification = 0 order by l.id desc";
 
 $result_notification = \App\Models\Songs::GetRawData($qry);
+
  
 if ($result_notification) {
     $notify = 0;
@@ -54,11 +55,11 @@ if ($result_notification) {
 							if ($db_like_type == 'playlist') {
                     $qry = "select u.user_name, p.title_playlist, p.title_playlist_seo from tbl_users u, tbl_user_playlist p where   u.user_id = '" . $notif['like_receive_user'] . "' AND p.id = '" . $notif['like_id'] . "' ";
 
-                    $get_info_arr    =    \App\Models\Songs::GetRawData($qry);
+                    $get_info_arr    =    \App\Models\Songs::GetRawDataAdmin($qry);
 
-                    $user_name_db  =  mysqli_escape_string($db->dbh, $get_info_arr['user_name']);
-                    $db_title  =  mysqli_escape_string($db->dbh, $get_info_arr['title_playlist']);
-                    $db_title_playlist_seo  =  mysqli_escape_string($db->dbh, $get_info_arr['title_playlist_seo']);
+                    $user_name_db  =   $get_info_arr['user_name'];
+                    $db_title  =   $get_info_arr['title_playlist'];
+                    $db_title_playlist_seo  =   $get_info_arr['title_playlist_seo'];
 
 
                     $db_link    =  SERVER_ROOTPATH . get_user_detail($user_name_notif) . "-profile-review-artist";
@@ -89,11 +90,12 @@ if ($result_notification) {
 						   AND s.song_status = 1
 						   ";
 
-                    $song_result_notification = \App\Models\Songs::GetRawData($song_notification);
+                    $song_result_notification = \App\Models\Songs::GetRawDataAdmin($song_notification);
+                   
                 ?>
-                    <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . get_user_detail($user_name_notif) . '-profile-review-artist'; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline;  font-size:11px;  padding:5px 0 !important;"><?php echo $user_name_notif; ?></a>
+                    <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . get_user_detail($user_name_notif) . '/profile-review-artist'; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline;  font-size:11px;  padding:5px 0 !important;"><?php echo $user_name_notif; ?></a>
                     likes your review on
-                    <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . $song_result_notification['song_seo'] . "-reviews-" . $song_result_notification['artist_seo']; ?>#review_<?php echo $like_id_notif; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline; font-size:11px; padding:5px 0 !important;"><?php echo wordwrap(stripslashes($song_result_notification['song_title']), 100, " ", true); ?></a>
+                    <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . $song_result_notification['song_seo'] . "/reviews/" . $song_result_notification['artist_seo']; ?>#review_<?php echo $like_id_notif; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline; font-size:11px; padding:5px 0 !important;"><?php echo wordwrap(stripslashes($song_result_notification['song_title']), 100, " ", true); ?></a>
                 <?php
                 }
                 ?>

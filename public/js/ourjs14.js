@@ -361,10 +361,11 @@ function add_in_favourite_main_profile_list_new(a, b, c) {
             "&username=" +
             c,
         function (a) {
-            if (a == "Please sign in first") {
+             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
-            } else if (a == "aa") {
+            } else if (a == "aa") { 
                 $("#your_own_profile").modal("show");
+                // $("#your_own_profile").css("display", "block");
             } else {
                 $("#myStyle_sub_profile_main_" + b).html(a);
                 $("#myStyle_sub_profile_main_" + b).show();
@@ -785,6 +786,36 @@ function myStopFunction() {
     clearTimeout(myVar);
 }
 
+
+///playlist_delete
+function playlist_delete(a, p) {
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    $.ajax({
+        url: JS_SERVER_PATHROOT + 'process/delete_playlist_process?id=' + a + "&p=" + p,
+        type: 'post',
+        data: {
+            "_token": csrf_token,
+        },
+        success: function(result) {
+
+            if (result.search('done') != -1) {
+                myarray = new Array();
+                myarray = result.split('-SEPARATOR-');
+
+
+                $('#delete_playlist').modal('hide');
+                window.location.href = myarray[1];
+
+            } else {
+                alert(result);
+            }
+
+            // Do something with the result
+        }
+    });
+
+}
+
 /*ADD list of songs in playlist*/
 
 function add_songto_playlist_validations_new() {
@@ -830,11 +861,16 @@ function validate_songto_playlist_new_Response(responseText, statusText) {
 
 function update_playlist_validations_new() {
     $("#add_playlist").unbind("submit");
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+  
     var options = {
         target: "",
+        data : {
+            "_token": csrf_token,
+        },
         beforeSubmit: validate_update_playlist_new_Request,
         success: validate_update_playlist_new_Response,
-        url: JS_SERVER_PATHROOT + "process/update_playlist_process.php",
+        url: JS_SERVER_PATHROOT + "process/update_playlist_process",
     };
     $("#add_playlist").submit(function () {
         $(this).ajaxSubmit(options);
@@ -874,15 +910,22 @@ function show_detail_artist(pass) {
 }
 
 function add_in_favourite_like_profile_new(a, b, c) {
-    $.post(
-        JS_SERVER_PATHROOT +
-            "process/favourite_userprofile_likes_page.php?prod_id=" +
+    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+
+    $.ajax({
+        type : 'POST',
+        url : JS_SERVER_PATHROOT +
+            "process/favourite_userprofile_likes_page?prod_id=" +
             a +
             "&sr_no=" +
             b +
             "&username=" +
             c,
-        function (a) {
+            data : {
+                "_token" : csrf_token,
+            },
+
+        success: function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (a == "aa") {
@@ -893,7 +936,7 @@ function add_in_favourite_like_profile_new(a, b, c) {
                 $("#other_dis_sub_profile_main_" + b).hide();
             }
         }
-    );
+    });
 }
 
 function add_in_favourite_list_sub_artist_mob_new(a, b, c, d) {

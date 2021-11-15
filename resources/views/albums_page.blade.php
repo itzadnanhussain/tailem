@@ -4,9 +4,7 @@
 error_reporting(0);
 if ($album_seo != "") {
     $where_condition = " AND b.album_seo = '$album_seo'";
-}
-else
-{
+} else {
     $where_condition = '';
 }
 
@@ -98,7 +96,7 @@ if ($lastfm_url == "") {
         padding-top: 25px;
         margin-left: 10px;
         font-size: 18px;
-        
+
 
     }
 
@@ -335,8 +333,8 @@ if ($lastfm_url == "") {
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" style="bottom:12px; padding-left:0px;">
                                 <h3 class="alb_heading headingmedium" style="font-size: 22px;">Albums <?php if ($album_seo != "") {
-                                                                                    $show = str_replace("-", " ", $album_seo);
-                                                                                ?><span style="text-transform:capitalize;"><?php echo ucfirst($show);
+                                                                                                            $show = str_replace("-", " ", $album_seo);
+                                                                                                        ?><span style="text-transform:capitalize;"><?php echo ucfirst($show);
                                                                                                                         } ?></span></h3>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
@@ -358,14 +356,14 @@ if ($lastfm_url == "") {
 
 
                         $artist_list_arr = array();
-                        
+
 
 
                         if (empty($artist_list_arr1)) {
                             $artist_list = "SELECT b.album_seo, b.years, b.album_title, b.album_picture, b.id, b.album_artist_id, b.album_seo, saa.song_id, tbl_songs.song_title FROM tbl_artist_album b, tbl_songs_artist_album saa , tbl_songs WHERE 1 = 1 AND saa.artist_id = $artist_id_db AND b.album_artist_id = $artist_id_db AND tbl_songs.id= saa.song_id AND tbl_songs.song_status=1 AND b.id = saa.album_id AND saa.display_status = 1 AND b.album_status = 1 $where_condition  GROUP BY saa.album_id ORDER BY saa.id DESC LIMIT 1000";
 
                             $artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
-                          
+
 
                             if ($artist_list_arr) {
                                 $total_pages = count($artist_list_arr);
@@ -403,7 +401,7 @@ if ($lastfm_url == "") {
                             $sr_num = 0;
                             foreach ($artist_list_arr as $val) {
                                 $val = (array)$val;
-                                
+
 
 
                                 $id      = $val['id'];
@@ -521,7 +519,7 @@ if ($lastfm_url == "") {
 														 group by s.id ";
                                 // $sings_list_arr    = $db->get_results($songs_list, ARRAY_A);
                                 $sings_list_arr = \App\Models\Songs::GetRawData($songs_list);
-                                
+
                                 if ($sings_list_arr) {
                                     $counter_rows  = count($sings_list_arr);
                                 } else {
@@ -541,8 +539,9 @@ if ($lastfm_url == "") {
                                         $review_list_arr_top = (array)$review_list_arr_top[0];
                                         $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_review_id = '" . $id_song . "' order by comment_id desc limit 1";
 
-                                        $comment_list_arr = \App\Models\Songs::GetRawData($review_list_qry);
-                                        $comment_list_arr = (array)$comment_list_arr[0];
+                                        $comment_list_arr = \App\Models\Songs::GetRawDataAdmin($comment_list_qry);
+
+
 
                                         // $song_title = stripslashes(html_entity_decode($val['song_title']));
                                         $artist_seo = strtolower(stripslashes(html_entity_decode($val['artist_seo'])));
@@ -551,7 +550,7 @@ if ($lastfm_url == "") {
 
 
                                         $mainartist_arr    =    mainartist_detail($album_artist_id);
-                                        
+
                                         $artist_name = stripslashes($mainartist_arr['artist_name']);
                                         $artist_seo     = stripslashes($mainartist_arr['artist_seo']);
 
@@ -648,6 +647,7 @@ if ($lastfm_url == "") {
                                         $arr_color_pick[$arr_index] = $color_pick;
                                         $arr_count_reviews[$arr_index] = $review_list_arr_top['count_reviews'];
                                         $arr_count_discussion[$arr_index] = $comment_list_arr['count_discussion'];
+
                                         $arr_song_picture[$arr_index] = $s_picture;
 
 
@@ -962,9 +962,9 @@ images/icon_post.png"><a>Posts <span><?php echo $arr_count_discussion[$s]; ?></s
                         </div>
                     </div>
 
-                    
-                    @include("include.artist_common_popular_review") 
-                    
+
+                    @include("include.artist_common_popular_review")
+
                 </div>
                 <!-- Advertisement Banner Start-->
                 <div class="clear"></div>

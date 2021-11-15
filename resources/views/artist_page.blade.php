@@ -69,6 +69,10 @@ if ($lastfm_url == "") {
     .artistSongspic .topsonglistsec .songlistings .album_cover {
         width: 100%;
     }
+    .songlistings
+    {
+        margin-top: 8px;
+    }
 
     .select_year {
         border: 2px solid #d9d9d9;

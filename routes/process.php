@@ -63,6 +63,10 @@ Route::post('process/favourite_like_review_song',[ProcessController::class, 'Fav
 Route::post('process/favourite_like_review',[ProcessController::class, 'FavouriteLikeReview']);
 
 
+///favourite_userprofile_likes_page
+Route::any('process/favourite_userprofile_likes_page',[ProcessController::class, 'favourite_userprofile_likes_page']);
+
+
 ///like_artist_recent_reviews
 Route::post('process/like_artist_recent_reviews',[ProcessController::class, 'likeArtistRecentReviews']);
 
@@ -142,6 +146,14 @@ Route::any('detail_playlist' , [ProcessController::class , 'detail_playlist']);
 ///edit_comment
 Route::any('edit_comment' , [ProcessController::class , 'edit_comment']);
 Route::any('process/discussion_update_process' , [ProcessController::class , 'discussion_update_process']);
+
+///delete_playlist
+Route::any('delete_playlist' , [ProcessController::class , 'delete_playlist']);
+Route::any('process/delete_playlist_process' , [ProcessController::class , 'delete_playlist_process']);
+
+///update_playlist
+Route::any('update_playlist' , [ProcessController::class , 'update_playlist']);
+Route::any('process/update_playlist_process' , [ProcessController::class , 'update_playlist_process']);
 
  
  

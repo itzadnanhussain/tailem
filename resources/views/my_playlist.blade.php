@@ -104,6 +104,10 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
     }
 </script>
 <style>
+    .playlist_icon
+    {
+        margin-bottom: 20px !important;
+    }
     a.under_line {
         text-decoration: none !important;
     }
@@ -397,7 +401,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
                                 $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.song_id = '" . $id . "' order by r.review_id desc limit 1";
 
-                                $review_list_arr_top    =   \App\Models\Songs::GetRawData($review_list_qry);;
+                                $review_list_arr_top    =   \App\Models\Songs::GetRawDataAdmin($review_list_qry);;
 
 
                                 $comment_list_qry = "select u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $id order by comment_id desc";
@@ -758,7 +762,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                        <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                     <?php
                                                     }
                                                     ?>
@@ -779,7 +783,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                     } else {
                                                     ?>
 
-                                                        <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                        <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                     <?php
                                                     }
                                                     ?>
@@ -924,7 +928,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                         <?php
                                                         } else {
                                                         ?>
-                                                            <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add_playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                            <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $artist_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                         <?php
                                                         }
                                                         ?>
