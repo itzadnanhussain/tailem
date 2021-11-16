@@ -1318,10 +1318,11 @@ $img_arr3 = (array)$img_arr3[0];
                                                     <!--<a href="#" class="linkTag">Report</a>-->
                                                     <?php
                                                     if ($review_user_id != $user_id) {
-
-                                                        if ($check_login_var) {
+                                                        
+                                                        if (!session()->get('user_id')) {
+                                                          
                                                     ?>
-                                                            <a href="#" <?php echo $check_login_var; ?> class="linktag_new under_line">Report</a>
+                                                            <a href="#" <?php echo $check_login_var; ?> class="linktag_new under_line" data-toggle="modal" data-target="#signin_form" data-title="">Report</a>
                                                             <?php
                                                         } else {
 
@@ -1586,7 +1587,7 @@ $img_arr3 = (array)$img_arr3[0];
 
                                                                                                                         if ($check_login_var) {
                                                                                                                     ?>
-                                                                <a href="#" <?php echo $check_login_var; ?> class="linktag_new under_line" style="text-decoration:none; float:right;">Report</a>
+                                                            <a href="#" <?php echo $check_login_var; ?> class="linktag_new under_line" data-toggle="modal" data-target="#signin_form" data-title="" style="ext-decoration:none; float:right;">Report</a>
                                                                 <?php
                                                                                                                         } else {
                                                                                                                             if (isset($report_status)) {
