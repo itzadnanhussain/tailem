@@ -120,11 +120,11 @@ if ($row_songseo) {
 
                         $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_ids . "' order by r.review_id desc limit 1";
 
-                        $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+                        $review_list_arr_top = \App\Models\Songs::GetRawDataAdmin($review_list_qry);
 
                         $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_user_id = '" . $user_ids . "' order by comment_id desc limit 1";
 
-                        $comment_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
+                        $comment_list_arr = \App\Models\Songs::GetRawDataAdmin($comment_list_qry);
                 ?>
 
 
