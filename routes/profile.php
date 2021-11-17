@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 // RewriteRule ^(.*)-profile-review-artists-(.*)$ review_artist.php?user_seo=$1&alpha=$2 [PT] 
 Route::any('/{user_seo}/profile-review-artist/{alpha?}/{page?}',[UserController::class , 'GetReviewArtistPage_One']);
 Route::any('/{user_seo}/profile-review-artists/{alpha?}/{page?}',[UserController::class , 'GetReviewArtistPage_One']);
+Route::any('/{user_seo}/profile-review-artists-{alpha?}/{page?}',[UserController::class , 'GetReviewArtistPage_One']);
 
 
 // RewriteRule ^(.*)-profile-review-artists-(.*)-genre-(.*)-(.*)$ review_artist.php?user_seo=$1&genere_seo=$2&alpha=$3&page=$4 [PT]

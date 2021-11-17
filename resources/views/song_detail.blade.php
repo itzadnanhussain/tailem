@@ -348,7 +348,7 @@ $img_arr3 = (array)$img_arr3[0];
                             </div>
                             <div class="p-add">
 
-                                <p>Album : <span style="color: #D73B3B;"><?php echo $album_title; ?></span></p>
+                                <p>Album : <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/album/" . Slug($album_title); ?>" style="color: #D73B3B;"><?php echo $album_title; ?></a></p>
                             </div>
 
 

@@ -545,11 +545,13 @@ if ($alpha == "unset") {
                                     /*rating current users right side*/
                                     $sum_rating_user = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where artist_id = $id  AND status = 1 and review_user_id = '$review_user_id'";
 
-                                    $rate_user_arr    =    \App\Models\Songs::GetRawData($sum_rating_user);
+                                    $rate_user_arr    =    \App\Models\Songs::GetRawDataAdmin($sum_rating_user);
+
                                     if ($rate_user_arr) {
-                                        $rate_user_arr = (array) $rate_user_arr[0];
-                                        $sum_user_rate = $sum_user_rate['sum_rate'];
-                                        $counter_user = $counter_user['counter'];
+
+                                        $sum_user_rate = $rate_user_arr['sum_rate'];
+                                        $counter_user = $rate_user_arr['counter'];
+                                       
                                     } else {
                                         $sum_user_rate = 0;
                                         $counter_user = 0;
@@ -558,12 +560,14 @@ if ($alpha == "unset") {
 
 
                                     if ($sum_user_rate == "" || $sum_user_rate == 0 || $counter_user == '' || $counter_user == 0) {
+
                                         $sum_user_rate = 0;
                                         $counter_user = 0;
                                         $all_user_avg = 0;
                                     } else {
 
                                         $all_user_avg  =  $sum_user_rate / $counter_user;
+                                       
                                     }
 
 
@@ -771,12 +775,15 @@ if ($alpha == "unset") {
                                                     <a class="red-text" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 artist_type red-text">
+                                                    
                                                     <?php if ($all_user_avg != 0) {
-                                                    ?><cite style="background-color:<?php echo $color_pick_user; ?>; color:#FFFFFF; padding:8px;"><?php if ($all_user_avg < 10) {
+                                                    ?>
+                                                        <cite style="background-color:<?php echo $color_pick_user; ?>; color:#FFFFFF; padding:8px;"><?php if ($all_user_avg < 10) {
                                                                                                                                                         echo number_format($all_user_avg, 1);
                                                                                                                                                     } else {
                                                                                                                                                         echo $all_user_avg;
-                                                                                                                                                    } ?></cite><?php } else { ?> <cite style="background-color:#e06d21;  color:#FFFFFF; padding:8px;">0.5</cite><?php } ?>
+                                                                                                                                                    } ?></cite><?php } else { ?>
+                                                        <cite style="background-color:#e06d21;  color:#FFFFFF; padding:8px;">0.5</cite><?php } ?>
                                                 </div>
                                             </div>
                                         </li>

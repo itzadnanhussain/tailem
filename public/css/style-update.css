@@ -148,6 +148,7 @@ other  properties
 .topRwHead-panel .artist-img-panel .p-add p{
     position: relative !important;
     padding: 0px !important;
+    font-weight: bold;
     color: black;
     margin-left: -10px;
     background-color: white !important;
@@ -373,7 +374,7 @@ other  properties
 
 .rightRwContPan{
     border-left: solid 1px #d2d2d2;
-    margin-top: -15px;
+    /* margin-top: -15px; */
     padding-left: 0;
 }
 
