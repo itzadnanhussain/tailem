@@ -1756,34 +1756,7 @@ $img_arr3 = (array)$img_arr3[0];
                         }
                     </style>
                     <div class="disc_listPan" style="padding:10px;">
-                        <!-- <?php foreach ($discussion_list_arr as $key => $value) { ?>
-
-                            <div class="disc_list">
-                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 img-div" style="padding:0;">
-                                    <div class="latestsongssec" style="width:100%;">
-                                        <div class="list_item">
-                                            <img src="<?php echo SERVER_ROOTPATH; ?>assets/phpthumb/phpThumb.php?src=https://www.tailem.com/assets/images/no_image4.png&amp;w=100&amp;h=75&amp;zc=0" class="img-responsive artist-img" style="width:100%;">
-                                            <div class="list_bottom" style="padding:2px;">
-                                                <div class="row">
-                                                    <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 pad_right">
-                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "/profile-review-artist"; ?>" sl-processed="1"><cite class="reviewscite" style="margin-top:0; font-size:10px; margin-left:6px; color:#fff;" title="<?php echo $value->username; ?>"><?php echo $value->username; ?></cite></a>
-                                                    </div>
-                                                    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5 pad_zero">
-                                                        <span class="revlikespan3" id="other_dis_sub_profile_discussion_1"><a href="javascript:;" data-toggle="modal" data-target="#signin_form" class="like" sl-processed="1"><i class="fa fa-heart-o heart_color"></i> </a><span class="like" style=" color:#fff; margin-left:2px;"></span><a href="https://www.tailem.com/detail_profile.php?user=test1234&amp;critaria=1" data-toggle="modal" data-target="#profile_modal" data-title="" style="color:#fff; margin-right:4px; font-size:10px;" sl-processed="1">0</a></span><span id="myStyle_sub_profile_discussion_1"></span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8  text-panel" style="margin-top:0; padding-right:2px;">
-                                    <p class="review_detail darkgrey_rev" style="color:#000000; min-height:60px;"><?php echo $value->comment_details; ?></p>
-                                    <p><span><?php echo date("d-m-Y", $value->comment_post_date); ?></span>&nbsp; <span class="under_line" style="float:right;"><a href="javascript:;" data-toggle="modal" data-target="#signin_form" class="linktag_new under_line" sl-processed="1">Report</a> </span></p>
-                                </div>
-                                <div class="clearfix"></div>
-                            </div>
-
-                        <?php } ?> -->
+                       
 
                     </div>
                 </div>
@@ -1895,7 +1868,7 @@ for ($u = 1; $u <= 20; $u++) {
     <div class="modal-dialog" style="margin-top:10%;">
         <div class="modal-content" style="border-radius:0px;">
             <div class="modal-header">
-                <h4 class="modal-title" style="color:#3276b1;"> Thank you for your post <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for your post <img data-dismiss="modal" onclick="discussion_popup_close()" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
                 </h4>
             </div>
             <div class="modal-body" style="overflow-y:auto; min-height:250px;">
@@ -2126,6 +2099,11 @@ for ($u = 1; $u <= 20; $u++) {
     }
 
     song_id = <?php echo $song_id; ?>;
+
+    function discussion_popup_close()
+    {
+        window.location.reload();
+    }
 </script>
 
 
@@ -2146,7 +2124,7 @@ for ($u = 1; $u <= 20; $u++) {
             jqpageind = jqpage.indexOf('page=');
             jqpage = jqpage.substring((jqpageind + 5));
             jq.ajax({
-                url: "dbmanupulate.php",
+                url: "<?php echo SERVER_ROOTPATH; ?>process/dbmanupulate",
                 type: "POST",
                 data: "actionfunction=showData&song_id=" + song_id + "&page=" + jqpage,
                 cache: false,

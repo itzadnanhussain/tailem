@@ -10,7 +10,7 @@ if ($user_id == "") {
 function check_report_review2($review_id)
 {
 
-	$counter_query	=	"select r_report_id  from tbl_review_report where r_report_user_id = '" . $user_id . "' AND r_report_review_id = '$review_id' AND status = 1";
+	$counter_query	=	"select r_report_id  from tbl_review_report where r_report_user_id = '" . session()->get('user_id') . "' AND r_report_review_id = '$review_id' AND status = 1";
 	$arr =    App\Models\Songs::GetRawDataAdmin($counter_query, array());
 	return $arr;
 }
@@ -35,6 +35,7 @@ function check_report_review2($review_id)
 	}
 </style>
 <?php
+$limit = 5;
 
 function get_user_detail2($un)
 {
@@ -65,16 +66,16 @@ function showData($data, $con, $limit, $adjacent)
 		$start = ($page - 1) * $limit;
 	}
 	$sql = "select u.user_id,u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id  order by comment_id desc";
- 
+
 	$rows  =  App\Models\Songs::GetRawData($sql);
-	 
+
 	$rows_count  = count($rows);
 
-	// $sql = "select u.user_id,u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id  order by comment_id desc limit $start,$limit";
-	$sql = "select u.user_id,u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id  order by comment_id desc";
- 
+	$sql = "select u.user_id,u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id  order by comment_id desc limit $start,$limit";
+	// $sql = "select u.user_id,u.user_name,u.profile_image, c.* from tbl_users u, tbl_comments c where u.user_id = c.comment_user_id AND c.comment_review_id = $song_id  order by comment_id desc";
+
 	$data  =  App\Models\Songs::GetRawData($sql);
-	 
+
 	$data_count  = count($data);
 
 
@@ -120,15 +121,15 @@ function showData($data, $con, $limit, $adjacent)
 				$prof_image = SERVER_ROOTPATH . 'assets/phpthumb/phpThumb.php?src=' . SERVER_ROOTPATH . 'assets/images/no_image4.png&w=100&h=75&zc=0';
 			}
 
-			if ($db_user_name == $user_name) {
+			if ($db_user_name == session()->get('user_name')) {
 				$report_status  = '<a data-title="" data-target="#edit_Modal4_' . $sr_no . '" data-toggle="modal" href="' . SERVER_ROOTPATH . 'edit_comment?comment_id=' . $db_comment_id . '&num=' . $sr_no . '">Edit </a>';
 			} else {
-				if ($user_id == "") {
+				if (session()->get('user_id') == "") {
 
 					$report_status  = '<a href="javascript:;" data-toggle="modal" data-target="#signin_form" class="linktag_new under_line" >Report</a>';
 				} else {
 
-					if ($user_id != "") {
+					if (session()->get('user_id')!= "") {
 						$report_status_info = check_report_review2($db_comment_id);
 
 						if (isset($report_status_info)) {
@@ -148,9 +149,9 @@ function showData($data, $con, $limit, $adjacent)
 			$counter_query = "select id from tbl_likes where like_type = 'profile' AND like_id = '$db_user_id'";
 
 			$counter_main =  count(App\Models\Songs::GetRawData($counter_query, array()));
-			if ($user_id != "") {
-				$sql = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  like_type = 'profile' AND like_id = '$db_user_id'";
-			 $counter =  count(App\Models\Songs::GetRawData($sql));
+			if (session()->get('user_id') != "") {
+				$sql = "select id from tbl_likes where like_from_user_id = '" . session()->get('user_id') . "' AND  like_type = 'profile' AND like_id = '$db_user_id'";
+				$counter =  count(App\Models\Songs::GetRawData($sql));
 				if ($counter == 0) {
 					if ($counter_main < 2) {
 						$like_text = " Like";
@@ -195,7 +196,7 @@ function showData($data, $con, $limit, $adjacent)
 
 				$likes_str  .= '<span class="revlikespan3" id="other_dis_sub_profile_discussion_' . $prof_counter . '">';
 
-				if ($user_id == "") {
+				if (session()->get('user_id') == "") {
 
 					$likes_str  .= '<a href="javascript:;" data-toggle="modal" data-target="#signin_form" class="like"><i class="fa fa-heart-o heart_color"></i> </a>';
 				} else {
@@ -256,7 +257,10 @@ function showData($data, $con, $limit, $adjacent)
 <?php
 
 	echo $str;
-	pagination($limit, $adjacent, $rows_count, $page);
+ 
+ 
+		pagination($limit, $adjacent, $rows_count, $page);
+ 
 }
 function pagination($limit, $adjacents, $rows_count, $page)
 {
