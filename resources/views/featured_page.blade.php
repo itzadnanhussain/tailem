@@ -1,6 +1,7 @@
 @include("common.header")
 <?php
 error_reporting(0);
+ 
 
 $artist_id_db             = stripslashes(html_entity_decode($row_artist['id']));
 $artist_seo             = stripslashes(html_entity_decode($row_artist['artist_seo']));
@@ -461,11 +462,11 @@ $info =   strip_tags(str_replace($val2, "", $info1));
 
 
                                 $song_list_query = "SELECT sa.id,a.artist_img,a.artist_seo,a.artist_name, sa.song_id, sa.artist_id FROM tbl_songs s, tbl_songs_artist sa, tbl_artists a where 1=1 AND a.id = sa.artist_id AND sa.song_id = s.id AND sa.song_id = '$id' AND s.song_status = 1 AND sa.artist_id!=67";
-                                $multi_artist = \App\Models\Songs::GetRawData($song_list_query);
-                                if ($multi_artist) {
-                                    $multi_artist = (array)$multi_artist;
-                                    $artist_name = stripslashes(html_entity_decode($multi_artist['artist_name']));
-                                    $artist_seo = stripslashes(html_entity_decode($multi_artist['artist_seo']));
+                                $multi_artist = \App\Models\Songs::GetRawDataAdmin($song_list_query);
+                                 
+                                if (isset($multi_artist) && (!empty($multi_artist))) {
+                                     $artist_name = $multi_artist['artist_name'];
+                                    $artist_seo =  $multi_artist['artist_seo'];
                                 }
                             ?>
                                 <li>
@@ -545,14 +546,14 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $dbart_id; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                    <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $dbart_id; ?>" style="padding:0; float:right; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                 <?php
                                                 }
                                                 ?>
 
 
 
-                                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" style="float:right; margin-right:26px;"><button style="margin-left:0">Write a Review</button></a>
+                                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/write-a-review/" . Slug($artist_seo); ?>" style="float:right; margin-right:26px;"><button style="margin-left:0">Write a Review</button></a>
 
                                             </div>
                                             <div class="show_default">
@@ -563,12 +564,12 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                                 <?php
                                                 } else {
                                                 ?>
-                                                    <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $dbart_id; ?>"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                    <a class="playlist_icon" data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $dbart_id; ?>"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                 <?php
                                                 }
                                                 ?>
                                                 <div class="clear"></div>
-                                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>" style="margin-top:17px; float:right;"><button>Write a review</button></a>
+                                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/write-a-review/" . Slug($artist_seo); ?>" style="margin-top:17px; float:right;"><button>Write a review</button></a>
                                             </div>
                                         </div>
                                     </div>
@@ -656,13 +657,13 @@ $info =   strip_tags(str_replace($val2, "", $info1));
                                                     <?php
                                                     } else {
                                                     ?>
-                                                        <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist.php?song_id=<?php echo $id; ?>&art_id=<?php echo $dbart_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
+                                                        <a data-title="" data-target="#show_playlist" data-toggle="modal" href="<?php echo SERVER_ROOTPATH; ?>add-playlist?song_id=<?php echo $id; ?>&art_id=<?php echo $dbart_id; ?>" style="padding:0; float:left; margin-right:6px;"><img src="<?php echo addtoplaylist_icon(); ?>" title="Add to Playlist" /></a>
                                                     <?php
                                                     }
                                                     ?>
                                                 </div>
                                                 <div class="col-sm-7 col-xs-7" style="padding-right:20px; float:right;">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/write-a-review/" . $artist_seo; ?>"><button>Write a review</button></a>
+                                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/write-a-review/" . Slug($artist_seo); ?>"><button>Write a review</button></a>
                                                 </div>
                                             </div>
                                         </div>
