@@ -44,9 +44,9 @@ if (isset($row_artist) && !empty($row_artist)) {
 	}
 </style>
 <script type="text/javascript">
-	function close_popup() {
-		parent.$.fn.colorbox.close();
-	}
+	// function close_popup() {
+	// 	parent.$.fn.colorbox.close();
+	// }
 </script>
 <div class="modal-dialog popup_display">
 	<div class="modal-content" style="border-radius:0px;">

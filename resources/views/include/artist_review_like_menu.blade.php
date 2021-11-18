@@ -140,6 +140,7 @@ if ($currentFile == "my_playlist") {
 
 </ul>
 <?php
+ 
 if ($currentFile == "my_account" || $currentFile == "like_artist" || $currentFile == "my_account_profile" || $currentFile == "likes_profile" || $currentFile == "likes_playlist") {
 ?>
 <ul class="list-inline">
@@ -169,13 +170,13 @@ if ($currentFile == "my_discussion") {
 
 }
 
-if ($currentFile == "my_reviews" || $currentFile == "review_artist" || $currentFile == "review_album") {
+if ($currentFile == "my_reviews" || $currentFile == "review-artist" || $currentFile == "review_album") {
 ?>
 
     <ul class="list-inline">
         <li>
             <a>By</a>
-            <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artist" <?php if ($currentFile == "review_artist") { ?> class="active" <?php } else { ?> <?php } ?>>ARTISTS</a> |
+            <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artist" <?php if ($currentFile == "review-artist") { ?> class="active" <?php } else { ?> <?php } ?>>ARTISTS</a> |
 
             <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-album" <?php if ($currentFile == "review_album") { ?> class="active" <?php } else { ?> <?php } ?>>ALBUMS</a> |
 

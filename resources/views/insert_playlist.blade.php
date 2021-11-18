@@ -55,7 +55,7 @@ $mobile_view = 0;
                 </div>
                 <div class="modal-body" style="padding:0; border:2px solid #666;">
 
-                    <img onClick="close_review_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
+                    <img onClick="close_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
 
                     <div style="margin-top:0;">
 

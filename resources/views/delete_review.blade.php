@@ -57,7 +57,7 @@ $artist_seo_name  = $review_like_info['artist_seo'];
             </div>
 
             <div class="modal-body" style="overflow-y:auto; min-height:250px;">
-                <img onClick="close_review_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
+                <img onClick="close_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
                 <h4 style="font-size:20px; font-weight:normal; margin-bottom:20px;">Thank you</h4>
                 <p>Would you like to delete your review? <br /><br /><br /><br />
 

@@ -77,7 +77,7 @@ $song_title      = $review_like_info['song_title'];
                 </div>
                 <div class="modal-body" style="padding:0px; overflow-x:hidden; overflow-y:auto; height:auto; max-height:550px;">
 
-                    <img onClick="close_review_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
+                    <img onClick="close_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
 
                     <div style="margin-top:0;">
                         <form name="add_to_playlist" id="add_to_playlist" method="post" action="{{url('process/add_songto_playlist_process')}}" style="padding:10px; padding-top:20px;">
@@ -179,12 +179,12 @@ $song_title      = $review_like_info['song_title'];
             <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
             <!-- <script src="js/star-rating.js" type="text/javascript"></script> -->
             <script type="text/javascript">
-                function close_review_popup() {
-                    $(document).on('hidden.bs.modal', function(e) {
-                        $(e.target).removeData('bs.modal');
+                // function close_popup() {
+                //     $(document).on('hidden.bs.modal', function(e) {
+                //         $(e.target).removeData('bs.modal');
 
-                    });
-                }
+                //     });
+                // }
             </script>
             <script>
                 $("#add_to_playlist").submit(function(e) {

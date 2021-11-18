@@ -1171,6 +1171,9 @@ for ($g = 1; $g <= 20; $g++) {
                         $("#api-readonly").each(function() {
                             this.reset();
                         });
+                        setTimeout(function() {
+                            window.location.replace(res.url);
+                        }, 1500)
                         break;
                     case 'warning':
                         if (res.message == "Please sign in first.") {
@@ -1180,6 +1183,9 @@ for ($g = 1; $g <= 20; $g++) {
                             "You have already posted a review on this song. Please use the EDIT function to revise your review."
                         ) {
                             $("#already_review").modal("show");
+                            setTimeout(function() {
+                            window.location.replace(res.url);
+                        }, 1500)
                         } else {
                             $("#error_popup").modal("show");
                             $("#modal_title_error").html("Thank you");

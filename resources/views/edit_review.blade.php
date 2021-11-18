@@ -60,7 +60,7 @@ $artist_seo_name  = $review_like_info['artist_seo'];
                 </div>
                 <div class="modal-body" style="padding:0; border:2px solid #666;">
 
-                    <img onClick="close_review_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
+                    <img onClick="close_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
 
                     <div style="margin-top:0;">
                         <form id="api-readonlys" method="post" action="<?php echo SERVER_ROOTPATH ?>process/write_a_review" style="padding:10px; padding-top:20px;">
@@ -125,15 +125,16 @@ $artist_seo_name  = $review_like_info['artist_seo'];
 
 
 
- 
+
+
 <script src="<?php echo SERVER_ROOTPATH ?>js/star-rating.js" type="text/javascript"></script>
 <script type="text/javascript">
-    function close_review_popup() {
-        $(document).on('hidden.bs.modal', function(e) {
-            $(e.target).removeData('bs.modal');
+    // function close_popup() {
+    //     $(document).on('hidden.bs.modal', function(e) {
+    //         $(e.target).removeData('bs.modal');
 
-        });
-    }
+    //     });
+    // }
 </script>
 <script>
     $('#api-readonlys').submit(function(e) {
@@ -152,7 +153,7 @@ $artist_seo_name  = $review_like_info['artist_seo'];
             success: function(data) {
                 let res = JSON.parse(data);
                 $("#edit_Modal4_1").modal('hide');
-                switch (res.code) { 
+                switch (res.code) {
                     case 'success':
                         // this.modal("hide"); 
                         $("#report_edit_success").modal('show');
@@ -160,9 +161,7 @@ $artist_seo_name  = $review_like_info['artist_seo'];
                             this.reset();
                         });
 
-                        // setTimeout(function() {
-                        //     window.location.reload();
-                        // }, 1500)
+                      
                         break;
                     case 'warning':
                         if (res.message == "Please sign in first.") {

@@ -245,10 +245,7 @@ class ProcessController extends Controller
     {
         if (isset($_POST)) {
             extract($_POST);
-            // echo '<pre>';
-            // print_r($_POST);
-            // echo '</pre>';
-            // die;
+          
             error_reporting(0);
 
             $user_id = session()->get('user_id');
@@ -301,7 +298,8 @@ class ProcessController extends Controller
 
 
             if ($count != 0) {
-                $response = array("code" => 'warning', 'message' => 'You have already posted a review on this song. Please use the EDIT function to revise your review.');
+                $url = SERVER_ROOTPATH.Slug($song_seo_name).'/reviews/'.Slug($artist_seo_name);
+                $response = array("code" => 'warning', 'message' => 'You have already posted a review on this song. Please use the EDIT function to revise your review.' ,'redirect_uri' => $url);
                 return response()->json($response);
             }
 

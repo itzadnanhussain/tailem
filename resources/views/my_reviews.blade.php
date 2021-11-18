@@ -1832,7 +1832,7 @@ for ($g = 1; $g <= $k; $g++) {
     <div class="modal-dialog" style="margin-top:10%;">
         <div class="modal-content" style="border-radius:0px;">
             <div class="modal-header">
-                <h4 class="modal-title" style="color:#3276b1;"> Thank you for updating your review <img data-dismiss="modal" style="cursor:pointer; float:right;" src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for updating your review <img data-dismiss="modal" onclick="close_popup()" style="cursor:pointer; float:right;" src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
                 </h4>
             </div>
             <div class="modal-body" style="overflow-y:auto; min-height:250px;">
