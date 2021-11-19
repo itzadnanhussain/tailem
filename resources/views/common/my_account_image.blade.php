@@ -48,10 +48,10 @@ if ($counter_main_playlist_like) {
             if ($mobile_view == 0) {
         ?>
                 <div class="text_12 show_review" style="margin-top:5px; display:none;">
-                    <a href="<?php echo SERVER_ROOTPATH; ?>change-username" style="color:#000000;"> <i class="fa fa-user text_red" style="margin-right:3px;"></i>&nbsp;Change Username</a> <br />
+                    <a href="<?php echo SERVER_ROOTPATH; ?>change-username" style="color:#000000;"> <i class="fa fa-user text_red" style="margin-right:3px;"></i>&nbsp;Edit Username</a> <br />
 
-                    <a href="<?php echo SERVER_ROOTPATH; ?>change-picture" style="color:#000000;"><i class="fa fa-camera text_red"></i> Change Picture</a> <br />
-                    <a href="<?php echo SERVER_ROOTPATH; ?>change-password" style="color:#000000;"><i class="fa fa-key text_red"></i> Change Password</a>
+                    <a href="<?php echo SERVER_ROOTPATH; ?>change-picture" style="color:#000000;"><i class="fa fa-camera text_red"></i> Edit Picture</a> <br />
+                    <a href="<?php echo SERVER_ROOTPATH; ?>change-password" style="color:#000000;"><i class="fa fa-key text_red"></i> Edit Password</a>
 
                 </div>
         <?php

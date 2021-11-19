@@ -130,6 +130,7 @@ Route::any('change-password',[UserController::class , 'ChangePasswordProcess']);
 Route::any('change-username',[UserController::class , 'ChangeUsernameProcess']);
 // RewriteRule ^change-picture$ change_picture.php [PT]
 Route::any('change-picture',[UserController::class , 'ChangePictureProcess']);
+Route::any('delete-user-profile',[UserController::class , 'DeleteUserProfile']);
 
 // RewriteRule ^forgot-password$ forgot_password.php [PT]
 // RewriteRule ^maintance$ maintance.php [PT]

@@ -15,7 +15,7 @@ if ($review_list_arr_top) {
 
     if ($song_list_arr_data) {
         foreach ($song_list_arr_data as $song_list_arr) {
-            
+
             $song_list_arr = (array)$song_list_arr;
             $review_date_check =  date("Y-m-d", $song_list_arr['review_post_date']);
             $review_date_check2 =  date("Y-m-d H:i:s", $song_list_arr['review_post_date']);
@@ -23,8 +23,8 @@ if ($review_list_arr_top) {
 
             $length_of_username  = strlen($user_name);
 
-            $song_get_name        =   $song_list_arr['song_title']; 
-            
+            $song_get_name        =   $song_list_arr['song_title'];
+
             $total_lenth    =    strlen($song_get_name);
             if ($total_lenth > 25) {
                 $find  = 25 - $length_of_username;
@@ -32,7 +32,7 @@ if ($review_list_arr_top) {
             }
 
             $song_get_name    =    stripslashes($song_get_name);
-           
+
             $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a> has posted a review on <a class='user_pnl_col' href='" . SERVER_ROOTPATH . Slug($song_list_arr['song_seo']) . "/reviews/" . Slug($song_list_arr['artist_seo']) . "'>$song_get_name</a>";
 
             $datadataarray[] = array("name" => "review_date_check", "date" => "$review_date_check", "date2" => "$review_date_check2", "messages" => "$messages");
@@ -59,7 +59,7 @@ if ($comment_list_arr) {
 
             $song_get_name        =      $c_song_list_arr['song_title'];
             $total_lenth  = strlen($song_get_name);
-             if ($total_lenth > 40) {
+            if ($total_lenth > 40) {
                 $find  = 40 - $length_of_username;
                 $song_get_name    =    substr($song_get_name, 0, $find) . "..";
             }
@@ -211,7 +211,7 @@ if ($review_list_arrs) {
 
         $song_get_name        =    stripslashes($review_list_arr['song_title']);
         $total_lenth  = strlen($song_get_name);
-         if ($total_lenth > 20) {
+        if ($total_lenth > 20) {
             $find  = 20 - $length_of_username;
             $song_get_name    =    substr($song_get_name, 0, $find) . "..";
         }
@@ -335,14 +335,13 @@ for ($sz = $size_arr - 1; $sz >= $start_point; $sz--) {
 $data = array("$review_date_check", "$discussion_date_check", "$like_date_check", "$like_review_date_check", "$addplaylist_date_check", "$addplaylistsong_date_check");
 
 // $other = usort($data, 'date_compare');
-$user_data = GetByWhere('users',array('user_id'=>$user_profile));
-if($user_data)
-{
-    $user_date = date('d M Y',strtotime($user_data[0]->created_at));
-}else{
+$user_data = GetByWhere('users', array('user_id' => $user_profile));
+if ($user_data) {
+    $user_date = date('d M Y', strtotime($user_data[0]->created_at));
+} else {
     $user_date = date("d M Y", time());
 }
- 
+
 
 
 if ($mobile_view == 0) { ?>
@@ -378,6 +377,28 @@ if ($mobile_view == 0) { ?>
         ?>
         </p>
     </div>
+    <!-- new code by ad -->
+    <style>
+        .ad-follow-icon-box {
+            padding-left: 0px;
+        }
+
+        .bottom_nav li label {
+            color: #d73b3b;
+        }
+    </style>
+    <?php $social_icons = GetByWhere('social_icons');
+    ?>
+    <div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
+        <ul class="bottom_nav">
+
+            <li><label>Follow me on: </label></li>
+            <li><a href="javascript:void(0)" target="_blank"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>" alt=""></a></li>
+            <li><a href="javascript:void(0)" target="_blank"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>" alt=""></a></li>
+            <li><a href="javascript:void(0)" target="_blank"> <img src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>" width="34" alt=""></a></li>
+        </ul>
+
+    </div>
 
 <?php
 } elseif ($mobile_view == 1) { ?>
@@ -410,5 +431,15 @@ if ($mobile_view == 0) { ?>
                 }
             }
 ?></p>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
+        <ul class="bottom_nav">
+
+            <li><label>Follow me on: </label></li>
+            <li><a href="javascript:void(0)" target="_blank"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>" alt=""></a></li>
+            <li><a href="javascript:void(0)" target="_blank"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>" alt=""></a></li>
+            <li><a href="javascript:void(0)" target="_blank"> <img src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>" width="34" alt=""></a></li>
+        </ul>
+
     </div>
 <?php } ?>

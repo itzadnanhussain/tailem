@@ -311,3 +311,31 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 
 	}
 </script>
+
+
+<!-- delete user Profile script -->
+<script>
+	function Delete_User(user_id) {
+		var r = confirm("Are you sure you wish to delete your account?\nPlease note that deleted account can never be recovered. ");
+		var csrf_token = $('meta[name=csrf-token]').attr('content');
+
+		if (r == true) { 
+			$.ajax({
+			type: 'POST',
+			url: '<?php echo SERVER_ROOTPATH.'delete-user-profile' ?>',
+			data: {
+				"_token": csrf_token, 
+				'user_id':user_id,
+			}, 
+			dataType: 'html',
+			success: function(replay) {
+			 var replay = JSON.parse(replay);
+			 window.location.replace(replay.redirect_uri);
+			}
+		});
+
+		}  
+	 
+
+	}
+</script>

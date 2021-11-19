@@ -15,7 +15,7 @@ class UserController extends Controller
     public function UserWelcome($user_seo)
     {
 
-       
+
 
         ///common header
         $data['user_id'] = session()->get('user_id');
@@ -25,7 +25,7 @@ class UserController extends Controller
         if (isset($user_seo) && ($user_seo != "")) {
             $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
             $result_image = \App\Models\Songs::GetRawData($qry);
-            
+
             $data['user_name'] = $result_image[0]->user_name;
             $data['user_profile'] = $result_image[0]->user_id;
             $data['date_added_db'] = $result_image[0]->date_added;
@@ -496,8 +496,8 @@ class UserController extends Controller
         //loadview
         $data['currentFile'] = 'review-artist';
         $data['title'] = GetTitle();
-        
-       
+
+
         return view('review_artist', $data);
     }
 
@@ -3292,5 +3292,72 @@ class UserController extends Controller
         $data['currentFile'] = 'my_account';
         $data['title'] = GetTitle();
         return view('my_account', $data);
+    }
+
+
+    ///DeleteUserProfile
+    public function DeleteUserProfile()
+    {
+        if ($_POST) {
+            extract($_POST);
+            $delete_profile = false;
+            ///Delete Process
+            $path = 'site_upload/user_images/';
+            $select_qry = "select user_id from tbl_users where user_id='" . $_POST['user_id'] . "' ";
+            $select_arr = \App\Models\Songs::GetRawDataAdmin($select_qry);
+            $user_id    = $select_arr['user_id'];
+            if ($user_id == "") {
+                $delete_profile = false;
+            } else {
+                $select_img = "select profile_image from tbl_users where user_id='" . $user_id . "'";
+                $result = \App\Models\Songs::GetRawDataAdmin($select_img);
+
+                ///delete profile
+                if ($result) {
+                    $old_image  = $result['profile_image'];
+                    $imgfile    = $path . $old_image;
+                    $thumbfile  =  $path . 'thumb_' . $old_image;
+                    $thumbfile_small = $path . 'small_thumb_' . $old_image;
+                    @unlink($imgfile);
+                    @unlink($thumbfile);
+                    @unlink($thumbfile_small);
+                }
+
+                ///delete other user data
+                $del_qry = "Delete from tbl_users where user_id='" . $user_id . "'";
+                \App\Models\Songs::GetRawData($del_qry);
+
+                $del_qry = "Delete from tbl_likes where like_from_user_id='" . $user_id . "'";
+                \App\Models\Songs::GetRawData($del_qry);
+
+                $del_qry = "Delete from tbl_reviews where review_user_id='" . $user_id . "'";
+                \App\Models\Songs::GetRawData($del_qry);
+
+
+                $del_qry = "Delete from tbl_review_report where r_report_user_id='" . $user_id . "'";
+                \App\Models\Songs::GetRawData($del_qry);
+
+
+                $del_qry = "Delete from tbl_comments where comment_user_id='" . $user_id . "'";
+                \App\Models\Songs::GetRawData($del_qry);
+
+                $delete_profile = true;
+            }
+
+
+            ///After Successfully delete profile
+            if ($delete_profile == true) {
+                session()->invalidate();
+                session()->regenerateToken();
+                $redirect_uri = SERVER_ROOTPATH;
+                $response = array("code" => 'success', 'redirect_uri' => $redirect_uri);
+                return response()->json($response);
+            } else {
+
+                ///After Not Successfully delete profile
+                $response = array("code" => 'warning', 'message' => 'Something Wrong Here!');
+                return response()->json($response);
+            }
+        }
     }
 }

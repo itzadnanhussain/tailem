@@ -6827,7 +6827,7 @@ transition:background .5s ease
 .latestsongssec .list_item .album_cover {
 	/*width:100%;*/
 	max-height:320px;
-	overflow:hidden;
+	/* overflow:hidden; */
 	position:relative
 }
 /*custom css*/
