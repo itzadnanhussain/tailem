@@ -128,10 +128,12 @@ Route::any('{user_seo}/profile-like-review',[UserController::class , 'GetMyAccou
 Route::any('change-password',[UserController::class , 'ChangePasswordProcess']);
 // RewriteRule ^change-username$ edit_username.php [PT]
 Route::any('change-username',[UserController::class , 'ChangeUsernameProcess']);
+Route::any('update-profile-social-icon',[UserController::class , 'UpdateProfileSocialIcon']);
+Route::post('process-update-profile-social-icon',[UserController::class , 'UploadProfileSocialIcon']);
 // RewriteRule ^change-picture$ change_picture.php [PT]
 Route::any('change-picture',[UserController::class , 'ChangePictureProcess']);
 Route::any('delete-user-profile',[UserController::class , 'DeleteUserProfile']);
-
+ 
 // RewriteRule ^forgot-password$ forgot_password.php [PT]
 // RewriteRule ^maintance$ maintance.php [PT]
 // RewriteRule ^reset-password-(.*)$ reset_password.php?code=$1 [PT]

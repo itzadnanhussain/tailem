@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/star-rating.css" media="all" type="text/css" />
 <link rel="stylesheet" type="text/css" href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/style-update.css?id=<?php echo rand(111111, 9999999); ?>">
 
-<?php if ($currentFile == 'sign-in' || $currentFile == 'forgot_password' ||  $currentFile == 'sign-up' ||  $currentFile == 'edit_review' ||  $currentFile == 'edit_comment' ||  $currentFile == 'contact-us' ||  $currentFile == 'cms' ||  $currentFile == 'change_password'  ||  $currentFile == 'edit_username' ||  $currentFile == 'change_picture' ||  $currentFile == 'new_password') { ?>
+<?php if ($currentFile == 'sign-in' || $currentFile == 'forgot_password' || $currentFile == 'edit_social_icons' || $currentFile == 'sign-up' ||  $currentFile == 'edit_review' ||  $currentFile == 'edit_comment' ||  $currentFile == 'contact-us' ||  $currentFile == 'cms' ||  $currentFile == 'change_password'  ||  $currentFile == 'edit_username' ||  $currentFile == 'change_picture' ||  $currentFile == 'new_password') { ?>
     <link rel="stylesheet" type="text/css" href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/form.css">
 
 <?php } ?>
