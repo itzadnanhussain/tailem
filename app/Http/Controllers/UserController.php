@@ -3082,9 +3082,12 @@ class UserController extends Controller
         }
 
 
+
+
         //page View
         $data['currentFile'] = 'my_playlist';
         $data['title'] = GetTitle();
+       
         return view('my_playlist', $data);
     } 
 
@@ -3195,10 +3198,13 @@ class UserController extends Controller
             $data['comment_list_arr'] = array();
         }
 
+       
+
 
         //page View
         $data['currentFile'] = 'my_playlist';
         $data['title'] = GetTitle();
+        
         return view('my_playlist', $data);
     } 
 

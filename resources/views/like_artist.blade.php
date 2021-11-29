@@ -272,6 +272,7 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
 							 ";
 
                 $cat_list_arr = \App\Models\Songs::GetRawData($cat_list);
+               
             }
 
             $count  = 0;

@@ -184,6 +184,10 @@ if ($alpha == "unset") {
 							 ";
 
                 $artist_list_pick_arr = \App\Models\Songs::GetRawData($artist_list_pick);
+                // echo '<pre>';
+                // print_r($artist_list_pick_arr);
+                // echo '</pre>';
+                // die;
                 $array_alpha    =    array();
                 if (isset($artist_list_pick_arr)) {
                     $u = 0;
