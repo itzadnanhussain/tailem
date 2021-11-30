@@ -1,5 +1,5 @@
 <?php
-///setting arr new query 
+///setting arr new query
 $arr_setting = GetByWhere('setting', array('setting_id' => 1));
 $arr_setting = (array)$arr_setting[0];
 $itune_url	=	$arr_setting['itune_url'];
@@ -27,9 +27,13 @@ $currentFile = get_page_name();
 
 <?php
 for ($popular_review = 1; $popular_review <= 10; $popular_review++) {
-?>
-	<div class="modal fade" id="missing_popular_review_Modal2_5000<?php echo $popular_review; ?>" role="dialog"></div>
-	<div class="modal fade" id="missing_popular_review_Modal2_latest_<?php echo $popular_review; ?>" role="dialog"></div>
+    ?>
+<div class="modal fade"
+	id="missing_popular_review_Modal2_5000<?php echo $popular_review; ?>"
+	role="dialog"></div>
+<div class="modal fade"
+	id="missing_popular_review_Modal2_latest_<?php echo $popular_review; ?>"
+	role="dialog"></div>
 <?php
 }
 ?>
@@ -60,98 +64,141 @@ for ($popular_review = 1; $popular_review <= 10; $popular_review++) {
 	  });
 	});	*/
 </script>
-<div class="modal fade" id="delete_all_notification" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+<div class="modal fade" id="delete_all_notification" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+	aria-hidden="true"></div>
 <?php
 for ($u = 1; $u <= 15; $u++) {
-?>
-	<div class="modal fade" id="delete_review_<?php echo $u; ?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
-	<div class="modal fade" id="delete_comment_<?php echo $u; ?>" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+    ?>
+<div class="modal fade" id="delete_review_<?php echo $u; ?>"
+	tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+<div class="modal fade" id="delete_comment_<?php echo $u; ?>"
+	tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
 <?php
 }
 // $currentFile = $_SERVER["SCRIPT_NAME"];
 if ($currentFile == 'artists' || $currentFile == 'search' || $currentFile == 'search_artist' || $currentFile == 'search_song' || $currentFile == 'search_albumlist' || $currentFile == 'song_detail' || $currentFile == 'song_local_detail' || $currentFile == 'welcome' || $currentFile == 'review_artist' || $currentFile == 'review_album' || $currentFile == 'my_reviews' || $currentFile == 'likes_profile' || $currentFile == 'like_artist' || $currentFile == 'my_account_profile' || $currentFile == 'my_account' || $currentFile == 'my_discussion' || $currentFile == 'my_playlist' || $currentFile == 'likes_playlist') { ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/style-update.css?id=<?php echo rand(111111, 9999999); ?>">
+<link rel="stylesheet" type="text/css"
+	href="<?php echo COOKIE_FREE_ROOTPATH; ?>css/style-update.css?id=<?php echo rand(111111, 9999999); ?>">
 <?php } ?>
 <?php
 if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $currentFile == 'artists') {
-?>
-	<link rel="stylesheet" href="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-ui.css">
-	<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-1.10.2.js"></script>
-	<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-ui.js"></script>
-	<script>
-		var jq = jQuery.noConflict();
-		jq(function() {
-			jq("#skills").autocomplete({
-				source: '<?php echo SERVER_ROOTPATH; ?>get_artist_list'
-			});
+    ?>
+<link rel="stylesheet"
+	href="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-ui.css">
+<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-1.10.2.js">
+</script>
+<script src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/search/jquery-ui.js">
+</script>
+<script>
+	var jq = jQuery.noConflict();
+	jq(function() {
+		jq("#skills").autocomplete({
+			source: '<?php echo SERVER_ROOTPATH; ?>get_artist_list'
 		});
-	</script>
+	});
+</script>
 <?php
 }
 //$this->_mysqli->close();
 ?>
 <!-- Header start -->
 <?php if (isset($user_type) && ($user_type == 'admin')) { ?>
-	<footer>
-		<div class="ftrcontainer" style="background: white;">
-			<div class="container">
-				<a target="_blank" href="http://www.evsoft.pk/" style="font-size: 11px;
+<footer>
+	<div class="ftrcontainer" style="background: white;">
+		<div class="container">
+			<a target="_blank" href="http://www.evsoft.pk/" style="font-size: 11px;
     color: #000000; float:right;text-decoration: underline;">Powered By eVISION Softwares </a>
 
 
-			</div>
 		</div>
-	</footer>
+	</div>
+</footer>
 
 
 
 <?php  } else { ?>
-	<footer>
-		<div class="ftrcontainer">
-			<div class="container">
-				<ul class="bottom_nav">
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top Songs</a></li>
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top Albums</a></li>
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a></li>
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>about-us">About Us</a></li>
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>privacy-policy">Privacy Policy</a></li>
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>terms-of-use">Terms of Use</a></li>
-					<li><a href="<?php echo SERVER_ROOTPATH; ?>contact-us">Contact Us</a></li>
-				</ul>
-				<ul class="bottom_nav" style="float:right">
+<footer>
+	<div class="ftrcontainer">
+		<div class="container">
+			<ul class="bottom_nav">
+				<li><a
+						href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top
+						Songs</a></li>
+				<li><a
+						href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top
+						Albums</a></li>
+				<li><a
+						href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a>
+				</li>
+				<li><a
+						href="<?php echo SERVER_ROOTPATH; ?>our-community">Community</a>
+				</li>
+				<li><a href="<?php echo SERVER_ROOTPATH; ?>about-us">About
+						Us</a></li>
+				<li><a
+						href="<?php echo SERVER_ROOTPATH; ?>privacy-policy">Privacy
+						Policy</a></li>
+				<li><a
+						href="<?php echo SERVER_ROOTPATH; ?>terms-of-use">Terms
+						of Use</a></li>
+				<li><a
+						href="<?php echo SERVER_ROOTPATH; ?>contact-us">Contact
+						Us</a></li>
+			</ul>
+			<ul class="bottom_nav" style="float:right">
 
-					<?php
-					if ($itune_url != '') {
-					?>
-						<li><a href="<?php echo $itune_url; ?>" class="itune" target="_blank"><img src="<?php echo SERVER_ROOTPATH; ?>images/ituneimg.png"></a></li>
-					<?php
-					}
-					?>
-					<li><label>Connect with us</label></li>
-					<!-- <li> <a href="<?php echo $arr_social['facebook']; ?>" target="_blank"> <i class="sprite sprite-icon_fb"></i></a></li> -->
-					<li> <a href="<?php echo $arr_social['facebook']; ?>" target="_blank"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>" alt=""></a></li>
-					<!-- <li><a href="<?php echo $arr_social['twitter']; ?>" target="_blank"><i class="sprite sprite-icon_tw"></i></a></li> -->
-					<li><a href="<?php echo $arr_social['twitter']; ?>" target="_blank"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>" alt=""></a></li>
-					<!-- <li><a href="<?php echo $arr_social['google']; ?>" target="_blank"> <i class="sprite sprite-icon_ggl"></i></a></li> -->
-					<li><a href="<?php echo $arr_social['google']; ?>" target="_blank"><img class="sprite-icon_ggl" src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>" alt=""></a></li>
-					<li><a href="<?php echo $arr_social['google']; ?>" target="_blank"> <img src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>" width="34" alt=""></a></li>
-				</ul>
-			</div>
+				<?php
+                    if ($itune_url != '') {
+                        ?>
+				<li><a href="<?php echo $itune_url; ?>" class="itune"
+						target="_blank"><img
+							src="<?php echo SERVER_ROOTPATH; ?>images/ituneimg.png"></a>
+				</li>
+				<?php
+                    }
+                    ?>
+				<li><label>Connect with us</label></li>
+				<!-- <li> <a href="<?php echo $arr_social['facebook']; ?>"
+				target="_blank"> <i class="sprite sprite-icon_fb"></i></a></li> -->
+				<li> <a href="<?php echo $arr_social['facebook']; ?>"
+						target="_blank"><img class="sprite-icon_fb"
+							src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>"
+							alt=""></a></li>
+				<!-- <li><a href="<?php echo $arr_social['twitter']; ?>"
+				target="_blank"><i class="sprite sprite-icon_tw"></i></a></li> -->
+				<li><a href="<?php echo $arr_social['twitter']; ?>"
+						target="_blank"><img class="sprite-icon_tw"
+							src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>"
+							alt=""></a></li>
+				<!-- <li><a href="<?php echo $arr_social['google']; ?>"
+				target="_blank"> <i class="sprite sprite-icon_ggl"></i></a></li> -->
+				<li><a href="<?php echo $arr_social['google']; ?>"
+						target="_blank"><img class="sprite-icon_ggl"
+							src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>"
+							alt=""></a></li>
+				<li><a href="<?php echo $arr_social['google']; ?>"
+						target="_blank"> <img
+							src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>"
+							width="34" alt=""></a></li>
+			</ul>
 		</div>
-		<script type='text/javascript'>
-			var _merchantSettings = _merchantSettings || [];
-			_merchantSettings.push(['AT', '1000l6dT']);
-			(function() {
-				var autolink = document.createElement('script');
-				autolink.type = 'text/javascript';
-				autolink.async = true;
-				autolink.src = ('https:' == document.location.protocol) ? 'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' : 'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
-				var s = document.getElementsByTagName('script')[0];
-				s.parentNode.insertBefore(autolink, s);
-			})();
-		</script>
-		<p>&copy; <a href="<?php echo SERVER_ROOTPATH; ?>"><?php echo $copy_right_text; ?> </a></p>
-	</footer>
+	</div>
+	<script type='text/javascript'>
+		var _merchantSettings = _merchantSettings || [];
+		_merchantSettings.push(['AT', '1000l6dT']);
+		(function() {
+			var autolink = document.createElement('script');
+			autolink.type = 'text/javascript';
+			autolink.async = true;
+			autolink.src = ('https:' == document.location.protocol) ?
+				'https://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js' :
+				'http://autolinkmaker.itunes.apple.com/js/itunes_autolinkmaker.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(autolink, s);
+		})();
+	</script>
+	<p>&copy; <a href="<?php echo SERVER_ROOTPATH; ?>"><?php echo $copy_right_text; ?> </a></p>
+</footer>
 
 <?php } ?>
 
@@ -162,12 +209,17 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 
 </html>
 <div class="modal fade" id="review_modal" role="dialog"></div>
-<div class="modal fade in" id="add_report_request" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="false">
+<div class="modal fade in" id="add_report_request" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+	aria-hidden="false">
 
 	<div class="modal-dialog" style="margin-top:10%;">
 		<div class="modal-content" style="border-radius:0px;">
 			<div class="modal-header">
-				<h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+				<h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img
+						data-dismiss="modal" style="cursor:pointer; float:right;"
+						src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI="
+						data-pagespeed-url-hash="3119113509"
+						onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 				</h4>
 			</div>
 			<div class="modal-body" style="overflow-y:auto; min-height:250px;">
@@ -181,16 +233,22 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="report_already_message" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+<div class="modal fade" id="report_already_message" style="display:none" tabindex="-1" role="dialog"
+	aria-labelledby="basicModal">
 	<div class="modal-dialog" style="margin-top:10%;">
 		<div class="modal-content" style="border-radius:0px;">
 			<div class="modal-header">
-				<h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img data-dismiss="modal" style="cursor:pointer; float:right;" src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+				<h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img
+						data-dismiss="modal" style="cursor:pointer; float:right;"
+						src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp"
+						data-pagespeed-url-hash="3119113509"
+						onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 				</h4>
 			</div>
 			<div class="modal-body" style="overflow-y:auto; min-height:250px;">
 				<p>
-					We are still in the process of reviewing your request and will take action accordingly. <br /><br /><br />
+					We are still in the process of reviewing your request and will take action accordingly.
+					<br /><br /><br />
 
 					Warmest Regards,<br />
 					Team at Tailem.com
@@ -200,16 +258,22 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 	</div>
 </div>
 
-<div class="modal fade" id="post_edit_success" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+<div class="modal fade" id="post_edit_success" style="display:none" tabindex="-1" role="dialog"
+	aria-labelledby="basicModal">
 	<div class="modal-dialog" style="margin-top:10%;">
 		<div class="modal-content" style="border-radius:0px;">
 			<div class="modal-header">
-				<h4 class="modal-title" style="color:#3276b1;"> Thank you for updating your post <img data-dismiss="modal" onclick="close_popup()" style="cursor:pointer; float:right;" src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+				<h4 class="modal-title" style="color:#3276b1;"> Thank you for updating your post <img
+						data-dismiss="modal" onclick="close_popup()" style="cursor:pointer; float:right;"
+						src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp"
+						data-pagespeed-url-hash="3119113509"
+						onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 				</h4>
 			</div>
 			<div class="modal-body" style="overflow-y:auto; min-height:250px;">
 				<p>
-					Your post has been updated and will appear shortly. Thank you for sharing your thoughts and we value your contributions to our site. <br /><br /><br />
+					Your post has been updated and will appear shortly. Thank you for sharing your thoughts and we value
+					your contributions to our site. <br /><br /><br />
 
 					Warmest Regards,<br />
 					Team at Tailem.com
@@ -221,11 +285,16 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 
 
 <!-- Cannot like your own profile-->
-<div class="modal fade" id="your_own_profile" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+<div class="modal fade" id="your_own_profile" style="display:none" tabindex="-1" role="dialog"
+	aria-labelledby="basicModal">
 	<div class="modal-dialog" style="margin-top:10%;">
 		<div class="modal-content" style="border-radius:0px;">
 			<div class="modal-header">
-				<h4 class="modal-title" style="color:#3276b1;"> Thank you <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+				<h4 class="modal-title" style="color:#3276b1;"> Thank you <img data-dismiss="modal"
+						style="cursor:pointer; float:right;"
+						src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI="
+						data-pagespeed-url-hash="3119113509"
+						onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 				</h4>
 			</div>
 			<div class="modal-body" style="overflow-y:auto; min-height:250px;">
@@ -316,26 +385,27 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 <!-- delete user Profile script -->
 <script>
 	function Delete_User(user_id) {
-		var r = confirm("Are you sure you wish to delete your account?\nPlease note that deleted account can never be recovered. ");
+		var r = confirm(
+			"Are you sure you wish to delete your account?\nPlease note that deleted account can never be recovered. ");
 		var csrf_token = $('meta[name=csrf-token]').attr('content');
 
-		if (r == true) { 
+		if (r == true) {
 			$.ajax({
-			type: 'POST',
-			url: '<?php echo SERVER_ROOTPATH.'delete-user-profile' ?>',
-			data: {
-				"_token": csrf_token, 
-				'user_id':user_id,
-			}, 
-			dataType: 'html',
-			success: function(replay) {
-			 var replay = JSON.parse(replay);
-			 window.location.replace(replay.redirect_uri);
-			}
-		});
+				type: 'POST',
+				url: '<?php echo SERVER_ROOTPATH.'delete-user-profile' ?>',
+				data: {
+					"_token": csrf_token,
+					'user_id': user_id,
+				},
+				dataType: 'html',
+				success: function(replay) {
+					var replay = JSON.parse(replay);
+					window.location.replace(replay.redirect_uri);
+				}
+			});
 
-		}  
-	 
+		}
+
 
 	}
 </script>

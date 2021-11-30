@@ -8,14 +8,12 @@ $like_date_check  = '';
 $like_review_date_check  = '';
 
 if ($review_list_arr_top) {
-
     $song_list = "select r.review_post_date,s.song_title, s.song_seo,a.artist_seo, s.song_title from tbl_artist_album b, tbl_artists a, tbl_reviews r, tbl_songs s where 1=1 AND s.id = r.song_id AND a.id = r.artist_id AND b.id = r.album_id AND s.id = r.song_id AND r.review_user_id = '" . $user_profile . "' AND s.song_status = 1 order by r.review_id desc limit 5";
 
     $song_list_arr_data = \App\Models\Songs::GetRawData($song_list);
 
     if ($song_list_arr_data) {
         foreach ($song_list_arr_data as $song_list_arr) {
-
             $song_list_arr = (array)$song_list_arr;
             $review_date_check =  date("Y-m-d", $song_list_arr['review_post_date']);
             $review_date_check2 =  date("Y-m-d H:i:s", $song_list_arr['review_post_date']);
@@ -46,7 +44,6 @@ if ($comment_list_arr) {
 
 
     if ($c_song_list_arr_array) {
-
         foreach ($c_song_list_arr_array as $c_song_list_arr) {
             $c_song_list_arr = (array) $c_song_list_arr;
             $discussion_date_check =  date("Y-m-d", $c_song_list_arr['comment_post_date']);
@@ -75,8 +72,6 @@ if ($comment_list_arr) {
 
 
 if ($like_list_arr) {
-
-
     $like_list_qry_inner = "select l.* from tbl_likes l, tbl_users u where l.like_from_user_id = '" . $user_profile . "' AND u.user_id = l.like_from_user_id AND (l.like_type = 'artist' OR l.like_type = 'album' OR l.like_type = 'profile' OR l.like_type = 'review_song' OR l.like_type = 'review_song' OR l.like_type = 'playlist') order by l.id desc limit 5";
 
     $like_list_arr_inners = \App\Models\Songs::GetRawData($like_list_qry_inner);
@@ -104,8 +99,7 @@ if ($like_list_arr) {
 
 
                 $datadataarray[] =    array("name" => "like_date_check", "date" => "$like_date_check", "date2" => "$like_date_check2", "messages" => "$messages");
-            } else
-				if ($like_type == "profile") {
+            } elseif ($like_type == "profile") {
                 $query_info = "select user_name from tbl_users where user_id = '" . $like_list_arr_inner['like_id'] . "'";
 
                 $get_info_arr = \App\Models\Songs::GetRawData($query_info);
@@ -123,8 +117,7 @@ if ($like_list_arr) {
 
 
                 $datadataarray[] =    array("name" => "like_date_check", "date" => "$like_date_check", "date2" => "$like_date_check2", "messages" => "$messages");
-            } else
-									if ($like_type == "playlist") {
+            } elseif ($like_type == "playlist") {
                 $query_info = "select u.user_name, p.title_playlist, p.title_playlist_seo from tbl_users u, tbl_user_playlist p where   u.user_id = '" . $like_list_arr_inner['like_receive_user'] . "' AND p.id = '" . $like_list_arr_inner['like_id'] . "' ";
 
 
@@ -148,8 +141,7 @@ if ($like_list_arr) {
 
 
                 $datadataarray[] =    array("name" => "like_date_check", "date" => "$like_date_check", "date2" => "$like_date_check2", "messages" => "$messages");
-            } else
-									if ($like_type == "album") {
+            } elseif ($like_type == "album") {
                 $query_info = "select b.album_seo, b.album_title, a.artist_seo from tbl_artist_album b,  tbl_artists a  where b.id = '" . $like_list_arr_inner['like_id'] . "' AND b.album_artist_id  = a.id";
 
                 $get_info_arr = \App\Models\Songs::GetRawData($query_info);
@@ -297,7 +289,6 @@ if ($playlist_list_arrs) {
 
 $data = sortArray($datadataarray, 'date2');
 if ($data) {
-
     $size_arr = sizeof($data);
 } else {
     $size_arr = 0;
@@ -322,8 +313,6 @@ if ($size_arr > 5) {
 }
 
 for ($sz = $size_arr - 1; $sz >= $start_point; $sz--) {
-
-
     if ($dates[$sz] == '') {
     } else {
         if ($dates[$sz] != '1970-01-01') {
@@ -345,16 +334,17 @@ if ($user_data) {
 ///get user profile social icons detail
 
 $facebook_icon = GetByWhere('user_social_profile', array('user_id' => session()->get('user_id'), 'icon_type' => 'Facebook'));
-$twitter_icon = GetByWhere('user_social_profile', array('user_id' => session()->get('user_id'), 'icon_type' => 'Twitter'));
 $instagram_icon = GetByWhere('user_social_profile', array('user_id' => session()->get('user_id'), 'icon_type' => 'Instagram'));
+
+$twitter_icon = GetByWhere('user_social_profile', array('user_id' => session()->get('user_id'), 'icon_type' => 'Twitter'));
 $profile_id = session()->get('user_id');
  
 
 if ($mobile_view == 0) { ?>
-    <div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
-        <p>
-        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Member Since<br><a class="heart_color"><?php echo $user_date; ?></a></div>
-        <?php
+<div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
+    <p>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Member Since<br><a class="heart_color"><?php echo $user_date; ?></a></div>
+    <?php
         if ($review_list_arr_top) {
             $query = "select r.review_post_date  from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
 
@@ -362,9 +352,10 @@ if ($mobile_view == 0) { ?>
             $info_query = (array)$info_query[0];
 
             if ($info_query['review_post_date'] != 0) {
-        ?>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Review<br><a class="heart_color"><?php echo date("d M Y", $info_query['review_post_date']); ?></a></div>
-            <?php
+                ?>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Review<br><a class="heart_color"><?php echo date("d M Y", $info_query['review_post_date']); ?></a>
+    </div>
+    <?php
             }
         }
 
@@ -375,61 +366,77 @@ if ($mobile_view == 0) { ?>
             $info_q_arr = (array)$info_q_arr[0];
 
             if ($info_q_arr['comment_post_date'] != '') {
-            ?>
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a></div>
-        <?php
+                ?>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a>
+    </div>
+    <?php
             }
         }
         ?>
-        </p>
-    </div>
-    <!-- new code by ad -->
-    <style>
-        .ad-follow-icon-box {
-            padding-left: 0px;
-        }
+    </p>
+</div>
+<!-- new code by ad -->
+<style>
+    .ad-follow-icon-box {
+        padding-left: 0px;
+    }
 
-        .bottom_nav li label {
-            color: #d73b3b;
-        }
-    </style>
-    <?php $social_icons = GetByWhere('social_icons');
+    .bottom_nav .li label {
+        color: #d73b3b;
+    }
+</style>
+<?php $social_icons = GetByWhere('social_icons');
     ?>
-    <div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
-        <ul class="bottom_nav">
+<div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
+    <ul class="bottom_nav">
 
-            <li><label>Follow me on: </label></li>
+        <li class="li"><label>Follow me on: </label></li>
 
-            <!-- Facebook icon -->
-            <?php if (isset($facebook_icon) && !empty($facebook_icon)) { ?>
-                <li><a href="<?php echo $facebook_icon[0]->social_link ?>" target="_blank"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $facebook_icon[0]->icon_image ?>" alt=""></a></li>
-            <?php } else { ?>
-                <li><a href="javascript:void(0)"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . 'profile_icon/facebook.png' ?>" alt=""></a></li>
-            <?php } ?>
+        <!-- Facebook icon -->
+        <?php if (isset($facebook_icon) && !empty($facebook_icon)) { ?>
+        <li><a href="<?php echo $facebook_icon[0]->social_link ?>"
+                target="_blank"><img class="sprite-icon_fb"
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $facebook_icon[0]->icon_image ?>"
+                    alt=""></a></li>
+        <?php } else { ?>
+        <li><a href="javascript:void(0)"><img class="sprite-icon_fb"
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/facebook.png' ?>"
+                    alt=""></a></li>
+        <?php } ?>
 
-            <!-- Twitter icon -->
-            <?php if (isset($twitter_icon) && !empty($twitter_icon)) { ?>
-                <li><a href="<?php echo $twitter_icon[0]->social_link ?>" target="_blank"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $twitter_icon[0]->icon_image ?>" alt=""></a></li>
-            <?php } else { ?>
-                <li><a href="javascript:void(0)"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . 'profile_icon/twitter.png' ?>" alt=""></a></li>
-            <?php } ?>
+        <!-- Twitter icon -->
+        <?php if (isset($twitter_icon) && !empty($twitter_icon)) { ?>
+        <li><a href="<?php echo $twitter_icon[0]->social_link ?>"
+                target="_blank"><img class="sprite-icon_tw"
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $twitter_icon[0]->icon_image ?>"
+                    alt=""></a></li>
+        <?php } else { ?>
+        <li><a href="javascript:void(0)"><img class="sprite-icon_tw"
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/twitter.png' ?>"
+                    alt=""></a></li>
+        <?php } ?>
 
-            <!-- Instagram icon -->
-            <?php if (isset($instagram_icon) && !empty($instagram_icon)) { ?>
-                <li><a href="<?php echo $instagram_icon[0]->social_link ?>" target="_blank"> <img src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $instagram_icon[0]->icon_image ?>" width="34" alt=""></a></li>
-            <?php } else { ?>
-                <li><a href="javascript:void(0)"> <img src="<?php echo SERVER_ROOTPATH . 'profile_icon/instagram.png' ?>" width="34" alt=""></a></li>
-            <?php } ?>
+        <!-- Instagram icon -->
+        <?php if (isset($instagram_icon) && !empty($instagram_icon)) { ?>
+        <li><a href="<?php echo $instagram_icon[0]->social_link ?>"
+                target="_blank"> <img
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $instagram_icon[0]->icon_image ?>"
+                    width="34" alt=""></a></li>
+        <?php } else { ?>
+        <li><a href="javascript:void(0)"> <img
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/instagram.png' ?>"
+                    width="34" alt=""></a></li>
+        <?php } ?>
 
-        </ul>
+    </ul>
 
-    </div>
+</div>
 
 <?php
 } elseif ($mobile_view == 1) { ?>
-    <div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
-        <p>
-            <?php
+<div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
+    <p>
+        <?php
             if ($review_list_arr_top) {
                 $query = "select r.review_post_date  from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
 
@@ -437,8 +444,9 @@ if ($mobile_view == 0) { ?>
                 $info_query = (array)$info_query[0];
 
                 if ($info_query['review_post_date'] != 0) {
-            ?>
-        <div class="col-sm-6 col-xs-6" style="padding:0;">Latest Review<br><a class="heart_color"><?php echo date("d M Y", $info_query['review_post_date']); ?></a></div>
+                    ?>
+    <div class="col-sm-6 col-xs-6" style="padding:0;">Latest Review<br><a class="heart_color"><?php echo date("d M Y", $info_query['review_post_date']); ?></a>
+    </div>
     <?php
                 }
             }
@@ -450,39 +458,56 @@ if ($mobile_view == 0) { ?>
                 $info_q_arr = (array)$info_q_arr[0];
 
                 if ($info_q_arr['comment_post_date'] != '') {
-    ?>
-        <div class="col-sm-6 col-xs-6" style="padding:0; text-align:right;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a></div>
-<?php
+                    ?>
+    <div class="col-sm-6 col-xs-6" style="padding:0; text-align:right;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a>
+    </div>
+    <?php
                 }
             }
-?></p>
-    </div>
-    <div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
-        <ul class="bottom_nav">
+?>
+    </p>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
+    <ul class="bottom_nav">
 
-            <li><label>Follow me on: </label></li>
-            <!-- Facebook icon -->
-            <?php if (isset($facebook_icon) && !empty($facebook_icon)) { ?>
-                <li><a href="<?php echo $facebook_icon[0]->social_link ?>" target="_blank"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $facebook_icon[0]->icon_image ?>" alt=""></a></li>
-            <?php } else { ?>
-                <li><a href="javascript:void(0)"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . 'profile_icon/facebook.png' ?>" alt=""></a></li>
-            <?php } ?>
+        <li><label>Follow me on: </label></li>
+        <!-- Facebook icon -->
+        <?php if (isset($facebook_icon) && !empty($facebook_icon)) { ?>
+        <li><a href="<?php echo $facebook_icon[0]->social_link ?>"
+                target="_blank"><img class="sprite-icon_fb"
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $facebook_icon[0]->icon_image ?>"
+                    alt=""></a></li>
+        <?php } else { ?>
+        <li><a href="javascript:void(0)"><img class="sprite-icon_fb"
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/facebook.png' ?>"
+                    alt=""></a></li>
+        <?php } ?>
 
-            <!-- Twitter icon -->
-            <?php if (isset($twitter_icon) && !empty($twitter_icon)) { ?>
-                <li><a href="<?php echo $twitter_icon[0]->social_link ?>" target="_blank"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $twitter_icon[0]->icon_image ?>" alt=""></a></li>
-            <?php } else { ?>
-                <li><a href="javascript:void(0)"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . 'profile_icon/twitter.png' ?>" alt=""></a></li>
-            <?php } ?>
+        <!-- Twitter icon -->
+        <?php if (isset($twitter_icon) && !empty($twitter_icon)) { ?>
+        <li><a href="<?php echo $twitter_icon[0]->social_link ?>"
+                target="_blank"><img class="sprite-icon_tw"
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $twitter_icon[0]->icon_image ?>"
+                    alt=""></a></li>
+        <?php } else { ?>
+        <li><a href="javascript:void(0)"><img class="sprite-icon_tw"
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/twitter.png' ?>"
+                    alt=""></a></li>
+        <?php } ?>
 
-            <!-- Instagram icon -->
-            <?php if (isset($instagram_icon) && !empty($instagram_icon)) { ?>
-                <li><a href="<?php echo $instagram_icon[0]->social_link ?>" target="_blank"> <img src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $instagram_icon[0]->icon_image ?>" width="34" alt=""></a></li>
-            <?php } else { ?>
-                <li><a href="javascript:void(0)"> <img src="<?php echo SERVER_ROOTPATH . 'profile_icon/instagram.png' ?>" width="34" alt=""></a></li>
-            <?php } ?>
+        <!-- Instagram icon -->
+        <?php if (isset($instagram_icon) && !empty($instagram_icon)) { ?>
+        <li><a href="<?php echo $instagram_icon[0]->social_link ?>"
+                target="_blank"> <img
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $instagram_icon[0]->icon_image ?>"
+                    width="34" alt=""></a></li>
+        <?php } else { ?>
+        <li><a href="javascript:void(0)"> <img
+                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/instagram.png' ?>"
+                    width="34" alt=""></a></li>
+        <?php } ?>
 
-        </ul>
+    </ul>
 
-    </div>
-<?php } ?>
+</div>
+<?php }
