@@ -32,7 +32,6 @@ class ProcessController extends Controller
             $artist_id          =    $art_id;
 
             if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
-
                 $errorstr = "Please sign in first.";
                 $response = array("code" => 'warning', 'message' => $errorstr);
                 return response()->json($response);
@@ -84,7 +83,6 @@ class ProcessController extends Controller
 
 
             if ($case == 1) {
-
                 $update_qry = "insert into tbl_user_playlist set title_playlist  = '" . $playlist_title . "', title_playlist_seo  = '" . SEO($playlist_title) . "', song_id  = '" . $song_id . "', 	user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "', artist_id = '" . $artist_id . "', posted_date  = '" . date("Y-m-d H:i:s") . "'";
                 // $db->query($update_qry);
                 \App\Models\Songs::GetRawData($update_qry);
@@ -123,7 +121,6 @@ class ProcessController extends Controller
 
 
             if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
-
                 $errorstr .= "Please sign in first.";
                 $response = array("code" => 'warning', 'message' => $errorstr);
                 return response()->json($response);
@@ -153,7 +150,6 @@ class ProcessController extends Controller
                 $response = array("code" => 'warning', 'message' => $errorstr);
                 return response()->json($response);
             } else {
-
                 $query_check  = "select id from tbl_user_playlist where title_playlist  = '" . $playlist_title . "' AND user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'";
 
                 $artist_list_arr = \App\Models\Songs::GetRawData($query_check);
@@ -194,7 +190,6 @@ class ProcessController extends Controller
 
 
             if ($case == 1) {
-
                 if ($db_count_playlist != 0 && $size_ofplaylist_arr == 0) {
                     $show_message  = "Song has been successfully removed from playlist.";
                 } else {
@@ -207,7 +202,6 @@ class ProcessController extends Controller
                 }
 
                 if (isset($result_match) && !empty($result_match)) {
-
                     $wher_new = " playlist_id NOT IN ( '" . implode("','", $result_match) . "' ) AND ";
                     $delete_qry = "Delete from tbl_user_playlist_songs where   $wher_new song_id  = '" . $song_id . "' AND 	user_id   = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND artist_id = '" . $artist_id . "'";
                     \App\Models\Songs::GetRawData($delete_qry);
@@ -262,7 +256,6 @@ class ProcessController extends Controller
             if (isset($edit_id)) {
                 $edit_id = $edit_id;
             } else {
-
                 $edit_id = '';
             }
 
@@ -377,10 +370,9 @@ class ProcessController extends Controller
                 $response = array("code" => 'success', 'url' => $slug);
                 return response()->json($response);
 
-                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name) . ".html-SEPARATOR-" . $_REQUEST['num'];
+            // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name) . ".html-SEPARATOR-" . $_REQUEST['num'];
                 // exit;
             } else {
-
                 $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where song_id = $song_id";
 
                 $rate_arr = \App\Models\Songs::GetRawData($sum_rating);
@@ -510,7 +502,6 @@ class ProcessController extends Controller
                         \App\Models\Songs::GetRawData($updatequeryA);
                     }
                 } else {
-
                     $updatequeryA = "update `tbl_songs` set rate_song = '0.0', review_count = review_count - 1 where id = '$song_id'";
                     \App\Models\Songs::GetRawData($updatequeryA);
                 }
@@ -519,7 +510,7 @@ class ProcessController extends Controller
                 return response()->json($response);
 
 
-                // echo 'done-'.$num;
+            // echo 'done-'.$num;
                 // exit;
             } else {
                 echo $errorstr;
@@ -668,7 +659,6 @@ class ProcessController extends Controller
             // $edit_id          =     mysqli_escape_string($db->dbh, stripslashes(trim($_REQUEST['edit_id'])));
 
             if (session()->get('user_id') == "") {
-
                 echo $errorstr .= "Please sign in first.";
                 $case = 0;
                 exit;
@@ -692,7 +682,6 @@ class ProcessController extends Controller
 
 
             if ($case == 1) {
-
                 $update_qry = "update tbl_user_playlist set title_playlist  = '" . $playlist_title . "', title_playlist_seo  = '" . SEO($playlist_title) . "' where user_id_playlist  = '" . session()->get('user_id'). "' AND id = '$edit_id'";
                 \App\Models\Songs::GetRawData($update_qry);
 
@@ -705,14 +694,10 @@ class ProcessController extends Controller
                 }
 
 
-                if(isset($p) && !empty($p))
-                {
-                    
+                if (isset($p) && !empty($p)) {
                     echo 'done-SEPARATOR-' . SERVER_ROOTPATH . "playlists-" . SEO($playlist_title);
-                }else
-                {
+                } else {
                     echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $p . "playlists-" . SEO($playlist_title);
-
                 }
                 exit;
             } else {
@@ -725,8 +710,8 @@ class ProcessController extends Controller
     {
         $data = array();
         $data['edit_id'] = $_GET['edit_id'];
-        $data['critaria'] = $_GET['critaria']; 
-        $data['mobile_view '] = 0 ; 
+        $data['critaria'] = $_GET['critaria'];
+        $data['mobile_view '] = 0 ;
         $data['user_id'] = session()->get('user_id');
        
 
@@ -736,8 +721,7 @@ class ProcessController extends Controller
     ///delete_playlist_process
     public function delete_playlist_process()
     {
-        if(isset($_REQUEST)) 
-        {
+        if (isset($_REQUEST)) {
             error_reporting(0);
             
             $errorstr="";
@@ -748,78 +732,55 @@ class ProcessController extends Controller
             $p	=	$_REQUEST['p'];
             $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
             
-            if($_SESSION[USER_SESSION_ARRAY]['USER_ID']=="")
-            {
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID']=="") {
                 echo $errorstr .="Please sign in first.\n";
                 $case = 0;
                 exit;
             }
             
-            if($id=="")
-            {
+            if ($id=="") {
                 $errorstr .="This Playlist doesn't exist.\n";
                 $case = 0;
-            }
-            else
-            {
-                 $query_check  = "select id from tbl_user_playlist where  user_id_playlist  = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."' AND id = $id";
+            } else {
+                $query_check  = "select id from tbl_user_playlist where  user_id_playlist  = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."' AND id = $id";
                 
                 $artist_list_arr	=	  \App\Models\Songs::GetRawData($query_check);
-                if(!isset($artist_list_arr))
-                {
+                if (!isset($artist_list_arr)) {
                     echo $errorstr ="Sorry, this playlist does not exist.";
                     $case = 0;
                     exit;
                 }
-                
-                
             }
          
         
-            if($case==1)
-            { 
-                
-                    
+            if ($case==1) {
                 \App\Models\Songs::GetRawData("Delete from tbl_user_playlist where id = $id AND  user_id_playlist  = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."'");
                     
                 \App\Models\Songs::GetRawData("Delete from tbl_user_playlist_songs where playlist_id = $id AND  user_id   = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."'");
                 
                 $playlist_arr =  get_first_playlist_record($_SESSION[USER_SESSION_ARRAY]['USER_ID']);
                 
-                if($p!='n')
-                {
-                        $p = $p."-profile-";
-                
-                }
-                else
-                {
+                if ($p!='n') {
+                    $p = $p."-profile-";
+                } else {
                     $p = '';
                 }
              
-                if(isset($p) && !empty($p))
-                {
-                    
+                if (isset($p) && !empty($p)) {
                     echo 'done-SEPARATOR-' . SERVER_ROOTPATH . "playlists";
-                }else
-                {
+                } else {
                     echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $p . "playlists";
-
                 }
-                
-            }
-            else
-            {
+            } else {
                 echo $errorstr;
             }
         }
-
     }
 
 
     ///DM_Manipulate
     public function DM_Manipulate()
     {
-
         $data = array();
         $data['actionfunction'] = $_POST['actionfunction'];
         $data['page'] = $_POST['page'];
@@ -886,7 +847,6 @@ class ProcessController extends Controller
     ///FavouriteLikeSubArtist2
     public function FavouriteLikeSubArtist2()
     {
-
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['sr_no'] = $_GET['sr_no'];
@@ -901,7 +861,6 @@ class ProcessController extends Controller
     ///FavouriteLikeSubArtistPopularLatest
     public function FavouriteLikeSubArtistPopularLatest()
     {
-
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['sr_no'] = $_GET['sr_no'];
@@ -914,7 +873,6 @@ class ProcessController extends Controller
     ///FavouriteLikeSubArtistPopular
     public function FavouriteLikeSubArtistPopular()
     {
-
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['sr_no'] = $_GET['sr_no'];
@@ -927,7 +885,6 @@ class ProcessController extends Controller
     ///FavouriteLikeReview
     public function FavouriteLikeReview()
     {
-
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['artist_seo'] = $_GET['artist_seo'];
@@ -938,7 +895,6 @@ class ProcessController extends Controller
     ///favourite_userprofile_likes_page
     public function favourite_userprofile_likes_page()
     {
-
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['sr_no'] = $_GET['sr_no'];
@@ -952,7 +908,17 @@ class ProcessController extends Controller
     ///FavouriteLikeReviewSong
     public function FavouriteLikeReviewSong()
     {
+        $data = array();
+        $data['prod_id'] = $_GET['prod_id'];
+        $data['user_name'] = $_GET['user_name'];
+        $data['r_fav'] = $_GET['r_fav'];
+        $data['user_id'] = session()->get('user_id');
 
+        return view('include.favourite_like_review_song', $data);
+    }
+    ///pop_favourite_user_profile_likes
+    public function pop_favourite_user_profile_likes()
+    {
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['user_name'] = $_GET['user_name'];
@@ -993,7 +959,6 @@ class ProcessController extends Controller
     ///FavouriteLikeSub
     public function FavouriteLikeSub()
     {
-
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['artist_seo'] = $_GET['artist_seo'];
@@ -1002,25 +967,23 @@ class ProcessController extends Controller
 
         return view('include.favourite_like_sub', $data);
     }
-    ///favourite_userprofile_mainlikes
-    public function favourite_userprofile_mainlikes()
-    {
 
+
+    ///pop_favourite_userprofile_likes
+    public function pop_favourite_userprofile_likes()
+    {
         $data = array();
         $data['prod_id'] = $_GET['prod_id'];
         $data['sr_no'] = $_GET['sr_no'];
-        $data['db_user_name'] = urlencode($_GET['db_user_name']);
-
 
         $data['user_id'] = session()->get('user_id');
 
-        return view('include.favourite_userprofile_mainlikes', $data);
+        return view('include.popfavourite_userprofile_likes', $data);
     }
 
     ///DetailReview
     public function DetailReview()
     {
-
         $data = array();
         $data['user_seo'] = $_GET['user'];
         $data['rev_id'] = $_GET['review_id'];
@@ -1052,8 +1015,6 @@ class ProcessController extends Controller
     public function Discussion()
     {
         if (isset($_POST)) {
-
-
             $errorstr = "";
             $case = 1;
             $song_id        =      trim($_REQUEST['song_id']);
@@ -1099,7 +1060,6 @@ class ProcessController extends Controller
 
 
             if ($case == 1) {
-
                 $update_qry = "insert into tbl_comments set comment_details = '" . $detail . "', comment_artist_id = '" . $artist_id . "', comment_album_id  = '" . $album_id . "', comment_review_id = '" . $song_id . "', 	comment_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "', comment_post_date = '" . time() . "', comment_status = '1', comment_ip = '" . $_SERVER['REMOTE_ADDR'] . "'";
 
                 \App\Models\Songs::GetRawData($update_qry);
@@ -1156,8 +1116,7 @@ class ProcessController extends Controller
         if ($_FILES["image_name"]['name'] == "") {
             $errorstr .= "Please upload your profile image.\n";
             $case = 0;
-        } else
-        if ($_FILES["image_name"]['name'] != "") {
+        } elseif ($_FILES["image_name"]['name'] != "") {
             $filename = $_FILES["image_name"]['name'];
             $TmpExt   = strtolower(substr($filename, strrpos($filename, '.') + 1));
             $ext = array('jpg', 'png', 'gif', 'JPEG', 'jpeg');
@@ -1171,7 +1130,6 @@ class ProcessController extends Controller
 
         if ($case == 1) {
             if ($_FILES["image_name"]['name'] != "") {
-
                 $select_img = "select profile_image from  tbl_users where user_id='" . session()->get('user_id') . "' ";
                 $result = \App\Models\Songs::GetRawData($select_img);
                 $result = (array)$result[0];
@@ -1185,7 +1143,7 @@ class ProcessController extends Controller
 
                 $icon_array = $_FILES["image_name"]['name'];
                 $img_formats = array("jpeg", "gif", "png", "jpg", "JPEG", "GIF", "PNG", "JPG");
-                $allowed_size = 2; // Allowed Photo Size in MB			
+                $allowed_size = 2; // Allowed Photo Size in MB
                 $file_temp = $_FILES["image_name"]['tmp_name'];
                 $h_image_size = filesize($_FILES["image_name"]['tmp_name']);
                 $h_image_size = ($h_image_size / 1024) / 1024;
@@ -1260,7 +1218,6 @@ class ProcessController extends Controller
     ///ChangeProfilePassword
     public function ChangeProfilePassword()
     {
-
         error_reporting(0);
         if (isset($_POST)) {
             $errorstr = "";
@@ -1285,16 +1242,13 @@ class ProcessController extends Controller
                     if ($new_password == "") {
                         $errorstr .= "Please enter your new password<br>";
                         $case = 0;
-                    } else
-            if (strlen($new_password) < 6) {
+                    } elseif (strlen($new_password) < 6) {
                         $errorstr .= "New password must have at least 6 characters<br>";
                         $case = 0;
-                    } else
-            if ($confirm_new_password == "") {
+                    } elseif ($confirm_new_password == "") {
                         $errorstr .= "Please confirm your new password<br>";
                         $case = 0;
-                    } else
-            if (strlen($confirm_new_password) < 6) {
+                    } elseif (strlen($confirm_new_password) < 6) {
                         $errorstr .= "Confirm new password must have at least 6 characters<br>";
                         $case = 0;
                     } elseif ($new_password != $confirm_new_password) {
@@ -1312,8 +1266,6 @@ class ProcessController extends Controller
             // }
 
             if ($case == 1) {
-
-
                 $update_qry = "UPDATE tbl_users set password = '" . $password . "' 
          where user_id='" . session()->get('user_id') . "'";
                 \App\Models\Songs::GetRawData($update_qry);
@@ -1372,7 +1324,6 @@ class ProcessController extends Controller
 
 
             if ($case == 1) {
-
                 $qry = "update tbl_users set activation_code = '$activation_code' where user_id = '$user_id'";
                 \App\Models\Songs::GetRawData($qry);
                 $adminemail  = "Select email from tbl_admin ";
@@ -1409,7 +1360,6 @@ class ProcessController extends Controller
     ///ReportProcess
     public function ReportProcess()
     {
-
         if (isset($_POST)) {
             extract($_POST);
             error_reporting(0);
@@ -1469,7 +1419,6 @@ class ProcessController extends Controller
             }
 
             if ($case == 1) {
-
                 $post = array();
                 $post['r_report_review_id'] = $reviewsid;
                 $post['r_report_user_id'] = $_SESSION[USER_SESSION_ARRAY]['USER_ID'];
