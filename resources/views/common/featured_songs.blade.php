@@ -159,7 +159,7 @@
 
                     if ($all_avg == "") {
                         $all_avg = 5.0;
-                        echo $all_avg;
+                    // echo $all_avg;
                     } elseif ($all_avg == "10") {
                         $all_avg = 10;
                     } else {

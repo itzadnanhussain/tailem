@@ -6,7 +6,10 @@
 <div class="latestsongssec">
     <div class="container topsongssecs">
         <h2 class="sec_heading marginbot30" style="margin-top: 35px;">
-            <div style="width:300px;margin-left:auto;margin-right:auto"> <i style="float:left" class="sprite sprite-icon_musichead"></i> <a href="https://www.tailem.com/latest-songs" style="color:#2b2b2b" onMouseOver="this.style.color='#70857b'" onMouseOut="this.style.color='#2b2b2b'">Latest Songs</a></div>
+            <div style="width:300px;margin-left:auto;margin-right:auto"> <i style="float:left"
+                    class="sprite sprite-icon_musichead"></i> <a href="https://www.tailem.com/latest-songs"
+                    style="color:#2b2b2b" onMouseOver="this.style.color='#70857b'"
+                    onMouseOut="this.style.color='#2b2b2b'">Latest Songs</a></div>
 
         </h2>
         <div class="listslider">
@@ -15,24 +18,22 @@
                 ///define latest song array
                 $latest_song_arr = array();
                 $latest_song_arr    =   App\Models\Songs::GetLatestSongsArray();
-                // echo '<pre>';
-                // print_r($latest_song_arr);
-                // echo '</pre>';
-                // die;
-
+                
 
                 if (isset($latest_song_arr) && !empty($latest_song_arr)) {
                     $c = 0;
                     $sno_val = 0;
                     foreach ($latest_song_arr as $val) {
-
                         $sno_val++;
                         $song_id        = $val->songid;
                         // if($song_id == 455052072) {
 
                         $rate_arr = array();
                         $rate_arr = App\Models\Songs::GetRawQuery('reviews', 'sum(review_rating) as sum_rate, count(*) as counter, sum(review_rating>=8) as excellent, sum(review_rating>=7 && review_rating<8) as verygood, sum(review_rating>=4 && review_rating<7) as good,sum(review_rating>=2 && review_rating<4) as poor,sum(review_rating>0 && review_rating<2) as terrible', array('song_id' => $song_id, 'status' => 1));
-
+                        // echo '<pre>';
+                        // print_r($song_id);
+                        // echo '</pre>';
+                        // die;
                         $rate_arr = (array)$rate_arr[0];
 
 
@@ -98,8 +99,6 @@
                         // echo '</pre>';
                         // die;
                         if (isset($other_details) && !empty($other_details)) {
-
-
                             $db_song_id = $song_id;
                             $song_title     = stripslashes(html_entity_decode($val->song_title));
                             $artist_seo     = strtolower(stripslashes(html_entity_decode($other_details[0]->artist_seo)));
@@ -157,57 +156,72 @@
                                     }
                                     $num++;
                                 }
-                            }
+                            } ?>
 
-                ?>
-
-                            <div>
-                                <div class="list_item">
-                                    <div class="album_cover">
-                                        <?php if ($val->picture != '') {
-                                            $img_api_link = album_img_api($val->picture);
-                                            if ($img_api_link != '') { ?>
-                                                <img src="<?php echo $img_api_link; ?>">
-                                            <?php } else { ?>
-                                                <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
-                                                    <p title="<?php echo $song_title; ?>"><img class="img-responsive" src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $val->picture; ?>" border="0" title="<?php echo $val->picture; ?>" style="height:300px;" />
-                                                </a>
-                                            <?php
+                <div>
+                    <div class="list_item">
+                        <div class="album_cover">
+                            <?php if ($val->picture != '') {
+                                $img_api_link = album_img_api($val->picture);
+                                if ($img_api_link != '') { ?>
+                            <img src="<?php echo $img_api_link; ?>">
+                            <?php } else { ?>
+                            <a
+                                href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
+                                <p
+                                    title="<?php echo $song_title; ?>">
+                                    <img class="img-responsive"
+                                        src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $val->picture; ?>"
+                                        border="0"
+                                        title="<?php echo $val->picture; ?>"
+                                        style="height:300px;" />
+                            </a>
+                            <?php
                                             }
-                                        } else { ?>
-                                            <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
-                                                <p title="<?php echo $song_title; ?>"><img src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/images/no_image4.png" class="img-responsive" border="0" style="height:300px;" />
-                                            </a>
-                                        <?php }
-                                        ?>
+                            } else { ?>
+                            <a
+                                href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
+                                <p
+                                    title="<?php echo $song_title; ?>">
+                                    <img src="<?php echo COOKIE_FREE_ROOTPATH; ?>assets/images/no_image4.png"
+                                        class="img-responsive" border="0" style="height:300px;" />
+                            </a>
+                            <?php } ?>
 
 
-                                        <cite class="cite-margin-top" style="background-color:<?php echo $color_pick ?>"><?php if ($all_avg == 10) {
-                                                                                                                                echo number_format($all_avg, 0);
-                                                                                                                            } else {
-                                                                                                                                echo $all_avg;
-                                                                                                                            } ?></cite>
-                                        <!-- <a style="color:#000;font-weight:400;background:0 0;color:#fff;font-size:12px;padding:12px 5px;position:absolute;right:5px;top:50px"><span class="red-text"><i><?php echo $counter; ?></i></span> Reviews</a> -->
-                                    </div>
-                                    <div class="list_bottom">
-                                        <div class="row">
-                                            <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
-                                                <?php
-                                                $length_song = strlen($song_title);
-                                                ?>
-                                                <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
-                                                    <p title="<?php echo $song_title; ?>"><?php echo substr($song_title, 0, 28);
-                                                                                            if ($length_song > 28) {
-                                                                                                echo "..";
-                                                                                            }
-                                                                                            ?></p>
-                                                </a>
-                                                <cite class="cite-margin-top">
-                                                    <a style="color:#08aa90" href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo  $artist_name; ?></a> <?php echo $feature_artists; ?>
-                                                </cite>
-                                            </div>
-                                            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
-                                                <?php
+                            <cite class="cite-margin-top"
+                                style="background-color:<?php echo $color_pick ?>"><?php if ($all_avg == 10) {
+                                echo number_format($all_avg, 0);
+                            } else {
+                                echo $all_avg;
+                            } ?>
+                            </cite>
+                            <!-- <a style="color:#000;font-weight:400;background:0 0;color:#fff;font-size:12px;padding:12px 5px;position:absolute;right:5px;top:50px"><span class="red-text"><i><?php echo $counter; ?></i></span>
+                            Reviews</a> -->
+                        </div>
+                        <div class="list_bottom">
+                            <div class="row">
+                                <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7">
+                                    <?php
+                                                $length_song = strlen($song_title); ?>
+                                    <a
+                                        href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
+                                        <p
+                                            title="<?php echo $song_title; ?>">
+                                            <?php echo substr($song_title, 0, 28);
+                            if ($length_song > 28) {
+                                echo "..";
+                            } ?>
+                                        </p>
+                                    </a>
+                                    <cite class="cite-margin-top">
+                                        <a style="color:#08aa90"
+                                            href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo  $artist_name; ?></a>
+                                        <?php echo $feature_artists; ?>
+                                    </cite>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                    <?php
                                                 if ($user_id != "") {
                                                     // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  like_type = 'artist' AND like_id = '$artist_id'"));
                                                     $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  like_type = 'artist' AND like_id = '$artist_id'");
@@ -223,60 +237,84 @@
                                                         $class = "like-group";
                                                     }
                                                     if ($counter == 0) {
-                                                ?>
-                                                        <span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular_latest('<?php echo $artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
-                                                            <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $ar_likes; ?><?php if ($ar_likes < 2) {
-                                                                                                                                                                                                                                                                                                    echo " Like";
-                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                    echo " Likes";
-                                                                                                                                                                                                                                                                                                } ?></a>
-                                                        </span>
-                                                        <span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"></span>
-                                                    <?php
+                                                        ?>
+                                    <span style="float:right;"
+                                        class="<?php echo $class; ?>"
+                                        id="other_dis_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"><a
+                                            href="javascript:;"
+                                            onClick="add_in_favourite_list_sub_artist_popular_latest('<?php echo $artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i
+                                                class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
+                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                            data-toggle="modal" data-target="#artist_modal" data-title=""
+                                            class="link-disable" style="color:#fff;"> <?php echo $ar_likes; ?><?php if ($ar_likes < 2) {
+                                                            echo " Like";
+                                                        } else {
+                                                            echo " Likes";
+                                                        } ?>
+                                        </a>
+                                    </span>
+                                    <span style="float:right;" class="like-group liked"
+                                        id="myStyle_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"></span>
+                                    <?php
                                                     } else {
-                                                    ?>
-                                                        <span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>">
-                                                            <a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular_latest('<?php echo $artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart" style="font-size:24px;"></i></a>
-                                                            <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php echo $ar_likes; ?><?php if ($ar_likes < 2) {
-                                                                                                                                                                                                                                                                                                    echo " Like";
-                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                    echo " Likes";
-                                                                                                                                                                                                                                                                                                } ?></a></span>
-                                                        <span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"></span>
-                                                    <?php
+                                                        ?>
+                                    <span style="float:right;"
+                                        class="<?php echo $class; ?>"
+                                        id="other_dis_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>">
+                                        <a href="javascript:;"
+                                            onClick="add_in_favourite_list_sub_artist_popular_latest('<?php echo $artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i
+                                                class="fa fa-heart" style="font-size:24px;"></i></a>
+                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                            data-toggle="modal" data-target="#artist_modal" data-title=""
+                                            class="link-disable" style="color:#fff;"> <?php echo $ar_likes; ?><?php if ($ar_likes < 2) {
+                                                            echo " Like";
+                                                        } else {
+                                                            echo " Likes";
+                                                        } ?>
+                                        </a></span>
+                                    <span style="float:right;" class="like-group liked"
+                                        id="myStyle_sub_popular_<?php echo $artist_id; ?>_<?php echo $sno_val; ?>"></span>
+                                    <?php
                                                     }
                                                 } else {
                                                     ?>
-                                                    <span style="float:right;" class="like-group">
-                                                        <?php
+                                    <span style="float:right;" class="like-group">
+                                        <?php
                                                         if ($user_id == "") {
-                                                        ?>
-                                                            <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o text_grey" style="font-size:24px; color:#D73B3B;"></i></a>
+                                                            ?>
+                                        <a href="#" data-toggle="modal" data-target="#signin_form"><i
+                                                class="fa fa-heart-o text_grey"
+                                                style="font-size:24px; color:#D73B3B;"></i></a>
 
-                                                        <?php
+                                        <?php
                                                         } else {
-                                                        ?>
-                                                            <a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular_latest('<?php echo $artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
-                                                        <?php
-                                                        }
-                                                        ?>
+                                                            ?>
+                                        <a href="javascript:;"
+                                            onClick="add_in_favourite_list_sub_artist_popular_latest('<?php echo $artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i
+                                                class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
+                                        <?php
+                                                        } ?>
 
-                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $ar_likes; ?><?php if ($ar_likes < 2) {
-                                                                                                                                                                                                                                                                                                                    echo " Like";
-                                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                                    echo " Likes";
-                                                                                                                                                                                                                                                                                                                } ?></a></span>
-                                                <?php
-                                                }
-                                                ?>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                            data-toggle="modal" data-target="#artist_modal" data-title=""
+                                            class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $ar_likes; ?><?php if ($ar_likes < 2) {
+                                                            echo " Like";
+                                                        } else {
+                                                            echo " Likes";
+                                                        } ?>
+                                        </a>
+                                    </span>
+                                    <?php
+                                                } ?>
                                 </div>
                             </div>
-                <?php }
+                        </div>
+                    </div>
+                </div>
+                <?php
+                        }
                     }
-                    // } 
+                    // }
                 } ?>
 
             </div>

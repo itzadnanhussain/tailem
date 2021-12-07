@@ -108,6 +108,8 @@ class SongsController extends Controller
     ///GetLatestSongs
     public function GetLatestSongs()
     {
+
+        ///song artist
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
         } else {
@@ -120,7 +122,8 @@ class SongsController extends Controller
         $data['mobile_view'] = 0;
         $data['page'] = $page;
 
-        
+
+        ///Review Song
         if (isset($user_seo) && ($user_seo != "")) {
             $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
             $result_image = \App\Models\Songs::GetRawData($qry);
@@ -141,11 +144,11 @@ class SongsController extends Controller
         $data['screen_rev'] = 15;
         $data['ipad_rev'] = 15;
         $data['mobile_rev'] = 15;
-
-
+        $data['title'] = GetTitle();
+ 
         //page View
         return view('latest_songs', $data);
-    } 
+    }
 
     ///GetAddPlayList
     public function GetAddPlayList()
@@ -165,7 +168,7 @@ class SongsController extends Controller
     }
  
     ///GetSongDetailBySort
-    public function GetSongDetailBySort($song_seo, $artist_seo, $sort = null , $page = null)
+    public function GetSongDetailBySort($song_seo, $artist_seo, $sort = null, $page = null)
     {
         $data = array();
         $data['song_seo'] =  $song_seo;
@@ -176,7 +179,7 @@ class SongsController extends Controller
 
         
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         
@@ -202,19 +205,19 @@ class SongsController extends Controller
      
         if (isset($song_list_arr) && !empty($song_list_arr)) {
             $data['song_list_arr'] = $song_list_arr;
-            // $data['song_id'] = $song_list_arr[0]->id;
+        // $data['song_id'] = $song_list_arr[0]->id;
         } else {
             return redirect('/');
         }
 
         $data['currentFile'] = 'song_detail';
-         $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('song_detail', $data);
     }
 
 
     ///GetSongDetailByRating
-    public function GetSongDetailByRating($song_seo, $artist_seo, $rate = null , $page = null)
+    public function GetSongDetailByRating($song_seo, $artist_seo, $rate = null, $page = null)
     {
         $data = array();
         $data['song_seo'] =  $song_seo;
@@ -225,7 +228,7 @@ class SongsController extends Controller
 
         
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         
@@ -253,7 +256,7 @@ class SongsController extends Controller
         }
 
         $data['currentFile'] = 'song_detail';
-         $data['title'] = GetTitle();
+        $data['title'] = GetTitle();
         return view('song_detail', $data);
     }
 
@@ -270,7 +273,7 @@ class SongsController extends Controller
 
         
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         
@@ -298,7 +301,7 @@ class SongsController extends Controller
         }
 
         $data['currentFile'] = 'song_detail';
-         $data['title'] =GetTitle();
+        $data['title'] =GetTitle();
         return view('song_detail', $data);
     }
 }
