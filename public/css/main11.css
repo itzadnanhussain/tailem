@@ -7483,7 +7483,7 @@ transition:all .5s ease
 	max-height:185px
 }
 .recentreviewsec .review_item .album_cover img {
-	height:100%;
+	/* height:100%; */
 	width:auto;
 	margin:0 auto
 }

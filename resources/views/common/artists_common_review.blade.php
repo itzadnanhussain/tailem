@@ -20,7 +20,8 @@
 <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12 rev_right_position">
     <div class="recentreviewsec rev_position">
         <!-- Advertisement Right Side Start-->
-        <div class="review_item  <?php if ($currentFile == 'artists') { ?> artist_rev <?php } else { ?> recent_style <?php } ?>">
+        <div
+            class="review_item  <?php if ($currentFile == 'artists') { ?> artist_rev <?php } else { ?> recent_style <?php } ?>">
             <?php echo ads_info('Right'); ?>
         </div>
         <!-- Advertisement Right Side End-->
@@ -47,7 +48,8 @@
                 $review_id       = $val['review_id'];
                 $db_review_id       = $val['review_id'];
 
-                $artist_seo    = strtolower(stripslashes(html_entity_decode($val['artist_seo'])));;
+                $artist_seo    = strtolower(stripslashes(html_entity_decode($val['artist_seo'])));
+                ;
                 $song_seo    = strtolower(stripslashes(html_entity_decode($val['song_seo'])));
                 $album_picture   = stripslashes(html_entity_decode($val['album_picture']));
                 $picture   = stripslashes(html_entity_decode($val['picture']));
@@ -116,7 +118,6 @@
                     $counter = 0;
                     $all_avg = 0;
                 } else {
-
                     $all_avg  =  $sum_rate / $counter;
                 }
 
@@ -200,96 +201,123 @@
 
                 $featured_screen  =  featured_screen($db_song_id, $artist_name, $artist_seo);
                 $featured_ipad  =  featured_ipad($db_song_id, $artist_name, $artist_seo);
-                $featured_mobile  =  featured_mobile($db_song_id, $artist_name, $artist_seo);
-
-        ?>
-                <div class="review_item">
-                    <div class="album_cover">
-                        <div class="bottom_sec rev_top_val">
-                            <div class="row">
-                                <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"></div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 txtalnright" style="padding-right:10px;">
-                                    <?php if ($all_avg != 0) { ?><cite class="score" style="background-color:<?php echo $color_pick_main; ?>"><?php if ($all_avg < 10) {
-                                                                                                                                                    echo number_format($all_avg, 1);
-                                                                                                                                                } else {
-                                                                                                                                                    echo $all_avg;
-                                                                                                                                                } ?></cite><?php } else { ?> <cite class="score_big mt-10">5.0</cite><?php } ?>
-                                </div>
-                            </div>
+                $featured_mobile  =  featured_mobile($db_song_id, $artist_name, $artist_seo); ?>
+        <div class="review_item">
+            <div class="album_cover">
+                <div class="bottom_sec rev_top_val">
+                    <div class="row">
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10"></div>
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 txtalnright" style="padding-right:10px;">
+                            <?php if ($all_avg != 0) { ?><cite
+                                class="score"
+                                style="background-color:<?php echo $color_pick_main; ?>"><?php if ($all_avg < 10) {
+                    echo number_format($all_avg, 1);
+                } else {
+                    echo $all_avg;
+                } ?>
+                            </cite><?php } else { ?> <cite
+                                class="score_big mt-10">5.0</cite><?php } ?>
                         </div>
-                        <?php
+                    </div>
+                </div>
+                <?php
                         if ($picture != "") {
                             $img_api_link = album_img_api($picture);
                             if ($img_api_link != '') {
-                        ?>
-                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
-                            <?php } else { ?>
-                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
-                            <?php
+                                ?>
+                <a
+                    href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img
+                        src="<?php echo $img_api_link; ?>" border="0"
+                        class="img-responsive" style="width:100%; " /></a>
+                <?php
+                            } else { ?>
+                <a
+                    href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img
+                        src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>"
+                        border="0" class="img-responsive" style="width:100%; " /></a>
+                <?php
                             }
-                        } else
-											if ($picture == "") {
-
+                        } elseif ($picture == "") {
                             if ($req_song['song_array']['image4'] != "") {
-                            ?>
-                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img class="img-responsive" src="<?php echo $req_song['song_array']['image4']; ?>" border="0" style="width:100%; max-height:150px;" /></a>
-                                <?php
-                            } else
-												if ($album_picture != "") {
+                                ?>
+                <a
+                    href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img
+                        class="img-responsive"
+                        src="<?php echo $req_song['song_array']['image4']; ?>"
+                        border="0" style="width:100%; " /></a>
+                <?php
+                            } elseif ($album_picture != "") {
                                 $img_api_link = album_img_api($album_picture);
                                 if ($img_api_link != '') {
-                                ?>
-                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo $img_api_link; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
-                                <?php } else { ?>
-                                    <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" class="img-responsive" style="width:100%; max-height:150px;" /></a>
-                                <?php }    ?>
-                                <!-- <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>"  border="0" class="img-responsive"  style="width:100%; max-height:150px;"/>-->
-                            <?php
+                                    ?>
+                <a
+                    href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img
+                        src="<?php echo $img_api_link; ?>" border="0"
+                        class="img-responsive" style="width:100%; " /></a>
+                <?php
+                                } else { ?>
+                <a
+                    href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img
+                        src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $album_picture; ?>"
+                        border="0" class="img-responsive" style="width:100%; " /></a>
+                <?php } ?>
+                <!-- <img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>"
+                border="0" class="img-responsive" style="width:100%; "/>-->
+                <?php
                             } else {
-                            ?>
-                                <a href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" class="img-responsive" style="max-width:inherit;" /></a>
-                        <?php
+                                ?>
+                <a
+                    href="<?php echo SERVER_ROOTPATH . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><img
+                        src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png"
+                        border="0" class="img-responsive" style="max-width:inherit;" /></a>
+                <?php
                             }
-                        }
-
-                        ?>
+                        } ?>
 
 
-                        <div class="bottom_sec" style="padding-bottom:0;">
-                            <div class="row">
+                <div class="bottom_sec" style="padding-bottom:0;">
+                    <div class="row">
 
-                                <!--Desktop-->
-                                <div class="review_screen_txt col-lg-9 col-md-8 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $screen_chr);
-                                                                                                                                                                                                                                                                                                            if (strlen($song_title) > $screen_chr) {
-                                                                                                                                                                                                                                                                                                                echo $song_title .  "..";
-                                                                                                                                                                                                                                                                                                            } ?></a></label><br>
-                                    <label class="font_wgt mrgin_top"><?php echo $featured_screen; ?></label>
-                                </div>
-                                <!--Ipad-->
-                                <div class="review_ipad_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
-                                                                                                                                                                                                                                                                                                            if (strlen($song_title) > $ipad_chr) {
-                                                                                                                                                                                                                                                                                                                echo $song_title . "..";
-                                                                                                                                                                                                                                                                                                            } ?></a></label><br>
+                        <!--Desktop-->
+                        <div class="review_screen_txt col-lg-9 col-md-8 col-sm-8 col-xs-8 pad_right">
+                            <label class="mrg_btm font_wgt"><a
+                                    href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"
+                                    style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $screen_chr);
+                if (strlen($song_title) > $screen_chr) {
+                    echo $song_title .  "..";
+                } ?>
+                                </a></label><br>
+                            <label class="font_wgt mrgin_top"><?php echo $featured_screen; ?></label>
+                        </div>
+                        <!--Ipad-->
+                        <div class="review_ipad_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
+                            <label class="mrg_btm font_wgt"><a
+                                    href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"
+                                    style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $ipad_chr);
+                if (strlen($song_title) > $ipad_chr) {
+                    echo $song_title . "..";
+                } ?>
+                                </a></label><br>
 
-                                    <label class="font_wgt mrgin_top"><?php echo $featured_ipad; ?></label>
+                            <label class="font_wgt mrgin_top"><?php echo $featured_ipad; ?></label>
 
-                                </div>
-                                <!--Mobile-->
-                                <div class="review_mobile_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
-                                    <label class="mrg_btm font_wgt"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>" style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
-                                                                                                                                                                                                                                                                                                            if (strlen($song_title) > $mobile_chr) {
-                                                                                                                                                                                                                                                                                                                echo $song_title . "..";
-                                                                                                                                                                                                                                                                                                            } ?></a></label><br>
-                                    <label class="font_wgt mrgin_top"><?php echo $featured_mobile; ?></label>
-                                </div>
+                        </div>
+                        <!--Mobile-->
+                        <div class="review_mobile_txt col-lg-9 col-md-9 col-sm-8 col-xs-8 pad_right">
+                            <label class="mrg_btm font_wgt"><a
+                                    href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"
+                                    style="font-size: 16px; color: #fff; font-family: 'Montserrat', sans-serif; font-weight:normal;"><?php echo substr($song_title, 0, $mobile_chr);
+                if (strlen($song_title) > $mobile_chr) {
+                    echo $song_title . "..";
+                } ?>
+                                </a></label><br>
+                            <label class="font_wgt mrgin_top"><?php echo $featured_mobile; ?></label>
+                        </div>
 
-                                <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 pad_left">
+                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-4 pad_left">
 
-                                    <?php
+                            <?php
                                     if ($user_id != "") {
-
                                         $qry =  "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$artist_id'";
                                         $counter = array();
                                         $counter = \App\Models\Songs::GetRawData($qry);
@@ -299,229 +327,296 @@
                                             $counter = 0;
                                         }
                                         if ($counter == 0) { ?>
-                                            <span style="float:right;" class="like-group" id="other_dis_sub_popular_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular('<?php echo $artist_id; ?>','<?php echo $p_fav; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><?php echo $counter_main; ?><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_id; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" class="link-disable" data-title="" style="color:#fff;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo " Like";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo " Likes";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } ?></a></span>
-                                            <span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $artist_id; ?>"></span>
-
-                                        <?php
+                            <span style="float:right;" class="like-group"
+                                id="other_dis_sub_popular_<?php echo $artist_id; ?>"><a
+                                    href="javascript:;"
+                                    onClick="add_in_favourite_list_sub_artist_popular('<?php echo $artist_id; ?>','<?php echo $p_fav; ?>','<?php echo $artist_seo; ?>')"><i
+                                        class="fa fa-heart-o heart_color heart_size"></i> </a><?php echo $counter_main; ?><a
+                                    href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_id; ?>&critaria=1"
+                                    data-toggle="modal" data-target="#artist_modal" class="link-disable" data-title=""
+                                    style="color:#fff;"><?php if ($counter_main < 2) {
+                                            echo " Like";
                                         } else {
-                                        ?>
-                                            <span style="float:right;" class="like-group" id="other_dis_sub_popular_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular('<?php echo $artist_id; ?>','<?php echo $p_fav; ?>','<?php echo $artist_seo; ?>')" style="color:red"><i class="fa fa-heart" style="font-size:24px; color:#D73B3B;"></i></a> <?php echo $counter_main; ?><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_id; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable" style="color:#fff;"> <?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo "Like";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            echo "Likes";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        } ?></a></span>
-                                            <span style="float:right;" id="myStyle_sub_popular_<?php echo $artist_id; ?>"></span>
-                                        <?php
+                                            echo " Likes";
+                                        } ?>
+                                </a></span>
+                            <span style="float:right;" class="like-group liked"
+                                id="myStyle_sub_popular_<?php echo $artist_id; ?>"></span>
+
+                            <?php
+                                        } else {
+                                            ?>
+                            <span style="float:right;" class="like-group"
+                                id="other_dis_sub_popular_<?php echo $artist_id; ?>"><a
+                                    href="javascript:;"
+                                    onClick="add_in_favourite_list_sub_artist_popular('<?php echo $artist_id; ?>','<?php echo $p_fav; ?>','<?php echo $artist_seo; ?>')"
+                                    style="color:red"><i class="fa fa-heart"
+                                        style="font-size:24px; color:#D73B3B;"></i></a> <?php echo $counter_main; ?><a
+                                    href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_id; ?>&critaria=1"
+                                    data-toggle="modal" data-target="#artist_modal" data-title="" class="link-disable"
+                                    style="color:#fff;"> <?php if ($counter_main < 2) {
+                                                echo "Like";
+                                            } else {
+                                                echo "Likes";
+                                            } ?>
+                                </a></span>
+                            <span style="float:right;"
+                                id="myStyle_sub_popular_<?php echo $artist_id; ?>"></span>
+                            <?php
                                         }
                                     } else {
                                         ?>
-                                        <span style="float:right;" class="like-group" id="other_dis_sub_popular_<?php echo $artist_id; ?>">
+                            <span style="float:right;" class="like-group"
+                                id="other_dis_sub_popular_<?php echo $artist_id; ?>">
 
-                                            <?php
+                                <?php
                                             if ($user_id == "") {
-                                            ?>
-                                                <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o text_grey" style="font-size:24px; color:#D73B3B;"></i></a>
+                                                ?>
+                                <a href="#" data-toggle="modal" data-target="#signin_form"><i
+                                        class="fa fa-heart-o text_grey" style="font-size:24px; color:#D73B3B;"></i></a>
 
-                                            <?php
-                                            } else {
-                                            ?>
-                                                <a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular('<?php echo $artist_id; ?>','<?php echo $p_fav; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i></a>
-                                            <?php
-                                            }
-                                            ?>
-                                            <?php echo $counter_main; ?><a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_id; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#fff;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                    } ?></a>
-                                            <span style="float:right;" id="myStyle_sub_popular_<?php echo $artist_id; ?>"></span>
-                                        <?php
-                                    }
-                                        ?>
-
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="gradientoverlay"></div>
-                    </div>
-                    <div class="album_detail">
-                        <!--Desktop-->
-                        <p class="review_screen_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $screen_rev);
-
-                                                                                                                                                                                                                                                                        if (strlen($review_title) > $screen_rev) {
-                                                                                                                                                                                                                                                                            echo $review_title . "...";
-                                                                                                                                                                                                                                                                        }
-
-
-                                                                                                                                                                                                                                                                        ?></a></label>
-
-                            <cite class="scors pull-right" style="background-color:<?php echo $color_pick; ?>"><?php if ($review_rating == 10) {
-                                                                                                                    echo number_format($review_rating, 0);
-                                                                                                                } else {
-                                                                                                                    echo $review_rating;
-                                                                                                                } ?></cite>
-                            <!--  <cite class="lightgreen">3.0</cite>-->
-                        </p>
-                        <!--Ipad-->
-                        <p class="review_ipad_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $ipad_rev);
-
-                                                                                                                                                                                                                                                                    if (strlen($review_title) > $ipad_rev) {
-                                                                                                                                                                                                                                                                        echo $review_title . "...";
-                                                                                                                                                                                                                                                                    }
-                                                                                                                                                                                                                                                                    ?></a></label>
-
-                            <cite class="scors pull-right" style="background-color:<?php echo $color_pick; ?>"><?php if ($review_rating == 10) {
-                                                                                                                    echo number_format($review_rating, 0);
-                                                                                                                } else {
-                                                                                                                    echo $review_rating;
-                                                                                                                } ?></cite>
-                        </p>
-                        <!--Mobile-->
-                        <p class="review_mobile_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $mobile_rev);
-
-                                                                                                                                                                                                                                                                        if (strlen($review_title) > $mobile_rev) {
-                                                                                                                                                                                                                                                                            echo $review_title . "...";
-                                                                                                                                                                                                                                                                        }
-
-
-                                                                                                                                                                                                                                                                        ?></a></label>
-
-                            <cite class="scors pull-right" style="background-color:<?php echo $color_pick; ?>"><?php if ($review_rating == 10) {
-                                                                                                                    echo number_format($review_rating, 0);
-                                                                                                                } else {
-                                                                                                                    echo $review_rating;
-                                                                                                                } ?></cite>
-                        </p>
-
-
-                        <p style="margin-bottom:16px;"><span style="white-space:normal;"><a class="review_detail darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>">
-                                    <?php $detail_rev  = substr($review_detail, 0, 128);
-                                    echo wordwrap($detail_rev, 15, " ", true);
-                                    if (strlen($review_detail) > 128) {
-                                        echo "...";
-                                    } ?></a></span></p>
-                        <div class="row">
-                            <div class="review_screen_txt col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
-                                        <?php echo substr($user_name, 0, 12);
-                                        if (strlen($user_name) > 12) {
-                                            echo "..";
-                                        }
-                                        ?>
-                                    </a></span>
-                            </div>
-                            <div class="review_screen_txt col-lg-4 col-md-4 col-sm-4 col-xs-4 rev_pad_left" style="text-align:center;">
-                                <span class="usrdetails darkgrey_rev" style="overflow:visible !important; font-size:12px;"><?php echo date("d M Y", $review_post_date); ?></span>
-                            </div>
-                            <!--Ipad-->
-                            <div class="review_ipad_txt white_space col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
-                                        <?php echo substr($user_name, 0, 30);
-                                        if (strlen($user_name) > 30) {
-                                            echo "..";
-                                        }
-                                        ?>
-                                    </a></span>
-                            </div>
-                            <!--Mobile-->
-                            <div class="review_mobile_txt col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                                <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
-                                        <?php echo substr($user_name, 0, 16);
-                                        if (strlen($user_name) > 16) {
-                                            echo "..";
-                                        }
-                                        ?>
-                                    </a></span>
-                            </div>
-                            <div class="review_mobile_txt col-lg-4 col-md-4 col-sm-2 col-xs-2 rev_pad_left" style="text-align:center;">
-                            </div>
-
-
-                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:right;">
-                                <span class="usrdetails" style="margin-top:-2px;">
-                                    <?php
-                                    $qry =  "select id from tbl_likes where like_type = 'review_song' AND like_id = '$db_review_id'";
-                                    $counter_main = array();
-                                    $counter_main = \App\Models\Songs::GetRawData($qry);
-                                    if ($counter_main) {
-                                        $counter_main = count($counter_main);
-                                    } else {
-                                        $counter_main = 0;
-                                    }
-                                    if ($user_id != "") {
-                                        $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'";
-                                        $counter = array();
-                                        $counter = \App\Models\Songs::GetRawData($qry);
-                                        if ($counter) {
-                                            $counter = count($counter);
-                                        } else {
-                                            $counter = 0;
-                                        }
-                                        if ($counter == 0) {
-                                    ?>
-                                            <?php
-                                            if ($review_user_id == $user_id) {
-                                            ?>
-                                                <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" title="your own review"><i class="fa fa-heart-o  heart_size heart_color"></i> </a><?php echo $counter_main;
-                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                    ?>
-                                                    <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')"><i class="fa fa-heart-o heart_size heart_color"></i> </a><?php echo $counter_main;
-                                                                                                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                                                                                                ?>
-
-                                                    <a href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo "Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo "Likes";
-                                                                                                                                                                                                                                                                                    } ?></a></span>
-                                                    <span class="darkgrey_rev" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
-
-                                                <?php
+                                <?php
                                             } else {
                                                 ?>
-                                                    <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')" class="like"><i class="fa fa-heart heart_size heart_color"></i></a> <?php echo $counter_main; ?><a href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } ?></a></span>
-                                                    <span class="darkgrey_rev" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
-                                                <?php
-                                            }
-                                        } else {
-                                                ?>
-                                                <span class="darkgrey_rev" id="other_dis_sub_<?php echo $db_review_id; ?>">
-                                                    <?php
-                                                    if ($user_id == "") {
-                                                    ?>
-                                                        <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o text_grey" style="font-size:24px; color:#D73B3B;"></i></a>
+                                <a href="javascript:;"
+                                    onClick="add_in_favourite_list_sub_artist_popular('<?php echo $artist_id; ?>','<?php echo $p_fav; ?>','<?php echo $artist_seo; ?>')"><i
+                                        class="fa fa-heart-o heart_color heart_size"></i></a>
+                                <?php
+                                            } ?>
+                                <?php echo $counter_main; ?><a
+                                    href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_id; ?>&critaria=1"
+                                    data-toggle="modal" data-target="#artist_modal" data-title=""
+                                    class="like link-disable" style="color:#fff;"><?php if ($counter_main < 2) {
+                                                echo " Like";
+                                            } else {
+                                                echo " Likes";
+                                            } ?>
+                                </a>
+                                <span style="float:right;"
+                                    id="myStyle_sub_popular_<?php echo $artist_id; ?>"></span>
+                                <?php
+                                    } ?>
 
-                                                    <?php
-                                                    } else {
-                                                    ?>
-                                                        <a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')"><i class="fa fa-heart-o heart_size heart_color"></i></a>
-                                                    <?php
-                                                    }
-                                                    ?>
-                                                    <?php echo $counter_main; ?><a href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#review_modal" data-title="" class="like darkgrey_rev"> <?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                                    } ?></a></span>
-                                                <span class="darkgrey_rev" id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
-                                            <?php
-                                        }
-                                            ?>
-                                                </span>
-                                </span>
-                            </div>
                         </div>
+
                     </div>
                 </div>
+                <div class="gradientoverlay"></div>
+            </div>
+            <div class="album_detail">
+                <!--Desktop-->
+                <p class="review_screen_txt" style="margin-top:5px; margin-bottom:4px;"><label><a
+                            class="rec_review_title"
+                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $screen_rev);
+
+                if (strlen($review_title) > $screen_rev) {
+                    echo $review_title . "...";
+                } ?>
+                        </a></label>
+
+                    <cite class="scors pull-right"
+                        style="background-color:<?php echo $color_pick; ?>"><?php if ($review_rating == 10) {
+                    echo number_format($review_rating, 0);
+                } else {
+                    echo $review_rating;
+                } ?>
+                    </cite>
+                    <!--  <cite class="lightgreen">3.0</cite>-->
+                </p>
+                <!--Ipad-->
+                <p class="review_ipad_txt" style="margin-top:5px; margin-bottom:4px;"><label><a class="rec_review_title"
+                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $ipad_rev);
+
+                if (strlen($review_title) > $ipad_rev) {
+                    echo $review_title . "...";
+                } ?>
+                        </a></label>
+
+                    <cite class="scors pull-right"
+                        style="background-color:<?php echo $color_pick; ?>"><?php if ($review_rating == 10) {
+                    echo number_format($review_rating, 0);
+                } else {
+                    echo $review_rating;
+                } ?>
+                    </cite>
+                </p>
+                <!--Mobile-->
+                <p class="review_mobile_txt" style="margin-top:5px; margin-bottom:4px;"><label><a
+                            class="rec_review_title"
+                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php echo substr($review_title, 0, $mobile_rev);
+
+                if (strlen($review_title) > $mobile_rev) {
+                    echo $review_title . "...";
+                } ?>
+                        </a></label>
+
+                    <cite class="scors pull-right"
+                        style="background-color:<?php echo $color_pick; ?>"><?php if ($review_rating == 10) {
+                    echo number_format($review_rating, 0);
+                } else {
+                    echo $review_rating;
+                } ?>
+                    </cite>
+                </p>
+
+
+                <p style="margin-bottom:16px;"><span style="white-space:normal;"><a class="review_detail darkgrey_rev"
+                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>">
+                            <?php $detail_rev  = substr($review_detail, 0, 128);
+                echo wordwrap($detail_rev, 15, " ", true);
+                if (strlen($review_detail) > 128) {
+                    echo "...";
+                } ?>
+                        </a></span></p>
+                <div class="row">
+                    <div class="review_screen_txt col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev"
+                                href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
+                                <?php echo substr($user_name, 0, 12);
+                if (strlen($user_name) > 12) {
+                    echo "..";
+                } ?>
+                            </a></span>
+                    </div>
+                    <div class="review_screen_txt col-lg-4 col-md-4 col-sm-4 col-xs-4 rev_pad_left"
+                        style="text-align:center;">
+                        <span class="usrdetails darkgrey_rev"
+                            style="overflow:visible !important; font-size:12px;"><?php echo date("d M Y", $review_post_date); ?></span>
+                    </div>
+                    <!--Ipad-->
+                    <div class="review_ipad_txt white_space col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                        <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev"
+                                href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
+                                <?php echo substr($user_name, 0, 30);
+                if (strlen($user_name) > 30) {
+                    echo "..";
+                } ?>
+                            </a></span>
+                    </div>
+                    <!--Mobile-->
+                    <div class="review_mobile_txt col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                        <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev"
+                                href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
+                                <?php echo substr($user_name, 0, 16);
+                if (strlen($user_name) > 16) {
+                    echo "..";
+                } ?>
+                            </a></span>
+                    </div>
+                    <div class="review_mobile_txt col-lg-4 col-md-4 col-sm-2 col-xs-2 rev_pad_left"
+                        style="text-align:center;">
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="text-align:right;">
+                        <span class="usrdetails" style="margin-top:-2px;">
+                            <?php
+                                    $qry =  "select id from tbl_likes where like_type = 'review_song' AND like_id = '$db_review_id'";
+                $counter_main = array();
+                $counter_main = \App\Models\Songs::GetRawData($qry);
+                if ($counter_main) {
+                    $counter_main = count($counter_main);
+                } else {
+                    $counter_main = 0;
+                }
+                if ($user_id != "") {
+                    $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'review_song' AND like_id = '$db_review_id'";
+                    $counter = array();
+                    $counter = \App\Models\Songs::GetRawData($qry);
+                    if ($counter) {
+                        $counter = count($counter);
+                    } else {
+                        $counter = 0;
+                    }
+                    if ($counter == 0) {
+                        ?>
+                            <?php
+                                            if ($review_user_id == $user_id) {
+                                                ?>
+                            <span class="darkgrey_rev"
+                                id="other_dis_sub_<?php echo $db_review_id; ?>"><a
+                                    href="javascript:;" title="your own review"><i
+                                        class="fa fa-heart-o  heart_size heart_color"></i> </a><?php echo $counter_main;
+                                            } else {
+                                                ?>
+                                <span class="darkgrey_rev"
+                                    id="other_dis_sub_<?php echo $db_review_id; ?>"><a
+                                        href="javascript:;"
+                                        onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')"><i
+                                            class="fa fa-heart-o heart_size heart_color"></i> </a><?php echo $counter_main;
+                                            } ?>
+
+                                    <a href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
+                                        data-toggle="modal" data-target="#review_modal" data-title=""
+                                        class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
+                                                echo "Like";
+                                            } else {
+                                                echo "Likes";
+                                            } ?>
+                                    </a>
+                                </span>
+                                <span class="darkgrey_rev"
+                                    id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
+
+                                <?php
+                    } else {
+                        ?>
+                                <span class="darkgrey_rev"
+                                    id="other_dis_sub_<?php echo $db_review_id; ?>"><a
+                                        href="javascript:;"
+                                        onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')"
+                                        class="like"><i class="fa fa-heart heart_size heart_color"></i></a> <?php echo $counter_main; ?><a
+                                        href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
+                                        data-toggle="modal" data-target="#review_modal" data-title=""
+                                        class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
+                            echo " Like";
+                        } else {
+                            echo " Likes";
+                        } ?>
+                                    </a></span>
+                                <span class="darkgrey_rev"
+                                    id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
+                                <?php
+                    }
+                } else {
+                    ?>
+                                <span class="darkgrey_rev"
+                                    id="other_dis_sub_<?php echo $db_review_id; ?>">
+                                    <?php
+                                                    if ($user_id == "") {
+                                                        ?>
+                                    <a href="#" data-toggle="modal" data-target="#signin_form"><i
+                                            class="fa fa-heart-o text_grey"
+                                            style="font-size:24px; color:#D73B3B;"></i></a>
+
+                                    <?php
+                                                    } else {
+                                                        ?>
+                                    <a href="javascript:;"
+                                        onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')"><i
+                                            class="fa fa-heart-o heart_size heart_color"></i></a>
+                                    <?php
+                                                    } ?>
+                                    <?php echo $counter_main; ?><a
+                                        href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
+                                        data-toggle="modal" data-target="#review_modal" data-title=""
+                                        class="like darkgrey_rev"> <?php if ($counter_main < 2) {
+                                                        echo " Like";
+                                                    } else {
+                                                        echo " Likes";
+                                                    } ?>
+                                    </a>
+                                </span>
+                                <span class="darkgrey_rev"
+                                    id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
+                                <?php
+                } ?>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php
             }
         }
