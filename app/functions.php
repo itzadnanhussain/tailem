@@ -26,12 +26,10 @@ if (!function_exists('CheckDatabaseConnection')) {
 if (!function_exists('ads_info')) {
     function ads_info($place)
     {
-
         $cache_result = array();
         if ($cache_result) {
             return $cache_result;
         } else {
-
             $ads_list = "SELECT ad_script as sss FROM tbl_advertisement where status =1 and ad_place = '$place' order by rand() limit 1";
 
             // $ads_list_arr    =    $db->get_row($ads_list, ARRAY_A);
@@ -51,7 +49,6 @@ if (!function_exists('ads_info')) {
 if (!function_exists('playlist_for_user')) {
     function playlist_for_user($user_id)
     {
-
         $main_play_list = "select * from tbl_user_playlist where user_id_playlist = '" . $user_id . "' order by id asc";
         // $playlist_arr	=	$db->get_results($main_play_list,ARRAY_A);
         $playlist_arr = \App\Models\Songs::GetRawData($main_play_list);
@@ -65,7 +62,6 @@ if (!function_exists('CheckNumberFormate')) {
     function CheckNumberFormate($number)
     {
         if ((int) $number == $number) {
-
             $number = $number . '.0';
         } else {
             $number = $number;
@@ -151,7 +147,6 @@ if (!function_exists('get_page_name')) {
 if (!function_exists('album_img_api')) {
     function album_img_api($val)
     {
-
         $result = substr($val, 0, 4);
         if ($result == 'http' || $result == 'https') {
             $val = str_replace("is1.mzstatic.com", "is4.mzstatic.com", $val);
@@ -167,7 +162,6 @@ if (!function_exists('album_img_api')) {
 if (!function_exists('img_api_link')) {
     function img_api_link($val)
     {
-
         $result = substr($val, 0, 4);
         if ($result == 'http' || $result == 'https') {
             $val = str_replace("is1.mzstatic.com", "is4.mzstatic.com", $val);
@@ -184,7 +178,6 @@ if (!function_exists('img_api_link')) {
 if (!function_exists('review_count_position')) {
     function review_count_position($reviewid, $song_id)
     {
-
         $query_position = "select r.review_id from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.song_id = $song_id order by r.review_id desc";
         // $data_arr    =    $db->get_results($query_position, ARRAY_A);
         $data_arr    =    \App\Models\Songs::GetRawData($query_position);
@@ -215,11 +208,10 @@ if (!function_exists('review_count_position')) {
 }
 
 
-///get_user_detail 
+///get_user_detail
 if (!function_exists('get_user_detail')) {
     function get_user_detail($un)
     {
-
         $query    =    "select * from tbl_users where user_name = '$un'";
         $arr     =  \App\Models\Songs::GetRawData($query);
 
@@ -237,7 +229,7 @@ if (!function_exists('get_user_detail')) {
 }
 
 
-///Slug 
+///Slug
 if (!function_exists('Slug')) {
     function Slug($string)
     {
@@ -251,11 +243,10 @@ if (!function_exists('Slug')) {
 }
 
 
-///song_info 
+///song_info
 if (!function_exists('song_info')) {
     function song_info($songid)
     {
-
         $query_list        =    "select  song_title, song_seo from tbl_songs where id = '$songid'";
         $artist_list_arr = \App\Models\Songs::GetRawData($query_list);
         $artist_list_arr = (array)$artist_list_arr[0];
@@ -265,7 +256,7 @@ if (!function_exists('song_info')) {
 }
 
 
-///artist_info 
+///artist_info
 if (!function_exists('artist_info')) {
     function artist_info($artistid)
     {
@@ -277,7 +268,7 @@ if (!function_exists('artist_info')) {
 }
 
 
-///sortArray 
+///sortArray
 if (!function_exists('sortArray')) {
     function sortArray($data, $field)
     {
@@ -287,7 +278,9 @@ if (!function_exists('sortArray')) {
             uasort($data, function ($a, $b) use ($field) {
                 $retval = 0;
                 foreach ($field as $fieldname) {
-                    if ($retval == 0) $retval = strnatcmp($a[$fieldname], $b[$fieldname]);
+                    if ($retval == 0) {
+                        $retval = strnatcmp($a[$fieldname], $b[$fieldname]);
+                    }
                 }
                 return $retval;
             });
@@ -299,7 +292,7 @@ if (!function_exists('sortArray')) {
 }
 
 
-///addtoplaylist_icon 
+///addtoplaylist_icon
 if (!function_exists('addtoplaylist_icon')) {
     function addtoplaylist_icon()
     {
@@ -309,22 +302,42 @@ if (!function_exists('addtoplaylist_icon')) {
 }
 
 
-///remove_spl_char 
+///remove_spl_char
 if (!function_exists('remove_spl_char')) {
     function remove_spl_char($string)
     {
-
         $string = str_replace("'", '&#39;', $string); // Replaces all spaces with hyphens.
         $string = str_replace('"', '&#34;', $string);
         return utf8_encode($string);
     }
 }
+///clean
+if (!function_exists('clean')) {
+    function clean($string)
+    {
+        $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
+        return preg_replace('/[^A-Za-z0-9\-]/', '-', $string); // Removes special chars.
+    }
+}
+///get_data
+if (!function_exists('get_data')) {
+    function get_data($url)
+    {
+        $ch = curl_init();
+        $timeout = 5;
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $data = curl_exec($ch);
+        curl_close($ch);
+        return $data;
+    }
+}
 
-///get_first_playlist_record 
+///get_first_playlist_record
 if (!function_exists('get_first_playlist_record')) {
     function get_first_playlist_record($user_id)
     {
-
         $main_play_list = "select title_playlist_seo  from tbl_user_playlist where user_id_playlist = '" . $user_id . "'";
         $playlist_arr = \App\Models\Songs::GetRawData($main_play_list);
 
@@ -337,15 +350,13 @@ if (!function_exists('get_first_playlist_record')) {
 if (!function_exists('checkUser_profile')) {
     function checkUser($userData = array())
     {
-
         if (!empty($userData)) {
-
-
             $get_email  = $userData['email'];
             $generate_username  = $userData['first_name'];
             $lname  = $userData['last_name'];
             if ($lname != '') {
-                $generate_username  .= " " . $lname;;
+                $generate_username  .= " " . $lname;
+                ;
             }
 
             $useremail  = $get_email;
@@ -367,7 +378,6 @@ if (!function_exists('checkUser_profile')) {
                 fclose($fp);
                 $userData['picture'] = $google_img;
                 if ($results['profile_image'] != "") {
-
                     unlink('/site_upload/user_images/' . $results['profile_image']);
                 }
             }
@@ -419,7 +429,6 @@ if (!function_exists('checkUser_profile')) {
 
 
                 if (isset($results_Fb)) {
-
                     $query = "UPDATE " . $this->userTbl . " SET user_name = '" . $generate_username . "', user_seo = '" . addslashes($seo_username) . "' WHERE user_email = '" . $get_email . "'";
                 } else {
                     $generate_username  = $generate_username . rand(100, 999);
@@ -432,10 +441,8 @@ if (!function_exists('checkUser_profile')) {
                 $update = $this->db->query($query);
 
                 /*echo $insert_qry_names = "INSERT INTO tbl_social_username SET  fullname = '".addslashes(userData['first_name'])." ".addslashes($userData['last_name'])."',network = 'gmail',user_id= '".$insert."'";
-				exit;*/
+                exit;*/
                 //$this->db->query($insert_qry_names);
-
-
             }
 
             //Get user data from the database
@@ -449,11 +456,10 @@ if (!function_exists('checkUser_profile')) {
     }
 }
 
-///popular_review_artist 
+///popular_review_artist
 if (!function_exists('popular_review_artist')) {
     function popular_review_artist()
     {
-
         $reviews_list_arr = array();
 
 
@@ -474,11 +480,10 @@ if (!function_exists('popular_review_artist')) {
 }
 
 
-///popular_review 
+///popular_review
 if (!function_exists('popular_review')) {
     function popular_review()
     {
-
         $reviews_list_arr = array();
         if (empty($reviews_list_arr)) {
             $qry = "select b.album_seo, b.album_picture,a.artist_seo,a.artist_seo, a.artist_name,s.song_seo, s.song_title,s.updated_by_itunes,s.picture,r.* 
@@ -502,16 +507,14 @@ if (!function_exists('popular_review')) {
 }
 
 
-///featured_screen 
+///featured_screen
 if (!function_exists('featured_screen')) {
     function featured_screen($db_song_id, $artist_name, $artist_seo)
     {
-
         $artist_seo = strtolower($artist_seo);
         $qry_feature_arr = array();
 
         if (empty($qry_feature_arr)) {
-
             $qry_top_feature_artist = "Select a.artist_seo as f_artist_seo,a.artist_name as feature_artist, a.id as feature_artist_id from tbl_featured_artist_assocs f, tbl_artists a where a.id = f.featured_artist AND f.song_id = '" . $db_song_id . "'";
             // $qry_feature_arr = $db->get_results($qry_top_feature_artist, ARRAY_A);
             $qry_feature_arr = \App\Models\Songs::GetRawData($qry_top_feature_artist);
@@ -539,18 +542,16 @@ if (!function_exists('featured_screen')) {
             if ($string_art > $maxString) {
                 echo '...';
             } elseif ($string_art < $maxString) {
-
                 $totval = ($maxString - $string_art) - 5;
 
 
                 $featured_screen .= "<a class='featured_art'> ft. </a>";
 
                 foreach ($qry_feature_arr as $val_feature) {
-
                     $val_feature = (array) $val_feature;
                     $val_feature['f_artist_seo'] = strtolower($val_feature['f_artist_seo']);
 
-                    //	$num==$count means those loops have only one featured artists											 
+                    //	$num==$count means those loops have only one featured artists
                     if ($num == $count) {
                         $str_length = strlen($val_feature['feature_artist']);
                         $sum_len = $sum_len + $str_length;
@@ -582,7 +583,6 @@ if (!function_exists('featured_screen')) {
                                 //echo $remaining_feature_art  = substr($val_feature['feature_artist'],0,$remaing_space);
                                 $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $feature_art . '..' . "</a>";
                             } else {
-
                                 $remaing_space =  28 - $sum_len - 5;
                                 $remaing_feature_art  = substr($val_feature['feature_artist'], 0, $remaing_space);
                                 $featured_screen .= "<a class='featured_art' href='" . SERVER_ROOTPATH . Slug($val_feature['f_artist_seo']) . "/artist-songs'>" . $remaing_feature_art . "..</a>";
@@ -606,7 +606,7 @@ if (!function_exists('featured_screen')) {
     }
 }
 
-///table_last_updated 
+///table_last_updated
 if (!function_exists('table_last_updated')) {
     function table_last_updated($table)
     {
@@ -627,7 +627,7 @@ if (!function_exists('table_last_updated')) {
 }
 
 
-///GetArtistBySongId 
+///GetArtistBySongId
 if (!function_exists('GetArtistBySongId')) {
     function GetArtistBySongId($song_id)
     {
@@ -645,7 +645,7 @@ if (!function_exists('GetArtistBySongId')) {
 }
  
 
-///GetArtistByAlbumId 
+///GetArtistByAlbumId
 if (!function_exists('GetArtistByAlbumId')) {
     function GetArtistByAlbumId($album_id)
     {
@@ -663,16 +663,14 @@ if (!function_exists('GetArtistByAlbumId')) {
 }
 
 
-///featured_ipad 
+///featured_ipad
 if (!function_exists('featured_ipad')) {
     function featured_ipad($db_song_id, $artist_name, $artist_seo)
     {
-
         $qry_feature_arr = array();
         $artist_seo = strtolower($artist_seo);
 
         if (empty($qry_feature_arr)) {
-
             $qry_top_feature_artist = "Select a.artist_seo as f_artist_seo,a.artist_name as feature_artist, a.id as feature_artist_id from tbl_featured_artist_assocs f, tbl_artists a where a.id = f.featured_artist AND f.song_id = '" . $db_song_id . "'";
             // $qry_feature_arr = $db->get_results($qry_top_feature_artist, ARRAY_A);
             $qry_feature_arr = \App\Models\Songs::GetRawData($qry_top_feature_artist);
@@ -695,7 +693,6 @@ if (!function_exists('featured_ipad')) {
             if ($string_art > 18) {
                 echo '...';
             } elseif ($string_art < 18) {
-
                 $totval_pad = (18 - $string_art) - 5;
 
 
@@ -756,9 +753,8 @@ if (!function_exists('featured_ipad')) {
 
 
 
-///featured_mobile 
+///featured_mobile
 if (!function_exists('featured_mobile')) {
-
     function featured_mobile($db_song_id, $artist_name, $artist_seo)
     {
         $artist_seo = strtolower($artist_seo);
@@ -766,7 +762,6 @@ if (!function_exists('featured_mobile')) {
         $featured_mobile = '';
 
         if (empty($qry_feature_arr)) {
-
             $qry_top_feature_artist = "Select a.artist_seo as f_artist_seo,a.artist_name as feature_artist, a.id as feature_artist_id from tbl_featured_artist_assocs f, tbl_artists a where a.id = f.featured_artist AND f.song_id = '" . $db_song_id . "'";
             $qry_feature_arr = \App\Models\Songs::GetRawData($qry_top_feature_artist);
             if ($qry_feature_arr) {
@@ -787,7 +782,6 @@ if (!function_exists('featured_mobile')) {
             if ($string_art > 18) {
                 echo '...';
             } elseif ($string_art < 18) {
-
                 $totval = (18 - $string_art) - 5;
 
 
@@ -849,16 +843,13 @@ if (!function_exists('featured_mobile')) {
 
 
 
-///feature_songs 
+///feature_songs
 if (!function_exists('feature_songs')) {
-
     function feature_songs($db_song_id)
     {
-
         $qry_feature_arr = array();
 
         if (empty($qry_feature_arr)) {
-
             $qry_top_feature_artist = "Select a.artist_seo as f_artist_seo,a.artist_name as feature_artist, a.id as feature_artist_id from tbl_featured_artist_assocs f, tbl_artists a where a.id = f.featured_artist AND f.song_id = '" . $db_song_id . "'";
             $qry_feature_arr = \App\Models\Songs::GetRawData($qry_top_feature_artist);
             if ($qry_feature_arr) {
@@ -926,13 +917,10 @@ if (!function_exists('feature_songs')) {
 }
 
 
-///artist_album_func 
+///artist_album_func
 if (!function_exists('artist_album_func')) {
-
     function artist_album_func($artistname, $albumname)
     {
-
-
         ini_set('allow_url_fopen ', 'ON');
 
         $artistname = urlencode($artistname);
@@ -951,12 +939,10 @@ if (!function_exists('artist_album_func')) {
 }
 
 
-///calculate_rating_main 
+///calculate_rating_main
 if (!function_exists('calculate_rating_main')) {
-
     function calculate_rating_main($album_id, $artist_id, $albseo)
     {
-
         $listof_ids  =    get_listof_songs_ids_main($album_id, $artist_id);
         $sum_rating_query    = "select avg(rev.review_rating) as total_sum, Count(*) as number_count
 							from tbl_artist_album b, tbl_artists a, tbl_songs s, tbl_reviews rev, tbl_users u 
@@ -1018,19 +1004,18 @@ if (!function_exists('get_playlist_info')) {
     function get_playlist_info($user_id, $id)
     {
         $main_play_list = "select *  from tbl_user_playlist where user_id_playlist = '" . $user_id . "' AND title_playlist_seo = '$id'";
-        $playlist_arr    =    \App\Models\Songs::GetRawData($main_play_list);;
+        $playlist_arr    =    \App\Models\Songs::GetRawData($main_play_list);
+        ;
         return $playlist_arr;
     }
 }
 
 
 
-///get_listof_songs_ids_main 
+///get_listof_songs_ids_main
 if (!function_exists('get_listof_songs_ids_main')) {
-
     function get_listof_songs_ids_main($album_id, $artid)
     {
-
         $artist_list_arr = "select b.album_title, b.album_seo, saa.song_id, saa.artist_id from tbl_songs_artist_album saa, tbl_artist_album b where saa.album_id = b.id AND saa.artist_id = '$artid' AND saa.album_id = '$album_id' AND saa.display_status = 1 ";
 
 
@@ -1039,7 +1024,6 @@ if (!function_exists('get_listof_songs_ids_main')) {
         if ($artist_list_arr) {
             $total_result = 0;
         } else {
-
             $total_result    =    count($artist_list_arr);
         }
         $u = 1;
@@ -1062,7 +1046,7 @@ if (!function_exists('get_listof_songs_ids_main')) {
 }
 
 
-///popular_album 
+///popular_album
 if (!function_exists('popular_album')) {
     function popular_album()
     {
@@ -1086,7 +1070,7 @@ if (!function_exists('popular_album')) {
         return  $reviews_list_arr;
     }
 }
-///artist_func 
+///artist_func
 if (!function_exists('artist_func')) {
     function artist_func($artistname)
     {
@@ -1117,7 +1101,7 @@ if (!function_exists('artist_func')) {
 }
 
 
-///SEO 
+///SEO
 if (!function_exists('SEO')) {
     function SEO($input)
     {
@@ -1132,7 +1116,7 @@ if (!function_exists('SEO')) {
 }
 
 
-///song_adds 
+///song_adds
 if (!function_exists('song_adds')) {
     function song_adds($id, $type)
     {
@@ -1165,12 +1149,11 @@ if (!function_exists('song_adds')) {
 }
 
 
-///mainartist_detail 
+///mainartist_detail
 if (!function_exists('mainartist_detail')) {
     // Main Artist Information
     function mainartist_detail($artistid)
     {
-
         $main_artist_list = "select id, artist_seo, artist_name from tbl_artists where id = '$artistid'";
         // $mainartist_arr	=	$db->get_row($main_artist_list,ARRAY_A);
         $mainartist_arr = \App\Models\Songs::GetRawData($main_artist_list);
@@ -1184,11 +1167,10 @@ if (!function_exists('mainartist_detail')) {
 }
 
 
-///check_report_review 
+///check_report_review
 if (!function_exists('check_report_review')) {
     function check_report_review($review_id)
     {
-
         $report_query = "select r_report_id  from tbl_review_report where r_report_user_id = '" . session()->get('user_id') . "' AND r_report_review_id = '$review_id'";
         // $chk_report_arr = $db->get_row($report_query, ARRAY_A);
         $chk_report_arr = \App\Models\Songs::GetRawData($report_query);
@@ -1197,11 +1179,10 @@ if (!function_exists('check_report_review')) {
 }
 
 
-///get_playlist_like_counter 
+///get_playlist_like_counter
 if (!function_exists('get_playlist_like_counter')) {
     function get_playlist_like_counter($id)
     {
-
         $counter_main_playlist_like = \App\Models\Songs::GetRawData("select id from tbl_likes where like_type = 'playlist' AND like_receive_user = '$id'");
         if ($counter_main_playlist_like) {
             $counter_main_playlist_like = count($counter_main_playlist_like);
@@ -1213,22 +1194,20 @@ if (!function_exists('get_playlist_like_counter')) {
 }
 
 
-///remove_spl_char 
+///remove_spl_char
 if (!function_exists('remove_spl_char')) {
     function remove_spl_char($string)
     {
-
         $string = str_replace("'", '&#39;', $string); // Replaces all spaces with hyphens.
         $string = str_replace('"', '&#34;', $string);
         return utf8_encode($string);
     }
 }
 
-///sum_of_artist_rating 
+///sum_of_artist_rating
 if (!function_exists('sum_of_artist_rating')) {
     function sum_of_artist_rating($artistid)
     {
-
         $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where artist_id = $artistid AND status = 1";
 
         $rate_arr = array();
@@ -1249,7 +1228,6 @@ if (!function_exists('sum_of_artist_rating')) {
             $counter = 0;
             $all_avg = 0;
         } else {
-
             $all_avg  =  $sum_rate / $counter;
         }
 
@@ -1301,10 +1279,8 @@ if (!function_exists('numberformat')) {
 if (!function_exists('get_small_thumb')) {
     function get_small_thumb($img)
     {
-
         $output = str_replace('300x300', '174s', $img);
         if ($output != "") {
-
             return $output;
         }
         return $img;
@@ -1334,7 +1310,6 @@ if (!function_exists('limit_text')) {
 if (!function_exists('artist_popular_review_data')) {
     function artist_popular_review_data($artist_id_db)
     {
-
         $reviews_list_arr = array();
         if (empty($reviews_list_arr)) {
             $reviews_list = "select b.album_seo, b.album_picture,a.artist_seo,a.artist_seo, a.artist_name,s.song_seo,s.picture,s.updated_by_itunes, s.song_title,r.* 
@@ -1361,7 +1336,6 @@ if (!function_exists('artist_popular_review_data')) {
 if (!function_exists('count_likes')) {
     function count_likes($user_id)
     {
-
         $query = "select count(*) as count_total from tbl_likes where like_type = 'profile' AND like_id = '$user_id'";
         $like_list_arr2 = \App\Models\Songs::GetRawData($query);
         if ($like_list_arr2) {
@@ -1411,5 +1385,91 @@ if (!function_exists('sendemail')) {
         }
 
         return 1;
+    }
+}
+
+
+
+
+////////////////////////////////////////////////////////////////
+////////////////////API Functions
+///////////////////////////////////////////////////////////////
+
+///artist_get_info
+if (!function_exists('artist_get_info')) {
+    function artist_get_info($url = null)
+    {
+        $url = str_replace(" ", "%20", $url);
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+        CURLOPT_URL => $url,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+
+        $response = curl_exec($curl);
+        curl_close($curl);
+        return $response;
+    }
+}
+
+
+///track_get_info
+if (!function_exists('track_get_info')) {
+    function track_get_info($url)
+    {
+        $url = str_replace(" ", "%20", $url);
+        // $url = 'http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=giorgio gaber&track=la ninfetta&api_key=36cd9613641f2d9868a85377850aced5&format=json';
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => $url,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'GET',
+        ));
+        
+        $response = curl_exec($curl);
+        
+        curl_close($curl);
+        return $response;
+    }
+}
+
+
+///album_get_info
+if (!function_exists('album_get_info')) {
+    function album_get_info($url)
+    {
+        $url = str_replace(" ", "%20", $url);
+        $curl = curl_init();
+        
+        curl_setopt_array($curl, array(
+          CURLOPT_URL => $url,
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'GET',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+          ),
+        ));
+        
+        $response = curl_exec($curl);
+        curl_close($curl);
+        return $response;
     }
 }

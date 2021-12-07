@@ -1,6 +1,5 @@
 <style>
-    .ad-feature-img
-    {
+    .ad-feature-img {
         height: 367px !important;
     }
 </style>
@@ -17,7 +16,6 @@
 
 
     if (isset($artist_list_arr) && !empty($artist_list_arr)) {
-
         $c = 0;
         $sno_val = 0;
         foreach ($artist_list_arr as $val) {
@@ -28,11 +26,8 @@
             // die;
 
             if ($val['artist_id'] != "") {
-
                 $artist_info    =    App\Models\Songs::GetRawQuery('artists', 'artist_name,artist_seo', array('id' => $val['artist_id']));
                 if ($artist_info) {
-
-
                     $sno_val++;
                     $id                = $val['id'];
                     $song_id        = $val['song_id'];
@@ -61,7 +56,6 @@
                     $qry_top_feature_artist = array();
 
                     if (empty($qry_top_feature_artist)) {
-
                         $qry_feature_arr    =    App\Models\Songs::GetFeatureArr($song_id);
                     }
 
@@ -122,7 +116,6 @@
 
 
                     if ($image_get_new != "") {
-
                         $image_get = $image_get_new;
                     }
 
@@ -149,30 +142,28 @@
                         $rate_arr = App\Models\Songs::GetRawQuery('reviews', 'sum(review_rating) as sum_rate, count(*) as counter, sum(review_rating>=8) as excellent, sum(review_rating>=7 && review_rating<8) as verygood, sum(review_rating>=4 && review_rating<7) as good,sum(review_rating>=2 && review_rating<4) as poor,sum(review_rating>0 && review_rating<2) as terrible', array('song_id' => $song_id, 'status' => 1));
                         $rate_arr = (array)$rate_arr[0];
                     }
+
                     $sum_rate = $rate_arr['sum_rate'];
                     $counter = $rate_arr['counter'];
+                        
                     if ($sum_rate == "" || $sum_rate == 0) {
                         $sum_rate = 0;
                     }
                     if ($counter > 0) {
                         $all_avg  =  $sum_rate / $counter;
-                        // $all_avg = 9.5;
-                        // echo $all_avg;
-                        // die;
                     } else {
                         $all_avg = 0;
                     }
 
+
+
                     if ($all_avg == "") {
-                        $all_avg = 0;
+                        $all_avg = 5.0;
+                        echo $all_avg;
                     } elseif ($all_avg == "10") {
                         $all_avg = 10;
                     } else {
-
                         $all_avg = CheckNumberFormate($all_avg);
-                        // echo $all_avg;
-                        // die;
-                        // $all_avg = $all_avg . '.0';
                     }
                     if ($all_avg >= 7) {
                         $color_pick = "#5ebd5e";
@@ -191,38 +182,50 @@
                     } elseif ($song_rating >= 0 && $song_rating <= 3.9) {
                         $color_picker = "#dd554e";
                     }
-    ?>
-                    <div>
-                        <div class="list_item">
-                            <div class="album_cover">
-                                <?php
+                    $all_avg = number_format($all_avg, 1);
+                    /*end calculating songs reviews*/ ?>
+    <div>
+        <div class="list_item">
+            <div class="album_cover">
+                <?php
                                 if (isset($mobile_view) && ($mobile_view == 1)) {
-                                ?>
-                                    <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <img src="<?php echo $image_get; ?>" style="height:300px;"></a>
-                                <?php
+                                    ?>
+                <a
+                    href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
+                    <img src="<?php echo $image_get; ?>"
+                        style="height:300px;"></a>
+                <?php
                                 } else {
-                                ?>
-                                    <a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"> <img class="ad-feature-img" src="<?php echo $image_get; ?>"></a>
-                                <?php
-                                }
-                                ?>
+                                    ?>
+                <a
+                    href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>">
+                    <img class="ad-feature-img"
+                        src="<?php echo $image_get; ?>"></a>
+                <?php
+                                } ?>
 
-                                <cite style="left:10px !important; background:none !important; text-transform: capitalize !important;">Featured Song</cite>
-                                <?php
+                <cite
+                    style="left:10px !important; background:none !important; text-transform: capitalize !important;">Featured
+                    Song</cite>
+                <?php
                                 $all_avg = $all_avg;
-                                //         echo $all_avg;
-                                // die;
-                                ?>
+                    //         echo $all_avg;
+                    // die;?>
 
-                                <cite style="background-color:<?php echo $color_pick; ?>"><?php echo ($all_avg < 10) ? $all_avg : $all_avg ?></cite>
-                                <div class="list_bottom">
-                                    <div class="row">
-                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                                            <p><a href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a><a class="artist-name" href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $artist_name; ?></a><span><?php echo $feature_artists;
-                                                                                                                                                                                                                                                                                                                            $sum_len  = 0; ?></span></p>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                            <?php
+                <cite
+                    style="background-color:<?php echo $color_pick; ?>"><?php echo ($all_avg < 10) ? $all_avg : $all_avg ?></cite>
+                <div class="list_bottom">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                            <p><a
+                                    href="<?php echo SERVER_ROOTPATH  . Slug($song_seo) . "/reviews/" . Slug($artist_seo); ?>"><?php echo $song_title; ?></a><a
+                                    class="artist-name"
+                                    href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo $artist_name; ?></a><span><?php echo $feature_artists;
+                    $sum_len  = 0; ?>
+                                </span></p>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <?php
                                             if ($user_id != "") {
                                                 // $counter =  mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND like_type = 'artist' AND like_id = '$album_artist_id'"));
                                                 $counter = \App\Models\Songs::GetRawData("select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND like_type = 'artist' AND like_id = '$album_artist_id'");
@@ -237,56 +240,79 @@
                                                     $class = "like-group";
                                                 }
                                                 if ($counter == 0) {
-                                            ?>
-                                                    <span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $album_artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular('<?php echo $album_artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a>
-                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                                                    } ?></a>
-                                                    </span>
-                                                    <span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $album_artist_id; ?>"></span>
-                                                <?php } else { ?>
-                                                    <span style="float:right;" class="<?php echo $class; ?>" id="other_dis_sub_popular_<?php echo $album_artist_id; ?>">
-                                                        <a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular('<?php echo $album_artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i class="fa fa-heart" style="font-size:24px;"></i></a>
-                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                                                    } ?></a></span>
-                                                    <span style="float:right;" class="like-group liked" id="myStyle_sub_popular_<?php echo $album_artist_id; ?>"></span>
-                                                <?php
+                                                    ?>
+                            <span style="float:right;"
+                                class="<?php echo $class; ?>"
+                                id="other_dis_sub_popular_<?php echo $album_artist_id; ?>"><a
+                                    href="javascript:;"
+                                    onClick="add_in_favourite_list_sub_artist_popular('<?php echo $album_artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i
+                                        class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a>
+                                <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                    data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title=""
+                                    class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+                                                        echo " Like";
+                                                    } else {
+                                                        echo " Likes";
+                                                    } ?>
+                                </a>
+                            </span>
+                            <span style="float:right;" class="like-group liked"
+                                id="myStyle_sub_popular_<?php echo $album_artist_id; ?>"></span>
+                            <?php
+                                                } else { ?>
+                            <span style="float:right;"
+                                class="<?php echo $class; ?>"
+                                id="other_dis_sub_popular_<?php echo $album_artist_id; ?>">
+                                <a href="javascript:;"
+                                    onClick="add_in_favourite_list_sub_artist_popular('<?php echo $album_artist_id; ?>','<?php echo $sno_val; ?>','<?php echo $artist_seo; ?>')"><i
+                                        class="fa fa-heart" style="font-size:24px;"></i></a>
+                                <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                    data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title=""
+                                    class="link-disable" style="color:#fff;"> <?php echo $counter_main; ?><?php if ($counter_main < 2) {
+                                                    echo " Like";
+                                                } else {
+                                                    echo " Likes";
+                                                } ?>
+                                </a></span>
+                            <span style="float:right;" class="like-group liked"
+                                id="myStyle_sub_popular_<?php echo $album_artist_id; ?>"></span>
+                            <?php
                                                 }
                                             } else {
                                                 ?>
-                                                <span class="like-group" style="float:right;">
-                                                    <?php
+                            <span class="like-group" style="float:right;">
+                                <?php
                                                     if ($user_id == "") {
-                                                    ?>
-                                                        <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i></a>
+                                                        ?>
+                                <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o"
+                                        style="font-size:24px; color:#D73B3B;"></i></a>
 
-                                                    <?php
+                                <?php
                                                     } else {
-                                                    ?>
-                                                        <a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular('<?php echo $album_artist_id; ?>','5000','<?php echo $artist_seo; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a>
-                                                    <?php
-                                                    }
-                                                    ?>
+                                                        ?>
+                                <a href="javascript:;"
+                                    onClick="add_in_favourite_list_sub_artist_popular('<?php echo $album_artist_id; ?>','5000','<?php echo $artist_seo; ?>')"><i
+                                        class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a>
+                                <?php
+                                                    } ?>
 
 
-                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title="" class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $counter_main; ?><?php echo ($counter_main < 2) ? " Like" : " Likes" ?></a></span>
-                                            <?php
-                                            }
-                                            ?>
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="gradientoverlay"></div>
-                            </div>
+                                <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                    data-toggle="modal" data-target="#missing_popular_review_Modal2_5000" data-title=""
+                                    class="like link-disable" style="margin-left:4px;color:#fff;"> <?php echo $counter_main; ?><?php echo ($counter_main < 2) ? " Like" : " Likes" ?></a>
+                            </span>
+                            <?php
+                                            } ?>
                         </div>
                     </div>
-    <?php }
+
+                </div>
+                <div class="gradientoverlay"></div>
+            </div>
+        </div>
+    </div>
+    <?php
+                }
             }
         }
     }

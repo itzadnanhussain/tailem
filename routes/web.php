@@ -27,6 +27,7 @@ require __DIR__.'/review.php';
 require __DIR__.'/profile.php';
 require __DIR__.'/search.php';
 require __DIR__.'/admin.php';
+require __DIR__.'/itunes.php';
 
  
 ///LoadCMS Footer Link
