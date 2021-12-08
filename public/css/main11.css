@@ -8496,6 +8496,7 @@ background-size:cover
 	text-align:right
 }
 .error {
+	margin-top: 5px;
 	color:red
 }
 .rec_review_title, .review_title {

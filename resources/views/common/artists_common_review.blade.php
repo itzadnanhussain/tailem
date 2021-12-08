@@ -470,7 +470,9 @@
                         </a></span></p>
                 <div class="row">
                     <div class="review_screen_txt col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev"
+                        <span class="usrname"><img
+                                src="<?php echo SERVER_ROOTPATH  ?>images/icon_user.png"><a
+                                class="darkgrey_rev"
                                 href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
                                 <?php echo substr($user_name, 0, 12);
                 if (strlen($user_name) > 12) {
@@ -485,7 +487,9 @@
                     </div>
                     <!--Ipad-->
                     <div class="review_ipad_txt white_space col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                        <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev"
+                        <span class="usrname"><img
+                                src="<?php echo SERVER_ROOTPATH  ?>images/icon_user.png"><a
+                                class="darkgrey_rev"
                                 href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
                                 <?php echo substr($user_name, 0, 30);
                 if (strlen($user_name) > 30) {
@@ -495,7 +499,9 @@
                     </div>
                     <!--Mobile-->
                     <div class="review_mobile_txt col-lg-4 col-md-4 col-sm-6 col-xs-6">
-                        <span class="usrname"><img src="images/icon_user.png"><a class="darkgrey_rev"
+                        <span class="usrname"><img
+                                src="<?php echo SERVER_ROOTPATH  ?>images/icon_user.png"><a
+                                class="darkgrey_rev"
                                 href="<?php echo SERVER_ROOTPATH . $user_seo . "/profile-review-artist"; ?>">
                                 <?php echo substr($user_name, 0, 16);
                 if (strlen($user_name) > 16) {
@@ -546,7 +552,7 @@
                                             class="fa fa-heart-o heart_size heart_color"></i> </a><?php echo $counter_main;
                                             } ?>
 
-                                    <a href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
+                                    <a href="<?php echo SERVER_ROOTPATH  ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
                                         data-toggle="modal" data-target="#review_modal" data-title=""
                                         class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
                                                 echo "Like";
@@ -566,7 +572,7 @@
                                         href="javascript:;"
                                         onClick="add_in_favourite_list_review_song('<?php echo $db_review_id; ?>','<?php echo $user_name; ?>','<?php echo $r_fav; ?>')"
                                         class="like"><i class="fa fa-heart heart_size heart_color"></i></a> <?php echo $counter_main; ?><a
-                                        href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
+                                        href="<?php echo SERVER_ROOTPATH  ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
                                         data-toggle="modal" data-target="#review_modal" data-title=""
                                         class="like link-disable darkgrey_rev"> <?php if ($counter_main < 2) {
                             echo " Like";
@@ -598,7 +604,7 @@
                                     <?php
                                                     } ?>
                                     <?php echo $counter_main; ?><a
-                                        href="process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
+                                        href="<?php echo SERVER_ROOTPATH  ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $db_review_id; ?>&critaria=1"
                                         data-toggle="modal" data-target="#review_modal" data-title=""
                                         class="like darkgrey_rev"> <?php if ($counter_main < 2) {
                                                         echo " Like";

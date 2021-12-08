@@ -69,26 +69,24 @@ class LoginController extends Controller
     //RegisterUser
     public function RegisterUser(Request $request)
     {
-
-
         $validation = Validator::make($request->all(), [
-            'user_name' => 'required|string|max:255',
+            'user_name' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             // 'password_confirmation' => 'required',
             'password' => 'required|min:6'
-        ],['email' => 'Incorrect email address entered, please try again','password' => 'Your password must be at least 6 characters long']);
+        ], ['email' => 'Incorrect email address entered, please try again','password.min' => 'Your password must be at least 6 characters long']);
 
         if ($validation->fails()) {
             error_reporting(0);
             $user_name = $validation->errors()->toArray()['user_name'][0];
             $email_error = $validation->errors()->toArray()['email'][0];
             $password = $validation->errors()->toArray()['password'][0];
-             $string = $user_name .'<br>'.$email_error.'<br>'.$password;
+            $string = '<p>'.$user_name .'</p><p>'.$email_error.'</p><p>'.$password.'</p>';
             return response()->json(['code' => "error", 'message' => $string]);
         } else {
             ///post data to database
             $post = array();
-            $post['user_name'] = $request->user_name;
+            $post['user_name'] = strtolower($request->user_name);
             $post['user_seo'] = Slug($request->user_name);
             $post['email'] = $request->email;
             $post['password'] = Hash::make($request->password);
@@ -111,7 +109,6 @@ class LoginController extends Controller
     //login_user
     public function LoginUser(Request $request)
     {
-
         $validation = Validator::make($request->all(), [
 
             'email' => 'required|string|email|max:255',
