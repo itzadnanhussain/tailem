@@ -10,7 +10,6 @@ use App\Mail\ContactMail;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Mail;
-// use Mail;
 use Illuminate\Support\Facades\Validator;
 
 class InfoController extends Controller
@@ -20,22 +19,22 @@ class InfoController extends Controller
     {
         $data = array();
 
-        ///common header
-        $data['user_id'] = session()->get('user_id');
-        $data['mobile_view'] = 0;
+         ///common header 
+         $data['user_id'] = session()->get('user_id');
+         $data['mobile_view'] = 0;
          
-        if (isset($user_seo) && ($user_seo != "")) {
-            $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
-            $result_image = \App\Models\Songs::GetRawData($qry);
-            $data['user_name'] = $result_image[0]->user_name;
-            $data['user_profile'] = $result_image[0]->user_id;
-            $data['date_added_db'] = $result_image[0]->date_added;
-            $data['main_link'] = get_user_detail($data['user_name']) . "-profile-";
-        } else {
-            $data['user_name'] = session()->get('user_name');
-            $data['user_profile'] = session()->get('user_id');
-            $data['main_link'] = '';
-        }
+         if (isset($user_seo) && ($user_seo != "")) {
+             $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
+             $result_image = \App\Models\Songs::GetRawData($qry);
+             $data['user_name'] = $result_image[0]->user_name;
+             $data['user_profile'] = $result_image[0]->user_id;
+             $data['date_added_db'] = $result_image[0]->date_added;
+             $data['main_link'] = get_user_detail($data['user_name']) . "-profile-";
+         } else {
+             $data['user_name'] = session()->get('user_name');
+             $data['user_profile'] = session()->get('user_id');
+             $data['main_link'] = '';
+         }
 
 
         $data['arr_social'] = GetAllRecords('social_links');
@@ -50,6 +49,8 @@ class InfoController extends Controller
     ///ContactFormSubmit
     public function ContactFormSubmit(Request $request)
     {
+
+
         $validation = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email:filter', 'max:255'],
@@ -79,27 +80,24 @@ class InfoController extends Controller
         //  Send mail to admin
         Mail::send('emails.contactMail', array(
             'name' => $name,
-            'email' => $email,
+            'email' => $email, 
             'subject' => 'Tailem.com',
             'message' => $msg,
-        ), function ($message) use ($request) {
+        ), function($message) use ($request){
             $message->from($request->email);
             $message->to('testadnan073@gmail.com', 'Admin')->subject($request->get('subject'));
-        });
-
-
-
+        });  
         return response()->json(['code' => 200, 'msg' => 'We will contact you soon.']);
     }
 
     ///LoadCMS
     public function LoadCMS()
     {
-        $page_name = Str::of(url()->current())->basename();
+        $page_name = Str::of(url()->current())->basename(); 
         ///
         $data = array();
 
-        ///common header
+        ///common header 
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         
@@ -117,16 +115,16 @@ class InfoController extends Controller
         }
 
 
-        $data['arr_social'] = GetAllRecords('social_links');
-        // $setting_arr = GetByWhere('general_setting', array('setting_id' => 1));
-        // $result_notification_count = GetByWhere('general_setting', array('setting_id' => 1));
-        $data['currentFile'] = 'contact-us';
-        $data['title'] = GetTitle();
+       $data['arr_social'] = GetAllRecords('social_links');
+       // $setting_arr = GetByWhere('general_setting', array('setting_id' => 1));
+       // $result_notification_count = GetByWhere('general_setting', array('setting_id' => 1));
+       $data['currentFile'] = 'contact-us';
+       $data['title'] = GetTitle();
 
 
 
-        $data['setting_arr'] = GetByWhere('general_setting', array('setting_id' => 1));
-        $get_page_content = GetByWhere('pages', array('page_seo_name' => $page_name));
+       $data['setting_arr'] = GetByWhere('general_setting', array('setting_id' => 1));
+       $get_page_content = GetByWhere('pages', array('page_seo_name' => $page_name));
       
 
 
