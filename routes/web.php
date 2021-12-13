@@ -42,6 +42,10 @@ Route::get('/our-community/{sort?}', [ManageCommunity::class,'LoadCommunityPage'
 Route::post('/sort-community-update', [ManageCommunity::class,'UpdateCommunityPage']);
 
 
+///update_column
+Route::get('/update-column', [InfoController::class,'update_column']);
+ 
+
  
 
 

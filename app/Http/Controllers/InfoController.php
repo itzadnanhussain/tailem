@@ -138,4 +138,13 @@ class InfoController extends Controller
             return Redirect::to('/');
         }
     }
+
+
+    ///UpdateColumn
+    public function update_column()
+    {
+        UpdateRecord('artists', array('genere_cat' => 0), array('genere_cat'=>7));
+        echo'done';
+        die;
+    }
 }

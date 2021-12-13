@@ -120,67 +120,73 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 <footer>
 	<div class="ftrcontainer">
 		<div class="container">
-			<ul class="bottom_nav">
-				<li><a
-						href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top
-						Songs</a></li>
-				<li><a
-						href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top
-						Albums</a></li>
-				<li><a
-						href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a>
-				</li>
-				<li><a
-						href="<?php echo SERVER_ROOTPATH; ?>our-community">Community</a>
-				</li>
-				<li><a href="<?php echo SERVER_ROOTPATH; ?>about-us">About
-						Us</a></li>
-				<li><a
-						href="<?php echo SERVER_ROOTPATH; ?>privacy-policy">Privacy
-						Policy</a></li>
-				<li><a
-						href="<?php echo SERVER_ROOTPATH; ?>terms-of-use">Terms
-						of Use</a></li>
-				<li><a
-						href="<?php echo SERVER_ROOTPATH; ?>contact-us">Contact
-						Us</a></li>
-			</ul>
-			<ul class="bottom_nav" style="float:right">
+			<div class="row">
+				<div class="col-sm-12" style="display: contents;">
+					<ul class="bottom_nav">
+						<li><a
+								href="<?php echo SERVER_ROOTPATH; ?>top-songs">Top
+								Songs</a></li>
+						<li><a
+								href="<?php echo SERVER_ROOTPATH; ?>top-albums">Top
+								Albums</a></li>
+						<li><a
+								href="<?php echo SERVER_ROOTPATH; ?>top-artists">Artists</a>
+						</li>
+						<li><a
+								href="<?php echo SERVER_ROOTPATH; ?>our-community">Community</a>
+						</li>
+						<li><a
+								href="<?php echo SERVER_ROOTPATH; ?>about-us">About
+								Us</a></li>
+						<li><a
+								href="<?php echo SERVER_ROOTPATH; ?>privacy-policy">Privacy
+								Policy</a></li>
+						<li><a
+								href="<?php echo SERVER_ROOTPATH; ?>terms-of-use">Terms
+								of Use</a></li>
+						<li><a
+								href="<?php echo SERVER_ROOTPATH; ?>contact-us">Contact
+								Us</a></li>
+					</ul>
+					<ul class="bottom_nav" style="float:right">
 
-				<?php
+						<?php
                     if ($itune_url != '') {
                         ?>
-				<li><a href="<?php echo $itune_url; ?>" class="itune"
-						target="_blank"><img
-							src="<?php echo SERVER_ROOTPATH; ?>images/ituneimg.png"></a>
-				</li>
-				<?php
+						<li><a href="<?php echo $itune_url; ?>"
+								class="itune" target="_blank"><img
+									src="<?php echo SERVER_ROOTPATH; ?>images/ituneimg.png"></a>
+						</li>
+						<?php
                     }
                     ?>
-				<li><label>Connect with us</label></li>
-				<!-- <li> <a href="<?php echo $arr_social['facebook']; ?>"
-				target="_blank"> <i class="sprite sprite-icon_fb"></i></a></li> -->
-				<li> <a href="<?php echo $arr_social['facebook']; ?>"
-						target="_blank"><img class="sprite-icon_fb"
-							src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>"
-							alt=""></a></li>
-				<!-- <li><a href="<?php echo $arr_social['twitter']; ?>"
-				target="_blank"><i class="sprite sprite-icon_tw"></i></a></li> -->
-				<li><a href="<?php echo $arr_social['twitter']; ?>"
-						target="_blank"><img class="sprite-icon_tw"
-							src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>"
-							alt=""></a></li>
-				<!-- <li><a href="<?php echo $arr_social['google']; ?>"
-				target="_blank"> <i class="sprite sprite-icon_ggl"></i></a></li> -->
-				<li><a href="<?php echo $arr_social['google']; ?>"
-						target="_blank"><img class="sprite-icon_ggl"
-							src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>"
-							alt=""></a></li>
-				<li><a href="<?php echo $arr_social['google']; ?>"
-						target="_blank"> <img
-							src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>"
-							width="34" alt=""></a></li>
-			</ul>
+						<li><label>Connect with us</label></li>
+						<!-- <li> <a href="<?php echo $arr_social['facebook']; ?>"
+						target="_blank"> <i class="sprite sprite-icon_fb"></i></a></li> -->
+						<li> <a href="<?php echo $arr_social['facebook']; ?>"
+								target="_blank"><img class="sprite-icon_fb"
+									src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>"
+									alt=""></a></li>
+						<!-- <li><a href="<?php echo $arr_social['twitter']; ?>"
+						target="_blank"><i class="sprite sprite-icon_tw"></i></a></li> -->
+						<li><a href="<?php echo $arr_social['twitter']; ?>"
+								target="_blank"><img class="sprite-icon_tw"
+									src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>"
+									alt=""></a></li>
+						<!-- <li><a href="<?php echo $arr_social['google']; ?>"
+						target="_blank"> <i class="sprite sprite-icon_ggl"></i></a></li> -->
+						<li><a href="<?php echo $arr_social['google']; ?>"
+								target="_blank"><img class="sprite-icon_ggl"
+									src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>"
+									alt=""></a></li>
+						<li><a href="<?php echo $arr_social['google']; ?>"
+								target="_blank"> <img
+									src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>"
+									width="34" alt=""></a></li>
+					</ul>
+
+				</div>
+			</div>
 		</div>
 	</div>
 	<script type='text/javascript'>

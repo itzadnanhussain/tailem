@@ -2,7 +2,7 @@
 <?php
 // error_reporting(0);
 
-//include_once("common/signin_modal_header.php");  
+//include_once("common/signin_modal_header.php");
 
 if ($alpha == "unset") {
     $search_artist_names = '';
@@ -32,9 +32,11 @@ if ($alpha == "unset") {
 <script type="text/javascript">
     function unset_all(user) {
         if (user == "") {
-            window.location.href = "<?php echo SERVER_ROOTPATH; ?>review-artists/unset";
+            window.location.href =
+                "<?php echo SERVER_ROOTPATH; ?>review-artists/unset";
         } else {
-            window.location.href = "<?php echo SERVER_ROOTPATH; ?>" + user + "/profile-review-artists/unset";
+            window.location.href = "<?php echo SERVER_ROOTPATH; ?>" + user +
+                "/profile-review-artists/unset";
         }
 
 
@@ -50,26 +52,26 @@ if ($alpha == "unset") {
 
                 <?php if ($mobile_view == 0) { ?>
 
-                    <div class="col-lg-12 col-md-12" style="margin-bottom:0; padding-right:0;">
-                        @include("common.my_account_image")
+                <div class="col-lg-12 col-md-12" style="margin-bottom:0; padding-right:0;">
+                    @include("common.my_account_image")
 
-                        <div class="activity-panel">
-                            @include("include.review_activities")
-
-                        </div>
-                        @include("include.latest_activities")
-
-                        <div class="clearfix"></div>
-
-
+                    <div class="activity-panel">
+                        @include("include.review_activities")
 
                     </div>
-                    <div class="col-lg-4 col-md-4 review_ipad">
-                        <div class="col-sm-12 review_arts" style="padding:2px;">
+                    @include("include.latest_activities")
 
-                            @include("include.right_reviews")
-                        </div>
+                    <div class="clearfix"></div>
+
+
+
+                </div>
+                <div class="col-lg-4 col-md-4 review_ipad">
+                    <div class="col-sm-12 review_arts" style="padding:2px;">
+
+                        @include("include.right_reviews")
                     </div>
+                </div>
 
 
             </div>
@@ -77,7 +79,7 @@ if ($alpha == "unset") {
 
         @include("common.ipad_data")
 
-    <?php
+        <?php
                 } elseif ($mobile_view == 1) { ?>
 
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -89,7 +91,7 @@ if ($alpha == "unset") {
                 @include("include.review_activities")
             </div>
             <?php
-                    //include("include.latest_activities.php"); 
+                    //include("include.latest_activities.php");
             ?>
 
 
@@ -102,24 +104,24 @@ if ($alpha == "unset") {
         </div>
 
 
-    <?php } ?>
+        <?php } ?>
 
 
-    <div class="clearfix"></div>
+        <div class="clearfix"></div>
     </div>
 
     <?php if ($main_link != "") { ?>
-        <!-- Advertisement Banner Start-->
-        <div class="container" style="padding-bottom:10px;">
-            <div class="row">
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                    <?php echo ads_info('Top'); ?>
-                </div>
-                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+    <!-- Advertisement Banner Start-->
+    <div class="container" style="padding-bottom:10px;">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <?php echo ads_info('Top'); ?>
             </div>
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
         </div>
-        <!--Advertisement Banner End-->
+    </div>
+    <!--Advertisement Banner End-->
     <?php } ?>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -134,29 +136,41 @@ if ($alpha == "unset") {
     <div class="topRwContent-panel" style="margin-bottom:15px;">
         <div class="banner_body">
             <?php if ($mobile_view == 0) { ?>
-                <div class="banner-search" style="margin:5px auto 15px auto;">
-                    <form method="post" action="" style="width:100%;">
-                        <div class="form-group" style="border:1px solid #ccc !important;">
-                            <label for="skills" onClick="unset_all('<?php echo $user_seo; ?>')" style="cursor:pointer; border-radius:0;">All</label>
-                            <!--for="search"-->
-                            @csrf
-                            <input placeholder="Search for a Review..." type="text" name="artist_name" id="review_artist" class="form-control ac_input" value="<?php echo $search_artist_names; ?>" required><!-- id="search_text"-->
-                            <button class="btn" type="submit" value="Search" name="submit_b"><i class="sprite-new sprite-new-xsearch-icon-png-pagespeed-ic-XjnYgjYQAr"></i></button>
-                        </div>
-                    </form>
-                </div>
+            <div class="banner-search" style="margin:5px auto 15px auto;">
+                <form method="post" action="" style="width:100%;">
+                    <div class="form-group" style="border:1px solid #ccc !important;">
+                        <label for="skills"
+                            onClick="unset_all('<?php echo $user_seo; ?>')"
+                            style="cursor:pointer; border-radius:0;">All</label>
+                        <!--for="search"-->
+                        @csrf
+                        <input placeholder="Search for a Review..." type="text" name="artist_name" id="review_artist"
+                            class="form-control ac_input"
+                            value="<?php echo $search_artist_names; ?>"
+                            required><!-- id="search_text"-->
+                        <button class="btn" type="submit" value="Search" name="submit_b"><i
+                                class="sprite-new sprite-new-xsearch-icon-png-pagespeed-ic-XjnYgjYQAr"></i></button>
+                    </div>
+                </form>
+            </div>
             <?php
             } elseif ($mobile_view == 1) { ?>
-                <div class="banner-search" style="max-width:100%; margin:0;">
-                    <form method="post" action="" style="width:100%;">
-                        <div class="form-group" style="border:1px solid #ccc; border-right:none; border-left:none;">
-                            <label for="skills" onClick="unset_all('<?php echo $user_seo; ?>')" style="cursor:pointer; border-radius:0;">All</label>
-                            <input placeholder="Search for a Review..." type="text" name="artist_name" id="review_artist" class="form-control ac_input" value="<?php echo $search_artist_names; ?>" required>
-                            <button class="btn" type="submit" value="Search" name="submit_b"><i class="sprite-new sprite-new-xsearch-icon-png-pagespeed-ic-XjnYgjYQAr"></i></button>
+            <div class="banner-search" style="max-width:100%; margin:0;">
+                <form method="post" action="" style="width:100%;">
+                    <div class="form-group" style="border:1px solid #ccc; border-right:none; border-left:none;">
+                        <label for="skills"
+                            onClick="unset_all('<?php echo $user_seo; ?>')"
+                            style="cursor:pointer; border-radius:0;">All</label>
+                        <input placeholder="Search for a Review..." type="text" name="artist_name" id="review_artist"
+                            class="form-control ac_input"
+                            value="<?php echo $search_artist_names; ?>"
+                            required>
+                        <button class="btn" type="submit" value="Search" name="submit_b"><i
+                                class="sprite-new sprite-new-xsearch-icon-png-pagespeed-ic-XjnYgjYQAr"></i></button>
 
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
+            </div>
             <?php } ?>
 
             <!-- banner-search -->
@@ -204,58 +218,138 @@ if ($alpha == "unset") {
                 <ul class="list-inline" style="color:#999999;">
                     <li>#</li> -
                     <li>
-                        <?php if (in_array("A", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'a') { ?>color:#000 !important;<?php } else { ?> color:#70857b !important;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-a">A</a> <?php } else { ?> A <?php } ?> - </li>
+                        <?php if (in_array("A", $array_alpha)) { ?>
+                        <a style="font-weight:bold; <?php if ($alpha == 'a') { ?>color:#000 !important;<?php } else { ?> color:#70857b !important;<?php } ?>"
+                            href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-a">A</a>
+                        <?php } else { ?> A <?php } ?> -
+                    </li>
 
-                    <?php if (in_array("B", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'b') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-b">B</a> <?php } else { ?> B <?php } ?> - </li>
+                    <?php if (in_array("B", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'b') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-b">B</a>
+                    <?php } else { ?> B <?php } ?> - </li>
 
-                    <?php if (in_array("C", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'c') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-c">C</a> <?php } else { ?> C <?php } ?> - </li>
+                    <?php if (in_array("C", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'c') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-c">C</a>
+                    <?php } else { ?> C <?php } ?> - </li>
 
-                    <?php if (in_array("D", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'd') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-d">D</a> <?php } else { ?> D <?php } ?> - </li>
+                    <?php if (in_array("D", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'd') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-d">D</a>
+                    <?php } else { ?> D <?php } ?> - </li>
 
-                    <?php if (in_array("E", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'e') { ?>color:#000;<?php } ?> <?php if ($alpha == 'e') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-e">E</a> <?php } else { ?> E <?php } ?> - </li>
+                    <?php if (in_array("E", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'e') { ?>color:#000;<?php } ?> <?php if ($alpha == 'e') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-e">E</a>
+                    <?php } else { ?> E <?php } ?> - </li>
 
-                    <?php if (in_array("F", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'f') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-f">F</a> <?php } else { ?> F <?php } ?> - </li>
+                    <?php if (in_array("F", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'f') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-f">F</a>
+                    <?php } else { ?> F <?php } ?> - </li>
 
-                    <?php if (in_array("G", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'g') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-g">G</a> <?php } else { ?> G <?php } ?> - </li>
+                    <?php if (in_array("G", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'g') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-g">G</a>
+                    <?php } else { ?> G <?php } ?> - </li>
 
-                    <?php if (in_array("H", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'h') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-h">H</a> <?php } else { ?> H <?php } ?> - </li>
+                    <?php if (in_array("H", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'h') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-h">H</a>
+                    <?php } else { ?> H <?php } ?> - </li>
 
-                    <?php if (in_array("I", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'i') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-i">I</a> <?php } else { ?> I <?php } ?> - </li>
+                    <?php if (in_array("I", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'i') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-i">I</a>
+                    <?php } else { ?> I <?php } ?> - </li>
 
-                    <?php if (in_array("J", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'j') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-j">J</a> <?php } else { ?> J <?php } ?> - </li>
+                    <?php if (in_array("J", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'j') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-j">J</a>
+                    <?php } else { ?> J <?php } ?> - </li>
 
-                    <?php if (in_array("K", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'k') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-k">K</a> <?php } else { ?> K <?php } ?> - </li>
+                    <?php if (in_array("K", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'k') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-k">K</a>
+                    <?php } else { ?> K <?php } ?> - </li>
 
-                    <?php if (in_array("L", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'l') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-l">L</a> <?php } else { ?> L <?php } ?> - </li>
+                    <?php if (in_array("L", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'l') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-l">L</a>
+                    <?php } else { ?> L <?php } ?> - </li>
 
-                    <?php if (in_array("M", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'm') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-m">M</a> <?php } else { ?> M <?php } ?> - </li>
+                    <?php if (in_array("M", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'm') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-m">M</a>
+                    <?php } else { ?> M <?php } ?> - </li>
 
-                    <?php if (in_array("N", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'n') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-n">N</a> <?php } else { ?> N <?php } ?> - </li>
+                    <?php if (in_array("N", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'n') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-n">N</a>
+                    <?php } else { ?> N <?php } ?> - </li>
 
 
-                    <?php if (in_array("O", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'o') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-o">O</a> <?php } else { ?> O <?php } ?> - </li>
+                    <?php if (in_array("O", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'o') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-o">O</a>
+                    <?php } else { ?> O <?php } ?> - </li>
 
-                    <?php if (in_array("P", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'p') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-p">P</a> <?php } else { ?> P <?php } ?> - </li>
+                    <?php if (in_array("P", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'p') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-p">P</a>
+                    <?php } else { ?> P <?php } ?> - </li>
 
-                    <?php if (in_array("Q", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'q') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-q">Q</a> <?php } else { ?> Q <?php } ?> - </li>
+                    <?php if (in_array("Q", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'q') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-q">Q</a>
+                    <?php } else { ?> Q <?php } ?> - </li>
 
-                    <?php if (in_array("R", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'r') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-r">R</a> <?php } else { ?> R <?php } ?> - </li>
+                    <?php if (in_array("R", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'r') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-r">R</a>
+                    <?php } else { ?> R <?php } ?> - </li>
 
-                    <?php if (in_array("S", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 's') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-s">S</a> <?php } else { ?> S <?php } ?> - </li>
+                    <?php if (in_array("S", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 's') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-s">S</a>
+                    <?php } else { ?> S <?php } ?> - </li>
 
-                    <?php if (in_array("T", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 't') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-t">T</a> <?php } else { ?> T <?php } ?> - </li>
+                    <?php if (in_array("T", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 't') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-t">T</a>
+                    <?php } else { ?> T <?php } ?> - </li>
 
-                    <?php if (in_array("U", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'u') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-u">U</a> <?php } else { ?> U <?php } ?> - </li>
+                    <?php if (in_array("U", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'u') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-u">U</a>
+                    <?php } else { ?> U <?php } ?> - </li>
 
-                    <?php if (in_array("V", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'v') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-v">V</a> <?php } else { ?> V <?php } ?> - </li>
+                    <?php if (in_array("V", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'v') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-v">V</a>
+                    <?php } else { ?> V <?php } ?> - </li>
 
-                    <?php if (in_array("W", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'w') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-w">W</a> <?php } else { ?> W <?php } ?> - </li>
+                    <?php if (in_array("W", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'w') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-w">W</a>
+                    <?php } else { ?> W <?php } ?> - </li>
 
-                    <?php if (in_array("X", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'x') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-x">X</a> <?php } else { ?> X <?php } ?> - </li>
+                    <?php if (in_array("X", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'x') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-x">X</a>
+                    <?php } else { ?> X <?php } ?> - </li>
 
-                    <?php if (in_array("Y", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'y') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-y">Y</a> <?php } else { ?> Y <?php } ?> - </li>
+                    <?php if (in_array("Y", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'y') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-y">Y</a>
+                    <?php } else { ?> Y <?php } ?> - </li>
 
-                    <?php if (in_array("Z", $array_alpha)) { ?> <a style="font-weight:bold; <?php if ($alpha == 'z') { ?>color:#000;<?php } ?>" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-z">Z</a> <?php } else { ?> Z <?php } ?> </li>
+                    <?php if (in_array("Z", $array_alpha)) { ?>
+                    <a style="font-weight:bold; <?php if ($alpha == 'z') { ?>color:#000;<?php } ?>"
+                        href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artists<?php echo $urls; ?>-z">Z</a>
+                    <?php } else { ?> Z <?php } ?>
+                    </li>
 
 
 
@@ -270,7 +364,6 @@ if ($alpha == "unset") {
             $cat_list_arr = array();
 
             if (empty($cat_list_arr)) {
-
                 $cat_list = "select a.artist_seo,a.artist_name, a.artist_img, a.id, c.cat_id, c.cat_name, c.cat_seo_name, 			r.review_user_id 
 							  from tbl_artists a, tbl_categories c, tbl_reviews r 
 							  where 1=1 
@@ -287,7 +380,6 @@ if ($alpha == "unset") {
                 $cat_list_arr = \App\Models\Songs::GetRawData($cat_list);
 
                 if ($cat_list_arr) {
-
                     $count  = count($cat_list_arr);
                 } else {
                     $count = 0;
@@ -295,65 +387,59 @@ if ($alpha == "unset") {
             }
 
             if (isset($cat_list_arr)) {
-                $v = 1;
-            ?>
+                $v = 1; ?>
 
-                <?php if ($mobile_view == 0) { ?>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 30px 0 30px;">
-                        <div style="background-color:#FFFFFF; margin: 10px 0 10px 0;" class="brows-label-penel">
-                            <p class="pull-left" style="line-height:27px;">BROWSE BY GENRE: &nbsp;</p>
-                            <ul class="list-inline">
-                                <li>
-                                    <?php
+            <?php if ($mobile_view == 0) { ?>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 30px 0 30px;">
+                <div style="background-color:#FFFFFF; margin: 10px 0 10px 0;" class="brows-label-penel">
+                    <p class="pull-left" style="line-height:27px;">BROWSE BY GENRE: &nbsp;</p>
+                    <ul class="list-inline">
+                        <li>
+                            <?php
                                     foreach ($cat_list_arr as $val) {
                                         $val = (array)$val;
                                         $cat_id      = $val['cat_id'];
                                         $cat_name = stripslashes(html_entity_decode($val['cat_name']));
-                                        $cat_seo_name = strtolower(stripslashes(html_entity_decode($val['cat_seo_name'])));
-
-                                    ?>
-                                        <a class="active" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a><?php
+                                        $cat_seo_name = strtolower(stripslashes(html_entity_decode($val['cat_seo_name']))); ?>
+                            <a class="active"
+                                href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a><?php
                                                                                                                                                                                                             if ($v != $count) {
                                                                                                                                                                                                                 echo " | ";
-                                                                                                                                                                                                            }
-
-                                                                                                                                                                                                            ?>
-                                    <?php
+                                                                                                                                                                                                            } ?>
+                            <?php
                                         $v++;
                                     }
                                     ?>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                <?php
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <?php
                 } elseif ($mobile_view == 1) { ?>
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;">
-                        <div style="background-color:#FFFFFF; margin:0; padding: 10px 10px; border-right:none; border-left:none;" class="brows-label-penel">
-                            <p class="pull-left">BROWSE BY GENRE: &nbsp;</p>
-                            <ul class="list-inline" style="margin-top:-3px;">
-                                <li>
-                                    <?php
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;">
+                <div style="background-color:#FFFFFF; margin:0; padding: 10px 10px; border-right:none; border-left:none;"
+                    class="brows-label-penel">
+                    <p class="pull-left">BROWSE BY GENRE: &nbsp;</p>
+                    <ul class="list-inline" style="margin-top:-3px;">
+                        <li>
+                            <?php
                                     foreach ($cat_list_arr as $val) {
                                         $cat_id      = $val['cat_id'];
                                         $cat_name = stripslashes(html_entity_decode($val['cat_name']));
-                                        $cat_seo_name = strtolower(stripslashes(html_entity_decode($val['cat_seo_name'])));
-
-                                    ?>
-                                        <a class="active" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a><?php
+                                        $cat_seo_name = strtolower(stripslashes(html_entity_decode($val['cat_seo_name']))); ?>
+                            <a class="active"
+                                href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a><?php
                                                                                                                                                                                                             if ($v != $count) {
                                                                                                                                                                                                                 echo " | ";
-                                                                                                                                                                                                            }
-
-                                                                                                                                                                                                            ?>
-                                    <?php
+                                                                                                                                                                                                            } ?>
+                            <?php
                                         $v++;
                                     }
                                     ?>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
             <?php }
             } ?>
         </div>
@@ -361,20 +447,18 @@ if ($alpha == "unset") {
         <div class="topsonglistsec col-lg-8 col-md-8 col-sm-12 col-xs-12 pad_zero" style="background:none;">
 
             <?php if ($mobile_view == 0) { ?>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <ul class="songlistings" style=" border:1px solid #ccc;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ul class="songlistings" style=" border:1px solid #ccc;">
                     <?php
                 } elseif ($mobile_view == 1) { ?>
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_zero">
-                            <ul class="songlistings">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_zero">
+                        <ul class="songlistings">
                             <?php } ?>
 
                             <?php
                             $where_condition = "";
                             $artist_page = "";
                             if ($genere_seo != "") {
-
-
                                 if (empty($get_cat_array)) {
                                     $get_cat_array = "select cat_id from tbl_categories where cat_seo_name = '$genere_seo'";
                                     $get_cat_array = \App\Models\Songs::GetRawData($get_cat_array);
@@ -409,8 +493,6 @@ if ($alpha == "unset") {
 
 
                             if (empty($artist_list_arr)) {
-
-
                                 if ($search_result != '') {
                                     $orderby = "CASE 
 							   WHEN a.artist_name LIKE '" . $search_artist_names . "' THEN 1 
@@ -427,7 +509,7 @@ if ($alpha == "unset") {
 							  from tbl_artists a, tbl_categories c, tbl_reviews r 
 							  where 1=1 
 							  AND a.artist_status = 1 
-							  AND a.genere_cat = c.cat_id 
+						      AND a.genere_cat = c.cat_id 
 							  AND r.artist_id = a.id 
 							  AND r.status = 1
 							  AND r.review_user_id = '" . $user_profile . "' 
@@ -437,6 +519,7 @@ if ($alpha == "unset") {
 							 ";
 
                                 $artist_list_arr = \App\Models\Songs::GetRawData($artist_list);
+                               
                                 if ($artist_list_arr) {
                                     $total_pages = count($artist_list_arr);
                                 } else {
@@ -446,11 +529,13 @@ if ($alpha == "unset") {
 
                             $targetpage = SERVER_ROOTPATH . $artist_page; //your file name  (the name of this file)
                             $limit = 10;
-                            if ($page)
-                                $start = ($page - 1) * $limit; //first item to display on this page
-                            else
-                                $start = 0;                    //if no page var is given, set start to 0
-                            //PAGGING CODE ENDS HERE	
+                            if ($page) {
+                                $start = ($page - 1) * $limit;
+                            } //first item to display on this page
+                            else {
+                                $start = 0;
+                            }                    //if no page var is given, set start to 0
+                            //PAGGING CODE ENDS HERE
                             //============================================================
 
                             if (isset($page) && $page != "") {
@@ -508,7 +593,6 @@ if ($alpha == "unset") {
                                         $counter = 0;
                                         $all_avg = 0;
                                     } else {
-
                                         $all_avg  =  $sum_rate / $counter;
                                     }
 
@@ -552,10 +636,8 @@ if ($alpha == "unset") {
                                     $rate_user_arr    =    \App\Models\Songs::GetRawDataAdmin($sum_rating_user);
 
                                     if ($rate_user_arr) {
-
                                         $sum_user_rate = $rate_user_arr['sum_rate'];
                                         $counter_user = $rate_user_arr['counter'];
-                                       
                                     } else {
                                         $sum_user_rate = 0;
                                         $counter_user = 0;
@@ -564,14 +646,11 @@ if ($alpha == "unset") {
 
 
                                     if ($sum_user_rate == "" || $sum_user_rate == 0 || $counter_user == '' || $counter_user == 0) {
-
                                         $sum_user_rate = 0;
                                         $counter_user = 0;
                                         $all_user_avg = 0;
                                     } else {
-
                                         $all_user_avg  =  $sum_user_rate / $counter_user;
-                                       
                                     }
 
 
@@ -614,9 +693,8 @@ if ($alpha == "unset") {
 
                                     if ($artist_img == '' &&  $val['updated_by_itunes'] == '0000-00-00 00:00:00') {
                                         $req_artist  =  artist_func(urlencode("$artist_name"));
-                                    }
-                            ?>
-                                    <?php
+                                    } ?>
+                            <?php
                                     if ($user_seo == '') {
                                         $url_gen    =    SERVER_ROOTPATH . $artist_seo . "/review-albums";
                                     } else {
@@ -624,59 +702,74 @@ if ($alpha == "unset") {
                                     }
 
                                     if ($mobile_view == 0) { ?>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
-                                                    <span class="list_no"><?php if (strlen($sr_no) == 1) {
-                                                                                echo "0";
-                                                                            } else {
-                                                                            }; ?><?php echo $sr_no; ?></span>
-                                                </div>
-                                                <div class="col-lg-5 col-md-6 col-sm-5 col-xs-12 pad_zero">
-                                                    <div class="album_cover">
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-12">
+                                        <span class="list_no"><?php if (strlen($sr_no) == 1) {
+                                        echo "0";
+                                    } else {
+                                    }; ?><?php echo $sr_no; ?>
+                                        </span>
+                                    </div>
+                                    <div class="col-lg-5 col-md-6 col-sm-5 col-xs-12 pad_zero">
+                                        <div class="album_cover">
 
-                                                        <?php
+                                            <?php
 
 
                                                         if ($artist_img != "") {
                                                             $img_api_linka = album_img_api($artist_img);
                                                             if ($img_api_linka != '') {
-
-                                                        ?>
-                                                                <a href="<?php echo $url_gen; ?>"><img src="<?php echo get_small_thumb($img_api_linka); ?>" border="0" width="100" /></a>
-                                                            <?php } else { ?>
-                                                                <a href="<?php echo $url_gen; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>" border="0" width="100" /></a>
-                                                            <?php
+                                                                ?>
+                                            <a
+                                                href="<?php echo $url_gen; ?>"><img
+                                                    src="<?php echo get_small_thumb($img_api_linka); ?>"
+                                                    border="0" width="100" /></a>
+                                            <?php
+                                                            } else { ?>
+                                            <a
+                                                href="<?php echo $url_gen; ?>"><img
+                                                    src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>"
+                                                    border="0" width="100" /></a>
+                                            <?php
                                                             }
-                                                        } else
-													if ($artist_img == "") {
-
+                                                        } elseif ($artist_img == "") {
                                                             if ($req_artist['artist_array']['image4'] != "") {
-                                                            ?>
-                                                                <a href="<?php echo $url_gen; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" width="100" style="max-width:inherit; max-height:90px;" /></a>
-                                                            <?php
+                                                                ?>
+                                            <a
+                                                href="<?php echo $url_gen; ?>"><img
+                                                    src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>"
+                                                    border="0" width="100"
+                                                    style="max-width:inherit; max-height:90px;" /></a>
+                                            <?php
                                                             } else {
-                                                            ?>
-                                                                <a href="<?php echo $url_gen; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" width="100" /></a>
-                                                        <?php
+                                                                ?>
+                                            <a
+                                                href="<?php echo $url_gen; ?>"><img
+                                                    src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png"
+                                                    border="0" width="100" /></a>
+                                            <?php
                                                             }
                                                         }
 
                                                         ?>
 
-                                                        <cite style="background-color:<?php echo $color_pick; ?>" class="score_big mt-10"><?php if ($all_avg < 10) {
-                                                                                                                                                echo number_format($all_avg, 1);
-                                                                                                                                            } else {
-                                                                                                                                                echo $all_avg;
-                                                                                                                                            } ?></cite>
-                                                    </div>
-                                                    <div class="album_details">
-                                                        <label class="title">
-                                                            <a href="<?php echo $url_gen; ?>"><?php echo $artist_name; ?></a></label>
-                                                        <label class="likes">
-                                                            <?php
+                                            <cite
+                                                style="background-color:<?php echo $color_pick; ?>"
+                                                class="score_big mt-10"><?php if ($all_avg < 10) {
+                                                            echo number_format($all_avg, 1);
+                                                        } else {
+                                                            echo $all_avg;
+                                                        } ?>
+                                            </cite>
+                                        </div>
+                                        <div class="album_details">
+                                            <label class="title">
+                                                <a
+                                                    href="<?php echo $url_gen; ?>"><?php echo $artist_name; ?></a></label>
+                                            <label class="likes">
+                                                <?php
                                                             if ($user_profile != "") {
-
                                                                 $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$id'";
                                                                 $counter = array();
                                                                 $counter = \App\Models\Songs::GetRawData($qry);
@@ -690,158 +783,207 @@ if ($alpha == "unset") {
                                                                 }
 
                                                                 if ($counter == 0) {
+                                                                    ?>
 
-                                                            ?>
+                                                <span style="overflow:visible;"
+                                                    id="other_dis_sub_<?php echo $id; ?>">
 
-                                                                    <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
-
-                                                                        <?php
+                                                    <?php
                                                                         if (isset($user_type) && ($user_type == 'admin')) { ?>
-                                                                            <a href="javascript:;"><i class="fa fa-heart-o heart_color heart_size"></i></a>
+                                                    <a href="javascript:;"><i
+                                                            class="fa fa-heart-o heart_color heart_size"></i></a>
 
-                                                                        <?php } else if ($user_id == "") {
-                                                                        ?>
-                                                                            <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
-                                                                        <?php
+                                                    <?php } elseif ($user_id == "") {
+                                                                            ?>
+                                                    <a href="#" data-toggle="modal" data-target="#signin_form"><i
+                                                            class="fa fa-heart-o heart_color heart_size"></i></a>
+                                                    <?php
                                                                         } else {
-                                                                        ?>
-                                                                            <a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a>
-                                                                        <?php
-                                                                        }
-                                                                        ?>
-                                                                        <span><?php echo $counter_main; ?></span>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                            echo " Like";
-                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                            echo " Likes";
-                                                                                                                                                                                                                                                                                        } ?></a></span>
+                                                                            ?>
+                                                    <a href="javascript:;"
+                                                        onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i
+                                                            class="fa fa-heart-o heart_color heart_size"></i> </a>
+                                                    <?php
+                                                                        } ?>
+                                                    <span><?php echo $counter_main; ?></span>
+                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                                        data-toggle="modal" data-target="#artist_modal" data-title=""
+                                                        class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                            echo " Like";
+                                                                        } else {
+                                                                            echo " Likes";
+                                                                        } ?>
+                                                    </a>
+                                                </span>
 
-                                                                    <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
+                                                <span style="overflow:visible; display:none;"
+                                                    id="myStyle_sub_<?php echo $id; ?>"></span>
 
-                                                                <?php
+                                                <?php
                                                                 } else {
-
-                                                                ?>
-                                                                    <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
-                                                                        <?php
+                                                                    ?>
+                                                <span style="overflow:visible;"
+                                                    id="other_dis_sub_<?php echo $id; ?>">
+                                                    <?php
                                                                         if ($user_id == "") {
-                                                                        ?>
-                                                                            <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
-                                                                        <?php
+                                                                            ?>
+                                                    <a href="#" data-toggle="modal" data-target="#signin_form"><i
+                                                            class="fa fa-heart-o heart_color heart_size"></i></a>
+                                                    <?php
                                                                         } else {
-                                                                        ?>
-                                                                            <a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart heart_color heart_size"></i> </a>
-                                                                        <?php
-                                                                        }
-                                                                        ?>
-                                                                        <span><?php echo $counter_main; ?></span>
-                                                                        <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                            echo " Like";
-                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                            echo " Likes";
-                                                                                                                                                                                                                                                                                        } ?></a></span>
+                                                                            ?>
+                                                    <a href="javascript:;"
+                                                        onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i
+                                                            class="fa fa-heart heart_color heart_size"></i> </a>
+                                                    <?php
+                                                                        } ?>
+                                                    <span><?php echo $counter_main; ?></span>
+                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                                        data-toggle="modal" data-target="#artist_modal" data-title=""
+                                                        class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                            echo " Like";
+                                                                        } else {
+                                                                            echo " Likes";
+                                                                        } ?>
+                                                    </a>
+                                                </span>
 
 
-                                                                    <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
-                                                                <?php
+                                                <span style="overflow:visible; display:none;"
+                                                    id="myStyle_sub_<?php echo $id; ?>"></span>
+                                                <?php
                                                                 }
                                                             } else {
                                                                 ?>
-                                                                <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
+                                                <span style="overflow:visible;"
+                                                    id="other_dis_sub_<?php echo $id; ?>">
 
-                                                                    <?php
+                                                    <?php
                                                                     if ($user_id == "") {
-                                                                    ?>
-                                                                        <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
-                                                                    <?php
+                                                                        ?>
+                                                    <a href="#" data-toggle="modal" data-target="#signin_form"><i
+                                                            class="fa fa-heart-o heart_color heart_size"></i></a>
+                                                    <?php
                                                                     } else {
-                                                                    ?>
-                                                                        <a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a>
-                                                                    <?php
-                                                                    }
-                                                                    ?>
-                                                                    <span><?php echo $counter_main; ?></span>
-                                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                    } ?></a></span>
+                                                                        ?>
+                                                    <a href="javascript:;"
+                                                        onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i
+                                                            class="fa fa-heart-o heart_color heart_size"></i> </a>
+                                                    <?php
+                                                                    } ?>
+                                                    <span><?php echo $counter_main; ?></span>
+                                                    <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                                        data-toggle="modal" data-target="#artist_modal" data-title=""
+                                                        class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
+                                                                        echo " Like";
+                                                                    } else {
+                                                                        echo " Likes";
+                                                                    } ?>
+                                                    </a>
+                                                </span>
 
-                                                                <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
-                                                            <?php
+                                                <span style="overflow:visible; display:none;"
+                                                    id="myStyle_sub_<?php echo $id; ?>"></span>
+                                                <?php
                                                             }
                                                             ?>
-                                                        </label>
-                                                    </div>
+                                            </label>
+                                        </div>
 
-                                                </div>
-                                                <div class="col-lg-3 col-md-2 col-sm-3 col-xs-12 artist_type red-text pad_zero txtalcnt">
-                                                    <a class="red-text" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a>
-                                                </div>
-                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 artist_type red-text">
-                                                    
-                                                    <?php if ($all_user_avg != 0) {
-                                                    ?>
-                                                        <cite style="background-color:<?php echo $color_pick_user; ?>; color:#FFFFFF; padding:8px;"><?php if ($all_user_avg < 10) {
-                                                                                                                                                        echo number_format($all_user_avg, 1);
-                                                                                                                                                    } else {
-                                                                                                                                                        echo $all_user_avg;
-                                                                                                                                                    } ?></cite><?php } else { ?>
-                                                        <cite style="background-color:#e06d21;  color:#FFFFFF; padding:8px;">0.5</cite><?php } ?>
-                                                </div>
-                                            </div>
-                                        </li>
+                                    </div>
+                                    <div
+                                        class="col-lg-3 col-md-2 col-sm-3 col-xs-12 artist_type red-text pad_zero txtalcnt">
+                                        <a class="red-text"
+                                            href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 artist_type red-text">
+
+                                        <?php if ($all_user_avg != 0) {
+                                                                ?>
+                                        <cite
+                                            style="background-color:<?php echo $color_pick_user; ?>; color:#FFFFFF; padding:8px;"><?php if ($all_user_avg < 10) {
+                                                                    echo number_format($all_user_avg, 1);
+                                                                } else {
+                                                                    echo $all_user_avg;
+                                                                } ?>
+                                        </cite><?php
+                                                            } else { ?>
+                                        <cite
+                                            style="background-color:#e06d21;  color:#FFFFFF; padding:8px;">0.5</cite><?php } ?>
+                                    </div>
+                                </div>
+                            </li>
 
 
-                                    <?php
+                            <?php
                                     } elseif ($mobile_view == 1) { ?>
 
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad_zero">
-                                                        <div class="album_cover">
-                                                            <?php
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad_zero">
+                                            <div class="album_cover">
+                                                <?php
                                                             if ($artist_img != "") {
                                                                 $img_api_linka = album_img_api($artist_img);
                                                                 if ($img_api_linka != '') {
-                                                            ?>
-                                                                    <a href="<?php echo $url_gen; ?>"><img src="<?php echo get_small_thumb($img_api_linka); ?>" border="0" style="max-width:inherit; width:100px; height:100px;" /></a>
-                                                                <?php } else { ?>
-                                                                    <a href="<?php echo $url_gen; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>" border="0" style="max-width:inherit; width:100px; height:100px;" /></a>
-                                                                <?php
+                                                                    ?>
+                                                <a
+                                                    href="<?php echo $url_gen; ?>"><img
+                                                        src="<?php echo get_small_thumb($img_api_linka); ?>"
+                                                        border="0"
+                                                        style="max-width:inherit; width:100px; height:100px;" /></a>
+                                                <?php
+                                                                } else { ?>
+                                                <a
+                                                    href="<?php echo $url_gen; ?>"><img
+                                                        src="<?php echo SERVER_ROOTPATH; ?>site_upload/artist_images/<?php echo 'thumb_' . $artist_img; ?>"
+                                                        border="0"
+                                                        style="max-width:inherit; width:100px; height:100px;" /></a>
+                                                <?php
                                                                 }
-                                                            } else
-													if ($artist_img == "") {
-
+                                                            } elseif ($artist_img == "") {
                                                                 if ($req_artist['artist_array']['image4'] != "") {
-                                                                ?>
-                                                                    <a href="<?php echo $url_gen; ?>"><img src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>" border="0" style="max-width:inherit; width:100px; height:100px;" /></a>
-                                                                <?php
+                                                                    ?>
+                                                <a
+                                                    href="<?php echo $url_gen; ?>"><img
+                                                        src="<?php echo get_small_thumb($req_artist['artist_array']['image4']); ?>"
+                                                        border="0"
+                                                        style="max-width:inherit; width:100px; height:100px;" /></a>
+                                                <?php
                                                                 } else {
-                                                                ?>
-                                                                    <a href="<?php echo $url_gen; ?>"><img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png" border="0" style="max-width:inherit; width:100px; height:100px;" /></a>
-                                                            <?php
+                                                                    ?>
+                                                <a
+                                                    href="<?php echo $url_gen; ?>"><img
+                                                        src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image4.png"
+                                                        border="0"
+                                                        style="max-width:inherit; width:100px; height:100px;" /></a>
+                                                <?php
                                                                 }
                                                             }
 
                                                             ?>
-                                                            <cite class="score_big mt-10" style="background-color:<?php echo $color_pick; ?>; float:right;"><?php if ($all_avg < 10) {
-                                                                                                                                                                echo number_format($all_avg, 1);
-                                                                                                                                                            } else {
-                                                                                                                                                                echo $all_avg;
-                                                                                                                                                            } ?></cite>
+                                                <cite class="score_big mt-10"
+                                                    style="background-color:<?php echo $color_pick; ?>; float:right;"><?php if ($all_avg < 10) {
+                                                                echo number_format($all_avg, 1);
+                                                            } else {
+                                                                echo $all_avg;
+                                                            } ?>
+                                                </cite>
 
-                                                            <div style="position:absolute; z-index:10; margin-left:82%; color:#FFFFFF; margin-top:-20px;" class="review_screen_txt"><?php echo $sr_no; ?></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pad_zero">
-                                                        <div class="album_details" style="display:block;">
-                                                            <label class="title"><a href="<?php echo $url_gen; ?>"><?php echo $artist_name; ?></a></label>
-                                                            <p><label class="likes" style="float:left; height:26px; margin-left:0px; padding-left:0px;">
-                                                                    <?php
+                                                <div style="position:absolute; z-index:10; margin-left:82%; color:#FFFFFF; margin-top:-20px;"
+                                                    class="review_screen_txt"><?php echo $sr_no; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pad_zero">
+                                            <div class="album_details" style="display:block;">
+                                                <label class="title"><a
+                                                        href="<?php echo $url_gen; ?>"><?php echo $artist_name; ?></a></label>
+                                                <p><label class="likes"
+                                                        style="float:left; height:26px; margin-left:0px; padding-left:0px;">
+                                                        <?php
                                                                     if ($user_profile != "") {
-
                                                                         $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$id'";
                                                                         $counter = array();
                                                                         $counter = \App\Models\Songs::GetRawData($qry);
@@ -855,104 +997,141 @@ if ($alpha == "unset") {
                                                                         }
 
                                                                         if ($counter == 0) {
+                                                                            ?>
 
-                                                                    ?>
-
-                                                                            <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
-                                                                                <?php
+                                                        <span style="overflow:visible;"
+                                                            id="other_dis_sub_<?php echo $id; ?>">
+                                                            <?php
                                                                                 if ($user_id == "") {
-                                                                                ?>
-                                                                                    <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
-                                                                                <?php
+                                                                                    ?>
+                                                            <a href="#" data-toggle="modal"
+                                                                data-target="#signin_form"><i
+                                                                    class="fa fa-heart-o heart_color heart_size"></i></a>
+                                                            <?php
                                                                                 } else {
-                                                                                ?>
-                                                                                    <a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
-                                                                                <span><?php echo $counter_main; ?></span>
-                                                                                <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                    echo " Like";
-                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                    echo " Likes";
-                                                                                                                                                                                                                                                                                                } ?></a></span>
+                                                                                    ?>
+                                                            <a href="javascript:;"
+                                                                onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i
+                                                                    class="fa fa-heart-o heart_color heart_size"></i>
+                                                            </a>
+                                                            <?php
+                                                                                } ?>
+                                                            <span><?php echo $counter_main; ?></span>
+                                                            <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                                                data-toggle="modal" data-target="#artist_modal"
+                                                                data-title="" class="like link-disable"
+                                                                style="color:#444;"><?php if ($counter_main < 2) {
+                                                                                    echo " Like";
+                                                                                } else {
+                                                                                    echo " Likes";
+                                                                                } ?>
+                                                            </a>
+                                                        </span>
 
-                                                                            <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
+                                                        <span style="overflow:visible; display:none;"
+                                                            id="myStyle_sub_<?php echo $id; ?>"></span>
 
-                                                                        <?php
+                                                        <?php
                                                                         } else {
-
-                                                                        ?>
-                                                                            <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
-                                                                                <?php
+                                                                            ?>
+                                                        <span style="overflow:visible;"
+                                                            id="other_dis_sub_<?php echo $id; ?>">
+                                                            <?php
                                                                                 if ($user_id == "") {
-                                                                                ?>
-                                                                                    <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
-                                                                                <?php
+                                                                                    ?>
+                                                            <a href="#" data-toggle="modal"
+                                                                data-target="#signin_form"><i
+                                                                    class="fa fa-heart-o heart_color heart_size"></i></a>
+                                                            <?php
                                                                                 } else {
-                                                                                ?>
-                                                                                    <a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart heart_color heart_size"></i> </a>
-                                                                                <?php
-                                                                                }
-                                                                                ?>
-                                                                                <span><?php echo $counter_main; ?></span>
-                                                                                <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                    echo " Like";
-                                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                                    echo " Likes";
-                                                                                                                                                                                                                                                                                                } ?></a></span>
+                                                                                    ?>
+                                                            <a href="javascript:;"
+                                                                onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i
+                                                                    class="fa fa-heart heart_color heart_size"></i> </a>
+                                                            <?php
+                                                                                } ?>
+                                                            <span><?php echo $counter_main; ?></span>
+                                                            <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                                                data-toggle="modal" data-target="#artist_modal"
+                                                                data-title="" class="like link-disable"
+                                                                style="color:#444;"><?php if ($counter_main < 2) {
+                                                                                    echo " Like";
+                                                                                } else {
+                                                                                    echo " Likes";
+                                                                                } ?>
+                                                            </a>
+                                                        </span>
 
 
-                                                                            <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
-                                                                        <?php
+                                                        <span style="overflow:visible; display:none;"
+                                                            id="myStyle_sub_<?php echo $id; ?>"></span>
+                                                        <?php
                                                                         }
                                                                     } else {
                                                                         ?>
-                                                                        <span style="overflow:visible;" id="other_dis_sub_<?php echo $id; ?>">
-                                                                            <?php
+                                                        <span style="overflow:visible;"
+                                                            id="other_dis_sub_<?php echo $id; ?>">
+                                                            <?php
                                                                             if ($user_id == "") {
-                                                                            ?>
-                                                                                <a href="#" data-toggle="modal" data-target="#signin_form"><i class="fa fa-heart-o heart_color heart_size"></i></a>
-                                                                            <?php
+                                                                                ?>
+                                                            <a href="#" data-toggle="modal"
+                                                                data-target="#signin_form"><i
+                                                                    class="fa fa-heart-o heart_color heart_size"></i></a>
+                                                            <?php
                                                                             } else {
-                                                                            ?>
-                                                                                <a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a>
-                                                                            <?php
-                                                                            }
-                                                                            ?>
+                                                                                ?>
+                                                            <a href="javascript:;"
+                                                                onClick="add_in_favourite_list_sub('<?php echo $id; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i
+                                                                    class="fa fa-heart-o heart_color heart_size"></i>
+                                                            </a>
+                                                            <?php
+                                                                            } ?>
 
-                                                                            <span><?php echo $counter_main; ?></span>
-                                                                            <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                echo " Like";
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo " Likes";
-                                                                                                                                                                                                                                                                                            } ?></a></span>
+                                                            <span><?php echo $counter_main; ?></span>
+                                                            <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1"
+                                                                data-toggle="modal" data-target="#artist_modal"
+                                                                data-title="" class="like link-disable"
+                                                                style="color:#444;"><?php if ($counter_main < 2) {
+                                                                                echo " Like";
+                                                                            } else {
+                                                                                echo " Likes";
+                                                                            } ?>
+                                                            </a>
+                                                        </span>
 
-                                                                        <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
-                                                                    <?php
+                                                        <span style="overflow:visible; display:none;"
+                                                            id="myStyle_sub_<?php echo $id; ?>"></span>
+                                                        <?php
                                                                     }
                                                                     ?>
-                                                                </label>
-                                                                <?php if ($all_user_avg != 0) {
-                                                                ?><cite class="score_big mt-10 pad_8" style="background-color:<?php echo $color_pick_user; ?>; float:right;"><?php if ($all_user_avg < 10) {
-                                                                                                                                                                                    echo number_format($all_user_avg, 1);
-                                                                                                                                                                                } else {
-                                                                                                                                                                                    echo $all_user_avg;
-                                                                                                                                                                                } ?></cite><?php } else { ?> <cite class="score_big mt-10 pad_8" style="background-color:#e06d21;float:right;">0.5</cite> <?php } ?>
-                                                            </p>
-                                                            <div style="clear:both;"></div>
-                                                            <p>
-                                                                <label class="reviews">
-                                                                    <a style="color:#D73B3B;" href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a></label>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    </label>
+                                                    <?php if ($all_user_avg != 0) {
+                                                                        ?><cite
+                                                        class="score_big mt-10 pad_8"
+                                                        style="background-color:<?php echo $color_pick_user; ?>; float:right;"><?php if ($all_user_avg < 10) {
+                                                                            echo number_format($all_user_avg, 1);
+                                                                        } else {
+                                                                            echo $all_user_avg;
+                                                                        } ?>
+                                                    </cite><?php
+                                                                    } else { ?> <cite
+                                                        class="score_big mt-10 pad_8"
+                                                        style="background-color:#e06d21;float:right;">0.5</cite> <?php } ?>
+                                                </p>
+                                                <div style="clear:both;"></div>
+                                                <p>
+                                                    <label class="reviews">
+                                                        <a style="color:#D73B3B;"
+                                                            href="<?php echo SERVER_ROOTPATH . $main_link; ?>review-artist-genre/<?php echo $cat_seo_name; ?>"><?php echo $cat_name; ?></a></label>
+                                                </p>
                                             </div>
-                                        </li>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
 
 
-                                    <?php } ?>
+                            <?php } ?>
                             <?php
                                     $k++;
                                 }
@@ -960,41 +1139,43 @@ if ($alpha == "unset") {
 
                             $kval = $k;
                             ?>
-                            </ul>
-                        </div>
-                        <?php if ($total_pages > $limit) { ?>
-                            <div class="page-navigation">
-                                <ul>
-                                    @include("common.paging-playlist")
-                                </ul>
-                            </div>
-                        <?php } ?>
-                </div>
-                <div class="clearfix"></div>
+                        </ul>
+                    </div>
+                    <?php if ($total_pages > $limit) { ?>
+                    <div class="page-navigation">
+                        <ul>
+                            @include("common.paging-playlist")
+                        </ul>
+                    </div>
+                    <?php } ?>
+            </div>
+            <div class="clearfix"></div>
         </div>
         <?php
         if ($main_link != "") {
-        ?>
-            <!-- Advertisement Banner Start-->
-            <div class="container" style="padding-bottom:15px;">
-                <div class="row">
-                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
-                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <?php echo ads_info('Bottom'); ?>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+            ?>
+        <!-- Advertisement Banner Start-->
+        <div class="container" style="padding-bottom:15px;">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <?php echo ads_info('Bottom'); ?>
                 </div>
+                <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12"></div>
             </div>
-            <div class="clear"></div>
-            <!--Advertisement Banner End-->
-        <?php } ?>
+        </div>
+        <div class="clear"></div>
+        <!--Advertisement Banner End-->
+        <?php
+        } ?>
     </div>
     </div>
     <div class="modal fade edit" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="images/crosspng.png"></span></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true"><img src="images/crosspng.png"></span></button>
                     <h4 class="modal-title text_blck">EDIT YOUR REVIEW</h4>
                 </div>
                 <div class="modal-body">
@@ -1058,14 +1239,16 @@ if ($alpha == "unset") {
 </footer>-->
 <?php if (isset($user_type) && ($user_type == 'admin')) { ?>
 <?php } else { ?>
-    @include("common.signin_modal")
+@include("common.signin_modal")
 <?php } ?>
 <?php
-// include("include/thankyou_messages.php"); 
+// include("include/thankyou_messages.php");
 ?>
 
-<div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
-<div class="modal fade" id="#profile_Modal2_99999999" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true"></div>
+<div class="modal fade" id="artist_modal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+</div>
+<div class="modal fade" id="#profile_Modal2_99999999" tabindex="-1" role="dialog" aria-labelledby="basicModal"
+    aria-hidden="true"></div>
 @include("common/footer")
 
 
