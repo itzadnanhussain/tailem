@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\libraries\thumb\Thumbnail;
 
-
 class ManageSong extends Controller
 {
 
@@ -74,6 +73,7 @@ class ManageSong extends Controller
         $data['targetpage'] = 'song_list';
         $data = top_file_data($data);
         $data['title'] = GetTitle();
+        
 
         return view('admin.song_list', $data);
     }
@@ -85,14 +85,12 @@ class ManageSong extends Controller
         // $backtopage =  session()->get('backtopage');
         $backtopage =  'song_list';
         if (isset($_POST)) {
-            
             error_reporting(0);
             $errorstr = "";
             $case = 1;
 
             function SEO($input)
             {
-
                 global $db;
 
                 $input = str_replace("&nbsp;", " ", $input);
@@ -103,10 +101,8 @@ class ManageSong extends Controller
                 $input = trim($input, "-"); //trim dashes from beginning and end of string if any
                 $song_id = $_REQUEST['update_id'];
                 if ($song_id != "") {
-
                     $select_url = "select song_seo from tbl_songs where song_seo='$input' and id !='$song_id'";
                 } else {
-
                     $select_url = "select song_seo from tbl_songs where song_seo='$input'";
                 }
                 $result = \App\Models\Songs::GetRawData($select_url);
@@ -170,7 +166,6 @@ class ManageSong extends Controller
 
             if ($case == 1) {
                 if ($update_id != '') {
-
                     $post_data = array();
                     $post_data['ranking_order'] = $ranking_order;
                     $post_data['song_title'] = $song_title;
@@ -184,7 +179,7 @@ class ManageSong extends Controller
                     $post_data['ad_code'] = $ad_code;
                     $post_data['video_code'] = $video_code;
                     $post_data['song_year'] = $years;
-                    UpdateRecord('songs',array('id'=>$update_id),$post_data);
+                    UpdateRecord('songs', array('id'=>$update_id), $post_data);
                     // $qry = "update tbl_songs set    where id = '$update_id'";
                   
                     // \App\Models\Songs::GetRawData($qry);
@@ -219,7 +214,7 @@ class ManageSong extends Controller
 
                         $icon_array = $_FILES["image_name"]['name'];
                         $img_formats = array("jpeg", "gif", "png", "jpg", "JPEG", "GIF", "PNG", "JPG");
-                        $allowed_size = 2; // Allowed Photo Size in MB			
+                        $allowed_size = 2; // Allowed Photo Size in MB
                         $file_temp = $_FILES["image_name"]['tmp_name'];
                         $h_image_size = filesize($_FILES["image_name"]['tmp_name']);
                         $h_image_size = ($h_image_size / 1024) / 1024;
@@ -248,9 +243,6 @@ class ManageSong extends Controller
                         }
                     }
                 } else {
-
-
-
                     $post_data = array();
                     $post_data['ranking_order'] = $ranking_order;
                     $post_data['song_title'] = $song_title;
@@ -282,7 +274,7 @@ class ManageSong extends Controller
                     if ($_FILES["image_name"]['name'] != "") {
                         $icon_array = $_FILES["image_name"]['name'];
                         $img_formats = array("jpeg", "gif", "png", "jpg", "JPEG", "GIF", "PNG", "JPG");
-                        $allowed_size = 2; // Allowed Photo Size in MB			
+                        $allowed_size = 2; // Allowed Photo Size in MB
                         $file_temp = $_FILES["image_name"]['tmp_name'];
                         $h_image_size = filesize($_FILES["image_name"]['tmp_name']);
                         $h_image_size = ($h_image_size / 1024) / 1024;
@@ -408,11 +400,8 @@ class ManageSong extends Controller
     ///Song_Actions
     public function Song_Actions()
     {
-
         if (!empty($_POST['ids'])) {
-
-            if ($_POST['dropdown'] == 'Delete') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'Delete') { // from button name="delete"
                 $checkbox = $_POST['ids']; //from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -440,8 +429,7 @@ class ManageSong extends Controller
             }
 
 
-            if ($_POST['dropdown'] == 'Active') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'Active') { // from button name="delete"
                 $checkbox = $_POST['ids']; //from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -469,8 +457,7 @@ class ManageSong extends Controller
                 }
             }
 
-            if ($_POST['dropdown'] == 'Inactive') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'Inactive') { // from button name="delete"
                 $checkbox = $_POST['ids']; // from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -499,10 +486,7 @@ class ManageSong extends Controller
                 }
             }
 
-            if ($_POST['dropdown'] == 'sort_ranking') // from button name="delete"
-            {
-
-
+            if ($_POST['dropdown'] == 'sort_ranking') { // from button name="delete"
                 $checkbox = $_POST['ids']; // from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -529,7 +513,6 @@ class ManageSong extends Controller
                 }
             }
         } else {
-
             $errormsg = base64_encode('First select a record to perform some action');
             $url = "admin/song_list?msg=$errormsg&case=2";
             return redirect($url);
@@ -549,18 +532,18 @@ class ManageSong extends Controller
 
 
             if ($status == 0) {
-                //echo '<a href="song_list?status='.base64_encode(1).'&status_id='.base64_encode($id).'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>'; 
+                //echo '<a href="song_list?status='.base64_encode(1).'&status_id='.base64_encode($id).'"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>';
                 echo '<a href="javascript:;" onclick = "change_status(' . $song_id . ', 1)" id = "remove_song_' . $song_id . '"><img src="images/disable.gif" border="0" class="Action" title="Activate"></a>';
             }
             if ($status == 1) {
-                //echo '<a href="song_list?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>'; 
+                //echo '<a href="song_list?status='.base64_encode(0).'&status_id='.base64_encode($id).'"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>';
                 echo '<a href="javascript:;" onclick = "change_status(' . $song_id . ', 0)" id = "remove_song_' . $song_id . '"><img src="images/enable.gif" border="0" class="Action" title="Blocked"></a>';
             }
         }
     }
 
     ///Load_Artist
-    public function  Load_Artist()
+    public function Load_Artist()
     {
         $srch_search_sess = $_GET['search'];
         $artist_list = "select id, artist_name from tbl_artists where artist_status = 1 and  artist_name like '$srch_search_sess%' order by '$srch_search_sess' limit 0,100";
@@ -773,8 +756,6 @@ class ManageSong extends Controller
     {
         error_reporting(0);
         if (isset($_POST)) {
-
-
             $errorstr = "";
             $case = 1;
 
@@ -800,9 +781,9 @@ class ManageSong extends Controller
 
             $song_list = "SELECT sa.id,a.artist_img,s.song_title,a.artist_name, sa.song_id, sa.artist_id FROM tbl_songs s, tbl_songs_artist sa, tbl_artists a where 1=1 AND a.id = sa.artist_id AND sa.song_id = s.id AND sa.song_id = '$dec_id'";
             $multi_artist = \App\Models\Songs::GetRawData($song_list);
-            $count_num = count($multi_artist); 
-            $song_list_arr    =    \App\Models\Songs::GetRawData($song_list); 
-            $sizeofalbum  = sizeof($_REQUEST['album']); 
+            $count_num = count($multi_artist);
+            $song_list_arr    =    \App\Models\Songs::GetRawData($song_list);
+            $sizeofalbum  = sizeof($_REQUEST['album']);
             $update_id = $_REQUEST['update_id'];
 
 
@@ -810,15 +791,13 @@ class ManageSong extends Controller
                 $errorstr .= "Invalid song and artist ID\n";
                 $case = 0;
             }
-            if ($case == 1) {  
-                $arr  = $_REQUEST['album']; 
+            if ($case == 1) {
+                $arr  = $_REQUEST['album'];
                 \App\Models\Songs::GetRawData("update tbl_songs_artist_album set display_status = 0 where song_id='" . stripslashes($dec_id) . "' AND artist_id='" . stripslashes($dec_artist_id) . "'");
 
                 $check_count = 0;
                 for ($m = 0; $m <= $sizeofalbum; $m++) {
-
                     if ($count_num > 1) {
-
                         foreach ($multi_artist as $multi_artist) {
                             $artist_get_id  =  $multi_artist['artist_id'];
 
@@ -826,7 +805,7 @@ class ManageSong extends Controller
 
                             $album_list_arr    =    \App\Models\Songs::GetRawData($query_list);
 
-                            //echo $album_list_arr['display_status'];	
+                            //echo $album_list_arr['display_status'];
 
 
                             if ($album_list_arr) {
@@ -837,7 +816,6 @@ class ManageSong extends Controller
                                 $check_count++;
 
                                 if ($arr[$m] != "" && $arr[$m] != 0) {
-
                                     \App\Models\Songs::GetRawData("insert into tbl_songs_artist_album set song_id='" . stripslashes($dec_id) . "',artist_id='" . stripslashes($artist_get_id) . "',status='1', 	display_status='1', posted_date='" . time() . "', album_id = '" . $arr[$m] . "'");
                                 }
                             }
@@ -850,15 +828,12 @@ class ManageSong extends Controller
 
                         if ($album_list_arr) {
                             if ($album_list_arr['display_status'] == 0) {
-
                                 \App\Models\Songs::GetRawData("update tbl_songs_artist_album set display_status = 1 where song_id='" . stripslashes($dec_id) . "' AND artist_id='" . stripslashes($dec_artist_id) . "' AND album_id = '" . $arr[$m] . "'");
                             }
                         } else {
                             $check_count++;
 
                             if ($arr[$m] != "" && $arr[$m] != 0) {
-
-
                                 \App\Models\Songs::GetRawData("insert into tbl_songs_artist_album set song_id='" . stripslashes($dec_id) . "',artist_id='" . stripslashes($dec_artist_id) . "',status='1', 	display_status='1', posted_date='" . time() . "', album_id = '" . $arr[$m] . "'");
                             }
                         }
