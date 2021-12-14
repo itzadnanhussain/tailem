@@ -3,7 +3,6 @@
 use Illuminate\support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-
 //****************************Queries*********************************** */
 ///Get All Records
 if (!function_exists('GetAllRecords')) {
@@ -46,7 +45,6 @@ if (!function_exists('GetLastQuery')) {
 if (!function_exists('addNew')) {
     function addNew($table, $data)
     {
-
         $id = DB::table($table)->insertGetId(
             $data
         );
@@ -58,7 +56,7 @@ if (!function_exists('addNew')) {
 
 ///UpdateRecord
 if (!function_exists('UpdateRecord')) {
-    function UpdateRecord($table = null, $where = array(),  $data = array())
+    function UpdateRecord($table = null, $where = array(), $data = array())
     {
         $affected = DB::table($table)
             ->where($where)
@@ -67,7 +65,7 @@ if (!function_exists('UpdateRecord')) {
     }
 }
 
-///EnableQueryLog 
+///EnableQueryLog
 if (!function_exists('EnableQueryLog')) {
     function EnableQueryLog()
     {
@@ -82,10 +80,13 @@ if (!function_exists('EnableQueryLog')) {
 if (!function_exists('top_file_data')) {
     function top_file_data($data = array())
     {
-
         if ((session()->get('reviewsite_cpadmin_type')) == 'user') {
             $qry = "SELECT * from tbl_moderator_rights WHERE moderator_id='" . session()->get('reviewsite_cpadmin_id') . "'";
             $tops_arrs    =    \App\Models\Songs::GetRawData($qry);
+            // echo '<pre>';
+            // print_r($tops_arrs);
+            // echo '</pre>';
+            // die;
             $tops_arrs = (array)$tops_arrs[0];
             $data['top_slider_module']                = $tops_arrs['slider_module'];
             $data['top_users_module']                   = $tops_arrs['users_module'];
@@ -213,8 +214,7 @@ if (!function_exists('curPageURL')) {
             } else {
                 $pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
             }
-        } else
- if ($pos == false) {
+        } elseif ($pos == false) {
             $pageURL = 'http';
             $pageURL .= "://www.";
             if ($_SERVER["SERVER_PORT"] != "80") {
