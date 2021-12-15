@@ -111,6 +111,9 @@ class UserController extends Controller
         if (isset($user_seo) && ($user_seo != "")) {
             $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
             $result_image = \App\Models\Songs::GetRawData($qry);
+            if (empty($result_image)) {
+                return redirect('/');
+            }
             $data['user_name'] = $result_image[0]->user_name;
             $data['user_profile'] = $result_image[0]->user_id;
             $data['date_added_db'] = $result_image[0]->date_added;
@@ -2877,6 +2880,9 @@ class UserController extends Controller
         if (isset($user_seo) && ($user_seo != "")) {
             $qry = "select user_id,date_added,user_name  from  tbl_users where user_seo='" . $user_seo . "' ";
             $result_image = \App\Models\Songs::GetRawData($qry);
+            if (empty($result_image)) {
+                return redirect('/');
+            }
             $data['user_name'] = $result_image[0]->user_name;
             $data['user_profile'] = $result_image[0]->user_id;
             $data['date_added_db'] = $result_image[0]->date_added;
