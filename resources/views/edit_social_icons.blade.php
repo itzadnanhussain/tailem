@@ -15,7 +15,7 @@
                         <select name="icon_type" id="icon-type" style="margin-bottom: 10px;" class="form-control"
                             onchange="icon_change_div(this.value)">
 
-                            <option value="">Select Icon Name</option>
+                            <option value="">Select Link Name</option>
                             <option value="Facebook">Facebook</option>
                             <option value="Twitter">Twitter</option>
                             <option value="Instagram">Instagram</option>
