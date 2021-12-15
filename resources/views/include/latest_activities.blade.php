@@ -385,7 +385,9 @@ if ($mobile_view == 0) { ?>
         color: #d73b3b;
     }
 </style>
-<?php $social_icons = GetByWhere('social_icons');
+<?php
+$social_icons = GetByWhere('social_icons');
+ 
     ?>
 <div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
     <ul class="bottom_nav">
@@ -393,40 +395,30 @@ if ($mobile_view == 0) { ?>
         <li class="li"><label>Follow me on: </label></li>
 
         <!-- Facebook icon -->
-        <?php if (isset($facebook_icon) && !empty($facebook_icon)) { ?>
+
         <li><a href="<?php echo $facebook_icon[0]->social_link ?>"
                 target="_blank"><img class="sprite-icon_fb"
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $facebook_icon[0]->icon_image ?>"
-                    alt=""></a></li>
-        <?php } else { ?>
-        <li><a href="javascript:void(0)"><img class="sprite-icon_fb"
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/facebook.png' ?>"
-                    alt=""></a></li>
-        <?php } ?>
+                    src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>"
+                    alt=""></a>
+        </li>
+
 
         <!-- Twitter icon -->
-        <?php if (isset($twitter_icon) && !empty($twitter_icon)) { ?>
+
         <li><a href="<?php echo $twitter_icon[0]->social_link ?>"
                 target="_blank"><img class="sprite-icon_tw"
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $twitter_icon[0]->icon_image ?>"
-                    alt=""></a></li>
-        <?php } else { ?>
-        <li><a href="javascript:void(0)"><img class="sprite-icon_tw"
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/twitter.png' ?>"
-                    alt=""></a></li>
-        <?php } ?>
+                    src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>"
+                    alt=""></a>
+        </li>
+
 
         <!-- Instagram icon -->
-        <?php if (isset($instagram_icon) && !empty($instagram_icon)) { ?>
         <li><a href="<?php echo $instagram_icon[0]->social_link ?>"
                 target="_blank"> <img
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $instagram_icon[0]->icon_image ?>"
-                    width="34" alt=""></a></li>
-        <?php } else { ?>
-        <li><a href="javascript:void(0)"> <img
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/instagram.png' ?>"
-                    width="34" alt=""></a></li>
-        <?php } ?>
+                    src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>"
+                    width="34" alt="">
+            </a>
+        </li>
 
     </ul>
 
@@ -472,40 +464,25 @@ if ($mobile_view == 0) { ?>
 
         <li><label>Follow me on: </label></li>
         <!-- Facebook icon -->
-        <?php if (isset($facebook_icon) && !empty($facebook_icon)) { ?>
         <li><a href="<?php echo $facebook_icon[0]->social_link ?>"
                 target="_blank"><img class="sprite-icon_fb"
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $facebook_icon[0]->icon_image ?>"
+                    src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>"
                     alt=""></a></li>
-        <?php } else { ?>
-        <li><a href="javascript:void(0)"><img class="sprite-icon_fb"
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/facebook.png' ?>"
-                    alt=""></a></li>
-        <?php } ?>
+
 
         <!-- Twitter icon -->
-        <?php if (isset($twitter_icon) && !empty($twitter_icon)) { ?>
         <li><a href="<?php echo $twitter_icon[0]->social_link ?>"
                 target="_blank"><img class="sprite-icon_tw"
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $twitter_icon[0]->icon_image ?>"
+                    src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>"
                     alt=""></a></li>
-        <?php } else { ?>
-        <li><a href="javascript:void(0)"><img class="sprite-icon_tw"
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/twitter.png' ?>"
-                    alt=""></a></li>
-        <?php } ?>
+
 
         <!-- Instagram icon -->
-        <?php if (isset($instagram_icon) && !empty($instagram_icon)) { ?>
         <li><a href="<?php echo $instagram_icon[0]->social_link ?>"
                 target="_blank"> <img
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/' . $profile_id .'/'. $instagram_icon[0]->icon_image ?>"
+                    src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>"
                     width="34" alt=""></a></li>
-        <?php } else { ?>
-        <li><a href="javascript:void(0)"> <img
-                    src="<?php echo SERVER_ROOTPATH . 'profile_icon/instagram.png' ?>"
-                    width="34" alt=""></a></li>
-        <?php } ?>
+
 
     </ul>
 

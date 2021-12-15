@@ -1,5 +1,6 @@
-<?php 
-namespace App\Http\Controllers; 
+<?php
+namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -92,7 +93,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -199,7 +199,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -309,7 +308,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -386,7 +384,7 @@ class UserController extends Controller
         $title = str_replace('-', ' ', ($user_seo . ' Profile  review-artist'));
         $data['title'] = GetTitle();
         return view('review_artist', $data);
-    } 
+    }
 
     //GetReviewArtistPage_Four
     public function GetReviewArtistPage_Four($page = null)
@@ -418,7 +416,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -496,7 +493,7 @@ class UserController extends Controller
 
 
         return view('review_artist', $data);
-    } 
+    }
 
 
     ///*****************************My Review Page ****************************** */
@@ -531,7 +528,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -642,7 +638,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -754,7 +749,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -866,7 +860,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -978,7 +971,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1090,7 +1082,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1203,7 +1194,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1315,7 +1305,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1427,7 +1416,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1539,7 +1527,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1651,7 +1638,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1763,7 +1749,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1876,7 +1861,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -1958,7 +1942,7 @@ class UserController extends Controller
 
 
     ///GetMyReviewsPage_Fourteen
-    public function GetMyReviewsPage_Fourteen($user_seo, $rate,  $page = null)
+    public function GetMyReviewsPage_Fourteen($user_seo, $rate, $page = null)
     {
 
 
@@ -1988,7 +1972,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -2228,7 +2211,7 @@ class UserController extends Controller
         $data['album_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -2293,7 +2276,7 @@ class UserController extends Controller
         $data['currentFile'] = 'my_account_profile';
         $data['title'] = GetTitle();
         return view('my_account_profile', $data);
-    } 
+    }
 
 
     ///GetProfileLike_One
@@ -2327,7 +2310,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -2352,7 +2335,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -2441,7 +2423,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -2466,7 +2448,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -2553,7 +2534,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -2578,7 +2559,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -2666,7 +2646,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -2691,7 +2671,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -2746,7 +2725,7 @@ class UserController extends Controller
         $data['currentFile'] = 'likes_profile';
         $data['title'] = GetTitle();
         return view('likes_profile', $data);
-    } 
+    }
 
     ///GetProfileLikePlaylist
     public function GetProfileLikePlaylist($user_seo = null)
@@ -2779,7 +2758,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -2804,7 +2783,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -2859,7 +2837,7 @@ class UserController extends Controller
         $data['currentFile'] = 'likes_playlist';
         $data['title'] = GetTitle();
         return view('likes_playlist', $data);
-    } 
+    }
 
     ///GetProfileDiscussion
     public function GetProfileDiscussion($user_seo = null)
@@ -2892,7 +2870,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -2917,7 +2895,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -2972,7 +2949,7 @@ class UserController extends Controller
         $data['currentFile'] = 'my_discussion';
         $data['title'] = GetTitle();
         return view('my_discussion', $data);
-    }  
+    }
 
     ///GetProfilePlaylist
     public function GetProfilePlaylist($user_seo = null, $seo_playlist = null)
@@ -3006,7 +2983,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -3031,7 +3008,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -3089,7 +3065,7 @@ class UserController extends Controller
         $data['title'] = GetTitle();
        
         return view('my_playlist', $data);
-    } 
+    }
 
     ///GetProfilePlaylist_1
     public function GetProfilePlaylist_1($seo_playlist = null)
@@ -3123,7 +3099,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -3148,7 +3124,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -3206,7 +3181,7 @@ class UserController extends Controller
         $data['title'] = GetTitle();
         
         return view('my_playlist', $data);
-    } 
+    }
 
     ///GetLikeReview
     public function GetLikeReview()
@@ -3240,7 +3215,7 @@ class UserController extends Controller
         $data['genere_seo'] = null;
 
 
-        ///common header 
+        ///common header
         $data['user_id'] = session()->get('user_id');
         $data['mobile_view'] = 0;
         $data['page'] = $page;
@@ -3265,7 +3240,6 @@ class UserController extends Controller
         if ($_POST) {
             extract($_POST);
             if ($artist_name != "") {
-
                 $artist_name = StringReplace($artist_name);
                 $search_where = " AND a.artist_name like '%$artist_name%'";
 
@@ -3320,7 +3294,7 @@ class UserController extends Controller
         $data['currentFile'] = 'my_account';
         $data['title'] = GetTitle();
         return view('my_account', $data);
-    } 
+    }
 
     ///DeleteUserProfile
     public function DeleteUserProfile()
@@ -3395,45 +3369,45 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'icon_type' => 'required',
             'icon_link' => 'required',
-            'icon_image' => 'required|mimes:png,jpg,jpeg,csv,txt,pdf|max:2048',
+            // 'icon_image' => 'required|mimes:png,jpg,jpeg,csv,txt,pdf|max:2048',
         ]);
         if ($validator->fails()) {
             $response = array("code" => 'warning', 'message' => $validator->errors()->first());
             return response()->json($response);
         } else {
-            if ($request->file('icon_image')) {  
-                $file = $request->file('icon_image');
-                $filename = $file->getClientOriginalName();
-                // File extension
-                // $extension = $file->getClientOriginalExtension();
-
-                // File upload location
-                $location = 'profile_icon/'.$user_id;
-                if (!file_exists($location)) {
-                    mkdir($location, 0777, true);
-                }
-                // Upload file
-                $file->move($location, $filename);
-                // File path
-                // $filepath = url('profile_icon/' . $filename);
-                $data['user_id'] = $user_id;
-                $data['icon_type'] = $icon_type;
-                $data['social_link'] = $icon_link;
-                $data['icon_image'] = $filename;
-                $where = array('user_id' => $user_id, 'icon_type' => $icon_type);
-                $check_record = GetByWhere('user_social_profile', $where);
-                if ($check_record) {
-                    UpdateRecord('user_social_profile',$where,$data);
-                } else {
-                    addNew('user_social_profile', $data);
-                }
-
-                $response = array("code" => 'success', 'message' => 'icon uploaded!');
-                return response()->json($response);
+            $data['user_id'] = $user_id;
+            $data['icon_type'] = $icon_type;
+            $data['social_link'] = $icon_link;
+            // $data['icon_image'] = $filename;
+            $where = array('user_id' => $user_id, 'icon_type' => $icon_type);
+            $check_record = GetByWhere('user_social_profile', $where);
+            if ($check_record) {
+                UpdateRecord('user_social_profile', $where, $data);
             } else {
-                $response = array("code" => 'warning', 'message' => 'icon not uploaded!');
-                return response()->json($response);
+                addNew('user_social_profile', $data);
             }
+
+            $response = array("code" => 'success', 'message' => 'Link Updated!');
+            return response()->json($response);
+            // if ($request->file('icon_image')) {
+            //     $file = $request->file('icon_image');
+            //     $filename = $file->getClientOriginalName();
+            //     // File extension
+            //     // $extension = $file->getClientOriginalExtension();
+
+            //     // File upload location
+            //     $location = 'profile_icon/'.$user_id;
+            //     if (!file_exists($location)) {
+            //         mkdir($location, 0777, true);
+            //     }
+            //     // Upload file
+            //     $file->move($location, $filename);
+            // // File path
+            //     // $filepath = url('profile_icon/' . $filename);
+            // } else {
+            //     $response = array("code" => 'warning', 'message' => 'icon not uploaded!');
+            //     return response()->json($response);
+            // }
         }
     }
 }
