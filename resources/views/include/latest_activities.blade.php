@@ -415,7 +415,7 @@ $social_icons = GetByWhere('social_icons');
         <!-- Instagram icon -->
         <li><a href="<?php echo $instagram_icon[0]->social_link ?>"
                 target="_blank"> <img
-                    src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>"
+                    src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>"
                     width="34" alt="">
             </a>
         </li>
@@ -480,7 +480,7 @@ $social_icons = GetByWhere('social_icons');
         <!-- Instagram icon -->
         <li><a href="<?php echo $instagram_icon[0]->social_link ?>"
                 target="_blank"> <img
-                    src="<?php echo SERVER_ROOTPATH . $social_icons[3]->large_screen_icon ?>"
+                    src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>"
                     width="34" alt=""></a></li>
 
 
