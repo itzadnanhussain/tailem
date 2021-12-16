@@ -9,9 +9,9 @@ $count_reviews = '(' . count(GetByWhere('reviews', array('review_user_id' => $us
 ///count likes
 $count_likes = '(' . count(GetByWhere('likes', array('like_from_user_id' => $user_profile_id))) . ')';
 $count_review_likes = '(' . count(GetByWhere('likes', array('like_from_user_id' => $user_profile_id, 'like_type' => 'review_song'))) . ')';
-$count_artist_likes = '(' . count(GetByWhere('likes', array('like_from_user_id' => $user_profile_id, 'like_type' => 'artist'))) . ')';
-$count_profile_likes = '(' . count(GetByWhere('likes', array('like_from_user_id' => $user_profile_id, 'like_type' => 'profile'))) . ')';
-$count_playlist_likes = '(' . count(GetByWhere('likes', array('like_from_user_id' => $user_profile_id, 'like_type' => 'playlist'))) . ')';
+$count_artist_likes = ' (' . count(GetByWhere('likes', array('like_from_user_id' => $user_profile_id, 'like_type' => 'artist'))) . ')';
+$count_profile_likes = ' (' . count(GetByWhere('likes', array('like_from_user_id' => $user_profile_id, 'like_type' => 'profile'))) . ')';
+$count_playlist_likes = ' (' . count(GetByWhere('likes', array('like_from_user_id' => $user_profile_id, 'like_type' => 'playlist'))) . ')';
 
 
 ///count playlist
@@ -66,7 +66,7 @@ $count_posts = '(' . count(GetByWhere('comments', array('comment_user_id' => $us
             <?php if ($currentFile == "my_playlist") { ?>
             class="active" <?php } ?>>PLAYLISTS <span
                 class="counter-span"><?php echo $count_playlist ?></span>
-            </a>
+        </a>
     </li>
 
 </ul>
@@ -191,7 +191,7 @@ $count_posts = '(' . count(GetByWhere('comments', array('comment_user_id' => $us
                 $get_firstplaylist  =  get_first_playlist_record($user_profile);
                 if ($get_firstplaylist) {
                     $get_firstplaylist = (array)$get_firstplaylist[0];
-                    $playlist_first  =  "-" . stripslashes($get_firstplaylist['title_playlist_seo']);
+                    $playlist_first  =  "/" . stripslashes($get_firstplaylist['title_playlist_seo']);
                 } else {
                     $playlist_first  =  "";
                 }
@@ -224,7 +224,7 @@ $count_posts = '(' . count(GetByWhere('comments', array('comment_user_id' => $us
 
             <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>like-playlist"
                 <?php if ($currentFile == "likes_playlist") { ?>
-                style="color:#c63434;" <?php } else { ?> <?php } ?>>Playlist<span class="counter-color"><?php echo $count_playlist_likes ?></span></a>
+                style="color:#c63434;" <?php } else { ?> <?php } ?>>PLAYLIST<span class="counter-color"><?php echo $count_playlist_likes ?></span></a>
         </li>
 
         <?php
@@ -282,7 +282,7 @@ $count_posts = '(' . count(GetByWhere('comments', array('comment_user_id' => $us
                     $playlist_count = '('.count(GetByWhere('user_playlist_songs', array('playlist_id' => $playlist_id))).')';
                             
                     $arr_playlist = (array)$arr_playlist; ?>
-                <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>playlists-<?php echo stripslashes($arr_playlist['title_playlist_seo']); ?>"
+                <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>playlists/<?php echo stripslashes($arr_playlist['title_playlist_seo']); ?>"
                     <?php if ($seo_playlist == $arr_playlist['title_playlist_seo']) { ?>
                     class="active" <?php } else { ?> <?php } ?>><?php echo stripslashes($arr_playlist['title_playlist'] . $playlist_count); ?></a>
                 <?php

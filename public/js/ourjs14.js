@@ -147,6 +147,9 @@ function validate_discussion_new_Response(responseText, statusText) {
 
         $("#edit_Modal4_" + myarray[1]).modal("hide");
         $("#post_edit_success").modal("show");
+        window.setTimeout(function () {
+            window.location.reload();
+        }, 1300);
     } else {
         alert(responseText);
     }

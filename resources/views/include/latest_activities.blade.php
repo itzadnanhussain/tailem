@@ -133,7 +133,7 @@ if ($like_list_arr) {
                 $date_db      =  strtotime(date($like_list_arr_inner['date']));
                 $date_db2  =  strtotime(date($like_list_arr_inner['display_date']));
                 $db_link    =  SERVER_ROOTPATH . get_user_detail($user_name_db) . "/profile-review-artist";
-                $db_link_playlist  = SERVER_ROOTPATH . get_user_detail($user_name_db) . "-profile-playlists-" . $db_title_playlist_seo;
+                $db_link_playlist  = SERVER_ROOTPATH . get_user_detail($user_name_db) . "-profile-playlists/" . $db_title_playlist_seo;
                 $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a> likes  <a class='user_pnl_col' href='$db_link_playlist'>$db_title</a> playlist by <a class='user_pnl_col' href='$db_link'>$user_name_db</a> ";
 
                 $like_date_check =  date("Y-m-d", $date_db);
@@ -191,7 +191,7 @@ if ($review_list_arrs) {
 									where 1=1 
 									AND user_id = '" . $review_user_id . "'";
 
-        $user_arr = \App\Models\Songs::GetRawData($user_query);
+        $user_arr = \App\Models\Songs::GetRawDataAdmin($user_query);
 
 
         $like_review_date_check =  date("Y-m-d", strtotime(date($review_list_arr['date'])));
@@ -228,7 +228,7 @@ if ($playlist_list_arrs) {
         $posted_date   =  $myplaylist_arr['posted_date'];
         $get_username   =  $myplaylist_arr['user_name'];
         $get_user_seo   =  $myplaylist_arr['user_seo'];
-        $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "-profile-playlists-" . $title_playlist_seo;
+        $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "-profile-playlists/" . $title_playlist_seo;
 
         $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . $get_user_seo . "/profile-review-artist'>$get_username</a> has created <a class='user_pnl_col' href='" . $db_link_playlist . "'>$title_playlist</a> playlist.";
 
@@ -265,7 +265,7 @@ if ($playlist_list_arrs) {
 
         $get_username   =  $myplaylist_arr['user_name'];
         $get_user_seo   =  $myplaylist_arr['user_seo'];
-        $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "-profile-playlists-" . $title_playlist_seo;
+        $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "-profile-playlists/" . $title_playlist_seo;
 
         $gotosong_url  = SERVER_ROOTPATH . Slug($song_seo_db) . "/reviews/" . Slug($artist_info_get['artist_seo']);
 

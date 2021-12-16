@@ -280,7 +280,7 @@ $USER_NAME = ucfirst($user_name);
 
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                                 <div class="album_details" style="padding-left:10px; margin-top:-10px; width:auto;">
-                                                    <label class="author pad_zero" style="width:215px; float:left; margin-top:3px;"><a href="<?php echo SERVER_ROOTPATH . stripslashes($user_seo) . "-profile-playlists-" . stripslashes($row_playlistinfo['title_playlist_seo']); ?>"><?php echo stripslashes($row_playlistinfo['title_playlist']); ?> </a>
+                                                    <label class="author pad_zero" style="width:215px; float:left; margin-top:3px;"><a href="<?php echo SERVER_ROOTPATH . stripslashes($user_seo) . "-profile-playlists/" . stripslashes($row_playlistinfo['title_playlist_seo']); ?>"><?php echo stripslashes($row_playlistinfo['title_playlist']); ?> </a>
                                                         <span id="nam_<?php echo $p_fav; ?>"></span>
                                                     </label>
                                                     <label class="likes pad_zero">
@@ -440,7 +440,7 @@ $USER_NAME = ucfirst($user_name);
                                                 <div class="album_details" style="margin-top:-5px;">
 
                                                     <p><label class="author" style="float:left; width:auto;">
-                                                            <a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . stripslashes($user_seo) . "-profile-playlists-" . stripslashes($row_playlistinfo['title_playlist_seo']); ?>"><?php echo stripslashes($row_playlistinfo['title_playlist']); ?> </a>
+                                                            <a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH . stripslashes($user_seo) . "-profile-playlists/" . stripslashes($row_playlistinfo['title_playlist_seo']); ?>"><?php echo stripslashes($row_playlistinfo['title_playlist']); ?> </a>
                                                         </label>
                                                         <label class="likes" style="margin-left:5px; float:right;">
                                                             <!--<span style="overflow:visible; margin-top:-10px;"><a href="#"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span> 3</span><a href="#" class="like link-disable" style="color:#444;"> Likes</a></span>-->

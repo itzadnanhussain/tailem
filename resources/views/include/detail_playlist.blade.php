@@ -50,7 +50,7 @@
 				aria-label="Close"><span aria-hidden="true"><img
 						src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png"></span></button>
 			<h4 style="width:90%;" class="modal-title text_blck">Who likes <a style="color:#d73b3b;"
-					href="<?php echo SERVER_ROOTPATH . $user_seo . "-profile-playlists-" . $title_playlist_seo; ?>">
+					href="<?php echo SERVER_ROOTPATH . $user_seo . "-profile-playlists/" . $title_playlist_seo; ?>">
 					<?php echo stripslashes($row_playlistinfo['title_playlist']); ?></a>?
 			</h4>
 		</div>

@@ -37,5 +37,6 @@
   language="javascript"></script>
 <script type="text/javascript"
   src="<?php echo SERVER_ADMIN_PATH;?>ckeditor/ckeditor.js"></script>
-<script type="text/javascript"
-  src="<?php echo SERVER_ADMIN_PATH;?>js/jquery.tokenize.js"></script>
+<!-- <script type="text/javascript"
+  src="<?php echo SERVER_ADMIN_PATH;?>js/jquery.tokenize.js">
+</script> -->

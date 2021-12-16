@@ -1257,7 +1257,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                 data-title="">Report</a>
                                             <?php
                                                         } else {
-                                                            if (isset($report_status)) {
+                                                            if (isset($report_status) && !empty($report_status)) {
                                                                 ?>
                                             <a class="linktag_new under_line" href="#" data-toggle="modal"
                                                 data-target="#report_already_message" data-title=""
@@ -1568,7 +1568,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                 data-target="#signin_form">Report</a>
                                             <?php
                                                         } else {
-                                                            if (isset($report_status)) {
+                                                            if (isset($report_status) && !empty($report_status)) {
                                                                 ?>
                                             <a class="linktag_new under_line" href="#" data-toggle="modal"
                                                 data-target="#report_already_message" data-title="">Report</a>
@@ -2042,7 +2042,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                 data-target="#signin_form">Report</a>
                                             <?php
                                                         } else {
-                                                            if (isset($report_status)) {
+                                                            if (isset($report_status) && !empty($report_status)) {
                                                                 ?>
                                             <a class="linktag_new under_line" href="#" data-toggle="modal"
                                                 data-target="#report_already_message" data-title="">Report</a>
