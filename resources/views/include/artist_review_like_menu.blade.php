@@ -65,7 +65,8 @@ $count_posts = '(' . count(GetByWhere('comments', array('comment_user_id' => $us
         <a href="<?php echo SERVER_ROOTPATH . $main_link; ?>playlists<?php echo $playlist_first; ?>?user_type=admin"
             <?php if ($currentFile == "my_playlist") { ?>
             class="active" <?php } ?>>PLAYLISTS <span
-                class="counter-span"><?php echo $count_playlist ?></span></a>
+                class="counter-span"><?php echo $count_playlist ?></span>
+            </a>
     </li>
 
 </ul>
