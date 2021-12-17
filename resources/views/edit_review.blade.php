@@ -51,69 +51,99 @@ $artist_seo_name  = $review_like_info['artist_seo'];
 <body>
 
     <?php if ($mobile_view == 1) { ?>
-        <div class="modal-dialog modal-lg" style="width:95%;  margin-top:20%;">
+    <div class="modal-dialog modal-lg" style="width:95%;  margin-top:20%;">
         <?php } elseif ($mobile_view == 0) { ?>
-            <div class="modal-dialog modal-lg desktop_width" style="margin-top:10%;">
+        <div class="modal-dialog modal-lg desktop_width" style="margin-top:10%;">
             <?php } ?>
             <div class="modal-content">
                 <div class="modal-header" style="padding:0; border-bottom:none; min-height:0;">
                 </div>
                 <div class="modal-body" style="padding:0; border:2px solid #666;">
 
-                    <img onClick="close_popup();" data-dismiss="modal" src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png" style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
+                    <img onClick="close_popup();" data-dismiss="modal"
+                        src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png"
+                        style="float:right; cursor:pointer; margin-top:10px; margin-right:10px;">
 
                     <div style="margin-top:0;">
-                        <form id="api-readonlys" method="post" action="<?php echo SERVER_ROOTPATH ?>process/write_a_review" style="padding:10px; padding-top:20px;">
+                        <form id="api-readonlys" method="post"
+                            action="<?php echo SERVER_ROOTPATH ?>process/write_a_review"
+                            style="padding:10px; padding-top:20px;">
                             <h4 style="font-size:20px; font-weight:normal; margin-bottom:20px;"> Edit your Review
                                 <?php
                                 if (!$review_like_info) {
                                     echo "Please update your own Review.";
                                     exit;
                                 }
-                                ?></h4>
+                                ?>
+                            </h4>
                             @csrf
-                            <input name="api-readonly-test" style="font-size: 1.3em;" id="input-21b" value="<?php echo $review_rating; ?>" type="number" class="rating" min=0 max=10 step=0.5 data-size="xs" data-stars="10">
-                            <input type="hidden" name="song_seo_name" value="<?php echo $song_seo_name; ?>">
-                            <input type="hidden" name="artist_seo_name" value="<?php echo $artist_seo_name; ?>">
+                            <input name="api-readonly-test" style="font-size: 1.3em;" id="input-21b"
+                                value="<?php echo $review_rating; ?>"
+                                type="number" class="rating" min=0 max=10 step=0.5 data-size="xs" data-stars="10">
+                            <input type="hidden" name="song_seo_name"
+                                value="<?php echo $song_seo_name; ?>">
+                            <input type="hidden" name="artist_seo_name"
+                                value="<?php echo $artist_seo_name; ?>">
 
-                            <input style="margin-top:10px;" type="text" name="review_title" class="form-control" placeholder="Review Title" id="review_title" value="<?php echo $review_title; ?>" autofocus>
+                            <input style="margin-top:10px;" type="text" name="review_title" class="form-control"
+                                placeholder="Review Title" id="review_title"
+                                value="<?php echo $review_title; ?>"
+                                autofocus>
 
-                            <input type="hidden" name="reviewsid" id="reviewsid" value="<?php echo $rev_id; ?>" />
-                            <input type="hidden" name="num" id="num" value="<?php echo $num; ?>" />
-                            <textarea style="margin-top:10px;" class="form-control" id="review_detail" name="review_detail" placeholder="Review Detail" rows="6"><?php echo $review_detail; ?></textarea>
+                            <input type="hidden" name="reviewsid" id="reviewsid"
+                                value="<?php echo $rev_id; ?>" />
+                            <input type="hidden" name="num" id="num"
+                                value="<?php echo $num; ?>" />
+                            <textarea style="margin-top:10px;" class="form-control" id="review_detail"
+                                name="review_detail" placeholder="Review Detail"
+                                rows="6"><?php echo $review_detail; ?></textarea>
 
-                            <input type="hidden" name="edit_id" value="<?php echo $review_id; ?>" />
+                            <input type="hidden" name="edit_id"
+                                value="<?php echo $review_id; ?>" />
 
                             <!-- <button id="submit_btn" name="submit" style="margin-top:15px; display:inline; width:40%;" class="btn btn-lg btn-primary btn-block" type="submit" onClick="return write_a_review_validations_new();">Update</button> -->
-                            <button id="submit_btn" name="submit" style="margin-top:15px; display:inline; width:40%;" class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+                            <button id="submit_btn" name="submit" style="margin-top:15px; display:inline; width:40%;"
+                                class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
                             <!--   
-                <button id="delete_btn" name="delete_btn" style="margin-top:15px; display:inline; width:40%; float:right; background-color:#D73B3B; border-color:#D73B3B;" onClick="return review_delete(<?php echo $review_id; ?>);" class="btn btn-lg btn-primary btn-block" type="button">Delete</button>
-                -->
+                <button id="delete_btn" name="delete_btn" style="margin-top:15px; display:inline; width:40%; float:right; background-color:#D73B3B; border-color:#D73B3B;" onClick="return review_delete(<?php echo $review_id; ?>);"
+                            class="btn btn-lg btn-primary btn-block" type="button">Delete</button>
+                            -->
 
-                            <a href="<?php echo SERVER_ROOTPATH; ?>delete_review?review_id=<?php echo $review_id; ?>&num=<?php echo $num; ?>&critaria=1" data-toggle="modal" data-target="#delete_review_<?php echo $num; ?>" data-title="" data-dismiss="modal" class="link-disable">
-                                <span style="margin-top:15px; display:inline; width:40%; float:right; background-color:#D73B3B; border-color:#D73B3B;" class="btn btn-lg btn-primary btn-block" type="button">Delete</span>
+                            <a href="<?php echo SERVER_ROOTPATH; ?>delete_review?review_id=<?php echo $review_id; ?>&num=<?php echo $num; ?>&critaria=1"
+                                data-toggle="modal"
+                                data-target="#delete_review_<?php echo $num; ?>"
+                                data-title="" data-dismiss="modal" class="link-disable">
+                                <span
+                                    style="margin-top:15px; display:inline; width:40%; float:right; background-color:#D73B3B; border-color:#D73B3B;"
+                                    class="btn btn-lg btn-primary btn-block" type="button">Delete</span>
                             </a>
 
                         </form>
                     </div>
                 </div>
             </div>
-            </div>
+        </div>
 
 </body>
 
 </html>
 
-<div class="modal fade" id="show_success_message_song" style="display:none" tabindex="-1" role="dialog" aria-labelledby="basicModal">
+<div class="modal fade" id="show_success_message_song" style="display:none" tabindex="-1" role="dialog"
+    aria-labelledby="basicModal">
     <div class="modal-dialog" style="margin-top:10%;">
         <div class="modal-content" style="border-radius:0px;">
             <div class="modal-header">
-                <h4 class="modal-title" style="color:#3276b1;"> Thank you for your review <img data-dismiss="modal" style="cursor:pointer; float:right;" src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI=" data-pagespeed-url-hash="3119113509" onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
+                <h4 class="modal-title" style="color:#3276b1;"> Thank you for your review <img data-dismiss="modal"
+                        style="cursor:pointer; float:right;"
+                        src="data:image/webp;base64,UklGRg4BAABXRUJQVlA4TAIBAAAvFUAFEE+hkI0kqAqrcP6Sr4OCtm0Y7/PnNVACgRSnsMJq2khyoyNdDu1R+eoVtm2DdMy7wwMOWQ3Bh2BH40FwEAgKBUFB9pdU1E06UpGKjl4fHEa2rTQPd3duDE1e/w0i70NKiOh/kjD9OOu3LPZNutDDBkoT6iStFJepRadd4qa0addS3KYabSH+CMmocQ7riG1Z3zhrw4V4/Pg58ALpx5ADz19+Q8YFlC9vM5SqgTLw9oTSNVDWH09Q2gJy4PnLL8gihnj8+DnwAhl7EBNP2L78gfCNBuKB4wHRGBTij5A2LcNtptNuV7ipbDqdFJepQ1KPGihNpNOFGSQ5tjwJTBI="
+                        data-pagespeed-url-hash="3119113509"
+                        onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
                 </h4>
             </div>
             <div class="modal-body" style="overflow-y:auto; min-height:250px;">
                 <p>
-                    Your review has been posted and will appear shortly. Thank you for sharing your thoughts and we value your contributions to our site. <br /><br /><br />
+                    Your review has been posted and will appear shortly. Thank you for sharing your thoughts and we
+                    value your contributions to our site. <br /><br /><br />
 
                     Warmest Regards,<br />
                     Team at Tailem.com
@@ -127,7 +157,8 @@ $artist_seo_name  = $review_like_info['artist_seo'];
 
 
 
-<script src="<?php echo SERVER_ROOTPATH ?>js/star-rating.js" type="text/javascript"></script>
+<script src="<?php echo SERVER_ROOTPATH ?>js/star-rating.js"
+    type="text/javascript"></script>
 <script type="text/javascript">
     // function close_popup() {
     //     $(document).on('hidden.bs.modal', function(e) {
@@ -157,11 +188,14 @@ $artist_seo_name  = $review_like_info['artist_seo'];
                     case 'success':
                         // this.modal("hide"); 
                         $("#report_edit_success").modal('show');
+                        window.setTimeout(function() {
+                            window.location.reload();
+                        }, 1000);
                         $("#api-readonly").each(function() {
                             this.reset();
                         });
 
-                      
+
                         break;
                     case 'warning':
                         if (res.message == "Please sign in first.") {

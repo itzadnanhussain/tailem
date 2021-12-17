@@ -33,8 +33,9 @@
 <script type="text/javascript"
     src="<?php echo SERVER_ROOTPATH; ?>js/jquery.js?id=<?php echo rand(10000, 9999999); ?>">
 </script>
-<!-- <script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>js/bootstrap.js">
-</script> -->
+<script type="text/javascript"
+    src="<?php echo SERVER_ROOTPATH; ?>js/bootstrap.js">
+</script>
 
 <script type="text/javascript"
     src="<?php echo COOKIE_FREE_ROOTPATH; ?>js/merged.min.js" async></script>

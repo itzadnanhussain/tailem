@@ -25,7 +25,9 @@ function write_a_review_validation_Request_new(formData, jqForm, options) {
 function write_a_review_validation_Response_new(responseText, statusText) {
     if (responseText.search("done") != -1) {
         $("#show_success_message_song").modal("show");
-
+        window.setTimeout(function () {
+            window.location.reload();
+        }, 1000);
         //alert(responseText);
 
         myarray = new Array();
@@ -367,6 +369,7 @@ function add_in_favourite_main_profile_list_new(a, b, c) {
              if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (a == "aa") { 
+                jQuery.noConflict();
                 $("#your_own_profile").modal("show");
                 // $("#your_own_profile").css("display", "block");
             } else {
