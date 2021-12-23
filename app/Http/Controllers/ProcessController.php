@@ -977,7 +977,6 @@ class ProcessController extends Controller
         $data['sr_no'] = $_GET['sr_no'];
 
         $data['user_id'] = session()->get('user_id');
-
         return view('include.popfavourite_userprofile_likes', $data);
     }
 

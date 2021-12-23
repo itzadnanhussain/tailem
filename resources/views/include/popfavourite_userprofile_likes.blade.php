@@ -24,7 +24,7 @@
     $counter = array();
     $counter = \App\Models\Songs::GetRawData($qry);
     if ($counter) {
-        $counter = count($counter_main);
+        $counter = count($counter);
     } else {
         $counter = 0;
     }

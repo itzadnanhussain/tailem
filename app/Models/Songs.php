@@ -71,8 +71,8 @@ class Songs extends Model
                 ['s.ranking_order', '>', 0],
             ])
             ->groupBy('s.id')
-            ->orderBy('s.ranking_order', 'asc')
-            ->limit(7)
+            ->orderBy('s.ranking_order', 'desc')
+            ->limit(10)
             ->get()->toArray();
         return $result;
     }
@@ -102,15 +102,14 @@ class Songs extends Model
     {
         $results = array();
         $results = DB::select(DB::raw($expression), $where);
-        if($results)
-        {
+        if ($results) {
             $results = (array)$results[0];
         }
 
         return $results ;
     }
 
-    ///GetFeatureArr 
+    ///GetFeatureArr
     public static function GetFeatureArr($id)
     {
         $result = DB::table('featured_artist_assocs as f')
@@ -138,7 +137,7 @@ class Songs extends Model
             ->where([
                 ['s.latest', '=', '1'],
             ])
-            // ->groupBy('s.id') 
+            // ->groupBy('s.id')
             ->orderBy('s.timeupdated', 'desc')
             ->limit(10)
             ->get()->toArray();
@@ -147,7 +146,7 @@ class Songs extends Model
 
 
     ///GetOtherDetails
-    public static  function GetOtherDetails($song_id)
+    public static function GetOtherDetails($song_id)
     {
         $result = DB::table('artist_album as b')
             ->join('songs_artist_album as saa', 'b.id', '=', 'saa.album_id')
@@ -175,7 +174,7 @@ class Songs extends Model
                 ['s.song_status', '=', '1'],
                 ['s.ranking_order', '>', '0'],
             ])
-            // ->groupBy('s.id') 
+            // ->groupBy('s.id')
             ->orderBy('s.timeupdated', 'asc')
             ->limit(50)
             ->get()->toArray();
@@ -193,7 +192,7 @@ class Songs extends Model
             ->where([
                 ['r.song_id', '=', $id],
             ])->count();
-        //   ->get()->toArray();  
+        //   ->get()->toArray();
         return $count_review;
     }
 
@@ -260,7 +259,6 @@ class Songs extends Model
     ///count_rate
     public function count_rate($id)
     {
-
         $where = array('song_id' => $id, 'status' => '1');
         $result = DB::table('reviews')
             ->select('*')

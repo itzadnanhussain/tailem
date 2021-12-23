@@ -1,6 +1,14 @@
 <style>
     .ad-feature-img {
-        height: 367px !important;
+        height: 408px !important;
+    }
+
+    .topsongssec .list_item .album_cover {
+        height: 467px !important;
+    }
+
+    .owl-item {
+        height: 470px !important;
     }
 </style>
 <div id="owl-carousel2" class="owl-carousel">

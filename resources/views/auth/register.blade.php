@@ -11,7 +11,7 @@
                     <form id="register-form" method="POST" action="{{ url('sign-up') }}" class="form-signin">
                         <span><a onClick="custFBLog();" href="javascript:;"><img src="images/fb8signup.png"
                                     style="width:100%;" /></a></span>
-                        <a href="#"><img src="images/g8_signup.png" alt=""
+                        <a href="{{ url('auth/google') }}"><img src="images/g8_signup.png" alt=""
                                 style="margin-top:5px; max-width:100%;" /></a>
                         <div class="error"></div>
                         <span><img src="images/line.png" /> </span>

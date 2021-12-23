@@ -30,15 +30,15 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'facebook' => [
-        'client_id' => ' ',
-        'client_secret' => ' ',
+        'client_id' => '1106211260232848',
+        'client_secret' => 'c62ebb0fe1eada3b96b5abf311728ffa',
         'redirect' => 'http://tailem.com.au/auth/facebook/callback',
-    ], 
+    ],
     'google' => [
-        'client_id' => '792177933548-co003qp3kj0ephqqei2is5n48riumdka.apps.googleusercontent.com',
-        'client_secret' => 'MkVZEI1MuCh5CCru1_3aQCCe',
-        'redirect' => 'https://www.tailem.com/sign-in',
-    ], 
+        'client_id' => '812587052528-sjag3dondkk3d4rqt5rnku5h12eiobs9.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://tailem.com.au/auth/google/callback',
+    ],
 
 
 ];
