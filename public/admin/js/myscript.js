@@ -3788,9 +3788,17 @@ function validate_songs_featured_assocs_response(responseText, statusText) {
 
     if (responseText.search("done") != -1) {
         alert("Record Saved Successfully");
-        window.location.href = myarray[1];
-        window.location.href =
-            JS_ADMIN_SERVER_PATHROOT + "artist_album_songs_list?" + myarray[1];
+        if(myarray[1] == 'song_list')
+        {
+            window.location.href =
+            JS_ADMIN_SERVER_PATHROOT + myarray[1];
+        }else
+        {
+            window.location.href = myarray[1];
+            window.location.href =
+                JS_ADMIN_SERVER_PATHROOT + "artist_album_songs_list?" + myarray[1];
+        }
+       
     } else {
         alert(responseText);
     }

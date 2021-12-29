@@ -10,7 +10,8 @@ use App\Mail\ContactMail;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Env;
 use Illuminate\Support\Facades\Mail;
-// use Mail;
+use Illuminate\Contracts\Mail\Mailable;
+use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
 
 class InfoController extends Controller
@@ -69,13 +70,6 @@ class InfoController extends Controller
                 Email: $email \n
                 Message: $msg
         ";
-
-        
-        // $receiver = "testadnan073@gmail.com";
-        // Mail::to($receiver)->send(new ContactMail($msg));
-
-
-
         //  Send mail to admin
         Mail::send('emails.contactMail', array(
             'name' => $name,
@@ -84,13 +78,11 @@ class InfoController extends Controller
             'message' => $msg,
         ), function ($message) use ($request) {
             $message->from($request->email);
-            $message->to('testadnan073@gmail.com', 'Admin')->subject($request->get('subject'));
+            $message->to('info@tailem.com', 'Admin')->subject($request->get('subject'));
         });
-
-
-
         return response()->json(['code' => 200, 'msg' => 'We will contact you soon.']);
     }
+
 
     ///LoadCMS
     public function LoadCMS()

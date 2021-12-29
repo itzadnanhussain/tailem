@@ -937,8 +937,12 @@ $img_arr3 = (array)$img_arr3[0];
 
                                 <div class="star-panel">
 
-                                    <input id="input-21b" name="api-readonly-test" value="" type="number" class="rating"
-                                        min=0 max=10 step=0.5 data-size="xs" data-stars="10">
+
+
+                                    <input id="input-21b" name="api-readonly-test" value="" type="number"
+                                        class="rating test" min=0 max=10 step=0.1 data-size="xs" data-stars="10">
+
+
                                     @csrf
                                     <input type="hidden" name="song_seo_name"
                                         value="<?php echo $song_seo; ?>">
@@ -946,6 +950,10 @@ $img_arr3 = (array)$img_arr3[0];
                                         value="<?php echo $artist_seo; ?>">
 
                                 </div>
+                                <input type="number" id="manual-rating-score" min=0 max=10 value="0" step="0.1"
+                                    style="margin-left: 15px;">
+
+
 
 
                                 <div class="form-group">
@@ -1405,7 +1413,8 @@ for ($g = 1; $g <= 20; $g++) {
             url: "<?php echo SERVER_ROOTPATH; ?>process/dbmanupulate",
             type: "POST",
             data: "actionfunction=showData&page=1&song_id=" +
-                <?php echo $song_id ?> ,
+                <?php echo $song_id ?>
+                ,
             cache: false,
             success: function(response) {
                 jq('#pagination').html(response);
@@ -1428,4 +1437,13 @@ for ($g = 1; $g <= 20; $g++) {
         });
     });
     //]]>
+</script>
+
+<script>
+    $("#manual-rating-score").bind('keyup mouseup', function() {
+        let score = $('#manual-rating-score').val();
+        $('#input-21b').val(score)
+        let width = (score * 10) + '%';
+        $('.filled-stars').css('width', width);
+    });
 </script>

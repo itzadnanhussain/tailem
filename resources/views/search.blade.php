@@ -139,9 +139,10 @@ if ($srch_search_sess == "") {
                             $k_song = 1;
                             foreach ($artist_list_arr as $val) {
                                 $val = (array)$val;
+                               
                                 $id      = $val['id'];
                                 // $db_art_id      = $val['art_id'];
-                                $db_art_id      = null;
+                               
 
                                 // $album_title = stripslashes(html_entity_decode($val['album_title']));
                                 $album_title = null;
@@ -155,6 +156,7 @@ if ($srch_search_sess == "") {
 
                                 $artist_seo = strtolower($artist_data['artist_seo']);
                                 $artist_name = strtolower($artist_data['artist_name']);
+                                $db_art_id = strtolower($artist_data['id']);
 
 
                                 $song_seo   = strtolower(stripslashes(html_entity_decode($val['song_seo'])));

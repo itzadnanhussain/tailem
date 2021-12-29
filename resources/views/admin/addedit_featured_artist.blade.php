@@ -22,14 +22,13 @@ $row_result  =  \App\Models\Songs::GetRawData($queryz);
 $counter  = count($row_result);
 
 if (isset($row_result)) {
-
-	$selected_artists_value = "";
-	foreach ($row_result as $arr_val) {
-		$arr_val = (array)$arr_val;
-		$artist_id = $arr_val['featured_artist'];
-		$artist_name = $arr_val['artist_name'];
-		$selected_artists_value .= "<option value='$artist_id' selected> $artist_name </option>";
-	}
+    $selected_artists_value = "";
+    foreach ($row_result as $arr_val) {
+        $arr_val = (array)$arr_val;
+        $artist_id = $arr_val['featured_artist'];
+        $artist_name = $arr_val['artist_name'];
+        $selected_artists_value .= "<option value='$artist_id' selected> $artist_name </option>";
+    }
 }
 
 
@@ -47,8 +46,8 @@ if (isset($row_result)) {
 
 	@include("admin.common.header")
 	<?php
-	$suggestbox = 1;
-	?>
+    $suggestbox = 1;
+    ?>
 </head>
 
 <body>
@@ -77,15 +76,22 @@ if (isset($row_result)) {
 
 												<tr>
 													<td class="body">
-														<table id="Table1" border="0" cellpadding="0" cellspacing="0" width="100%">
+														<table id="Table1" border="0" cellpadding="0" cellspacing="0"
+															width="100%">
 															<tbody>
 																<tr>
 																	<td align="left">
-																		<a href="<?php echo SERVER_ADMIN_PATH; ?>index">Home</a> &raquo;
-																		<a href="<?php echo SERVER_ADMIN_PATH; ?>song_list">Songs Listing</a>&raquo;
-																		<a href="<?php echo SERVER_ADMIN_PATH; ?>artist_list_song?song_id=<?php echo $song_id; ?>"><?php echo stripslashes($song_title); ?></a>
+																		<a
+																			href="<?php echo SERVER_ADMIN_PATH; ?>index">Home</a>
+																		&raquo;
+																		<a
+																			href="<?php echo SERVER_ADMIN_PATH; ?>song_list">Songs
+																			Listing</a>&raquo;
+																		<a
+																			href="<?php echo SERVER_ADMIN_PATH; ?>artist_list_song?song_id=<?php echo $song_id; ?>"><?php echo stripslashes($song_title); ?></a>
 
-																		&raquo; <a href="artist_album_songs_list?artist_id=<?php echo $main_artist; ?>&album_id=<?php echo $album_id; ?>"><?php echo stripslashes($artist_name); ?></a>
+																		&raquo; <a
+																			href="artist_album_songs_list?artist_id=<?php echo $main_artist; ?>&album_id=<?php echo $album_id; ?>"><?php echo stripslashes($artist_name); ?></a>
 
 
 
@@ -95,63 +101,86 @@ if (isset($row_result)) {
 																</tr>
 
 																<?php if (isset($errorstr) && $errorstr != "") { ?>
-																	<tr>
-																		<td colspan="8">
-																			<table border="0" cellpadding="0" cellspacing="0" class="Message">
-																				<tbody>
-																					<tr>
-																						<td width="20" valign="top">
-																							<?php if ($case == 1) { ?>
-																								<img src="images/success_icon.png" vspace="5" width="18" height="18" hspace="10">
-																							<?php } ?>
-																							<?php if ($case == 2) { ?>
-																								<img src="images/warning_icon.png" vspace="5" width="18" height="18" hspace="10">
-																							<?php } ?>
-																							<?php if ($case == 0) { ?>
-																								<img src="images/error_icon.png" vspace="5" width="18" height="18" hspace="10">
-																							<?php } ?>
-																						</td>
-																						<td width="100%"><?php echo $errorstr; ?></td>
-																					</tr>
-																				</tbody>
-																			</table>
-																		</td>
-																	</tr>
+																<tr>
+																	<td colspan="8">
+																		<table border="0" cellpadding="0"
+																			cellspacing="0" class="Message">
+																			<tbody>
+																				<tr>
+																					<td width="20" valign="top">
+																						<?php if ($case == 1) { ?>
+																						<img src="images/success_icon.png"
+																							vspace="5" width="18"
+																							height="18" hspace="10">
+																						<?php } ?>
+																						<?php if ($case == 2) { ?>
+																						<img src="images/warning_icon.png"
+																							vspace="5" width="18"
+																							height="18" hspace="10">
+																						<?php } ?>
+																						<?php if ($case == 0) { ?>
+																						<img src="images/error_icon.png"
+																							vspace="5" width="18"
+																							height="18" hspace="10">
+																						<?php } ?>
+																					</td>
+																					<td width="100%"><?php echo $errorstr; ?>
+																					</td>
+																				</tr>
+																			</tbody>
+																		</table>
+																	</td>
+																</tr>
 																<?php } ?>
 
 
 																<tr>
 																	<td>
-																		<form name="featured_song_form" id="featured_song_form" action="" method="post" enctype="multipart/form-data">
+																		<form name="featured_song_form"
+																			id="featured_song_form" action=""
+																			method="post" enctype="multipart/form-data">
 																			@csrf
-																			<input type="hidden" name="song_id" value="<?php echo $song_id; ?>">
-																			<input type="hidden" name="main_artist" value="<?php echo $main_artist; ?>">
-																			<input type="hidden" name="album_id" value="<?php echo $album_id; ?>">
+																			<input type="hidden" name="song_id"
+																				value="<?php echo $song_id; ?>">
+																			<input type="hidden" name="main_artist"
+																				value="<?php echo $main_artist; ?>">
+																			<input type="hidden" name="album_id"
+																				value="<?php echo $album_id; ?>">
+																			<input type="hidden" name="page"
+																				value="<?php echo $page; ?>">
 																			<table class="Panel">
 																				<tbody>
 
 
 																					<tr>
-																						<td width="12%" nowrap="nowrap" class="SmallFieldLabel2">Album:</td>
+																						<td width="12%" nowrap="nowrap"
+																							class="SmallFieldLabel2">
+																							Album:</td>
 																						<td width="88%">
 
 																							<?php
 
-																							// limit applied on below query // 08 -08 - 2016 // ali
+                                                                                            // limit applied on below query // 08 -08 - 2016 // ali
 
-																							$artist_list = "Select artist_name, id from tbl_artists where artist_status = 1 and id<>$dec_artist_id order by artist_name asc limit 5000";
+                                                                                            $artist_list = "Select artist_name, id from tbl_artists where artist_status = 1 and id<>$dec_artist_id order by artist_name asc limit 5000";
 
-																							$artist_list_arr	=	\App\Models\Songs::GetRawData($artist_list);
-																							//print_r($artist_list_arr);
-																							//exit;
-																							?>
-																							<select id="featured_artist" style="width: 661px; height: 120px; overflow-y: scroll;" multiple="multiple" onkeyup="" class="tokenize-sample" name="featured_artist[]">
+                                                                                            $artist_list_arr	=	\App\Models\Songs::GetRawData($artist_list);
+                                                                                            //print_r($artist_list_arr);
+                                                                                            //exit;
+                                                                                            ?>
+																							<select id="featured_artist"
+																								style="width: 661px; height: 120px; overflow-y: scroll;"
+																								multiple="multiple"
+																								onkeyup=""
+																								class="tokenize-sample"
+																								name="featured_artist[]">
 																								<?php
-																								echo $selected_artists_value;
+                                                                                                echo $selected_artists_value;
 
-																								?>
+                                                                                                ?>
 																							</select>
-																							<script type="text/javascript">
+																							<script
+																								type="text/javascript">
 																								$('#featured_artist').tokenize({
 																									datas: "loadartists",
 																									searchMaxLength: 30,
@@ -167,14 +196,19 @@ if (isset($row_result)) {
 
 
 																					<tr>
-																						<td class="SmallFieldLabel2">&nbsp;</td>
+																						<td class="SmallFieldLabel2">
+																							&nbsp;</td>
 																						<td>&nbsp;</td>
 																					</tr>
 																					<tr>
 																						<td>&nbsp;</td>
 																						<td>
 
-																							<input name="add_cat" id="add" value="Save" class="FormButton" type="submit" onClick="validate_featured_atritst_assocs();" />
+																							<input name="add_cat"
+																								id="add" value="Save"
+																								class="FormButton"
+																								type="submit"
+																								onClick="validate_featured_atritst_assocs();" />
 
 																							<div id="loader"></div>
 																						</td>

@@ -6,11 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\libraries\thumb\Thumbnail;
 
-
 class ManageArtist extends Controller
 {
 
-    ///Load_Artist_List 
+    ///Load_Artist_List
     public function Load_Artist_List()
     {
         $data = array();
@@ -103,7 +102,6 @@ class ManageArtist extends Controller
 
             function SEO($input)
             {
-
                 $input = str_replace("&nbsp;", " ", $input);
                 $input = str_replace(array("'"), "", $input); //remove single quote and dash
                 $input = mb_convert_case($input, MB_CASE_LOWER, "UTF-8"); //convert to lowercase
@@ -113,10 +111,8 @@ class ManageArtist extends Controller
 
                 $song_id = $_REQUEST['update_id'];
                 if ($song_id != "") {
-
                     $select_url = "select artist_seo from tbl_artists where artist_seo='$input' and id !='$song_id'";
                 } else {
-
                     $select_url = "select artist_seo from tbl_artists where artist_seo='$input'";
                 }
                 $result = \App\Models\Songs::GetRawData($select_url);
@@ -176,7 +172,7 @@ class ManageArtist extends Controller
 
                         $icon_array = $_FILES["image_name"]['name'];
                         $img_formats = array("jpeg", "gif", "png", "jpg", "JPEG", "GIF", "PNG", "JPG");
-                        $allowed_size = 2; // Allowed Photo Size in MB			
+                        $allowed_size = 2; // Allowed Photo Size in MB
                         $file_temp = $_FILES["image_name"]['tmp_name'];
                         $h_image_size = filesize($_FILES["image_name"]['tmp_name']);
                         $h_image_size = ($h_image_size / 1024) / 1024;
@@ -225,7 +221,7 @@ class ManageArtist extends Controller
                     if ($_FILES["image_name"]['name'] != "") {
                         $icon_array = $_FILES["image_name"]['name'];
                         $img_formats = array("jpeg", "gif", "png", "jpg", "JPEG", "GIF", "PNG", "JPG");
-                        $allowed_size = 2; // Allowed Photo Size in MB			
+                        $allowed_size = 2; // Allowed Photo Size in MB
                         $file_temp = $_FILES["image_name"]['tmp_name'];
                         $h_image_size = filesize($_FILES["image_name"]['tmp_name']);
                         $h_image_size = ($h_image_size / 1024) / 1024;
@@ -273,7 +269,6 @@ class ManageArtist extends Controller
             if ($id == "") {
                 echo 'Error';
             } else {
-
                 $select_img = "select artist_img from tbl_artists where id='" . $_POST['del_id'] . "' ";
                 $result = \App\Models\Songs::GetRawDataAdmin($select_img);
 
@@ -331,8 +326,7 @@ class ManageArtist extends Controller
         if (!empty($_POST['ids'])) {
             error_reporting(0);
 
-            if ($_POST['dropdown'] == 'Delete') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'Delete') { // from button name="delete"
                 $checkbox = $_POST['ids']; //from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -403,8 +397,7 @@ class ManageArtist extends Controller
             }
 
 
-            if ($_POST['dropdown'] == 'Active') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'Active') { // from button name="delete"
                 $checkbox = $_POST['ids']; //from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -438,8 +431,7 @@ class ManageArtist extends Controller
                 }
             }
 
-            if ($_POST['dropdown'] == 'Inactive') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'Inactive') { // from button name="delete"
                 $checkbox = $_POST['ids']; // from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -468,8 +460,7 @@ class ManageArtist extends Controller
                 }
             }
 
-            if ($_POST['dropdown'] == 'popular_artist') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'popular_artist') { // from button name="delete"
                 $checkbox = $_POST['ids']; //from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -498,8 +489,7 @@ class ManageArtist extends Controller
             }
 
 
-            if ($_POST['dropdown'] == 'not_popular_artist') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'not_popular_artist') { // from button name="delete"
                 $checkbox = $_POST['ids']; // from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -553,7 +543,7 @@ class ManageArtist extends Controller
             $data['artist_id'] = $_GET['artist_id'];
         }
 
-        ///album_id 
+        ///album_id
         if (isset($_GET['album_id '])) {
             $data['album_id '] = $_GET['album_id '];
         }
@@ -604,13 +594,13 @@ class ManageArtist extends Controller
             $data['main_artist'] = $_GET['artist_id'];
         }
 
-        ///album_id 
+        ///album_id
         if (isset($_GET['album_id'])) {
             $data['album_id'] = $_GET['album_id'];
         }
 
 
-        ///song_id 
+        ///song_id
         if (isset($_GET['song_id'])) {
             $data['song_id'] = $_GET['song_id'];
         }
@@ -665,12 +655,14 @@ class ManageArtist extends Controller
             $dec_album_id   = base64_decode($album_id);
             $dec_song_id    = base64_decode($song_id);
             $link    =    "artist_id=" . $main_artist . "&album_id=" . $album_id;
+            if (isset($page) && !empty($page)) {
+                $link    =    'song_list';
+            }
 
 
 
 
             if ($case == 1) {
-
                 $arr  = $_REQUEST['featured_artist'];
                 $del_qry = "delete from tbl_featured_artist_assocs where  main_artist = '$dec_main_artist' and album_id='$dec_album_id' and song_id='$dec_song_id'";
 
@@ -694,7 +686,7 @@ class ManageArtist extends Controller
         }
     }
 
-    ///Single_Artist_View 
+    ///Single_Artist_View
     public function Single_Artist_View()
     {
         $data = array();
@@ -773,8 +765,7 @@ class ManageArtist extends Controller
         extract($_POST);
         $song_id = base64_encode($song_id);
         if (!empty($_POST['ids'])) {
-            if ($_POST['dropdown'] == 'Delete') // from button name="delete"
-            {
+            if ($_POST['dropdown'] == 'Delete') { // from button name="delete"
                 $checkbox = $_POST['ids']; //from name="checkbox[]"
                 $countCheck = count($_POST['ids']);
 
@@ -783,7 +774,6 @@ class ManageArtist extends Controller
 
                     $sql = "Delete from tbl_songs_artist where id='" . $del_id . "'";
                     $result = \App\Models\Songs::GetRawData($sql); //or die(mysqli_error($mysqli));
-
                 }
 
                 if (empty($result)) {
@@ -814,7 +804,7 @@ class ManageArtist extends Controller
                 echo 'Error';
             } else {
                 $del_qry = "Delete from tbl_songs_artist where id='" . $id . "'";
-                \App\Models\Songs::GetRawData($del_qry); 
+                \App\Models\Songs::GetRawData($del_qry);
                 echo 'done';
             }
         } else {

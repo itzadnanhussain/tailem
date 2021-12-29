@@ -239,8 +239,11 @@ class ProcessController extends Controller
     {
         if (isset($_POST)) {
             extract($_POST);
-          
             error_reporting(0);
+            echo '<pre>';
+            print_r($request->all());
+            echo '</pre>';
+            die;
 
             $user_id = session()->get('user_id');
 
@@ -853,6 +856,7 @@ class ProcessController extends Controller
         $data['artist_seo'] = $_GET['artist_seo'];
         $data['k'] = $_GET['k'];
         $data['user_id'] = session()->get('user_id');
+       
 
         return view('include.favourite_like_sub_artist2', $data);
     }

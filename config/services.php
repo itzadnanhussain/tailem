@@ -39,6 +39,16 @@ return [
         'client_secret' => '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',
         'redirect' => 'http://tailem.com.au/auth/google/callback',
     ],
+    'facebook' => [
+        'client_id' => 'xxxx',
+        'client_secret' => 'xxxxx',
+        'redirect' => 'http://tailem.com.au/auth/facebook/callback',
+    ],
+    'google' => [
+        'client_id' => 'xxxxxx',
+        'client_secret' => 'xxxxxx',
+        'redirect' => 'http://tailem.com.au/auth/google/callback',
+    ],
 
 
 ];
