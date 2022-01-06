@@ -74,7 +74,7 @@ class LoginController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             // 'password_confirmation' => 'required',
             'password' => 'required|min:6'
-        ], ['email' => 'Incorrect email address entered, please try again','password.min' => 'Your password must be at least 6 characters long']);
+        ], ['email' => 'Incorrect email address entered, please try again','email.unique'=>'The email address has already been taken','password.min' => 'Your password must be at least 6 characters long']);
 
         if ($validation->fails()) {
             error_reporting(0);
@@ -111,10 +111,10 @@ class LoginController extends Controller
     {
         $validation = Validator::make($request->all(), [
 
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|string|max:255',
             'password' => 'required',
 
-        ]);
+        ], ['email' => 'Incorrect username / email address or password used, please try again','password' => 'Incorrect username / email address or password used, please try again']);
 
         if ($validation->fails()) {
             return response()->json(['code' => "warning", 'message' => $validation->errors()->first()]);
@@ -142,10 +142,33 @@ class LoginController extends Controller
                 }
                 
 
-                return response()->json(['code' => 'warning', 'message' => 'Password Not Match']);
+                return response()->json(['code' => 'warning', 'message' => 'Incorrect username / email address or password used, please try again']);
             }
 
-            return response()->json(['code' => "warning", 'message' => 'Incorrect login details entered, please try again.']);
+            ///check user name
+            $check_user = getByWhere('users', array('user_name' => $request->email));
+            if ($check_user) {
+                if (Hash::check($request->password, $check_user[0]->password)) {
+                   
+                    ///set session
+                    $request->session()->put('user_id', $check_user[0]->user_id);
+                    $request->session()->put('user_name', $check_user[0]->user_name);
+                    if (isset($request->redirect_url)) {
+                        $string_url = $request->redirect_url;
+                        $location = 'others';
+                    } else {
+                        $string_url = '/review-artist';
+                        $location = 'index';
+                    }
+                    $response = array("code" => 'success', 'url' => $string_url, 'location' => $location);
+                    return response()->json($response);
+                }
+                
+
+                return response()->json(['code' => 'warning', 'message' => 'Incorrect username / email address or password used, please try again']);
+            }
+
+            return response()->json(['code' => "warning", 'message' => 'Incorrect username / email address or password used, please try again']);
         }
     }
 
