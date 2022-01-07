@@ -437,8 +437,8 @@ if (isset($status) && !empty($status)) {
 																		</td>
 																		<td align="center">
 																			<input name="artist_itunesid"
-																				id="artist_itunesid" type="text"
-																				class="Field300"
+																				id="artist_itunesid" type="number"
+																				class="Field300" min="0"
 																				value="<?php echo session()->get('artist_itunesid_sess'); ?>" />
 																		</td>
 																	</tr>

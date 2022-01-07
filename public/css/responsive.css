@@ -1,6 +1,2 @@
-/* When the browser is at least 600px and above */
-@media screen and (min-width: 600px) {
-    .latestsongssec .list_bottom { 
-      bottom: -47px !important;
-    }
-  }
+/* When the browser is at least 600px and above*/
+ 

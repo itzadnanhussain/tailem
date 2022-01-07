@@ -314,7 +314,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                     } elseif ($sort == "lowest_rating") {
                         $order_by = " rev.review_rating asc";
                     } elseif ($sort == "most_popular") {
-                        $order_by = " rev.like_count asc";
+                        $order_by = " rev.like_count desc";
                     } else {
                         $order_by = " rev.review_id desc";
                     }

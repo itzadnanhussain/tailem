@@ -159,7 +159,7 @@
                             } ?>
 
                 <div>
-                    <div class="list_item">
+                    <div class="list_item ad">
                         <div class="album_cover">
                             <?php if ($val->picture != '') {
                                 $img_api_link = album_img_api($val->picture);

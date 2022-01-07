@@ -613,9 +613,7 @@ class UserController extends Controller
     ///GetMyReviewsPage_Two
     public function GetMyReviewsPage_Two($user_seo, $sort = null, $page = null)
     {
-
-
-
+           
 
         ///admin
         $data = array();

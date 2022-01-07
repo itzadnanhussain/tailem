@@ -7,9 +7,9 @@
         height: 467px !important;
     }
 
-    .owl-item {
+    /* .owl-item {
         height: 470px !important;
-    }
+    } */
 </style>
 <div id="owl-carousel2" class="owl-carousel">
 
