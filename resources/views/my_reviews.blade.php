@@ -471,7 +471,8 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
 
                             $title_db = urlencode("$song_title");
-                            $url_db = urlencode(SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id);
+                            // $url_db = urlencode(SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id);
+                            $url_db = urlencode(SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "#review_" . $review_id);
                             $summary = urlencode("$review_detail");
 
 
@@ -1132,23 +1133,38 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                             } else {
                                 echo $review_rating;
                             } ?>
-                                        </span> <a style="color:#000000;"
-                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php
+                                        </span>
+                                        <!-- <a style="color:#000000;"
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>">
+                                        -->
+                                        <a style="color:#000000;"
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "#review_" . $review_id; ?>">
+
+
+                                            <?php
                                                                                                                                                                                                                                                                                                                                                     $title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 18);
                             echo $title_rev;
                             if (strlen($review_title) > 18) {
                                 echo "..";
                             } ?>
-                                        </a></p>
-                                    <p style="color:#000000; margin-bottom:8px;"><a
-                                            style="color:#000000; margin-bottom:8px;"
-                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php
+                                        </a>
+                                    </p>
+                                    <p style="color:#000000; margin-bottom:8px;">
+                                        <!-- <a style="color:#000000; margin-bottom:8px;"
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>">
+                                        -->
+                                        <a style="color:#000000; margin-bottom:8px;"
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "#review_" . $review_id; ?>">
+
+
+                                            <?php
                                                                                                                                                                                                                                                                             $length_str  = strlen(wordwrap($review_detail, 15, " ", true));
                             echo substr(wordwrap($review_detail, 15, " ", true), 0, 70);
                             if ($length_str > 70) {
                                 echo " ...";
                             } ?>
-                                        </a></p>
+                                        </a>
+                                    </p>
 
                                     <div class="list-inline col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_zero">
                                         <p class="dateVale col-lg-4 col-md-5 col-sm-5 col-xs-5 pad_zero"
@@ -1440,23 +1456,37 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                             } else {
                                 echo $review_rating;
                             } ?>
-                                        </span> <a
+                                        </span>
+                                        <!-- <a
                                             style="color:#000000;  font-family:sans-serif !important; font-size:18px;"
-                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>">
+                                        -->
+                                        <a style="color:#000000;  font-family:sans-serif !important; font-size:18px;"
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "#review_" . $review_id; ?>">
+
+                                            <?php
                                                                                                                                                                                                                                                                                                                                                                                                         $title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 38);
                             echo $title_rev;
                             if (strlen($review_title) > 38) {
                                 echo "..";
                             } ?>
-                                        </a></p>
-                                    <p style="color:#000000;"><a style="color:#000000"
-                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php
+                                        </a>
+                                    </p>
+                                    <p style="color:#000000;">
+                                        <!-- <a style="color:#000000"
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>">
+                                        -->
+                                        <a style="color:#000000"
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo .  "#review_" . $review_id; ?>">
+
+                                            <?php
                                                                                                                                                                                                                                     $length_str  = strlen(wordwrap($review_detail, 15, " ", true));
                             echo substr(wordwrap($review_detail, 15, " ", true), 0, 100);
                             if ($length_str > 100) {
                                 echo " ...";
                             } ?>
-                                        </a></p>
+                                        </a>
+                                    </p>
 
                                     <div class="list-inline col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_zero"
                                         style="margin-top:10px;">
@@ -1808,15 +1838,21 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                             } else {
                                                                 echo $review_rating;
                                                             } ?>
-                                            </span><a
-                                                href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><text
-                                                    class="rec_review_title"><?php
+                                            </span>
+                                            <!-- <a
+                                                href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>">
+                                            -->
+                                            <a
+                                                href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "#review_" . $review_id; ?>">
+
+                                                <text class="rec_review_title"><?php
                                                                                                                                                                                                                                                                                                                                                 $title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 22);
                             echo $title_rev;
                             if (strlen($review_title) > 22) {
                                 echo "..";
                             } ?>
-                                                </text></a></p>
+                                                </text></a>
+                                        </p>
                                     </div>
                                     <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2 pad_zero">
                                         <div class="latestsongssec">
@@ -1937,15 +1973,22 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             reviews)</p>
                                     </div>
                                     <div class="clearfix"></div>
-                                    <p class="review_detail" style="color:#000000; text-align:justify;"><a
+                                    <p class="review_detail" style="color:#000000; text-align:justify;">
+                                        <!-- <a
                                             style="color:#000000"
-                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>"><?php
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "/" . $position_find . "#review_" . $review_id; ?>">
+                                        -->
+                                        <a style="color:#000000"
+                                            href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviewslist/" . $artist_seo . "#review_" . $review_id; ?>">
+
+                                            <?php
                                                                                                                                                                                                                                                                             $length_str  = strlen(wordwrap($review_detail, 15, " ", true));
                             echo substr(wordwrap($review_detail, 15, " ", true), 0, 100);
                             if ($length_str > 100) {
                                 echo " ...";
                             } ?>
-                                        </a></p>
+                                        </a>
+                                    </p>
 
                                     <div class="list-inline col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_zero"
                                         style="margin-top:10px;">

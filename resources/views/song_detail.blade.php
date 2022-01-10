@@ -1,21 +1,24 @@
 @include('common.header')
 <!-- ./Header end -->
 <?php
-error_reporting(0);
-
-
+// error_reporting(E_ALL);
+ 
+  
 
 // $song_list_arr = (array)$song_list_arr[0];
 $id      = $song_list_arr['id'];
 $song_id      = $song_list_arr['id'];
 
-
+ 
 
 $album_title = stripslashes(html_entity_decode($song_list_arr['album_title']));
 $album_id = stripslashes(html_entity_decode($song_list_arr['album_id']));
 $artist_name = stripslashes(html_entity_decode($song_list_arr['artist_name']));
 $album_picture   = stripslashes(html_entity_decode($song_list_arr['album_picture']));
 $song_title = stripslashes(html_entity_decode($song_list_arr['song_title']));
+
+
+
 
 $itunes_url = stripslashes(html_entity_decode($song_list_arr['itunes_url']));
 $amazon_url = stripslashes(html_entity_decode($song_list_arr['amazon_url']));
@@ -33,6 +36,7 @@ $album_seo  = strtolower(stripslashes(html_entity_decode($song_list_arr['album_s
 
 
 $mainartist_arr    =    mainartist_detail($album_artist_id);
+ 
 
 
 $artist_name = stripslashes($mainartist_arr['artist_name']);
@@ -210,7 +214,7 @@ $img_qry3 = "select store_img from tbl_store_img where store_id=3";
 $img_arr3 = \App\Models\Songs::GetRawData($img_qry3);
 $img_arr3 = (array)$img_arr3[0];
 
-
+ 
 ?>
 <style type="text/css">
     a.under_line {
