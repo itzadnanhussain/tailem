@@ -67,7 +67,7 @@ $artist_seo_name  = $review_like_info['artist_seo'];
                     <div style="margin-top:0;">
                         <form id="api-readonlys" method="post"
                             action="<?php echo SERVER_ROOTPATH ?>process/write_a_review"
-                            style="padding:10px; padding-top:20px;">
+                            style="padding:10px; padding-top:20px;" novalidate>
                             <h4 style="font-size:20px; font-weight:normal; margin-bottom:20px;"> Edit your Review
                                 <?php
                                 if (!$review_like_info) {

@@ -240,10 +240,7 @@ class ProcessController extends Controller
         if (isset($_POST)) {
             extract($_POST);
             error_reporting(0);
-            echo '<pre>';
-            print_r($request->all());
-            echo '</pre>';
-            die;
+             
 
             $user_id = session()->get('user_id');
 

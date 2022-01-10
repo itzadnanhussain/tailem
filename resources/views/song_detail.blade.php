@@ -8,6 +8,7 @@
 // $song_list_arr = (array)$song_list_arr[0];
 $id      = $song_list_arr['id'];
 $song_id      = $song_list_arr['id'];
+$album_date      = $song_list_arr['years'];
 
  
 
@@ -358,7 +359,8 @@ $img_arr3 = (array)$img_arr3[0];
 
                             <p>Album : <a
                                     href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/album/" . Slug($album_title); ?>"
-                                    style="color: #D73B3B;"><?php echo $album_title; ?></a></p>
+                                    style="color: #D73B3B;"><?php echo $album_title . ' ('.$album_date.')' ?></a>
+                            </p>
                         </div>
 
 
@@ -1717,7 +1719,7 @@ $img_arr3 = (array)$img_arr3[0];
                                                 <a
                                                     href="<?php echo SERVER_ROOTPATH . get_user_detail($db_user_name) . "/profile-review-artist"; ?>"><img
                                                         src="<?php echo $prof_image; ?>"
-                                                        style="100%" alt="Image"></a>
+                                                        width="100%" alt="Image"></a>
                                                 <div class="list_bottom"
                                                     style="width:100%; height:18px; padding:0; padding-right:6px !important;">
 
