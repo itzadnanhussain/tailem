@@ -81,6 +81,9 @@ Route::post('process/favourite_like_sub', [ProcessController::class, 'FavouriteL
 ///process/favourite_userprofile_mainlikes
 Route::any('process/favourite_userprofile_mainlikes', [ProcessController::class, 'favourite_userprofile_mainlikes']);
 
+///process/favourite_userprofile_mainlikes
+Route::any('process/favourite_userprofile_likes_discussion', [ProcessController::class, 'favourite_userprofile_likes_discussion']);
+
 
 ///detail_review
 Route::get('process/detail_review', [ProcessController::class, 'DetailReview']);

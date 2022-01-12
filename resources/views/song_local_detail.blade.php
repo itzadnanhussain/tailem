@@ -1221,43 +1221,7 @@ for ($g = 1; $g <= 20; $g++) {
         })
     })
 </script>
-<script type="text/javascript">
-    function discussion_post() {
-        valu = jq('#atextarea').val();
-        jq.post(
-            JS_SERVER_PATHROOT +
-            'process/discussion_process?artist_id=<?php echo $artist_id; ?>&album_id=<?php echo $album_id; ?>&song_id=<?php echo $song_id; ?>&detail=' +
-            valu,
 
-
-            function(html) {
-
-
-                if (html == "Please sign in first") {
-                    $('#signin_form').modal('show');
-                } else
-                if (html.search('done') != -1) {
-                    $('#atextarea').val('');
-                    $('#discussion_popup').modal('show');
-
-
-                } else {
-                    $('#error_popup').modal('show');
-                    $('#modal_title_error').html('Thank you');
-                    $('#modal_body_error').html(html);
-
-                }
-
-            }
-        );
-    }
-
-    song_id = <?php echo $song_id; ?> ;
-
-    function discussion_popup_close() {
-        window.location.reload();
-    }
-</script>
 <!-- <script type="text/javascript" src="<?php echo SERVER_ROOTPATH; ?>script.js">
 </script> -->
 <div class="modal fade" id="show_playlist" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
@@ -1409,6 +1373,7 @@ for ($g = 1; $g <= 20; $g++) {
 <script type="text/javascript">
     //<![CDATA[
     jq(function() {
+        var csrf_token = $('meta[name=csrf-token]').attr('content');
         jq.ajax({
             url: "<?php echo SERVER_ROOTPATH; ?>process/dbmanupulate",
             type: "POST",
@@ -1433,7 +1398,12 @@ for ($g = 1; $g <= 20; $g++) {
             jq.ajax({
                 url: "<?php echo SERVER_ROOTPATH; ?>process/dbmanupulate",
                 type: "POST",
-                data: "actionfunction=showData&song_id=" + song_id + "&page=" + jqpage,
+                data: {
+                    'actionfunction': 'showData',
+                    'page': $jqpage,
+                    'song_id': <?php echo $song_id ?> ,
+                    "_token": csrf_token,
+                },
                 cache: false,
                 success: function(response) {
                     jq('#pagination').html(response);
@@ -1444,7 +1414,6 @@ for ($g = 1; $g <= 20; $g++) {
     });
     //]]>
 </script>
-
 <script>
     $("#manual-rating-score").bind('keyup mouseup', function() {
         let score = $('#manual-rating-score').val();
@@ -1452,4 +1421,46 @@ for ($g = 1; $g <= 20; $g++) {
         let width = (score * 10) + '%';
         $('.filled-stars').css('width', width);
     });
+</script>
+<!-- post discussion -->
+<script type="text/javascript">
+    function discussion_post() {
+        value = jq('#atextarea').val();
+        var csrf_token = $('meta[name=csrf-token]').attr('content');
+        jq.ajax({
+            url: "<?php echo SERVER_ROOTPATH; ?>process/discussion_process",
+            type: "POST",
+            data: {
+                'artist_id': <?php echo $artist_id; ?> ,
+                'album_id': <?php echo $album_id; ?> ,
+                'song_id': <?php echo $song_id ?> ,
+                'detail': value,
+                "_token": csrf_token,
+            },
+            cache: false,
+            success: function(html) {
+                if (html == "Please sign in first") {
+                    $('#signin_form').modal('show');
+                } else
+                if (html.search('done') != -1) {
+                    $('#atextarea').val('');
+                    $('#discussion_popup').modal('show');
+
+
+                } else {
+                    $('#error_popup').modal('show');
+                    $('#modal_title_error').html('Thank you');
+                    $('#modal_body_error').html(html);
+
+                }
+            }
+        });
+
+    }
+
+    song_id = <?php echo $song_id; ?> ;
+
+    function discussion_popup_close() {
+        window.location.reload();
+    }
 </script>

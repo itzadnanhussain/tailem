@@ -1,12 +1,12 @@
- 
+
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    } 
+    }
 });
 
-function write_a_review_validation_new() { 
-    $("#api-readonly").unbind("submit"); 
+function write_a_review_validation_new() {
+    $("#api-readonly").unbind("submit");
     var options = {
         target: "",
         beforeSubmit: write_a_review_validation_Request_new,
@@ -92,7 +92,7 @@ function change_username_validation_Response(responseText, statusText) {
 
 
 
- 
+
 
 
 
@@ -306,20 +306,20 @@ function validate_report_discussion_new_report_Response(a, b) {
 }
 
 function add_in_favourite_user_profile_mainlist_new(a, b, c) {
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
 
     $.ajax({
-        url : JS_SERVER_PATHROOT +
+        url: JS_SERVER_PATHROOT +
             "process/favourite_userprofile_mainlikes?prod_id=" +
             a +
             "&sr_no=" +
             b +
             "&db_user_name=" +
             c,
-        data : {
+        data: {
             "_token": csrf_token,
         },
-        success:function (a) {
+        success: function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (a == "aa") {
@@ -336,12 +336,12 @@ function add_in_favourite_user_profile_mainlist_new(a, b, c) {
 function add_in_favourite_user_profile_screen_new(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_userprofile_screenlikes.php?prod_id=" +
-            a +
-            "&sr_no=" +
-            b +
-            "&db_user_name=" +
-            c,
+        "process/favourite_userprofile_screenlikes.php?prod_id=" +
+        a +
+        "&sr_no=" +
+        b +
+        "&db_user_name=" +
+        c,
         function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -359,16 +359,16 @@ function add_in_favourite_user_profile_screen_new(a, b, c) {
 function add_in_favourite_main_profile_list_new(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_userprofile_likes_main_list?prod_id=" +
-            a +
-            "&sr_no=" +
-            b +
-            "&username=" +
-            c,
+        "process/favourite_userprofile_likes_main_list?prod_id=" +
+        a +
+        "&sr_no=" +
+        b +
+        "&username=" +
+        c,
         function (a) {
-             if (a == "Please sign in first") {
+            if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
-            } else if (a == "aa") { 
+            } else if (a == "aa") {
                 jQuery.noConflict();
                 $("#your_own_profile").modal("show");
                 // $("#your_own_profile").css("display", "block");
@@ -383,22 +383,22 @@ function add_in_favourite_main_profile_list_new(a, b, c) {
 
 /*Like user Review*/
 function add_in_favourite_list_review_screen_new(a, b, c, d) {
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
-    $.ajax({ 
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    $.ajax({
         type: "POST",
         url: JS_SERVER_PATHROOT +
-        "process/favourite_like_review_screen?prod_id=" +
-        a +
-        "&user_name=" +
-        b +
-        "&r_fav=" +
-        c +
-        "&tm=" +
-        d,
+            "process/favourite_like_review_screen?prod_id=" +
+            a +
+            "&user_name=" +
+            b +
+            "&r_fav=" +
+            c +
+            "&tm=" +
+            d,
         data: {
             "_token": csrf_token,
-        }, 
-        success:function (b) {
+        },
+        success: function (b) {
             if (b == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (b.search("You cannot like your own review") != -1) {
@@ -419,12 +419,12 @@ function add_in_favourite_list_review_screen_new(a, b, c, d) {
 function add_in_favourite_list_sub(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_sub?prod_id=" +
-            a +
-            "&artist_seo=" +
-            b +
-            "&k=" +
-            c,
+        "process/favourite_like_sub?prod_id=" +
+        a +
+        "&artist_seo=" +
+        b +
+        "&k=" +
+        c,
         function (b) {
             if (b == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -440,12 +440,12 @@ function add_in_favourite_list_sub(a, b, c) {
 function add_in_favourite_user_profile_size(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/add_in_favourite_user_profile_size.php?prod_id=" +
-            a +
-            "&sr_no=" +
-            b +
-            "&db_user_name=" +
-            c,
+        "process/add_in_favourite_user_profile_size.php?prod_id=" +
+        a +
+        "&sr_no=" +
+        b +
+        "&db_user_name=" +
+        c,
         function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -463,12 +463,12 @@ function add_in_favourite_user_profile_size(a, b, c) {
 function add_in_favourite_user_profile_size(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/add_in_favourite_user_profile_size.php?prod_id=" +
-            a +
-            "&sr_no=" +
-            b +
-            "&db_user_name=" +
-            c,
+        "process/add_in_favourite_user_profile_size.php?prod_id=" +
+        a +
+        "&sr_no=" +
+        b +
+        "&db_user_name=" +
+        c,
         function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -484,15 +484,18 @@ function add_in_favourite_user_profile_size(a, b, c) {
 }
 
 function add_in_favourite_user_profile_mainlist_discussion_new(a, b, c) {
-    $.post(
-        JS_SERVER_PATHROOT +
-            "process/favourite_userprofile_likes_discussion.php?prod_id=" +
-            a +
-            "&sr_no=" +
-            b +
-            "&db_user_name=" +
-            c,
-        function (a) {
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    $.ajax({
+        url: JS_SERVER_PATHROOT +
+            "process/favourite_userprofile_likes_discussion",
+        type: 'POST',
+        data: {
+            'prod_id': a,
+            'sr_no': b,
+            'db_user_name': c,
+            "_token": csrf_token, 
+        }, 
+        success: function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (a == "aa") {
@@ -503,18 +506,18 @@ function add_in_favourite_user_profile_mainlist_discussion_new(a, b, c) {
                 $("#other_dis_sub_profile_discussion_" + b).hide();
             }
         }
-    );
+    });
 }
 
 function add_in_favourite_list_review_song(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_review_song?prod_id=" +
-            a +
-            "&user_name=" +
-            b +
-            "&r_fav=" +
-            c,
+        "process/favourite_like_review_song?prod_id=" +
+        a +
+        "&user_name=" +
+        b +
+        "&r_fav=" +
+        c,
         function (b) {
             if (b == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -525,7 +528,7 @@ function add_in_favourite_list_review_song(a, b, c) {
                 $("#myStyle_sub_" + a).show();
                 $("#other_dis_sub_" + a).hide();
                 /*$("#myStyle_sub_"+a).removeClass("like-group liked");
-		$("#myStyle_sub_"+a).addClass("like-group");*/
+        $("#myStyle_sub_"+a).addClass("like-group");*/
             }
         }
     );
@@ -534,12 +537,12 @@ function add_in_favourite_list_review_song(a, b, c) {
 function add_in_favourite_list_review_song_second(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_review_song_second.php?prod_id=" +
-            a +
-            "&user_name=" +
-            b +
-            "&r_fav=" +
-            c,
+        "process/favourite_like_review_song_second.php?prod_id=" +
+        a +
+        "&user_name=" +
+        b +
+        "&r_fav=" +
+        c,
         function (b) {
             if (b == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -582,12 +585,12 @@ function add_in_favourite_list_review_song_second(a, b, c) {
 function add_in_favourite_user_profile_mob(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_userprofile_moblikes.php?prod_id=" +
-            a +
-            "&sr_no=" +
-            b +
-            "&db_user_name=" +
-            c,
+        "process/favourite_userprofile_moblikes.php?prod_id=" +
+        a +
+        "&sr_no=" +
+        b +
+        "&db_user_name=" +
+        c,
         function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -605,12 +608,12 @@ function add_in_favourite_user_profile_mob(a, b, c) {
 function add_in_favourite_list_review_mob(a, b, c) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_review_mob.php?prod_id=" +
-            a +
-            "&user_name=" +
-            b +
-            "&r_fav=" +
-            c,
+        "process/favourite_like_review_mob.php?prod_id=" +
+        a +
+        "&user_name=" +
+        b +
+        "&r_fav=" +
+        c,
         function (b) {
             if (b == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -681,14 +684,14 @@ function newpass_validation_Response(a, b) {
 function add_in_favourite_list_sub_artist_new(a, b, c, d) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_sub_artist2?prod_id=" +
-            a +
-            "&sr_no=" +
-            b +
-            "&artist_seo=" +
-            c +
-            "&k=" +
-            d,
+        "process/favourite_like_sub_artist2?prod_id=" +
+        a +
+        "&sr_no=" +
+        b +
+        "&artist_seo=" +
+        c +
+        "&k=" +
+        d,
         function (c) {
             if (c == "Please sign in first") {
                 $("#signin_form").modal("show");
@@ -702,14 +705,14 @@ function add_in_favourite_list_sub_artist_new(a, b, c, d) {
 }
 
 function add_in_playlist(a) {
-    var csrf_token = $('meta[name=csrf-token]').attr('content');  
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
     $.ajax({
-        type : 'POST',
-        url : JS_SERVER_PATHROOT + "process/favourite_playlist?prod_id=" + a,
-        data : {
+        type: 'POST',
+        url: JS_SERVER_PATHROOT + "process/favourite_playlist?prod_id=" + a,
+        data: {
             "_token": csrf_token,
         },
-        success : function (c) {
+        success: function (c) {
             if (c == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (c == "aa") {
@@ -795,14 +798,14 @@ function myStopFunction() {
 
 ///playlist_delete
 function playlist_delete(a, p) {
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
     $.ajax({
         url: JS_SERVER_PATHROOT + 'process/delete_playlist_process?id=' + a + "&p=" + p,
         type: 'post',
         data: {
             "_token": csrf_token,
         },
-        success: function(result) {
+        success: function (result) {
 
             if (result.search('done') != -1) {
                 myarray = new Array();
@@ -868,10 +871,10 @@ function validate_songto_playlist_new_Response(responseText, statusText) {
 function update_playlist_validations_new() {
     $("#add_playlist").unbind("submit");
     var csrf_token = $('meta[name=csrf-token]').attr('content');
-  
+
     var options = {
         target: "",
-        data : {
+        data: {
             "_token": csrf_token,
         },
         beforeSubmit: validate_update_playlist_new_Request,
@@ -916,20 +919,20 @@ function show_detail_artist(pass) {
 }
 
 function add_in_favourite_like_profile_new(a, b, c) {
-    var csrf_token = $('meta[name=csrf-token]').attr('content'); 
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
 
     $.ajax({
-        type : 'POST',
-        url : JS_SERVER_PATHROOT +
+        type: 'POST',
+        url: JS_SERVER_PATHROOT +
             "process/favourite_userprofile_likes_page?prod_id=" +
             a +
             "&sr_no=" +
             b +
             "&username=" +
             c,
-            data : {
-                "_token" : csrf_token,
-            },
+        data: {
+            "_token": csrf_token,
+        },
 
         success: function (a) {
             if (a == "Please sign in first") {
@@ -948,14 +951,14 @@ function add_in_favourite_like_profile_new(a, b, c) {
 function add_in_favourite_list_sub_artist_mob_new(a, b, c, d) {
     $.post(
         JS_SERVER_PATHROOT +
-            "process/favourite_like_sub_artist_mob.php?prod_id=" +
-            a +
-            "&sr_no=" +
-            b +
-            "&artist_seo=" +
-            c +
-            "&k=" +
-            d,
+        "process/favourite_like_sub_artist_mob.php?prod_id=" +
+        a +
+        "&sr_no=" +
+        b +
+        "&artist_seo=" +
+        c +
+        "&k=" +
+        d,
         function (c) {
             if (c == "Please sign in first") {
                 $("#signin_form").modal("show");
