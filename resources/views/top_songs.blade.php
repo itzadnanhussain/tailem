@@ -2,6 +2,7 @@
 <!-- ./Header end -->
 
 <?php
+ 
 ini_set('max_execution_time', '300');
 $mobile_view = 0;
 
@@ -100,14 +101,18 @@ $mobile_view = 0;
 
                                 // $review_list_arr_top    =    $db->get_row($review_list_qry, ARRAY_A);
                                 $review_list_arr_top = array();
-                                $review_list_arr_top = \App\Models\Songs::GetRawData($review_list_qry);
+                                $review_list_arr_top = \App\Models\Songs::GetRawDataAdmin($review_list_qry);
+                                // echo '<pre>';
+                                // print_r($review_list_arr_top);
+                                // echo '</pre>';
+                                
 
 
-                                if ($review_list_arr_top) {
-                                    $review_list_arr_top['count_reviews'] = count($review_list_arr_top);
-                                } else {
-                                    $review_list_arr_top['count_reviews'] = 0;
-                                }
+                                // if ($review_list_arr_top) {
+                                //     $review_list_arr_top['count_reviews'] = count($review_list_arr_top);
+                                // } else {
+                                //     $review_list_arr_top['count_reviews'] = 0;
+                                // }
 
                                 $comment_list_qry = "select count(*) as count_discussion from tbl_comments where comment_review_id = '" . $id . "' order by comment_id desc limit 1";
 
@@ -116,15 +121,16 @@ $mobile_view = 0;
 
 
                                 // $discussion_list_arr    =    $db->get_results($comment_list_qry, ARRAY_A);
-                                $discussion_list_arr = array();
-
-                                //                                $discussion_list_arr = \App\Models\Songs::GetRawData($comment_list_qry);
-                                //
-                                if (isset($discussion_list_arr) && !empty($discussion_list_arr)) {
-                                    $comment_list_arr['count_discussion'] = count($discussion_list_arr);
-                                } else {
-                                    $comment_list_arr['count_discussion'] =  0;
-                                }
+                                $comment_list_arr = array();
+                                $comment_list_arr = \App\Models\Songs::GetRawDataAdmin($comment_list_qry);
+                                
+                                
+                            
+                                // if (isset($discussion_list_arr) && !empty($discussion_list_arr)) {
+                                //     $comment_list_arr['count_discussion'] = count($discussion_list_arr);
+                                // } else {
+                                //     $comment_list_arr['count_discussion'] =  0;
+                                // }
 
 
 

@@ -1,6 +1,7 @@
 @include('common.header')
 <!-- ./Header end -->
 <?php
+error_reporting(0);
 // error_reporting(E_ALL);
  
   
@@ -2597,12 +2598,18 @@ type="text/javascript"></script> -->
 <script type="text/javascript">
     //<![CDATA[
     jq(function() {
+        var csrf_token = $('meta[name=csrf-token]').attr('content');
         jq.ajax({
             url: "<?php echo SERVER_ROOTPATH; ?>process/dbmanupulate",
             type: "POST",
-            data: "actionfunction=showData&page=1&song_id=" +
-                <?php echo $song_id ?>
-                ,
+            // data: "actionfunction=showData&page=1&song_id=" +
+            //     <?php echo $song_id ?>,
+            data: {
+                'actionfunction': 'showData',
+                'page': 1,
+                'song_id': <?php echo $song_id ?> ,
+                "_token": csrf_token,
+            },
             cache: false,
             success: function(response) {
                 jq('#pagination').html(response);

@@ -1412,9 +1412,15 @@ for ($g = 1; $g <= 20; $g++) {
         jq.ajax({
             url: "<?php echo SERVER_ROOTPATH; ?>process/dbmanupulate",
             type: "POST",
-            data: "actionfunction=showData&page=1&song_id=" +
-                <?php echo $song_id ?>
-                ,
+            // data: "actionfunction=showData&page=1&song_id=" +
+            //     <?php echo $song_id ?>
+            //     ,
+            data: {
+                'actionfunction': 'showData',
+                'page': 1,
+                'song_id': <?php echo $song_id ?> ,
+                "_token": csrf_token,
+            },
             cache: false,
             success: function(response) {
                 jq('#pagination').html(response);
