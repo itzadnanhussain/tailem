@@ -128,8 +128,34 @@ function validate_reviews_new_Response(responseText, statusText) {
 }
 
 /* Discussion validation */
-function discussion_validation_new() {
-    $("#discussion_form").unbind("submit");
+function discussion_validation_new() { 
+    // $("#discussion_form").submit(function () {
+    //     let form = $(this).serialize(); 
+    //     $.ajax({
+    //         url: JS_SERVER_PATHROOT + "process/discussion_update_process",
+    //         type: 'POST',
+    //         data: form,
+    //         success:function(responseText)
+    //         {
+    //             if (responseText.search("done") != -1) {
+    //                 myarray = new Array();
+    //                 myarray = responseText.split("-SEPARATOR-");
+                   
+            
+    //                 $("#edit_Modal4_" + myarray[1]).modal("hide");
+    //                 $("#post_edit_success").modal("show");
+    //                 // window.setTimeout(function () {
+    //                 //     window.location.reload();
+    //                 // }, 1300);
+    //             } else {
+    //                 alert(responseText);
+    //             }
+    
+    //         }
+    //     })
+    // });
+  
+    $("#discussion_form1").unbind("submit");
     var options = {
         target: "",
         beforeSubmit: null,

@@ -430,6 +430,9 @@ class ProcessController extends Controller
     }
 
 
+    
+
+
     ///DeleteReview
     public function DeleteReview()
     {
@@ -591,13 +594,14 @@ class ProcessController extends Controller
     ///discussion_update_process
     public function discussion_update_process()
     {
+        error_reporting(0);
         if (isset($_POST)) {
-            error_reporting(0);
             extract($_POST);
+            
             $errorstr = "";
             $case = 1;
 
-            $discussion_detail  =      trim($_POST['discussion_detail']);
+           
 
             if (session()->get('user_id') == "") {
                 echo $errorstr .= "Please sign in first.\n";
@@ -621,8 +625,77 @@ class ProcessController extends Controller
 
                     \App\Models\Songs::GetRawData($update_qry);
                 }
+                $data = array('code' => 'success', 'num' => $_POST['num']);
+                echo json_encode($data);
+                die;
 
-                echo 'done-SEPARATOR-' . $_POST['num'];
+            // echo 'done-SEPARATOR-' . $_POST['num'];
+            // die;
+            } else {
+                echo $errorstr;
+                $data = array('code' => 'error', 'message' => $errorstr);
+                echo json_encode($data);
+                die;
+            }
+        }
+    }
+    ///delete_comment
+    public function delete_comment()
+    {
+        $data = array();
+        $data['comment_id'] = $_GET['comment_id'];
+        $data['num'] = $_GET['num'];
+        $data['critaria'] = $_GET['critaria'];
+        $data['user_id'] = session()->get('user_id');
+        $data['mobile_view'] = 0;
+
+        return view('include.delete_comment', $data);
+    }
+
+    ///delete_comment_process
+    public function delete_comment_process()
+    {
+        if (isset($_POST)) {
+            extract($_POST);
+            $errorstr="";
+            $case = 1;
+            $comment_id  = $_REQUEST['id'];
+            $num	=	$_REQUEST['num'];
+            $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
+            
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID']=="") {
+                echo $errorstr .="Please sign in first.\n";
+                $case = 0;
+                exit;
+            }
+            
+            if ($comment_id=="") {
+                $errorstr .="This discussion doesn't exist.\n";
+                $case = 0;
+            } else {
+                $qry   =   "select comment_id from tbl_comments where comment_id = $comment_id AND comment_user_id = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."'";
+                $count	=	  \App\Models\Songs::GetRawData($qry);
+                if (empty($count)) {
+                    $errorstr .="This discussion doesn't exist.\n";
+                    $case = 0;
+                }
+            }
+            
+            if ($detail=="") {
+                $errorstr .="Please enter discussion detail.\n";
+                $case = 0;
+            }
+            
+                
+        
+        
+            if ($case==1) {
+                $qry = "Delete from tbl_comments where comment_id = $comment_id";
+                \App\Models\Songs::GetRawData($qry);
+                $qry = "Delete from tbl_review_report where r_report_review_id = $comment_id And status = 1";
+                \App\Models\Songs::GetRawData($qry);
+                
+                echo 'done-SEPARATOR-'.$num;
             } else {
                 echo $errorstr;
             }

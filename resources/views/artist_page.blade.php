@@ -291,6 +291,7 @@ $info   =  strip_tags(str_replace($val2, "", $info1));
                                         <!--<img src="images/slideimg3.png" align="left" style="margin:5px 10px; width:100px;">-->
                                         <?php
                                         $array_score = sum_of_artist_rating($artist_id_db);
+                                       
 
                                         ?>
                                         <a href="<?php echo SERVER_ROOTPATH .  Slug($artist_seo) . "/artist-songs"; ?>"

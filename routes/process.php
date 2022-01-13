@@ -88,6 +88,7 @@ Route::any('process/favourite_userprofile_likes_discussion', [ProcessController:
 ///detail_review
 Route::get('process/detail_review', [ProcessController::class, 'DetailReview']);
 
+ 
 ///detail_profile
 Route::get('process/detail_profile', [ProcessController::class, 'DetailProfile']);
 
@@ -149,7 +150,13 @@ Route::any('detail_playlist', [ProcessController::class , 'detail_playlist']);
 
 ///edit_comment
 Route::any('edit_comment', [ProcessController::class , 'edit_comment']);
-Route::any('process/discussion_update_process', [ProcessController::class , 'discussion_update_process']);
+// Route::any('process/discussion_update_process', [ProcessController::class , 'discussion_update_process']);
+Route::any('process/discussion_update_process_test', [ProcessController::class , 'discussion_update_process']);
+
+
+///delete comment
+Route::any('delete_comment', [ProcessController::class , 'delete_comment']);
+Route::any('process/delete_comment_process', [ProcessController::class , 'delete_comment_process']);
 
 ///delete_playlist
 Route::any('delete_playlist', [ProcessController::class , 'delete_playlist']);

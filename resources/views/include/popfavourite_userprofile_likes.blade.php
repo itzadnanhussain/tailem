@@ -6,14 +6,15 @@
         exit;
     }
 
-    
-    
-   
-    
+    if ($user_id==$prod_id) {
+        echo "aa";
+        exit;
+    }
 
     $qry =   "select id from tbl_likes where like_type = 'profile' AND like_id = '$prod_id'";
     $counter_main = array();
     $counter_main = \App\Models\Songs::GetRawData($qry);
+    
     if ($counter_main) {
         $counter_main = count($counter_main);
     } else {
