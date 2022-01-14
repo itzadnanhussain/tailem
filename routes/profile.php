@@ -151,6 +151,7 @@ Route::any('delete-user-profile', [UserController::class , 'DeleteUserProfile'])
 // RewriteRule ^like-artist-genre-(.*)$ like_artist.php?genere_seo=$1 [PT]
 // RewriteRule ^(.*)-profile-like-artists-(.*)-genre-(.*)$ like_artist.php?user_seo=$1&genere_seo=$2&alpha=$3 [PT]
 // RewriteRule ^(.*)-profile-like-artists-(.*)-genre-(.*)$ like_artist.php?user_seo=$1&genere_seo=$2&alpha=$3 [PT]
+Route::any('like-artist-genre-{genere_seo?}', [UserController::class , 'GetLikeArtistsGenre']);
 
 
 // RewriteRule ^(.*)-profile-like-artists-(.*)-(.*)$ like_artist.php?user_seo=$1&alpha=$2&page=$3 [PT]
