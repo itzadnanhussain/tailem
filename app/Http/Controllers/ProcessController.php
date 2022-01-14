@@ -913,6 +913,18 @@ class ProcessController extends Controller
 
         return view('include.favourite_userprofile_likes_main_list', $data);
     }
+    ///favourite_userprofile_screenlikes
+    public function favourite_userprofile_screenlikes()
+    {
+        if ($_POST) {
+            $data = array();
+            $data['prod_id'] = $_POST['prod_id'];
+            $data['sr_no'] = $_POST['sr_no'];
+            $data['user_name'] = $_POST['db_user_name'];
+            $data['user_id'] = session()->get('user_id');
+            return view('include.favourite_userprofile_screenlikes', $data);
+        }
+    }
 
 
     ///FavouriteLikeSubArtistPop

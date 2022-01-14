@@ -360,15 +360,17 @@ function add_in_favourite_user_profile_mainlist_new(a, b, c) {
 }
 
 function add_in_favourite_user_profile_screen_new(a, b, c) {
-    $.post(
-        JS_SERVER_PATHROOT +
-        "process/favourite_userprofile_screenlikes.php?prod_id=" +
-        a +
-        "&sr_no=" +
-        b +
-        "&db_user_name=" +
-        c,
-        function (a) {
+    
+    $.ajax({
+        type: 'post',
+        url: JS_SERVER_PATHROOT +
+        "process/favourite_userprofile_screenlikes",
+        data:{
+            'prod_id':a,
+            'sr_no':b,
+            'db_user_name':c,
+        }, 
+       success:function (a) {
             if (a == "Please sign in first") {
                 $("#signin_form").modal("show");
             } else if (a == "aa") {
@@ -379,7 +381,7 @@ function add_in_favourite_user_profile_screen_new(a, b, c) {
                 $("#other_dis_sub_profile_sc_" + b).hide();
             }
         }
-    );
+    });
 }
 
 function add_in_favourite_main_profile_list_new(a, b, c) {

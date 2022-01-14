@@ -246,7 +246,7 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 			<div class="modal-header">
 				<h4 class="modal-title" style="color:#3276b1;"> Thank you for using the report feature <img
 						data-dismiss="modal" style="cursor:pointer; float:right;"
-						src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp"
+						src="<?php echo  SERVER_ROOTPATH; ?>images/crosspng.png"
 						data-pagespeed-url-hash="3119113509"
 						onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 				</h4>
@@ -271,7 +271,7 @@ if ($currentFile == 'like_artist' || $currentFile == 'review_artist' || $current
 			<div class="modal-header">
 				<h4 class="modal-title" style="color:#3276b1;"> Thank you for updating your post <img
 						data-dismiss="modal" onclick="close_popup()" style="cursor:pointer; float:right;"
-						src="https://www.tailem.com/images/xcrosspng.png.pagespeed.ic.x-7sR0qk1S.webp"
+						src="<?php echo  SERVER_ROOTPATH; ?>images/crosspng.png"
 						data-pagespeed-url-hash="3119113509"
 						onload="pagespeed.CriticalImages.checkImageForCriticality(this);">
 				</h4>

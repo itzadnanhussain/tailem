@@ -165,3 +165,6 @@ Route::any('process/delete_playlist_process', [ProcessController::class , 'delet
 ///update_playlist
 Route::any('update_playlist', [ProcessController::class , 'update_playlist']);
 Route::any('process/update_playlist_process', [ProcessController::class , 'update_playlist_process']);
+
+///favourite_userprofile_screenlikes
+Route::any('process/favourite_userprofile_screenlikes', [ProcessController::class , 'favourite_userprofile_screenlikes']);
