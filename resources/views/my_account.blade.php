@@ -686,7 +686,7 @@ if ($page != "") {
                                             <div class="latestsongssec">
                                                 <div class="list_item">
                                                     <a
-                                                        href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img
+                                                        href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img
                                                             src="<?php echo $prof_image; ?>"
                                                             width="100" border="0"></a>
                                                     <div class="list_bottom" style="padding:2px; width:100px;">
@@ -694,7 +694,7 @@ if ($page != "") {
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
                                                                 style="padding-left:14px; padding-right:2px;">
                                                                 <a
-                                                                    href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><cite
+                                                                    href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><cite
                                                                         style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo $user_name; ?></cite></a>
                                                             </div>
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
@@ -957,7 +957,7 @@ if ($page != "") {
                                     <div class="latestsongssec">
                                         <div class="list_item">
                                             <a
-                                                href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img
+                                                href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img
                                                     src="<?php echo $prof_image; ?>"
                                                     width="100" border="0" class="img-responsive"></a>
                                             <div class="list_bottom" style="padding:2px; width:100px;">
@@ -965,7 +965,7 @@ if ($page != "") {
                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"
                                                         style="padding-left:14px; padding-right:2px;">
                                                         <a
-                                                            href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><cite
+                                                            href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><cite
                                                                 style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo substr($user_name, 0, 9);
                             if (strlen($user_name) > 9) {
                                 echo "..";
@@ -1408,7 +1408,7 @@ if ($page != "") {
                                         <div class="latestsongssec">
                                             <div class="list_item">
                                                 <a
-                                                    href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img
+                                                    href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img
                                                         src="<?php echo $prof_image; ?>"
                                                         class="img-responsive artist-img" width="100%"></a>
                                                 <div class="list_bottom pad_zero"
@@ -1504,7 +1504,7 @@ if ($page != "") {
 
                                         <p class="review_detail red_rev"><a class="darkgrey_rev"
                                                 style="font-weight:bold;"
-                                                href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><?php echo $user_name; ?></a>
+                                                href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><?php echo $user_name; ?></a>
                                             (<?php echo $review_list_count_array['count_reviews']; ?>
                                             reviews)</p>
                                     </div>

@@ -62,7 +62,7 @@ if ($result_notification) {
                     $db_title_playlist_seo  =   $get_info_arr['title_playlist_seo'];
 
 
-                    $db_link    =  SERVER_ROOTPATH . get_user_detail($user_name_notif) . "-profile-review-artist";
+                    $db_link    =  SERVER_ROOTPATH . get_user_detail($user_name_notif) . "/profile-review-artist";
                     $db_link_playlist  = SERVER_ROOTPATH . get_user_detail($user_name_db) . "-profile-playlists/" . $db_title_playlist_seo;
                 ?>
                     <a class='user_pnl_col' href="javascript:;" onclick="gotolink('<?php echo $db_link; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" style='display:inline;  font-size:11px;  padding:5px 0 !important;'><?php echo $user_name_notif; ?></a> likes your playlist <a class='user_pnl_col' href="javascript:;" onclick="gotolink('<?php echo $db_link_playlist; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" style='display:inline; font-size:11px; padding:5px 0 !important;'><?php echo $db_title; ?></a>
@@ -72,12 +72,12 @@ if ($result_notification) {
                 } else
 							if ($db_like_type == 'profile') {
                 ?>
-                    <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . get_user_detail($user_name_notif) . '-profile-review-artist'; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline;  font-size:11px;  padding:5px 0 !important;"><?php echo $user_name_notif; ?></a> likes your profile
+                    <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . get_user_detail($user_name_notif) . '/profile-review-artist'; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline;  font-size:11px;  padding:5px 0 !important;"><?php echo $user_name_notif; ?></a> likes your profile
                 <?php
                 } else
 							if ($db_like_type == 'admin_review') {
                 ?>
-                    <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . get_user_detail($user_name_notif) . '-profile-review-artist'; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline;  font-size:11px;  padding:5px 0 !important;"><?php echo $user_name_notif; ?></a> Admin add a review
+                    <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . get_user_detail($user_name_notif) . '/profile-review-artist'; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline;  font-size:11px;  padding:5px 0 !important;"><?php echo $user_name_notif; ?></a> Admin add a review
                 <?php
                 } else
 							if ($db_like_type == 'review_song') {

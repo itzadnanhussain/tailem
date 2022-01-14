@@ -49,7 +49,7 @@ if ($row_userinfo) {
                 aria-label="Close"><span aria-hidden="true"><img
                         src="<?php echo SERVER_ROOTPATH; ?>images/crosspng.png"></span></button>
             <h4 style="width:90%;" class="modal-title text_blck">Who likes <a style="color:#d73b3b;"
-                    href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-review-artist"; ?>">
+                    href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist"; ?>">
                     <?php echo $user_name; ?></a>?</h4>
         </div>
         <div class="modal-body" style="padding:5px; overflow-x:hidden; overflow-y:auto; height:auto; max-height:300px;">
@@ -112,7 +112,7 @@ if ($row_userinfo) {
                             style="padding:0; margin-bottom:15px; margin-top:15px;">
                             <div class="album_cover col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding:0;">
                                 <a
-                                    href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "-profile-review-artist"; ?>"><img
+                                    href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "/profile-review-artist"; ?>"><img
                                         class="img-responsive"
                                         src="<?php echo $prof_image; ?>"
                                         style="max-height:76px; width:100px; margin-left:15px;"></a>
@@ -126,7 +126,7 @@ if ($row_userinfo) {
                                         <label class="title col-lg-7 col-md-7 col-sm-7 col-xs-7">
                                             <?php } ?>
                                             <a style="color:#000000; font-size:18px;"
-                                                href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "-profile-review-artist"; ?>"><?php echo ucwords($val['user_name']); ?></a></label>
+                                                href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "/profile-review-artist"; ?>"><?php echo ucwords($val['user_name']); ?></a></label>
 
 
                                         <?php if ($mobile_view == 1) { ?>

@@ -210,10 +210,10 @@
                                     </div>
                                     <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12 pad_zero">
                                     <div class="album_cover">
-                                    <a href="<?php echo SERVER_ROOTPATH.get_user_detail($user_name_get_db)."-profile-review-artist";?>"><img src="<?php echo get_small_thumb($prof_image);?>"  border="0" ></a>
+                                    <a href="<?php echo SERVER_ROOTPATH.get_user_detail($user_name_get_db)."/profile-review-artist";?>"><img src="<?php echo get_small_thumb($prof_image);?>"  border="0" ></a>
                                     </div>
                                     <div class="album_details" style="padding-left:10px; margin-top:-10px;">
-                                       <label class="author pad_zero" style="width:215px; float:left; margin-top:3px;"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH.get_user_detail($user_name_get_db)."-profile-review-artist";?>"><?php echo $user_name_get_db;?></a>
+                                       <label class="author pad_zero" style="width:215px; float:left; margin-top:3px;"><a class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH.get_user_detail($user_name_get_db)."/profile-review-artist";?>"><?php echo $user_name_get_db;?></a>
                                        <span id="nam_<?php echo $p_fav;?>"></span>
                                        </label>
                                         <label class="likes pad_zero">
@@ -286,14 +286,14 @@
 										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 pad_zero">
  												<div class="album_cover">
-                               						<a href="<?php echo SERVER_ROOTPATH.get_user_detail($user_name_get_db)."-profile-review-artist";?>"><img src="<?php echo $prof_image;?>" border="0" ></a>
+                               						<a href="<?php echo SERVER_ROOTPATH.get_user_detail($user_name_get_db)."/profile-review-artist";?>"><img src="<?php echo $prof_image;?>" border="0" ></a>
 												<div style="position:absolute; z-index:10; margin-left:88%; color:#FFFFFF; margin-top:-20px;" class="review_screen_txt"><?php echo $sr_no;?></div>
                                             </div>
                                     	</div>
                                     		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="padding:0px !important;">
 									<div class="album_details" style="margin-top:-5px;">
 									
-                                        <p><label class="author"  style="float:left; width:auto;"><a  class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH.get_user_detail($user_name_get_db)."-profile-review-artist";?>"><?php echo $user_name_get_db;?></a></label>
+                                        <p><label class="author"  style="float:left; width:auto;"><a  class="darkgrey_rev" href="<?php echo SERVER_ROOTPATH.get_user_detail($user_name_get_db)."/profile-review-artist";?>"><?php echo $user_name_get_db;?></a></label>
 										<label class="likes" style="margin-left:5px; float:right;">
                                      		 <!--<span style="overflow:visible; margin-top:-10px;"><a href="#"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span> 3</span><a href="#" class="like link-disable" style="color:#444;"> Likes</a></span>-->
                                  <?php	$counter_main = mysqli_num_rows(mysqli_query($db->dbh, "select id from tbl_likes where like_type = 'profile' AND like_id = '$user_ids'"));

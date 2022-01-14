@@ -215,11 +215,11 @@ $USER_NAME = ucfirst($user_name);
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                                                 <div class="latestsongssec">
                                                     <div class="list_item">
-                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "-profile-review-artist"; ?>"><img src="<?php echo get_small_thumb($prof_image); ?>" border="0" style="width:100%;"></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "/profile-review-artist"; ?>"><img src="<?php echo get_small_thumb($prof_image); ?>" border="0" style="width:100%;"></a>
                                                         <div class="list_bottom likeprofileimg" style="padding:2px; width:100% !important;">
                                                             <div class="row">
                                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:14px; padding-right:2px;">
-                                                                    <a href="<?php echo SERVER_ROOTPATH . $user_seo; ?>-profile-review-artist"><cite style="margin:2px; color:#FFFFFF;"><?php echo $user_name_get_db; ?></cite></a>
+                                                                    <a href="<?php echo SERVER_ROOTPATH . $user_seo; ?>/profile-review-artist"><cite style="margin:2px; color:#FFFFFF;"><?php echo $user_name_get_db; ?></cite></a>
                                                                 </div>
                                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:0px; padding-right:15px;">
                                                                     <?php
@@ -375,7 +375,7 @@ $USER_NAME = ucfirst($user_name);
                                                 <div class="latestsongssec">
                                                     <div class="list_item">
 
-                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "-profile-review-artist"; ?>"><img src="<?php echo get_small_thumb($prof_image); ?>" border="0" width="100%" class="img-responsive artist-img"></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name_get_db) . "/profile-review-artist"; ?>"><img src="<?php echo get_small_thumb($prof_image); ?>" border="0" width="100%" class="img-responsive artist-img"></a>
                                                         <div class="list_bottom" style="padding:2px;">
                                                             <div class="row">
 

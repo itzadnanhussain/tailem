@@ -560,7 +560,7 @@ $(window).load(function() {
 
                                 <td width="100" class="display_dekstop">
                                 	<div class="img_cont">
-                                        <a href="<?php echo SERVER_ROOTPATH.$db_user_name."-profile-review-artist.html";?>"><img src="<?php echo $prof_image;?>" width="100" alt=""></a>
+                                        <a href="<?php echo SERVER_ROOTPATH.$db_user_name."/profile-review-artist.html";?>"><img src="<?php echo $prof_image;?>" width="100" alt=""></a>
                                         <div class="title">
                                         
                                        <?php								 
@@ -628,14 +628,14 @@ $(window).load(function() {
                                       </div>
                                     </div>
                                     <div class="mt-5 text_12">
-                                    <a href="<?php echo SERVER_ROOTPATH.$db_user_name."-profile-review-artist.html";?>" class="text_blck"><i class="fa fa-user"></i> <?php echo $db_user_name;?></a><br>
+                                    <a href="<?php echo SERVER_ROOTPATH.$db_user_name."/profile-review-artist.html";?>" class="text_blck"><i class="fa fa-user"></i> <?php echo $db_user_name;?></a><br>
                                     <a style="text-decoration:none;" class="text_blck"><i class="fa fa-heart"></i> <?php if($like_list_arr_user['count_likes']<=1){ echo "Like";} else { echo "Likes";}?> <font color="#CC0000"><?php echo $like_list_arr_user['count_likes'];?></font></a><br>
                                     <a style="text-decoration:none;" class="text_blck"><i class="fa fa-clipboard"></i> Reviews <font color="#CC0000"><?php echo $review_list_arr_top['count_reviews'];?></font></a><br>
                                     <a style="text-decoration:none;" class="text_blck"><i class="fa fa-comment"></i> Discussions <font color="#CC0000"><?php echo $comment_list_arr['count_discussion'];?></font></a>
                                     </div>
                                 </td>
                                 <td>
-                                    <a href="<?php echo SERVER_ROOTPATH.$db_user_name."-profile-review-artist.html";?>" class="text_blck display_mobile"><i class="fa fa-user"></i> <?php echo $db_user_name;?></a>
+                                    <a href="<?php echo SERVER_ROOTPATH.$db_user_name."/profile-review-artist.html";?>" class="text_blck display_mobile"><i class="fa fa-user"></i> <?php echo $db_user_name;?></a>
                                 <div class="row" style="margin:0;">    
 								<h3 class="mt-0" style="float:left;"><?php echo $db_review_title;?></h3>
                                     <span class="pull-right" style="float:left;">

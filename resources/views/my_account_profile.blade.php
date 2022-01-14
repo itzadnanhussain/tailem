@@ -602,11 +602,11 @@ if ($page != "") {
                                                 <div class="col-lg-2 col-md-2 col-sm-4 col-xs-4 pad_zero">
                                                     <div class="latestsongssec">
                                                         <div class="list_item">
-                                                            <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" width="100" border="0"></a>
+                                                            <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" width="100" border="0"></a>
                                                             <div class="list_bottom" style="padding:2px; width:100px;">
                                                                 <div class="row">
                                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:14px; padding-right:2px;">
-                                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo $user_name; ?></cite></a>
+                                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo $user_name; ?></cite></a>
                                                                     </div>
                                                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:2px; padding-right:16px;">
 
@@ -787,11 +787,11 @@ if ($page != "") {
                                         <div class="col-lg-3 col-md-3 col-sm-4 col-xs-3 ">
                                             <div class="latestsongssec">
                                                 <div class="list_item">
-                                                    <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" width="100" border="0" class="img-responsive"></a>
+                                                    <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" width="100" border="0" class="img-responsive"></a>
                                                     <div class="list_bottom" style="padding:2px; width:100px;">
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:14px; padding-right:2px;">
-                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo substr($user_name, 0, 9);
+                                                                <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo substr($user_name, 0, 9);
                                                                                                                                                                                                                         if (strlen($user_name) > 9) {
                                                                                                                                                                                                                             echo "..";
                                                                                                                                                                                                                         } ?></cite></a>
@@ -1088,7 +1088,7 @@ if ($page != "") {
                                             <div class="col-lg-3 col-md-3 col-sm-2 col-xs-2 pad_zero">
                                                 <div class="latestsongssec">
                                                     <div class="list_item">
-                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '-profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" class="img-responsive artist-img" width="100%"></a>
+                                                        <a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name) . '/profile-review-artist'; ?>"><img src="<?php echo $prof_image; ?>" class="img-responsive artist-img" width="100%"></a>
                                                         <div class="list_bottom pad_zero" style="width:100%; height:20px; padding-right:8px;">
                                                             <div class="row">
                                                                 <?php
@@ -1154,7 +1154,7 @@ if ($page != "") {
                                             ?>
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 
-                                                <p class="review_detail red_rev"><a class="darkgrey_rev" style="font-weight:bold;" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>-profile-review-artist"><?php echo $user_name; ?></a> (<?php echo $review_list_count_array['count_reviews']; ?> reviews)</p>
+                                                <p class="review_detail red_rev"><a class="darkgrey_rev" style="font-weight:bold;" href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><?php echo $user_name; ?></a> (<?php echo $review_list_count_array['count_reviews']; ?> reviews)</p>
                                             </div>
                                             <div class="clearfix"></div>
                                             <p class="review_detail" style="color:#000000; text-align:justify;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviewslist-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>"><?php

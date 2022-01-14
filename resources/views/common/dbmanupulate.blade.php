@@ -214,7 +214,7 @@ function showData($data, $con, $limit, $adjacent)
 											<div class="list_bottom" style="padding:2px;">
 												<div class="row">
 													<div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 pad_right">
-														<a href="' . SERVER_ROOTPATH . get_user_detail2($db_user_name) . '-profile-review-artist"><cite class="reviewscite" style="margin-top:0; font-size:10px; margin-left:6px; color:#fff;"  title = "' . $row['user_name'] . '">' . $user_art . '</cite></a>
+														<a href="' . SERVER_ROOTPATH . get_user_detail2($db_user_name) . '/profile-review-artist"><cite class="reviewscite" style="margin-top:0; font-size:10px; margin-left:6px; color:#fff;"  title = "' . $row['user_name'] . '">' . $user_art . '</cite></a>
 													</div>
 													<div class="col-lg-4 col-md-4 col-sm-5 col-xs-5 pad_zero">
 													  ' . $likes_str . '
