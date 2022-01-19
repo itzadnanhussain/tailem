@@ -360,7 +360,8 @@ function add_in_favourite_user_profile_mainlist_new(a, b, c) {
 }
 
 function add_in_favourite_user_profile_screen_new(a, b, c) {
-    
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+
     $.ajax({
         type: 'post',
         url: JS_SERVER_PATHROOT +
@@ -369,6 +370,7 @@ function add_in_favourite_user_profile_screen_new(a, b, c) {
             'prod_id':a,
             'sr_no':b,
             'db_user_name':c,
+            "_token": csrf_token, 
         }, 
        success:function (a) {
             if (a == "Please sign in first") {

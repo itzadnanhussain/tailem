@@ -240,7 +240,6 @@ class ProcessController extends Controller
         if (isset($_POST)) {
             extract($_POST);
             error_reporting(0);
-             
 
             $user_id = session()->get('user_id');
 
@@ -291,8 +290,8 @@ class ProcessController extends Controller
 
 
             if ($count != 0) {
-                $url = SERVER_ROOTPATH.Slug($song_seo_name).'/reviews/'.Slug($artist_seo_name);
-                $response = array("code" => 'warning', 'message' => 'You have already posted a review on this song. Please use the EDIT function to revise your review.' ,'redirect_uri' => $url);
+                $url = SERVER_ROOTPATH . Slug($song_seo_name) . '/reviews/' . Slug($artist_seo_name);
+                $response = array("code" => 'warning', 'message' => 'You have already posted a review on this song. Please use the EDIT function to revise your review.', 'redirect_uri' => $url);
                 return response()->json($response);
             }
 
@@ -370,12 +369,15 @@ class ProcessController extends Controller
                 $response = array("code" => 'success', 'url' => $slug);
                 return response()->json($response);
 
-            // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name) . ".html-SEPARATOR-" . $_REQUEST['num'];
+                // echo 'done-SEPARATOR-' . SERVER_ROOTPATH . Slug($song_seo_name) . "/reviews/" . Slug($artist_seo_name) . ".html-SEPARATOR-" . $_REQUEST['num'];
                 // exit;
             } else {
+
+
                 $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where song_id = $song_id";
 
                 $rate_arr = \App\Models\Songs::GetRawData($sum_rating);
+
                 if ($rate_arr) {
                     $rate_arr = (array)$rate_arr[0];
                     $sum_rate = $rate_arr['sum_rate'];
@@ -413,8 +415,9 @@ class ProcessController extends Controller
 
 
 
-                $update_qry = "insert into tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', 	review_user_id = '" . $user_id . "', review_detail = '" . $review_detail . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "', review_post_date = '" . time() . "', song_id = '" . $song_id . "', album_id = '" . $album_id . "',  	artist_id = '" . $artist_id . "'";
+                $update_qry = "insert into tbl_reviews set review_title = '" . $review_title . "', 	review_rating = '" . $rating . "', 	review_user_id = '" . $user_id . "', review_detail = '" . StringReplace($review_detail) . "', review_ip = '" . $_SERVER['REMOTE_ADDR'] . "', review_post_date = '" . time() . "', song_id = '" . $song_id . "', album_id = '" . $album_id . "',  	artist_id = '" . $artist_id . "'";
                 \App\Models\Songs::GetRawData($update_qry);
+
                 $rev_counter  =  $counter + 1;
                 \App\Models\Songs::GetRawData("update tbl_songs set rate_song = '$all_avg', review_count = review_count + 1 where id = '$song_id'");
 
@@ -430,7 +433,7 @@ class ProcessController extends Controller
     }
 
 
-    
+
 
 
     ///DeleteReview
@@ -513,7 +516,7 @@ class ProcessController extends Controller
                 return response()->json($response);
 
 
-            // echo 'done-'.$num;
+                // echo 'done-'.$num;
                 // exit;
             } else {
                 echo $errorstr;
@@ -528,7 +531,7 @@ class ProcessController extends Controller
     {
         $data = array();
         $data['prod_id'] = $_REQUEST['prod_id'];
-        $data['sr_no']	= $_REQUEST['sr_no'];
+        $data['sr_no']    = $_REQUEST['sr_no'];
         $data['db_user_name'] = $_REQUEST['db_user_name'];
         $data['user_id'] = session()->get('user_id');
         return view('include.favourite_userprofile_likes_discussion', $data);
@@ -597,11 +600,11 @@ class ProcessController extends Controller
         error_reporting(0);
         if (isset($_POST)) {
             extract($_POST);
-            
+
             $errorstr = "";
             $case = 1;
 
-           
+
 
             if (session()->get('user_id') == "") {
                 echo $errorstr .= "Please sign in first.\n";
@@ -629,8 +632,8 @@ class ProcessController extends Controller
                 echo json_encode($data);
                 die;
 
-            // echo 'done-SEPARATOR-' . $_POST['num'];
-            // die;
+                // echo 'done-SEPARATOR-' . $_POST['num'];
+                // die;
             } else {
                 echo $errorstr;
                 $data = array('code' => 'error', 'message' => $errorstr);
@@ -657,45 +660,45 @@ class ProcessController extends Controller
     {
         if (isset($_POST)) {
             extract($_POST);
-            $errorstr="";
+            $errorstr = "";
             $case = 1;
             $comment_id  = $_REQUEST['id'];
-            $num	=	$_REQUEST['num'];
+            $num    =    $_REQUEST['num'];
             $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
-            
-            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID']=="") {
-                echo $errorstr .="Please sign in first.\n";
+
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                echo $errorstr .= "Please sign in first.\n";
                 $case = 0;
                 exit;
             }
-            
-            if ($comment_id=="") {
-                $errorstr .="This discussion doesn't exist.\n";
+
+            if ($comment_id == "") {
+                $errorstr .= "This discussion doesn't exist.\n";
                 $case = 0;
             } else {
-                $qry   =   "select comment_id from tbl_comments where comment_id = $comment_id AND comment_user_id = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."'";
-                $count	=	  \App\Models\Songs::GetRawData($qry);
+                $qry   =   "select comment_id from tbl_comments where comment_id = $comment_id AND comment_user_id = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'";
+                $count    =      \App\Models\Songs::GetRawData($qry);
                 if (empty($count)) {
-                    $errorstr .="This discussion doesn't exist.\n";
+                    $errorstr .= "This discussion doesn't exist.\n";
                     $case = 0;
                 }
             }
-            
-            if ($detail=="") {
-                $errorstr .="Please enter discussion detail.\n";
+
+            if ($detail == "") {
+                $errorstr .= "Please enter discussion detail.\n";
                 $case = 0;
             }
-            
-                
-        
-        
-            if ($case==1) {
+
+
+
+
+            if ($case == 1) {
                 $qry = "Delete from tbl_comments where comment_id = $comment_id";
                 \App\Models\Songs::GetRawData($qry);
                 $qry = "Delete from tbl_review_report where r_report_review_id = $comment_id And status = 1";
                 \App\Models\Songs::GetRawData($qry);
-                
-                echo 'done-SEPARATOR-'.$num;
+
+                echo 'done-SEPARATOR-' . $num;
             } else {
                 echo $errorstr;
             }
@@ -766,7 +769,7 @@ class ProcessController extends Controller
 
 
             if ($case == 1) {
-                $update_qry = "update tbl_user_playlist set title_playlist  = '" . $playlist_title . "', title_playlist_seo  = '" . SEO($playlist_title) . "' where user_id_playlist  = '" . session()->get('user_id'). "' AND id = '$edit_id'";
+                $update_qry = "update tbl_user_playlist set title_playlist  = '" . $playlist_title . "', title_playlist_seo  = '" . SEO($playlist_title) . "' where user_id_playlist  = '" . session()->get('user_id') . "' AND id = '$edit_id'";
                 \App\Models\Songs::GetRawData($update_qry);
 
                 if ($p != '') {
@@ -795,9 +798,9 @@ class ProcessController extends Controller
         $data = array();
         $data['edit_id'] = $_GET['edit_id'];
         $data['critaria'] = $_GET['critaria'];
-        $data['mobile_view '] = 0 ;
+        $data['mobile_view '] = 0;
         $data['user_id'] = session()->get('user_id');
-       
+
 
         return view('include.delete_playlist', $data);
     }
@@ -807,49 +810,49 @@ class ProcessController extends Controller
     {
         if (isset($_REQUEST)) {
             error_reporting(0);
-            
-            $errorstr="";
+
+            $errorstr = "";
             $case = 1;
             $comment_id  = $_REQUEST['id'];
             $id  = $_REQUEST['id'];
-            $num	=	$_REQUEST['num'];
-            $p	=	$_REQUEST['p'];
+            $num    =    $_REQUEST['num'];
+            $p    =    $_REQUEST['p'];
             $_SESSION[USER_SESSION_ARRAY]['USER_ID'] = session()->get('user_id');
-            
-            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID']=="") {
-                echo $errorstr .="Please sign in first.\n";
+
+            if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] == "") {
+                echo $errorstr .= "Please sign in first.\n";
                 $case = 0;
                 exit;
             }
-            
-            if ($id=="") {
-                $errorstr .="This Playlist doesn't exist.\n";
+
+            if ($id == "") {
+                $errorstr .= "This Playlist doesn't exist.\n";
                 $case = 0;
             } else {
-                $query_check  = "select id from tbl_user_playlist where  user_id_playlist  = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."' AND id = $id";
-                
-                $artist_list_arr	=	  \App\Models\Songs::GetRawData($query_check);
+                $query_check  = "select id from tbl_user_playlist where  user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "' AND id = $id";
+
+                $artist_list_arr    =      \App\Models\Songs::GetRawData($query_check);
                 if (!isset($artist_list_arr)) {
-                    echo $errorstr ="Sorry, this playlist does not exist.";
+                    echo $errorstr = "Sorry, this playlist does not exist.";
                     $case = 0;
                     exit;
                 }
             }
-         
-        
-            if ($case==1) {
-                \App\Models\Songs::GetRawData("Delete from tbl_user_playlist where id = $id AND  user_id_playlist  = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."'");
-                    
-                \App\Models\Songs::GetRawData("Delete from tbl_user_playlist_songs where playlist_id = $id AND  user_id   = '".$_SESSION[USER_SESSION_ARRAY]['USER_ID']."'");
-                
+
+
+            if ($case == 1) {
+                \App\Models\Songs::GetRawData("Delete from tbl_user_playlist where id = $id AND  user_id_playlist  = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'");
+
+                \App\Models\Songs::GetRawData("Delete from tbl_user_playlist_songs where playlist_id = $id AND  user_id   = '" . $_SESSION[USER_SESSION_ARRAY]['USER_ID'] . "'");
+
                 $playlist_arr =  get_first_playlist_record($_SESSION[USER_SESSION_ARRAY]['USER_ID']);
-                
-                if ($p!='n') {
-                    $p = $p."-profile-";
+
+                if ($p != 'n') {
+                    $p = $p . "-profile-";
                 } else {
                     $p = '';
                 }
-             
+
                 if (isset($p) && !empty($p)) {
                     echo 'done-SEPARATOR-' . SERVER_ROOTPATH . "playlists";
                 } else {
@@ -921,6 +924,7 @@ class ProcessController extends Controller
             $data['prod_id'] = $_POST['prod_id'];
             $data['sr_no'] = $_POST['sr_no'];
             $data['user_name'] = $_POST['db_user_name'];
+            $data['db_user_name'] = $_POST['db_user_name'];
             $data['user_id'] = session()->get('user_id');
             return view('include.favourite_userprofile_screenlikes', $data);
         }
@@ -949,7 +953,7 @@ class ProcessController extends Controller
         $data['artist_seo'] = $_GET['artist_seo'];
         $data['k'] = $_GET['k'];
         $data['user_id'] = session()->get('user_id');
-       
+
 
         return view('include.favourite_like_sub_artist2', $data);
     }
