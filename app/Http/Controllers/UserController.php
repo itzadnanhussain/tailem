@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -613,7 +614,7 @@ class UserController extends Controller
     ///GetMyReviewsPage_Two
     public function GetMyReviewsPage_Two($user_seo, $sort = null, $page = null)
     {
-           
+
 
         ///admin
         $data = array();
@@ -1722,10 +1723,6 @@ class UserController extends Controller
     ///GetMyReviewsPage_Twelve
     public function GetMyReviewsPage_Twelve($sort, $page = null)
     {
-
-
-
-
         ///admin
         $data = array();
 
@@ -1788,10 +1785,6 @@ class UserController extends Controller
         } else {
             $data['like_list_arr'] = array();
         }
-
-
-
-
 
 
         ///review_list_arr_top
@@ -2283,7 +2276,7 @@ class UserController extends Controller
     ///GetLikeArtistsGenre
     public function GetLikeArtistsGenre($genere_seo)
     {
-        
+
         ///page
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
@@ -3181,7 +3174,7 @@ class UserController extends Controller
         //page View
         $data['currentFile'] = 'my_playlist';
         $data['title'] = GetTitle();
-       
+
         return view('my_playlist', $data);
     }
 
@@ -3291,13 +3284,13 @@ class UserController extends Controller
             $data['comment_list_arr'] = array();
         }
 
-       
+
 
 
         //page View
         $data['currentFile'] = 'my_playlist';
         $data['title'] = GetTitle();
-        
+
         return view('my_playlist', $data);
     }
 
