@@ -1332,10 +1332,11 @@ class ProcessController extends Controller
             } else {
                 $chk_pass_qry = 'select password as chk_password from tbl_users where user_id="' . session()->get('user_id') . '" ';
                 $chk_pass_arr = \App\Models\Songs::GetRawData($chk_pass_qry);
-                $chk_password    = $chk_pass_arr[0]->chk_password;
+                $old_password    = $chk_pass_arr[0]->chk_password;
 
 
-                if ($chk_password == "") {
+
+                if ($old_password == "") {
                     $errorstr .= "Incorrect current password entered, please try again<br>";
                     $case = 0;
                 } else {
@@ -1349,7 +1350,7 @@ class ProcessController extends Controller
                         $errorstr .= "Please confirm your new password<br>";
                         $case = 0;
                     } elseif (strlen($confirm_new_password) < 6) {
-                        $errorstr .= "Confirm new password must have at least 6 characters<br>";
+                        $errorstr .= "New password do not match or are not 6 characters long<br>";
                         $case = 0;
                     } elseif ($new_password != $confirm_new_password) {
                         $errorstr .= "Your new password does not match, please try again<br>";
@@ -1359,15 +1360,15 @@ class ProcessController extends Controller
             }
 
             $password = Hash::make($new_password);
-            // if (Hash::check($new_password, $chk_password)) {
-            // } else {
-            //     $errorstr .= "Your old password not correct, please try again<br>";
-            //     $case = 0;
-            // }
+            if (Hash::check($new_password, $old_password)) {
+            } else {
+                $errorstr .= "Your old password not correct, please try again<br>";
+                $case = 0;
+            }
 
             if ($case == 1) {
                 $update_qry = "UPDATE tbl_users set password = '" . $password . "' 
-         where user_id='" . session()->get('user_id') . "'";
+                 where user_id='" . session()->get('user_id') . "'";
                 \App\Models\Songs::GetRawData($update_qry);
                 echo 'done';
             } else {
