@@ -638,9 +638,9 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                             }
 
                             if (strpos($request_url_check, 'profile') !== false) {
-                                $url_gen    =    SERVER_ROOTPATH . get_user_detail($user_name) . "-profile-" . $artist_seo . "-review-albums";
+                                $url_gen    =    SERVER_ROOTPATH . get_user_detail($user_name) . "-profile/" . $artist_seo . "/review-albums";
                             } else {
-                                $url_gen    =    SERVER_ROOTPATH . $artist_seo . "-review-albums";
+                                $url_gen    =    SERVER_ROOTPATH . $artist_seo . "/review-albums";
                             } ?>
                             <li class="review_rev_sng clearfix" <?php if ($mobile_view == 1 && $k == 1) { ?> style="border-top:1px solid #ddd;" <?php } ?>>
                                 <!--Desktop-->
