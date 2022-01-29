@@ -536,6 +536,16 @@ class ProcessController extends Controller
         $data['user_id'] = session()->get('user_id');
         return view('include.favourite_userprofile_likes_discussion', $data);
     }
+    ///favourite_userprofile_mainlikes
+    public function favourite_userprofile_mainlikes()
+    {
+        $data = array();
+        $data['prod_id'] = $_REQUEST['prod_id'];
+        $data['sr_no']    = $_REQUEST['sr_no'];
+        $data['db_user_name'] = $_REQUEST['db_user_name'];
+        $data['user_id'] = session()->get('user_id');
+        return view('include.favourite_userprofile_mainlikes', $data);
+    }
 
 
 
