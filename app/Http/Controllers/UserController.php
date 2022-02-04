@@ -2378,6 +2378,7 @@ class UserController extends Controller
         //page View
         $data['currentFile'] = 'my_account_profile';
         $data['title'] = GetTitle();
+
         return view('my_account_profile', $data);
     }
 
@@ -2605,6 +2606,7 @@ class UserController extends Controller
         //page View
         $data['currentFile'] = 'like_artist';
         $data['title'] = GetTitle();
+
         return view('like_artist', $data);
     }
 

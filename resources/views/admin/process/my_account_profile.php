@@ -331,55 +331,55 @@ include_once("common/signin_modal_header.php");
 										<div class="col-lg-9 col-md-9 col-sm-8 col-xs-11 pad_zero">
 											<div class="album_cover">
 												<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
-																															if ($picture != "") {
+																																	if ($picture != "") {
 
-																																$img_api_linka = album_img_api($picture);
-																																if ($img_api_linka != '') {
-																															?>
+																																		$img_api_linka = album_img_api($picture);
+																																		if ($img_api_linka != '') {
+																																	?>
 															<img src="<?php echo $img_api_linka; ?>" border="0" width="100" />
 														<?php } else { ?>
 															<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" width="100" />
 														<?php
-																																}
-																															} else
+																																		}
+																																	} else
 													if ($req_song['song_array']['image4'] != "") {
 														?>
 														<img src="<?php echo get_small_thumb($req_song['song_array']['image4']); ?>" border="0" width="100" />
 													<?php
-																															} else
+																																	} else
 													if ($album_picture != "") {
 													?>
 														<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" width="100" />
 													<?php
-																															} else {
+																																	} else {
 													?>
 														<img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image.png" border="0" width="100" />
 													<?php
-																															}
+																																	}
 
-																															if ($all_avg == "") {
-																																$all_avg = 5.0;
-																															}
+																																	if ($all_avg == "") {
+																																		$all_avg = 5.0;
+																																	}
 
-																															if ($all_avg >= 8) {
-																																$color_pick = "#5ebd5e";
-																															}
+																																	if ($all_avg >= 8) {
+																																		$color_pick = "#5ebd5e";
+																																	}
 
-																															if ($all_avg >= 7 && $all_avg < 8) {
-																																$color_pick = "#5ebd5e";
-																															}
+																																	if ($all_avg >= 7 && $all_avg < 8) {
+																																		$color_pick = "#5ebd5e";
+																																	}
 
-																															if ($all_avg >= 4 && $all_avg < 6.9) {
-																																$color_pick = "#e06d21";
-																															}
+																																	if ($all_avg >= 4 && $all_avg < 6.9) {
+																																		$color_pick = "#e06d21";
+																																	}
 
-																															if ($all_avg >= 2 && $all_avg < 3.9) {
-																																$color_pick = "#dd554e";
-																															}
+																																	if ($all_avg >= 2 && $all_avg < 3.9) {
+																																		$color_pick = "#dd554e";
+																																	}
 
-																															if ($all_avg > 0 && $all_avg < 2) {
-																																$color_pick = "#dd554e";
-																															}
+																																	if ($all_avg > 0 && $all_avg < 2) {
+																																		$color_pick = "#dd554e";
+																																	}
 													?></a>
 												<cite class="score_big mt-10" style="background-color:<?php echo $color_pick; ?>"><?php if ($all_avg == 10) {
 																																		echo number_format($all_avg, 0);
@@ -394,11 +394,11 @@ include_once("common/signin_modal_header.php");
 															echo "..";
 														} ?></a></label>
 												<label class="author pad_left"><a href="<?php echo SERVER_ROOTPATH . get_user_detail($USER_NAME) . "-profile/" . $artist_seo . "/review-albums"; ?>"><?php echo substr($artist_name, 0, 19);
-																																															if (strlen($artist_name) > 19) {
-																																																echo "...";
-																																															} ?></a></label>
+																																																		if (strlen($artist_name) > 19) {
+																																																			echo "...";
+																																																		} ?></a></label>
 												<label class="author pad_left ft_vall"><?php if ($feature_artists != "") { ?> <strong class="heart_color" style="font-size:16px; font-weight:500; ">ft.</strong> <?php echo $feature_artists;
-																																																			} ?></label><br>
+																																																				} ?></label><br>
 												<label class="likes">
 													<?php
 
@@ -409,20 +409,20 @@ include_once("common/signin_modal_header.php");
 														if ($counter == 0) {
 													?>
 															<span style="overflow:visible;" id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																																																																																																				echo " Like";
-																																																																																																																																																																			} else {
-																																																																																																																																																																				echo " Likes";
-																																																																																																																																																																			} ?></a></span>
+																																																																																																																																																																							echo " Like";
+																																																																																																																																																																						} else {
+																																																																																																																																																																							echo " Likes";
+																																																																																																																																																																						} ?></a></span>
 															<span style="overflow:visible;" id="myStyle_sub_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"></span>
 
 														<?php
 														} else {
 														?>
 															<span style="overflow:visible;" id="other_dis_sub_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																																																																																																				echo " Like";
-																																																																																																																																																																			} else {
-																																																																																																																																																																				echo " Likes";
-																																																																																																																																																																			} ?></a></span>
+																																																																																																																																																																						echo " Like";
+																																																																																																																																																																					} else {
+																																																																																																																																																																						echo " Likes";
+																																																																																																																																																																					} ?></a></span>
 															<span style="overflow:visible;" id="myStyle_sub_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"></span>
 														<?php
 														}
@@ -441,10 +441,10 @@ include_once("common/signin_modal_header.php");
 															}
 															?>
 															<span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																					echo " Like";
-																																																																																				} else {
-																																																																																					echo " Likes";
-																																																																																				} ?></a></span>
+																																																																																						echo " Like";
+																																																																																					} else {
+																																																																																						echo " Likes";
+																																																																																					} ?></a></span>
 														<span style="overflow:visible;" id="myStyle_sub_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"></span>
 
 
@@ -472,31 +472,31 @@ include_once("common/signin_modal_header.php");
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 pad_zero">
 										<div class="album_cover">
 											<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
-																														if ($picture != "") {
+																																if ($picture != "") {
 
-																															$img_api_linka = album_img_api($picture);
-																															if ($img_api_linka != '') {
-																														?>
+																																	$img_api_linka = album_img_api($picture);
+																																	if ($img_api_linka != '') {
+																																?>
 														<img src="<?php echo $img_api_linka; ?>" border="0" width="100" style="padding:0 8px;" />
 													<?php } else { ?>
 														<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" width="100" style="padding:0 8px;" />
 													<?php
-																															}
-																														} else
+																																	}
+																																} else
 													if ($req_song['song_array']['image4'] != "") {
 													?>
 													<img src="<?php echo $req_song['song_array']['image4']; ?>" border="0" width="100" style="padding:0 8px;" />
 												<?php
-																														} else
+																																} else
 													if ($album_picture != "") {
 												?>
 													<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" width="100" style="padding:0 8px;" />
 												<?php
-																														} else {
+																																} else {
 												?>
 													<img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image.png" border="0" width="100" style="padding:0 8px;" />
 												<?php
-																														}
+																																}
 												?></a>
 											<?php
 
@@ -558,9 +558,9 @@ include_once("common/signin_modal_header.php");
 														echo "..";
 													} ?></a></label>
 											<label class="author mrg_btm"><a href="<?php echo SERVER_ROOTPATH . get_user_detail($USER_NAME) . "-profile/" . $artist_seo . "/review-albums"; ?>"><?php echo substr($artist_name, 0, 10);
-																																														if (strlen($artist_name) > 10) {
-																																															echo "..";
-																																														} ?></a></label><br>
+																																																if (strlen($artist_name) > 10) {
+																																																	echo "..";
+																																																} ?></a></label><br>
 											<?php if ($feature_artists != "") { ?>
 												<label class="author pad_left"><strong class="heart_color" style="font-size:16px; font-weight:500; ">ft.</strong> <?php echo $feature_artists; ?></label><br>
 											<?php } ?>
@@ -573,20 +573,20 @@ include_once("common/signin_modal_header.php");
 													if ($counter == 0) {
 												?>
 														<span style="overflow:visible;" id="other_dis_sub_<?php echo $srr_no; ?>_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id; ?>','<?php echo $srr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																																																																																																				echo " Like";
-																																																																																																																																																																			} else {
-																																																																																																																																																																				echo " Likes";
-																																																																																																																																																																			} ?></a></span>
+																																																																																																																																																																						echo " Like";
+																																																																																																																																																																					} else {
+																																																																																																																																																																						echo " Likes";
+																																																																																																																																																																					} ?></a></span>
 														<span style="overflow:visible;" id="myStyle_sub_<?php echo $srr_no; ?>_<?php echo $artist_id; ?>"></span>
 
 													<?php
 													} else {
 													?>
 														<span style="overflow:visible;" id="other_dis_sub_<?php echo $srr_no; ?>_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist('<?php echo $artist_id; ?>','<?php echo $srr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																																																																																																			echo " Like";
-																																																																																																																																																																		} else {
-																																																																																																																																																																			echo " Likes";
-																																																																																																																																																																		} ?></a></span>
+																																																																																																																																																																						echo " Like";
+																																																																																																																																																																					} else {
+																																																																																																																																																																						echo " Likes";
+																																																																																																																																																																					} ?></a></span>
 														<span style="overflow:visible;" id="myStyle_sub_<?php echo $srr_no; ?>_<?php echo $artist_id; ?>"></span>
 													<?php
 													}
@@ -606,10 +606,10 @@ include_once("common/signin_modal_header.php");
 														}
 														?>
 														<span><?php echo $counter_main; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																				echo " Like";
-																																																																																			} else {
-																																																																																				echo " Likes";
-																																																																																			} ?></a></span>
+																																																																																					echo " Like";
+																																																																																				} else {
+																																																																																					echo " Likes";
+																																																																																				} ?></a></span>
 													<span style="overflow:visible;" id="myStyle_sub_<?php echo $srr_no; ?>_<?php echo $artist_id; ?>"></span>
 
 
@@ -684,18 +684,18 @@ include_once("common/signin_modal_header.php");
 																																										} else {
 																																											echo $review_rating;
 																																										} ?></span> <a style="color:#000000" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php
-																																																																																																	$title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 20);
-																																																																																																	echo $title_rev;
-																																																																																																	if (strlen($review_title) > 20) {
-																																																																																																		echo "..";
-																																																																																																	} ?></a></p>
+																																																																														$title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 20);
+																																																																														echo $title_rev;
+																																																																														if (strlen($review_title) > 20) {
+																																																																															echo "..";
+																																																																														} ?></a></p>
 											<p style="color:#000000; margin-bottom:8px;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php
-																																																				$length_str  = strlen(wordwrap($review_detail, 15, " ", true));
-																																																				echo substr(wordwrap($review_detail, 15, " ", true), 0, 80);
-																																																				if ($length_str > 80) {
-																																																					echo " ...";
-																																																				}
-																																																				?></a></p>
+																																																							$length_str  = strlen(wordwrap($review_detail, 15, " ", true));
+																																																							echo substr(wordwrap($review_detail, 15, " ", true), 0, 80);
+																																																							if ($length_str > 80) {
+																																																								echo " ...";
+																																																							}
+																																																							?></a></p>
 
 											<div class="list-inline col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_zero">
 												<p class="dateVale col-lg-4 col-md-5 col-sm-5 col-xs-5 pad_zero" style="font-size:12px;"><?php echo $db_review_post_date; ?> </p>
@@ -721,26 +721,26 @@ include_once("common/signin_modal_header.php");
 																	?>
 																</span>
 
-																<a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																						echo " Like";
-																																																																																					} else {
-																																																																																						echo " Likes";
-																																																																																					} ?></a></span>
+																<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																								echo " Like";
+																																																																																							} else {
+																																																																																								echo " Likes";
+																																																																																							} ?></a></span>
 															<span id="myStyle_sub_<?php echo $review_id; ?>"></span>
 														<?php } else { ?>
-															<span id="other_dis_sub_<?php echo $review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>')" class="like"> <i class="fa fa-heart heart_color" style="font-size:20px;"></i></a> <span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																																																																																																									echo " Like";
-																																																																																																																																																																								} else {
-																																																																																																																																																																									echo " Likes";
-																																																																																																																																																																								} ?></a></span>
+															<span id="other_dis_sub_<?php echo $review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>')" class="like"> <i class="fa fa-heart heart_color" style="font-size:20px;"></i></a> <span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																																																																																																												echo " Like";
+																																																																																																																																																																											} else {
+																																																																																																																																																																												echo " Likes";
+																																																																																																																																																																											} ?></a></span>
 															<span id="myStyle_sub_<?php echo $review_id; ?>"></span>
 														<?php }
 													} else { ?>
-														<span id="other_dis_sub_<?php echo $review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>')" class="text_grey"> <i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																																																																																																									echo " Like";
-																																																																																																																																																																								} else {
-																																																																																																																																																																									echo " Likes";
-																																																																																																																																																																								} ?></a></span>
+														<span id="other_dis_sub_<?php echo $review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>')" class="text_grey"> <i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																																																																																																													echo " Like";
+																																																																																																																																																																												} else {
+																																																																																																																																																																													echo " Likes";
+																																																																																																																																																																												} ?></a></span>
 														<span id="myStyle_sub_<?php echo $review_id; ?>"></span>
 													<?php } ?>
 												</p>
@@ -759,10 +759,10 @@ include_once("common/signin_modal_header.php");
 															} else {
 															?>
 																<a class="linkTag under_line" href="<?php echo SERVER_ROOTPATH; ?>report.php?rev_id=<?php echo $review_id; ?>&num=<?php echo $sr_no; ?>" data-toggle="modal" data-target="#report_Modal4_<?php echo $sr_no; ?>" data-title="" style="font-size:11px; margin-top:-3px; float:right;">Report</a> <?php
+																																																																																							}
 																																																																																						}
 																																																																																					}
-																																																																																				}
-																																																																																							?>
+																																																																																								?>
 
 													<?php
 													if ($db_user_id == $_SESSION[USER_SESSION_ARRAY]['USER_ID']) {
@@ -791,9 +791,9 @@ include_once("common/signin_modal_header.php");
 														<div class="row">
 															<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:14px; padding-right:2px;">
 																<a href="<?php echo SERVER_ROOTPATH . get_user_detail($user_name); ?>/profile-review-artist"><cite style="margin:2px; font-size:12px; color:#FFFFFF;"><?php echo substr($user_name, 0, 9);
-																																																					if (strlen($user_name) > 9) {
-																																																						echo "..";
-																																																					} ?></cite></a>
+																																																						if (strlen($user_name) > 9) {
+																																																							echo "..";
+																																																						} ?></cite></a>
 															</div>
 															<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-left:2px; padding-right:16px;">
 																<?php
@@ -869,18 +869,18 @@ include_once("common/signin_modal_header.php");
 													} else {
 														echo $review_rating;
 													} ?></span> <a style="color:#000000" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php
-																																																																					$title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 38);
-																																																																					echo $title_rev;
-																																																																					if (strlen($review_title) > 38) {
-																																																																						echo "..";
-																																																																					} ?></a></p>
+																																																	$title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 38);
+																																																	echo $title_rev;
+																																																	if (strlen($review_title) > 38) {
+																																																		echo "..";
+																																																	} ?></a></p>
 											<p style="color:#000000;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php
-																																															$length_str  = strlen(wordwrap($review_detail, 15, " ", true));
-																																															echo substr(wordwrap($review_detail, 15, " ", true), 0, 100);
-																																															if ($length_str > 100) {
-																																																echo " ...";
-																																															}
-																																															?></a></p>
+																																																		$length_str  = strlen(wordwrap($review_detail, 15, " ", true));
+																																																		echo substr(wordwrap($review_detail, 15, " ", true), 0, 100);
+																																																		if ($length_str > 100) {
+																																																			echo " ...";
+																																																		}
+																																																		?></a></p>
 
 											<div class="list-inline col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_zero" style="margin-top:10px;">
 												<p class="dateVale col-lg-3 col-md-4 col-sm-5 col-xs-3 pad_zero" style="font-size:12px;"><?php echo $db_review_post_date; ?> </p>
@@ -906,18 +906,18 @@ include_once("common/signin_modal_header.php");
 																	?>
 																</span>
 
-																<a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																						echo " Like";
-																																																																																					} else {
-																																																																																						echo " Likes";
-																																																																																					} ?></a></span>
+																<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																								echo " Like";
+																																																																																							} else {
+																																																																																								echo " Likes";
+																																																																																							} ?></a></span>
 															<span id="myStyle_sub_<?php echo $review_id; ?>_<?php echo $tm; ?>"></span>
 														<?php } else { ?>
-															<span id="other_dis_sub_<?php echo $review_id; ?>_<?php echo $tm; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_screen_new('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>','<?php echo $tm; ?>')" class="like"> <i class="fa fa-heart heart_color" style="font-size:23px;"></i></a> <span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																																																																																																																				echo " Like";
-																																																																																																																																																																																			} else {
-																																																																																																																																																																																				echo " Likes";
-																																																																																																																																																																																			} ?></a></span>
+															<span id="other_dis_sub_<?php echo $review_id; ?>_<?php echo $tm; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_screen_new('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>','<?php echo $tm; ?>')" class="like"> <i class="fa fa-heart heart_color" style="font-size:23px;"></i></a> <span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																																																																																																																							echo " Like";
+																																																																																																																																																																																						} else {
+																																																																																																																																																																																							echo " Likes";
+																																																																																																																																																																																						} ?></a></span>
 															<span id="myStyle_sub_<?php echo $review_id; ?>_<?php echo $tm; ?>"></span>
 														<?php }
 													} else {
@@ -935,11 +935,11 @@ include_once("common/signin_modal_header.php");
 															<?php
 															}
 															?>
-															<span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																																				echo " Like";
-																																																																																																			} else {
-																																																																																																				echo " Likes";
-																																																																																																			} ?></a></span>
+															<span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																																							echo " Like";
+																																																																																																						} else {
+																																																																																																							echo " Likes";
+																																																																																																						} ?></a></span>
 														<span id="myStyle_sub_<?php echo $review_id; ?>_<?php echo $tm; ?>"></span>
 													<?php } ?>
 												</p>
@@ -1002,31 +1002,31 @@ include_once("common/signin_modal_header.php");
 											<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad_zero">
 												<div class="album_cover">
 													<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
-																																if ($picture != "") {
+																																		if ($picture != "") {
 
-																																	$img_api_linka = album_img_api($picture);
-																																	if ($img_api_linka != '') {
-																																?>
+																																			$img_api_linka = album_img_api($picture);
+																																			if ($img_api_linka != '') {
+																																		?>
 																<img src="<?php echo get_small_thumb($img_api_linka); ?>" border="0" style="height:120px;" />
 															<?php } else { ?>
 																<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" style="height:120px;" />
 															<?php
-																																	}
-																																} else
+																																			}
+																																		} else
 													if ($req_song['song_array']['image4'] != "") {
 															?>
 															<img src="<?php echo get_small_thumb($req_song['song_array']['image4']); ?>" border="0" style="max-width:inherit; height:100px; width:100px;" />
 														<?php
-																																} else
+																																		} else
 													if ($album_picture != "") {
 														?>
 															<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" style="max-width:inherit; height:100px; width:100px;" />
 														<?php
-																																} else {
+																																		} else {
 														?>
 															<img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image.png" border="0" style="max-width:inherit; height:100px; width:100px;" />
 														<?php
-																																}
+																																		}
 														?></a>
 													<?php
 													if ($all_avg == "") {
@@ -1079,7 +1079,7 @@ include_once("common/signin_modal_header.php");
 													<div style="clear:both;"></div>
 
 													<!--  <label class="author pad_left"><?php if ($feature_artists != "") { ?> <strong class="heart_color">ft.</strong> <?php echo $feature_artists;
-																																									} ?></label><br>-->
+																																										} ?></label><br>-->
 													<p><label class="likes" style="float:left; height:26px; margin-left:0px; padding-left:0px;">
 															<?php
 															if ($_SESSION[USER_SESSION_ARRAY]['USER_ID'] != "") {
@@ -1089,20 +1089,20 @@ include_once("common/signin_modal_header.php");
 																if ($counter == 0) {
 															?>
 																	<span style="overflow:visible;" id="other_dis_sub_mob_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_mob('<?php echo $artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span><?php echo $counter_main2; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main2 < 2) {
-																																																																																																																																																																									echo " Like";
-																																																																																																																																																																								} else {
-																																																																																																																																																																									echo " Likes";
-																																																																																																																																																																								} ?></a></span>
+																																																																																																																																																																											echo " Like";
+																																																																																																																																																																										} else {
+																																																																																																																																																																											echo " Likes";
+																																																																																																																																																																										} ?></a></span>
 																	<span style="overflow:visible;" id="myStyle_sub_mob_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"></span>
 
 																<?php
 																} else {
 																?>
 																	<span style="overflow:visible;" id="other_dis_sub_mob_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_mob('<?php echo $artist_id; ?>','<?php echo $sr_no; ?>','<?php echo $artist_seo; ?>','<?php echo $k; ?>')"><i class="fa fa-heart heart_color heart_size"></i> </a><span><?php echo $counter_main2; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main2 < 2) {
-																																																																																																																																																																								echo " Like";
-																																																																																																																																																																							} else {
-																																																																																																																																																																								echo " Likes";
-																																																																																																																																																																							} ?></a></span>
+																																																																																																																																																																											echo " Like";
+																																																																																																																																																																										} else {
+																																																																																																																																																																											echo " Likes";
+																																																																																																																																																																										} ?></a></span>
 																	<span style="overflow:visible;" id="myStyle_sub_mob_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"></span>
 																<?php
 																}
@@ -1121,10 +1121,10 @@ include_once("common/signin_modal_header.php");
 																	}
 																	?>
 																	<span><?php echo $counter_main2; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal2_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main2 < 2) {
-																																																																																							echo " Like";
-																																																																																						} else {
-																																																																																							echo " Likes";
-																																																																																						} ?></a></span>
+																																																																																								echo " Like";
+																																																																																							} else {
+																																																																																								echo " Likes";
+																																																																																							} ?></a></span>
 																<span style="overflow:visible;" id="myStyle_sub_mob_<?php echo $sr_no; ?>_<?php echo $artist_id; ?>"></span>
 
 
@@ -1146,11 +1146,11 @@ include_once("common/signin_modal_header.php");
 																																								} else {
 																																									echo $review_rating;
 																																								} ?></span><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><text class="rec_review_title"><?php
-																																																																																																		$title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 22);
-																																																																																																		echo $title_rev;
-																																																																																																		if (strlen($review_title) > 22) {
-																																																																																																			echo "..";
-																																																																																																		} ?></text></a></p>
+																																																																														$title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 22);
+																																																																														echo $title_rev;
+																																																																														if (strlen($review_title) > 22) {
+																																																																															echo "..";
+																																																																														} ?></text></a></p>
 											</div>
 											<div class="col-lg-3 col-md-3 col-sm-2 col-xs-2 pad_zero">
 												<div class="latestsongssec">
@@ -1212,12 +1212,12 @@ include_once("common/signin_modal_header.php");
 											</div>
 											<div class="clearfix"></div>
 											<p class="review_detail" style="color:#000000; text-align:justify;"><a style="color:#000000" href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . "#review_" . $review_id; ?>"><?php
-																																																										$length_str  = strlen(wordwrap($review_detail, 15, " ", true));
-																																																										echo substr(wordwrap($review_detail, 15, " ", true), 0, 80);
-																																																										if ($length_str > 80) {
-																																																											echo " ...";
-																																																										}
-																																																										?></a></p>
+																																																													$length_str  = strlen(wordwrap($review_detail, 15, " ", true));
+																																																													echo substr(wordwrap($review_detail, 15, " ", true), 0, 80);
+																																																													if ($length_str > 80) {
+																																																														echo " ...";
+																																																													}
+																																																													?></a></p>
 
 											<div class="list-inline col-lg-12 col-md-12 col-sm-12 col-xs-12 pad_zero" style="margin-top:10px;">
 												<p class="likeVale col-lg-4 col-md-4 col-sm-5 col-xs-5 pad_zero darkgrey_rev ft_14">
@@ -1239,26 +1239,26 @@ include_once("common/signin_modal_header.php");
 																	?>
 																</span>
 
-																<a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																						echo " Like";
-																																																																																					} else {
-																																																																																						echo " Likes";
-																																																																																					} ?></a></span>
+																<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																								echo " Like";
+																																																																																							} else {
+																																																																																								echo " Likes";
+																																																																																							} ?></a></span>
 															<span id="myStyle_sub_mob_<?php echo $review_id; ?>"></span>
 														<?php } else { ?>
-															<span id="other_dis_sub_mob_<?php echo $review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_mob('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>')" class="like"> <i class="fa fa-heart heart_color" style="font-size:20px;"></i></a> <span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																																																																																																									echo " Like";
-																																																																																																																																																																								} else {
-																																																																																																																																																																									echo " Likes";
-																																																																																																																																																																								} ?></a></span>
+															<span id="other_dis_sub_mob_<?php echo $review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_mob('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>')" class="like"> <i class="fa fa-heart heart_color" style="font-size:20px;"></i></a> <span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																																																																																																													echo " Like";
+																																																																																																																																																																												} else {
+																																																																																																																																																																													echo " Likes";
+																																																																																																																																																																												} ?></a></span>
 															<span id="myStyle_sub_mob_<?php echo $review_id; ?>"></span>
 														<?php }
 													} else { ?>
-														<span id="other_dis_sub_mob_<?php echo $review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_mob('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>')" class="text_grey"> <i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_review.php?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
-																																																																																																																																																																										echo " Like";
-																																																																																																																																																																									} else {
-																																																																																																																																																																										echo " Likes";
-																																																																																																																																																																									} ?></a></span>
+														<span id="other_dis_sub_mob_<?php echo $review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_mob('<?php echo $review_id; ?>','<?php echo $user_name; ?>','<?php echo $k; ?>')" class="text_grey"> <i class="fa fa-heart-o heart_color" style="font-size:20px;"></i> </a><span class="text_red"><?php echo $counter_main_rev; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo urlencode($user_name); ?>&review_id=<?php echo $review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_rev < 2) {
+																																																																																																																																																																													echo " Like";
+																																																																																																																																																																												} else {
+																																																																																																																																																																													echo " Likes";
+																																																																																																																																																																												} ?></a></span>
 														<span id="myStyle_sub_mob_<?php echo $review_id; ?>"></span>
 													<?php } ?>
 
