@@ -135,8 +135,8 @@ jq().ready(function() {
                 <div class="banner-search" style="margin:5px auto 15px auto;">
                     <form method="post" action="" style="width:100%;">
                         <div class="form-group" style="border:1px solid #ccc !important;">
-                        @csrf   
-                        <label for="skills" onClick="unset_all('<?php echo $user_seo; ?>')" style="cursor:pointer; border-radius:0;">All</label>
+                            @csrf
+                            <label for="skills" onClick="unset_all('<?php echo $user_seo; ?>')" style="cursor:pointer; border-radius:0;">All</label>
                             <!--for="search"-->
                             <input placeholder="Search for an Artist..." type="text" name="artist_name" id="like_artist" class="form-control ac_input" value="<?php echo $search_artist_names; ?>" required><!-- id="search_text"-->
 
@@ -176,16 +176,26 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
 
 
                 $artist_list_pick_arr = \App\Models\Songs::GetRawData($artist_list_pick);
+                // echo '<pre>';
+                // print_r($artist_list_pick_arr);
+                // echo '</pre>';
+                // die;
                 $array_alpha    =    array();
                 if (isset($artist_list_pick_arr)) {
                     $u = 0;
                     foreach ($artist_list_pick_arr as $row_alpha) {
                         $row_alpha = (array)$row_alpha;
-                        $row_artist_name    =    stripslashes($row_alpha['artist_name']);
+                        $row_artist_name    =    ucfirst(stripslashes($row_alpha['artist_name']));
+                        // $row_artist_name    =    stripslashes($row_alpha['cat_name']);
 
                         $array_alpha[$u]        =    substr(strip_tags($row_artist_name), 0, 1);
                         $u++;
                     }
+
+                    // echo '<pre>';
+                    // print_r($array_alpha);
+                    // echo '</pre>';
+                    // die;
                 }
                 ?>
                 <ul class="list-inline" style="color:#999999;">
@@ -272,7 +282,6 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
 							 ";
 
                 $cat_list_arr = \App\Models\Songs::GetRawData($cat_list);
-               
             }
 
             $count  = 0;
@@ -284,7 +293,7 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                 <?php if ($mobile_view == 0) { ?>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:5px 30px 0 30px;">
                         <div style="background-color:#FFFFFF; margin: 10px 0 10px 0;" class="brows-label-penel">
-                            <p class="pull-left">BROWSE BY GENRE: &nbsp;</p>
+                            <p class="pull-left" style="line-height: 27px;">BROWSE BY GENRE: &nbsp;</p>
                             <ul class="list-inline">
                                 <li>
                                     <?php
@@ -313,7 +322,7 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                 } elseif ($mobile_view == 1) { ?>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:5px;">
                         <div style="background-color:#FFFFFF; margin:0; padding: 10px 10px; border-right:none; border-left:none;" class="brows-label-penel">
-                            <p class="pull-left">BROWSE BY GENRE: &nbsp;</p>
+                            <p class="pull-left" style="line-height: 27px;">BROWSE BY GENRE: &nbsp;</p>
                             <ul class="list-inline">
                                 <li>
                                     <?php
@@ -573,9 +582,9 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                     </div>
                                                     <div class="album_details" style="width:65%;">
                                                         <label class="title"><a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>"><?php echo substr($artist_name, 0, 15);
-                                                                                                                                                        if (strlen($artist_name) > 15) {
-                                                                                                                                                            echo "..";
-                                                                                                                                                        } ?></a></label>
+                                                                                                                                                            if (strlen($artist_name) > 15) {
+                                                                                                                                                                echo "..";
+                                                                                                                                                            } ?></a></label>
                                                         <label class="likes">
                                                             <!--<span style="overflow:visible;"><a href="#"><i class="fa fa-heart-o heart_color heart_size"></i> </a><span> 3</span><a style="color:#444;" class="like link-disable" href="#"> Likes</a></span>-->
                                                             <?php
@@ -611,10 +620,10 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                                         ?>
                                                                         <span><?php echo $counter_main; ?></span>
                                                                         <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                    } ?></a></span>
+                                                                                                                                                                                                                                                                                            echo " Like";
+                                                                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                                                            echo " Likes";
+                                                                                                                                                                                                                                                                                        } ?></a></span>
 
                                                                     <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
 
@@ -635,10 +644,10 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                                         }
                                                                         ?> <span><?php echo $counter_main; ?></span>
                                                                         <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                        echo " Like";
-                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                        echo " Likes";
-                                                                                                                                                                                                                                                                                    } ?></a></span>
+                                                                                                                                                                                                                                                                                            echo " Like";
+                                                                                                                                                                                                                                                                                        } else {
+                                                                                                                                                                                                                                                                                            echo " Likes";
+                                                                                                                                                                                                                                                                                        } ?></a></span>
 
 
                                                                     <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
@@ -660,10 +669,10 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                                     ?>
                                                                     <span><?php echo $counter_main; ?></span>
                                                                     <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                    echo " Like";
-                                                                                                                                                                                                                                                                                } else {
-                                                                                                                                                                                                                                                                                    echo " Likes";
-                                                                                                                                                                                                                                                                                } ?></a></span>
+                                                                                                                                                                                                                                                                                        echo " Like";
+                                                                                                                                                                                                                                                                                    } else {
+                                                                                                                                                                                                                                                                                        echo " Likes";
+                                                                                                                                                                                                                                                                                    } ?></a></span>
 
                                                                 <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
                                                             <?php
@@ -760,10 +769,10 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                                                 ?>
                                                                                 <span><?php echo $counter_main; ?></span>
                                                                                 <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                echo " Like";
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo " Likes";
-                                                                                                                                                                                                                                                                                            } ?></a></span>
+                                                                                                                                                                                                                                                                                                    echo " Like";
+                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                    echo " Likes";
+                                                                                                                                                                                                                                                                                                } ?></a></span>
 
                                                                             <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
 
@@ -785,10 +794,10 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                                                 ?>
                                                                                 <span><?php echo $counter_main; ?></span>
                                                                                 <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                                echo " Like";
-                                                                                                                                                                                                                                                                                            } else {
-                                                                                                                                                                                                                                                                                                echo " Likes";
-                                                                                                                                                                                                                                                                                            } ?></a></span>
+                                                                                                                                                                                                                                                                                                    echo " Like";
+                                                                                                                                                                                                                                                                                                } else {
+                                                                                                                                                                                                                                                                                                    echo " Likes";
+                                                                                                                                                                                                                                                                                                } ?></a></span>
 
 
                                                                             <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
@@ -810,10 +819,10 @@ select a.artist_seo,a.artist_name,a.updated_by_itunes, a.artist_img, a.id, c.cat
                                                                             ?>
                                                                             <span><?php echo $counter_main; ?></span>
                                                                             <a href="<?php echo SERVER_ROOTPATH; ?>like/detail?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-                                                                                                                                                                                                                                                                                            echo " Like";
-                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                            echo " Likes";
-                                                                                                                                                                                                                                                                                        } ?></a></span>
+                                                                                                                                                                                                                                                                                                echo " Like";
+                                                                                                                                                                                                                                                                                            } else {
+                                                                                                                                                                                                                                                                                                echo " Likes";
+                                                                                                                                                                                                                                                                                            } ?></a></span>
 
                                                                         <span style="overflow:visible; display:none;" id="myStyle_sub_<?php echo $id; ?>"></span>
                                                                     <?php
