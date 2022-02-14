@@ -792,9 +792,9 @@ class ProcessController extends Controller
 
 
                 if (isset($p) && !empty($p)) {
-                    echo 'done-SEPARATOR-' . SERVER_ROOTPATH . "playlists-" . SEO($playlist_title);
+                    echo 'done-SEPARATOR-' . SERVER_ROOTPATH . "playlists/" . SEO($playlist_title);
                 } else {
-                    echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $p . "playlists-" . SEO($playlist_title);
+                    echo 'done-SEPARATOR-' . SERVER_ROOTPATH . $p . "playlists/" . SEO($playlist_title);
                 }
                 exit;
             } else {
@@ -802,6 +802,8 @@ class ProcessController extends Controller
             }
         }
     }
+
+
     ///delete_playlist
     public function delete_playlist()
     {

@@ -235,9 +235,12 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                 $counter_main_playlist = 0;
                             }
                             if ($user_id != "") {
-                                $counter = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'playlist' AND like_id = '" . $pick_playlist['id'] . "'";
+
+                                $qry = "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'playlist' AND like_id = '" . $pick_playlist['id'] . "'";
                                 $counter = array();
                                 $counter = \App\Models\Songs::GetRawData($qry);
+
+
                                 if ($counter) {
                                     $counter = count($counter);
                                 } else {
@@ -255,13 +258,16 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
                                 <?php
                                 } else {
+
                                 ?>
+
                                     <span style="overflow:visible;" id="show_playlist_likes_<?php echo $pick_playlist['id']; ?>"><a href="javascript:;" onClick="add_in_playlist('<?php echo $pick_playlist['id']; ?>')"><i class="fa fa-heart heart_color heart_size"></i></a>&nbsp;<span><?php echo $counter_main_playlist; ?></span><a href="<?php echo SERVER_ROOTPATH; ?>detail_playlist?artist=<?php echo $pick_playlist['id']; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main_playlist < 2) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Like";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         echo " Likes";
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     } ?>
                                         </a></span>
+
                                     <span style="overflow:visible;" id="myStyle_profile_<?php echo $pick_playlist['id']; ?>"></span>
                                 <?php
                                 }
