@@ -301,7 +301,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
 
                             $db_title_playlist   = urlencode(stripslashes($pick_playlist['title_playlist']));
                             $playlist_summary     = urlencode("View list of favourite playlist.");
-                            $playlist_url    = urlencode(SERVER_ROOTPATH . get_user_detail($USER_NAME) . "-profile-playlists/" . $seo_playlist);
+                            $playlist_url    = urlencode(SERVER_ROOTPATH . get_user_detail($USER_NAME) . "/profile-playlists/" . $seo_playlist);
 
 
                             if ($user_seo != '') {
@@ -361,7 +361,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                         }
 
                         if ($user_seo != '') {
-                            $goto_url    =    $user_seo . "-profile-playlists/" . $_REQUEST['seo_playlist'];
+                            $goto_url    =    $user_seo . "/profile-playlists/" . $_REQUEST['seo_playlist'];
                         } else {
                             $goto_url    =    "playlists-" . $_REQUEST['seo_playlist'];
                         }

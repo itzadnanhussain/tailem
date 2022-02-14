@@ -4,7 +4,7 @@ $qry = "select l.notification_click,l.read_status,l.id,u.user_name,l.like_type,l
 
 $result_notification = \App\Models\Songs::GetRawData($qry);
 
- 
+
 if ($result_notification) {
     $notify = 0;
     foreach ($result_notification as $notif) {
@@ -19,7 +19,7 @@ if ($result_notification) {
         $read_status  = $notif['read_status'];
         $notification_click    = $notif['notification_click'];
         if ($read_status == 1) {
-           \App\Models\Songs::GetRawData("update tbl_likes set read_status = 0 where id = $db_like_id");
+            \App\Models\Songs::GetRawData("update tbl_likes set read_status = 0 where id = $db_like_id");
         }
 
         if ($profile_image != "") {
@@ -63,7 +63,7 @@ if ($result_notification) {
 
 
                     $db_link    =  SERVER_ROOTPATH . get_user_detail($user_name_notif) . "/profile-review-artist";
-                    $db_link_playlist  = SERVER_ROOTPATH . get_user_detail($user_name_db) . "-profile-playlists/" . $db_title_playlist_seo;
+                    $db_link_playlist  = SERVER_ROOTPATH . get_user_detail($user_name_db) . "/profile-playlists/" . $db_title_playlist_seo;
                 ?>
                     <a class='user_pnl_col' href="javascript:;" onclick="gotolink('<?php echo $db_link; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" style='display:inline;  font-size:11px;  padding:5px 0 !important;'><?php echo $user_name_notif; ?></a> likes your playlist <a class='user_pnl_col' href="javascript:;" onclick="gotolink('<?php echo $db_link_playlist; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" style='display:inline; font-size:11px; padding:5px 0 !important;'><?php echo $db_title; ?></a>
                 <?php
@@ -91,7 +91,7 @@ if ($result_notification) {
 						   ";
 
                     $song_result_notification = \App\Models\Songs::GetRawDataAdmin($song_notification);
-                   
+
                 ?>
                     <a href="javascript:;" onclick="gotolink('<?php echo SERVER_ROOTPATH . get_user_detail($user_name_notif) . '/profile-review-artist'; ?>', '<?php echo $notification_click; ?>', <?php echo $db_like_id; ?>)" class="user_pnl_col" style="display:inline;  font-size:11px;  padding:5px 0 !important;"><?php echo $user_name_notif; ?></a>
                     likes your review on
@@ -126,13 +126,13 @@ if ($result_notification) {
 ?>
 <script type="text/javascript">
     function gotolink(url, status, id) {
-        var csrf_token = $('meta[name=csrf-token]').attr('content');  
+        var csrf_token = $('meta[name=csrf-token]').attr('content');
         if (status == 1) {
             $.ajax({
                 type: "POST",
                 url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click',
                 data: {
-                    'id':id,
+                    'id': id,
                     "_token": csrf_token,
                 },
                 beforeSend: function() {},
@@ -149,14 +149,14 @@ if ($result_notification) {
     }
 
     function tab_click(status, id) {
-        var csrf_token = $('meta[name=csrf-token]').attr('content');  
+        var csrf_token = $('meta[name=csrf-token]').attr('content');
 
         if (status == 1) {
             $.ajax({
                 type: "POST",
                 url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click',
                 data: {
-                    'id':id,
+                    'id': id,
                     "_token": csrf_token,
                 },
                 beforeSend: function() {},
@@ -172,15 +172,15 @@ if ($result_notification) {
     }
 
     function remove_all_notifications() {
-        var csrf_token = $('meta[name=csrf-token]').attr('content');  
+        var csrf_token = $('meta[name=csrf-token]').attr('content');
         $.ajax({
             type: "POST",
             url: '<?php echo SERVER_ROOTPATH; ?>process/update_notification_click',
-            
+
             data: {
-                    'delete':'all',
-                    "_token": csrf_token,
-                },
+                'delete': 'all',
+                "_token": csrf_token,
+            },
             beforeSend: function() {},
             success: function(data) {
 

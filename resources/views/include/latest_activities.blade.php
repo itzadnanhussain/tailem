@@ -133,7 +133,7 @@ if ($like_list_arr) {
                 $date_db      =  strtotime(date($like_list_arr_inner['date']));
                 $date_db2  =  strtotime(date($like_list_arr_inner['display_date']));
                 $db_link    =  SERVER_ROOTPATH . get_user_detail($user_name_db) . "/profile-review-artist";
-                $db_link_playlist  = SERVER_ROOTPATH . get_user_detail($user_name_db) . "-profile-playlists/" . $db_title_playlist_seo;
+                $db_link_playlist  = SERVER_ROOTPATH . get_user_detail($user_name_db) . "/profile-playlists/" . $db_title_playlist_seo;
                 $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . get_user_detail($user_name) . "/profile-review-artist'>$user_name</a> likes  <a class='user_pnl_col' href='$db_link_playlist'>$db_title</a> playlist by <a class='user_pnl_col' href='$db_link'>$user_name_db</a> ";
 
                 $like_date_check =  date("Y-m-d", $date_db);
@@ -228,7 +228,7 @@ if ($playlist_list_arrs) {
         $posted_date   =  $myplaylist_arr['posted_date'];
         $get_username   =  $myplaylist_arr['user_name'];
         $get_user_seo   =  $myplaylist_arr['user_seo'];
-        $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "-profile-playlists/" . $title_playlist_seo;
+        $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "/profile-playlists/" . $title_playlist_seo;
 
         $messages  = "<a class='user_pnl_col' href='" . SERVER_ROOTPATH . $get_user_seo . "/profile-review-artist'>$get_username</a> has created <a class='user_pnl_col' href='" . $db_link_playlist . "'>$title_playlist</a> playlist.";
 
@@ -265,7 +265,7 @@ if ($playlist_list_arrs) {
 
         $get_username   =  $myplaylist_arr['user_name'];
         $get_user_seo   =  $myplaylist_arr['user_seo'];
-        $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "-profile-playlists/" . $title_playlist_seo;
+        $db_link_playlist  = SERVER_ROOTPATH . $get_user_seo . "/profile-playlists/" . $title_playlist_seo;
 
         $gotosong_url  = SERVER_ROOTPATH . Slug($song_seo_db) . "/reviews/" . Slug($artist_info_get['artist_seo']);
 
@@ -338,13 +338,13 @@ $instagram_icon = GetByWhere('user_social_profile', array('user_id' => session()
 
 $twitter_icon = GetByWhere('user_social_profile', array('user_id' => session()->get('user_id'), 'icon_type' => 'Twitter'));
 $profile_id = session()->get('user_id');
- 
+
 
 if ($mobile_view == 0) { ?>
-<div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
-    <p>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Member Since<br><a class="heart_color"><?php echo $user_date; ?></a></div>
-    <?php
+    <div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
+        <p>
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Member Since<br><a class="heart_color"><?php echo $user_date; ?></a></div>
+        <?php
         if ($review_list_arr_top) {
             $query = "select r.review_post_date  from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
 
@@ -352,10 +352,10 @@ if ($mobile_view == 0) { ?>
             $info_query = (array)$info_query[0];
 
             if ($info_query['review_post_date'] != 0) {
-                ?>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Review<br><a class="heart_color"><?php echo date("d M Y", $info_query['review_post_date']); ?></a>
-    </div>
-    <?php
+        ?>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Review<br><a class="heart_color"><?php echo date("d M Y", $info_query['review_post_date']); ?></a>
+                </div>
+            <?php
             }
         }
 
@@ -366,69 +366,60 @@ if ($mobile_view == 0) { ?>
             $info_q_arr = (array)$info_q_arr[0];
 
             if ($info_q_arr['comment_post_date'] != '') {
-                ?>
-    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a>
-    </div>
-    <?php
+            ?>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a>
+                </div>
+        <?php
             }
         }
         ?>
-    </p>
-</div>
-<!-- new code by ad -->
-<style>
-    .ad-follow-icon-box {
-        padding-left: 0px;
-    }
+        </p>
+    </div>
+    <!-- new code by ad -->
+    <style>
+        .ad-follow-icon-box {
+            padding-left: 0px;
+        }
 
-    .bottom_nav .li label {
-        color: #d73b3b;
-    }
-</style>
-<?php
-$social_icons = GetByWhere('social_icons');
- 
+        .bottom_nav .li label {
+            color: #d73b3b;
+        }
+    </style>
+    <?php
+    $social_icons = GetByWhere('social_icons');
+
     ?>
-<div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
-    <ul class="bottom_nav">
+    <div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
+        <ul class="bottom_nav">
 
-        <li class="li"><label>Follow me on: </label></li>
+            <li class="li"><label>Follow me on: </label></li>
 
-        <!-- Facebook icon -->
+            <!-- Facebook icon -->
 
-        <li><a href="<?php echo $facebook_icon[0]->social_link ?>"
-                target="_blank"><img class="sprite-icon_fb"
-                    src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>"
-                    alt=""></a>
-        </li>
+            <li><a href="<?php echo $facebook_icon[0]->social_link ?>" target="_blank"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>" alt=""></a>
+            </li>
 
 
-        <!-- Twitter icon -->
+            <!-- Twitter icon -->
 
-        <li><a href="<?php echo $twitter_icon[0]->social_link ?>"
-                target="_blank"><img class="sprite-icon_tw"
-                    src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>"
-                    alt=""></a>
-        </li>
+            <li><a href="<?php echo $twitter_icon[0]->social_link ?>" target="_blank"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>" alt=""></a>
+            </li>
 
 
-        <!-- Instagram icon -->
-        <li><a href="<?php echo $instagram_icon[0]->social_link ?>"
-                target="_blank"> <img
-                    src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>"
-                    width="34" alt="">
-            </a>
-        </li>
+            <!-- Instagram icon -->
+            <li><a href="<?php echo $instagram_icon[0]->social_link ?>" target="_blank"> <img src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>" width="34" alt="">
+                </a>
+            </li>
 
-    </ul>
+        </ul>
 
-</div>
+    </div>
 
 <?php
 } elseif ($mobile_view == 1) { ?>
-<div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
-    <p>
-        <?php
+    <div class="activity-panel col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0;">
+        <p>
+            <?php
             if ($review_list_arr_top) {
                 $query = "select r.review_post_date  from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.review_user_id = '" . $user_profile . "' order by r.review_id desc limit 1";
 
@@ -436,9 +427,9 @@ $social_icons = GetByWhere('social_icons');
                 $info_query = (array)$info_query[0];
 
                 if ($info_query['review_post_date'] != 0) {
-                    ?>
-    <div class="col-sm-6 col-xs-6" style="padding:0;">Latest Review<br><a class="heart_color"><?php echo date("d M Y", $info_query['review_post_date']); ?></a>
-    </div>
+            ?>
+        <div class="col-sm-6 col-xs-6" style="padding:0;">Latest Review<br><a class="heart_color"><?php echo date("d M Y", $info_query['review_post_date']); ?></a>
+        </div>
     <?php
                 }
             }
@@ -450,41 +441,32 @@ $social_icons = GetByWhere('social_icons');
                 $info_q_arr = (array)$info_q_arr[0];
 
                 if ($info_q_arr['comment_post_date'] != '') {
-                    ?>
-    <div class="col-sm-6 col-xs-6" style="padding:0; text-align:right;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a>
-    </div>
-    <?php
+    ?>
+        <div class="col-sm-6 col-xs-6" style="padding:0; text-align:right;">Latest Post<br><a class="heart_color"><?php echo date("d M Y", $info_q_arr['comment_post_date']); ?></a>
+        </div>
+<?php
                 }
             }
 ?>
-    </p>
-</div>
-<div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
-    <ul class="bottom_nav">
+</p>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 ad-follow-icon-box">
+        <ul class="bottom_nav">
 
-        <li><label>Follow me on: </label></li>
-        <!-- Facebook icon -->
-        <li><a href="<?php echo $facebook_icon[0]->social_link ?>"
-                target="_blank"><img class="sprite-icon_fb"
-                    src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>"
-                    alt=""></a></li>
+            <li><label>Follow me on: </label></li>
+            <!-- Facebook icon -->
+            <li><a href="<?php echo $facebook_icon[0]->social_link ?>" target="_blank"><img class="sprite-icon_fb" src="<?php echo SERVER_ROOTPATH . $social_icons[0]->large_screen_icon ?>" alt=""></a></li>
 
 
-        <!-- Twitter icon -->
-        <li><a href="<?php echo $twitter_icon[0]->social_link ?>"
-                target="_blank"><img class="sprite-icon_tw"
-                    src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>"
-                    alt=""></a></li>
+            <!-- Twitter icon -->
+            <li><a href="<?php echo $twitter_icon[0]->social_link ?>" target="_blank"><img class="sprite-icon_tw" src="<?php echo SERVER_ROOTPATH . $social_icons[2]->large_screen_icon ?>" alt=""></a></li>
 
 
-        <!-- Instagram icon -->
-        <li><a href="<?php echo $instagram_icon[0]->social_link ?>"
-                target="_blank"> <img
-                    src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>"
-                    width="34" alt=""></a></li>
+            <!-- Instagram icon -->
+            <li><a href="<?php echo $instagram_icon[0]->social_link ?>" target="_blank"> <img src="<?php echo SERVER_ROOTPATH . $social_icons[5]->large_screen_icon ?>" width="34" alt=""></a></li>
 
 
-    </ul>
+        </ul>
 
-</div>
+    </div>
 <?php }
