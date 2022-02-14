@@ -139,8 +139,8 @@ switch ($sortby) {
                           <tr>
                             <td>
                               <form name="search_form" id="search_form" method="post" action="">
-                              @csrf 
-                              <table border="0" cellpadding="0" cellspacing="0" align="center" width="500" style="border:1px solid #000000; padding:10px;">
+                                @csrf
+                                <table border="0" cellpadding="0" cellspacing="0" align="center" width="500" style="border:1px solid #000000; padding:10px;">
                                   <tbody>
                                     <tr>
                                       <td class="SmallFieldLabelnew font_bold" align="center" colspan="2">
@@ -245,7 +245,7 @@ switch ($sortby) {
                                     <td class="SmallFieldLabelnew font_bold" align="left" width="150">
                                       Song
                                     </td>
-                                    <td align="left"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . ".html"; ?>" style="color:#0000FF; text-decoration:none;" target="_blank"><?php echo $song_title; ?></a> </td>
+                                    <td align="left"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . ".html"; ?>" style="color:#0000FF; text-decoration:none;" target="_blank"><?php echo $song_title; ?></a> </td>
                                   </tr>
 
                                   <tr height="30">
@@ -350,8 +350,8 @@ switch ($sortby) {
                                 </tr>
 
                                 <form action="<?php echo SERVER_ADMIN_PATH; ?>process/review_report_actions" method="post" id="report_form">
-                                 @csrf
-                                 <?php
+                                  @csrf
+                                  <?php
 
                                   //============================================================
                                   //PAGGING CODE STARTS HERE
@@ -365,7 +365,7 @@ switch ($sortby) {
                                   }
                                   $targetpage = "review_reports";
                                   $limit = 10;           //how many items to show per page
-                                 
+
                                   if ($page)
                                     $start = ($page - 1) * $limit; //first item to display on this page
                                   else
@@ -400,7 +400,7 @@ switch ($sortby) {
 
                                       $select_qry = "select user_name from tbl_users where 
 												user_id='" . $r_report_user_id . "' ";
-                                      $select_ar  =\App\Models\Songs::GetRawDataAdmin($select_qry);
+                                      $select_ar  = \App\Models\Songs::GetRawDataAdmin($select_qry);
                                       $user_name = stripslashes(html_entity_decode($select_ar['user_name']));
                                       $user_name = wordwrap($user_name, 100, " ", true);
 
@@ -526,7 +526,7 @@ switch ($sortby) {
 
     <tr>
       <td height="20">
-       @include("admin.common.footer")</td>
+        @include("admin.common.footer")</td>
     </tr>
     </tbody>
   </table>

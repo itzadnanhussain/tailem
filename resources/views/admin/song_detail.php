@@ -130,7 +130,7 @@ $all_avg = number_format($all_avg, 1);
 
 	<script type="text/javascript">
 		function sort_area(val) {
-			window.location.href = "<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-sort-" + val + ".html";
+			window.location.href = "<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>-sort-" + val + ".html";
 		}
 	</script>
 
@@ -208,10 +208,10 @@ $all_avg = number_format($all_avg, 1);
 									?>
 											<span id="other_dis_sub_<?php echo $artist_id; ?>" class="text_grey"><a href="javascript:;" onClick="add_in_favourite_list_sub(<?php echo $artist_id; ?>)" class="text_grey"><i class="fa fa-heart"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
 												<a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal3_<?php echo $artist_id; ?>" data-title="" style="color:#444;" class="text_blck link-disable"><?php if ($counter_main < 2) {
-																																																																											echo " Like";
-																																																																										} else {
-																																																																											echo " Likes";
-																																																																										} ?></a></span>
+																																																																												echo " Like";
+																																																																											} else {
+																																																																												echo " Likes";
+																																																																											} ?></a></span>
 
 											<span id="myStyle_sub_<?php echo $artist_id; ?>" class="text_grey"></span>
 
@@ -219,10 +219,10 @@ $all_avg = number_format($all_avg, 1);
 										} else {
 										?>
 											<span id="other_dis_sub_<?php echo $artist_id; ?>" class="text_grey"><a href="javascript:;" onClick="add_in_favourite_list_sub(<?php echo $artist_id; ?>)" class="like"><i class="fa fa-heart"></i></a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal3_<?php echo $artist_id; ?>" data-title="" style="color:#444;" class="text_blck link-disable"><?php if ($counter_main < 2) {
-																																																																																																																																										echo " Like";
-																																																																																																																																									} else {
-																																																																																																																																										echo " Likes";
-																																																																																																																																									} ?></a></span></span>
+																																																																																																																																												echo " Like";
+																																																																																																																																											} else {
+																																																																																																																																												echo " Likes";
+																																																																																																																																											} ?></a></span></span>
 
 											<span id="myStyle_sub_<?php echo $artist_id; ?>" class="text_grey"></span>
 										<?php
@@ -230,16 +230,16 @@ $all_avg = number_format($all_avg, 1);
 									} else {
 										?>
 										<span id="other_dis_sub_<?php echo $artist_id; ?>" class="text_grey"><a href="javascript:;" onClick="add_in_favourite_list_sub(<?php echo $artist_id; ?>)" class="text_grey"><i class="fa fa-heart"></i></a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal3_<?php echo $artist_id; ?>" data-title="" style="color:#444;" class="text_blck link-disable"><?php if ($counter_main < 2) {
-																																																																																																																																										echo " Like";
-																																																																																																																																									} else {
-																																																																																																																																										echo " Likes";
-																																																																																																																																									} ?></a></span></span>
+																																																																																																																																												echo " Like";
+																																																																																																																																											} else {
+																																																																																																																																												echo " Likes";
+																																																																																																																																											} ?></a></span></span>
 									<?php
 									}
 									?>
 
 								</div>
-								<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . ".html"; ?>" style="text-decoration:none;">
+								<a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . ".html"; ?>" style="text-decoration:none;">
 									<h2 class="mt-0"><?php echo $song_title; ?></h2>
 								</a>
 								<a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist.html"; ?>" class="text_grey">
@@ -248,27 +248,27 @@ $all_avg = number_format($all_avg, 1);
 								<div class="clear"></div>
 
 							</div>
-							<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . ".html"; ?>" target="_blank"> <?php
-																																if ($song_image_fm != "") {
-																																?>
+							<a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . ".html"; ?>" target="_blank"> <?php
+																																		if ($song_image_fm != "") {
+																																		?>
 									<img src="<?php echo $song_image_fm; ?>" border="0" class="img-responsive" />
 								<?php
-																																} elseif ($picture != "") {
-																																	$song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
+																																		} elseif ($picture != "") {
+																																			$song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
 								?>
 									<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo 'thumb_' . $picture; ?>" border="0" class="img-responsive" />
 								<?php
-																																} else if ($album_picture != "") {
-																																	$song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
+																																		} else if ($album_picture != "") {
+																																			$song_pic = SERVER_ROOTPATH . "site_upload/album_images/thumb_" . $album_picture;
 								?>
 									<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo 'thumb_' . $album_picture; ?>" border="0" class="img-responsive" />
 								<?php
-																																} else {
-																																	$song_pic = SERVER_ROOTPATH . "assets/images/no_image.png";
+																																		} else {
+																																			$song_pic = SERVER_ROOTPATH . "assets/images/no_image.png";
 								?>
 									<img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image.png" border="0" class="img-responsive" width="100" />
 								<?php
-																																}
+																																		}
 								?></a>
 							<div class="clear pad-5"></div>
 							<h4>Review Distribution</h4>
@@ -277,7 +277,7 @@ $all_avg = number_format($all_avg, 1);
 									<tr style="height:10px;">
 										<td width="70">Excellent</td>
 										<td>
-											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-excellent.html">
+											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>-rating-excellent.html">
 												<div class="progress mb-0" style="cursor:pointer;">
 													<div class="progress-bar progress-bar-success" style="width:<?php echo $excellent_per; ?>%;  cursor:pointer;"></div>
 												</div>
@@ -288,7 +288,7 @@ $all_avg = number_format($all_avg, 1);
 									<tr>
 										<td>Very Good</td>
 										<td>
-											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-verygood.html">
+											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>-rating-verygood.html">
 												<div class="progress mb-0" style="cursor:pointer;">
 													<div class="progress-bar progress-bar-success" style="width:<?php echo $verygood_per; ?>%;  cursor:pointer;"></div>
 												</div>
@@ -299,7 +299,7 @@ $all_avg = number_format($all_avg, 1);
 									<tr>
 										<td>Average</td>
 										<td>
-											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-average.html">
+											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>-rating-average.html">
 												<div class="progress mb-0" style="cursor:pointer;">
 													<div class="progress-bar progress-bar-warning" style="width:<?php echo $good_per; ?>%;  background-color:#FF0; cursor:pointer;"></div>
 												</div>
@@ -310,7 +310,7 @@ $all_avg = number_format($all_avg, 1);
 									<tr>
 										<td>Poor</td>
 										<td>
-											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-poor.html">
+											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>-rating-poor.html">
 												<div class="progress mb-0" style="cursor:pointer;">
 													<div class="progress-bar progress-bar-danger" style="width:<?php echo $poor_per; ?>%; cursor:pointer;"></div>
 												</div>
@@ -321,7 +321,7 @@ $all_avg = number_format($all_avg, 1);
 									<tr>
 										<td>Terrible</td>
 										<td>
-											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>-reviews-<?php echo $artist_seo; ?>-rating-terrible.html">
+											<a href="<?php echo SERVER_ROOTPATH . $song_seo ?>/reviews/<?php echo $artist_seo; ?>-rating-terrible.html">
 												<div class="progress mb-0" style="cursor:pointer;">
 													<div class="progress-bar progress-bar-danger" style="width:<?php echo $terrible_per; ?>%;"></div>
 												</div>
@@ -350,10 +350,10 @@ $all_avg = number_format($all_avg, 1);
 									?>
 											<span id="other_dis_sub_<?php echo $artist_id; ?>" class="text_grey"><a href="javascript:;" onClick="add_in_favourite_list_sub(<?php echo $artist_id; ?>)" class="text_grey"><i class="fa fa-heart"></i> </a><span class="text_red"><?php echo $counter_main; ?></span>
 												<a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal3_<?php echo $artist_id; ?>" data-title="" style="color:#444;" class="text_blck link-disable"><?php if ($counter_main < 2) {
-																																																																											echo " Like";
-																																																																										} else {
-																																																																											echo " Likes";
-																																																																										} ?></a></span>
+																																																																												echo " Like";
+																																																																											} else {
+																																																																												echo " Likes";
+																																																																											} ?></a></span>
 
 											<span id="myStyle_sub_<?php echo $artist_id; ?>" class="text_grey"></span>
 
@@ -361,10 +361,10 @@ $all_avg = number_format($all_avg, 1);
 										} else {
 										?>
 											<span id="other_dis_sub_<?php echo $artist_id; ?>" class="text_grey"><a href="javascript:;" onClick="add_in_favourite_list_sub(<?php echo $artist_id; ?>)" class="like "><i class="fa fa-heart"></i></a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal3_<?php echo $artist_id; ?>" data-title="" style="color:#444;" class="text_blck link-disable"><?php if ($counter_main < 2) {
-																																																																																																																																										echo " Like";
-																																																																																																																																									} else {
-																																																																																																																																										echo " Likes";
-																																																																																																																																									} ?></a></span></span>
+																																																																																																																																												echo " Like";
+																																																																																																																																											} else {
+																																																																																																																																												echo " Likes";
+																																																																																																																																											} ?></a></span></span>
 
 											<span id="myStyle_sub_<?php echo $artist_id; ?>" class="text_grey"></span>
 										<?php
@@ -372,10 +372,10 @@ $all_avg = number_format($all_avg, 1);
 									} else {
 										?>
 										<span id="other_dis_sub_<?php echo $artist_id; ?>" class="text_grey"><a href="javascript:;" onClick="add_in_favourite_list_sub(<?php echo $artist_id; ?>)" class="text_grey"><i class="fa fa-heart"></i></a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_store_detail_Modal3_<?php echo $artist_id; ?>" data-title="" style="color:#444;" class="text_blck link-disable"><?php if ($counter_main < 2) {
-																																																																																																																																										echo " Like";
-																																																																																																																																									} else {
-																																																																																																																																										echo " Likes";
-																																																																																																																																									} ?></a></span></span>
+																																																																																																																																												echo " Like";
+																																																																																																																																											} else {
+																																																																																																																																												echo " Likes";
+																																																																																																																																											} ?></a></span></span>
 									<?php
 									}
 									?>
@@ -383,7 +383,7 @@ $all_avg = number_format($all_avg, 1);
 
 								</div>
 
-								<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . ".html"; ?>" style="text-decoration:none;">
+								<a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . ".html"; ?>" style="text-decoration:none;">
 									<h2 class="mt-0"><?php echo $song_title; ?></h2>
 								</a>
 
@@ -391,7 +391,7 @@ $all_avg = number_format($all_avg, 1);
 									<h3 class="text_grey"><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist.html"; ?>" class="text_grey"><?php echo $artist_name; ?></a>
 
 										<?php if ($feature_artists != "") { ?> <strong>ft.</strong> <?php echo $feature_artists;
-																							} ?></h3>
+																								} ?></h3>
 								</div>
 
 								<div class="clear"></div>
@@ -401,8 +401,8 @@ $all_avg = number_format($all_avg, 1);
 											echo "...";
 										}
 									?> <br><a href="<?php echo $song_url_fm; ?>"><img border="0" src="<?php echo SERVER_ROOTPATH; ?>images/fm.png"></a><?php } else {
-																																				echo $description;
-																																			} ?></p>
+																																						echo $description;
+																																					} ?></p>
 							</div>
 							<?php
 
@@ -569,10 +569,10 @@ $all_avg = number_format($all_avg, 1);
 
 
 																<a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo $db_user_name; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_profile_<?php echo $prof_counter; ?>" data-title="" class="like text_grey link-disable" style="color:#ccc;margin-left:2px;"><?php if ($counter_main < 2) {
-																																																																																						echo " Like";
-																																																																																					} else {
-																																																																																						echo " Likes";
-																																																																																					} ?></a></span>
+																																																																																							echo " Like";
+																																																																																						} else {
+																																																																																							echo " Likes";
+																																																																																						} ?></a></span>
 
 																<span id="myStyle_sub_profile_<?php echo $prof_counter; ?>"></span>
 
@@ -589,10 +589,10 @@ $all_avg = number_format($all_avg, 1);
 															?>
 
 																<a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo $db_user_name; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_profile_<?php echo $prof_counter; ?>" data-title="" class="like text_grey link-disable" style="color:#ccc;margin-left:2px;"><?php if ($counter_main < 2) {
-																																																																																						echo " Like";
-																																																																																					} else {
-																																																																																						echo " Likes";
-																																																																																					} ?></a></span>
+																																																																																							echo " Like";
+																																																																																						} else {
+																																																																																							echo " Likes";
+																																																																																						} ?></a></span>
 
 																<span id="myStyle_sub_profile_<?php echo $prof_counter; ?>"></span>
 
@@ -608,10 +608,10 @@ $all_avg = number_format($all_avg, 1);
 														} else {
 															?>
 															<a href="<?php echo SERVER_ROOTPATH; ?>detail_profile.php?user=<?php echo $db_user_name; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_profile_<?php echo $prof_counter; ?>" data-title="" class="like text_grey link-disable" style="color:#ccc;margin-left:2px;"><?php if ($counter_main < 2) {
-																																																																																					echo " Like";
-																																																																																				} else {
-																																																																																					echo " Likes";
-																																																																																				} ?></a></span>
+																																																																																						echo " Like";
+																																																																																					} else {
+																																																																																						echo " Likes";
+																																																																																					} ?></a></span>
 
 															<span id="myStyle_sub_profile_<?php echo $prof_counter; ?>"></span>
 
@@ -666,10 +666,10 @@ $all_avg = number_format($all_avg, 1);
 																		?>
 
 																		<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo $db_user_name; ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																								echo " Like";
-																																																																																							} else {
-																																																																																								echo " Likes";
-																																																																																							} ?></a></span>
+																																																																																									echo " Like";
+																																																																																								} else {
+																																																																																									echo " Likes";
+																																																																																								} ?></a></span>
 
 																		<span id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
 
@@ -678,10 +678,10 @@ $all_avg = number_format($all_avg, 1);
 																	?>
 																		<span id="other_dis_sub_<?php echo $db_review_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song(<?php echo $db_review_id; ?>)" class="like"><i class="fa fa-heart"></i></a> <span class="text_red"><?php echo $counter_main; ?></span>
 																			<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo $db_user_name; ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																									echo " Like";
-																																																																																								} else {
-																																																																																									echo " Likes";
-																																																																																								} ?></a></span>
+																																																																																										echo " Like";
+																																																																																									} else {
+																																																																																										echo " Likes";
+																																																																																									} ?></a></span>
 
 
 																		<span id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
@@ -692,10 +692,10 @@ $all_avg = number_format($all_avg, 1);
 																	<span id="other_dis_sub_<?php echo $review_user_id; ?>"><a href="javascript:;" onClick="add_in_favourite_list_review_song(<?php echo $db_review_id; ?>)" class="text_grey"><i class="fa fa-heart"></i></a> <span class="text_red"><?php echo $counter_main; ?></span>
 
 																		<a href="<?php echo SERVER_ROOTPATH; ?>process/detail_review?user=<?php echo $db_user_name; ?>&review_id=<?php echo $db_review_id; ?>&critaria=1" data-toggle="modal" data-target="#model_review_likes_<?php echo $k; ?>" data-title="" class="like link-disable" style="color:#444;"><?php if ($counter_main < 2) {
-																																																																																								echo " Like";
-																																																																																							} else {
-																																																																																								echo " Likes";
-																																																																																							} ?></a></span>
+																																																																																									echo " Like";
+																																																																																								} else {
+																																																																																									echo " Likes";
+																																																																																								} ?></a></span>
 																	<span id="myStyle_sub_<?php echo $db_review_id; ?>"></span>
 
 																<?php
@@ -722,7 +722,7 @@ $all_avg = number_format($all_avg, 1);
 													<div class="col-sm-6 display_dekstop">
 														<?php
 														$title_db = urlencode("$song_title");
-														$url_db = urlencode(SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . ".html#review_" . $db_review_id);
+														$url_db = urlencode(SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . ".html#review_" . $db_review_id);
 														$summary = urlencode("$db_review_detail");
 														$image_fb = urlencode($song_pic);
 														?>
@@ -946,32 +946,32 @@ $all_avg = number_format($all_avg, 1);
 						?>
 								<div class="col-sm-4">
 									<div class="img_cont">
-										<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . ".html"; ?>"> <?php
-																															if ($picture != "") {
-																															?>
+										<a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . ".html"; ?>"> <?php
+																																	if ($picture != "") {
+																																	?>
 												<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/song_images/<?php echo $picture; ?>" border="0" class="img-responsive" style="max-height:200px; width:100%;" />
 											<?php
-																															} else
+																																	} else
 													if ($album_picture != "") {
 											?>
 												<img src="<?php echo SERVER_ROOTPATH; ?>site_upload/album_images/<?php echo $album_picture; ?>" border="0" class="img-responsive" style="max-height:200px;; width:100%;" />
 											<?php
-																															} else {
+																																	} else {
 											?>
 												<img src="<?php echo SERVER_ROOTPATH; ?>assets/images/no_image.png" border="0" class="img-responsive" style="max-height:200px; width:100%;" />
 											<?php
-																															}
+																																	}
 											?>
 										</a>
 										<?php
 										if ($all_avg != 0) {
 										?><span class="score" style="background-color:<?php echo $color_pick; ?>"><?php if ($all_avg < 10) {
-																																		echo number_format($all_avg, 1);
-																																	} else {
-																																		echo $all_avg;
-																																	} ?></span><?php } else { ?> <span class="score">5.0</span><?php } ?>
+																														echo number_format($all_avg, 1);
+																													} else {
+																														echo $all_avg;
+																													} ?></span><?php } else { ?> <span class="score">5.0</span><?php } ?>
 										<div class="title">
-											<a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . ".html"; ?>" class="text_wht"><?php echo $song_title ?></a><br><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist.html"; ?>"><?php echo $artist_name; ?></a>
+											<a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . ".html"; ?>" class="text_wht"><?php echo $song_title ?></a><br><a href="<?php echo SERVER_ROOTPATH . $artist_seo . "-artist.html"; ?>"><?php echo $artist_name; ?></a>
 
 											<span class="like">
 												<?php
@@ -983,10 +983,10 @@ $all_avg = number_format($all_avg, 1);
 												?>
 														<span id="other_dis_sub_popular_<?php echo $p_fav; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular(<?php echo $album_artist_id; ?>,<?php echo $p_fav; ?>)"><i class="fa fa-heart"></i> </a><span><?php echo $counter_main; ?></span>
 															<a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_<?php echo $p_fav; ?>" data-title="" class="link-disable"><?php if ($counter_main < 2) {
-																																																																						echo " Like";
-																																																																					} else {
-																																																																						echo " Likes";
-																																																																					} ?></a>
+																																																																							echo " Like";
+																																																																						} else {
+																																																																							echo " Likes";
+																																																																						} ?></a>
 														</span>
 
 														<span id="myStyle_sub_popular_<?php echo $p_fav; ?>"></span>
@@ -997,10 +997,10 @@ $all_avg = number_format($all_avg, 1);
 														<span id="other_dis_sub_popular_<?php echo $p_fav; ?>">
 															<a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular(<?php echo $album_artist_id; ?>,<?php echo $sr_no; ?>)" style="color:red"><i class="fa fa-heart"></i></a> <span><?php echo $counter_main; ?></span>
 															<a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_<?php echo $p_fav; ?>" data-title=""><?php if ($counter_main < 2) {
-																																																																	echo " Like";
-																																																																} else {
-																																																																	echo " Likes";
-																																																																} ?></a></span>
+																																																																		echo " Like";
+																																																																	} else {
+																																																																		echo " Likes";
+																																																																	} ?></a></span>
 
 
 														<span id="myStyle_sub_popular_<?php echo $p_fav; ?>"></span>
@@ -1009,10 +1009,10 @@ $all_avg = number_format($all_avg, 1);
 												} else {
 													?>
 													<a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#missing_popular_review_Modal2_<?php echo $p_fav; ?>" data-title="" class="like link-disable" style="margin-left:4px;"> <span><?php echo $counter_main; ?></span> <?php if ($counter_main < 2) {
-																																																																																						echo " Like";
-																																																																																					} else {
-																																																																																						echo " Likes";
-																																																																																					} ?></a>
+																																																																																							echo " Like";
+																																																																																						} else {
+																																																																																							echo " Likes";
+																																																																																						} ?></a>
 
 													<a href="javascript:;" onClick="add_in_favourite_list_sub_artist_popular(<?php echo $album_artist_id; ?>,<?php echo $p_fav; ?>)"><i class="fa fa-heart"></i> </a>
 

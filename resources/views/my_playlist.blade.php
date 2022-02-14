@@ -610,7 +610,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             </div>
                                             <div class="col-lg-11 col-md-11 col-sm-11 col-xs-12" style="display: flex;">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck"> <?php
                                                                                                                                                         if ($picture != "") {
                                                                                                                                                             $img_api_linka = album_img_api($picture);
 
@@ -664,7 +664,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                 </div>
                                                 <div class="album_details" style="width:74%; padding-top:0; margin-top:0;">
 
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                             <?php echo substr($song_title, 0, 50);
                                                             if (strlen($song_title) > 50) {
                                                                 echo "...";
@@ -809,7 +809,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-right:2px !important;">
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 album-outer-coontainer" style="padding:0px !important;">
                                                     <div class="album_cover">
-                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck"> <?php
+                                                        <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck"> <?php
                                                                                                                                                             if ($picture != "") {
                                                                                                                                                                 $img_api_linka = album_img_api($picture);
                                                                                                                                                                 if ($img_api_linka != '') {
@@ -847,7 +847,7 @@ $listof_ids  =    get_listof_songs_ids($fetch_alb_id, $fetch_art_id);
                                                 </div>
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 album-detail-container" style="padding:0px !important;">
                                                     <div class="album_details">
-                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"><?php echo substr($song_title, 0, 50);
+                                                        <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"><?php echo substr($song_title, 0, 50);
                                                                                                                                                                 if (strlen($song_title) > 50) {
                                                                                                                                                                     echo "...";
                                                                                                                                                                 } ?>

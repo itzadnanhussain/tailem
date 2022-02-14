@@ -1,10 +1,10 @@
 @include("common.header")
 <?php ob_start();
- 
+
 //echo "Jai shree ram";
 $qry      = "select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_status = 1 and artist_seo='" . $artist_seo . "'";
 $row_artist = \App\Models\Songs::GetRawDataAdmin($qry);
- 
+
 //$row_artist  	=  $db->get_row("select id, artist_seo, artist_name, artist_description, artist_img, lastfm_url   from tbl_artists where artist_seo='".$artist_seo."' and artist_description!=''",ARRAY_A);	
 
 if (isset($row_artist) && !empty($row_artist)) {
@@ -58,8 +58,8 @@ if (isset($row_artist) && !empty($row_artist)) {
     }
 } else {
     $url = SERVER_ROOTPATH;
-	echo '<script>window.location = "' . $url . '";</script>';
-	exit;
+    echo '<script>window.location = "' . $url . '";</script>';
+    exit;
 
     // $url = SERVER_ROOTPATH;
     // echo "<script> window.location = " . $url . "</script>";
@@ -208,13 +208,13 @@ if (isset($row_artist) && !empty($row_artist)) {
                                         <small style="color:#000000; font-size:14px;">
                                             <?php if ($user_id != "") {
                                                 $qry =  "select id from tbl_likes where like_from_user_id = '" . $user_id . "' AND  	like_type = 'artist' AND like_id = '$artist_id_db'";
-$counter = array();
-$counter = \App\Models\Songs::GetRawData($qry);
-if ($counter) {
-$counter = count($counter);
-} else {
-$counter = 0;
-}
+                                                $counter = array();
+                                                $counter = \App\Models\Songs::GetRawData($qry);
+                                                if ($counter) {
+                                                    $counter = count($counter);
+                                                } else {
+                                                    $counter = 0;
+                                                }
                                                 if ($counter == 0) { ?>
                                                     <span id="other_dis_sub_<?php echo $artist_id_db; ?>"><a href="javascript:;" onClick="add_in_favourite_list_sub('<?php echo $artist_id_db; ?>','<?php echo $artist_seo; ?>','<?php echo $artist_id_db; ?>')"><i class="fa fa-heart-o" style="font-size:24px; color:#D73B3B;"></i> </a> <span class="text_red"><?php echo $counter_main; ?></span> <a href="<?php echo SERVER_ROOTPATH; ?>detail.php?artist=<?php echo $artist_seo; ?>&critaria=1" data-toggle="modal" data-target="#artist_modal" data-title="" style="color:#444;" class="link-disable">
                                                             <?php if ($counter_main < 2) {
@@ -393,16 +393,11 @@ $counter = 0;
 
                     $artist_list = "select b.years,s.song_title,s.song_seo,b.album_title, b.album_picture, s.id,s.picture, s.song_year from tbl_artist_album b, tbl_songs_artist_album saa, tbl_songs s where 1=1 AND s.id = saa.song_id AND saa.artist_id = $artist_id_db AND b.album_artist_id = $artist_id_db AND b.id = saa.album_id AND saa.artist_id != 67   group by saa.song_id order by $order_by limit 1000";
                     $artist_list_arr    =    \App\Models\Songs::GetRawData($artist_list);
-                    if($artist_list_arr)
-                    {
+                    if ($artist_list_arr) {
                         $total_pages =  count($artist_list_arr);
-
-                    }else
-                    {
+                    } else {
                         $total_pages = 0;
-
                     }
-                    
                 }
                 if (isset($_REQUEST['sort']) && !empty($_REQUEST['sort'])) {
                     $targetpage = SERVER_ROOTPATH . $artist_seo . "/artist-sort/" . $_REQUEST['sort']; //your file name  (the name of this file)
@@ -413,7 +408,7 @@ $counter = 0;
 
 
                 $limit = 10;                     //how many items to show per page
-                
+
 
                 if (isset($page))
                     $start = ($page - 1) * $limit; //first item to display on this page
@@ -462,7 +457,7 @@ $counter = 0;
                             $sr_num = $start;
                             foreach ($artist_list_arr as $val) {
                                 $val = (array)$val;
-                               
+
                                 $id      = $val['id'];
                                 $review_list_qry = "select count(*) as count_reviews from tbl_users u, tbl_reviews r where u.user_id = r.review_user_id AND r.song_id = '" . $id . "' order by r.review_id desc limit 1";
 
@@ -491,7 +486,7 @@ $counter = 0;
 
 
                                 $sum_rating = "select sum(review_rating) as sum_rate, count(*) as counter from tbl_reviews where song_id = $id AND status = 1";
-                               
+
                                 $rate_arr = array();
                                 $rate_arr    =    \App\Models\Songs::GetRawData($sum_rating);
                                 if ($rate_arr) {
@@ -549,7 +544,7 @@ $counter = 0;
                                 $sr_num++;
 
                                 $qry_top_feature_artist = "Select a.artist_seo as f_artist_seo,a.artist_name as feature_artist, a.id as feature_artist_id from tbl_featured_artist_assocs f, tbl_artists a where a.id = f.featured_artist AND f.song_id = '" . $id . "'";
-                               
+
                                 $qry_feature_arr = array();
                                 $qry_feature_arr = \App\Models\Songs::GetRawData($qry_top_feature_artist);
                                 if ($qry_feature_arr) {
@@ -591,7 +586,7 @@ $counter = 0;
                                                 <div class="album_cover">
                                                     <!-- <img src="images/slideimg1.png">
                                                     <cite class="yellow">5.0</cite>-->
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck">
+                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck">
                                                         <?php
                                                         $pos = strpos($picture, 'http');
                                                         if ($pos === true) {
@@ -723,7 +718,7 @@ $counter = 0;
                                     -->
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding:0px !important;">
-                                                <div class="album_cover"> <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>" class="text_blck">
+                                                <div class="album_cover"> <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>" class="text_blck">
                                                         <?php
                                                         if ($picture != "") {
                                                             $img_api_link = album_img_api($picture);

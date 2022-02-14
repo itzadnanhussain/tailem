@@ -34,7 +34,7 @@ if(!empty($_POST['del_id']))
 		
 		
 		
-			 $mesg = "Moderator has removed your review on <a class=\"text_blck\" href=\"".SERVER_ROOTPATH.$song_result_notification['song_seo']."-reviews-".$song_result_notification['artist_seo'].".html\"><strong>".wordwrap(stripslashes($song_result_notification['song_title']),100," ",true)."</strong></a>.";
+			 $mesg = "Moderator has removed your review on <a class=\"text_blck\" href=\"".SERVER_ROOTPATH.$song_result_notification['song_seo']."/reviews/".$song_result_notification['artist_seo'].".html\"><strong>".wordwrap(stripslashes($song_result_notification['song_title']),100," ",true)."</strong></a>.";
 			
 		
 		
@@ -63,4 +63,3 @@ else
 {
 	echo 'Error';
 }
-?>

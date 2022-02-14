@@ -228,7 +228,7 @@
                         <div>
                             <div class="list_item">
                                 <div class="album_cover">
-                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
                                                                                                                         if ($picture != "") {
 
                                                                                                                             $song_pic = SERVER_ROOTPATH . "site_upload/song_images/thumb_" . $picture;
@@ -272,7 +272,7 @@
                                 <div class="list_bottom">
                                     <div class="row">
                                         <div class="col-lg-8 col-md-8 col-sm-7 col-xs-7 pad_right">
-                                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                            <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                 <p><?php echo $song_title; ?></p>
                                             </a>
                                             <a href="<?php echo SERVER_ROOTPATH . Slug($artist_seo) . "/artist-songs"; ?>">

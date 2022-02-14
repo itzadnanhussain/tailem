@@ -386,7 +386,7 @@ if ($page != "") {
                                         </div>
                                         <div class="col-lg-9 col-md-9 col-sm-8 col-xs-11 pad_zero">
                                             <div class="album_cover">
-                                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                                <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
                                                                                                                                     if ($picture != "") {
 
                                                                                                                                         $img_api_linka = album_img_api($picture);
@@ -420,7 +420,7 @@ if ($page != "") {
                                                                                                                                     } ?></cite>
                                             </div>
                                             <div class="album_details" style="margin-top:-5px;">
-                                                <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                         <?php echo substr($song_title, 0, 21);
                                                         if (strlen($song_title) > 21) {
                                                             echo "..";
@@ -500,7 +500,7 @@ if ($page != "") {
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-5 pad_zero small-mobile">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
                                                                                                                                         if ($picture != "") {
 
                                                                                                                                             $img_api_linka = album_img_api($picture);
@@ -534,7 +534,7 @@ if ($page != "") {
                                                                                                                                         } ?></cite>
                                                 </div>
                                                 <div class="album_details mrg_top">
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                             <?php echo substr($song_title, 0, 9);
                                                             if (strlen($song_title) > 9) {
                                                                 echo "...";
@@ -979,7 +979,7 @@ if ($page != "") {
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 pad_zero">
                                                 <div class="album_cover">
-                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>"> <?php
+                                                    <a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>"> <?php
                                                                                                                                         if ($picture != "") {
 
                                                                                                                                             $img_api_linka = album_img_api($picture);
@@ -1016,7 +1016,7 @@ if ($page != "") {
                                             </div>
                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 pad_zero ">
                                                 <div class="album_details" style="display:block; margin-top:-3px;">
-                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo; ?>">
+                                                    <label class="title"><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo; ?>">
                                                             <?php echo substr($song_title, 0, 20);
                                                             if (strlen($song_title) > 20) {
                                                                 echo "...";
@@ -1086,7 +1086,7 @@ if ($page != "") {
                                                                                                                                                                     echo number_format($review_rating, 0);
                                                                                                                                                                 } else {
                                                                                                                                                                     echo $review_rating;
-                                                                                                                                                                } ?></span><a href="<?php echo SERVER_ROOTPATH . $song_seo . "-reviews-" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>"><text class="rec_review_title"><?php
+                                                                                                                                                                } ?></span><a href="<?php echo SERVER_ROOTPATH . $song_seo . "/reviews/" . $artist_seo . "-" . $position_find . "#review_" . $review_id; ?>"><text class="rec_review_title"><?php
                                                                                                                                                                                                                                                                                                                                             $title_rev  = substr(wordwrap($review_title, 15, ' ', true), 0, 22);
                                                                                                                                                                                                                                                                                                                                             echo $title_rev;
                                                                                                                                                                                                                                                                                                                                             if (strlen($review_title) > 22) {

@@ -386,7 +386,7 @@ class ReviewManagement extends Controller
 
 
 
-                $mesg = "Moderator has removed your review on <a class=\"text_blck\" href=\"" . SERVER_ROOTPATH . $song_result_notification['song_seo'] . "-reviews-" . $song_result_notification['artist_seo'] . ".html\"><strong>" . wordwrap(stripslashes($song_result_notification['song_title']), 100, " ", true) . "</strong></a>.";
+                $mesg = "Moderator has removed your review on <a class=\"text_blck\" href=\"" . SERVER_ROOTPATH . $song_result_notification['song_seo'] . "/reviews/" . $song_result_notification['artist_seo'] . ".html\"><strong>" . wordwrap(stripslashes($song_result_notification['song_title']), 100, " ", true) . "</strong></a>.";
                 $insert_notification_qry = "insert into tbl_likes set 
 		like_type='delete_review_song',description='$mesg',read_status='1',like_id='$review_id', like_receive_user='$review_user_id', date='" . date("Y-m-d") . "'";
                 \App\Models\Songs::GetRawData($insert_notification_qry);
@@ -438,7 +438,7 @@ class ReviewManagement extends Controller
 
 
 
-                    $mesg = "Moderator has removed your review on <a class=\"text_blck\" href=\"" . SERVER_ROOTPATH . $song_result_notification['song_seo'] . "-reviews-" . $song_result_notification['artist_seo'] . ".html\"><strong>" . wordwrap(stripslashes($song_result_notification['song_title']), 100, " ", true) . "</strong></a>.";
+                    $mesg = "Moderator has removed your review on <a class=\"text_blck\" href=\"" . SERVER_ROOTPATH . $song_result_notification['song_seo'] . "/reviews/" . $song_result_notification['artist_seo'] . ".html\"><strong>" . wordwrap(stripslashes($song_result_notification['song_title']), 100, " ", true) . "</strong></a>.";
 
 
 
